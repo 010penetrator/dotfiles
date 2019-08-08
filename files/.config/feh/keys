@@ -1,0 +1,10 @@
+next_img j space Right
+prev_img k BackSpace Left
+scroll_left H
+scroll_down J
+scroll_up K
+scroll_right L
+delete X
+
+save_filelist
+save_image

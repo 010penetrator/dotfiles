@@ -1,0 +1,33 @@
+
+# How many my vim-servers?
+i=$(vim --serverlist | grep ^VIMSERV$ | wc -l)
+# Launch great Vim
+[ $i == 0 ] && echo $i &&
+  case $TERMINAL in
+    kitty)
+      kitty --start-as maximized sh -c "source $HOME/.bashrc ; vim --servername vimserv" & ;;
+    *)
+      xterm -maximized -e "source $HOME/.bashrc ; vim --servername vimserv" & ;;
+  esac
+[ $i == 0 ] && sleep 1.0
+
+# Escape spaces
+foo=$1
+bar=${foo// /'\' }
+
+if [[ $notab == 1 ]] ; then
+  # Change current Vim buffer 
+  vim --servername vimserv --remote-send ":e $bar<CR>"
+  # exit
+else
+  if [ $i == 0 ] ; then
+    # Populate Vim buffer
+    vim --servername vimserv --remote-send ":e $bar<CR>" 
+  else
+    # Make new tab in Vim
+    vim --servername vimserv --remote-send ":tabe $bar<CR>" 
+  fi
+fi
+
+raise.sh VIMSERV &> /dev/null
+

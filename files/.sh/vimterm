@@ -1,0 +1,2 @@
+vim --servername vimserv --remote-send "<C-W>:vert term<CR>$1<CR>"
+

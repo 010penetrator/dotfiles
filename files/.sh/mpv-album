@@ -1,0 +1,24 @@
+# ignore '..' target 
+if [ "$1" == '..' ]; then set -- "." "${2}" ; fi
+
+# cd to $1
+if [ -n "$1" ]; then cd "$1"; fi
+
+# set terminal title
+if [ -n "$2" ]
+then 
+  echo -ne "\033]0;MPV @ $PWD @ $2\007"
+else
+  echo -ne "\033]0;MPV @ $PWD\007"
+fi
+if [[ $(ls | grep -ic '\.ape$\|\.flac$\|\.wv$') == $(ls | grep -ic '\.cue$') && $(ls | grep -ic '\.cue$') > 0 ]]
+  then
+  echo : play cue with mpv...
+  mpv --no-video *.cue
+else
+  echo : play audio files...
+  mpv --no-video *.{flac,mp3,ogg,ape,wv}
+fi
+
+echo "$PWD" >> /tmp/mpv-history
+

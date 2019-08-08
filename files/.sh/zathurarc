@@ -1,0 +1,20 @@
+set scroll-step 220
+set default-bg "#696969"
+set statusbar-fg "#bbb"
+set recolor-darkcolor "#060504"
+set recolor-lightcolor "#DBC7A7"
+map i set recolor toggle
+# map s scroll down
+# map w scroll up
+map d scroll full-down
+map e scroll full-up
+# map b navigate previous
+# map n navigate next
+map [ zoom out
+map ] zoom in
+map S toggle_statusbar 
+map x quit
+
+set window-width 1280
+set window-height 1024
+

@@ -1,0 +1,149 @@
+super + x ; {t,e,m,s,r,i,h,f,d,g,p,u,v,y,o,w,a}
+	raise.sh {raiseterm.sh, 'Luakit' 'luakit', notimem, speedcrunch, Ranger 'newranger', WeeChat 'urxvt -e weechat', htop '$TERMINAL -e htop', feh 'fa /ln/dwn/', deadbeef, 'chromium\|Firefox\|Navigator' '$BROWSER', Thunar thunar, nautilus, evince, VIFM '$TERMINAL -T VIFM -e vifm & notify-send new_VIFM', VirtualBox '', fbreader, pavucontrol}
+
+super + x ; {j,z,k,l,c,x}
+	{windowswitcher.sh, xdotool mousemove 1595 980, i3-msg kill, listdwn.sh, listmpv.sh, $TERMINAL}
+
+super + {q,t,alt+t,v,u,g,p,y,Y,b,B,a}
+	raise.sh {scroff.sh, 'xterm\|urxvt\|kitty', 'zsh$' 'myrxvterm.sh 14', VIM 'vims', luakit, 'chromium\|Firefox', 'MPV\|mpv' 'noti echo no mpv found', VIFM '$TERMINAL -e vifm & notify-send new_VIFM', '' '$TERMINAL -T VIFM -e vifm', zathura listzathura.sh, '' listzathura.sh, 'transmission-remote\|qbittorrent' '$TERMINAL -e transmission-remote-cli -c localhost:9090'}
+
+super + n
+  $TERMINAL
+super + d
+  dmouse
+super + s
+  raiseterm.sh
+super + x ; b
+  addlayout.sh ; sxd.sh ; notify-send "$(LC_ALL=C date; uptime -p)"
+super + space
+  raise.sh 'MPV\|mpv' 'noti echo no mpv found'
+control + space
+  (setxkbmap -query | grep -q "layout:\s\+us") && setxkbmap ru || setxkbmap us
+control + 7
+  xdotool getactivewindow windowminimize 
+alt + x
+  dmouse
+
+# # i3 select desktop
+# super + {1,2,3,4,5,6,7,8,9}
+#   desk.sh {1,2,3,4,5,6,7,8,9}
+
+# cycle same class windows
+super + apostrophe
+	raise.sh 0
+
+# Adjust volume with pulseaudio
+alt + a
+  [ $(amixer sget Master | tail -1 | cut -d [ -f2 | cut -d % -f1) -gt 91 ] && amixer set Master 6%+ && notify-send 'Volume MAX' -t 500 || amixer set Master 6%+
+alt + z
+  amixer set Master 6%-
+
+#
+# bspwm hotkeys
+#
+
+# quit/restart bspwm
+super + alt + {q,r}
+	bspc {quit,wm -r}
+
+# close and kill
+super + {_,shift + }w
+	bspc node -{c,k}
+
+# alternate between the tiled and monocle layout
+super + m
+	bspc desktop -l next
+
+# send the newest marked node to the newest preselected node
+super + f ; b
+	bspc node newest.marked.local -n newest.automatic.local
+
+# swap the current node and the biggest node
+super + f ; a
+	bspc node -s biggest
+
+# set the window state
+super + f ; {d,s,g,f}
+	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+# rotate node 
+super + alt + o
+  bspc node -R 90
+
+# set the node flags
+super + ctrl + {m,x,y,z}
+	bspc node -g {marked,locked,sticky,private}
+
+# focus the node in the given direction
+super + {_,shift + }{h,j,k,l}
+	bspc node -{f,s} {west,south,north,east}
+
+# focus the node for the given path jump
+super + alt + {p,b,comma,period}
+	bspc node -f @{parent,brother,first,second}
+
+# focus the next/previous node in the current desktop
+super + {_,shift + }c
+	bspc node -f {next,prev}.local
+super + e
+  bspc node -f prev.local
+
+# focus the next/previous desktop in the current monitor
+super + bracket{left,right}
+	bspc desktop -f {prev,next}.local
+super + {comma,period}
+  bspc desktop -f {prev,next}.local
+
+# focus the last node/desktop
+alt + Tab
+  bspc desktop -f last
+super + Tab
+  bspc node -f last
+super + BackSpace
+  bspc desktop -f last
+
+# focus the older or newer node in the focus history
+super + {o,i}
+	bspc wm -h off; \
+	bspc node {older,newer} -f; \
+	bspc wm -h on
+
+# focus or send to the given desktop
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
+
+#
+# preselect
+#
+
+# preselect the direction
+super + ctrl + {h,j,k,l}
+	bspc node -p {west,south,north,east}
+
+# preselect the ratio
+super + ctrl + {1-9}
+	bspc node -o 0.{1-9}
+
+# cancel the preselection for the focused node
+super + ctrl + c
+	bspc node -p cancel
+
+# cancel the preselection for the focused desktop
+super + ctrl + minus
+	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
+#
+# move/resize
+#
+
+# expand a window by moving one of its side outward
+super + alt + {h,j,k,l}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+# contract a window by moving one of its side inward
+super + alt + {y,u,i,o}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+# move a floating window
+super + {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}

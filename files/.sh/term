@@ -1,0 +1,2 @@
+# S() { sh ~/.sh/ldir.sh "$*"  ; } 
+xterm -class myterm $*

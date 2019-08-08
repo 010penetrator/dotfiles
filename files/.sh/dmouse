@@ -1,0 +1,9 @@
+#!/bin/sh
+# . $sh/dmenurc.sh
+
+#DMENU_FN="xos4 Terminus"
+#TERMINAL_CMD="xterm"
+#PANEL_HEIGHT="11"
+ 
+dmenu_recent -i -l 12
+

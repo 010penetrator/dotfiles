@@ -1,0 +1,2 @@
+xterm -xrm 'XTerm.vt100.allowTitleOps: false' -T "vifm" -geometry 80x32+360+240 -e "vifm $1" &> /dev/null & disown
+

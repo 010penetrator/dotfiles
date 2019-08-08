@@ -1,0 +1,2 @@
+ga=.9; redshift -O 4500 -g $ga:$ga:$ga & disown
+

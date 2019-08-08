@@ -1,0 +1,3 @@
+x-scheme-handler/magnet=transmission-cli.desktop
+application/x-bittorrent=transmission-cli.desktop
+application/x-compressed-tar=xarchiver.desktop;

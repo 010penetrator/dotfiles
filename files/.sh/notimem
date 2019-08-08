@@ -1,0 +1,2 @@
+notify-send "$(free -m | head -2 | cut -c1-8,12-22,70-)"
+

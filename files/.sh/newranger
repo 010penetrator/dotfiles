@@ -1,0 +1,2 @@
+xterm -xrm 'XTerm.vt100.allowTitleOps: false' -T Ranger -geometry 108x33+180+180 -e "ranger" &> /dev/null & disown
+

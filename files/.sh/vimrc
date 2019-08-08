@@ -1,0 +1,812 @@
+" vim: ts=2 sw=2:
+set nocompatible              " be iMproved
+compiler gcc
+set makeprg=make\ 
+" currfile=%\ mainbin
+" let $BROWSER = 'luakit'
+" .w !bash " exec current line 
+" exec  "!"  . @"  " exec yank buffer
+" r! ls -la " paste shell output
+" g/.\{20,\}/ exec "normal gqgq" | nohls
+" autocmd WinNew * set numberwidth=2 winheight=7
+"-------------Plug------------"
+" curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+" Plug 'junegunn/vim-plug'
+call plug#begin()
+Plug 'tpope/vim-sensible' "basic
+Plug 'jlanzarotta/bufexplorer' "basic
+Plug 'sheerun/vim-polyglot' "okay
+Plug 'tpope/vim-commentary' "good
+Plug 'michaeljsmith/vim-indent-object' "cool
+Plug 'itchyny/lightline.vim' "cool
+" Plug 'eiginn/netrw' "basic
+Plug 'tpope/vim-vinegar' "basic
+Plug 'jamessan/vim-gnupg' "good
+Plug 'Shougo/unite.vim' "bloated
+Plug 'Shougo/vimproc' "req4unite
+Plug 'Shougo/denite.nvim' "too complex
+Plug 'junegunn/goyo.vim' "usable
+Plug 'godlygeek/tabular' "okay
+Plug 'chrisbra/Colorizer' "good
+Plug 'mileszs/ack.vim' "good
+" Plug 'mattn/gist-vim' "usable
+" Plug 'mattn/webapi-vim' "req4gist
+Plug 'haya14busa/vim-edgemotion' "okay
+Plug 'majutsushi/tagbar' "okay
+Plug 'tpope/vim-ragtag' "good
+Plug 'justinmk/vim-sneak' "good!
+Plug 'tpope/vim-surround' "good
+Plug 'wesleyche/SrcExpl' "mediocre
+Plug 'kshenoy/vim-signature' "mediocre
+"
+" Plug 'vim-syntastic/syntastic' "wtf
+" Plug 'kien/rainbow_parentheses.vim'
+" Plug 'Shougo/neocomplete.vim'
+" Plug 'Valloric/YouCompleteMe'
+" Plug 'ajh17/VimCompletesMe'
+" Plug 'craigemery/vim-autotag' "errors
+" Plug 'junegunn/fzf.vim'
+" Plug 'wincent/command-t' "40MB
+" Plug 'vim-scripts/LustyExplorer'
+" Plug 'hari-rangarajan/CCTree'
+" Plug 'tpope/vim-fugitive'
+" Plug 'easymotion/vim-easymotion'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'sandeepcr529/Buffet.vim'
+" Plug 'vim-scripts/QuickBuf'
+Plug 'Yggdroot/LeaderF'
+Plug 'tpope/vim-endwise'
+"
+Plug 'morhetz/gruvbox' "best
+Plug 'ajmwagar/vim-dues' "deus
+Plug 'jpo/vim-railscasts-theme' "normal
+Plug 'chriskempson/vim-tomorrow-theme' "Nice dark+light
+Plug 'nanotech/jellybeans.vim' "good4html
+Plug 'zsoltf/vim-maui' "darkOkay
+Plug 'jedverity/feral-vim' "Nice
+" Plug 'tomasr/molokai' "shitty
+Plug 'mhartington/oceanic-next' "soft nice
+Plug 'w0ng/vim-hybrid' "beautiful
+Plug 'kristijanhusak/vim-hybrid-material' "nice Sane dark
+Plug 'vim-scripts/strange' "darker 
+Plug 'the31k/vim-colors-tayra' "Nice gray
+Plug 'jacoborus/tender.vim' "sane soft dark
+Plug 'cocopon/iceberg.vim' "soft cold dark
+Plug 'vim-scripts/desertEx' "Nice gray
+Plug 'AlessandroYorba/Alduin' "brown lowcon
+Plug 'jnurmine/Zenburn' "tolerable
+Plug 'jonathanfilip/vim-lucius' "day morning
+Plug 'mtglsk/mushroom' "night
+Plug 'CruizeMissile/Revolution.vim' "cool lowcont
+Plug 'romainl/Apprentice' "nostrain
+Plug 'Heorhiy/VisualStudioDark.vim' "mid con
+Plug 'altercation/vim-colors-solarized' "yellow
+Plug 'JarrodCTaylor/spartan' "spartan,immortals
+Plug 'jlund3/colorschemer' "'lucid' nice
+Plug 'pbrisbin/vim-colors-off'
+Plug 'jakwings/vim-colors' "moody,garden,messy
+Plug 'vim-scripts/xterm16.vim' "variable
+Plug 'Drogglbecher/vim-moonscape' "NIGHT
+Plug 'bf4/vim-dark_eyes' "NIGHT
+Plug 'noah/fu' "sane fallback
+Plug 'dracula/vim' "funky
+Plug 'MPiccinato/wombat256' "good dark
+Plug 'vim-scripts/peaksea' "good trad dark
+Plug 'vim-scripts/rdark-terminal' "good darker
+Plug 'juanpabloaj/vim-pixelmuerto' "dark
+Plug 'Lokaltog/vim-distinguished' "dark hicon
+Plug 'trevorrjohn/vim-obsidian' "satur
+Plug 'sonph/onehalf', {'rtp': 'vim'} "Nice good tone
+Plug 'gilsondev/lizard' "green dark
+Plug 'ajh17/Spacegray.vim' "darker misty
+Plug 'sickill/vim-monokai' "dark hicon
+Plug 'beigebrucewayne/Turtles' "funky
+Plug 'thomd/vim-wasabi-colorscheme' "dark normalcont
+Plug 'vim-scripts/sift' "underwater-like
+Plug 'whatyouhide/vim-gotham' "nice sepia
+Plug 'bcicen/vim-vice' "joke
+Plug 'Renxiuhu/vim-colorscheme-tatami' " monokai Bgreen PaperColor
+Plug 'vim-scripts/swamplight' "day
+Plug 'vim-scripts/C64.vim' "joke
+Plug 'szorfein/fantasy.vim' "dull
+Plug 'ErichDonGubler/vim-sublime-monokai' "edit red?
+Plug 'KimNorgaard/vim-frign' "borland-like
+Plug 'vim-scripts/Gummybears' "dark
+Plug 'szorfein/fromthehell.vim' "dark satur earth
+Plug 'koirand/tokyo-metro.vim' "pretty
+Plug 'nightsense/rusticated' "morning
+Plug 'KKPMW/sacredforest-vim' "lowcont
+Plug 'nightsense/snow' "soft)
+Plug 'logico-dev/typewriter' "good!
+Plug 'wimstefan/vim-artesanal' "good lowcon gray
+Plug 'yuttie/inkstained-vim' "very low con light
+Plug 'nightsense/stellarized' "nice! tryDarkBG
+Plug 'rdavison/Libertine' "applejuice
+Plug 'AlessandroYorba/Sierra' "softgray
+Plug 'AlessandroYorba/Despacio' "softdarkgrey
+Plug 'srcery-colors/srcery-vim' "consbroken
+Plug 'Jimeno0/vim-chito' "consbroken
+Plug 'aradunovic/perun.vim' "consbroken
+Plug 'HenryNewcomer/vim-theme-underflow' "consbroken
+Plug 'beigebrucewayne/min_solo' "'subtle' consbroken
+Plug 'therubymug/vim-pyte' "consbroken
+Plug 'junegunn/seoul256.vim' "beautiful
+"
+" Plug 'atelierbram/vim-colors_atelier-schemes' "mindfuck
+Plug 'colepeters/spacemacs-theme.vim' "Fail
+Plug 'nightsense/vimspectr' "Fail
+call plug#end()
+
+"-----------Settings----------"
+set fileencodings=ucs-bom,utf-8,default,cp1251,latin1
+set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
+" set keymap=russian-jcukenwin
+" set iminsert=0
+" set imsearch=0
+set t_Co=256
+if $TERMINAL == 'xterm'
+  set term=xterm-256color
+endif
+if $TERMINAL == 'kitty'
+  let &t_ut=''
+endif
+let g:GPGPreferSymmetric=1
+" vi: noswapfile bufhidden=wipe
+" vim: autoindent nobackup nowritebackup noswapfile bufhidden=wipe foldmethod=indent fdo=insert fcl=all fdl=1
+" set nofoldenable    " disable folding
+set foldmethod=marker
+let g:UltiSnipsSnippetDirectories=[$HOME."/.vim/ultisnips"]
+let g:solarized_termcolors=256
+let xterm16_brightness = '#aac8c2' | let xterm16_colormap='soft'
+let g:seoul256_background = 234
+if !exists("g:colors_name")
+  " colorscheme hybrid
+endif
+"Use hybrid tayra seoul256 mushroom tender deus Tomorrow-Night-Eighties
+let g:lightline = { 'colorscheme': 'PaperColor', }
+" Currently avail are:   wombat, solarized, powerline, jellybeans, Tomorrow, Tomorrow_Night, Tomorrow_Night_Blue, Tomorrow_Night_Eighties, PaperColor, seoul256, landscape, one, darcula, molokai, materia, material, OldHope, nord, 16color, deus
+let $VPLUG = '$HOME/.vim/plugged/'
+" set background=dark
+" set colorcolumn=80
+" augroup mysettings
+" au FileType tex set wrap shiftwidth=2 softtabstop=2 expandtab
+" augroup END
+set equalalways
+set winheight=7
+set noswapfile
+silent !mkdir -p ~/.vimbak
+set backupdir=~/.vimbak//
+set directory=~/.vimbak//
+set undodir=~/.vimbak//
+set history=500
+set tabstop=2 softtabstop=2 expandtab shiftwidth=2 smarttab 
+set textwidth=0 wrapmargin=0
+set smartindent
+set autoindent
+set invlinebreak
+set list lcs=tab:\┊\ 
+set scrolloff=2
+" set relativenumber
+set number
+set numberwidth=2
+set showmode
+set hlsearch
+set incsearch
+set linebreak
+set ignorecase
+set smartcase
+set magic
+set matchtime=2
+set switchbuf=useopen
+set splitbelow
+set splitright
+set display=lastline
+set hidden
+autocmd WinNew * set numberwidth=2
+autocmd FileType c setlocal commentstring=//%s
+autocmd FileType text setlocal commentstring=#%s
+autocmd FileType cmake setlocal commentstring=#%s
+set fileformat=unix
+" autocmd CursorHold * normal! m'
+if has('mouse')
+	set mouse=a
+endif
+if &t_Co > 2 || has("gui_running")
+	syntax on
+	let c_comment_strings=1
+endif
+if &diff
+	colo wasabi256
+endif
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+if executable('rg')
+  let g:ackprg = 'rg --vimgrep'
+endif
+if !exists('g:lasttab')
+  let g:lasttab = 1
+endif
+au TabLeave * let g:lasttab = tabpagenr()
+" "Powerline
+" let $PYTHONPATH='/usr/lib/python3.6/site-packages'
+" set laststatus=2
+" let g:Powerline_symbols = "fancy"
+" let g:LustyExplorerSuppressRubyWarning = 1
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
+let g:SrcExpl_pluginList = [ "__Tag_List__" ] 
+let g:ScrExpl_refreshTime=200
+let g:SrcExpl_winHeight = 13
+if has("cscope")
+    " set cscopetag
+    set csto=0
+    if filereadable("cscope.out")
+        cs add cscope.out  
+    elseif $CSCOPE_DB != ""
+        cs add $CSCOPE_DB
+    endif
+    set cscopeverbose  
+    nmap <C-@>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-@>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-@>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-@>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-@>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-@>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+    nmap <C-@>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+    nmap <C-@>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-@>S :scs find s <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-@>G :scs find g <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-@>C :scs find c <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-@>T :scs find t <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-@>E :scs find e <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-@>F :scs find f <C-R>=expand("<cfile>")<CR><CR>
+    nmap <C-@>I :scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+    nmap <C-@>D :scs find d <C-R>=expand("<cword>")<CR><CR>
+endif
+
+"-----------Shortcuts---------"
+set timeoutlen=500
+" Go to normal mode via home-row
+imap jj <ESC>
+imap оо <ESC>
+if v:version >= 801
+  tmap oo <C-w>N:set nonumber<CR>
+  tnoremap <C-PageUp> <C-W>:tabnext<CR>
+  tnoremap <C-PageDown> <C-W>:tabprev<CR>
+  tmap <Leader><tab> :exe "tabn ".g:lasttab<CR>
+  tmap <C-\> <C-W>w
+endif
+nnoremap <C-PageUp> gT
+nnoremap <C-PageDown> gt
+" Preserve jumps
+nnoremap <silent> { :<C-u>execute "keepjumps norm! " . v:count1 . "{"<CR>
+nnoremap <silent> } :<C-u>execute "keepjumps norm! " . v:count1 . "}"<CR>
+nnoremap <silent> H :<C-u>execute "keepjumps norm! " . v:count1 . "H"<CR>
+nnoremap <silent> M :<C-u>execute "keepjumps norm! " . v:count1 . "M"<CR>
+nnoremap <silent> L :<C-u>execute "keepjumps norm! " . v:count1 . "L"<CR>
+nnoremap <silent> n :<C-u>execute "keepjumps norm! " . v:count1 . "n"<CR>
+nnoremap <silent> N :<C-u>execute "keepjumps norm! " . v:count1 . "N"<CR>
+nnoremap <silent> * :<C-u>execute "keepjumps norm! " . v:count1 . "*"<CR>
+" nnoremap <silent> - :<C-u>execute "keepjumps norm! " . v:count1 . "H014k"<CR>
+" nnoremap <silent> = :<C-u>execute "keepjumps norm! " . v:count1 . "L014j"<CR>
+let key4=""
+let key15=""
+let scroll=82
+nnoremap <silent> <Space> :exec 'normal! '.float2nr(round(winheight(0)*(exists("b:scroll") ? b:scroll : g:scroll)*0.01))."<C-d>"<CR>
+nnoremap <silent> <BS>    :exec 'normal! '.float2nr(round(winheight(0)*(exists("b:scroll") ? b:scroll : g:scroll)*0.01)).key15<CR>
+" <x> will delete to no buffer
+noremap x "_x
+noremap X "_X
+" noremap s "_s
+nnoremap gb gT
+nnoremap g< :tabm -1 <CR>
+nnoremap g> :tabm +1 <CR>
+nnoremap <Down> gj
+nnoremap <Up>   gk
+vnoremap <Down> gj
+vnoremap <Up>   gk
+inoremap <Down> <C-o>gj
+inoremap <Up>   <C-o>gk
+" Allows to undo accidental CTRL-U in insert mode
+inoremap <C-U> <C-G>u<C-U>
+map q <Nop>
+map й q
+nnoremap qQ :e $MYVIMRC <CR>
+" nnoremap qm q
+nnoremap Q q
+nnoremap qr @@
+nnoremap qf @
+nnoremap qh    <C-W>h
+nnoremap qj    <C-W>j
+nnoremap qk    <C-W>k
+nnoremap ql    <C-W>l
+nnoremap <C-\> <C-W>w
+nnoremap q,    <c-W>6<
+nnoremap q.    <C-W>6>
+nnoremap qe    <C-W>3+
+nnoremap qd    <C-W>3-
+nnoremap <C-W>S :vsplit<CR>
+nnoremap qy :let @+ = @" <bar> :let @* = @" <CR>
+nnoremap qo o<Esc>
+nnoremap qi O<Esc>
+nnoremap qt :tabe <CR>
+nnoremap qw :w<CR>
+nnoremap qx :q <CR>
+nnoremap qX :q! <CR>
+nnoremap qp :put *<CR>
+nnoremap ap :put +<CR>
+" Put as single paragraph
+nnoremap qP O<Esc>:put! *<CR>`[v`]:g/^$/d<CR>:nohlsearch<CR>
+nnoremap aw O<Esc>:put! *<CR>`[v`]:g/^$/d<CR>:nohlsearch<CR>
+" Yank inline
+nnoremap qc ^y$:let @+ = @" <bar> :let @* = @" <CR>j
+" Yank current file full name 
+nnoremap zy :let @" = expand('%:p')
+nnoremap qu ~
+nnoremap qb :Bash <CR>
+nnoremap qs :new <CR>
+nnoremap qv :vnew <CR>
+nnoremap q/ :nohlsearch <CR>
+nnoremap a<space> :nohlsearch <CR>
+nnoremap q[ :cprev<CR>
+nnoremap q] :cnext<CR>
+nnoremap q<Up>   :cprev<CR>
+nnoremap q<Down> :cnext<CR>
+nnoremap q<Space> :echo expand ('%') '.@.' getcwd() <CR>
+nnoremap q<BS> :enew <CR>
+nnoremap q; :<up>
+vnoremap q; :<up>
+nnoremap qq :
+nnoremap dx 0"_D
+nnoremap dy ^"_D
+nnoremap dc "_d$
+nnoremap d<space> :call DelSpcOrPar()<Esc>
+nnoremap d. "_dd
+nnoremap d, :call DelSpace(0)<Esc>
+nnoremap cm o<Esc>O
+nnoremap yc ^y$"+y$"*y$
+nnoremap yq :@"<CR>
+" Select last inserted text
+nnoremap cv `[v`]
+nnoremap g[ `<
+nnoremap g] `>
+nnoremap cp "_diw""P
+nnoremap co "_diw"*P
+nnoremap cz }O
+noremap <c-n> 10<c-e>M
+noremap <c-p> 10<c-y>M
+map <c-j> <Plug>(edgemotion-j)
+map <c-k> <Plug>(edgemotion-k)
+nnoremap m-       :<C-U>call signature#mark#Purge("all")<CR>
+nnoremap m<space> :<C-U>call signature#mark#Purge("line")<CR>
+nnoremap q<tab> <C-w>p
+nnoremap [j gT
+nnoremap ]j gt
+nnoremap gz 1gt
+nnoremap q' :call WinBufSwap()<CR>
+nnoremap qg gg:call search('^.') <CR>k
+nnoremap qG G$:call search('^.','b') <CR>0j
+" for vim-signature
+nmap ]; ]-
+nmap [; [-
+" Jump to blank or one-char lines
+nnoremap <silent> gn :call search('^\(.\\|\(\s\)*\)$','W') <CR>
+nnoremap <silent> gp :call search('^\(.\\|\(\s\)*\)$','bW') <CR>
+nnoremap <silent> gy :call search('^\(.\\|\(\s\)*\)$','bW') <CR>
+onoremap <silent> gn :call search('^\(.\\|\(\s\)*\)$','W') <CR>
+onoremap <silent> gp :call search('^\(.\\|\(\s\)*\)$','bW') <CR>
+onoremap <silent> gy :call search('^\(.\\|\(\s\)*\)$','bW') <CR>
+nnoremap qz <c-w>_
+nnoremap <silent> aj :call search('.','W') <CR>
+nnoremap <silent> ak :call search('.','bW') <CR>
+" nnoremap q<CR> 
+" nnoremap q\ 
+nnoremap z' `
+nnoremap ze :call SwitchCE()<CR>
+nnoremap z; :set wrap!<CR>
+nmap <C-c> <C-y>
+noremap <C-e> 5<C-e>
+noremap <C-y> 5<C-y>
+nnoremap ]l :lnext<cr>
+nnoremap [l :lprev<cr>
+" xmap s <Plug>Sneak_s
+" xmap S <Plug>Sneak_S
+nmap s <Plug>Sneak_s
+nmap S <Plug>Sneak_S
+nnoremap cx s
+nnoremap c<Space> c$
+cnoremap <C-a> <Home>
+cnoremap <C-b> <C-Left>
+cnoremap <C-t> <C-Right>
+
+nnoremap a <Nop>
+nnoremap as a
+nnoremap ax :q<CR>
+nnoremap at :tabe<CR>
+nnoremap aq :qa<CR>
+nnoremap af :exec "normal i".nr2char(getchar())."\e"<CR>
+nnoremap ag :exec "normal as".nr2char(getchar())."\e"<CR>
+autocmd FileType netrw setl bufhidden=delete
+" Leader maps
+let mapleader = ","
+nnoremap <Leader>1 1gt
+nnoremap <Leader>2 2gt
+nnoremap <Leader>3 3gt
+nnoremap <Leader>4 4gt
+nnoremap <Leader>5 5gt
+nnoremap <Leader>6 6gt
+nnoremap <Leader>7 7gt
+nnoremap <Leader>8 8gt
+nnoremap <Leader>9 9gt
+nnoremap <Leader>q :qa <CR>
+nnoremap <Leader>vq :qa! <CR>
+nnoremap <Leader>j :Unite buffer file<CR>
+nnoremap <Leader>k :Denite buffer -mode=normal -immediately-1<CR>
+nnoremap <Leader>e :BufExplorer <CR>
+nnoremap <Leader>c :call GotoTerm()<CR>
+nnoremap <Leader><tab> :exe "tabn ".g:lasttab<CR>
+nnoremap <Leader>. <C-^>
+nnoremap <Leader>x :q<CR>
+nnoremap <Leader>d :bd!<CR>
+nnoremap <Leader>gd :BD<CR>
+nnoremap <Leader>t :NewTermHere<CR>
+nnoremap <Leader>T :NewTerm<CR>
+nnoremap <Leader>y :NewVifmHere<CR>
+nnoremap <Leader><Space> :LCDhere <CR>
+nnoremap <Leader>o :Goyo 66%x100%<CR>
+nnoremap <Leader>m ^y$:call system('$BROWSER ' . @")<CR>
+nnoremap <Leader>go ^y$:call system('google.sh ' . @")<CR>
+nnoremap <Leader>gw yiw:call system('google.sh ' . @")<CR>
+" nnoremap <Leader>m ^y$:silent exec " ! source $HOME/.bashrc ; echo bro $BROWSER ; \"$BROWSER\" \"" . @" . "\" &> /dev/null & raise.sh $BROWSER" \| redraw!<CR>
+nnoremap <Leader>gr ^y$:silent exec " !source $HOME/.bashrc && \"$BROWSER\" \"red " . @" . "\" &>/dev/null & " \| redraw!<CR>
+nnoremap <Leader>gh ^y$:silent exec " !source $HOME/.bashrc && chromium \"" . @" . "\" &>/dev/null & raise.sh chromium " \| redraw!<CR>
+nnoremap <Leader>gg :call FocusBufOrDo('wawe','e $HOME/gogo/files/wawe')<CR>
+nnoremap <Leader>gx :call FocusBufOrDo('sxhkd','e $sh/sxhkdrc')<CR>
+nnoremap <Leader>gz :call FocusBufOrDo('zzzz','e /ln/hh/tt/zzzzzz')<CR>
+nnoremap <Leader>gp :call FocusBufOrDo('sh_history','e $HOME/.bash_history')<CR>
+nnoremap <Leader>gc :tabe +term \| wincmd o<CR>
+nnoremap <Leader>gl :call FocusBufOrDo('1linux','e $sh/1linux')<CR>
+nnoremap <Leader>gi :call FocusBufOrDo('i3conf','e $sh/i3config')<CR>
+nnoremap <Leader>gk :call FocusBufOrDo('keymap.c','e $HOME/qmk_firmware/keyboards/*/keymaps/plasmik/keymap.c')<CR>
+nnoremap <Leader>gs :call FocusBufOrDo('stk','e $HOME/stk.tx')<CR>
+nnoremap <Leader>gf :call FocusBufOrDo('fun.tx','e $HOME/fun.tx')<CR>
+nnoremap <Leader>gt :call MoveToNextTab()<CR>
+nnoremap <Leader>gb :call MoveToPrevTab()<CR>
+nnoremap <Leader>// :Ack <C-r><C-w> <CR>
+nnoremap <Leader>/f :AckFile <C-r><C-W> <CR>
+nnoremap <Leader>/c :Ack <C-r><C-W> %:p 
+nnoremap <Leader>/d :Ack <C-r><C-w> %:p:h 
+nnoremap <Leader>/w :AckWindow <C-r><C-w> <CR>
+nnoremap <Leader>vs :source ~/.vim/session.vim <CR>
+nnoremap <Leader>vv :source $MYVIMRC <CR>
+nnoremap <Leader>v<Leader> :call EvalThis()<CR>
+" Split open file under cursor
+nnoremap <Leader>ae :vsp <c-r><c-f> <CR> 
+" vimserv stuff; i e move current buf to vimserv vim issue
+nnoremap <Leader>av :silent exec '!vimz "%:p"' \| redraw! \| q <CR>
+nnoremap <Leader>ac :silent exec '!notab=1 vimz "%:p"' \| redraw! \| q <CR>
+" Add Plug entry
+nnoremap <Leader>vp :put + <bar> exec "normal dfmxIPlug 'A'" <CR>
+" nnoremap <Leader>vi :exec "normal $yi'0" <CR> <bar> :PluginInstall <C-R>" <CR>
+nnoremap <Leader>vf :set filetype=sh<CR>
+nnoremap <Leader>vb :call SwitchBackground()<CR>
+nnoremap <Leader>vt :TagbarOpen fj <CR>
+nnoremap <Leader>zz :let &scrolloff=28-&scrolloff<CR>
+nnoremap <Leader>zt :silent exec 'DOctags' \| redraw! \| echo 'Wrote tags db in' getcwd().'/' <CR>
+nnoremap <Leader>zx :call MakeClean()<CR>
+nnoremap <Leader>zc :lcd %:p:h <bar> silent call BuildProjectD() <bar> redraw! <bar> cwindow <CR>
+" nnoremap <Leader>zv :
+" silent exec '!read -n 1 -s -r -p "//press anykey" && echo ' <bar>
+vnoremap zv <ESC>:call FoldSelected()<CR>za
+
+"-----------Commands----------"
+command! -nargs=1 Silent exec 'silent !' . <q-args> | exec 'redraw!'
+command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
+          \ | wincmd p | diffthis
+command! SW w !sudo tee %
+command! SE r !sudo cat %
+command! KIR e ++enc=cp1251 | set fileencoding=utf-8 | set fileformat=unix
+" command! C1KIR e ++enc=cp1251 | set fileencoding=utf-8 | set fileformat=unix | wq
+command! F set fileencoding=utf-8 | set fileformat=unix
+command! QQ mksession! ~/.vim/session.vim | wa | qa
+command! Sess mksession! ~/.vim/session.vim
+command! Bash exec 'silent ! bash' | redraw!
+command! NewTerm exec 'silent ! $TERMINAL &' | redraw!
+command! NewTermHere exec 'silent ! cd "%:p:h" && $TERMINAL &' | redraw!
+command! NewVifmHere exec 'silent ! $TERMINAL -e vifm %:p:h & ' | redraw!
+command! LCDhere lcd %:p:h | pwd
+command! DOctags !ctags -R --exclude=.git --exclude=log --exclude=wutils --c++-kinds=+p --fields=+iaS --extra=+q *
+command! DOctagsSudo !sudo ctags -R --exclude=.git --exclude=log --exclude=wutils --c++-kinds=+p --fields=+iaS --extra=+q *
+command! Yall normal gg"+yG''
+command! Fdel :silent exec '!rm %' | redraw! | bd
+"exec '!chromium' ali.@"
+
+"---------OS-dependant--------"
+if !empty($WINDIR)
+" If windows
+  " set makeprg=\./make.bat
+  " set makeprg=\./make.bat\ -j4\ DEBUG=1
+	" nnoremap qp :put + <CR>j
+    command! RCbash :exec '!source /c/Users/user/.bashrc'
+    command! NewTerm exec 'silent ! mintty.exe &' | redraw!
+    command! DOctags !ctags.exe -R --exclude=.git --exclude=log --exclude=wutils --c++-kinds=+p --fields=+iaS --extra=+q *
+	command! Chrome :silent exec '!source /c/Users/user/.bashrc && chrome "%"' | redraw!
+	command! Npp :silent exec '!source /c/Users/user/.bashrc && npp "%"' | redraw!
+	command! XYp :silent exec '!source /c/Users/user/.bashrc && exp "%:p:h" &' | redraw!
+endif
+
+"----------Functions----------"
+function! BuildProject1()
+  let l:starting_directory = getcwd()
+  let l:curr_directory = expand('%:p:h')
+  exec "cd " . l:curr_directory
+  exec '!echo -e "\n"============ $(date) ============"\n"@ $PWD'
+  make 
+  exec '!echo -e "==Done build==\n"'
+  exec "cd " . l:starting_directory
+endfunction
+
+function! MakeClean()
+  silent exec '!echo -e "\n=-=-=-=-=-=-=-=-=-=-=-=-=-="'
+  silent exec "!make clean"
+  redraw!
+endfunction
+
+function! BuildProjectD()
+  set makeprg='make'
+	"save the current working directory so we can come back
+	let l:starting_directory = getcwd()
+	"get the directory of the currently focused file
+	let l:curr_directory = expand('%:p:h')
+	"move to the current file
+	exec "cd " . l:curr_directory
+	while 1
+		"check if make.bat exists in the current directory
+		if filereadable("Makefile")
+			"run make and exit
+			make
+			break
+		elseif l:curr_directory ==# "/" || l:curr_directory =~# '^[^/]..$'
+			"if we've hit the top level directory, break out
+			break
+		else
+			"move up a directory
+			cd ..
+			let l:curr_directory = getcwd()
+		endif
+	endwhile
+	"reset directory
+	" exec "cd " . l:starting_directory
+endfunction
+
+function! FocusBufOrDo(name,cmd)
+  if buflisted(bufname(a:name))
+    " exec 'Denite buffer -default-action=switch -mode=normal -immediately-1 -input=' . a:name 
+    call GotoWindowByName(a:name)
+    if bufname('%') != bufname(a:name)
+      exec 'buffer ' . a:name
+    endif
+  elseif !empty(a:cmd)
+    " echo 'No such buffer'
+    exec a:cmd
+  endif 
+endfunc
+
+function! GotoWindowByName(name)
+  for b in getbufinfo()
+    if b.name =~ a:name && !empty(b.windows)
+      call win_gotoid(b.windows[0])
+      return
+    endif
+  endfor
+endfunction
+
+function! GotoTerm()
+  let cur = getbufinfo(expand('%'))[0].windows[0]
+  let ar = []
+  for b in getbufinfo()
+    if b.name =~ '/bin/bash' && !empty(b.windows)
+      " call add(ar,b.windows[0])
+      let ar = ar + [b.windows[0]]
+    endif
+  endfor
+  if len(ar) == 0
+    call FocusBufOrDo('/bin/bash','terminal')
+    return
+  endif
+  " if ( exists("g:lasttermid") && (index(ar,cur)<0) )
+  "   " echo 'remem' g:lasttermid
+  "   call win_gotoid(g:lasttermid)
+  "   return
+  " endif
+  call win_gotoid(ar[(1+index(ar,cur)) % len(ar)])
+  " let g:lasttermid = getbufinfo(expand('%'))[0].windows[0]
+endfunction
+
+function! RevealBufs(arg)
+  let ar = []
+  for b in getbufinfo()
+    if b.name =~ a:arg && empty(b.windows) && b.loaded == 1
+      let a = b.bufnr
+      " echo b.bufnr
+      exec "sb" . (b.bufnr)
+    endif
+  endfor
+endfunction
+
+function! MoveToPrevTab()
+  "there is only one window
+  if tabpagenr('$') == 1 && winnr('$') == 1
+    return
+  endif
+  "preparing new window
+  let l:tab_nr = tabpagenr('$')
+  let l:cur_buf = bufnr('%')
+  if tabpagenr() != 1
+    close!
+    if l:tab_nr == tabpagenr('$')
+      tabprev
+    endif
+    sp
+  else
+    close!
+    exe "0tabnew"
+  endif
+  "opening current buffer in new window
+  exe "b".l:cur_buf
+endfunc
+
+function! MoveToNextTab()
+  "there is only one window
+  if tabpagenr('$') == 1 && winnr('$') == 1
+    return
+  endif
+  "preparing new window
+  let l:tab_nr = tabpagenr('$')
+  let l:cur_buf = bufnr('%')
+  if tabpagenr() < tab_nr
+    close!
+    if l:tab_nr == tabpagenr('$')
+      tabnext
+    endif
+    sp
+  else
+    close!
+    tabnew
+  endif
+  "opening current buffer in new window
+  exe "b".l:cur_buf
+endfunc
+
+function! WinBufSwap()
+	let thiswin = winnr()
+	let thisbuf = bufnr("%")
+	let lastwin = winnr("#")
+	let lastbuf = winbufnr(lastwin)
+	exec  lastwin . " wincmd w" ."|".
+				\ "buffer ". thisbuf ."|".
+				\ thiswin ." wincmd w" ."|".
+				\ "buffer ". lastbuf
+endfunction
+
+function! SwitchBackground()
+  " echo '121243234'
+  if (&background == "light")
+    exec "set background=dark"
+  else
+    exec "set background=light"
+  endif
+  " exec "set background"
+  echo &background
+endfunction
+
+function! SwitchCE()
+  if mapcheck("<C-e>") == ""
+    noremap <C-e> 5<C-e>
+    noremap <C-y> 5<C-y>
+  else
+    unmap <C-e>
+    try
+      unmap <C-y>
+    endtry
+  endif
+endfunc
+
+function! LightlineReload(arg)
+  if a:arg != ""
+    if a:arg == '1'
+      source %
+    else
+      let g:lightline = { 'colorscheme': a:arg, }
+    endif
+  endif
+  call lightline#init()
+  call lightline#colorscheme()
+  call lightline#update()
+endfunction
+" command! LightlineReload call LightlineReload()
+
+function! DelSpace(arg)
+  let cur = line('.')
+  exec (cur - 1)
+  " let las = search('\n^\S')
+  let las = search('\n\ *\S')
+  exec (cur + 1)
+  let beg = search('\S\n^\n','beW')
+  " echom (las-beg)
+  if (las-beg+1) > a:arg
+    exec (beg)','(las-a:arg)'d'
+  endif
+endfunction
+
+function! DelSpcOrPar()
+  if getline(line('.')) =~ "^$"
+    call DelSpace(1)
+    " exec "normal! O\<Esc>"
+  else
+    " exec "normal! dap"
+    exec "normal! {d}"
+  endif
+endfunction
+
+function! EvalThis()
+  if getline(line('.')) =~ "^$"
+    exec "normal! yap:@\"\<CR>"
+  else
+    exec "normal! yy:@\"\<CR>"
+  endif
+endfunction
+
+" redir Vim command output to current buffer
+function! ExPut(cmd)
+  redir => message
+  silent exec a:cmd
+  redir END
+  if empty(message)
+    echoerr "no output"
+  else
+   " use "new" instead of "tabnew" below if you prefer split windows instead of tabs
+    " tabnew
+    " setlocal buftype=nofile bufhidden=wipe noswapfile nobuflisted nomodified
+    silent put=message
+  endif
+endfunction
+command! -nargs=+ -complete=command ExPut call ExPut(<q-args>)
+
+function! BD()
+  if expand('#') == ''
+    bd!
+  else
+    b #
+    bd! #
+  endif
+endfunction
+command! BD call BD()
+
+function! SortParagraphs() range
+  exec a:firstline . "," . a:lastline . 'd'
+  let @@=join(sort(split(substitute(@@, "\n*$", "", ""), "\n\n")), "\n\n")
+  put!
+endfunction
+
+function! FoldSelected()
+  " exec "normal O\<c-m>}}}\<c-[>ki{{{\<c-[>p"
+  " exec "normal O------------------------------{{{\<c-m>\<BS>------------------------------}}}\<c-[>kp"
+  exec "normal `>o------------------------------}}}\<ESC>`<O------------------------------{{{\<ESC>"
+endfunction
+
+"---------Colortheme----------"
+" hi! Search ctermbg=222
+" hi! Normal ctermbg=234
+
+if filereadable($HOME."/.vimrc.local")
+  source $HOME/.vimrc.local
+endif
+

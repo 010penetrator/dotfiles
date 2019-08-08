@@ -1,0 +1,22 @@
+## cygwin
+#export desktop="desktop path"
+#export mypc='/cygdrive'
+#export PATH="$PATH:/c/cygwin64/bin"
+
+# msys
+export mypc=''
+export BROWSER="/c/Program Files (x86)/Google/Chrome/Application/chrome.exe"
+export EDITOR=vim
+
+export dwn="$HOME/Downloads/"
+export sh="$HOME/.sh"
+export dot="$HOME/dotfiles"
+alias sess='tmux -2 new-session -s sess'
+alias crestore='"$BROWSER" --restore-last-session &>/dev/null &'
+function chrome () { /c/Program\ Files\ \(x86\)/Google/Chrome/Application/chrome.exe $(cygpath -w $1); }
+function npp () { /c/Program\ Files\ \(x86\)/Notepad++/notepad++.exe $(cygpath -w $1); }
+function exp () { /c/XYplorer/XYplorer.exe $(cygpath -w $1); }
+
+HISTFILESIZE=2500
+# source ~/.bashrc.work
+

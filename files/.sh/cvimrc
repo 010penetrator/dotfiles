@@ -1,0 +1,65 @@
+let scrollstep = 141
+set cncpcompletion
+set noautofocus
+unmap E R S D a e d u 
+map ,  gT
+map .  gt
+map J  gt
+map K  gT
+map gb gT
+map at :tabnew<CR>
+map af L
+map ab H
+map aa i
+map u lastClosedTab
+let fullpagescrollpercent = 82
+map d  scrollFullPageDown
+map e  scrollFullPageUp
+map <Space> scrollFullPageDown
+map <S-Space> scrollFullPageUp
+map <BS> scrollFullPageUp
+map ax 99gxt
+map aq :qall<CR>
+map ac :open chrome-extension://ihlenndgcmojhcghmfjfneahoeklbjjh/pages/blank.html<CR>
+map ad :tabdetach<CR>
+map as :tabattach<space>
+map ai fullImageHint
+map ae createEditHint
+map A  :bookmarks<space>
+map b  e
+map zf toggleImageZoom
+map gh :open opennet.ru<CR>
+map [x gxT
+map ]x gxt
+
+let completionengines   = ["google", "wikipedia", "youtube", "duckduckgo", "wolframalpha", "webster", "urbandictionary"]
+let searchengine m      = "http://www.multitran.ru/c/m.exe?CL=1&s=%s"
+let searchengine c      = "https://en.cppreference.com/mwiki/index.php?search=%s"
+let searchengine mu     = "http://www.multitran.com/en/ru/%s"
+let searchengine urban  = "http://www.urbandictionary.com/define.php?term=%s"
+let searchengine apo    = "https://apollo.rip/torrents.php?searchstr=%s"
+let searchengine red    = "https://redacted.ch/torrents.php?searchstr=%s"
+let searchengine metal  = "https://www.metal-archives.com/search?searchString=%s&type=band_name"
+let searchengine disc   = "https://www.discogs.com/search/?q=%s&type=all"
+let searchengine track  = "https://t.17track.net/en?nums=%s"
+let searchengine wiki   = "https://en.wikipedia.org/w/index.php?search=%s"
+let searchengine arch   = "https://wiki.archlinux.org/index.php?search=%s"
+let searchengine git    = "https://github.com/search?q=%s"
+let searchengine s      = "https://www.startpage.com/do/dsearch?query=%s"
+let searchengine g      = "https://google.com/search?q=%s"
+let searchengine i      = "https://www.google.ru/search?q=%s&tbm=isch"
+let searchengine you    = "https://www.youtube.com/results?search_query=%s"
+let searchengine map    = "https://www.google.ru/maps/place/%s"
+let searchengine imgrev = "https://www.google.ru/searchbyimage?image_url=%s"
+let searchengine y      = "https://yandex.ru/yandsearch?text=%s"
+let searchengine duck   = "https://duckduckgo.com/?q=%s"
+let searchengine eco    = "https://www.ecosia.org/search?q=%s"
+let searchengine ru     = "http://rutracker.org/forum/tracker.php?max=1&nm=%s"
+let searchengine bt     = "https://btdig.com/search?q=%s"
+let searchengine tp     = "http://tparser.org/%s"
+let searchengine dark   = "http://dark-world.ru/search/?q=%s"
+let searchengine area   = "http://metalarea.org/forum/index.php?act=Search&CODE=01&forums=all&search_in=titles&result_type=topics&keywords=%s"
+let searchengine lib    = "http://libgen.io/search.php?req=%s"
+let searchengine ali    = "http://www.aliexpress.com/wholesale?SearchText=%s"
+let searchengine band   = "https://bandcamp.com/search?q=%s"
+

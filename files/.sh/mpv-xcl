@@ -1,0 +1,4 @@
+if [[ $(xclip -selection clipboard -o | grep youtu) ]] ; then adr=$(xclip -selection clipboard -o)
+	else if [[ $(xclip -o | grep youtu) ]] ; then adr=$(xclip -o); fi; fi
+mpv $adr
+

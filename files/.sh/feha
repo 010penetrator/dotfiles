@@ -1,0 +1,43 @@
+echo pwd : `pwd`
+echo feh arg : \'"$1"\'
+
+if [ "$1" = "." ]
+then
+  feh --auto-rotate --edit -B black -rnqF. .
+elif [ -d "$1" ]
+then
+  feh --auto-rotate --edit -B black -rnqF. "$1"
+elif [ -f "$1" ]
+then
+  dir="$(dirname \./"$1")"
+  file="${1#$dir}"
+  echo dir file : $dir $file 
+  # check if $1 was messed by vifm
+  if [ "$dir" == "./." ]
+  then
+    feh --auto-rotate --edit -B black -rqF. --start-at "$file" .
+  else
+    cd "$dir"
+    feh --auto-rotate --edit -B black -rqF. --start-at ./"$file" .
+  fi
+fi
+
+
+# if [[ -d "$1" ]]
+# then
+# 	echo \# arg is a dir \'"$1"\'
+# 	feh --auto-rotate -B black -rnqF. "$1" 
+# elif [[ -f "$1" ]]
+# then
+# 	targdir=${1%/*}
+# 	echo \# feh targdir is \'$targdir\'
+# 	# If no slashes in arg
+# 	if [[ "$targdir" == "$1" ]]
+#     then 
+#     echo \# no slashes in arg
+# 		feh --auto-rotate -B black -rnqF. "$1" .
+#     else
+#     feh --auto-rotate -B black -rnqF. "$targdir"
+# 	fi
+# fi
+

@@ -1,0 +1,159 @@
+alsa_soundcard front:CARD=USB,DEV=0
+ape.write_apev2 1
+artwork.filemask *cover*.jpg;*front*.jpg;*folder*.jpg;*cover*.png;*front*.png;*folder*.png
+cli_add_playlist_name Default
+cli_add_to_specific_playlist 0
+deadbeef_version 0.7.2
+filechooser.lastdir file:///ln/dwn
+filechooser.playlist.lastdir file:///home/plasmik
+gtkui.color.bar_background 23832 57882 29449
+gtkui.color.bar_foreground 18595 36866 53709
+gtkui.color.listview_column_text 43866 43866 43866
+gtkui.color.listview_cursor 4454 29355 16311
+gtkui.color.listview_even_row 3277 3277 3277
+gtkui.color.listview_group_text 29298 40863 53199
+gtkui.color.listview_odd_row 3277 3277 3277
+gtkui.color.listview_playing_text 61166 61166 60652
+gtkui.color.listview_selected_text 29298 40863 53199
+gtkui.color.listview_selection 4634 7846 6799
+gtkui.color.listview_text 27451 40437 54290
+gtkui.color.tabstrip_light 8481 8481 8481
+gtkui.color.tabstrip_text 29298 40863 53199
+gtkui.columns.playlist [{"title":"Album Art","id":"8","format":"","size":"149","align":"0","color_override":"0","color":"#ff6b9dd4"},{"title":"♫","id":"1","format":"%playstatus%","size":"20","align":"0","color_override":"0","color":"#ff000000"},{"title":"Track No","id":"-1","format":"%track number%","size":"31","align":"1","color_override":"0","color":"#ff000000"},{"title":"Title","id":"-1","format":"%title%","size":"510","align":"0","color_override":"0","color":"#ff000000"},{"title":"Duration","id":"-1","format":"%length%","size":"63","align":"0","color_override":"0","color":"#ff000000"},{"title":"Dir","id":"-1","format":"$directory_path(%path%)","size":"506","align":"0","color_override":"0","color":"#ff212121"},{"title":"Artist / Album","id":"-1","format":"%artist% - %album%","size":"319","align":"0","color_override":"0","color":"#ff000000"}]
+gtkui.embolden_current_track 0
+gtkui.embolden_selected_tracks 0
+gtkui.eq.visible 0
+gtkui.hide_tray_icon 1
+gtkui.last_playlist_save_name /home/plasmik/old.dbpl
+gtkui.layout.0.6.2 vbox expand="0 1" fill="1 1" homogeneous=0 {hbox expand="0 1 0" fill="1 1 1" homogeneous=0 {playtb {} seekbar {} volumebar {} } tabbed_playlist hideheaders=0 width=1600 {} } 
+gtkui.mmb_delete_playlist 1
+gtkui.name_playlist_from_folder 1
+gtkui.override_bar_colors 1
+gtkui.override_listview_colors 1
+gtkui.override_tabstrip_colors 0
+gtkui.playlist.group_by_tf %directoryname%
+gtkui.sortby_fmt_v2 %directoryname%
+gtkui.sortby_order 0
+gtkui.statusbar.visible 1
+gtkui.tabscroll 0
+gtkui.titlebar_playing_tf %artist% - %title% - DeaDBeeF-%_deadbeef_version%
+gtkui.titlebar_stopped_tf DeaDBeeF-%_deadbeef_version%
+gui_plugin GTK2
+hotkey.key01 "Ctrl f" 0 0 find
+hotkey.key02 "Ctrl o" 0 0 open_files
+hotkey.key03 "Ctrl q" 0 0 quit
+hotkey.key04 "Ctrl n" 0 0 new_playlist
+hotkey.key05 "Ctrl a" 0 0 select_all
+hotkey.key06 "Escape" 0 0 deselect_all
+hotkey.key07 "Ctrl m" 0 0 toggle_stop_after_current
+hotkey.key08 "Ctrl j" 0 0 jump_to_current_track
+hotkey.key09 "F1" 0 0 help
+hotkey.key10 "Delete" 1 0 remove_from_playlist
+hotkey.key11 "Ctrl w" 0 0 remove_current_playlist
+hotkey.key12 "Return" 0 0 play
+hotkey.key13 "Ctrl p" 0 0 toggle_pause
+hotkey.key14 "Alt 1" 0 0 playlist1
+hotkey.key15 "Alt 2" 0 0 playlist2
+hotkey.key16 "Alt 3" 0 0 playlist3
+hotkey.key17 "Alt 4" 0 0 playlist4
+hotkey.key18 "Alt 5" 0 0 playlist5
+hotkey.key19 "Alt 6" 0 0 playlist6
+hotkey.key20 "Alt 7" 0 0 playlist7
+hotkey.key21 "Alt 8" 0 0 playlist8
+hotkey.key22 "Alt 9" 0 0 playlist9
+hotkey.key23 "Alt 0" 0 0 playlist10
+hotkey.key24 "z" 0 0 prev
+hotkey.key25 "x" 0 0 play
+hotkey.key26 "c" 0 0 toggle_pause
+hotkey.key27 "v" 0 0 stop
+hotkey.key28 "b" 0 0 next
+hotkey.key29 "n" 0 0 playback_random
+hotkey.key30 "Ctrl k" 0 0 toggle_stop_after_album
+hotkey.key31 "Ctrl Down" 0 0 volume_down
+hotkey.key32 "Ctrl Up" 0 0 volume_up
+hotkey.key33 "Ctrl Right" 0 0 seek_5p_fwd
+hotkey.key34 "Ctrl Left" 0 0 seek_5p_back
+hotkey.key35 "f" 1 0 feh
+hotkey.key36 "r" 1 0 ranger
+hotkey.key37 "s" 1 0 spek
+hotkey.key38 "a" 1 0 SoxSpectrgram
+hotkey.key39 "F2" 1 0 track_properties
+hotkey.key40 "i" 1 0 mediainfo
+hotkey.key41 "p" 1 0 copy-path
+hotkey.key42 "semicolon" 1 0 vifm
+hotkey.key43 "g" 1 0 ranger
+hotkeys_created 1
+ignore_archives 1
+junk.enable_cp1251_detection 1
+mainwin.geometry.h 578
+mainwin.geometry.maximized 0
+mainwin.geometry.w 1600
+mainwin.geometry.x 0
+mainwin.geometry.y 622
+mp3.id3v1_encoding iso8859-1
+mp3.id3v2_version 3
+mp3.write_id3v1 0
+mp3.write_id3v2 1
+network.http_user_agent deadbeef
+network.proxy.port 8080
+network.proxy.type HTTP
+output_plugin PulseAudio output plugin
+playback.loop 1
+playback.order 0
+playback.volume 0.0000000
+playlist.current 0
+playlist.cursor.0 -1
+playlist.cursor.1 0
+playlist.cursor.2 -1
+playlist.cursor.3 7
+playlist.cursor.4 0
+playlist.cursor.5 0
+playlist.cursor.6 0
+playlist.cursor.7 0
+playlist.scroll.0 24520
+playlist.scroll.1 0
+playlist.scroll.2 0
+playlist.scroll.3 0
+playlist.scroll.4 0
+playlist.scroll.5 0
+playlist.scroll.6 0
+playlist.scroll.7 0
+playlist.scroll.cursorfollowplayback 1
+playlist.scroll.followplayback 1
+playlist.stop_after_album 0
+playlist.stop_after_current 0
+playlist.tab.00000 Default
+prefwin.geometry.h 585
+prefwin.geometry.w 996
+prefwin.geometry.x 305
+prefwin.geometry.y 288
+replaygain_mode 0
+replaygain_preamp 6.0000000
+replaygain_scale 1
+resume.paused 0
+resume.playlist 0
+resume.position -1.000000
+resume.track -1
+searchwin.geometry.h 481
+searchwin.geometry.w 666
+searchwin.geometry.x 1258
+searchwin.geometry.y 22
+shellexec.0 xdg-open %D & disown:Xdg-open:xdg-open:local,single,
+shellexec.1 mv %D /home/plasmik/ln/mus/:move2mus:move:local,single,
+shellexec.10 puddletag %D & disown:puddletag:puddletag:local,single,
+shellexec.11 feh --auto-rotate -rF %D:feh:feh:local,single,
+shellexec.2 echo "$$" >> /tmp/dbt-pid ; echo %D >> /tmp/dbt & ( sleep 1 ; if [ $$ -eq $(head -n 1 /tmp/dbt-pid) ] ; then  while ! [ $(wc -l < /tmp/dbt) -eq $wclp ] ; do wclp=$(wc -l < /tmp/dbt) ; sleep 1 ; done ; cat /tmp/dbt | { while read line ; do if [ "$line" != "$last" ] ; then ((count++)) ; last=$line ; fi ; done ; echo dir count = $count | dmenu ; } ; rm /tmp/dbt ; rm /tmp/dbt-pid ; fi ):count dirs:count dirs:local,multiple,
+shellexec.3 cd %D ; xterm -e "ranger":ranger:ranger:local,single,
+shellexec.4 spek %F:spek:spek:local,single,
+shellexec.5 sox %F -n remix 1 spectrogram -p2 -t %F -o- | feh -B black -:SoxSpectrgram:SoxSpectrgram:local,single,
+shellexec.6 xterm -e "mediainfo %F | less":mediainfo:mediainfo:local,single,
+shellexec.7 xterm -T "vifm" -e "vifm %D":vifm:vifm:local,single,
+shellexec.8 echo %D | xclip -i:Copy Path:copy-path:local,single,
+shellexec.9 rm -rf %D:rm -rf %D:rm -rf %D:local,single,
+streamer.16_to_24 1
+streamer.8_to_16 1
+trkproperties.geometry.h 714
+trkproperties.geometry.w 819
+trkproperties.geometry.x 363
+trkproperties.geometry.y 251
+wv.write_apev2 1

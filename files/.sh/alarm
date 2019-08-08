@@ -1,0 +1,2 @@
+sleep $1 && ( pactl set-sink-volume 0 90%; true ) && play -b 16 -n rate 44100 synth 5 sine 270-2180 fade 0 0:5 0:0.2 &>/dev/null && pactl set-sink-volume 0 20% & # alarm
+
