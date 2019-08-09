@@ -502,8 +502,8 @@ nnoremap <Leader>zz :let &scrolloff=28-&scrolloff<CR>
 nnoremap <Leader>zt :silent exec 'DOctags' \| redraw! \| echo 'Wrote tags db in' getcwd().'/' <CR>
 nnoremap <Leader>zx :call MakeClean()<CR>
 nnoremap <Leader>zc :lcd %:p:h <bar> silent call BuildProjectD() <bar> redraw! <bar> cwindow <CR>
-" nnoremap <Leader>zv :
-" silent exec '!read -n 1 -s -r -p "//press anykey" && echo ' <bar>
+" nnoremap <Leader>zv : exec '! ls; ls -la ' <cr>
+" nnoremap <Leader>zv : silent exec '!read -n 1 -s -r -p "//press anykey" ; echo -ne "\n\n" ' \| redraw! <cr>
 vnoremap zv <ESC>:call FoldSelected()<CR>za
 
 "-----------Commands----------"
@@ -561,29 +561,29 @@ endfunction
 
 function! BuildProjectD()
   set makeprg='make'
-	"save the current working directory so we can come back
-	let l:starting_directory = getcwd()
-	"get the directory of the currently focused file
-	let l:curr_directory = expand('%:p:h')
-	"move to the current file
-	exec "cd " . l:curr_directory
-	while 1
-		"check if make.bat exists in the current directory
-		if filereadable("Makefile")
-			"run make and exit
-			make
-			break
-		elseif l:curr_directory ==# "/" || l:curr_directory =~# '^[^/]..$'
-			"if we've hit the top level directory, break out
-			break
-		else
-			"move up a directory
-			cd ..
-			let l:curr_directory = getcwd()
-		endif
-	endwhile
-	"reset directory
-	" exec "cd " . l:starting_directory
+  "save the current working directory so we can come back
+  let l:starting_directory = getcwd()
+  "get the directory of the currently focused file
+  let l:curr_directory = expand('%:p:h')
+  "move to the current file
+  exec "cd " . l:curr_directory
+  while 1
+    "check if makefile exists in the current directory
+    if filereadable("Makefile")
+      "run make and exit
+      make
+      break
+    elseif l:curr_directory ==# "/" || l:curr_directory =~# '^[^/]..$'
+      "if we've hit the top level directory, break out
+      break
+    else
+      "move up a directory
+      cd ..
+      let l:curr_directory = getcwd()
+    endif
+  endwhile
+  "reset directory
+  " exec "cd " . l:starting_directory
 endfunction
 
 function! FocusBufOrDo(name,cmd)
