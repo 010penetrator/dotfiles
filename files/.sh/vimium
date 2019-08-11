@@ -28,4 +28,5 @@ s: https://www.google.com/search?q=%s StartPage
 q: https://www.qwant.com/?q=%s Qwant
 red: https://redacted.ch/torrents.php?searchstr=%s Reda
 c: https://en.cppreference.com/mwiki/index.php?search=%s
+urban: https://www.urbandictionary.com/define.php?term=%s Urban dict
 

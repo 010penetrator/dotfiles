@@ -182,6 +182,7 @@ dpkg --configure -a
 dpkg-reconfigure xserver-org
 ./configure ; make ; make install
 LD_PRELOAD=/usr/lib/i386-linux-gnu/libstdc++.so.6 DISPLAY=:0 steam
+pacman -U file.xz
 pacman -Sc
 pacman -Ss '^vim-'
 sudo find /var/cache/ -mtime +7 -exec rm {} \; # tidy cache from week-old files

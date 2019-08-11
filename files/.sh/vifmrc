@@ -28,6 +28,9 @@ nnoremap ,x :quit<cr>
 nnoremap dd :delete<cr>
 nnoremap o :sort<cr>
 nnoremap O :invert o<CR>
+nnoremap qs :split <cr>
+nnoremap qS :vsplit <cr>
+nnoremap W :wincmd o<CR>
 nnoremap qq :
 " nnoremap b :! mpv-album %c VIFM; echo -ne "\e]0;VIFM_MPV\a"<cr>
 nnoremap b :! mpv-album %c VIFM; echo -ne "\033]0;VIFM\007"<cr>
@@ -41,7 +44,7 @@ nnoremap ac :! notab=1 vimz "$PWD/%c"<cr>
 "           :! vim --servername vimserv --remote-send ":e $PWD/%c<CR>" 
 nnoremap az :! vimz "$PWD/%c"<cr>:q<cr>
 nnoremap ai :! bash -c ' echo -ne \\nlist:\\n ; ls -dla %f ; read -rsn1 ' <cr>
-nnoremap qs :! echo; date ; echo Sync... ; sync <cr>
+nnoremap qc :! echo; date ; echo Sync... ; sync <cr>
 nnoremap qj :! nomacs %c &>/dev/null &<cr>
 nnoremap qe :! eom %c &>/dev/null &<cr>
 nnoremap qi :! mediainfo %c | less<cr>
