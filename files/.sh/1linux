@@ -178,6 +178,7 @@ inxi -v7 # system info
 
 PKG
 apt-cache policy libgtk2.0-0 libgtk-3-0
+gnome-shell --version
 dpkg --configure -a
 dpkg-reconfigure xserver-org
 ./configure ; make ; make install
