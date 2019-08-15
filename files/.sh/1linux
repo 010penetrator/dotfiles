@@ -4,7 +4,7 @@ TUI: mc clex lfm ranger vifm lftp fzf ncdu tree p7zip htop glances gotop dmenu k
 X: xorg-server xorg-xinit xterm urxvt xvkbd xclip redshift xscreensaver nitrogen dunst unclutter-xfixes xbanish gmrun scrot wmctrl xdotool 
 FIRMWARE: bluez-utils
 GTKtune: lxappearance oomox wpgtk
-BRO: luakit links w3m jumanji uzbl netsurf *midori *epiphany palemoon 
+BRO: luakit links w3m midori jumanji uzbl netsurf *epiphany palemoon 
 TED: vim kakoune sublime-text geany mousepad scribes gedit xed tea-editor focuswriter 
 GUI: thunar nemo ulauncher fsearch file-roller xarchiver speedcrunch keepassx2 Bitwarden hardinfo brasero *xfburn filelight baobab synapse *screengrab *wicd-gtk *ezame xfce4-appfinder whiskermemu gnome-character-map 
 MEDIA: mpv vlc youtube-viewer mediainfo ffmpeg audacity kwave ocenaudio sox mkvtoolnix-gui spek shntool cuetools wavpack mac vorbis-tools *soundkonverter *flacon rubyripper *whipper puddletag easytag picard *kid3 *hrizopea *pitivi *vidiot *kdenlive 
