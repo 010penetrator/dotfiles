@@ -69,6 +69,7 @@ noremap cb :copy<cr>
 noremap cm :move<cr>
 nnoremap am ggVG<cr>:move<cr>
 nnoremap zu :! upk2dir.sh %c <cr>
+nnoremap zU :! upk2dir.sh %c %D <cr>
 nnoremap ze :! upk.sh %c <cr>
 nnoremap ar ggvGcw
 nnoremap qo :!cp -r %c /ln/mus/0/<cr>
@@ -259,13 +260,13 @@ command! reload :write | restart
 " program.
 
 " Pdf
-filextype *.pdf,*.djvu,*.epub zathura %c %i &, apvlv %c, xpdf %c
+filextype *.pdf,*.djvu zathura %c %i &, apvlv %c, xpdf %c
         \ {View in zathura}
         \ zathura %f,
 fileviewer *.pdf pdftotext -nopgbrk %c -
 
 " E-Books
-filextype *.fb2,*.mobi FBReader %c &
+filextype *.fb2,*.mobi,*.epub FBReader %c &
 
 " PostScript
 filextype *.ps,*.eps,*.ps.gz
