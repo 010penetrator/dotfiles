@@ -164,9 +164,10 @@ if !exists("g:colors_name")
   " colorscheme hybrid
 endif
 "Use hybrid tayra seoul256 mushroom tender deus Tomorrow-Night-Eighties
-let g:lightline = { 'colorscheme': 'PaperColor', }
+" let g:lightline = { 'colorscheme': 'PaperColor', }
+" let g:lightline = { 'colorscheme': 'Tomorrow_Night_Bright', }
 " Currently avail are:   wombat, solarized, powerline, jellybeans, Tomorrow, Tomorrow_Night, Tomorrow_Night_Blue, Tomorrow_Night_Eighties, PaperColor, seoul256, landscape, one, darcula, molokai, materia, material, OldHope, nord, 16color, deus
-let $VPLUG = '$HOME/.vim/plugged/'
+let $VIMPLUG = '$HOME/.vim/plugged/'
 " set background=dark
 " set colorcolumn=80
 " augroup mysettings
@@ -501,7 +502,7 @@ nnoremap <Leader>vt :TagbarOpen fj <CR>
 nnoremap <Leader>zz :let &scrolloff=28-&scrolloff<CR>
 nnoremap <Leader>zt :silent exec 'DOctags' \| redraw! \| echo 'Wrote tags db in' getcwd().'/' <CR>
 nnoremap <Leader>zx :call MakeClean()<CR>
-nnoremap <Leader>zc :lcd %:p:h <bar> silent call BuildProjectD() <bar> redraw! <bar> cwindow <CR>
+nnoremap <Leader>zc :lcd %:p:h <bar> silent call BuildProjectU("Makefile","make") <bar> redraw! <bar> cwindow <CR>
 " nnoremap <Leader>zv : exec '! ls; ls -la ' <cr>
 " nnoremap <Leader>zv : silent exec '!read -n 1 -s -r -p "//press anykey" ; echo -ne "\n\n" ' \| redraw! <cr>
 vnoremap zv <ESC>:call FoldSelected()<CR>za
@@ -559,31 +560,63 @@ function! MakeClean()
   redraw!
 endfunction
 
-function! BuildProjectD()
-  set makeprg='make'
-  "save the current working directory so we can come back
+"function! BuildProjectA()
+"  set makeprg='make'
+"  "save the current working directory so we can come back
+"  let l:starting_directory = getcwd()
+"  "get the directory of the currently focused file
+"  let l:curr_directory = expand('%:p:h')
+"  "move to the current file
+"  exec "lcd " . l:curr_directory
+"  while 1
+"    "check if makefile exists in the current directory
+"    if filereadable("Makefile")
+"      "run make and exit
+"      make
+"      break
+"    elseif l:curr_directory ==# "/" || l:curr_directory =~# '^[^/]..$'
+"      "if we've hit the top level directory, break out
+"      break
+"    else
+"      "move up a directory
+"      lcd ..
+"      let l:curr_directory = getcwd()
+"    endif
+"  endwhile
+"  "reset directory
+"  exec "lcd " . l:starting_directory
+"endfunction
+
+function! BuildProjectU(Makefile,Makecommand)
+  let &makeprg=a:Makecommand
   let l:starting_directory = getcwd()
-  "get the directory of the currently focused file
   let l:curr_directory = expand('%:p:h')
-  "move to the current file
-  exec "cd " . l:curr_directory
+  exec "lcd " . l:curr_directory
+  let l:proj_dir = ClimbToDirWhere(a:Makefile)
+  if ( l:proj_dir != "-1" )
+    echo l:proj_dir
+    make
+  else 
+    echo "Makefile not found"
+  endif
+  "reset directory
+  exec "lcd " . l:starting_directory
+endfunction
+
+function! ClimbToDirWhere(filename)
+  let l:init_dir = getcwd()
   while 1
-    "check if makefile exists in the current directory
-    if filereadable("Makefile")
-      "run make and exit
-      make
-      break
-    elseif l:curr_directory ==# "/" || l:curr_directory =~# '^[^/]..$'
+    " check if the file exist in the current directory
+    if filereadable(a:filename)
+      return getcwd()
+    elseif getcwd() ==# "/" || getcwd() =~# '^[^/]..$'
       "if we've hit the top level directory, break out
-      break
+      exec "lcd " . l:init_dir
+      return -1
     else
-      "move up a directory
-      cd ..
-      let l:curr_directory = getcwd()
+      lcd ..
     endif
   endwhile
-  "reset directory
-  " exec "cd " . l:starting_directory
 endfunction
 
 function! FocusBufOrDo(name,cmd)
