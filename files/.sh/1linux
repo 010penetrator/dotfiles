@@ -47,6 +47,8 @@ xterm -fa xft:Monospace:size=12:style=Regular:antialias=true
 xterm -geometry 96x36+300+250 -e "vim -S $HOME/.vim/session.vim" &> /dev/null & disown
 urxvt -fn "Hack:size=12:style=Regular:antialias=true"
 find . -type f -exec chmod 644 {} \; # chmod current dir recursively
+chown -R 1001:100 /media/some-place/ # change ownership to user:users
+sudo chmod -R +w /media/naughty-flash/ # for stuck external (Caution!)
 find /media/  -type f -size +10G -name '\.abc*-*' # find big files
 find . -maxdepth 2 -type d -name "*Getac*"
 find . -type f \( -name  "*mp3" -or -name "*.flac" -or -name "*.ogg" -or -name "*.wv" -or -name "*.ape" \) -printf '%h\n' | sort -u | wc -l # count music folders
@@ -198,6 +200,7 @@ for f in *.ext ; do g=$f ; mv -v -- "$g" "${g:20}" ; done # shorten file names
 mkdir res ; for f in *; do convert "$f" -resize 50% -sampling-factor 4:2:0  -quality 95%  res/"$f" ; done # recompress pictures
 mkdir res ; for f in *.png; do d=${f%.*} ; convert "$f" -quality 95%  jpg:res/"$d"".jpg" ; done # png to jpg
 xdg-mime default transmission-cli.desktop x-scheme-handler/magnet # set default magnet URL handler
+~/.local/share/applications/*.destop # .destop location
 :irc:weechat:
 /filter add joinquit * irc_join,irc_part,irc_quit *
 /set irc.look.temporary_servers on
