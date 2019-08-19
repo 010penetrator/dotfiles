@@ -447,7 +447,6 @@ nnoremap <Leader>7 7gt
 nnoremap <Leader>8 8gt
 nnoremap <Leader>9 9gt
 nnoremap <Leader>q :qa <CR>
-nnoremap <Leader>vq :qa! <CR>
 nnoremap <Leader>j :Unite buffer file<CR>
 nnoremap <Leader>k :Denite buffer -mode=normal -immediately-1<CR>
 nnoremap <Leader>e :BufExplorer <CR>
@@ -456,7 +455,6 @@ nnoremap <Leader><tab> :exe "tabn ".g:lasttab<CR>
 nnoremap <Leader>. <C-^>
 nnoremap <Leader>x :q<CR>
 nnoremap <Leader>d :bd!<CR>
-nnoremap <Leader>gd :BD<CR>
 nnoremap <Leader>t :NewTermHere<CR>
 nnoremap <Leader>T :NewTerm<CR>
 nnoremap <Leader>y :NewVifmHere<CR>
@@ -465,7 +463,6 @@ nnoremap <Leader>o :Goyo 66%x100%<CR>
 nnoremap <Leader>m ^y$:call system('$BROWSER ' . @")<CR>
 nnoremap <Leader>go ^y$:call system('google.sh ' . @")<CR>
 nnoremap <Leader>gw yiw:call system('google.sh ' . @")<CR>
-" nnoremap <Leader>m ^y$:silent exec " ! source $HOME/.bashrc ; echo bro $BROWSER ; \"$BROWSER\" \"" . @" . "\" &> /dev/null & raise.sh $BROWSER" \| redraw!<CR>
 nnoremap <Leader>gr ^y$:silent exec " !source $HOME/.bashrc && \"$BROWSER\" \"red " . @" . "\" &>/dev/null & " \| redraw!<CR>
 nnoremap <Leader>gh ^y$:silent exec " !source $HOME/.bashrc && chromium \"" . @" . "\" &>/dev/null & raise.sh chromium " \| redraw!<CR>
 nnoremap <Leader>gg :call FocusBufOrDo('wawe','e $HOME/gogo/files/wawe')<CR>
@@ -478,24 +475,26 @@ nnoremap <Leader>gi :call FocusBufOrDo('i3conf','e $sh/i3config')<CR>
 nnoremap <Leader>gk :call FocusBufOrDo('keymap.c','e $HOME/qmk_firmware/keyboards/*/keymaps/plasmik/keymap.c')<CR>
 nnoremap <Leader>gs :call FocusBufOrDo('stk','e $HOME/stk.tx')<CR>
 nnoremap <Leader>gf :call FocusBufOrDo('fun.tx','e $HOME/fun.tx')<CR>
+nnoremap <Leader>gd :BD<CR>
 nnoremap <Leader>gt :call MoveToNextTab()<CR>
 nnoremap <Leader>gb :call MoveToPrevTab()<CR>
-nnoremap <Leader>// :Ack <C-r><C-w> <CR>
-nnoremap <Leader>/f :AckFile <C-r><C-W> <CR>
-nnoremap <Leader>/c :Ack <C-r><C-W> %:p 
-nnoremap <Leader>/d :Ack <C-r><C-w> %:p:h 
-nnoremap <Leader>/w :AckWindow <C-r><C-w> <CR>
-nnoremap <Leader>vs :source ~/.vim/session.vim <CR>
-nnoremap <Leader>vv :source $MYVIMRC <CR>
-nnoremap <Leader>v<Leader> :call EvalThis()<CR>
-" Split open file under cursor
+nnoremap <Leader>ss :Ack <C-r><C-w> <CR>
+nnoremap <Leader>sf :AckFile <C-r><C-W> <CR>
+nnoremap <Leader>sc :Ack <C-r><C-W> %:p 
+nnoremap <Leader>sd :Ack <C-r><C-w> %:p:h 
+nnoremap <Leader>sw :AckWindow <C-r><C-w> <CR>
+" Split open file under cursor. Requires vim-vinegar
 nnoremap <Leader>ae :vsp <c-r><c-f> <CR> 
 " vimserv stuff; i e move current buf to vimserv vim issue
 nnoremap <Leader>av :silent exec '!vimz "%:p"' \| redraw! \| q <CR>
 nnoremap <Leader>ac :silent exec '!notab=1 vimz "%:p"' \| redraw! \| q <CR>
 " Add Plug entry
-nnoremap <Leader>vp :put + <bar> exec "normal dfmxIPlug 'A'" <CR>
-" nnoremap <Leader>vi :exec "normal $yi'0" <CR> <bar> :PluginInstall <C-R>" <CR>
+nnoremap <Leader>ap :put + <bar> exec "normal dfmxIPlug 'A'" <CR>
+nnoremap <Leader>ai :exec "normal $yi'0" <CR> <bar> :PluginInstall <C-R>" <CR>
+nnoremap <Leader>vs :source ~/.vim/session.vim <CR>
+nnoremap <Leader>vv :source $MYVIMRC <CR>
+nnoremap <Leader>vq :qa! <CR>
+nnoremap <Leader>v<Leader> :call EvalThis()<CR>
 nnoremap <Leader>vf :set filetype=sh<CR>
 nnoremap <Leader>vb :call SwitchBackground()<CR>
 nnoremap <Leader>vt :TagbarOpen fj <CR>
@@ -503,8 +502,7 @@ nnoremap <Leader>zz :let &scrolloff=28-&scrolloff<CR>
 nnoremap <Leader>zt :silent exec 'DOctags' \| redraw! \| echo 'Wrote tags db in' getcwd().'/' <CR>
 nnoremap <Leader>zx :call MakeClean()<CR>
 nnoremap <Leader>zc :lcd %:p:h <bar> silent call BuildProjectU("Makefile","make") <bar> redraw! <bar> cwindow <CR>
-" nnoremap <Leader>zv : exec '! ls; ls -la ' <cr>
-" nnoremap <Leader>zv : silent exec '!read -n 1 -s -r -p "//press anykey" ; echo -ne "\n\n" ' \| redraw! <cr>
+nnoremap <Leader>zl : silent exec '! echo -e "\n$(pwd):"; ls -la . ; read -n 1 -s -r -p "//hit.anykey" ; echo -ne "\n" ' \| redraw! <cr>
 vnoremap zv <ESC>:call FoldSelected()<CR>za
 
 "-----------Commands----------"
@@ -559,33 +557,6 @@ function! MakeClean()
   silent exec "!make clean"
   redraw!
 endfunction
-
-"function! BuildProjectA()
-"  set makeprg='make'
-"  "save the current working directory so we can come back
-"  let l:starting_directory = getcwd()
-"  "get the directory of the currently focused file
-"  let l:curr_directory = expand('%:p:h')
-"  "move to the current file
-"  exec "lcd " . l:curr_directory
-"  while 1
-"    "check if makefile exists in the current directory
-"    if filereadable("Makefile")
-"      "run make and exit
-"      make
-"      break
-"    elseif l:curr_directory ==# "/" || l:curr_directory =~# '^[^/]..$'
-"      "if we've hit the top level directory, break out
-"      break
-"    else
-"      "move up a directory
-"      lcd ..
-"      let l:curr_directory = getcwd()
-"    endif
-"  endwhile
-"  "reset directory
-"  exec "lcd " . l:starting_directory
-"endfunction
 
 function! BuildProjectU(Makefile,Makecommand)
   let &makeprg=a:Makecommand
@@ -838,6 +809,33 @@ endfunction
 "---------Colortheme----------"
 " hi! Search ctermbg=222
 " hi! Normal ctermbg=234
+
+"function! BuildProjectA()
+"  set makeprg='make'
+"  "save the current working directory so we can come back
+"  let l:starting_directory = getcwd()
+"  "get the directory of the currently focused file
+"  let l:curr_directory = expand('%:p:h')
+"  "move to the current file
+"  exec "lcd " . l:curr_directory
+"  while 1
+"    "check if makefile exists in the current directory
+"    if filereadable("Makefile")
+"      "run make and exit
+"      make
+"      break
+"    elseif l:curr_directory ==# "/" || l:curr_directory =~# '^[^/]..$'
+"      "if we've hit the top level directory, break out
+"      break
+"    else
+"      "move up a directory
+"      lcd ..
+"      let l:curr_directory = getcwd()
+"    endif
+"  endwhile
+"  "reset directory
+"  exec "lcd " . l:starting_directory
+"endfunction
 
 if filereadable($HOME."/.vimrc.local")
   source $HOME/.vimrc.local
