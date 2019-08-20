@@ -52,7 +52,7 @@ sudo chmod -R +w /media/naughty-flash/ # for stuck external (Caution!)
 find /media/  -type f -size +10G -name '\.abc*-*' # find big files
 find . -maxdepth 2 -type d -name "*Getac*"
 find . -type f \( -name  "*mp3" -or -name "*.flac" -or -name "*.ogg" -or -name "*.wv" -or -name "*.ape" \) -printf '%h\n' | sort -u | wc -l # count music folders
-find . \( -name CMakeCache.txt -or -name Makefile -or -name CMakeFiles -type d \) -exec echo  {} \; # delete CMake buzz
+find . \( -name "Makefile" -or -name "CMakeCache.txt" -or -name "CMakeFiles" -or -name "cmake_install.cmake" \) -exec rm -rf {} \; # clean cmake
 ls -lath ~/Downloads/ | head -6 # show recent downloads
 fc -ln -1 # show last command
 fc -ln -1 | cut -c 3- | xclip # yank last command 
@@ -106,6 +106,7 @@ ffmpeg -f x11grab -s 1024x768 -r 30 -i $DISPLAY+448,194 -c:v libx264 -pix_fmt yu
 echo 444 > /sys/class/backlight/intel_backlight/brightness # control screen lamp
 xrandr --output eDP1 --brightness 1.0 # software dim screen brightness
 gsettings set org.gnome.mutter overlay-key '' # free Win key in Gnome 3 
+gsettings set org.gnome.desktop.sound event-sounds false # mute that Gnome prick
 ps -u $(id -u) -o pid= | while read pid; do
         cat /proc/$pid/environ 2>/dev/null | tr '\0' '\n' | grep '^DISPLAY=:'
     done | grep -o ':[0-9]*' | sort -u # return current display id 
@@ -161,7 +162,7 @@ date -s "$(curl -s --head http://opennet.ru | grep ^Date: | sed 's/Date: //g')" 
 hwclock --systohc # sync hardware clock to system time
 
 HW
-sudo modprobe pcspkr ; echo -e '\a' ; rmmod pcspkr ; xset -b # STOP BEEP!
+sudo modprobe pcspkr ; echo -e '\a' ; rmmod pcspkr ; xset -b # STOP BELL BEEP!
 sudo sh -c "sync && echo 3 > /proc/sys/vm/drop_caches" # do not sync
 sync && echo 3 | sudo tee /proc/sys/vm/drop_caches # using tee for sudo access
 echo "- - -" > /sys/class/scsi_host/hostX/scan # rescan sata port
