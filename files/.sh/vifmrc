@@ -29,14 +29,14 @@ nnoremap dd :delete<cr>
 nnoremap o :sort<cr>
 nnoremap O :invert o<CR>
 nnoremap qs :split <cr>
-nnoremap ql :vsplit <cr>
+nnoremap qv :vsplit <cr>
 nnoremap W :wincmd o<CR>
 nnoremap qq :
 " nnoremap b :! mpv-album %c VIFM; echo -ne "\e]0;VIFM_MPV\a"<cr>
 nnoremap b :! mpv-album %c VIFM; echo -ne "\033]0;VIFM\007"<cr>
 nnoremap rs :! echo; rsync -rtn --progress --delete --size-only %d/ %D ; read -n 1 -s -r -p "-----======DONE======------" ; echo
 nnoremap qf :! feha %c &>/dev/null &<cr>
-nnoremap qv :! vim %c <cr>
+nnoremap qz :! vim %c <cr>
 nnoremap qm :! mpv %c <cr>
 " Attach file to vim server
 nnoremap av :! vimz "$PWD/%c"<cr>

@@ -4,7 +4,7 @@ super + x ; {t,e,m,s,r,i,h,f,d,g,p,u,v,y,o,w,a}
 super + x ; {j,z,k,l,c,x}
 	{windowswitcher.sh, xdotool mousemove 1595 980, i3-msg kill, listdwn.sh, listmpv.sh, $TERMINAL}
 
-super + {q,t,alt+t,v,u,g,p,y,Y,b,B,a}
+super + {q,t,control+t,v,u,g,p,y,Y,b,B,a}
 	raise.sh {scroff.sh, 'xterm\|urxvt\|kitty', 'zsh$' 'myrxvterm.sh 14', VIM 'vims', luakit, 'chromium\|Firefox', 'MPV\|mpv' 'noti echo no mpv found', VIFM '$TERMINAL -e vifm & notify-send new_VIFM', '' '$TERMINAL -e vifm', zathura listzathura.sh, '' listzathura.sh, 'transmission-remote\|qbittorrent' '$TERMINAL -e transmission-remote-cli -c localhost:9090'}
 
 super + n

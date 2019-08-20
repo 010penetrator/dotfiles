@@ -354,6 +354,8 @@ nnoremap qu ~
 nnoremap qb :Bash <CR>
 nnoremap qs :new <CR>
 nnoremap qv :vnew <CR>
+" Split open file under cursor. Requires vim-vinegar
+nnoremap ae :vsp <c-r><c-f> <CR> 
 nnoremap q/ :nohlsearch <CR>
 nnoremap a<space> :nohlsearch <CR>
 nnoremap q[ :cprev<CR>
@@ -483,8 +485,6 @@ nnoremap <Leader>sf :AckFile <C-r><C-W> <CR>
 nnoremap <Leader>sc :Ack <C-r><C-W> %:p 
 nnoremap <Leader>sd :Ack <C-r><C-w> %:p:h 
 nnoremap <Leader>sw :AckWindow <C-r><C-w> <CR>
-" Split open file under cursor. Requires vim-vinegar
-nnoremap <Leader>ae :vsp <c-r><c-f> <CR> 
 " vimserv stuff; i e move current buf to vimserv vim issue
 nnoremap <Leader>av :silent exec '!vimz "%:p"' \| redraw! \| q <CR>
 nnoremap <Leader>ac :silent exec '!notab=1 vimz "%:p"' \| redraw! \| q <CR>
@@ -507,6 +507,7 @@ vnoremap zv <ESC>:call FoldSelected()<CR>za
 
 "-----------Commands----------"
 command! -nargs=1 Silent exec 'silent !' . <q-args> | exec 'redraw!'
+"Usage : Silent ls; read -rsn1 -p "//hit.anykey"; echo;
 command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
           \ | wincmd p | diffthis
 command! SW w !sudo tee %
