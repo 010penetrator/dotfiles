@@ -30,14 +30,14 @@ nnoremap dd :delete<cr>
 nnoremap o :sort<cr>
 nnoremap O :invert o<CR>
 nnoremap qs :split <cr>
-nnoremap qS :vsplit <cr>
+nnoremap qv :vsplit <cr>
 nnoremap W :wincmd o<CR>
 nnoremap qq :
 " nnoremap b :! mpv-album %c VIFM; echo -ne "\e]0;VIFM_MPV\a"<cr>
 nnoremap b :! mpv-album %c VIFM; echo -ne "\033]0;VIFM\007"<cr>
 nnoremap rs :! echo; rsync -rtn --progress --delete --size-only %d/ %D ; read -n 1 -s -r -p "-----======DONE======------" ; echo
 nnoremap qf :! feha %c &>/dev/null &<cr>
-nnoremap qv :! vim %c <cr>
+nnoremap qz :! vim %c <cr>
 nnoremap qm :! mpv %c <cr>
 " Attach file to vim server
 nnoremap av :! vimz "$PWD/%c"<cr>
@@ -71,6 +71,8 @@ noremap cm :move<cr>
 nnoremap am ggVG<cr>:move<cr>
 nnoremap zu :! upk2dir.sh %c <cr>
 nnoremap zU :! upk2dir.sh %c %D <cr>
+nnoremap zp :! 7z a -mx=1 -xr!.git -xr!tags %c.7z %c <cr>
+nnoremap zP :! 7z a -mx=1 -xr!.git -xr!tags %D/%c.7z %c <cr>
 nnoremap ze :! upk.sh %c <cr>
 nnoremap ar ggvGcw
 nnoremap qo :!cp -r %c /ln/mus/0/<cr>
