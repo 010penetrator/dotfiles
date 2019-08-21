@@ -166,7 +166,8 @@ endif
 "Use hybrid tayra seoul256 mushroom tender deus Tomorrow-Night-Eighties
 " let g:lightline = { 'colorscheme': 'PaperColor', }
 " let g:lightline = { 'colorscheme': 'Tomorrow_Night_Bright', }
-" Currently avail are:   wombat, solarized, powerline, jellybeans, Tomorrow, Tomorrow_Night, Tomorrow_Night_Blue, Tomorrow_Night_Eighties, PaperColor, seoul256, landscape, one, darcula, molokai, materia, material, OldHope, nord, 16color, deus
+" Currently avail are:
+" 16color darcula default deus jellybeans landscape material materia molokai nord OldHope one PaperColor_dark PaperColor_light PaperColor powerlineish powerline selenized_dark seoul256 solarized srcery_drk Tomorrow_Night_Blue Tomorrow_Night_Bright Tomorrow_Night_Eighties Tomorrow_Night Tomorrow wombat 
 let $VIMPLUG = '$HOME/.vim/plugged/'
 " set background=dark
 " set colorcolumn=80
