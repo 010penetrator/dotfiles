@@ -73,7 +73,7 @@ nnoremap zU :! upk2dir.sh %c %D <cr>
 nnoremap zp :! 7z a -mx=1 -xr!.git -xr!tags %c.7z %c <cr>
 nnoremap zP :! 7z a -mx=1 -xr!.git -xr!tags %D/%c.7z %c <cr>
 nnoremap ze :! upk.sh %c <cr>
-nnoremap ar ggvGcw
+nnoremap qr ggvGcw
 nnoremap qo :!cp -r %c /ln/mus/0/<cr>
 nnoremap qO :!mv %c /ln/mus/0/<cr>
 nnoremap yc :! echo -n %f | xclip ; echo -n %f | xclip -selection clipboard %i <cr>:echo "filename in X buffer"<cr>
@@ -87,6 +87,7 @@ nnoremap gc :cd $HOME/.config/<cr>
 nnoremap gs :cd $HOME/.sh/<cr>
 nnoremap gl gf 
 nnoremap al :!ln -s $PWD/%c %D/%c <cr>
+nnoremap ar :!ln -sr $PWD/%c %D/%c <cr>
 nnoremap aL :!ln -s $PWD/%c %d/%cL <cr>
 nnoremap ae :winrun , cd %C <cr><tab>
 nnoremap t tj
