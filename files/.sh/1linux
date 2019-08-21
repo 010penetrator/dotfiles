@@ -39,8 +39,9 @@ UNIX
 showconsolefont ; ls /usr/share/kbd/consolefonts/ ; setfont ter-218b # set tty font
 usermod -a -G vboxusers user1 # add user to group
 groupadd gods # create group
-%gods	ALL=(ALL) NOPASSWD: ALL # gods will not be asked sudo password 
-username hostname = (ALL) NOPASSWD: /bin/lsblk # sudo command without password for user 
+%gods	ALL=(ALL) NOPASSWD:ALL # gods will not be asked sudo password 
+username hostname=(ALL) NOPASSWD:/bin/lsblk # sudo command without password for user 
+%sudo 	ALL=(ALL) ALL, NOPASSWD:/usr/bin/lsblk # combo!
 reset # reset terminal
 read -n 1 -s -r -p "Press any key to continue" # wait for a hit
 xterm -fa xft:Monospace:size=12:style=Regular:antialias=true
