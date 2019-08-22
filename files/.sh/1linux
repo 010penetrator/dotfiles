@@ -151,6 +151,7 @@ ifconfig
 iw dev $w link
 iw dev $w scan # wi-fi
 ip link set dev $w up
+rfkill block all # no aether disturbance!
 wpa_passphrase SSID pass > wifipassfile ; wpa_supplicant -B -i $w -c passfile # connect WPA2
 wpa_supplicant -B -i $w -c passfile <(wpa_passphrase SSID pass) # unsafe oneliner
 sudo dhcpcd $w
