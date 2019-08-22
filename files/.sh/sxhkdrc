@@ -34,9 +34,9 @@ super + apostrophe
 
 # Adjust volume with pulseaudio
 alt + a
-  [ $(amixer sget Master | tail -1 | cut -d [ -f2 | cut -d % -f1) -gt 91 ] && amixer set Master 6%+ && notify-send 'Volume MAX' -t 500 || amixer set Master 6%+
+  [ $(amixer sget Master | tail -1 | cut -d [ -f2 | cut -d % -f1) -gt 91 ] && amixer set Master 6%+ && notify-send 'Volume MAX' -t 500 || amixer set Master 5%+
 alt + z
-  amixer set Master 6%-
+  amixer set Master 5%-
 
 #
 # bspwm hotkeys

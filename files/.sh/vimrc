@@ -280,8 +280,8 @@ imap jj <ESC>
 imap оо <ESC>
 if v:version >= 801
   tmap oo <C-w>N:set nonumber<CR>
-  tnoremap <C-PageUp> <C-W>:tabnext<CR>
-  tnoremap <C-PageDown> <C-W>:tabprev<CR>
+  tnoremap <C-PageUp> <C-W>:tabprev<CR>
+  tnoremap <C-PageDown> <C-W>:tabnext<CR>
   tmap <Leader><tab> :exe "tabn ".g:lasttab<CR>
   tmap <C-\> <C-W>w
 endif
