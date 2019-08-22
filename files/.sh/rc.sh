@@ -40,6 +40,8 @@ elif [[ "$HOSTNAME" =~ ^ippol(.*) ]]; then
   xinput set-prop 12 288 -.6
   xinput set-prop 10 292 -.6
   xrandr --output VGA-2 --off 
+elif [[ "$HOSTNAME" =~ [pc,PC] ]]; then
+  xrandr --output VGA-2 --off 
 elif [[ "$HOSTNAME" =~ ^white*(.*)ok ]]; then 
   xset dpms 900 0 0 
   xinput set-prop "SYN1B7F:01 06CB:2991 Touchpad" "libinput Tapping Enabled" 1
