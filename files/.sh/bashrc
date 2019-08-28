@@ -18,6 +18,7 @@ export iso=$mo/Metal/PRAGS/iso-linux/
 export win=$mo/Metal/PRAGS/prags-win/
 export ogg=$mo/Blink/MUZIK/
 export MANWIDTH=80
+export FZF_DEFAULT_OPTS="--layout=reverse --height 55%"
 
 if [ -f ~/.bashrc.local ] ; then
   source ~/.bashrc.local
@@ -135,7 +136,8 @@ vol () { pactl set-sink-volume 0 "$1"% ; }
 gnome-box() { killall gnome-boxes ; killall libvirtd ; virsh -c qemu:///session pool-list --all ; virsh -c qemu:///session pool-destroy gnome-boxes ;  virsh -c qemu:///session pool-undefine gnome-boxes ; rm -rf .local/share/gnome-boxes ; rm -rf .config/libvirt ; }
 conn() { w=$(ip link | grep wlp | cut -f 2 -d ':' | cut -b 2-) ; sudo wpa_supplicant -B -i $w -c /etc/wifi && sudo dhcpcd $w ; }
 dconn() { sudo killall -v wpa_supplicant; sudo killall -v dhcpcd; }
-fvim() { vim --servername vimserv --remote  "$(locate -i "$*" | fzf --height 55%)" ; raise.sh VIMSERV ; }
+# fvim() { vim --servername vimserv --remote  "$(locate -i "$*" | fzf --height 55%)" ; raise.sh VIMSERV ; }
+fvim() { $EDITOR $(du -a "$1" | awk '{print $2}' | fzf --exact) ; } 
 function launch { nohup $1 >/dev/null 2>/dev/null & disown; }
 alias mya='myfont ; sudo uname ; conn & [[ `pgrep Xorg` ]] || startx ~/.xinitrc i3'
 alias myb='myfont ; sudo uname ; conn & [[ `pgrep Xorg` ]] || startx ~/.xinitrc bspwm'

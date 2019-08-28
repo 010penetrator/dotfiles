@@ -217,6 +217,7 @@ lpstat -p -d # show cups queue
 lpr -P HP_LaserJet_1020 /usr/share/cups/data/testprint 
 sleep 300; notify-send "Сгорит нафик" "беги на кухню" -i important # set notification
 echo firstt $(($(date +%s%N)/1000000)) && sleep 1 && echo second $(($(date +%s%N)/1000000)) >> /tmp/p1.log | cat ; echo ' - cat' ; tail -1 rc1.log ; echo ' - log' # some pipe example 
+du -a . | awk '{print $2}' | fzf | xargs -r $EDITOR
 
 SOUND
 amixer -c 0 # list ALSA controls for card 0
