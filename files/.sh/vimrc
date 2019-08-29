@@ -476,7 +476,7 @@ nnoremap <Leader>gc :tabe +term \| wincmd o<CR>
 nnoremap <Leader>gl :call FocusBufOrDo('1linux','e $sh/1linux')<CR>
 nnoremap <Leader>gi :call FocusBufOrDo('i3conf','e $sh/i3config')<CR>
 nnoremap <Leader>gk :call FocusBufOrDo('keymap.c','e $HOME/qmk_firmware/keyboards/*/keymaps/plasmik/keymap.c')<CR>
-nnoremap <Leader>gs :call FocusBufOrDo('stk','e $HOME/stk.tx')<CR>
+nnoremap <Leader>gs :call FocusBufOrDo('stk','e /ln/ho/use/stk.tx')<CR>
 nnoremap <Leader>gf :call FocusBufOrDo('fun.tx','e $HOME/fun.tx')<CR>
 nnoremap <Leader>gd :BD<CR>
 nnoremap <Leader>gt :call MoveToNextTab()<CR>
