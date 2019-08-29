@@ -75,6 +75,7 @@ sudo -H -u user2 echo $HOME # check his home dir
 BINDIR="$(dirname "$(readlink -fn "$0")")" # where are binaries?
 ps aux | grep bash # is bash running?
 gpg --no-default-keyring --keyring /usr/share/keyrings/debian-role-keys.gpg --verify MD5SUMS.sign.txt MD5SUMS.txt 
+cat passlist | while read line ; do gpg -q --batch --passphrase "$line" -d wtf.gpg ; done # dictionary brute force gpg
 free -m # any free ram?
 smem -tw # ram info
 youtube-dl -f "bestvideo[height<=720]+bestaudio" https://... # fetch youtube
