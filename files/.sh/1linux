@@ -157,14 +157,16 @@ rfkill block all # no aether disturbance!
 wpa_passphrase SSID pass > wifipassfile ; wpa_supplicant -B -i $w -c passfile # connect WPA2
 wpa_supplicant -B -i $w -c passfile <(wpa_passphrase SSID pass) # unsafe oneliner
 sudo dhcpcd $w
+curl https://wtfismyip.com/text # check ip
+curl -s --head http://opennet.ru # check network
+proxychains sudo wget -O- http://ya.ru
+sudo nmap -sP 192.168.1.0/24
 iptables -t nat -A OUTPUT -p tcp -m tcp --dport 80 -d 195.82.146.120/30 -j DNAT --to-destination 163.172.167.207:3128 ##route rutracker torrenting
 nmblookup -S WORKGROUP # find samba places
-sudo nmap -sP 192.168.1.0/24
-proxychains sudo wget -O- http://ya.ru
-curl -s --head http://opennet.ru # check network
 date +%T -s "11:14:00" # set date 
 date -s "$(curl -s --head http://opennet.ru | grep ^Date: | sed 's/Date: //g')" # set date from a website
 hwclock --systohc # sync hardware clock to system time
+torify curl -s --head http://flibustahezeous3.onion/ #torsocks # check tor
 
 HW
 sudo modprobe pcspkr ; echo -e '\a' ; rmmod pcspkr ; xset -b # STOP BELL BEEP!
