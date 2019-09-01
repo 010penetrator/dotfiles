@@ -1,0 +1,14 @@
+#! /bin/sh
+
+
+cat << EOF
+menuentry 'Ratiborus' {
+  search --no-floppy --fs-uuid --set=root 302C-AE51
+  insmod ntldr
+  ntldr /grldr
+}
+menuentry 'GLIM' {
+  search --no-floppy --fs-uuid --set=root 302C-AE51
+  configfile /boot/grub/grub.cfg
+}
+EOF

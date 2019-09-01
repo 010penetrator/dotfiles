@@ -116,18 +116,20 @@ ps -u $(id -u) -o pid= | while read pid; do
 GRUB
 :restore Grub2:
 mount -t ext4 /dev/sdXN /mnt
-mount -t proc /proc /mnt/proc ; mount --bind /dev /mnt/dev ; mount --bind /sys /mnt/sys ; chroot /mnt #OR# arch-chroot /mnt
+mount -t proc /proc /mnt/proc ; mount --bind /dev /mnt/dev ; mount --bind /sys /mnt/sys 
+chroot /mnt #OR# arch-chroot /mnt
 grub-mkconfig -o /boot/grub/grub.cfg ; grub-install /dev/sdX
-:
 :GRUB EFI install:
 grub-install --target=x86_64-efi --efi-directory=EfiSystemPart --boot-directory=/boot --bootloader-id=NewName 
 :GRUB EFI install to removable media:
 grub-install --target=x86_64-efi --efi-directory=/media/GLIM --removable --boot-directory=/media/GLIM/boot /dev/sdc
-:
 :manual grub boot:
 grub2> set root=(hd0,2) ; linux /boot/vmlinuz-linux root=/dev/sda2 ; initrd /boot/initrd.img ; boot
-:
+:grub rescue to normal mode 
+ls; set root=(hd0,msdos1); set prefix=/boot/grub; insmod ext2; insmod normal; normal
+.
 qemu-system-x86_64 -hda /dev/sdc # check bootloader
+ls /sys/firmware/efi # check efi mode
 
 FS
 mkfs.vfat -F32 /dev/sdx1
