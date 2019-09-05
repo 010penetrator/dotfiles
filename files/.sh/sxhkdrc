@@ -7,6 +7,9 @@ super + x ; {j,z,k,l,c,x}
 super + {q,t,control+t,v,u,g,p,y,Y,b,B,a}
 	raise.sh {scroff.sh, 'xterm\|urxvt\|kitty', 'zsh$' 'myrxvterm.sh 14', VIM 'vims', luakit, 'chromium\|Firefox', 'MPV\|mpv' 'noti echo no mpv found', VIFM '$TERMINAL -e vifm & notify-send new_VIFM', '' '$TERMINAL -e vifm', zathura listzathura.sh, '' listzathura.sh, 'transmission-remote\|qbittorrent' '$TERMINAL -e transmission-remote-cli -c localhost:9090'}
 
+super + V
+  TITLE=VIM raisekitty.sh
+
 super + n
   $TERMINAL
 super + d
