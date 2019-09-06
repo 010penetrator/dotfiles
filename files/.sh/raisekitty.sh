@@ -1,15 +1,16 @@
 
 [ -z "$1" ] && set -- "VIM"
 TITLE=$1
-echo TITLE= $TITLE
+# echo TITLE= $TITLE #Debug
 kitty_hits=''
 KittyMomHasFocus=0
 activ_xwin_id=$(xprop -root _NET_ACTIVE_WINDOW | cut -d "#" -f2 | cut -c 2-)
 activ_xwin_id="0x0"$(printf "%07x" "$activ_xwin_id") 
 kitty_mom_pid=$( ps ax -o pid:1,cmd | grep "kitty_ear" | grep -v grep | cut -d' ' -f1 )
-# echo mom $kitty_mom_pid
+# echo mom $kitty_mom_pid #Debug
 [ -z $kitty_mom_pid ] && kitty_mom_pid=NONE111 && echo No kitty_mom! || 
 kitty_hits=$(kitty @ --to unix:/tmp/kitty_ear ls | jq --arg TITLE "$TITLE" '[ .[].tabs[].windows[] | del(.env[]) | {id,is_focused,title} | select(.title|test($TITLE)) ] ')
+# echo kitty_hits $kitty_hits #Debug
 
 buf=''
 while read line ; do
@@ -36,11 +37,11 @@ while read line ; do
   fi
 done < <(wmctrl -lxp | grep -e "$TITLE\| $kitty_mom_pid ")
 
-# echo $buf | jq '.'
+# echo $buf | jq '.' #Debug
 i=$( echo $buf | jq -s ' [ . | map({is_focused}) | .[] | .[] | tostring ] | index("true") ' )
 len=$(echo $buf | jq -s ' length ')
 
-echo $i '/' $len 
+# echo $i '/' $len  #Debug
 [ $len == 0 ] && No hits! Exiting. && exit 
 
 if [ $i == "null" ] || [ $((i+1)) == $len ] ; then 
@@ -48,10 +49,10 @@ if [ $i == "null" ] || [ $((i+1)) == $len ] ; then
 else
   i=$((i+1))
 fi
-echo target $i
+# echo target $i #Debug
 
 ent=$( echo $buf | jq --arg i "$i" -s ' .[$i|tonumber] ' ) 
-# echo $ent
+# echo $ent #Debug
 if [ "true" == $(echo $ent | jq ' has("id") ') ] ; then 
   echo kitty raise
   # Raise kitty  
