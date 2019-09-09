@@ -1,0 +1,7 @@
+case $TERMINAL in
+  kitty)
+    kitty --start-as maximized sh -c "source $HOME/.bashrc ; vim --servername VIMSERV -S ~/.vim/session.vim" & ;;
+  *)
+    xterm -maximized -e "vim --servername VIMSERV -S ~/.vim/session.vim" & ;;
+esac
+
