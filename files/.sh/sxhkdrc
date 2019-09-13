@@ -4,26 +4,25 @@ super + x ; {t,e,m,s,r,i,h,f,d,g,p,u,v,y,o,w,a}
 super + x ; {j,z,k,l,c,x}
 	{windowswitcher.sh, xdotool mousemove 1595 980, i3-msg kill, listdwn.sh, listmpv.sh, $TERMINAL}
 
-super + {q,t,v,u,g,p,y,b,a}
+super + {q,t,v,u,g,p,i,b,o}
 	raise.sh {scroff.sh, 'xterm\|urxvt\|kitty', VIM 'vims', luakit, 'chromium\|Firefox', 'MPV\|mpv' 'noti echo no mpv found', VIFM '$TERMINAL -e vifm & notify-send new_VIFM', zathura listzathura.sh, 'transmission-remote\|qbittorrent' '$TERMINAL -e transmission-remote-cli -c localhost:9090'}
 
-	# raise.sh {scroff.sh, 'xterm\|urxvt\|kitty', 'zsh$' 'myrxvterm.sh 14', VIM 'vims', luakit, 'chromium\|Firefox', 'MPV\|mpv' 'noti echo no mpv found', VIFM '$TERMINAL -e vifm & notify-send new_VIFM', '' '$TERMINAL -e vifm', zathura listzathura.sh, '' listzathura.sh, 'transmission-remote\|qbittorrent' '$TERMINAL -e transmission-remote-cli -c localhost:9090'}
-super + { T, V, F }
-  raisekitty.sh { bash, VIM, VIFM}
+super + {T, V, I, B}
+  raisekitty.sh {bash, VIM, VIFM, MPV}
 
-super + n ; { n, z, y, b }
+super + n ; { n, z, i, b }
   {$TERMINAL, zsh, $TERMINAL -e vifm, listzathura.sh}
 super + d
   dmouse
-super + s
-  raiseterm.sh
+# super + s
+#   raiseterm.sh
 super + x ; b
   addlayout.sh ; sxd.sh ; notify-send "$(LC_ALL=C date; uptime -p)"
 super + space
   raise.sh 'MPV\|mpv' 'noti echo no mpv found'
-control + space
+ctrl + space
   (setxkbmap -query | grep -q "layout:\s\+us") && setxkbmap ru || setxkbmap us
-control + 7
+ctrl + 7
   xdotool getactivewindow windowminimize 
 alt + x
   dmouse
@@ -119,7 +118,7 @@ super + BackSpace
   bspc desktop -f last
 
 # focus the older or newer node in the focus history
-super + {o,i}
+super + ctrl + {o,i}
 	bspc wm -h off; \
 	bspc node {older,newer} -f; \
 	bspc wm -h on

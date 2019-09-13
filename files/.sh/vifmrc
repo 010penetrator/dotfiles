@@ -44,7 +44,7 @@ nnoremap av :! vimz "$PWD/%c"<cr>
 nnoremap ac :! notab=1 vimz "$PWD/%c"<cr>
 "           :! vim --servername vimserv --remote-send ":e $PWD/%c<CR>" 
 nnoremap az :! vimz "$PWD/%c"<cr>:q<cr>
-nnoremap ai :! bash -c ' echo -ne \\nlist:\\n ; ls -dla %f ; read -rsn1 ' <cr>
+nnoremap zl :! bash -c ' echo -ne \\nlist:\\n ; ls -dla %f ; read -rsn1 ' <cr>
 nnoremap qc :! echo; date ; echo Sync... ; sync <cr>
 nnoremap qj :! nomacs %c &>/dev/null &<cr>
 nnoremap qe :! eom %c &>/dev/null &<cr>
@@ -89,7 +89,7 @@ nnoremap gc :cd $HOME/.config/<cr>
 nnoremap gs :cd $HOME/.sh/<cr>
 nnoremap gl gf 
 nnoremap al :!ln -s $PWD/%c %D/%c <cr>
-nnoremap ar :!ln -sr $PWD/%c %D/%c <cr>
+nnoremap ap :!ln -sr $PWD/%c %D/%c <cr>
 nnoremap aL :!ln -s $PWD/%c %d/%cL <cr>
 nnoremap ae :winrun , cd %C <cr><tab>
 nnoremap t tj
