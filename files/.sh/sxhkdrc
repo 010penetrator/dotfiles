@@ -10,8 +10,8 @@ super + {q,t,v,u,g,p,i,b,o}
 super + {T, V, I, B}
   raisekitty.sh {bash, VIM, VIFM, MPV}
 
-super + n ; { n, z, i, b }
-  {$TERMINAL, zsh, $TERMINAL -e vifm, listzathura.sh}
+super + n ; { n, m, z, i, b }
+  {$TERMINAL, momkitty.sh, zsh, $TERMINAL -e vifm, listzathura.sh}
 super + d
   dmouse
 # super + s
