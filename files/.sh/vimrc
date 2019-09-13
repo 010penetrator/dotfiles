@@ -321,7 +321,6 @@ inoremap <C-U> <C-G>u<C-U>
 map q <Nop>
 map й q
 nnoremap qQ :e $MYVIMRC <CR>
-" nnoremap qm q
 nnoremap Q q
 nnoremap qr @@
 nnoremap qf @
@@ -330,23 +329,25 @@ nnoremap qj    <C-W>j
 nnoremap qk    <C-W>k
 nnoremap ql    <C-W>l
 nnoremap <C-\> <C-W>w
-nnoremap q,    <c-W>6<
-nnoremap q.    <C-W>6>
+nnoremap qn    <C-W>6>
+nnoremap qm    <c-W>6<
 nnoremap qe    <C-W>3+
 nnoremap qd    <C-W>3-
 nnoremap <C-W>S :vsplit<CR>
 nnoremap qy :let @+ = @" <bar> :let @* = @" <CR>
 nnoremap qo o<Esc>
-nnoremap qi O<Esc>
+nnoremap q. O<Esc>
 nnoremap qt :tabe <CR>
 nnoremap qw :w<CR>
-nnoremap qx :q <CR>
-nnoremap qX :q! <CR>
+nnoremap aw :w<CR>
+nnoremap ax :q<CR>
+nnoremap aX :q! <CR>
 nnoremap qp :put *<CR>
+nnoremap qi :put! *<CR>
 nnoremap ap :put +<CR>
+nnoremap ai :put! +<CR>
 " Put as single paragraph
-nnoremap qP O<Esc>:put! *<CR>`[v`]:g/^$/d<CR>:nohlsearch<CR>
-nnoremap aw O<Esc>:put! *<CR>`[v`]:g/^$/d<CR>:nohlsearch<CR>
+nnoremap ab O<Esc>:put! *<CR>`[v`]:g/^$/d<CR>:nohlsearch<CR>
 " Yank inline
 nnoremap qc ^y$:let @+ = @" <bar> :let @* = @" <CR>j
 " Yank current file full name 
@@ -432,7 +433,6 @@ cnoremap <C-t> <C-Right>
 
 nnoremap a <Nop>
 nnoremap as a
-nnoremap ax :q<CR>
 nnoremap at :tabe<CR>
 nnoremap aq :qa<CR>
 nnoremap af :exec "normal i".nr2char(getchar())."\e"<CR>
