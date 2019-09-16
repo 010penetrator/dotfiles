@@ -26,6 +26,8 @@ command! amou :! bash -ic ' source /ln/ho/.bashrc ; amou '
 command! aumo :! bash -ic ' source /ln/ho/.bashrc ; aumo '
 nnoremap ax :quit<cr>
 nnoremap ,x :quit<cr>
+nnoremap ,i :pushd . <cr>
+nnoremap ,l :dirs <cr>
 nnoremap dd :delete<cr>
 nnoremap o :sort<cr>
 nnoremap O :invert o<CR>
@@ -44,7 +46,7 @@ nnoremap av :! vimz "$PWD/%c"<cr>
 nnoremap ac :! notab=1 vimz "$PWD/%c"<cr>
 "           :! vim --servername vimserv --remote-send ":e $PWD/%c<CR>" 
 nnoremap az :! vimz "$PWD/%c"<cr>:q<cr>
-nnoremap zl :! bash -c ' echo -ne \\nlist:\\n ; ls -dla %f ; read -rsn1 ' <cr>
+" nnoremap zl :! bash -c ' echo -ne \\nlist:\\n ; ls -dla %f ; read -rsn1 ' <cr>
 nnoremap qc :! echo; date ; echo Sync... ; sync <cr>
 nnoremap qj :! nomacs %c &>/dev/null &<cr>
 nnoremap qe :! eom %c &>/dev/null &<cr>
@@ -71,12 +73,13 @@ noremap ch :chmod<cr>
 noremap cb :copy<cr>
 noremap cm :move<cr>
 nnoremap am ggVG<cr>:move<cr>
+nnoremap ab ggVG<cr>:copy<cr>
 nnoremap zu :! upk2dir.sh %c <cr>
 nnoremap zU :! upk2dir.sh %c %D <cr>
 nnoremap zp :! 7z a -mx=3 -xr!.git -xr!tags %c.7z %f <cr>
 nnoremap zP :! 7z a -mx=3 -xr!.git -xr!tags %D/%c.7z %f <cr>
 nnoremap ze :! upk.sh %c <cr>
-nnoremap qr ggvGcw
+nnoremap ar ggvGcw
 nnoremap qo :!cp -r %c /ln/mus/0/<cr>
 nnoremap qO :!mv %c /ln/mus/0/<cr>
 nnoremap yc :! echo -n %f | xclip ; echo -n %f | xclip -selection clipboard %i <cr>:echo "filename in X buffer"<cr>
@@ -437,6 +440,22 @@ filextype *.pro qtcreator %f &
 filextype */
         \ {View in thunar}
         \ Thunar %f &,
+
+" " Draw file icons
+" " file types
+" set classify=' :dir:/, :exe:, :reg:, :link:'
+" " various file names
+" set classify+=' ::../::, ::*.sh::, ::*.[hc]pp::, ::*.[hc]::, ::/^copying|license$/::, ::.git/,,*.git/::, ::*.epub,,*.fb2,,*.djvu::, ::*.pdf::, ::*.htm,,*.html,,**.[sx]html,,*.xml::'
+" " archives
+" set classify+=' ::*.7z,,*.ace,,*.arj,,*.bz2,,*.cpio,,*.deb,,*.dz,,*.gz,,*.jar,,*.lzh,,*.lzma,,*.rar,,*.rpm,,*.rz,,*.tar,,*.taz,,*.tb2,,*.tbz,,*.tbz2,,*.tgz,,*.tlz,,*.trz,,*.txz,,*.tz,,*.tz2,,*.xz,,*.z,,*.zip,,*.zoo::'
+" " images
+" set classify+=' ::*.bmp,,*.gif,,*.jpeg,,*.jpg,,*.ico,,*.png,,*.ppm,,*.svg,,*.svgz,,*.tga,,*.tif,,*.tiff,,*.xbm,,*.xcf,,*.xpm,,*.xspf,,*.xwd::'
+" " audio
+" set classify+=' ::*.aac,,*.anx,,*.asf,,*.au,,*.axa,,*.flac,,*.m2a,,*.m4a,,*.mid,,*.midi,,*.mp3,,*.mpc,,*.oga,,*.ogg,,*.ogx,,*.ra,,*.ram,,*.rm,,*.spx,,*.wav,,*.wma,,*.ac3::'
+" " media
+" set classify+=' ::*.avi,,*.ts,,*.axv,,*.divx,,*.m2v,,*.m4p,,*.m4v,,.mka,,*.mkv,,*.mov,,*.mp4,,*.flv,,*.mp4v,,*.mpeg,,*.mpg,,*.nuv,,*.ogv,,*.pbm,,*.pgm,,*.qt,,*.vob,,*.wmv,,*.xvid::'
+" " office files
+" set classify+=' ::*.doc,,*.docx::, ::*.xls,,*.xls[mx]::, ::*.pptx,,*.ppt::'
 
 " Syntax highlighting in preview
 "

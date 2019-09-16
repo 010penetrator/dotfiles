@@ -10,13 +10,14 @@ if [[ "$2" ]] ; then
   dest="$2/$1"
   echo dest is $dest
 else 
-  echo old route
+  echo simple scenario
   mkdir -p "$1"D
   dest="$1"D
 fi
 
 # mv "$1" "$dest"
 cd "$dest"
-upk.sh "$ground/$1"
-# && mv "$1" "$ground"/.del."$1"
+upk.sh "$ground/$1" || exit 1
+
+cd "$ground" && mkdir -p .del && mv "$1" .del/"$1"
 
