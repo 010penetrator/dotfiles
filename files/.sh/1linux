@@ -12,7 +12,7 @@ IMG: exiftool nomacs gpicview ristretto imv vimiv photoqt phototonic gthumb eog 
 DRAW: pinta kolourpaint krita blender
 LISTEN: deadbeef qomp nulloy clementine exaile musique yarock qmmp audacious gmusicbrowser cantata tomahawk mocp *ncmpc cmus 
 PDF: zathura atril qpdfview mupdf djview fbreader fbless evince okular *calibr 
-HDD: gparted cfdisk testdisk photorec extundelete smartcontrol wipefreespace mondorescue grub-customizer woeusb 
+HDD: gparted cfdisk testdisk photorec extundelete smartcontrol wipefreespace mondorescue grub-customizer woeusb windows2usb 
 DL: transmission youtube-dl *rtorrent *aria2 *rutorrent jdownloader2 
 LEARN: klavaro gtypist solfege brainworkshop stellarium 
 GAMES: ctris urw powermanga pybik caph phlipple knetwalk cgoban liquidwar cultivation neverball typespeed speedpad 
@@ -162,7 +162,7 @@ wpa_supplicant -B -i $w -c passfile <(wpa_passphrase SSID pass) # unsafe oneline
 sudo dhcpcd $w
 curl https://wtfismyip.com/text # check ip
 curl -s --head http://opennet.ru # check network
-proxychains sudo wget -O- http://ya.ru
+proxychains sudo wget -O- http://ya.ru # check network
 sudo nmap -sP 192.168.1-3.0/24
 iptables -t nat -A OUTPUT -p tcp -m tcp --dport 80 -d 195.82.146.120/30 -j DNAT --to-destination 163.172.167.207:3128 ##route rutracker torrenting
 nmblookup -S WORKGROUP # find samba places

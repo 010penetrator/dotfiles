@@ -37,7 +37,7 @@ nnoremap W :wincmd o<CR>
 nnoremap qq :
 " nnoremap b :! mpv-album %c VIFM; echo -ne "\e]0;VIFM_MPV\a"<cr>
 nnoremap b :! mpv-album %c VIFM; echo -ne "\033]0;VIFM\007"<cr>
-nnoremap rs :! echo; rsync -rtn --progress --delete --size-only %d/ %D ; read -n 1 -s -r -p "-----======DONE======------" ; echo
+nnoremap rs :! echo -ne "\n" ; rsync -rtn --progress --delete --stats --size-only %d/ %D ; read -n 1 -s -r -p "-----======DONE======------" ; echo
 nnoremap qf :! feha %c &>/dev/null &<cr>
 nnoremap qz :! vim %c <cr>
 nnoremap qm :! mpv %c <cr>
