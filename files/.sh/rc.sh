@@ -34,11 +34,12 @@ if [[ "$HOSTNAME" =~ 'killer'[pc,PC] ]]; then
   trdwrap.sh &
   polybar.sh &
   killall unclutter; unclutter &
-elif [[ "$HOSTNAME" =~ ^ippol(.*) ]]; then
+elif [[ "$HOSTNAME" =~ ^debian10pc ]]; then
   # xinput set-prop 12 292 -.6
   # killall unclutter; unclutter &
-  xinput set-prop 12 288 -.6
-  xinput set-prop 10 292 -.6
+  # xinput set-prop 12 288 -.6
+  # xinput set-prop 10 292 -.6
+  xinput set-prop "A4TECH USB Device" "libinput Accel Speed" -.3
   xrandr --output VGA-2 --off 
 elif [[ "$HOSTNAME" =~ ^white*(.*)ok ]]; then 
   xset dpms 900 0 0 
