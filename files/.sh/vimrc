@@ -331,8 +331,8 @@ nnoremap ql    <C-W>l
 nnoremap <C-\> <C-W>w
 nnoremap qn    <C-W>6>
 nnoremap qm    <c-W>6<
-nnoremap qe    <C-W>3+
-nnoremap qd    <C-W>3-
+nnoremap qe    <C-W>3-
+nnoremap qd    <C-W>3+
 nnoremap <C-W>S :vsplit<CR>
 nnoremap qy :let @+ = @" <bar> :let @* = @" <CR>
 nnoremap qo o<Esc>
