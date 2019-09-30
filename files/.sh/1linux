@@ -110,6 +110,7 @@ echo 444 > /sys/class/backlight/intel_backlight/brightness # control screen lamp
 xrandr --output eDP1 --brightness 1.0 # software dim screen brightness
 gsettings set org.gnome.mutter overlay-key '' # free Win key in Gnome 3 
 gsettings set org.gnome.desktop.sound event-sounds false # mute that Gnome prick
+Gnome dconf-editor : org/gnome/desktop/media-handling : uncheck automount and automount-open
 ps -u $(id -u) -o pid= | while read pid; do
         cat /proc/$pid/environ 2>/dev/null | tr '\0' '\n' | grep '^DISPLAY=:'
     done | grep -o ':[0-9]*' | sort -u # return current display id 
