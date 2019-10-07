@@ -29,6 +29,10 @@ Fonts Mono: xos4Terminus LiberationMono Noto Input Fira Hack DejaVuSansMono Sour
 gtk: lounge mediterraneandarkest adapta mint-y flattastic libra-dark mona-3.0 carbonico arc-dark vertex menda-dark adwaita-maia green-submarine high-contrast-inverse 
 Xcursor.theme: Menda-Cursor Simple-and-Soft moblin breeze
 Icons: Moka Breeze ultraflat maia ardis papirus
+Gnome3: Dash-to-panel Arc-menu 
+gsettings set org.gnome.mutter overlay-key '' # free Win key in Gnome 3 
+gsettings set org.gnome.desktop.sound event-sounds false # mute that Gnome prick
+Gnome dconf-editor : org/gnome/desktop/media-handling : uncheck automount and automount-open
 openbox: Syscrash AmbianceGraphite Natura carbonico Arc 
 Cinnamon: Moka dark-glass2 
 https://github.com/bhilburn/powerlevel9k
@@ -108,9 +112,6 @@ lxqt-config-appearance # set GTK theme, etc.
 ffmpeg -f x11grab -s 1024x768 -r 30 -i $DISPLAY+448,194 -c:v libx264 -pix_fmt yuv420p -preset fast -crf 18  test.mp4 # record screen area
 echo 444 > /sys/class/backlight/intel_backlight/brightness # control screen lamp
 xrandr --output eDP1 --brightness 1.0 # software dim screen brightness
-gsettings set org.gnome.mutter overlay-key '' # free Win key in Gnome 3 
-gsettings set org.gnome.desktop.sound event-sounds false # mute that Gnome prick
-Gnome dconf-editor : org/gnome/desktop/media-handling : uncheck automount and automount-open
 ps -u $(id -u) -o pid= | while read pid; do
         cat /proc/$pid/environ 2>/dev/null | tr '\0' '\n' | grep '^DISPLAY=:'
     done | grep -o ':[0-9]*' | sort -u # return current display id 
