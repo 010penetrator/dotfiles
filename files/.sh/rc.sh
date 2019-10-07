@@ -46,7 +46,7 @@ elif [[ "$HOSTNAME" =~ ^white*(.*)ok ]]; then
   xinput set-prop "SYN1B7F:01 06CB:2991 Touchpad" "libinput Tapping Enabled" 1
 elif [[ "$HOSTNAME" =~ 'warmPC' ]]; then
   # xrdb -merge <(echo "Xft.dpi: 108") &
-  xinput set-prop "RAPOO Rapoo 2.4G Wireless Device" "libinput Accel Speed" -.5 &
+  xinput set-prop "RAPOO Rapoo 2.4G Wireless Device" "libinput Accel Speed" -.6 &
   sleep 1
   trdwrap.sh & 
   earlyoom -m 4 -n &> /dev/null &

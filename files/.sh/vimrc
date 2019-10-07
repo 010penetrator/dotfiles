@@ -465,6 +465,7 @@ nnoremap <Leader>i :NewVifmHere<CR>
 nnoremap <Leader><Space> :LCDhere <CR>
 nnoremap <Leader>o :Goyo 66%x100%<CR>
 nnoremap <Leader>m ^y$:call system('$BROWSER ' . @")<CR>
+nnoremap <Leader>M  ^y$:call system('google.sh ' . @")<CR>
 nnoremap <Leader>go ^y$:call system('google.sh ' . @")<CR>
 nnoremap <Leader>gw yiw:call system('google.sh ' . @")<CR>
 nnoremap <Leader>gr ^y$:silent exec " !source $HOME/.bashrc && \"$BROWSER\" \"red " . @" . "\" &>/dev/null & " \| redraw!<CR>
@@ -497,7 +498,7 @@ nnoremap <Leader>vs :source ~/.vim/session.vim <CR>
 nnoremap <Leader>vv :source $MYVIMRC <CR>
 nnoremap <Leader>vq :qa! <CR>
 nnoremap <Leader>v<Leader> :call EvalThis()<CR>
-nnoremap <Leader>vc :set filetype=sh<CR>
+nnoremap <Leader>vf :set filetype=sh<CR>
 nnoremap <Leader>vb :call SwitchBackground()<CR>
 nnoremap <Leader>vt :TagbarOpen fj <CR>
 nnoremap <Leader>zz :let &scrolloff=28-&scrolloff<CR>
