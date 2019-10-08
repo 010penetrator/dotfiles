@@ -48,6 +48,7 @@ nnoremap ac :! notab=1 vimz "$PWD/%c"<cr>
 "           :! vim --servername vimserv --remote-send ":e $PWD/%c<CR>" 
 nnoremap az :! vimz "$PWD/%c"<cr>:q<cr>
 " nnoremap zl :! bash -c ' echo -ne \\nlist:\\n ; ls -dla %f ; read -rsn1 ' <cr>
+nnoremap zs :! clear ; df -BMB ; read -rsn1 <cr>
 nnoremap qc :! echo; date ; echo Sync... ; sync <cr>
 nnoremap qj :! nomacs %c &>/dev/null &<cr>
 nnoremap qe :! eom %c &>/dev/null &<cr>
@@ -105,7 +106,7 @@ nnoremap as :!
 
 set syscalls
 set confirm=permdelete
-set title
+" set title
 set cpoptions=fs
 
 " This is the actual command used to start vi.  The default is vim.

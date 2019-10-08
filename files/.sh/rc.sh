@@ -25,8 +25,6 @@ nitrogen --restore &
 if [[ "$HOSTNAME" =~ 'killer'[pc,PC] ]]; then
   # xrandr --dpi 110x110
   xrdb -merge <(echo "Xft.dpi: 108") &
-  # compton.sh &
-  # polybar.sh &
   xinput set-prop "RAPOO Rapoo 2.4G Wireless Device" "libinput Accel Speed" -.5 &
   # xinput set-prop "Clearly Superior Technologies. CST Laser Trackball" "libinput Accel Speed" -.7
   sleep 2
@@ -37,10 +35,9 @@ if [[ "$HOSTNAME" =~ 'killer'[pc,PC] ]]; then
 elif [[ "$HOSTNAME" =~ ^debian10pc ]]; then
   # xinput set-prop 12 292 -.6
   # killall unclutter; unclutter &
-  # xinput set-prop 12 288 -.6
-  # xinput set-prop 10 292 -.6
   xinput set-prop "A4TECH USB Device" "libinput Accel Speed" -.3
   xrandr --output VGA-2 --off 
+  ( sleep 2 ; gsettings set org.gnome.mutter overlay-key '' )  # free Win key in Gnome 3
 elif [[ "$HOSTNAME" =~ ^white*(.*)ok ]]; then 
   xset dpms 900 0 0 
   xinput set-prop "SYN1B7F:01 06CB:2991 Touchpad" "libinput Tapping Enabled" 1
@@ -50,7 +47,6 @@ elif [[ "$HOSTNAME" =~ 'warmPC' ]]; then
   sleep 1
   trdwrap.sh & 
   earlyoom -m 4 -n &> /dev/null &
-  # killall unclutter; unclutter  &
 elif [[ "$HOSTNAME" =~ [pc,PC] ]]; then
   xrandr --output VGA-2 --off 
 fi
