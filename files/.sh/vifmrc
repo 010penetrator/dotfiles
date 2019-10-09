@@ -81,6 +81,7 @@ nnoremap zU :! upk2dir.sh %c %D <cr>
 nnoremap zp :! 7z a -mx=3 -xr!.git -xr!tags %c.7z %f <cr>
 nnoremap zP :! 7z a -mx=3 -xr!.git -xr!tags %D/%c.7z %f <cr>
 nnoremap ze :! upk.sh %c <cr>
+nnoremap zE :! cd %D; upk.sh %d/%c <cr>
 nnoremap ar ggvGcw
 nnoremap qo :!cp -r %c /ln/mus/0/<cr>
 nnoremap qO :!mv %c /ln/mus/0/<cr>
