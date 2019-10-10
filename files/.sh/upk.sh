@@ -21,7 +21,7 @@ else
           *.zip|*.ZIP)    unzip "$1"       ;;
           *.Z)            uncompress "$1"  ;;
           *.7z|*.7Z)      7z x "$1"        ;;
-          *.xz)           unxz "$1"        ;;
+          *.xz)           unxz -k "$1"     ;;
           *.exe)          cabextract "$1"  ;;
           *)              echo "upk: '$1' - Не может быть распакован" ; exit 1 ;;
         esac
