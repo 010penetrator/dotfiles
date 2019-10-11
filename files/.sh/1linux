@@ -11,7 +11,7 @@ MEDIA: mpv vlc youtube-viewer mediainfo ffmpeg audacity kwave ocenaudio sox mkvt
 IMG: exiftool nomacs gpicview qview ristretto imv vimiv photoqt phototonic gthumb eog viewnior imagemagick feh qimgv eom imv sxiv pqiv darktable digikam shotwell gcolor2 findimagedupes
 DRAW: pinta kolourpaint krita blender
 LISTEN: deadbeef qomp nulloy clementine exaile musique yarock qmmp audacious gmusicbrowser cantata tomahawk mocp *ncmpc cmus 
-PDF: zathura atril qpdfview mupdf djview fbreader fbless evince okular *calibr 
+READ: zathura atril qpdfview mupdf djview fbreader koreader fbless evince okular *calibr 
 HDD: gparted cfdisk testdisk photorec extundelete smartcontrol wipefreespace mondorescue grub-customizer woeusb windows2usb 
 DL: transmission youtube-dl *rtorrent *aria2 *rutorrent jdownloader2 
 LEARN: klavaro gtypist solfege brainworkshop stellarium 
