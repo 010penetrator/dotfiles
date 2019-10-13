@@ -134,6 +134,7 @@ ls; set root=(hd0,msdos1); set prefix=/boot/grub; insmod ext2; insmod normal; no
 qemu-system-x86_64 -hda /dev/sdc # check bootloader
 grub2> echo $grub_platform # check efi/bios in grub manual
 ls /sys/firmware/efi # check efi mode
+bootlace.com /dev/sdb
 
 FS
 mkfs.vfat -F32 /dev/sdx1
