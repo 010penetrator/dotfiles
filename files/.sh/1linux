@@ -211,6 +211,8 @@ pacman -Rsn $(pacman -Qdtq) # remove all orphans
 comm -23 <(pacman -Qqt | sort) <(echo "" | tr ' ' '\n' | cat <(pacman -Sqg "base base-devel") - | sort -u) #show all packages that nothing else depends on
 
 ALSO
+cp -a /source/. /target # add source/ contents to target/
+cp -aT  /source /target # add source/ contents to target/
 for f in * ; do d=${f%.*} ; 7z x -o./"$d" "$f" ; done # unpack all files with 7z 
 for f in *.ext ; do g=$f ; mv -v -- "$g" "${g:20}" ; done # shorten file names 
 mkdir res ; for f in *; do convert "$f" -resize 50% -sampling-factor 4:2:0  -quality 95%  res/"$f" ; done # recompress pictures

@@ -4,13 +4,13 @@ super + x ; {t,u,m,s,r,e,h,f,d,g,p,n,v,o,w,a}
 super + x ; {j,z,k,l,b}
 	{windowswitcher.sh, xdotool mousemove 1595 980, i3-msg kill, listdwn.sh, listmpv.sh}
 
-super + {q,t,v,u,g,p,i,z,a,b}
+super + {q,t,v,u,g,p,c,z,a,b}
 	raise.sh {scroff.sh, 'xterm\|urxvt\|kitty', VIM '$TERMINAL -e vim', luakit, 'chromium\|Firefox', 'MPV\|mpv' 'noti echo no mpv found', VIFM '$TERMINAL -e vifm & notify-send new_VIFM', zathura listzathura.sh, 'transmission-remote\|qbittorrent' '$TERMINAL -e transmission-remote-cli -c localhost:9090', ' Browser' ''}
 
-super + {T, V, I, B}
+super + {T, V, C, B}
   raisekitty.sh {bash, VIM, VIFM, MPV}
 
-super + n ; { n, m, h, i, z }
+super + n ; { n, m, h, c, z }
   {$TERMINAL, momkitty.sh, zsh, $TERMINAL -e vifm, listzathura.sh}
 super + d
   dmouse
@@ -98,10 +98,10 @@ super + alt + {p,b,comma,period}
 	bspc node -f @{parent,brother,first,second}
 
 # focus the next/previous node in the current desktop
-super + {_,shift + }c
+super + {_,shift + }e
 	bspc node -f {next,prev}.local
-super + e
-  bspc node -f prev.local
+# super + e
+#   bspc node -f prev.local
 
 # focus the next/previous desktop in the current monitor
 super + bracket{left,right}
