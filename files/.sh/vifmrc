@@ -24,8 +24,8 @@ command! tok :!touch %c "--date=@$(expr $(stat -c %%%%Y KKKKKKKKKK) - 1000)"
 command! tik :!touch --date="$(date -R -r %c) + 1 day" %c
 command! amou :! bash -ic ' source /ln/ho/.bashrc ; amou '
 command! aumo :! bash -ic ' source /ln/ho/.bashrc ; aumo '
-nnoremap ax :quit<cr>
-nnoremap ,x :quit<cr>
+nnoremap ,x :quit <cr>
+nnoremap ,q :exec '! echo -ne "\033]0;\007"' | qa <cr>
 nnoremap ,i :pushd . <cr>
 nnoremap ,l :dirs <cr>
 nnoremap dd :delete<cr>
@@ -80,6 +80,8 @@ nnoremap zu :! upk2dir.sh %c <cr>
 nnoremap zU :! upk2dir.sh %c %D <cr>
 nnoremap zp :! 7z a -mx=3 -xr!.git -xr!tags %c.7z %f <cr>
 nnoremap zP :! 7z a -mx=3 -xr!.git -xr!tags %D/%c.7z %f <cr>
+nnoremap as :! tar -I 'zstd -11 -T0' -cf %c.tar.zst --exclude='.git' --exclude='tags' %f 
+nnoremap aS :! tar -I 'zstd -11 -T0' -cf %D/%c.tar.zst --exclude='.git' --exclude='tags' %f 
 nnoremap ze :! upk.sh %c <cr>
 nnoremap zE :! cd %D; upk.sh %d/%c <cr>
 nnoremap ar ggvGcw
@@ -103,11 +105,10 @@ nnoremap t tj
 nnoremap cv cW
 noremap gb :tabprev<cr>
 nnoremap at :tabnew<cr>
-nnoremap as :! 
 
 set syscalls
 set confirm=permdelete
-" set title
+set title
 set cpoptions=fs
 
 " This is the actual command used to start vi.  The default is vim.
@@ -391,13 +392,18 @@ filetype *.zip,*.jar,*.war,*.ear,*.oxt,*.apkg
 fileviewer *.zip,*.jar,*.war,*.ear,*.oxt zip -sf %c
 
 " ArchiveMount
-filetype *.tar,*.tar.bz2,*.tbz2,*.tgz,*.tar.gz,*.tar.xz,*.txz
+filetype *.tar,*.tar.bz2,*.tbz2,*.tgz,*.tar.gz,*.tar.xz,*.tar.zst,*.txz
        \ {Mount with archivemount}
        \ FUSE_MOUNT|archivemount %SOURCE_FILE %DESTINATION_DIR,
+       \ {List contents}
+       \ tar -tf %c | less,
 fileviewer *.tgz,*.tar.gz tar -tzf %c
 fileviewer *.tar.bz2,*.tbz2 tar -tjf %c
 fileviewer *.tar.txz,*.txz xz --list %c
-fileviewer *.tar tar -tf %c
+fileviewer *.tar,*.tar.zst tar -tf %c
+
+" filetype *.tar.zst
+"       \ tar -tf %c | less 
 
 " Rar2FsMount and rar archives
 filetype *.rar

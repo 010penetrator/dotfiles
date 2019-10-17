@@ -342,12 +342,12 @@ nnoremap qw :w<CR>
 nnoremap aw :w<CR>
 nnoremap ax :q<CR>
 nnoremap aX :q! <CR>
-nnoremap qp :put *<CR>
-nnoremap qi :put! *<CR>
-nnoremap ap :put +<CR>
-nnoremap ai :put! +<CR>
+nnoremap ap :put  *<CR>
+nnoremap ai :put! *<CR>
 " Put as single paragraph
 nnoremap ao O<Esc>:put! *<CR>`[v`]:g/^$/d<CR>:nohlsearch<CR>
+nnoremap aI :put  +<CR>
+nnoremap aP :put! +<CR>
 " Yank inline
 nnoremap qc ^y$:let @+ = @" <bar> :let @* = @" <CR>j
 " Yank current file full name 

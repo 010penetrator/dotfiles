@@ -144,13 +144,11 @@ alias myb='myfont ; sudo uname ; conn & [[ `pgrep Xorg` ]] || startx ~/.xinitrc 
 alias l='sudo lsblk -f'
 alias yp='fc -ln -1 | cut -c 3- | xclip ; echo yanked prev command' 
 alias ram='sudo python $sh/mem.py'
-
-alias pis='echo -ne "\e]0;transmission-pi\a"; transmission-remote-cli -c 192.168.1.78:9090 #pipanel' 
 alias myfont='setfont ter-218b'
 alias dmenu='dmenu $DMENU_OPTIONS' 
 alias 1l='less ~/.sh/1linux'
 alias vf='$TERMINAL -e vifm . &'
-alias trmclient='title transmission-remote-cli; transmission-remote-cli -c localhost:9090 ; title bash'
+# alias trmclient='title transmission-remote-cli; transmission-remote-cli -c localhost:9090 ; title bash'
 amou() { target=$( sudo lsblk -f | grep .sd | fzf -e | cut -f 1 -d " " | tr -cd '[:alnum:]' ); [ ! -z "${target}" ] && udevil mount /dev/"$target" && echo "/dev/$target mounted"; }
 aumo() { target=$( sudo lsblk -f | grep .sd | grep '/' | cut -c 7- | fzf -e |  cut -f 1 -d " " ); [ ! -z "${target}" ] && sync && udevil umount "/dev/$target" && echo "/dev/$target unmounted"; }
 # title() { echo -ne "\e]0;$*\a"; } 
