@@ -25,6 +25,7 @@ command! tik :!touch --date="$(date -R -r %c) + 1 day" %c
 command! amou :! bash -ic ' source /ln/ho/.bashrc ; amou '
 command! aumo :! bash -ic ' source /ln/ho/.bashrc ; aumo '
 nnoremap ,x :quit <cr>
+nnoremap ax :quit <cr>
 nnoremap ,q :exec '! echo -ne "\033]0;\007"' | qa <cr>
 nnoremap ,i :pushd . <cr>
 nnoremap ,l :dirs <cr>
@@ -74,6 +75,9 @@ noremap ch :chmod<cr>
 " nnoremap cb :copy | ! notify-send COPY Done!<cr>
 noremap cb :copy<cr>
 noremap cm :move<cr>
+nnoremap E :copy<cr>
+nnoremap C :move<cr>
+nnoremap cn :clone<cr>
 nnoremap am ggVG<cr>:move<cr>
 nnoremap ab ggVG<cr>:copy<cr>
 nnoremap zu :! upk2dir.sh %c <cr>
