@@ -389,6 +389,9 @@ noremap <c-n> 10<c-e>M
 noremap <c-p> 10<c-y>M
 map <c-j> <Plug>(edgemotion-j)
 map <c-k> <Plug>(edgemotion-k)
+" for vim-signature
+nmap ]; ]-
+nmap [; [-
 nnoremap m-       :<C-U>call signature#mark#Purge("all")<CR>
 nnoremap m<space> :<C-U>call signature#mark#Purge("line")<CR>
 nnoremap q<tab> <C-w>p
@@ -398,9 +401,6 @@ nnoremap gz 1gt
 nnoremap q' :call WinBufSwap()<CR>
 nnoremap qg gg:call search('^.') <CR>k
 nnoremap qG G$:call search('^.','b') <CR>0j
-" for vim-signature
-nmap ]; ]-
-nmap [; [-
 " Jump to blank or one-char lines
 nnoremap <silent> gn :call search('^\(.\\|\(\s\)*\)$','W') <CR>
 nnoremap <silent> gp :call search('^\(.\\|\(\s\)*\)$','bW') <CR>
@@ -413,7 +413,7 @@ nnoremap <silent> aj :call search('.','W') <CR>
 nnoremap <silent> ak :call search('.','bW') <CR>
 " nnoremap q<CR> 
 " nnoremap q\ 
-nnoremap z' `
+" nnoremap z' `
 nnoremap ze :call SwitchCE()<CR>
 nnoremap z; :set wrap!<CR>
 nmap <C-c> <C-y>
@@ -503,6 +503,7 @@ nnoremap <Leader>vb :call SwitchBackground()<CR>
 nnoremap <Leader>vt :TagbarOpen fj <CR>
 nnoremap <Leader>zz :let &scrolloff=28-&scrolloff<CR>
 nnoremap <Leader>zt :silent exec 'DOctags' \| redraw! \| echo 'Wrote tags db in' getcwd().'/' <CR>
+nnoremap <Leader>zg :call DOgitprojTags() <CR>
 nnoremap <Leader>zx :call MakeClean()<CR>
 nnoremap <Leader>zc :lcd %:p:h <bar> silent call BuildProjectU("Makefile","make") <bar> redraw! <bar> cwindow <CR>
 nnoremap <Leader>zl : silent exec '! echo -e "\n$(pwd):"; ls -la . ; read -n 1 -s -r -p "//hit.anykey" ; echo -ne "\n" ' \| redraw! <cr>
@@ -546,6 +547,22 @@ if !empty($WINDIR)
 endif
 
 "----------Functions----------"
+
+function! DOgitprojTags()
+  echom "Trying to update ctags in this git project"
+  silent exec '! echo -e "\n\n"Trying to update ctags in this git project"..."'
+  let l:starting_directory = getcwd()
+  let l:curr_directory = expand('%:p:h')
+  exec "cd " . l:curr_directory
+  let l:proj_dir = ClimbToDirWhere(".git/index")
+  if ( l:proj_dir != "-1" )
+    exec '!ctags -R --exclude=.git --exclude=log --exclude=wutils --c++-kinds=+p --fields=+iaS --extra=+q *'
+  else
+    echom "Cant find .git"
+  endif
+  exec "cd " . l:starting_directory
+endfunction
+
 function! BuildProject1()
   let l:starting_directory = getcwd()
   let l:curr_directory = expand('%:p:h')
