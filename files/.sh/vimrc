@@ -453,7 +453,7 @@ nnoremap <Leader>q :qa <CR>
 nnoremap <Leader>j :Unite buffer file<CR>
 nnoremap <Leader>k :Denite buffer -mode=normal -immediately-1<CR>
 nnoremap <Leader>e :BufExplorer <CR>
-nnoremap <Leader>c :call GotoTerm()<CR>
+nnoremap <Leader>r :call GotoTerm()<CR>
 nnoremap <Leader><tab> :exe "tabn ".g:lasttab<CR>
 nnoremap <Leader>. <C-^>
 nnoremap <Leader>x :q<CR>
@@ -461,7 +461,7 @@ nnoremap <Leader>w :w<CR>
 nnoremap <Leader>d :bd!<CR>
 nnoremap <Leader>t :NewTermHere<CR>
 nnoremap <Leader>T :NewTerm<CR>
-nnoremap <Leader>i :NewVifmHere<CR>
+nnoremap <Leader>c :NewVifmHere<CR>
 nnoremap <Leader><Space> :LCDhere <CR>
 nnoremap <Leader>o :Goyo 66%x100%<CR>
 nnoremap <Leader>m ^y$:call system('$BROWSER ' . @")<CR>

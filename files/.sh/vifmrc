@@ -75,8 +75,8 @@ noremap ch :chmod<cr>
 " nnoremap cb :copy | ! notify-send COPY Done!<cr>
 noremap cb :copy<cr>
 noremap cm :move<cr>
-nnoremap E :copy<cr>
-nnoremap C :move<cr>
+nnoremap C :copy<cr>
+nnoremap E :move<cr>
 nnoremap cn :clone<cr>
 nnoremap am ggVG<cr>:move<cr>
 nnoremap ab ggVG<cr>:copy<cr>
