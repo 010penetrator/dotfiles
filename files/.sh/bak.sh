@@ -19,4 +19,4 @@ cp "$bak"/"$name" /ln/hh/tt/bak.conf.tar.gz
 tar -czhf "$bak"/bak-txt-0"$i"0--`date +%Y-%m-%d`.tar.gz -C /ln/hh tt
 cd "$rdir"
 
-rsync  -rt /ln/ho/.config/transmission-daemon/torrents/ /ln/ho/.del/torrents/ --progress #trmbak 
+# rsync  -rt /ln/ho/.config/transmission-daemon/torrents/ /ln/ho/.del/torrents/ --progress #trmbak 

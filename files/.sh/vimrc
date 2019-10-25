@@ -55,7 +55,7 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'sandeepcr529/Buffet.vim'
 " Plug 'vim-scripts/QuickBuf'
-Plug 'Yggdroot/LeaderF'
+" Plug 'Yggdroot/LeaderF'
 Plug 'tpope/vim-endwise'
 "
 Plug 'morhetz/gruvbox' "best
@@ -483,11 +483,11 @@ nnoremap <Leader>gf :call FocusBufOrDo('fun.tx','e $HOME/fun.tx')<CR>
 nnoremap <Leader>gd :BD<CR>
 nnoremap <Leader>gt :call MoveToNextTab()<CR>
 nnoremap <Leader>gb :call MoveToPrevTab()<CR>
-nnoremap <Leader>ss :Ack <C-r><C-w> <CR>
-nnoremap <Leader>sf :AckFile <C-r><C-W> <CR>
-nnoremap <Leader>sc :Ack <C-r><C-W> %:p 
-nnoremap <Leader>sd :Ack <C-r><C-w> %:p:h 
-nnoremap <Leader>sw :AckWindow <C-r><C-w> <CR>
+nnoremap <Leader>fs :Ack <C-r><C-w> <CR>
+nnoremap <Leader>ff :AckFile <C-r><C-W> <CR>
+nnoremap <Leader>fc :Ack <C-r><C-W> %:p 
+nnoremap <Leader>fd :Ack <C-r><C-w> %:p:h 
+nnoremap <Leader>fw :AckWindow <C-r><C-w> <CR>
 " vimserv stuff; i e move current buf to vimserv vim issue
 nnoremap <Leader>av :silent exec '!vimz "%:p"' \| redraw! \| q <CR>
 nnoremap <Leader>ac :silent exec '!notab=1 vimz "%:p"' \| redraw! \| q <CR>
