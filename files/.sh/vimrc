@@ -182,6 +182,7 @@ let $VIMPLUG = '$HOME/.vim/plugged/'
   augroup END
   function! NetrwMapping()
     noremap <buffer> x :q<cr>
+    " unmap <buffer> a
   endfunction
 set equalalways
 set winheight=7
@@ -317,6 +318,7 @@ noremap x "_x
 noremap X "_X
 " noremap s "_s
 nnoremap gb gT
+nnoremap gr gT
 nnoremap g< :tabm -1 <CR>
 nnoremap g> :tabm +1 <CR>
 nnoremap <Down> gj
@@ -338,8 +340,8 @@ nnoremap qj    <C-W>j
 nnoremap qk    <C-W>k
 nnoremap ql    <C-W>l
 nnoremap <C-\> <C-W>w
-nnoremap qn    <C-W>6>
-nnoremap qm    <c-W>6<
+nnoremap qm    <C-W>6>
+nnoremap qn    <c-W>6<
 nnoremap qe    <C-W>3+
 nnoremap qd    <C-W>3-
 nnoremap <C-W>S :vsplit<CR>
@@ -365,6 +367,10 @@ nnoremap qu ~
 nnoremap qb :Bash <CR>
 nnoremap qs :new <CR>
 nnoremap qv :vnew <CR>
+nnoremap qS :split # <cr>
+nnoremap qV :vsplit # <cr>
+" Split netrw
+nnoremap _  :vsplit %:p:h <cr>
 " Split open file under cursor. Requires vim-vinegar
 nnoremap ae :vsp <c-r><c-f> <CR> 
 nnoremap q/ :nohlsearch <CR>
@@ -462,7 +468,7 @@ nnoremap <Leader>q :qa <CR>
 nnoremap <Leader>j :Unite buffer file<CR>
 nnoremap <Leader>k :Denite buffer -mode=normal -immediately-1<CR>
 nnoremap <Leader>e :BufExplorer <CR>
-nnoremap <Leader>r :call GotoTerm()<CR>
+nnoremap <Leader>b :call GotoTerm()<CR>
 nnoremap <Leader><tab> :exe "tabn ".g:lasttab<CR>
 nnoremap <Leader>. <C-^>
 nnoremap <Leader>x :q<CR>
@@ -652,7 +658,8 @@ function! GotoTerm()
     endif
   endfor
   if len(ar) == 0
-    call FocusBufOrDo('/bin/bash','terminal')
+    wincmd n
+    call FocusBufOrDo('/bin/bash','terminal ++curwin')
     return
   endif
   " if ( exists("g:lasttermid") && (index(ar,cur)<0) )

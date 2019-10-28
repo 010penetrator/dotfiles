@@ -17,15 +17,14 @@ bar=${foo// /'\' }
 
 if [[ $notab == 1 ]] ; then
   # Change current Vim buffer 
-  vim --servername vimserv --remote-send ":e $bar<CR>"
-  # exit
+  vim --servername vimserv --remote-send "<c-w>:e $bar<CR>"
 else
   if [ $i == 0 ] ; then
     # Populate Vim buffer
     vim --servername vimserv --remote-send ":e $bar<CR>" 
   else
     # Make new tab in Vim
-    vim --servername vimserv --remote-send ":tabe $bar<CR>" 
+    vim --servername vimserv --remote-send "<c-w>:tabe $bar<CR>" 
   fi
 fi
 

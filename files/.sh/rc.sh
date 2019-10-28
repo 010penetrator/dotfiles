@@ -25,7 +25,7 @@ nitrogen --restore &
 if [[ "$HOSTNAME" =~ 'killer'[pc,PC] ]]; then
   # xrandr --dpi 110x110
   xrdb -merge <(echo "Xft.dpi: 108") &
-  xinput set-prop "RAPOO Rapoo 2.4G Wireless Device" "libinput Accel Speed" -.5 &
+  xinput set-prop "RAPOO Rapoo 2.4G Wireless Device" "libinput Accel Speed" -.6 &
   # xinput set-prop "Clearly Superior Technologies. CST Laser Trackball" "libinput Accel Speed" -.7
   sleep 2
   # echo -e 'power on\nquit' | bluetoothctl

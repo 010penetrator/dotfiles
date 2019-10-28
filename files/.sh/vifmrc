@@ -43,7 +43,7 @@ nnoremap rS :! echo -ne "\n" ; rsync -rt --progress --delete --stats --size-only
 nnoremap qf :! feha %c &>/dev/null &<cr>
 nnoremap qz :! vim %c <cr>
 nnoremap qm :! mpv %c <cr>
-" Attach file to vim server
+" Open file with vim server
 nnoremap av :! vimz "$PWD/%c"<cr>
 nnoremap ac :! notab=1 vimz "$PWD/%c"<cr>
 "           :! vim --servername vimserv --remote-send ":e $PWD/%c<CR>" 
