@@ -462,7 +462,7 @@ nnoremap <Leader>q :qa <CR>
 nnoremap <Leader>j :Unite buffer file<CR>
 nnoremap <Leader>k :Denite buffer -mode=normal -immediately-1<CR>
 nnoremap <Leader>e :BufExplorer <CR>
-nnoremap <Leader>r :call GotoTerm()<CR>
+nnoremap <Leader>a :call GotoTerm()<CR>
 nnoremap <Leader><tab> :exe "tabn ".g:lasttab<CR>
 nnoremap <Leader>. <C-^>
 nnoremap <Leader>x :q<CR>
