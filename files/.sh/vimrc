@@ -468,14 +468,14 @@ nnoremap <Leader>q :qa <CR>
 nnoremap <Leader>j :Unite buffer file<CR>
 nnoremap <Leader>k :Denite buffer -mode=normal -immediately-1<CR>
 nnoremap <Leader>e :BufExplorer <CR>
-nnoremap <Leader>a :call GotoTerm()<CR>
+nnoremap qt :call GotoTerm(0)<CR>
+nnoremap qa : wincmd s \| lcd %:p:h \| terminal ++curwin ++norestore <CR>
+nnoremap <Leader>t :NewTermHere<CR>
 nnoremap <Leader><tab> :exe "tabn ".g:lasttab<CR>
 nnoremap <Leader>. <C-^>
 nnoremap <Leader>x :q<CR>
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>d :bd!<CR>
-nnoremap <Leader>t :NewTermHere<CR>
-nnoremap <Leader>T :NewTerm<CR>
 nnoremap <Leader>c :NewVifmHere<CR>
 nnoremap <Leader><Space> :LCDhere <CR>
 nnoremap <Leader>o :Goyo 66%x100%<CR>
@@ -648,7 +648,7 @@ function! GotoWindowByName(name)
   endfor
 endfunction
 
-function! GotoTerm()
+function! GotoTerm(arg)
   let cur = getbufinfo(expand('%'))[0].windows[0]
   let ar = []
   for b in getbufinfo()
@@ -658,8 +658,10 @@ function! GotoTerm()
     endif
   endfor
   if len(ar) == 0
-    wincmd n
-    call FocusBufOrDo('/bin/bash','terminal ++curwin')
+    if a:arg == 1
+      wincmd n
+    endif
+    call FocusBufOrDo('/bin/bash','terminal ++curwin ++norestore')
     return
   endif
   " if ( exists("g:lasttermid") && (index(ar,cur)<0) )
