@@ -373,7 +373,7 @@ nnoremap qc ^y$:let @+ = @" <bar> :let @* = @" <CR>j
 " Yank current file full name 
 nnoremap zy :let @" = expand('%:p')
 nnoremap qu ~
-nnoremap qb :Bash <CR>
+nnoremap qz :Bash <CR>
 nnoremap qs :new <CR>
 nnoremap qv :vnew <CR>
 nnoremap qS :split # <cr>
@@ -423,8 +423,8 @@ nnoremap [j gT
 nnoremap ]j gt
 nnoremap gz 1gt
 nnoremap q' :call WinBufSwap()<CR>
-nnoremap qg gg:call search('^.') <CR>k
-nnoremap qG G$:call search('^.','b') <CR>0j
+nnoremap qt gg:call search('^.') <CR>k
+nnoremap qg G$:call search('^.','b') <CR>0j
 " Jump to blank or one-char lines
 nnoremap <silent> gn :call search('^\(.\\|\(\s\)*\)$','W') <CR>
 nnoremap <silent> gp :call search('^\(.\\|\(\s\)*\)$','bW') <CR>
@@ -432,7 +432,7 @@ nnoremap <silent> gy :call search('^\(.\\|\(\s\)*\)$','bW') <CR>
 onoremap <silent> gn :call search('^\(.\\|\(\s\)*\)$','W') <CR>
 onoremap <silent> gp :call search('^\(.\\|\(\s\)*\)$','bW') <CR>
 onoremap <silent> gy :call search('^\(.\\|\(\s\)*\)$','bW') <CR>
-nnoremap qz <c-w>_
+nnoremap q, <c-w>_
 nnoremap <silent> aj :call search('.','W') <CR>
 nnoremap <silent> ak :call search('.','bW') <CR>
 " nnoremap q<CR> 
@@ -477,8 +477,8 @@ nnoremap <Leader>q :qa <CR>
 nnoremap <Leader>j :Unite buffer file<CR>
 nnoremap <Leader>k :Denite buffer -mode=normal -immediately-1<CR>
 nnoremap <Leader>e :BufExplorer <CR>
-nnoremap qt :call GotoTerm(0)<CR>
-nnoremap qa : wincmd s \| lcd %:p:h \| terminal ++curwin ++norestore <CR>
+nnoremap qb :call GotoTerm(0)<CR>
+nnoremap ab : wincmd n \| if isdirectory(expand('%:p:h')) \| lcd %:p:h \| endif \| terminal ++curwin ++norestore <CR>
 nnoremap <Leader>t :NewTermHere<CR>
 nnoremap <Leader><tab> :exe "tabn ".g:lasttab<CR>
 nnoremap <Leader>. <C-^>
