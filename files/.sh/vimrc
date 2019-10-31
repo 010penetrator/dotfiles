@@ -1,5 +1,6 @@
 " vim: ts=2 sw=2:
 set nocompatible              " be iMproved
+set termguicolors
 compiler gcc
 set makeprg=make\ 
 " currfile=%\ mainbin
@@ -130,12 +131,21 @@ Plug 'Jimeno0/vim-chito' "consbroken
 Plug 'aradunovic/perun.vim' "consbroken
 Plug 'HenryNewcomer/vim-theme-underflow' "consbroken
 Plug 'beigebrucewayne/min_solo' "'subtle' consbroken
-Plug 'therubymug/vim-pyte' "consbroken
+Plug 'therubymug/vim-pyte' 
+Plug 'vim-scripts/proton'
 Plug 'junegunn/seoul256.vim' "beautiful
-"
-" Plug 'atelierbram/vim-colors_atelier-schemes' "mindfuck
-Plug 'colepeters/spacemacs-theme.vim' "Fail
-Plug 'nightsense/vimspectr' "Fail
+Plug 'arzg/vim-mayanfog' "light 
+Plug 'arzg/vim-plan9' "trueeeee
+Plug 'lithammer/vim-eighties' "trueeeee
+Plug 'sainnhe/gruvbox-material' "improved 
+Plug 'arzg/vim-substrata' "cold neon
+Plug 'sainnhe/edge' "good soft
+Plug 'sainnhe/vim-color-forest-night' "cream lowcon
+Plug 'sainnhe/archived-colors'
+Plug 'flrnd/plastic.vim' "juicy
+Plug 'atelierbram/vim-colors_atelier-schemes' "mindfuck
+Plug 'nightsense/vimspectr' " need termguicolors
+Plug 'colepeters/spacemacs-theme.vim' "cool
 call plug#end()
 
 "-----------Settings----------"
@@ -348,7 +358,6 @@ nnoremap <C-W>S :vsplit<CR>
 nnoremap qy :let @+ = @" <bar> :let @* = @" <CR>
 nnoremap qo o<Esc>
 nnoremap q. O<Esc>
-nnoremap qt :tabe <CR>
 nnoremap qw :w<CR>
 nnoremap aw :w<CR>
 nnoremap ax :q<CR>
@@ -489,7 +498,6 @@ nnoremap <Leader>gg :call FocusBufOrDo('wawe','e $HOME/gogo/files/wawe')<CR>
 nnoremap <Leader>gx :call FocusBufOrDo('sxhkd','e $sh/sxhkdrc')<CR>
 nnoremap <Leader>gz :call FocusBufOrDo('zzzz','e /ln/hh/tt/zzzzzz')<CR>
 nnoremap <Leader>gp :call FocusBufOrDo('sh_history','e $HOME/.bash_history')<CR>
-nnoremap <Leader>gc :tabe +term \| wincmd o<CR>
 nnoremap <Leader>gl :call FocusBufOrDo('1linux','e $sh/1linux')<CR>
 nnoremap <Leader>gi :call FocusBufOrDo('i3conf','e $sh/i3config')<CR>
 nnoremap <Leader>gk :call FocusBufOrDo('keymap.c','e $HOME/qmk_firmware/keyboards/*/keymaps/plasmik/keymap.c')<CR>
@@ -503,12 +511,13 @@ nnoremap <Leader>ff :AckFile <C-r><C-W> <CR>
 nnoremap <Leader>fc :Ack <C-r><C-W> %:p 
 nnoremap <Leader>fd :Ack <C-r><C-w> %:p:h 
 nnoremap <Leader>fw :AckWindow <C-r><C-w> <CR>
+nnoremap <Leader>fg :Ack <C-r><C-w> <cr>
 " vimserv stuff; i e move current buf to vimserv vim issue
-nnoremap <Leader>av :silent exec '!vimz "%:p"' \| redraw! \| q <CR>
-nnoremap <Leader>ac :silent exec '!notab=1 vimz "%:p"' \| redraw! \| q <CR>
+nnoremap <Leader>gv :silent exec '!vimz "%:p"' \| redraw! \| q <CR>
+nnoremap <Leader>gc :silent exec '!notab=1 vimz "%:p"' \| redraw! \| q <CR>
 " Add Plug entry
-nnoremap <Leader>ap :put + <bar> exec "normal dfmxIPlug 'A'" <CR>
-nnoremap <Leader>ai :exec "normal $yi'0" <CR> <bar> :PluginInstall <C-R>" <CR>
+nnoremap <Leader>vp :put * <bar> exec "normal dfmxIPlug 'A'" <CR>
+nnoremap <Leader>vi :exec "normal $yi'0" <CR> <bar> :PluginInstall <C-R>" <CR>
 nnoremap <Leader>vs :source ~/.vim/session.vim <CR>
 nnoremap <Leader>vv :source $MYVIMRC <CR>
 nnoremap <Leader>vq :qa! <CR>
@@ -610,12 +619,16 @@ function! BuildProjectU(Makefile,Makecommand)
   exec "lcd " . l:starting_directory
 endfunction
 
-function! ClimbToDirWhere(filename)
+function! ClimbToDirWhere(filename,chdir)
   let l:init_dir = getcwd()
   while 1
     " check if the file exist in the current directory
     if filereadable(a:filename)
-      return getcwd()
+      let l:result = getcwd()
+      if a:chdir !=# 1
+        exec "lcd " . l:init_dir
+      endif
+      return l:result
     elseif getcwd() ==# "/" || getcwd() =~# '^[^/]..$'
       "if we've hit the top level directory, break out
       exec "lcd " . l:init_dir
