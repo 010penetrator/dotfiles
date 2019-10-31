@@ -523,7 +523,8 @@ nnoremap <Leader>vv :source $MYVIMRC <CR>
 nnoremap <Leader>vq :qa! <CR>
 nnoremap <Leader>v<Leader> :call EvalThis()<CR>
 nnoremap <Leader>vf :set filetype=sh<CR>
-nnoremap <Leader>vb :call SwitchBackground()<CR>
+nnoremap <Leader>vb :call SwitchBackground()<CR> :echo "background=" &background <cr>
+nnoremap <Leader>vc :set termguicolors! <cr> :set termguicolors? <cr>
 nnoremap <Leader>vt :TagbarOpen fj <CR>
 nnoremap <Leader>zz :let &scrolloff=28-&scrolloff<CR>
 nnoremap <Leader>zt :silent exec 'DOctags' \| redraw! \| echo 'Wrote tags db in' getcwd().'/' <CR>
@@ -760,7 +761,7 @@ function! SwitchBackground()
     exec "set background=light"
   endif
   " exec "set background"
-  echo &background
+  " echo &background
 endfunction
 
 function! SwitchCE()

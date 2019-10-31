@@ -11,6 +11,7 @@ else
           *.tar.bz2)      tar xvjf "$1"    ;;
           *.tar.gz)       tar xvzf "$1"    ;;
           *.tar.xz)       tar xvJf "$1"    ;;
+          *.tar.zst)      tar -I zstd -xvf "$1" ;;
           *.lzma)         unlzma "$1"      ;;
           *.bz2)          bunzip2 "$1"     ;;
           *.rar|*.RAR)    unrar x -ad "$1" ;;
