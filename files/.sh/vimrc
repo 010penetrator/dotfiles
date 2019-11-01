@@ -571,6 +571,7 @@ function! DOgitprojTags()
   exec "cd " . l:curr_directory
   let l:proj_dir = ClimbToDirWhere(".git/index")
   if ( l:proj_dir != "-1" )
+    silent exec '! echo Found .git in $PWD/'
     exec '!ctags -R --exclude=.git --exclude=log --exclude=wutils --c++-kinds=+p --fields=+iaS --extra=+q *'
   else
     echom "Cant find .git"
