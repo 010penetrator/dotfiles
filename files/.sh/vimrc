@@ -458,6 +458,7 @@ cnoremap <C-t> <C-Right>
 nnoremap a <Nop>
 nnoremap as a
 nnoremap at :tabe<CR>
+nmap aT atg<
 nnoremap ac :wincmd v \| e %:p:h <CR>
 nnoremap aq :qa<CR>
 nnoremap af :exec "normal i".nr2char(getchar())."\e"<CR>
@@ -579,8 +580,9 @@ function! DOgitprojTags()
   let l:starting_directory = getcwd()
   let l:curr_directory = expand('%:p:h')
   exec "cd " . l:curr_directory
-  let l:proj_dir = ClimbToDirWhere(".git/index")
+  let l:proj_dir = ClimbToDirWhere(".git/index",0)
   if ( l:proj_dir != "-1" )
+    silent exec '! echo Running ctags'
     exec '!ctags -R --exclude=.git --exclude=log --exclude=wutils --c++-kinds=+p --fields=+iaS --extra=+q *'
   else
     echom "Cant find .git"
@@ -609,7 +611,7 @@ function! BuildProjectU(Makefile,Makecommand)
   let l:starting_directory = getcwd()
   let l:curr_directory = expand('%:p:h')
   exec "lcd " . l:curr_directory
-  let l:proj_dir = ClimbToDirWhere(a:Makefile)
+  let l:proj_dir = ClimbToDirWhere(a:Makefile,1)
   if ( l:proj_dir != "-1" )
     echo l:proj_dir
     make
