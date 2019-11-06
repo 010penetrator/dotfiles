@@ -351,14 +351,16 @@ nnoremap qk    <C-W>k
 nnoremap ql    <C-W>l
 nnoremap <C-\> <C-W>w
 nnoremap qm    <C-W>6>
-nnoremap qn    <c-W>6<
+nnoremap qn    <C-W>6<
 nnoremap qe    <C-W>3+
 nnoremap qd    <C-W>3-
+nnoremap qa    <C-W>_
+nnoremap qw    <C-W>=
 nnoremap <C-W>S :vsplit<CR>
 nnoremap qy :let @+ = @" <bar> :let @* = @" <CR>
 nnoremap qo o<Esc>
 nnoremap q. O<Esc>
-nnoremap qw :w<CR>
+" nnoremap qw :w<CR>
 nnoremap aw :w<CR>
 nnoremap ax :q<CR>
 nnoremap aX :q! <CR>
@@ -432,7 +434,6 @@ nnoremap <silent> gy :call search('^\(.\\|\(\s\)*\)$','bW') <CR>
 onoremap <silent> gn :call search('^\(.\\|\(\s\)*\)$','W') <CR>
 onoremap <silent> gp :call search('^\(.\\|\(\s\)*\)$','bW') <CR>
 onoremap <silent> gy :call search('^\(.\\|\(\s\)*\)$','bW') <CR>
-nnoremap q, <c-w>_
 nnoremap <silent> aj :call search('.','W') <CR>
 nnoremap <silent> ak :call search('.','bW') <CR>
 " nnoremap q<CR> 
@@ -479,6 +480,7 @@ nnoremap <Leader>j :Unite buffer file<CR>
 nnoremap <Leader>k :Denite buffer -mode=normal -immediately-1<CR>
 nnoremap <Leader>e :BufExplorer <CR>
 nnoremap qb :call GotoTerm(0)<CR>
+" Open terminal at current file directory
 nnoremap ab : wincmd n \| if isdirectory(expand('%:p:h')) \| lcd %:p:h \| endif \| terminal ++curwin ++norestore <CR>
 nnoremap <Leader>t :NewTermHere<CR>
 nnoremap <Leader><tab> :exe "tabn ".g:lasttab<CR>
