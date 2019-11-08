@@ -11,20 +11,21 @@ i=$(vim --serverlist | grep ^VIMSERV$ | wc -l)
   esac
 [ $i == 0 ] && sleep 1.0
 
-# Escape spaces
-foo=$1
-bar=${foo// /'\' }
-
-if [[ $notab == 1 ]] ; then
-  # Change current Vim buffer 
-  vim --servername vimserv --remote-send "<c-w>:e $bar<CR>"
-else
-  if [ $i == 0 ] ; then
-    # Populate Vim buffer
-    vim --servername vimserv --remote-send ":e $bar<CR>" 
+if ! [ -z "$1" ] ; then 
+  # Escape spaces
+  foo=$1
+  bar=${foo// /'\' }
+  if [[ $notab == 1 ]] ; then
+    # Change current Vim buffer 
+    vim --servername vimserv --remote-send "<c-w>:e $bar<CR>"
   else
-    # Make new tab in Vim
-    vim --servername vimserv --remote-send "<c-w>:tabe $bar<CR>" 
+    if [ $i == 0 ] ; then
+      # Populate Vim buffer
+      vim --servername vimserv --remote-send ":e $bar<CR>" 
+    else
+      # Make new tab in Vim
+      vim --servername vimserv --remote-send "<c-w>:tabe $bar<CR>" 
+    fi
   fi
 fi
 
