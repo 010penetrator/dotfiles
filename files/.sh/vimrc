@@ -360,7 +360,7 @@ nnoremap <C-W>S :vsplit<CR>
 nnoremap qy :let @+ = @" <bar> :let @* = @" <CR>
 nnoremap qo o<Esc>
 nnoremap qi O<Esc>
-" nnoremap qw :w<CR>
+nnoremap qw :w<CR>
 nnoremap aw :w<CR>
 nnoremap ax :q<CR>
 nnoremap aX :q! <CR>
@@ -457,6 +457,7 @@ cnoremap <C-b> <C-Left>
 cnoremap <C-t> <C-Right>
 
 nnoremap a <Nop>
+map ф a 
 nnoremap as a
 nnoremap at :tabe<CR>
 nmap aT atg<
