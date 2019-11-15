@@ -482,7 +482,7 @@ nnoremap <Leader>k :Denite buffer -mode=normal -immediately-1<CR>
 nnoremap <Leader>e :BufExplorer <CR>
 nnoremap qb :call GotoTerm(0)<CR>
 " Open terminal at current file directory
-nnoremap ab : wincmd n \| if isdirectory(expand('%:p:h')) \| lcd %:p:h \| endif \| terminal ++curwin ++norestore <CR>
+nnoremap ab : wincmd n \| if isdirectory(expand('#:p:h')) \| lcd #:p:h \| endif \| terminal ++curwin ++norestore <CR>
 nnoremap <Leader>t :NewTermHere<CR>
 nnoremap <Leader><tab> :exe "tabn ".g:lasttab<CR>
 nnoremap <Leader>. <C-^>
