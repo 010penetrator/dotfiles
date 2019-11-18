@@ -35,6 +35,7 @@ nnoremap O :invert o<CR>
 nnoremap qs :split <cr>
 nnoremap qv :vsplit <cr>
 nnoremap W :wincmd o<CR>
+nnoremap qt :tree!<cr>
 nnoremap qq :
 " nnoremap b :! mpv-album %c VIFM; echo -ne "\e]0;VIFM_MPV\a"<cr>
 nnoremap b :! mpv-album %c VIFM; echo -ne "\033]0;VIFM\007"<cr>
