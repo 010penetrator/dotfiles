@@ -344,7 +344,7 @@ map й q
 nnoremap qQ :e $MYVIMRC <CR>
 nnoremap Q q
 nnoremap qr @@
-nnoremap qx @
+nnoremap qf @
 nnoremap qh    <C-W>h
 nnoremap qj    <C-W>j
 nnoremap qk    <C-W>k
@@ -354,8 +354,7 @@ nnoremap qm    <C-W>6>
 nnoremap qn    <C-W>6<
 nnoremap qe    <C-W>3+
 nnoremap qd    <C-W>3-
-nnoremap qf    <C-W>_
-nnoremap qw    <C-W>=
+nnoremap qa    <C-W>_
 nnoremap <C-W>S :vsplit<CR>
 nnoremap qy :let @+ = @" <bar> :let @* = @" <CR>
 nnoremap qo o<Esc>
