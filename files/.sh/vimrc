@@ -300,9 +300,10 @@ imap jj <ESC>
 imap оо <ESC>
 if v:version >= 801
   tmap oo <C-w>N:set nonumber<CR>
+  tmap o<C-o>  <C-w>N :e #<CR>
   tnoremap <C-PageUp> <C-W>:tabprev<CR>
   tnoremap <C-PageDown> <C-W>:tabnext<CR>
-  tmap <Leader><tab> :exe "tabn ".g:lasttab<CR>
+  " tnoremap <Leader><tab> :exe "tabn ".g:lasttab<CR>
   tmap <C-\> <C-W>w
 endif
 nnoremap <C-PageUp> gT
@@ -374,7 +375,7 @@ nnoremap qc ^y$:let @+ = @" <bar> :let @* = @" <CR>j
 " Yank current file full name 
 nnoremap zy :let @" = expand('%:p')
 nnoremap qu ~
-nnoremap qz :Bash <CR>
+" nnoremap qz :Bash <CR>
 nnoremap qs :new <CR>
 nnoremap qv :vnew <CR>
 nnoremap qS :split # <cr>
@@ -490,10 +491,10 @@ nnoremap <Leader>x :q<CR>
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>d :bd!<CR>
 nnoremap <Leader>c :NewVifmHere<CR>
+nnoremap <Leader>bb :Bash <CR>
 nnoremap <Leader><Space> :LCDhere <CR>
 nnoremap <Leader>o :Goyo 66%x100%<CR>
 nnoremap <Leader>m ^y$:call system('$BROWSER ' . @")<CR>
-nnoremap <Leader>M  ^y$:call system('google.sh ' . @")<CR>
 nnoremap <Leader>go ^y$:call system('google.sh ' . @")<CR>
 nnoremap <Leader>gw yiw:call system('google.sh ' . @")<CR>
 nnoremap <Leader>gr ^y$:silent exec " !source $HOME/.bashrc && \"$BROWSER\" \"red " . @" . "\" &>/dev/null & " \| redraw!<CR>
