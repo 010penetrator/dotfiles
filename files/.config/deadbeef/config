@@ -3,7 +3,7 @@ ape.write_apev2 1
 artwork.filemask *cover*.jpg;*front*.jpg;*folder*.jpg;*cover*.png;*front*.png;*folder*.png
 cli_add_playlist_name Default
 cli_add_to_specific_playlist 0
-deadbeef_version 0.7.2
+deadbeef_version 1.8.2
 filechooser.lastdir file:///ln/dwn
 filechooser.playlist.lastdir file:///home/plasmik
 gtkui.color.bar_background 23832 57882 29449
@@ -19,7 +19,7 @@ gtkui.color.listview_selection 4634 7846 6799
 gtkui.color.listview_text 27451 40437 54290
 gtkui.color.tabstrip_light 8481 8481 8481
 gtkui.color.tabstrip_text 29298 40863 53199
-gtkui.columns.playlist [{"title":"Album Art","id":"8","format":"","size":"149","align":"0","color_override":"0","color":"#ff6b9dd4"},{"title":"♫","id":"1","format":"%playstatus%","size":"20","align":"0","color_override":"0","color":"#ff000000"},{"title":"Track No","id":"-1","format":"%track number%","size":"31","align":"1","color_override":"0","color":"#ff000000"},{"title":"Title","id":"-1","format":"%title%","size":"510","align":"0","color_override":"0","color":"#ff000000"},{"title":"Duration","id":"-1","format":"%length%","size":"63","align":"0","color_override":"0","color":"#ff000000"},{"title":"Dir","id":"-1","format":"$directory_path(%path%)","size":"506","align":"0","color_override":"0","color":"#ff212121"},{"title":"Artist / Album","id":"-1","format":"%artist% - %album%","size":"319","align":"0","color_override":"0","color":"#ff000000"}]
+gtkui.columns.playlist [{"title":"Album Art","id":"8","format":"","sort_format":"","size":"198","align":"0","color_override":"0","color":"#ff6b9dd4"},{"title":"♫","id":"1","format":"%playstatus%","sort_format":"","size":"20","align":"0","color_override":"0","color":"#ff000000"},{"title":"Track No","id":"-1","format":"%track number%","sort_format":"","size":"31","align":"1","color_override":"0","color":"#ff000000"},{"title":"Title","id":"-1","format":"%title%","sort_format":"","size":"510","align":"0","color_override":"0","color":"#ff000000"},{"title":"Duration","id":"-1","format":"%length%","sort_format":"","size":"63","align":"0","color_override":"0","color":"#ff000000"},{"title":"Dir","id":"-1","format":"$directory_path(%path%)","sort_format":"","size":"506","align":"0","color_override":"0","color":"#ff212121"},{"title":"Artist / Album","id":"-1","format":"%artist% - %album%","sort_format":"","size":"319","align":"0","color_override":"0","color":"#ff000000"}]
 gtkui.embolden_current_track 0
 gtkui.embolden_selected_tracks 0
 gtkui.eq.visible 0
@@ -85,11 +85,15 @@ hotkey.key43 "g" 1 0 ranger
 hotkeys_created 1
 ignore_archives 1
 junk.enable_cp1251_detection 1
-mainwin.geometry.h 578
+logwindow.geometry.h 200
+logwindow.geometry.w 400
+logwindow.geometry.x 40
+logwindow.geometry.y 40
+mainwin.geometry.h 1200
 mainwin.geometry.maximized 0
 mainwin.geometry.w 1600
 mainwin.geometry.x 0
-mainwin.geometry.y 622
+mainwin.geometry.y 0
 mp3.id3v1_encoding iso8859-1
 mp3.id3v2_version 3
 mp3.write_id3v1 0
@@ -97,12 +101,12 @@ mp3.write_id3v2 1
 network.http_user_agent deadbeef
 network.proxy.port 8080
 network.proxy.type HTTP
-output_plugin PulseAudio output plugin
+output_plugin pulseaudio
 playback.loop 1
 playback.order 0
-playback.volume 0.0000000
+playback.volume -2.857143
 playlist.current 0
-playlist.cursor.0 -1
+playlist.cursor.0 4
 playlist.cursor.1 0
 playlist.cursor.2 -1
 playlist.cursor.3 7
@@ -110,7 +114,7 @@ playlist.cursor.4 0
 playlist.cursor.5 0
 playlist.cursor.6 0
 playlist.cursor.7 0
-playlist.scroll.0 24520
+playlist.scroll.0 -4
 playlist.scroll.1 0
 playlist.scroll.2 0
 playlist.scroll.3 0
@@ -131,7 +135,7 @@ replaygain_mode 0
 replaygain_preamp 6.0000000
 replaygain_scale 1
 resume.paused 0
-resume.playlist 0
+resume.playlist -1
 resume.position -1.000000
 resume.track -1
 searchwin.geometry.h 481
@@ -150,6 +154,7 @@ shellexec.6 xterm -e "mediainfo %F | less":mediainfo:mediainfo:local,single,
 shellexec.7 xterm -T "vifm" -e "vifm %D":vifm:vifm:local,single,
 shellexec.8 echo %D | xclip -i:Copy Path:copy-path:local,single,
 shellexec.9 rm -rf %D:rm -rf %D:rm -rf %D:local,single,
+shellexec_config_wip [{"command": "xdg-open %D & disown", "title": "Xdg-open", "name": "xdg-open", "flags": ["local", "single"]}, {"command": "mv %D /home/plasmik/ln/mus/", "title": "move2mus", "name": "move", "flags": ["local", "single"]}, {"command": "puddletag %D & disown", "title": "puddletag", "name": "puddletag", "flags": ["local", "single"]}, {"command": "feh --auto-rotate -rF %D", "title": "feh", "name": "feh", "flags": ["local", "single"]}, {"command": "echo \"$$\" >> /tmp/dbt-pid ; echo %D >> /tmp/dbt & ( sleep 1 ; if [ $$ -eq $(head -n 1 /tmp/dbt-pid) ] ; then  while ! [ $(wc -l < /tmp/dbt) -eq $wclp ] ; do wclp=$(wc -l < /tmp/dbt) ; sleep 1 ; done ; cat /tmp/dbt | { while read line ; do if [ \"$line\" != \"$last\" ] ; then ((count++)) ; last=$line ; fi ; done ; echo dir count = $count | dmenu ; } ; rm /tmp/dbt ; rm /tmp/dbt-pid ; fi )", "title": "count dirs", "name": "count dirs", "flags": ["local", "multiple"]}, {"command": "cd %D ; xterm -e \"ranger\"", "title": "ranger", "name": "ranger", "flags": ["local", "single"]}, {"command": "spek %F", "title": "spek", "name": "spek", "flags": ["local", "single"]}, {"command": "sox %F -n remix 1 spectrogram -p2 -t %F -o- | feh -B black -", "title": "SoxSpectrgram", "name": "SoxSpectrgram", "flags": ["local", "single"]}, {"command": "xterm -e \"mediainfo %F | less\"", "title": "mediainfo", "name": "mediainfo", "flags": ["local", "single"]}, {"command": "xterm -T \"vifm\" -e \"vifm %D\"", "title": "vifm", "name": "vifm", "flags": ["local", "single"]}, {"command": "echo %D | xclip -i", "title": "Copy Path", "name": "copy-path", "flags": ["local", "single"]}, {"command": "rm -rf %D", "title": "rm -rf %D", "name": "rm -rf %D", "flags": ["local", "single"]}]
 streamer.16_to_24 1
 streamer.8_to_16 1
 trkproperties.geometry.h 714
