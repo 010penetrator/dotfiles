@@ -1,4 +1,4 @@
-Ihttps://interversehq.com/qview/download/nstall
+Install
 BASE: base-devel earlyoom pacli mlocate udevil cylon inxi
 TUI: mc clex lfm ranger vifm lftp fzf ncdu tree p7zip htop glances gotop dmenu keratin screenfetch lolcat tmux bc tty-clock 
 X: xorg-server xorg-xinit xterm urxvt xvkbd xclip redshift xscreensaver nitrogen dunst unclutter-xfixes xbanish gmrun scrot wmctrl xdotool 
