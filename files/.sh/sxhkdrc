@@ -1,11 +1,11 @@
 super + x ; {u, m, s, r, e, h, f, d, g, p, n, o, w, a}
 	raise.sh {'Luakit' 'luakit', notimem, speedcrunch, Ranger 'newranger', 'WeeChat\|weechat' 'urxvt -e weechat', htop '$TERMINAL -e htop', feh 'fa /ln/dwn/', deadbeef, 'chromium\|Firefox\|Navigator' '$BROWSER', Thunar thunar, nautilus, VirtualBox '', fbreader, pavucontrol}
 
-super + x ; {t, j, z, k, l, b}
-	{raiseterm.sh, windowswitcher.sh, xdotool mousemove 1895 978, i3-msg kill, listdwn.sh, listmpv.sh}
+super + x ; {q, t, j, z, k, l, b}
+	{scroff.sh, raiseterm.sh, windowswitcher.sh, xdotool mousemove 1595 978, i3-msg kill, listdwn.sh, listmpv.sh}
 
-super + {q, t, v, u, g, p, c, z, r, a, b}
-	raise.sh {scroff.sh, 'xterm\|urxvt\|kitty', VIM 'vimz', luakit, 'chromium\|Firefox', 'MPV\|mpv' 'noti echo no mpv found', VIFM '$TERMINAL -e vifm & notify-send new_VIFM', zathura listzathura.sh, evince, 'transmission-remote\|qbittorrent' '$TERMINAL -e transmission-remote-cli -c localhost:9090', ' Browser' ''}
+super + { t, v, u, g, p, c, z, r, a, b }
+	raise.sh { 'xterm\|urxvt\|kitty', VIM 'vimz', luakit, 'chromium\|Firefox', 'MPV\|mpv' 'noti echo no mpv found', VIFM '$TERMINAL -e vifm & notify-send new_VIFM', zathura listzathura.sh, evince, 'transmission-remote\|qbittorrent' '$TERMINAL -e transmission-remote-cli -c localhost:9090', ' Browser' ''}
 
 super + {T, V, C, B}
   raisekitty.sh {bash, VIM, VIFM, MPV}
@@ -51,7 +51,7 @@ super + alt + {q,r}
 	bspc {quit,wm -r}
 
 # close and kill
-super + {_,shift + }w
+super + {_,shift + }q
 	bspc node -{c,k}
 
 # alternate between the tiled and monocle layout
@@ -99,7 +99,7 @@ super + alt + {p,b,comma,period}
 	bspc node -f @{parent,brother,first,second}
 
 # focus the next/previous node in the current desktop
-super + {_,shift + }e
+super + {_,shift + }w
 	bspc node -f {next,prev}.local
 # super + e
 #   bspc node -f prev.local
