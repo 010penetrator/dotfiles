@@ -356,6 +356,7 @@ nnoremap qn    <C-W>6<
 nnoremap qe    <C-W>3+
 nnoremap qd    <C-W>3-
 nnoremap qa    <C-W>_
+nnoremap qz    <C-W>=
 nnoremap <C-W>S :vsplit<CR>
 nnoremap qy :let @+ = @" <bar> :let @* = @" <CR>
 nnoremap qo o<Esc>
@@ -375,7 +376,6 @@ nnoremap qc ^y$:let @+ = @" <bar> :let @* = @" <CR>j
 " Yank current file full name 
 nnoremap zy :let @" = expand('%:p')
 nnoremap qu ~
-" nnoremap qz :Bash <CR>
 nnoremap qs :new <CR>
 nnoremap qv :vnew <CR>
 nnoremap qS :split # <cr>
