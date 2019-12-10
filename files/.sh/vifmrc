@@ -34,7 +34,10 @@ nnoremap o :sort<cr>
 nnoremap O :invert o<CR>
 nnoremap qs :split <cr>
 nnoremap qv :vsplit <cr>
-nnoremap qa :wincmd o<CR>
+nnoremap qa :wincmd o<cr>
+nnoremap qz :wincmd =<cr>
+nnoremap qn 8<c-w><
+nnoremap qm 8<c-w>>
 nnoremap qt :tree!<cr>
 nnoremap qq :
 " nnoremap b :! mpv-album %c VIFM; echo -ne "\e]0;VIFM_MPV\a"<cr>
@@ -42,8 +45,8 @@ nnoremap b :! mpv-album %c VIFM; echo -ne "\033]0;VIFM\007"<cr>
 nnoremap rs :! echo -ne "\n" ; rsync -rtn --progress --delete --stats --size-only %d/ %D ; read -n 1 -s -r -p "-----======DONE======------" ; echo
 nnoremap rS :! echo -ne "\n" ; rsync -rt --progress --delete --stats --size-only %d/ %D ; read -n 1 -s -r -p "-----======DONE======------" ; echo
 nnoremap qf :! feha %c &>/dev/null &<cr>
-nnoremap qz :! vim %c <cr>
-nnoremap qm :! mpv %c <cr>
+nnoremap ai :! vim %c <cr>
+nnoremap q<space> :! mpv %c <cr>
 " Open file with vim server
 nnoremap av :! vimz "$PWD/%c"<cr>
 nnoremap ac :! notab=1 vimz "$PWD/%c"<cr>
@@ -179,7 +182,7 @@ colo iceberg
 " TIME_STAMP_FORMAT=%m/%d-%H:%M
 " See man date or man strftime for details.
 
-set timefmt=%y-%m-%d\ %H:%M
+set timefmt=%Y-%m-%d\ %H:%M
 
 " Show list of matches on tab completion in command-line mode
 

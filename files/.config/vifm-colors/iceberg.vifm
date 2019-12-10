@@ -7,7 +7,7 @@
 highlight clear
 
 highlight Win cterm=none ctermfg=255 ctermbg=234
-highlight Directory cterm=bold ctermfg=109 ctermbg=default
+highlight Directory cterm=bold ctermfg=109 ctermbg=234
 highlight Link cterm=bold ctermfg=216 ctermbg=234
 highlight BrokenLink cterm=bold ctermfg=red ctermbg=239
 highlight Socket cterm=bold ctermfg=green ctermbg=default
@@ -26,4 +26,8 @@ highlight Border cterm=none ctermfg=black ctermbg=235
 highlight JobLine cterm=bold,reverse ctermfg=black ctermbg=255
 highlight SuggestBox cterm=bold ctermfg=default ctermbg=default
 highlight CmpMismatch cterm=bold ctermfg=255 ctermbg=red
-highlight AuxWin cterm=bold,underline,reverse,standout ctermfg=default ctermbg=default
+" highlight AuxWin cterm=bold,underline,reverse,standout ctermfg=default ctermbg=default
+
+if $USER == 'root'
+    highlight Border ctermbg=red
+endif

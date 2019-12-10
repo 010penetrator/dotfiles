@@ -32,6 +32,7 @@ Icons: Moka Breeze ultraflat maia ardis papirus
 Gnome3: Dash-to-panel Arc-menu 
 gsettings set org.gnome.mutter overlay-key '' # free Win key in Gnome 3 
 gsettings set org.gnome.desktop.sound event-sounds false # mute that Gnome prick
+gsettings set org.gnome.settings-daemon.plugins.orientation active false # disable gyro screen
 Gnome dconf-editor : org/gnome/desktop/media-handling : uncheck automount and automount-open
 openbox: Syscrash AmbianceGraphite Natura carbonico Arc 
 Cinnamon: Moka dark-glass2 
