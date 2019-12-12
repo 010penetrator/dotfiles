@@ -29,6 +29,8 @@ nnoremap ax :quit <cr>
 nnoremap ,q :exec '! echo -ne "\033]0;\007"' | qa <cr>
 nnoremap ,i :pushd . <cr>
 nnoremap ,l :dirs <cr>
+nnoremap ,m :set millerview!<cr>
+nnoremap ,M :set milleroptions=lsize:1,csize:5,rsize:5
 nnoremap dd :delete<cr>
 nnoremap o :sort<cr>
 nnoremap O :invert o<CR>
@@ -54,7 +56,7 @@ nnoremap ac :! notab=1 vimz "$PWD/%c"<cr>
 nnoremap az :! vimz "$PWD/%c"<cr>:q<cr>
 " nnoremap zl :! bash -c ' echo -ne \\nlist:\\n ; ls -dla %f ; read -rsn1 ' <cr>
 nnoremap zs :! clear ; df -BMB ; read -rsn1 <cr>
-nnoremap qc :! echo; date ; echo Sync... ; sync <cr>
+nnoremap qy :! echo; date ; echo Sync... ; sync <cr>
 nnoremap qj :! nomacs %c &>/dev/null &<cr>
 nnoremap qk :! qview %c &>/dev/null &<cr>
 nnoremap qe :! eom %c &>/dev/null &<cr>
