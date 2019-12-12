@@ -52,6 +52,8 @@ read -n 1 -s -r -p "Press any key to continue" # wait for a hit
 xterm -fa xft:Monospace:size=12:style=Regular:antialias=true
 xterm -geometry 96x36+300+250 -e "vim -S $HOME/.vim/session.vim" &> /dev/null & disown
 urxvt -fn "Hack:size=12:style=Regular:antialias=true"
+diff -y <(xxd foo1.bin) <(xxd foo2.bin) # diff binary files
+vimdiff <(xxd foo1.bin) <(xxd foo2.bin)
 dmesg -L=always | less -r # dmesg-to-less with colors
 find . -type f -exec chmod 644 {} \; # chmod current dir recursively
 chown -R 1001:100 /media/some-place/ # change ownership to user:users

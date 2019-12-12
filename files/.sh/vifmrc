@@ -110,6 +110,7 @@ nnoremap al :!ln -s $PWD/%c %D/%c <cr>
 nnoremap ap :!ln -sr $PWD/%c %D/%c <cr>
 nnoremap aL :!ln -s $PWD/%c %d/%cL <cr>
 nnoremap ae :winrun , cd %C <cr><tab>
+nnoremap a= :winrun , cd %D <cr><tab>
 nnoremap t tj
 nnoremap cv cW
 noremap gb :tabprev<cr>
