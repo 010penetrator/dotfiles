@@ -193,6 +193,7 @@ echo 1 > /sys/block/sda/device/delete # forget hdd
 lsusb -D /dev/bus/usb/003/012
 lsusb -v -s 4:12
 sudo lshw -html > hw.html
+sudo parted /dev/sda unit s print; parted /dev/sda align-check # check alignment
 smartctl --smart=on /dev/sdb; smartctl -a /dev/sdb # get smart
 hdparm -i /dev/hda       # получение характеристик IDE устройства
 hdparm -S 30 /dev/sda    # отключение (остановка) жёсткого диска через 150сек после последнего обращения

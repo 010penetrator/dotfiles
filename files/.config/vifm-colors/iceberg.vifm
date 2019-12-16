@@ -14,8 +14,8 @@ highlight Socket cterm=bold ctermfg=green ctermbg=default
 highlight Device cterm=bold ctermfg=red ctermbg=default
 highlight Fifo cterm=bold ctermfg=150 ctermbg=default
 highlight Executable cterm=none ctermfg=150 ctermbg=default
-highlight Selected cterm=reverse ctermfg=255 ctermbg=17
-highlight CurrLine cterm=reverse
+highlight Selected cterm=reverse,bold ctermfg=250 ctermbg=56
+highlight CurrLine cterm=none,bold ctermbg=237 
 highlight TopLine cterm=bold ctermfg=242 ctermbg=235
 highlight TopLineSel cterm=bold ctermfg=74 ctermbg=235
 highlight StatusLine cterm=none ctermfg=110 ctermbg=235
