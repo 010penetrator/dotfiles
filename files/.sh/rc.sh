@@ -35,7 +35,7 @@ if [[ "$HOSTNAME" =~ 'killer'[pc,PC] ]]; then
 elif [[ "$HOSTNAME" =~ ^debian10pc ]]; then
   # xinput set-prop 12 292 -.6
   # killall unclutter; unclutter &
-  xinput set-prop "A4TECH USB Device" "libinput Accel Speed" -.3
+  xinput set-prop "A4TECH USB Device" "libinput Accel Speed" -.37
   xrandr --output VGA-2 --off 
   ( sleep 2 ; gsettings set org.gnome.mutter overlay-key '' )  # free Win key in Gnome 3
 elif [[ "$HOSTNAME" =~ ^white*(.*)ok ]]; then 

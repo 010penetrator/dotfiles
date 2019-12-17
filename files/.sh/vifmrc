@@ -99,6 +99,7 @@ nnoremap ar ggvGcw
 nnoremap qo :!cp -r %c /ln/mus/0/<cr>
 nnoremap qO :!mv %c /ln/mus/0/<cr>
 nnoremap yc :! echo -n %f | xclip ; echo -n %f | xclip -selection clipboard %i <cr>:echo "filename in X buffer"<cr>
+nnoremap yC :! echo -n %f:p | xclip ; echo -n %f:p | xclip -selection clipboard %i <cr>:echo "full filepath in X buffer"<cr>
 " nnoremap - <C-b>
 " nnoremap = <C-f>
 nnoremap gh :cd $HOME/<cr>
