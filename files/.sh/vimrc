@@ -499,15 +499,14 @@ nnoremap <Leader>go ^y$:call system('google.sh ' . @")<CR>
 nnoremap <Leader>gw yiw:call system('google.sh ' . @")<CR>
 nnoremap <Leader>gr ^y$:silent exec " !source $HOME/.bashrc && \"$BROWSER\" \"red " . @" . "\" &>/dev/null & " \| redraw!<CR>
 nnoremap <Leader>gh ^y$:silent exec " !source $HOME/.bashrc && chromium \"" . @" . "\" &>/dev/null & raise.sh chromium " \| redraw!<CR>
-nnoremap <Leader>gg :call FocusBufOrDo('wawe','e $HOME/4gist/files/wawe')<CR>
-nnoremap <Leader>gx :call FocusBufOrDo('sxhkd','e $sh/sxhkdrc')<CR>
+nnoremap <Leader>gg :call FocusBufOrDo('wawe','e /ln/ho/4gist/wawe')<CR>
+nnoremap <Leader>gx :call FocusBufOrDo('sxhkd','e /ln/sh/sxhkdrc')<CR>
 nnoremap <Leader>gz :call FocusBufOrDo('zzzz','e /ln/hh/tt/zzzzzz')<CR>
 nnoremap <Leader>gp :call FocusBufOrDo('sh_history','e $HOME/.bash_history')<CR>
-nnoremap <Leader>gl :call FocusBufOrDo('1linux','e $sh/1linux')<CR>
-nnoremap <Leader>gi :call FocusBufOrDo('i3conf','e $sh/i3config')<CR>
-nnoremap <Leader>gk :call FocusBufOrDo('keymap.c','e $HOME/qmk_firmware/keyboards/*/keymaps/plasmik/keymap.c')<CR>
+nnoremap <Leader>gl :call FocusBufOrDo('1linux','e /ln/sh/1linux')<CR>
+nnoremap <Leader>gi :call FocusBufOrDo('i3conf','e /ln/sh/i3config')<CR>
+" nnoremap <Leader>gk :call FocusBufOrDo('keymap.c','e $HOME/qmk_firmware/keyboards/*/keymaps/plasmik/keymap.c')<CR>
 nnoremap <Leader>gs :call FocusBufOrDo('stk','e /ln/ho/use/stk.tx')<CR>
-nnoremap <Leader>gf :call FocusBufOrDo('fun.tx','e $HOME/fun.tx')<CR>
 nnoremap <Leader>gd :BD<CR>
 nnoremap <Leader>gt :call MoveToNextTab()<CR>
 nnoremap <Leader>gb :call MoveToPrevTab()<CR>
