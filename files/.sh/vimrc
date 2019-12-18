@@ -499,7 +499,7 @@ nnoremap <Leader>go ^y$:call system('google.sh ' . @")<CR>
 nnoremap <Leader>gw yiw:call system('google.sh ' . @")<CR>
 nnoremap <Leader>gr ^y$:silent exec " !source $HOME/.bashrc && \"$BROWSER\" \"red " . @" . "\" &>/dev/null & " \| redraw!<CR>
 nnoremap <Leader>gh ^y$:silent exec " !source $HOME/.bashrc && chromium \"" . @" . "\" &>/dev/null & raise.sh chromium " \| redraw!<CR>
-nnoremap <Leader>gg :call FocusBufOrDo('wawe','e $HOME/gogo/files/wawe')<CR>
+nnoremap <Leader>gg :call FocusBufOrDo('wawe','e $HOME/4gist/files/wawe')<CR>
 nnoremap <Leader>gx :call FocusBufOrDo('sxhkd','e $sh/sxhkdrc')<CR>
 nnoremap <Leader>gz :call FocusBufOrDo('zzzz','e /ln/hh/tt/zzzzzz')<CR>
 nnoremap <Leader>gp :call FocusBufOrDo('sh_history','e $HOME/.bash_history')<CR>
