@@ -6,7 +6,8 @@ cd "$SCSI" || exit 1
 
 for i in *; do
         echo -n "Scanning $i ..."
-        echo "- - -" > $i/scan && echo " done."
+        echo "- - -" > $i/rescan && echo " done."
+        # echo "- - -" > $i/scan && echo " done."
 done
 
 echo "Finished. Consult with 'dmesg' for details."
