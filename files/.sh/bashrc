@@ -141,7 +141,7 @@ fvim() { $EDITOR $(du -a "$1" | awk '{print $2}' | fzf --exact) ; }
 function launch { nohup $1 >/dev/null 2>/dev/null & disown; }
 alias mya='myfont ; sudo uname ; conn & [[ `pgrep Xorg` ]] || startx ~/.xinitrc i3'
 alias myb='myfont ; sudo uname ; conn & [[ `pgrep Xorg` ]] || startx ~/.xinitrc bspwm'
-alias l='sudo lsblk -f'
+alias l='sudo lsblk -fl'
 alias yp='fc -ln -1 | cut -c 3- | xclip ; echo yanked prev command' 
 alias ram='sudo python $sh/mem.py'
 alias myfont='setfont ter-218b'
