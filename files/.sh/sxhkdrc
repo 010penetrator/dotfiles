@@ -4,8 +4,8 @@ super + x ; {u, m, s, r, e, h, f, d, g, p, n, o, w, a}
 super + x ; {q, t, j, z, k, l, b}
 	{scroff.sh, raiseterm.sh, windowswitcher.sh, xdotool mousemove 3395 978, i3-msg kill, listdwn.sh, listmpv.sh}
 
-super + { t, v, u, g, p, c, z, r, a, b }
-	raise.sh { 'xterm\|urxvt\|kitty', VIM 'vimz', luakit, 'chromium\|Firefox', 'MPV\|mpv' 'noti echo no mpv found', VIFM '$TERMINAL -e vifm & notify-send new_VIFM', zathura listzathura.sh, evince, 'transmission-remote\|qbittorrent' '$TERMINAL -e transmission-remote-cli -c localhost:9090', ' Browser' ''}
+super + { t, v, u, g, p, c, z, r, a, b, y }
+	raise.sh { 'xterm\|urxvt\|kitty', VIM 'vimz', luakit, 'chromium\|Firefox', 'MPV\|mpv' 'noti echo no mpv found', VIFM '$TERMINAL -e vifm & notify-send new_VIFM', zathura listzathura.sh, evince, 'transmission-remote\|qbittorrent' '$TERMINAL -e transmission-remote-cli -c localhost:9090', ' Browser' '', devhelp }
 
 super + {T, V, C, B}
   raisekitty.sh {bash, VIM, VIFM, MPV}

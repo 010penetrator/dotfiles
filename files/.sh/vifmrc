@@ -24,6 +24,7 @@ command! tok :!touch %c "--date=@$(expr $(stat -c %%%%Y KKKKKKKKKK) - 1000)"
 command! tik :!touch --date="$(date -R -r %c) + 1 day" %c
 command! amou :! bash -ic ' source /ln/ho/.bashrc ; amou '
 command! aumo :! bash -ic ' source /ln/ho/.bashrc ; aumo '
+command! Sync :! echo; date ; echo Sync... ; sync 
 nnoremap ,x :quit <cr>
 nnoremap ax :quit <cr>
 nnoremap ,q :exec '! echo -ne "\033]0;\007"' | qa <cr>
@@ -56,7 +57,7 @@ nnoremap ac :! notab=1 vimz "$PWD/%c"<cr>
 nnoremap az :! vimz "$PWD/%c"<cr>:q<cr>
 " nnoremap zl :! bash -c ' echo -ne \\nlist:\\n ; ls -dla %f ; read -rsn1 ' <cr>
 nnoremap zs :! clear ; df -BMB ; read -rsn1 <cr>
-nnoremap qy :! echo; date ; echo Sync... ; sync <cr>
+" nnoremap qy :! echo; date ; echo Sync... ; sync <cr>
 nnoremap qj :! nomacs %c &>/dev/null &<cr>
 nnoremap qk :! qview %c &>/dev/null &<cr>
 nnoremap qe :! eom %c &>/dev/null &<cr>
