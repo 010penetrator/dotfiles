@@ -359,6 +359,7 @@ nnoremap qa    <C-W>_
 nnoremap qz    <C-W>=
 nnoremap <C-W>S :vsplit<CR>
 nnoremap qy :let @+ = @" <bar> :let @* = @" <CR>
+nnoremap ay "+yiw
 nnoremap qo o<Esc>
 nnoremap qi O<Esc>
 nnoremap qw :w<CR>
