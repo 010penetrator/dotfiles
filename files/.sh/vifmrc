@@ -41,6 +41,7 @@ nnoremap qa :wincmd o<cr>
 nnoremap qz :wincmd =<cr>
 nnoremap qn 8<c-w><
 nnoremap qm 8<c-w>>
+nnoremap qw <c-w>o
 nnoremap qt :tree!<cr>
 nnoremap qq :
 " nnoremap b :! mpv-album %c VIFM; echo -ne "\e]0;VIFM_MPV\a"<cr>
