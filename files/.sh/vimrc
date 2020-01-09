@@ -83,7 +83,7 @@ Plug 'CruizeMissile/Revolution.vim' "cool lowcont
 Plug 'romainl/Apprentice' "nostrain
 Plug 'Heorhiy/VisualStudioDark.vim' "mid con
 Plug 'altercation/vim-colors-solarized' "yellow
-Plug 'JarrodCTaylor/spartan' "spartan,immortals
+Plug 'JarrodCTaylor/spartan' "Spartan,Immortals
 Plug 'jlund3/colorschemer' "'lucid' nice
 Plug 'pbrisbin/vim-colors-off'
 Plug 'jakwings/vim-colors' "moody,garden,messy
@@ -93,7 +93,7 @@ Plug 'bf4/vim-dark_eyes' "NIGHT
 Plug 'noah/fu' "sane fallback
 Plug 'dracula/vim' "funky
 Plug 'MPiccinato/wombat256' "good dark
-Plug 'vim-scripts/peaksea' "good trad dark
+Plug 'vim-scripts/peaksea' "good trad dark+light
 Plug 'vim-scripts/rdark-terminal' "good darker
 Plug 'juanpabloaj/vim-pixelmuerto' "dark
 Plug 'Lokaltog/vim-distinguished' "dark hicon
@@ -104,16 +104,16 @@ Plug 'ajh17/Spacegray.vim' "darker misty
 Plug 'sickill/vim-monokai' "dark hicon
 Plug 'beigebrucewayne/Turtles' "funky
 Plug 'thomd/vim-wasabi-colorscheme' "dark normalcont
-Plug 'vim-scripts/sift' "underwater-like
-Plug 'whatyouhide/vim-gotham' "nice sepia
+Plug 'vim-scripts/sift' "underwater_fantasy
+Plug 'whatyouhide/vim-gotham' "neon/green
 Plug 'bcicen/vim-vice' "joke
 Plug 'Renxiuhu/vim-colorscheme-tatami' " monokai Bgreen PaperColor
 Plug 'vim-scripts/swamplight' "day
 Plug 'vim-scripts/C64.vim' "joke
 Plug 'szorfein/fantasy.vim' "dull
 Plug 'ErichDonGubler/vim-sublime-monokai' "edit red?
-Plug 'KimNorgaard/vim-frign' "borland-like
-Plug 'vim-scripts/Gummybears' "dark
+Plug 'KimNorgaard/vim-frign' "borland_style
+Plug 'vim-scripts/Gummybears' "very_dark
 Plug 'szorfein/fromthehell.vim' "dark satur earth
 Plug 'koirand/tokyo-metro.vim' "pretty
 Plug 'nightsense/rusticated' "morning
@@ -122,7 +122,7 @@ Plug 'nightsense/snow' "soft)
 Plug 'logico-dev/typewriter' "good!
 Plug 'wimstefan/vim-artesanal' "good lowcon gray
 Plug 'yuttie/inkstained-vim' "very low con light
-Plug 'nightsense/stellarized' "nice! tryDarkBG
+Plug 'nightsense/stellarized' "nice! light+dark
 Plug 'rdavison/Libertine' "applejuice
 Plug 'AlessandroYorba/Sierra' "softgray
 Plug 'AlessandroYorba/Despacio' "softdarkgrey
@@ -131,8 +131,8 @@ Plug 'Jimeno0/vim-chito' "consbroken
 Plug 'aradunovic/perun.vim' "consbroken
 Plug 'HenryNewcomer/vim-theme-underflow' "consbroken
 Plug 'beigebrucewayne/min_solo' "'subtle' consbroken
-Plug 'therubymug/vim-pyte' 
-Plug 'vim-scripts/proton'
+Plug 'therubymug/vim-pyte' "light gui
+Plug 'vim-scripts/proton' "light ok 
 Plug 'junegunn/seoul256.vim' "beautiful
 Plug 'arzg/vim-mayanfog' "light 
 Plug 'arzg/vim-plan9' "trueeeee
@@ -144,8 +144,9 @@ Plug 'sainnhe/vim-color-forest-night' "cream lowcon
 Plug 'sainnhe/archived-colors'
 Plug 'flrnd/plastic.vim' "juicy
 Plug 'atelierbram/vim-colors_atelier-schemes' "mindfuck
-Plug 'nightsense/vimspectr' " need termguicolors
+Plug 'nightsense/vimspectr' " need gui
 Plug 'colepeters/spacemacs-theme.vim' "cool
+" 'gui need termguicolors setting
 call plug#end()
 
 "-----------Settings----------"
@@ -515,7 +516,7 @@ nnoremap <Leader>fc :Ack <C-r><C-W> %:p
 nnoremap <Leader>fd :Ack <C-r><C-w> %:p:h 
 nnoremap <Leader>fw :AckWindow <C-r><C-w> <CR>
 nnoremap <Leader>fg :Ack <C-r><C-w> <cr>
-" vimserv stuff; i e move current buf to vimserv vim issue
+" binding for vimz bash script; i e move current buf to vimserver 
 nnoremap <Leader>gv :silent exec '!vimz "%:p"' \| redraw! \| q <CR>
 nnoremap <Leader>gc :silent exec '!notab=1 vimz "%:p"' \| redraw! \| q <CR>
 " Add Plug entry
