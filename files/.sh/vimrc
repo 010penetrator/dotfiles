@@ -407,8 +407,6 @@ nnoremap d, :call DelSpace(0)<Esc>
 nnoremap cm o<Esc>O
 nnoremap yc ^y$"+y$"*y$
 nnoremap yq :@"<CR>
-" Select last inserted text
-nnoremap cv `[v`]
 nnoremap g[ `<
 nnoremap g] `>
 nnoremap cp "_diw""P
@@ -419,13 +417,13 @@ noremap <c-p> 10<c-y>M
 map <c-j> <Plug>(edgemotion-j)
 map <c-k> <Plug>(edgemotion-k)
 " for vim-signature
-nmap ]; ]-
-nmap [; [-
+nmap [m ['
+nmap ]m ]'
+nmap ]n ]-
+nmap [n [-
 nnoremap m-       :<C-U>call signature#mark#Purge("all")<CR>
 nnoremap m<space> :<C-U>call signature#mark#Purge("line")<CR>
 nnoremap q<tab> <C-w>p
-nnoremap [j gT
-nnoremap ]j gt
 nnoremap gz 1gt
 nnoremap q' :call WinBufSwap()<CR>
 nnoremap qt gg:call search('^.') <CR>k
@@ -538,6 +536,8 @@ nnoremap <Leader>zx :call MakeClean()<CR>
 nnoremap <Leader>zc :lcd %:p:h <bar> silent call BuildProjectU("Makefile","make") <bar> redraw! <bar> cwindow <CR>
 nnoremap <Leader>zl : silent exec '! echo -e "\n$(pwd):"; ls -la . ; read -n 1 -s -r -p "//hit.anykey" ; echo -ne "\n" ' \| redraw! <cr>
 vnoremap zv <ESC>:call FoldSelected()<CR>za
+" Select last inserted text
+nnoremap cv `[v`]
 
 "-----------Commands----------"
 command! -nargs=1 Silent exec 'silent !' . <q-args> | exec 'redraw!'
