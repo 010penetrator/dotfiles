@@ -83,8 +83,10 @@ fi
 
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
+# alias fgrep='fgrep --color=auto'
+# alias egrep='egrep --color=auto'
+alias gitd="cd /ln/ho/dotfiles/ ; git pull ; git add . ; git commit -a -m another ; git push"
+alias git4="cd /ln/ho/4gist/ ; git pull ; git add . ; git commit -a -m newnote ; git push"
 
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
