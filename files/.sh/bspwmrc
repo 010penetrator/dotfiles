@@ -17,6 +17,7 @@ bspc rule -a Gimp desktop='^8' state=floating follow=on
 bspc rule -a Chromium desktop='^2'
 bspc rule -a SpeedCrunch state=floating
 bspc rule -a Pavucontrol state=floating
+bspc rule -a QjackCtl state=floating
 bspc rule -a q4wine state=floating
 bspc rule -a Wine state=floating
 bspc rule -a VirtualBox state=floating
