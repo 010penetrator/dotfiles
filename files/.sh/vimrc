@@ -392,8 +392,11 @@ nnoremap av :wincmd v \| e %:p:h <CR>
 nnoremap ae :wincmd s \| e %:p:h <CR>
 nnoremap q/ :nohlsearch <CR>
 nnoremap a<space> :nohlsearch <CR>
-nnoremap q[ :cprev<CR>
-nnoremap q] :cnext<CR>
+nnoremap a[ :cprev<CR>
+nnoremap a] :cnext<CR>
+nnoremap cv `[v`]
+nnoremap [i `[
+nnoremap ]i `]
 nnoremap q<Up>   :cprev<CR>
 nnoremap q<Down> :cnext<CR>
 nnoremap q<Space> :echo expand ('%') '.@.' getcwd() <CR>
@@ -462,7 +465,7 @@ cnoremap <C-t> <C-Right>
 
 nnoremap a <Nop>
 map ф a 
-nnoremap as a
+nnoremap ad a
 nnoremap at :tabe<CR>
 nmap aT atg<
 nnoremap aq :qa<CR>
