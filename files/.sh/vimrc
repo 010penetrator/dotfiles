@@ -357,7 +357,7 @@ nnoremap qn    <C-W>6<
 nnoremap qe    <C-W>3+
 nnoremap qd    <C-W>3-
 nnoremap qa    <C-W>_
-nnoremap qA    <C-W>_<C-W>\|
+nnoremap aa    <C-W>_<C-W>\|
 nnoremap qz    <C-W>=
 nnoremap <C-W>S :vsplit<CR>
 nnoremap qy :let @+ = @" <bar> :let @* = @" <CR>
@@ -394,9 +394,14 @@ nnoremap q/ :nohlsearch <CR>
 nnoremap a<space> :nohlsearch <CR>
 nnoremap a[ :cprev<CR>
 nnoremap a] :cnext<CR>
+" Select last inserted text
 nnoremap cv `[v`]
-nnoremap [i `[
-nnoremap ]i `]
+" Jump last edit edges
+nnoremap [e `[
+nnoremap ]e `]
+" Jump last selection edges
+nnoremap [v `<
+nnoremap ]v `>
 nnoremap q<Up>   :cprev<CR>
 nnoremap q<Down> :cnext<CR>
 nnoremap q<Space> :echo expand ('%') '.@.' getcwd() <CR>
@@ -413,11 +418,10 @@ nnoremap d, :call DelSpace(0)<Esc>
 nnoremap cm o<Esc>O
 nnoremap yc ^y$"+y$"*y$
 nnoremap yq :@"<CR>
-nnoremap g[ `<
-nnoremap g] `>
 nnoremap cp "_diw""P
 nnoremap co "_diw"*P
-nnoremap cz }O
+nnoremap ar R\<S-kInsert>\<Esc>
+" nnoremap cz }O
 noremap <c-n> 10<c-e>M
 noremap <c-p> 10<c-y>M
 map <c-j> <Plug>(edgemotion-j)
@@ -470,7 +474,7 @@ nnoremap at :tabe<CR>
 nmap aT atg<
 nnoremap aq :qa<CR>
 nnoremap af :exec "normal i".nr2char(getchar())."\e"<CR>
-nnoremap ag :exec "normal as".nr2char(getchar())."\e"<CR>
+nnoremap ag :exec "normal ad".nr2char(getchar())."\e"<CR>
 " Leader maps
 let mapleader = ","
 nnoremap <Leader>1 1gt
@@ -542,8 +546,6 @@ nnoremap <Leader>zx :call MakeClean()<CR>
 nnoremap <Leader>zc :lcd %:p:h <bar> silent call BuildProjectU("Makefile","make") <bar> redraw! <bar> cwindow <CR>
 nnoremap <Leader>zl : silent exec '! echo -e "\n$(pwd):"; ls -la . ; read -n 1 -s -r -p "//hit.anykey" ; echo -ne "\n" ' \| redraw! <cr>
 vnoremap zv <ESC>:call FoldSelected()<CR>za
-" Select last inserted text
-nnoremap cv `[v`]
 
 "-----------Commands----------"
 command! -nargs=1 Silent exec 'silent !' . <q-args> | exec 'redraw!'
