@@ -1,5 +1,5 @@
 . ~/.sh/dmenurc.sh
-d=$(cat .mus-list | sort -R | dmenu $DMENU_OPTIONS)
+d=$(cat .mus-list | sort -R | dmenu $DMENU_OPTIONS -fn "$DMENU_FN")
 # echo $d;
 if [ -z "$d" ]; then echo no selection !; exit; fi
 case $(echo "$d" | wc -l) in

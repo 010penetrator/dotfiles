@@ -9,7 +9,6 @@
 . ~/.sh/dmenurc.sh
 
 #dmenu_cmd="dmenu $DMENU_OPTIONS"
-dmenu_cmd="dmenu $DMENU_OPTIONS"
 terminal="$TERMINAL_CMD"
 max_recent=199 # Number of recent commands to track
 
@@ -32,7 +31,7 @@ if stest -dqr -n "$rest_cache" $PATH 2>/dev/null; then
 fi
 
 IFS=" "
-cmd=$(cat "$recent_cache" "$rest_cache" | $dmenu_cmd -p run: "$@") || exit
+cmd=$(cat "$recent_cache" "$rest_cache" | dmenu $DMENU_OPTIONS -fn "$DMENU_FN" -p run: "$@") || exit
 
 if ! grep -qx "$cmd" "$recent_cache" &> /dev/null; then
     grep -vx "$cmd" "$rest_cache" > "$rest_cache.$$"
@@ -49,7 +48,7 @@ word0=${cmd%% *}
 match="^$word0$"
 
 get_type () {
-    while type=$(echo $known_types | xargs -n1 | $dmenu_cmd -p Type:); do
+    while type=$(echo $known_types | xargs -n1 | dmenu $DMENU_OPTIONS -fn "$DMENU_FN" -p Type:); do
         [[ $known_types =~ " $type " ]] || continue
         echo "$word0" >> "$config_dir/$type"
         break

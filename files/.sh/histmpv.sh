@@ -1,5 +1,5 @@
 . $sh/dmenurc.sh
-d=$(tac /tmp/mpv-history | dmenu $DMENU_OPTIONS)
+d=$(tac /tmp/mpv-history | dmenu $DMENU_OPTIONS -fn "$DMENU_FN")
 if [ -z "$d" ]; then echo no selection !; exit; fi
 cd "$d"
 echo $d
