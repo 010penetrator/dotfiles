@@ -14,6 +14,8 @@ map [ zoom out
 map ] zoom in
 map S toggle_statusbar 
 map x quit
+map f toggle_fullscreen
+map [fullscreen] f toggle_fullscreen
 
 set window-width 1280
 set window-height 1024

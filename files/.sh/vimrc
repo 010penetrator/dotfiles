@@ -406,7 +406,7 @@ nnoremap dy ^"_D
 nnoremap dc "_d$
 nnoremap d<space> :call DelSpcOrPar()<Esc>
 nnoremap d. "_dd
-nnoremap d, :call DelSpace(0)<Esc>
+" nnoremap d, :call DelSpace(0)<Esc>
 nnoremap cm o<Esc>O
 nnoremap yc ^y$"+y$"*y$
 nnoremap yq :@"<CR>
