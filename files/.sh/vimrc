@@ -416,6 +416,7 @@ nnoremap d<space> :call DelSpcOrPar()<Esc>
 nnoremap d. "_dd
 " nnoremap d, :call DelSpace(0)<Esc>
 nnoremap cm o<Esc>O
+nnoremap z, }O
 nnoremap yc ^y$"+y$"*y$
 nnoremap yq :@"<CR>
 nnoremap cp "_diw""P
@@ -470,6 +471,7 @@ cnoremap <C-t> <C-Right>
 nnoremap a <Nop>
 map ф a 
 nnoremap ad a
+nnoremap as a
 nnoremap at :tabe<CR>
 nmap aT atg<
 nnoremap aq :qa<CR>
@@ -567,6 +569,7 @@ command! LCDhere lcd %:p:h | pwd
 command! DOctags !ctags -R --exclude=.git --exclude=log --exclude=wutils --c++-kinds=+p --fields=+iaS --extra=+q *
 command! DOctagsSudo !sudo ctags -R --exclude=.git --exclude=log --exclude=wutils --c++-kinds=+p --fields=+iaS --extra=+q *
 command! Yall normal gg"+yG''
+command! Dall normal gg"_dG
 command! Fdel :silent exec '!rm %' | redraw! | bd
 "exec '!chromium' ali.@"
 
