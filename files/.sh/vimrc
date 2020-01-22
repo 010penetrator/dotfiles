@@ -354,8 +354,8 @@ nnoremap ql    <C-W>l
 nnoremap <C-\> <C-W>w
 nnoremap qm    <C-W>6>
 nnoremap qn    <C-W>6<
-nnoremap qe    <C-W>3+
-nnoremap qd    <C-W>3-
+nnoremap qe    <C-W>4+
+nnoremap qd    <C-W>4-
 nnoremap qa    <C-W>_
 nnoremap aa    <C-W>_<C-W>\|
 nnoremap aj    <C-W>w<C-W>_<C-W>\|
@@ -431,10 +431,10 @@ noremap <c-p> 10<c-y>M
 map <c-j> <Plug>(edgemotion-j)
 map <c-k> <Plug>(edgemotion-k)
 " for vim-signature
-nmap [m ['
-nmap ]m ]'
-nmap ]n ]-
-nmap [n [-
+nmap [a ['
+nmap ]a ]'
+nmap ]s ]-
+nmap [s [-
 nnoremap m-       :<C-U>call signature#mark#Purge("all")<CR>
 nnoremap m<space> :<C-U>call signature#mark#Purge("line")<CR>
 " nnoremap q<tab> <C-w>p
@@ -444,7 +444,7 @@ nnoremap q' :call WinBufSwap()<CR>
 nnoremap qt gg:call search('^.') <CR>k
 nnoremap qg G$:call search('^.','b') <CR>0j
 " Search my comments
-nnoremap ae /^\/\/.*\/\/$<CR>
+nnoremap ae /\s*\/\/.*\/\/$<CR>
 " Jump to blank or one-char lines
 nnoremap <silent> gn :call search('^\(.\\|\(\s\)*\)$','W') <CR>
 nnoremap <silent> gp :call search('^\(.\\|\(\s\)*\)$','bW') <CR>
@@ -533,7 +533,6 @@ nnoremap <Leader>ff :AckFile <C-r><C-W> <CR>
 nnoremap <Leader>fc :Ack <C-r><C-W> %:p 
 nnoremap <Leader>fd :Ack <C-r><C-w> %:p:h 
 nnoremap <Leader>fw :AckWindow <C-r><C-w> <CR>
-nnoremap <Leader>fg :Ack <C-r><C-w> <cr>
 " binding for vimz bash script; i e move current buf to vimserver 
 nnoremap <Leader>gv :silent exec '!vimz "%:p"' \| redraw! \| q <CR>
 nnoremap <Leader>gc :silent exec '!notab=1 vimz "%:p"' \| redraw! \| q <CR>
@@ -650,6 +649,7 @@ function! ClimbToDirWhere(filename,chdir)
     " check if the file exist in the current directory
     if filereadable(a:filename)
       let l:result = getcwd()
+      " change directory if chdir==1
       if a:chdir !=# 1
         exec "lcd " . l:init_dir
       endif
