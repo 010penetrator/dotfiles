@@ -550,8 +550,9 @@ nnoremap <Leader>vt :TagbarOpen fj <CR>
 nnoremap <Leader>zz :let &scrolloff=28-&scrolloff<CR>
 nnoremap <Leader>zt :silent exec 'DOctags' \| redraw! \| echo 'Wrote tags db in' getcwd().'/' <CR>
 nnoremap <Leader>zg :call DOgitprojTags() <CR>
-nnoremap <Leader>zx :call MakeClean()<CR>
+nnoremap <Leader>zx :lcd %:p:h <bar> silent call BuildProjectU("Makefile","make clean") <bar> redraw! <bar> cwindow<CR>
 nnoremap <Leader>zc :lcd %:p:h <bar> silent call BuildProjectU("Makefile","make") <bar> redraw! <bar> cwindow <CR>
+nnoremap <Leader>zv :lcd %:p:h <bar> silent call BuildProjectU("Makefile","make run") <bar> redraw! <bar> cwindow <CR>
 nnoremap <Leader>zl : silent exec '! echo -e "\n$(pwd):"; ls -la . ; read -n 1 -s -r -p "//hit.anykey" ; echo -ne "\n" ' \| redraw! <cr>
 vnoremap zv <ESC>:call FoldSelected()<CR>za
 
@@ -621,11 +622,11 @@ function! BuildProject1()
   exec "cd " . l:starting_directory
 endfunction
 
-function! MakeClean()
-  silent exec '!echo -e "\n=-=-=-=-=-=-=-=-=-=-=-=-=-="'
-  silent exec "!make clean"
-  redraw!
-endfunction
+" function! MakeClean()
+"   silent exec '!echo -e "\n=-=-=-=-=-=-=-=-=-=-=-=-=-="'
+"   silent exec "!make clean"
+"   redraw!
+" endfunction
 
 function! BuildProjectU(Makefile,Makecommand)
   let &makeprg=a:Makecommand
@@ -639,6 +640,7 @@ function! BuildProjectU(Makefile,Makecommand)
   else 
     echo "Makefile not found"
   endif
+  Silent read -n 1 -s -r -p "//hit.anykey" ; echo -ne "\n\n"
   "reset directory
   exec "lcd " . l:starting_directory
 endfunction
