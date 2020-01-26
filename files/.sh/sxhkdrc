@@ -70,7 +70,7 @@ super + f ; a
 super + f ; {d,s,g,f}
 	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
-# create a receptacle node 
+# create a receptacle node (placeholder)
 super + f ; i
   bspc node -i
 

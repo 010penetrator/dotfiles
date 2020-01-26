@@ -9,7 +9,7 @@ highlight clear
 highlight Win cterm=none ctermfg=255 ctermbg=234
 highlight Directory cterm=bold ctermfg=109 ctermbg=234
 highlight Link cterm=bold ctermfg=216 ctermbg=234
-highlight BrokenLink cterm=bold ctermfg=red ctermbg=239
+highlight BrokenLink cterm=bold ctermfg=red ctermbg=234
 highlight Socket cterm=bold ctermfg=green ctermbg=default
 highlight Device cterm=bold ctermfg=red ctermbg=default
 highlight Fifo cterm=bold ctermfg=150 ctermbg=default

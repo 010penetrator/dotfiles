@@ -375,7 +375,7 @@ nnoremap ai :put! *<CR>
 nnoremap aP :put  +<CR>
 nnoremap aI :put! +<CR>
 " Put as single paragraph
-nnoremap ao O<Esc>:put! *<CR>`[v`]:g/^$/d<CR>:nohlsearch<CR>
+nnoremap ao o<Esc>:put! *<CR>`[v`]:g/^$/d<CR>:nohlsearch<CR>
 " Yank inline
 nnoremap qc ^y$:let @+ = @" <bar> :let @* = @" <CR>j
 " Yank current file full name 

@@ -14,10 +14,10 @@ fi
 if [[ $(ls | grep -ic '\.ape$\|\.flac$\|\.wv$') == $(ls | grep -ic '\.cue$') && $(ls | grep -ic '\.cue$') > 0 ]]
   then
   echo : play cue with mpv...
-  mpv --no-video *.cue
+  mpv --pause --no-video *.cue
 else
   echo : play audio files...
-  mpv --no-video *.{flac,mp3,ogg,ape,wv}
+  mpv --pause --no-video *.{flac,mp3,ogg,ape,wv}
 fi
 
 echo "$PWD" >> /tmp/mpv-history
