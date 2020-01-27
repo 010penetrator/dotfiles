@@ -2,7 +2,7 @@ sudo uname
 uptime -p
 du -sh /var/cache/pacman/pkg/ /var/log/journal/ ~/
 # df -BGB
-lsblk -f 
+lsblk -fl 
 sudo pacman -Syu
 sudo find /var/cache/pacman/pkg/ -mtime +5 -exec rm {} \;
 sudo updatedb
