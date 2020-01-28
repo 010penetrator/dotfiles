@@ -515,7 +515,7 @@ nnoremap <Leader>o :Goyo 66%x100%<CR>
 nnoremap <Leader>m ^y$:call system('$BROWSER ' . @")<CR>
 nnoremap <Leader>go ^y$:call system('google.sh ' . @")<CR>
 nnoremap <Leader>gw yiw:call system('google.sh ' . @")<CR>
-nnoremap <Leader>gr ^y$:silent exec " !source $HOME/.bashrc && \"$BROWSER\" \"red " . @" . "\" &>/dev/null & " \| redraw!<CR>
+" nnoremap <Leader>gr ^y$:silent exec " !source $HOME/.bashrc && \"$BROWSER\" \"red " . @" . "\" &>/dev/null & " \| redraw!<CR>
 nnoremap <Leader>gh ^y$:silent exec " !source $HOME/.bashrc && chromium \"" . @" . "\" &>/dev/null & raise.sh chromium " \| redraw!<CR>
 nnoremap <Leader>gg :call FocusBufOrDo('wawe','e /ln/ho/4gist/wawe')<CR>
 nnoremap <Leader>gx :call FocusBufOrDo('sxhkd','e /ln/sh/sxhkdrc')<CR>
@@ -527,7 +527,7 @@ nnoremap <Leader>gi :call FocusBufOrDo('i3conf','e /ln/sh/i3config')<CR>
 nnoremap <Leader>gs :call FocusBufOrDo('stk','e /ln/ho/use/stk.tx')<CR>
 nnoremap <Leader>gd :BD<CR>
 nnoremap <Leader>gt :call MoveToNextTab()<CR>
-nnoremap <Leader>gb :call MoveToPrevTab()<CR>
+nnoremap <Leader>gr :call MoveToPrevTab()<CR>
 nnoremap <Leader>fs :Ack <C-r><C-w> <CR>
 nnoremap <Leader>ff :AckFile <C-r><C-W> <CR>
 nnoremap <Leader>fc :Ack <C-r><C-W> %:p 
