@@ -3,11 +3,13 @@ set default-bg "#696969"
 set statusbar-fg "#bbb"
 set recolor-darkcolor "#060504"
 set recolor-lightcolor "#DBC7A7"
-map i set recolor toggle
+map i set recolor
 # map s scroll down
 # map w scroll up
 map d scroll full-down
 map e scroll full-up
+map [fullscreen] d scroll full-down
+map [fullscreen] e scroll full-up
 # map b navigate previous
 # map n navigate next
 map [ zoom out
