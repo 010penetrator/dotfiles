@@ -555,7 +555,8 @@ nnoremap <Leader>zx :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","mak
 nnoremap <Leader>zc :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make") <bar> redraw! <bar> cwindow <CR>
 nnoremap <Leader>zv :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make run") <bar> redraw! <bar> cwindow <CR>
 nnoremap <Leader>zl : silent exec '! echo -e "\n$(pwd):"; ls -la . ; read -n 1 -s -r -p "//hit.anykey" ; echo -ne "\n" ' \| redraw! <cr>
-vnoremap zv <ESC>:call FoldSelected()<CR>za
+vnoremap z- <ESC>:call FoldSelected()<CR>za
+nnoremap d- %%dd''dd''
 
 "-----------Commands----------"
 command! -nargs=1 Silent exec 'silent !' . <q-args> | exec 'redraw!'
@@ -890,39 +891,13 @@ endfunction
 " hi! Search ctermbg=222
 " hi! Normal ctermbg=234
 
-"function! BuildProjectA()
-"  set makeprg='make'
-"  "save the current working directory so we can come back
-"  let l:starting_directory = getcwd()
-"  "get the directory of the currently focused file
-"  let l:curr_directory = expand('%:p:h')
-"  "move to the current file
-"  exec "lcd " . l:curr_directory
-"  while 1
-"    "check if makefile exists in the current directory
-"    if filereadable("Makefile")
-"      "run make and exit
-"      make
-"      break
-"    elseif l:curr_directory ==# "/" || l:curr_directory =~# '^[^/]..$'
-"      "if we've hit the top level directory, break out
-"      break
-"    else
-"      "move up a directory
-"      lcd ..
-"      let l:curr_directory = getcwd()
-"    endif
-"  endwhile
-"  "reset directory
-"  exec "lcd " . l:starting_directory
-"endfunction
-
 " if filereadable($HOME."/.vimrc.local")
 "   source $HOME/.vimrc.local
 " endif
 
 let hostname = substitute(system('hostname'), '\n', '', '')
 if hostname == "debian10pc"
+  call LightlineReload('seoul256')
   if !exists("g:colors_name")
     " colo Revolution
     colo stellarized
