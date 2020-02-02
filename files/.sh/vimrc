@@ -899,6 +899,13 @@ endfunction
 " endif
 
 let hostname = substitute(system('hostname'), '\n', '', '')
+if hostname == "warmPC"
+  call LightlineReload('seoul256')
+  if !exists("g:colors_name")
+    colo stellarized
+    " colo plastic
+  endif
+endif
 if hostname == "debian10pc"
   call LightlineReload('seoul256')
   if !exists("g:colors_name")
