@@ -2,7 +2,7 @@ set scroll-step 220
 set default-bg "#696969"
 set statusbar-fg "#bbb"
 set recolor-darkcolor "#060504"
-set recolor-lightcolor "#DBC7A7"
+set recolor-lightcolor "#f5edd1"
 map i set recolor
 # map s scroll down
 # map w scroll up
