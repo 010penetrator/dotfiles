@@ -513,6 +513,7 @@ nnoremap <Leader>x :q<CR>
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>d :bd!<CR>
 nnoremap <Leader>c :NewVifmHere<CR>
+nnoremap <Leader>C :Silent xdg-open %:p:h & <cr>
 nnoremap gb :Bash <CR>
 nnoremap <Leader><Space> :LCDhere <CR>
 nnoremap <Leader>o :Goyo 66%x100%<CR>
