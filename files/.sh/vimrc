@@ -59,7 +59,7 @@ Plug 'sandeepcr529/Buffet.vim'
 " Plug 'vim-scripts/QuickBuf'
 " Plug 'Yggdroot/LeaderF'
 Plug 'tpope/vim-endwise'
-"
+" Colors:
 Plug 'morhetz/gruvbox' "best
 Plug 'ajmwagar/vim-dues' "deus
 Plug 'jpo/vim-railscasts-theme' "normal
@@ -147,6 +147,14 @@ Plug 'flrnd/plastic.vim' "juicy
 Plug 'atelierbram/vim-colors_atelier-schemes' "mindfuck
 Plug 'nightsense/vimspectr' " need gui
 Plug 'colepeters/spacemacs-theme.vim' "cool
+Plug 'stulzer/mitormk-laser'
+Plug 'sainnhe/neon'
+Plug 'dfrunza/vim'
+Plug 'RussellBradley/vim-knicks'
+Plug 'relastle/bluewery.vim'
+Plug 'arzg/vim-corvine'
+Plug 'severij/vadelma'
+Plug 'gmoe/vim-espresso'
 " 'gui need termguicolors setting
 call plug#end()
 
@@ -178,8 +186,8 @@ endif
 "Use hybrid tayra seoul256 mushroom tender deus Tomorrow-Night-Eighties
 " let g:lightline = { 'colorscheme': 'PaperColor', }
 " let g:lightline = { 'colorscheme': 'Tomorrow_Night_Bright', }
-" Currently avail are:
-" 16color darcula default deus jellybeans landscape material materia molokai nord OldHope one PaperColor_dark PaperColor_light PaperColor powerlineish powerline selenized_dark seoul256 solarized srcery_drk Tomorrow_Night_Blue Tomorrow_Night_Bright Tomorrow_Night_Eighties Tomorrow_Night Tomorrow wombat 
+" Currently available are:
+" 16color darcula default deus jellybeans sacredforest landscape material materia molokai nord OldHope one PaperColor_dark PaperColor_light PaperColor powerlineish powerline selenized_dark seoul256 solarized srcery_drk Tomorrow_Night_Blue Tomorrow_Night_Bright Tomorrow_Night_Eighties Tomorrow_Night Tomorrow wombat 
 let $VIMPLUG = '$HOME/.vim/plugged/'
 " set background=dark
 " set colorcolumn=80
@@ -542,7 +550,7 @@ nnoremap <Leader>fw :AckWindow <C-r><C-w> <CR>
 nnoremap <Leader>gv :silent exec '!vimz "%:p"' \| redraw! \| q <CR>
 nnoremap <Leader>gc :silent exec '!notab=1 vimz "%:p"' \| redraw! \| q <CR>
 " Add Plug entry
-nnoremap <Leader>vp :put * <bar> exec "normal dfmxIPlug 'A'" <CR>
+nnoremap <Leader>vp :put + <bar> exec "normal dfmxIPlug 'A'" <CR>
 nnoremap <Leader>vi :exec "normal $yi'0" <CR> <bar> :PluginInstall <C-R>" <CR>
 nnoremap <Leader>vs :source ~/.vim/session.vim <CR>
 nnoremap <Leader>vv :source $MYVIMRC <CR>
@@ -820,7 +828,6 @@ function! LightlineReload(arg)
   call lightline#colorscheme()
   call lightline#update()
 endfunction
-" command! LightlineReload call LightlineReload()
 
 function! DelSpace(arg)
   let cur = line('.')
@@ -908,10 +915,11 @@ if hostname == "warmPC"
   endif
 endif
 if hostname == "debian10pc"
-  call LightlineReload('seoul256')
+  call LightlineReload('sacredforest')
   if !exists("g:colors_name")
     " colo Revolution
-    colo stellarized
+    " colo stellarized
+    colo forest-night
     " colo plastic
   endif
 endif
