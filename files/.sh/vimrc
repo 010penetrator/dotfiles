@@ -3,12 +3,13 @@ set nocompatible              " be iMproved
 set termguicolors
 compiler gcc
 set makeprg=make\ 
+let $VIMPLUG = expand('$HOME') . '/.vim/plugged'
 " help i_ctrl-
 " currfile=%\ mainbin
 " let $BROWSER = 'luakit'
 " .w !bash " exec current line 
 " exec  "!"  . @"  " exec yank buffer
-" r! ls -la " paste shell output
+" read !ls -la " paste shell output
 " g/.\{20,\}/ exec "normal gqgq" | nohls
 " autocmd WinNew * set numberwidth=2 winheight=7
 "-------------Plug------------"
@@ -148,12 +149,11 @@ Plug 'atelierbram/vim-colors_atelier-schemes' "mindfuck
 Plug 'nightsense/vimspectr' " need gui
 Plug 'colepeters/spacemacs-theme.vim' "cool
 Plug 'stulzer/mitormk-laser'
-Plug 'sainnhe/neon'
-Plug 'dfrunza/vim'
+Plug 'dfrunza/vim' "borland, muratori, pencil, vc6
 Plug 'RussellBradley/vim-knicks'
 Plug 'relastle/bluewery.vim'
 Plug 'arzg/vim-corvine'
-Plug 'severij/vadelma'
+Plug 'severij/vadelma' "white good-con
 Plug 'gmoe/vim-espresso'
 " 'gui need termguicolors setting
 call plug#end()
@@ -186,9 +186,8 @@ endif
 "Use hybrid tayra seoul256 mushroom tender deus Tomorrow-Night-Eighties
 " let g:lightline = { 'colorscheme': 'PaperColor', }
 " let g:lightline = { 'colorscheme': 'Tomorrow_Night_Bright', }
-" Currently available are:
-" 16color darcula default deus jellybeans sacredforest landscape material materia molokai nord OldHope one PaperColor_dark PaperColor_light PaperColor powerlineish powerline selenized_dark seoul256 solarized srcery_drk Tomorrow_Night_Blue Tomorrow_Night_Bright Tomorrow_Night_Eighties Tomorrow_Night Tomorrow wombat 
-let $VIMPLUG = '$HOME/.vim/plugged/'
+" Check lightline themes here:
+" read !ls $VIMPLUG/lightline.vim/autoload/lightline/colorscheme
 " set background=dark
 " set colorcolumn=80
 " augroup mysettings
@@ -211,7 +210,7 @@ silent !mkdir -p ~/.vimbak
 set backupdir=~/.vimbak//
 set directory=~/.vimbak//
 set undodir=~/.vimbak//
-set history=500
+set history=2500
 set tabstop=2 softtabstop=2 expandtab shiftwidth=2 smarttab 
 set textwidth=0 wrapmargin=0
 set smartindent
@@ -593,6 +592,7 @@ command! Yall normal gg"+yG''
 command! Dall normal gg"_dG
 command! FileDel :silent exec '!rm %' | redraw! | bd
 "exec '!chromium' ali.@"
+command! -nargs=? LineColor call LightlineReload('<args>')
 
 "---------OS-dependant--------"
 if !empty($WINDIR)
@@ -823,6 +823,8 @@ function! LightlineReload(arg)
     else
       let g:lightline = { 'colorscheme': a:arg, }
     endif
+  else
+    echo g:lightline
   endif
   call lightline#init()
   call lightline#colorscheme()
@@ -915,11 +917,14 @@ if hostname == "warmPC"
   endif
 endif
 if hostname == "debian10pc"
-  call LightlineReload('sacredforest')
+  " call LightlineReload('sacredforest')
+  LineColor one
+  LineColor deus
   if !exists("g:colors_name")
+    colo vadelma
     " colo Revolution
     " colo stellarized
-    colo forest-night
+    " colo forest-night
     " colo plastic
   endif
 endif
