@@ -25,7 +25,7 @@ Plug 'itchyny/lightline.vim' "cool
 " Plug 'eiginn/netrw' "basic
 Plug 'tpope/vim-vinegar' "basic
 Plug 'jamessan/vim-gnupg' "good
-Plug 'Shougo/unite.vim' "bloated
+" Plug 'Shougo/unite.vim' "bloated
 Plug 'Shougo/vimproc' "req4unite
 Plug 'Shougo/denite.nvim' "too complex
 Plug 'junegunn/goyo.vim' "usable
@@ -40,7 +40,8 @@ Plug 'tpope/vim-ragtag' "good
 Plug 'justinmk/vim-sneak' "good!
 Plug 'tpope/vim-surround' "good
 Plug 'wesleyche/SrcExpl' "mediocre
-Plug 'kshenoy/vim-signature' "mediocre
+Plug 'kshenoy/vim-signature' "buggy
+Plug 'tpope/vim-endwise'
 "
 " Plug 'vim-syntastic/syntastic' "wtf
 " Plug 'kien/rainbow_parentheses.vim'
@@ -59,7 +60,6 @@ Plug 'honza/vim-snippets'
 Plug 'sandeepcr529/Buffet.vim'
 " Plug 'vim-scripts/QuickBuf'
 " Plug 'Yggdroot/LeaderF'
-Plug 'tpope/vim-endwise'
 " Colors:
 Plug 'morhetz/gruvbox' "best
 Plug 'ajmwagar/vim-dues' "deus
