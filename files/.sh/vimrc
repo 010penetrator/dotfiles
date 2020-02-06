@@ -25,7 +25,7 @@ Plug 'itchyny/lightline.vim' "cool
 " Plug 'eiginn/netrw' "basic
 Plug 'tpope/vim-vinegar' "basic
 Plug 'jamessan/vim-gnupg' "good
-" Plug 'Shougo/unite.vim' "bloated
+Plug 'Shougo/unite.vim' "bloated
 Plug 'Shougo/vimproc' "req4unite
 Plug 'Shougo/denite.nvim' "too complex
 Plug 'junegunn/goyo.vim' "usable
@@ -60,6 +60,7 @@ Plug 'honza/vim-snippets'
 Plug 'sandeepcr529/Buffet.vim'
 " Plug 'vim-scripts/QuickBuf'
 " Plug 'Yggdroot/LeaderF'
+
 " Colors:
 Plug 'morhetz/gruvbox' "best
 Plug 'ajmwagar/vim-dues' "deus
@@ -68,7 +69,6 @@ Plug 'chriskempson/vim-tomorrow-theme' "Nice dark+light
 Plug 'nanotech/jellybeans.vim' "good4html
 Plug 'zsoltf/vim-maui' "darkOkay
 Plug 'jedverity/feral-vim' "Nice
-" Plug 'tomasr/molokai' "shitty
 Plug 'mhartington/oceanic-next' "soft nice
 Plug 'w0ng/vim-hybrid' "beautiful
 Plug 'kristijanhusak/vim-hybrid-material' "nice Sane dark
@@ -93,7 +93,6 @@ Plug 'vim-scripts/xterm16.vim' "variable
 Plug 'Drogglbecher/vim-moonscape' "NIGHT
 Plug 'bf4/vim-dark_eyes' "NIGHT
 Plug 'noah/fu' "sane fallback
-Plug 'dracula/vim' "funky
 Plug 'MPiccinato/wombat256' "good dark
 Plug 'vim-scripts/peaksea' "good trad dark+light
 Plug 'vim-scripts/rdark-terminal' "good darker
@@ -149,12 +148,14 @@ Plug 'atelierbram/vim-colors_atelier-schemes' "mindfuck
 Plug 'nightsense/vimspectr' " need gui
 Plug 'colepeters/spacemacs-theme.vim' "cool
 Plug 'stulzer/mitormk-laser'
-Plug 'dfrunza/vim' "borland, muratori, pencil, vc6
 Plug 'RussellBradley/vim-knicks'
 Plug 'relastle/bluewery.vim'
 Plug 'arzg/vim-corvine'
 Plug 'severij/vadelma' "white good-con
 Plug 'gmoe/vim-espresso'
+" Plug 'dfrunza/vim' "borland, muratori, pencil, vc6
+" Plug 'dracula/vim' "funky
+" Plug 'tomasr/molokai' "shitty
 " 'gui need termguicolors setting
 call plug#end()
 

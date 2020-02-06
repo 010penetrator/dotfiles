@@ -183,7 +183,8 @@ nmblookup -S WORKGROUP # find samba places
 date +%T -s "11:14:00" # set date 
 date -s "$(curl -s --head http://opennet.ru | grep ^Date: | sed 's/Date: //g')" # set date from a website
 hwclock --systohc # sync hardware clock to system time
-torify curl -s --head http://flibustahezeous3.onion/ #torsocks # check tor
+torsocks curl -s --head http://flibustahezeous3.onion/ #torsocks # check tor
+:e /etc/tor/torrc | e /etc/tor/torsocks.conf ==> use torsocks
 
 HW
 sudo modprobe pcspkr ; echo -e '\a' ; rmmod pcspkr ; xset -b # STOP BELL BEEP!
