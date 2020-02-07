@@ -1,3 +1,5 @@
+# see and sort images with feh 
+
 frsrt() {
   a=$1__*/
   [ -d $a ] || mkdir -p $1__

@@ -1,12 +1,15 @@
+# call nice feh
+
+FEH_PARAMS="feh --auto-rotate --edit -B black -xrnqF."
 echo pwd : `pwd`
 echo feh arg : \'"$1"\'
 
 if [ "$1" = "." ]
 then
-  feh --auto-rotate --edit -B black -rnqF. .
+  feh $FEH_PARAMS . &>/dev/null &
 elif [ -d "$1" ]
 then
-  feh --auto-rotate --edit -B black -rnqF. "$1"
+  feh $FEH_PARAMS "$1" &>/dev/null &
 elif [ -f "$1" ]
 then
   dir="$(dirname \./"$1")"
@@ -15,10 +18,10 @@ then
   # check if $1 was messed by vifm
   if [ "$dir" == "./." ]
   then
-    feh --auto-rotate --edit -B black -rqF. --start-at "$file" .
+    feh $FEH_PARAMS --start-at "$file" . &>/dev/null &
   else
     cd "$dir"
-    feh --auto-rotate --edit -B black -rqF. --start-at ./"$file" .
+    feh $FEH_PARAMS --start-at ./"$file" . &>/dev/null &
   fi
 fi
 
