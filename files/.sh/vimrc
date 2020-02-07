@@ -919,10 +919,10 @@ if hostname == "warmPC"
 endif
 if hostname == "debian10pc"
   " call LightlineReload('sacredforest')
-  LineColor one
+  " LineColor one
   LineColor deus
   if !exists("g:colors_name")
-    colo vadelma
+    colo vadelma | set background=light
     " colo Revolution
     " colo stellarized
     " colo forest-night
