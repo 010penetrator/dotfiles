@@ -46,6 +46,7 @@ usermod -a -G vboxusers user1 # add user to group
 groupadd gods # create group
 %gods	ALL=(ALL) NOPASSWD:ALL # gods will not be asked sudo password 
 username hostname=(ALL) NOPASSWD:/bin/lsblk # sudo command without password for user 
+# sudo takes long time? ==> add $HOSTNAME to /etc/hosts
 %sudo 	ALL=(ALL) ALL, NOPASSWD:/usr/bin/lsblk # combo!
 reset # reset terminal
 read -n 1 -s -r -p "Press any key to continue" # wait for a hit
@@ -72,6 +73,7 @@ mount -t iso9660 -o loop path/to/image.iso /mnt/iso # mount iso
 grep -r -l <old> * | xargs sed -i 's/<old>/<new>/g'  # change : " ' | in filenames
 watch -n 1 -d sensors # display sensors output once a sec
 echo "" > ~/.local/share/recently-used.xbel # clean recent history
+history --help # useful
 if [[ -z `pgrep transmission-d` ]] ; then transmission-daemon ; fi # start daemon if it is off
 grep ^[^#] /etc/locale.gen # show uncommented locales
 true; false; echo $? # show last command exit status 
@@ -183,8 +185,8 @@ nmblookup -S WORKGROUP # find samba places
 date +%T -s "11:14:00" # set date 
 date -s "$(curl -s --head http://opennet.ru | grep ^Date: | sed 's/Date: //g')" # set date from a website
 hwclock --systohc # sync hardware clock to system time
-torsocks curl -s --head http://flibustahezeous3.onion/ #torsocks # check tor
-:e /etc/tor/torrc | e /etc/tor/torsocks.conf ==> use torsocks
+torsocks curl -s --head http://flibustahezeous3.onion/ # check tor
+# torify stuff: edit /etc/tor/torrc,/etc/tor/torsocks.conf ; /etc/init.d/tor restart ==> use torsocks
 
 HW
 sudo modprobe pcspkr ; echo -e '\a' ; rmmod pcspkr ; xset -b # STOP BELL BEEP!
