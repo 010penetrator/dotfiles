@@ -438,8 +438,8 @@ nnoremap yq :@"<CR>
 nnoremap cp "_diw""P
 nnoremap co "_diw"*P
 nnoremap ar R\<S-kInsert>\<Esc>
-noremap <c-n> 10<c-e>M
-noremap <c-p> 10<c-y>M
+noremap <c-n> 12<c-e>M
+noremap <c-p> 12<c-y>M
 map <c-j> <Plug>(edgemotion-j)
 map <c-k> <Plug>(edgemotion-k)
 " for vim-signature

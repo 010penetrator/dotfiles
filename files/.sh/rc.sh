@@ -22,31 +22,35 @@ sxd.sh &
 # killall sxhkd; sxhkd -c ~/.sh/sxhkdrc &
 nitrogen --restore &
 
+xinput set-prop "A4TECH USB Device" "libinput Accel Speed" -.33
+xinput set-prop "RAPOO Rapoo 2.4G Wireless Device" "libinput Accel Speed" -.7 &
+
 if [[ "$HOSTNAME" =~ 'killer'[pc,PC] ]]; then
   # xrandr --dpi 110x110
   xrdb -merge <(echo "Xft.dpi: 108") &
-  xinput set-prop "RAPOO Rapoo 2.4G Wireless Device" "libinput Accel Speed" -.8 &
   # xinput set-prop "Clearly Superior Technologies. CST Laser Trackball" "libinput Accel Speed" -.7
   sleep 2
   # echo -e 'power on\nquit' | bluetoothctl
   trdwrap.sh &
   polybar.sh &
   killall unclutter; unclutter &
+
 elif [[ "$HOSTNAME" =~ ^debian10pc ]]; then
   # xinput set-prop 12 292 -.6
   # killall unclutter; unclutter &
-  xinput set-prop "A4TECH USB Device" "libinput Accel Speed" -.33
   xrandr --output VGA-2 --off 
   ( sleep 2 ; gsettings set org.gnome.mutter overlay-key '' )  # free Win key in Gnome 3
+
 elif [[ "$HOSTNAME" =~ ^white*(.*)ok ]]; then 
   xset dpms 900 0 0 
   xinput set-prop "SYN1B7F:01 06CB:2991 Touchpad" "libinput Tapping Enabled" 1
+
 elif [[ "$HOSTNAME" =~ 'warmPC' ]]; then
   # xrdb -merge <(echo "Xft.dpi: 108") &
-  xinput set-prop "RAPOO Rapoo 2.4G Wireless Device" "libinput Accel Speed" -.6 &
   sleep 1
   trdwrap.sh & 
   earlyoom -m 4 -n &> /dev/null &
+
 elif [[ "$HOSTNAME" =~ [pc,PC] ]]; then
   xrandr --output VGA-2 --off 
 fi
