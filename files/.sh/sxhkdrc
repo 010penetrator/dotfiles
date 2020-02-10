@@ -1,4 +1,4 @@
-super + x ; {u, m, s, r, e, h, f, d, g, p, n, o, w, a}
+super + x ; {u, m, s, r, i, h, f, d, g, p, n, o, w, a}
 	raise.sh {'Luakit' 'luakit', notimem, speedcrunch, Ranger 'newranger', 'WeeChat\|weechat' 'urxvt -e weechat', htop '$TERMINAL -e htop', feh 'fa /ln/dwn/', deadbeef, 'chromium\|Firefox\|Navigator' '$BROWSER', Thunar thunar, nautilus, VirtualBox '', fbreader, pavucontrol}
 
 super + x ; {q, t, j, z, k, l, b}
