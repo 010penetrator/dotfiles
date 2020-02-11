@@ -142,18 +142,18 @@ Plug 'sainnhe/gruvbox-material' "improved
 Plug 'arzg/vim-substrata' "cold neon
 Plug 'sainnhe/edge' "good soft
 Plug 'sainnhe/vim-color-forest-night' "cream lowcon
-Plug 'sainnhe/archived-colors'
+Plug 'sainnhe/archived-colors' "atlantis,cryslominsa,desert_night,fairy_garden,grimoire,ice_age,lost_shrine,vanilla_cake
 Plug 'flrnd/plastic.vim' "juicy
 Plug 'atelierbram/vim-colors_atelier-schemes' "mindfuck
 Plug 'nightsense/vimspectr' " need gui
 Plug 'colepeters/spacemacs-theme.vim' "cool
-Plug 'stulzer/mitormk-laser'
-Plug 'RussellBradley/vim-knicks'
-Plug 'relastle/bluewery.vim'
+Plug 'stulzer/mitormk-laser' "sharp
+Plug 'RussellBradley/vim-knicks' "cool blue
+Plug 'relastle/bluewery.vim' "low-con
 Plug 'arzg/vim-corvine'
 Plug 'severij/vadelma' "white good-con
-Plug 'gmoe/vim-espresso'
-" Plug 'dfrunza/vim' "borland, muratori, pencil, vc6
+Plug 'gmoe/vim-espresso' "mild
+" Plug 'dfrunza/vim' "borland,muratori,pencil,vc6
 " Plug 'dracula/vim' "funky
 " Plug 'tomasr/molokai' "shitty
 " 'gui need termguicolors setting
@@ -242,14 +242,14 @@ autocmd FileType cmake setlocal commentstring=#%s
 set fileformat=unix
 " autocmd CursorHold * normal! m'
 if has('mouse')
-	set mouse=a
+  set mouse=a
 endif
 if &t_Co > 2 || has("gui_running")
-	syntax on
-	let c_comment_strings=1
+  syntax on
+  let c_comment_strings=1
 endif
 if &diff
-	colo wasabi256
+  colo wasabi256
 endif
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
@@ -408,8 +408,6 @@ nnoremap aV :wincmd s \| e %:p:h <CR>
 nnoremap an :tabe %:p:h <CR>
 nnoremap q/ :nohlsearch <CR>
 nnoremap a<space> :nohlsearch <CR>
-nnoremap a[ :cprev<CR>
-nnoremap a] :cnext<CR>
 " Select last changed/yanked text
 nnoremap cv `[v`]
 " Jump last edit edges
@@ -525,7 +523,7 @@ nnoremap <Leader>C :Silent xdg-open %:p:h & <cr>
 nnoremap gb :Bash <CR>
 nnoremap <Leader><Space> :LCDhere <CR>
 nnoremap <Leader>o :Goyo 66%x100%<CR>
-nnoremap <Leader>m ^y$:call system('$BROWSER ' . @")<CR>
+nnoremap <Leader>m ^y$:call system('$BROWSER ' . "'" . @" . "'")<CR>
 nnoremap <Leader>go ^y$:call system('google.sh ' . @")<CR>
 nnoremap <Leader>gw yiw:call system('google.sh ' . @")<CR>
 " nnoremap <Leader>gr ^y$:silent exec " !source $HOME/.bashrc && \"$BROWSER\" \"red " . @" . "\" &>/dev/null & " \| redraw!<CR>
@@ -581,7 +579,7 @@ command! KIR e ++enc=cp1251 | set fileencoding=utf-8 | set fileformat=unix
 " command! C1KIR e ++enc=cp1251 | set fileencoding=utf-8 | set fileformat=unix | wq
 command! F set fileencoding=utf-8 | set fileformat=unix
 command! QQ mksession! ~/.vim/session.vim | wa | qa
-command! SessSave mksession! ~/.vim/session.vim
+command! SessWrite mksession! ~/.vim/session.vim
 command! Bash exec 'silent ! bash' | redraw!
 command! NewTerm exec 'silent ! $TERMINAL &' | redraw!
 command! NewTermHere exec 'silent ! cd "%:p:h" && $TERMINAL &' | redraw!
@@ -600,13 +598,13 @@ if !empty($WINDIR)
 " If windows
   " set makeprg=\./make.bat
   " set makeprg=\./make.bat\ -j4\ DEBUG=1
-	" nnoremap qp :put + <CR>j
+  " nnoremap qp :put + <CR>j
     command! RCbash :exec '!source /c/Users/user/.bashrc'
     command! NewTerm exec 'silent ! mintty.exe &' | redraw!
     command! DOctags !ctags.exe -R --exclude=.git --exclude=log --exclude=wutils --c++-kinds=+p --fields=+iaS --extra=+q *
-	command! Chrome :silent exec '!source /c/Users/user/.bashrc && chrome "%"' | redraw!
-	command! Npp :silent exec '!source /c/Users/user/.bashrc && npp "%"' | redraw!
-	command! XYp :silent exec '!source /c/Users/user/.bashrc && exp "%:p:h" &' | redraw!
+  command! Chrome :silent exec '!source /c/Users/user/.bashrc && chrome "%"' | redraw!
+  command! Npp :silent exec '!source /c/Users/user/.bashrc && npp "%"' | redraw!
+  command! XYp :silent exec '!source /c/Users/user/.bashrc && exp "%:p:h" &' | redraw!
 endif
 
 "----------Functions----------"
@@ -784,14 +782,14 @@ function! MoveToNextTab()
 endfunc
 
 function! WinBufSwap()
-	let thiswin = winnr()
-	let thisbuf = bufnr("%")
-	let lastwin = winnr("#")
-	let lastbuf = winbufnr(lastwin)
-	exec  lastwin . " wincmd w" ."|".
-				\ "buffer ". thisbuf ."|".
-				\ thiswin ." wincmd w" ."|".
-				\ "buffer ". lastbuf
+  let thiswin = winnr()
+  let thisbuf = bufnr("%")
+  let lastwin = winnr("#")
+  let lastbuf = winbufnr(lastwin)
+  exec  lastwin . " wincmd w" ."|".
+        \ "buffer ". thisbuf ."|".
+        \ thiswin ." wincmd w" ."|".
+        \ "buffer ". lastbuf
 endfunction
 
 function! SwitchBackground()
@@ -911,22 +909,21 @@ endfunction
 
 let hostname = substitute(system('hostname'), '\n', '', '')
 if hostname == "warmPC"
-  call LightlineReload('seoul256')
+  LineColor seoul256
   if !exists("g:colors_name")
     colo stellarized
     " colo plastic
   endif
 endif
 if hostname == "debian10pc"
-  " call LightlineReload('sacredforest')
-  " LineColor one
-  LineColor deus
+  " LineColor deus
+  LineColor atlantis
   if !exists("g:colors_name")
-    colo vadelma | set background=light
+    " colo vadelma | set background=light
+    colo onehalfdark
     " colo Revolution
     " colo stellarized
     " colo forest-night
-    " colo plastic
   endif
 endif
 

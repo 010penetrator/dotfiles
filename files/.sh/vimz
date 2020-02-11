@@ -1,3 +1,4 @@
+#!/bin/bash
 
 # How many my vim-servers?
 i=$(vim --serverlist | grep ^VIMSERV$ | wc -l)
