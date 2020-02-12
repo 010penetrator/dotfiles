@@ -532,9 +532,8 @@ nnoremap <Leader>gs :call FocusBufOrDo('stk','e /ln/ho/use/stk.tx')<CR>
 nnoremap <Leader>gd :BD<CR>
 nnoremap <Leader>gt :call MoveToNextTab()<CR>
 nnoremap <Leader>gr :call MoveToPrevTab()<CR>
-nnoremap <Leader>fs :Ack <C-r><C-w> <CR>
+nnoremap <Leader>fg :call ClimbToDirWhere(".git/index",1) \| Ack -Q <C-R><C-W> 
 nnoremap <Leader>ff :AckFile <C-r><C-W> <CR>
-nnoremap <Leader>fc :Ack <C-r><C-W> %:p 
 nnoremap <Leader>fd :Ack <C-r><C-w> %:p:h 
 nnoremap <Leader>fw :AckWindow <C-r><C-w> <CR>
 " binding for vimz bash script; i e move current buf to vimserver 
