@@ -181,15 +181,8 @@ let g:UltiSnipsSnippetDirectories=[$HOME."/.vim/ultisnips"]
 let g:solarized_termcolors=256
 let xterm16_brightness = '#aac8c2' | let xterm16_colormap='soft'
 let g:seoul256_background = 234
-if !exists("g:colors_name")
-  " colorscheme hybrid
-endif
-"Use hybrid tayra seoul256 mushroom tender deus Tomorrow-Night-Eighties
-" let g:lightline = { 'colorscheme': 'PaperColor', }
-" let g:lightline = { 'colorscheme': 'Tomorrow_Night_Bright', }
 " Check lightline themes here:
 " read !ls $VIMPLUG/lightline.vim/autoload/lightline/colorscheme
-" set background=dark
 " set colorcolumn=80
 " augroup mysettings
 " au FileType tex set wrap shiftwidth=2 softtabstop=2 expandtab

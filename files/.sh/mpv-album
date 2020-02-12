@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # ignore '..' target 
 if [ "$1" == '..' ]; then set -- "." "${2}" ; fi
 

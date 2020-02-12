@@ -44,8 +44,14 @@ nnoremap qm 8<c-w>>
 nnoremap qt :tree!<cr>
 nnoremap qq :
 " nnoremap b :! mpv-album %c VIFM; echo -ne "\e]0;VIFM_MPV\a"<cr>
+<<<<<<< HEAD
 nnoremap b :! mpv-album %c VIFM; echo -ne "\033]0;VIFM\007"<cr>
 nnoremap B :! %i cd %c; $TERMINAL -e /bin/bash -c "mpv-album ." & <cr>
+=======
+nnoremap b  :! mpv-album %c VIFM; echo -ne "\033]0;VIFM\007"<cr>
+nnoremap B  :! %i cd %c; $TERMINAL -e /bin/bash -c "mpv-album ." <cr>
+nnoremap ab :! kitty @ new-window --new-tab /bin/bash -c "cd %d/ ; mpv-album %c ; vifm %c" <cr>
+>>>>>>> 0f3082eee92befb16b785b965a2449f8534f111e
 nnoremap rs :! echo -ne "\n" ; rsync -rtn --progress --delete --stats --size-only %d/ %D ; read -n 1 -s -r -p "-----======DONE======------" ; echo
 nnoremap rS :! echo -ne "\n" ; rsync -rt --progress --delete --stats --size-only %d/ %D ; read -n 1 -s -r -p "-----======DONE======------" ; echo
 nnoremap qf :! feha %c &>/dev/null &<cr>
@@ -87,7 +93,7 @@ nnoremap C :copy<cr>
 nnoremap E :move<cr>
 nnoremap cn :clone<cr>
 nnoremap am ggVG<cr>:move<cr>
-nnoremap ab ggVG<cr>:copy<cr>
+nnoremap an ggVG<cr>:copy<cr>
 nnoremap zu :! upk2dir.sh %c <cr>
 nnoremap zU :! upk2dir.sh %c %D <cr>
 nnoremap zp :! 7z a -mx=3 -xr!.git -xr!tags %c.7z %f <cr>
