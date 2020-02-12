@@ -45,7 +45,7 @@ nnoremap qt :tree!<cr>
 nnoremap qq :
 " nnoremap b :! mpv-album %c VIFM; echo -ne "\e]0;VIFM_MPV\a"<cr>
 nnoremap b :! mpv-album %c VIFM; echo -ne "\033]0;VIFM\007"<cr>
-nnoremap B :! %i cd %c; $TERMINAL -e /bin/bash -c "mpv-album ." <cr>
+nnoremap B :! %i cd %c; $TERMINAL -e /bin/bash -c "mpv-album ." & <cr>
 nnoremap rs :! echo -ne "\n" ; rsync -rtn --progress --delete --stats --size-only %d/ %D ; read -n 1 -s -r -p "-----======DONE======------" ; echo
 nnoremap rS :! echo -ne "\n" ; rsync -rt --progress --delete --stats --size-only %d/ %D ; read -n 1 -s -r -p "-----======DONE======------" ; echo
 nnoremap qf :! feha %c &>/dev/null &<cr>

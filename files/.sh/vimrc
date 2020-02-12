@@ -909,7 +909,7 @@ endfunction
 
 let hostname = substitute(system('hostname'), '\n', '', '')
 if hostname == "warmPC"
-  LineColor seoul256
+  LineColor atlantis
   if !exists("g:colors_name")
     colo stellarized
     " colo plastic
