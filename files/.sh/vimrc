@@ -324,9 +324,10 @@ nnoremap <silent> * :<C-u>execute "keepjumps norm! " . v:count1 . "*"<CR>
 " nnoremap <silent> = :<C-u>execute "keepjumps norm! " . v:count1 . "L014j"<CR>
 let key4=""
 let key15=""
-let scroll=82
+let scroll=75
 nnoremap <silent> <Space> :exec 'normal! '.float2nr(round(winheight(0)*(exists("b:scroll") ? b:scroll : g:scroll)*0.01))."<C-d>"<CR>
 nnoremap <silent> <BS>    :exec 'normal! '.float2nr(round(winheight(0)*(exists("b:scroll") ? b:scroll : g:scroll)*0.01)).key15<CR>
+nnoremap <silent> <tab>    :exec 'normal! '.float2nr(round(winheight(0)*(exists("b:scroll") ? b:scroll : g:scroll)*0.01)).key15<CR>
 " <x> will delete to no buffer
 noremap x "_x
 noremap X "_X
@@ -364,6 +365,7 @@ nnoremap qa    <C-W>_
 nnoremap aa    <C-W>_<C-W>\|
 nnoremap aj    <C-W>w<C-W>_<C-W>\|
 nnoremap ak    <C-W>W<C-W>_<C-W>\|
+nmap al ysib<space><space>
 nnoremap qz    <C-W>=
 nnoremap <C-W>S :vsplit<CR>
 nnoremap qy :let @+ = @" <bar> :let @* = @" <CR>
@@ -532,9 +534,9 @@ nnoremap <Leader>gs :call FocusBufOrDo('stk','e /ln/ho/use/stk.tx')<CR>
 nnoremap <Leader>gd :BD<CR>
 nnoremap <Leader>gt :call MoveToNextTab()<CR>
 nnoremap <Leader>gr :call MoveToPrevTab()<CR>
-nnoremap <Leader>fg :call ClimbToDirWhere(".git/index",1) \| Ack -Q <C-R><C-W> 
-nnoremap <Leader>ff :AckFile <C-r><C-W> <CR>
 nnoremap <Leader>fd :Ack <C-r><C-w> %:p:h 
+nnoremap <Leader>fg :call ClimbToDirWhere(".git/index",1) \| Ack -Q <C-R><C-W> 
+" nnoremap <Leader>ff :AckFile <C-r><C-W> <CR>
 nnoremap <Leader>fw :AckWindow <C-r><C-w> <CR>
 " binding for vimz bash script; i e move current buf to vimserver 
 nnoremap <Leader>gv :silent exec '!vimz "%:p"' \| redraw! \| q <CR>
@@ -901,21 +903,20 @@ endfunction
 
 let hostname = substitute(system('hostname'), '\n', '', '')
 if hostname == "warmPC"
-  LineColor atlantis
   if !exists("g:colors_name")
     colo stellarized
     " colo plastic
+    LineColor atlantis
   endif
 endif
 if hostname == "debian10pc"
-  " LineColor deus
-  LineColor atlantis
   if !exists("g:colors_name")
-    " colo vadelma | set background=light
-    colo onehalfdark
+    colo vadelma | set background=light | LineColor deus
+    " colo onehalfdark
     " colo Revolution
     " colo stellarized
     " colo forest-night
+    LineColor atlantis
   endif
 endif
 
