@@ -216,7 +216,7 @@ set scrolloff=2
 set number
 set numberwidth=2
 set showmode
-set hlsearch
+" set hlsearch
 set incsearch
 set linebreak
 set ignorecase
@@ -365,6 +365,7 @@ nnoremap qa    <C-W>_
 nnoremap aa    <C-W>_<C-W>\|
 nnoremap aj    <C-W>w<C-W>_<C-W>\|
 nnoremap ak    <C-W>W<C-W>_<C-W>\|
+nnoremap q<tab> <C-w>p
 nmap al ysib<space><space>
 nnoremap qz    <C-W>=
 nnoremap <C-W>S :vsplit<CR>
@@ -442,7 +443,6 @@ nmap ]s ]-
 nmap [s [-
 nnoremap m-       :<C-U>call signature#mark#Purge("all")<CR>
 nnoremap m<space> :<C-U>call signature#mark#Purge("line")<CR>
-" nnoremap q<tab> <C-w>p
 nnoremap gz 1gt
 " Swap window with prev window
 nnoremap q' :call WinBufSwap()<CR>
@@ -519,8 +519,9 @@ nnoremap gb :Bash <CR>
 nnoremap <Leader><Space> :LCDhere <CR>
 nnoremap <Leader>o :Goyo 66%x100%<CR>
 nnoremap <Leader>m ^y$:call system('$BROWSER ' . "'" . @" . "'")<CR>
-nnoremap <Leader>go ^y$:call system('google.sh ' . @")<CR>
-nnoremap <Leader>gw yiw:call system('google.sh ' . @")<CR>
+nnoremap <Leader>go ^y$:call system('google.sh ' . "'" . @" . "'")<CR>
+nnoremap <Leader>gw yiw:call system('google.sh ' . "'" . @" . "'")<CR>
+nnoremap <Leader>gy ^y$:call system('yandex.sh ' . "'" . @" . "'")<CR>
 " nnoremap <Leader>gr ^y$:silent exec " !source $HOME/.bashrc && \"$BROWSER\" \"red " . @" . "\" &>/dev/null & " \| redraw!<CR>
 nnoremap <Leader>gh ^y$:silent exec " !source $HOME/.bashrc && chromium \"" . @" . "\" &>/dev/null & raise.sh chromium " \| redraw!<CR>
 nnoremap <Leader>gg :call FocusBufOrDo('wawe','e /ln/ho/4gist/wawe')<CR>
@@ -904,9 +905,9 @@ endfunction
 let hostname = substitute(system('hostname'), '\n', '', '')
 if hostname == "warmPC"
   if !exists("g:colors_name")
-    colo stellarized
+    colo stellarized | LineColor darcula
     " colo plastic
-    LineColor atlantis
+    " LineColor atlantis
   endif
 endif
 if hostname == "debian10pc"
@@ -916,7 +917,6 @@ if hostname == "debian10pc"
     " colo Revolution
     " colo stellarized
     " colo forest-night
-    LineColor atlantis
   endif
 endif
 
