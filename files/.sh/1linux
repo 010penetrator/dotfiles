@@ -232,7 +232,9 @@ for f in *.ext ; do g=$f ; mv -v -- "$g" "${g:20}" ; done # shorten file names
 mkdir res ; for f in *; do convert "$f" -resize 50% -sampling-factor 4:2:0  -quality 95%  res/"$f" ; done # recompress pictures
 mkdir res ; for f in *.png; do d=${f%.*} ; convert "$f" -quality 95%  jpg:res/"$d"".jpg" ; done # png to jpg
 xdg-mime default transmission-cli.desktop x-scheme-handler/magnet # set default magnet URL handler
-~/.local/share/applications/*.destop # .destop location
+xdg-mime default vim.desktop $(xdg-mime query filetype textfile.ext)
+exo-open ......../app.desktop # run app .desktop file
+~/.local/share/applications/*.destop # .desktop location
 :irc:weechat:
 /filter add joinquit * irc_join,irc_part,irc_quit *
 /set irc.look.temporary_servers on
