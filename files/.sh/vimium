@@ -1,5 +1,3 @@
-
-
 map gb previousTab
 map t Vomnibar.activateInNewTab
 map e scrollFullPageUp
@@ -24,8 +22,9 @@ g: https://www.google.com/search?q=%s Google
 y: https://yandex.ru/search?text=%s Yandex
 you: https://www.youtube.com/results?search_query=%s Youtube
 d: https://duckduckgo.com/?q=%s DuckDuckGo
-s: https://www.google.com/search?q=%s StartPage
+s: https://www.startpage.com/search?q=%s StartPage
 q: https://www.qwant.com/?q=%s Qwant
+co: https://context.reverso.net/translation/english-russian/%s Reverso Context
 red: https://redacted.ch/torrents.php?searchstr=%s Reda
 c: https://en.cppreference.com/mwiki/index.php?search=%s
 urban: https://www.urbandictionary.com/define.php?term=%s Urban dict

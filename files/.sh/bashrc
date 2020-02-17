@@ -4,6 +4,7 @@ export HISTFILESIZE=
 export HISTSIZE=9000
 export TERMINAL=xterm
 command -v kitty &> /dev/null && export TERMINAL=kitty
+[ COLORTERM==truecolor ] && TERM=xterm-256color
 export PATH=$PATH:~/.sh
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CONFIG_DIRS=/usr/etc/xdg:/etc/xdg
@@ -51,10 +52,9 @@ shopt -s histappend
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # # set a fancy prompt (non-color, unless we know we "want" color)
-# case "$TERM" in
-#     xterm-color|*-256color) color_prompt=yes;;
-# esac
-color_prompt=yes
+case "$TERM" in xterm-color|*-256color|xterm-kitty)
+  color_prompt=yes;;
+esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window

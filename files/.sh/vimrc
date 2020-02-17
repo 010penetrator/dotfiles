@@ -86,7 +86,7 @@ Plug 'romainl/Apprentice' "nostrain
 Plug 'Heorhiy/VisualStudioDark.vim' "mid con
 Plug 'altercation/vim-colors-solarized' "yellow
 Plug 'JarrodCTaylor/spartan' "Spartan,Immortals
-Plug 'jlund3/colorschemer' "'lucid' nice
+Plug 'jlund3/colorschemer' "'lucid' nice termcolors
 Plug 'pbrisbin/vim-colors-off'
 Plug 'jakwings/vim-colors' "moody,garden,messy
 Plug 'vim-scripts/xterm16.vim' "variable
