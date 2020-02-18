@@ -20,9 +20,9 @@ wiki: https://www.wikipedia.org/w/index.php?title=Special:Search&search=%s Wikip
 m: https://www.multitran.com/m.exe?s=%s&l1=1&l2=2 Multitran
 g: https://www.google.com/search?q=%s Google
 y: https://yandex.ru/search?text=%s Yandex
-you: https://www.youtube.com/results?search_query=%s Youtube
-d: https://duckduckgo.com/?q=%s DuckDuckGo
 s: https://www.startpage.com/search?q=%s StartPage
+u: https://www.youtube.com/results?search_query=%s Youtube
+d: https://duckduckgo.com/?q=%s DuckDuckGo
 q: https://www.qwant.com/?q=%s Qwant
 co: https://context.reverso.net/translation/english-russian/%s Reverso Context
 red: https://redacted.ch/torrents.php?searchstr=%s Reda
