@@ -914,7 +914,7 @@ if hostname == "debian10pc"
   if !exists("g:colors_name")
     colo vadelma | set background=light | LineColor deus
     " colo onehalfdark
-    " colo Revolution
+    colo Revolution | LineColor deus
     " colo stellarized
     " colo forest-night
   endif
