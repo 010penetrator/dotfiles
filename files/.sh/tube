@@ -1,14 +1,14 @@
-cd /ln/hh/yt || cd /ln/dwn
+cd /ln/hh/yt 2>/dev/null || cd /ln/dwn
 if ! [ -z $2 ]
 	then a="bestvideo[height<=$1]+bestaudio"
-	echo format= $a
+	echo format is $a
 	youtube-dl -f "$a" $2
 	else if ! [ -z $1 ]
 		then youtube-dl $1
 	fi
 fi
 echo .
-echo -n 'output= ' 
+echo 'output is:' 
 ls -lh "$PWD"/*"$(echo "$@" | cut -d = -f2)".*
 cd - &>/dev/null
 
