@@ -1,3 +1,4 @@
+#!/bin/bash
 # call nice feh
 
 FEH_PARAMS="feh --auto-rotate --edit -B black -xrnqF."
@@ -24,23 +25,4 @@ then
     feh $FEH_PARAMS --start-at ./"$file" . &>/dev/null &
   fi
 fi
-
-
-# if [[ -d "$1" ]]
-# then
-# 	echo \# arg is a dir \'"$1"\'
-# 	feh --auto-rotate -B black -rnqF. "$1" 
-# elif [[ -f "$1" ]]
-# then
-# 	targdir=${1%/*}
-# 	echo \# feh targdir is \'$targdir\'
-# 	# If no slashes in arg
-# 	if [[ "$targdir" == "$1" ]]
-#     then 
-#     echo \# no slashes in arg
-# 		feh --auto-rotate -B black -rnqF. "$1" .
-#     else
-#     feh --auto-rotate -B black -rnqF. "$targdir"
-# 	fi
-# fi
 
