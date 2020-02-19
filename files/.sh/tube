@@ -1,12 +1,20 @@
+#!/bin/bash
+
+if [ -z $1 ] ; then
+  echo "Usage: tube [720] https://youtube......video"
+  exit
+fi
+
 cd /ln/hh/yt 2>/dev/null || cd /ln/dwn
 if ! [ -z $2 ]
-	then a="bestvideo[height<=$1]+bestaudio"
-	echo format is $a
-	youtube-dl -f "$a" $2
-	else if ! [ -z $1 ]
-		then youtube-dl $1
-	fi
+  then a="bestvideo[height<=$1]+bestaudio"
+  echo format is $a
+  youtube-dl -f "$a" $2
+  else if ! [ -z $1 ]
+    then youtube-dl $1
+  fi
 fi
+
 echo .
 echo 'output is:' 
 ls -lh "$PWD"/*"$(echo "$@" | cut -d = -f2)".*
