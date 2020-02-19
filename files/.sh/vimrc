@@ -327,7 +327,7 @@ let key15=""
 let scroll=75
 nnoremap <silent> <Space> :exec 'normal! '.float2nr(round(winheight(0)*(exists("b:scroll") ? b:scroll : g:scroll)*0.01))."<C-d>"<CR>
 nnoremap <silent> <BS>    :exec 'normal! '.float2nr(round(winheight(0)*(exists("b:scroll") ? b:scroll : g:scroll)*0.01)).key15<CR>
-nnoremap <silent> <tab>    :exec 'normal! '.float2nr(round(winheight(0)*(exists("b:scroll") ? b:scroll : g:scroll)*0.01)).key15<CR>
+nnoremap <silent> <tab>   :exec 'normal! '.float2nr(round(winheight(0)*(exists("b:scroll") ? b:scroll : g:scroll)*0.01)).key15<CR>
 " <x> will delete to no buffer
 noremap x "_x
 noremap X "_X
