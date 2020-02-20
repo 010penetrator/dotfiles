@@ -149,8 +149,8 @@ alias dmenu='dmenu $DMENU_OPTIONS -fn "$DMENU_FN"'
 alias 1l='less ~/.sh/1linux'
 alias vf='$TERMINAL -e vifm . &'
 # alias trmclient='title transmission-remote-cli; transmission-remote-cli -c localhost:9090 ; title bash'
-amou() { target=$( sudo lsblk -f | grep .sd | fzf -e | cut -f 1 -d " " | tr -cd '[:alnum:]' ); [ ! -z "${target}" ] && udevil mount /dev/"$target" && echo "/dev/$target mounted"; }
-aumo() { target=$( sudo lsblk -f | grep .sd | grep '/' | cut -c 7- | fzf -e |  cut -f 1 -d " " ); [ ! -z "${target}" ] && sync && udevil umount "/dev/$target" && echo "/dev/$target unmounted"; }
+amou() { target=$( sudo lsblk -f | grep .sd | fzf -e | cut -f 1 -d " " | tr -cd '[:alnum:]' ); [ ! -z "${target}" ] && udevil mount /dev/"$target" && echo "/dev/$target mounted" || echo 'No target.' ; }
+aumo() { target=$( sudo lsblk -f | grep .sd | grep '/' | cut -c 7- | fzf -e |  cut -f 1 -d " " ); [ ! -z "${target}" ] && sync && udevil umount "/dev/$target" && echo "/dev/$target unmounted" || echo 'No target.' ; }
 # title() { echo -ne "\e]0;$*\a"; } 
 title() { echo -ne "\033]0;$*\007"; } 
 alias leto='date +%Y-%m-%d'
