@@ -850,13 +850,20 @@ endfunction
 
 function! EvalThis()
   if getline(line('.')) =~ "^$"
+    " If cursor is on a blank line, Eval next paragraph 
     exec "normal! yap:@\"\<CR>"
   else
-    exec "normal! yy:@\"\<CR>"
+    " Eval current line 
+    if getline(line('.')) =~ '^\%[\s]*["].*'
+      " Ignore the comment sign <">
+      exec "normal! 0wwy$:@\"\<CR>"
+    else
+      exec "normal! yy:@\"\<CR>"
+    endif
   endif
 endfunction
 
-" redir Vim command output to current buffer
+" Exec command with output to current buffer
 function! ExPut(cmd)
   redir => message
   silent exec a:cmd
