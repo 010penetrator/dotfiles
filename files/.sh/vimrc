@@ -912,7 +912,7 @@ if hostname == "warmPC"
 endif
 if hostname == "debian10pc"
   if !exists("g:colors_name")
-    colo vadelma | set background=light | LineColor deus
+    " colo vadelma | set background=light | LineColor deus
     " colo onehalfdark
     colo Revolution | LineColor deus
     " colo stellarized
