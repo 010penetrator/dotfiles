@@ -856,7 +856,7 @@ function! EvalThis()
     " Eval current line 
     if getline(line('.')) =~ '^\%[\s]*["].*'
       " Ignore the comment sign <">
-      exec "normal! 0wwy$:@\"\<CR>"
+      exec "normal! 0^wy$:@\"\<CR>"
     else
       exec "normal! yy:@\"\<CR>"
     endif
@@ -913,17 +913,20 @@ let hostname = substitute(system('hostname'), '\n', '', '')
 if hostname == "warmPC"
   if !exists("g:colors_name")
     colo stellarized | LineColor darcula
-    " colo plastic
-    " LineColor atlantis
   endif
 endif
 if hostname == "debian10pc"
   if !exists("g:colors_name")
-    " colo vadelma | set background=light | LineColor deus
-    " colo onehalfdark
-    colo Revolution | LineColor deus
-    " colo stellarized
-    " colo forest-night
+    colo vadelma | set background=light | LineColor deus
   endif
 endif
 
+" colo Revolution
+" colo plastic
+" colo onehalfdark
+" colo forest-night
+" LineColor atlantis
+" LineColor deus
+" LineColor darcula
+" colo stellarized | set background=light | LineColor atlantis
+" colo vadelma | set background=light | LineColor deus
