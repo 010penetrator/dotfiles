@@ -912,7 +912,7 @@ endfunction
 let hostname = substitute(system('hostname'), '\n', '', '')
 if hostname == "warmPC"
   if !exists("g:colors_name")
-    colo stellarized | LineColor darcula
+    colo stellarized | set background=light | LineColor atlantis
   endif
 endif
 if hostname == "debian10pc"
