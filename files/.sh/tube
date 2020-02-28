@@ -7,13 +7,15 @@ fi
 
 cd /ln/hh/yt 2>/dev/null || cd /ln/dwn
 if ! [ -z $2 ]
-  then a="bestvideo[height<=$1]+bestaudio"
+then a="bestvideo[height<=$1]+bestaudio"
   echo format is $a
-  youtube-dl -f "$a" $2
-  else if ! [ -z $1 ]
-    then youtube-dl $1
-  fi
+else if ! [ -z $1 ]
+then youtube-dl $1
+  a="bestvideo[height<=720]+bestaudio"
 fi
+fi
+
+youtube-dl -f "$a" $2
 
 echo .
 echo 'output is:' 

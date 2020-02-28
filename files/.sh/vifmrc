@@ -17,7 +17,8 @@ command! flac :! cd %c && uni2flac.sh &>/dev/null ; notify-send "%c converted" &
 command! respic :! echo $PWD && respic50.sh
 command! rescol :! convert %c -quality 95%%  -sampling-factor '2x2,1x1,1x1' %c.jpg
 command! respng :! mkdir res ; for f in *.png; do d=${f%%%%.*} ; convert "$f" -quality 95%%%% -sampling-factor 4:4:4  jpg:res/"$d"".jpg" ; done # png to jpg
-command! resmusAll :! mkdir resampled; for flac in *.flac; do sox -S "${flac}" -r 44100 -b 16 ./resampled/"${flac}"; done 
+command! resmusAll :! mkdir resampled; for flac in *.flac; do sox -S "${flac}" -G -b 16 ./resampled/"${flac}" rate -v -L 44100 dither ; done 
+" sox input.flac -G -b 16 output.flac rate -v -L 44100 dither
 command! resmusBit :! mkdir resampled; for flac in *.flac; do sox -S "${flac}" -b 16 ./resampled/"${flac}"; done 
 command! ff :!fehf . &>/dev/null &
 command! tok :!touch %c "--date=@$(expr $(stat -c %%%%Y KKKKKKKKKK) - 1000)"
