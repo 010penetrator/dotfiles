@@ -1,4 +1,4 @@
-echo keys are $*
+echo args are $*
 ground=${PWD}
 echo ground is $ground 
 if [ -z "$1" ] ; then 
