@@ -1,6 +1,7 @@
 sudo uname
 uptime -p
 du -sh /var/cache/pacman/pkg/ /var/log/journal/ ~/
+sudo journalctl --vacuum-size=50M --quiet
 # df -BGB
 lsblk -fl 
 sudo pacman -Syu

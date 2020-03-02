@@ -1,5 +1,6 @@
 #!/bin/bash
 
+FILE="/tmp/mpv-history"
 # ignore '..' target 
 if [ "$1" == '..' ]; then set -- "." "${2}" ; fi
 
@@ -9,7 +10,17 @@ then
   if [ -e "$1" ]
   then
     cd "$1"
-    echo "$PWD" >> /tmp/mpv-history
+    echo we are in $PWD
+    if ! [ -f "$FILE" ] ; then touch "$FILE" ; fi
+    case `grep -xF "$PWD" "$FILE" >/dev/null; echo $?` in
+      0)
+        echo This album was listened to recently..
+        ;;
+      1)
+        echo Updating history file..
+        echo "$PWD" >> "$FILE"
+        ;;
+    esac
   else
     echo mpv-album says !No such directory!
     exit

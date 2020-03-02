@@ -46,7 +46,7 @@ nnoremap qt :tree!<cr>
 nnoremap qq :
 " nnoremap b :! mpv-album %c VIFM; echo -ne "\e]0;VIFM_MPV\a"<cr>
 nnoremap b  :! mpv-album %c VIFM; echo -ne "\033]0;VIFM\007" <cr>
-nnoremap B  :! %i cd %c; $TERMINAL -e /bin/bash -c "mpv-album ." <cr>
+nnoremap B  :! %i cd %c; $TERMINAL -e /bin/bash -c "mpv-album ." &>/dev/null & <cr>
 nnoremap ab :! kitty @ new-window --new-tab /bin/bash -c "cd %d/ ; mpv-album %c ; vifm %c" <cr>
 nnoremap rs :! echo -ne "\n" ; rsync -rtn --progress --delete --stats --size-only %d/ %D ; read -n 1 -s -r -p "-----======DONE======------" ; echo
 nnoremap rS :! echo -ne "\n" ; rsync -rt  --progress --delete --stats --size-only %d/ %D ; read -n 1 -s -r -p "-----======DONE======------" ; echo
@@ -110,19 +110,20 @@ nnoremap yC :! echo -n %f:p | xclip ; echo -n %f:p | xclip -selection clipboard 
 nnoremap gh :cd $HOME/<cr>
 nnoremap gq :cd /ln/mo/<cr>
 nnoremap gm :cd /ln/mus/<cr>
-nnoremap gd :cd %c/.vifm-Trash-1000/<cr>
-nnoremap gx :cd $HOME/.local/share/vifm/Trash/<cr>
+" nnoremap gd :cd %c/.vifm-Trash-1000/<cr>
+nnoremap gx :trashes<cr>
 nnoremap gc :cd $HOME/.config/<cr>
 nnoremap gs :cd $HOME/.sh/<cr>
 nnoremap gl gf 
 nnoremap al :!ln -s $PWD/%c %D/%c <cr>
-nnoremap ap :!ln -sr $PWD/%c %D/%c <cr>
+nnoremap ap al
+" nnoremap ap :!ln -sr $PWD/%c %D/%c <cr>
 nnoremap aL :!ln -s $PWD/%c %d/%cL <cr>
 nnoremap ae :winrun , cd %C <cr><tab>
 nnoremap a= :winrun , cd %D <cr><tab>
 nnoremap t tj
 nnoremap cv cW
-noremap gb :tabprev<cr>
+noremap gr :tabprev<cr>
 nnoremap at :tabnew<cr>
 
 set syscalls
