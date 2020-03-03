@@ -918,6 +918,7 @@ endif
 if hostname == "debian10pc"
   if !exists("g:colors_name")
     colo vadelma | set background=light | LineColor deus
+    set hlsearch 
   endif
 endif
 
@@ -930,3 +931,4 @@ endif
 " LineColor darcula
 " colo stellarized | set background=light | LineColor atlantis
 " colo vadelma | set background=light | LineColor deus
+
