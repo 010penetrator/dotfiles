@@ -102,8 +102,9 @@ nnoremap aS :! tar -I 'zstd -11 -T0' -cf %D/%c.tar.zst --exclude='.git' --exclud
 nnoremap ze :! upk.sh %c <cr>
 nnoremap zE :! cd %D; upk.sh %d/%c <cr>
 nnoremap ar ggvGcw
-nnoremap qo :!cp -r %c /ln/mus/0/<cr>
-nnoremap qO :!mv %c /ln/mus/0/<cr>
+nnoremap qo :!cp -r %c /ln/mus/0/ <cr>
+nnoremap qO :!mv %c /ln/mus/0/ <cr>
+nnoremap qM :! echo Copy \'%c\' to MUZIK.. ; cp -r %c /ln/mo/blink/MUZIK/ <cr>
 nnoremap yc :! echo -n %f | xclip ; echo -n %f | xclip -selection clipboard %i <cr>:echo "filename in X buffer"<cr>
 nnoremap yC :! echo -n %f:p | xclip ; echo -n %f:p | xclip -selection clipboard %i <cr>:echo "full filepath in X buffer"<cr>
 " nnoremap - <C-b>
