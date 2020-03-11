@@ -584,6 +584,7 @@ command! DOctags !ctags -R --exclude=.git --exclude=log --exclude=wutils --c++-k
 command! DOctagsSudo !sudo ctags -R --exclude=.git --exclude=log --exclude=wutils --c++-kinds=+p --fields=+iaS --extra=+q *
 command! Yall normal gg"+yG''
 command! Dall normal gg"_dG
+command! SwapPrev :call SwapPrevWin()
 command! FileDel :silent exec '!rm %' | redraw! | bd
 "exec '!chromium' ali.@"
 command! -nargs=? LineColor call LightlineReload('<args>')
@@ -776,6 +777,19 @@ function! MoveToNextTab()
   exe "b".l:cur_buf
 endfunc
 
+function! SwapPrevWin()
+  let lines1 = getline(1, '$')
+  exe 'wincmd p'
+  let lines2 = getline(1, '$')
+  exe '%d_'
+  $put=lines1
+  normal ggdd
+  exe 'wincmd p'
+  exe '%d_'
+  $put=lines2
+  normal ggdd
+endfunction
+
 function! WinBufSwap()
   let thiswin = winnr()
   let thisbuf = bufnr("%")
@@ -917,7 +931,7 @@ if hostname == "warmPC"
 endif
 if hostname == "debian10pc"
   if !exists("g:colors_name")
-    colo vadelma | set background=light | LineColor deus
+    colo plastic | LineColor deus
     set hlsearch 
   endif
 endif
