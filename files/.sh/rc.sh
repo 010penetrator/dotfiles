@@ -50,7 +50,7 @@ elif [[ "$HOSTNAME" =~ 'warmPC' ]]; then
   # xrdb -merge <(echo "Xft.dpi: 108") &
   sleep 1
   trdwrap.sh & 
-  earlyoom -m 4 -n &> /dev/null &
+  pgrep earlyoom | grep . || earlyoom -m 2 -n &> /dev/null &
 
 elif [[ "$HOSTNAME" =~ [pc,PC] ]]; then
   xrandr --output VGA-2 --off 

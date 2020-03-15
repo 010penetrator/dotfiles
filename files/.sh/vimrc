@@ -404,11 +404,11 @@ nnoremap aV :wincmd s \| e %:p:h <CR>
 nnoremap an :tabe %:p:h <CR>
 nnoremap q/ :nohlsearch <CR>
 nnoremap a<space> :set hlsearch! <CR>
-" Select last changed/yanked text
-nnoremap cv `[v`]
 " Jump last edit edges
 nnoremap [e `[
 nnoremap ]e `]
+" Select last changed/yanked text
+nnoremap cv `[v`]
 " Jump last selection edges
 nnoremap [v `<
 nnoremap ]v `>
