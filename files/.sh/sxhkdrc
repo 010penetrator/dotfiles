@@ -119,10 +119,10 @@ super + {comma,period}
 # focus the last node/desktop
 alt + Tab
   bspc desktop -f last
-super + Tab
-  bspc node -f last
 super + BackSpace
   bspc desktop -f last
+super + Tab
+  bspc node -f last
 
 # focus the older or newer node in the focus history
 super + ctrl + {o,i}
