@@ -1,2 +1,2 @@
-wine /ln/mo/Blink/exe/IrfanView/i_view32.exe
+wine /ln/mo/blink/exe/IrfanView/i_view32.exe
 
