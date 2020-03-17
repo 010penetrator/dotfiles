@@ -1,5 +1,5 @@
 super + x ; { u, m, s, r, e, h, f, d, g, p, n, o, w, a, i }
-  raise.sh { 'Luakit' 'luakit', notimem, speedcrunch, Ranger 'newranger', 'WeeChat\|weechat' 'urxvt -e weechat', htop '$TERMINAL -e htop', feh 'fa /ln/dwn/', deadbeef, 'chromium\|Firefox\|Navigator' '$BROWSER', Thunar thunar, nautilus, VirtualBox '', fbreader, pavucontrol, histmpv.sh }
+  raise.sh { 'Luakit' 'luakit', notimem, speedcrunch, Ranger 'newranger', 'WeeChat\|weechat\|Pidgin' 'urxvt -e weechat', htop '$TERMINAL -e htop', feh 'fa /ln/dwn/', deadbeef, 'chromium\|Firefox\|Navigator' '$BROWSER', Thunar thunar, nautilus, VirtualBox '', fbreader, pavucontrol, histmpv.sh }
 
 super + x ; { q, t, j, z, k, l, b }
   { scroff.sh, raiseterm.sh, windowswitcher.sh, xdotool mousemove_relative 0 1600, i3-msg kill, listdwn.sh, listmpv.sh }
