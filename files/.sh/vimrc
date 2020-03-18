@@ -554,8 +554,8 @@ nnoremap <Leader>vb :call SwitchBackground()<CR> :echo "background=" &background
 nnoremap <Leader>vc :set termguicolors! <cr> :set termguicolors? <cr>
 nnoremap <Leader>vt :TagbarOpen fj <CR>
 nnoremap <Leader>zz :let &scrolloff=28-&scrolloff<CR>
-nnoremap <Leader>zt :silent exec 'DOctags' \| redraw! \| echo 'Wrote tags db in' getcwd().'/' <CR>
-nnoremap <Leader>zg :call DOgitprojTags() <CR>
+nnoremap <Leader>zt :silent exec 'UpdCtags' \| redraw! \| echo 'Wrote tags db in' getcwd().'/' <CR>
+nnoremap <Leader>zg :call UpdGitCtags() <CR>
 nnoremap <Leader>zx :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make clean") <bar> redraw! <bar> cwindow<CR>
 nnoremap <Leader>zc :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make") <bar> redraw! <bar> cwindow <CR>
 nnoremap <Leader>zv :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make run") <bar> redraw! <bar> cwindow <CR>
@@ -580,8 +580,8 @@ command! NewTerm exec 'silent ! $TERMINAL &' | redraw!
 command! NewTermHere exec 'silent ! cd "%:p:h" && $TERMINAL &' | redraw!
 command! NewVifmHere exec 'silent ! $TERMINAL -e vifm %:p:h & ' | redraw!
 command! LCDhere lcd %:p:h | pwd
-command! DOctags !ctags -R --exclude=.git --exclude=log --exclude=wutils --c++-kinds=+p --fields=+iaS --extra=+q *
-command! DOctagsSudo !sudo ctags -R --exclude=.git --exclude=log --exclude=wutils --c++-kinds=+p --fields=+iaS --extra=+q *
+command! UpdCtags !ctags -R --exclude=.git --exclude=log --exclude=wutils --c++-kinds=+p --fields=+iaS --extra=+q *
+command! UpdCtagsSudo !sudo ctags -R --exclude=.git --exclude=log --exclude=wutils --c++-kinds=+p --fields=+iaS --extra=+q *
 command! Yall normal gg"+yG''
 command! Dall normal gg"_dG
 command! SwapPrev :call SwapPrevWin()
@@ -597,7 +597,7 @@ if !empty($WINDIR)
   " nnoremap qp :put + <CR>j
     command! RCbash :exec '!source /c/Users/user/.bashrc'
     command! NewTerm exec 'silent ! mintty.exe &' | redraw!
-    command! DOctags !ctags.exe -R --exclude=.git --exclude=log --exclude=wutils --c++-kinds=+p --fields=+iaS --extra=+q *
+    command! UpdCtags !ctags.exe -R --exclude=.git --exclude=log --exclude=wutils --c++-kinds=+p --fields=+iaS --extra=+q *
   command! Chrome :silent exec '!source /c/Users/user/.bashrc && chrome "%"' | redraw!
   command! Npp :silent exec '!source /c/Users/user/.bashrc && npp "%"' | redraw!
   command! XYp :silent exec '!source /c/Users/user/.bashrc && exp "%:p:h" &' | redraw!
@@ -605,7 +605,7 @@ endif
 
 "----------Functions----------"
 
-function! DOgitprojTags()
+function! UpdGitCtags()
   echom "Trying to update ctags in this git project"
   silent exec '! echo -e "\n\n"Trying to update ctags in this git project"..."'
   let l:starting_directory = getcwd()
@@ -945,4 +945,5 @@ endif
 " LineColor darcula
 " colo stellarized | set background=light | LineColor atlantis
 " colo vadelma | set background=light | LineColor deus
+" colo snow | set background=light | LineColor nord
 
