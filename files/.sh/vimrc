@@ -403,7 +403,7 @@ nnoremap aV :wincmd s \| e %:p:h <CR>
 " nnoremap ae :wincmd s \| e %:p:h <CR>
 nnoremap an :tabe %:p:h <CR>
 nnoremap q/ :nohlsearch <CR>
-nnoremap a<space> :set hlsearch! <CR>
+nnoremap a<space> :nohlsearch <CR>
 " Jump last edit edges
 nnoremap [e `[
 nnoremap ]e `]

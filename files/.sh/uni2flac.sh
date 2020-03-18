@@ -1,4 +1,12 @@
-targ='/ln/mo/blink/MUZIK/'
+#!/bin/bash
+# Usage: uni2flac.sh target_dir
+
+if [ -z $1 ] ; then
+  targ='/ln/mo/blink/MUZIK/'
+else
+  targ="$1"
+fi
+
 drn=${PWD##*/}
 f=$(ls | grep -c '\.flac$')
 c=$(ls | grep -c '\.cue$')
@@ -20,7 +28,7 @@ else
     done
     cp 2>/dev/null *[C,c]over.* [F,f]ront.* [F,f]older.* [B,b]ack.* "$targ/$drn"
   else
-    cue2flac.sh . /ln/mo/blink/MUZIK/;
+    cue2flac.sh . "$targ";
   fi
 fi
 
