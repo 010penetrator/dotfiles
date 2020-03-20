@@ -357,8 +357,8 @@ nnoremap qj    <C-W>j
 nnoremap qk    <C-W>k
 nnoremap ql    <C-W>l
 nnoremap <C-\> <C-W>w
-nnoremap qm    <C-W>6>
-nnoremap qn    <C-W>6<
+nnoremap q<right>  <C-W>6>
+nnoremap q<left>   <C-W>6<
 nnoremap qe    <C-W>4+
 nnoremap qd    <C-W>4-
 nnoremap qa    <C-W>_
