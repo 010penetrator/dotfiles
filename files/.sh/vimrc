@@ -7,10 +7,11 @@ let $VIMPLUG = expand('$HOME') . '/.vim/plugged'
 " help i_ctrl-
 " currfile=%\ mainbin
 " let $BROWSER = 'luakit'
-" .w !bash " exec current line 
-" exec  "!"  . @"  " exec yank buffer
-" read !ls -la " paste shell output
-" g/.\{20,\}/ exec "normal gqgq" | nohls
+" .w !bash  "exec current line 
+" exec  "!"  . @"  "exec yank buffer
+" read !ls -la  "paste shell output
+" g/.\{20,\}/ exec "normal gqgq" | nohls " format only longer lines
+" exec "normal! :%s/^\\(\\s\\)\\+$//g\<CR>"  |"clean space lines
 " autocmd WinNew * set numberwidth=2 winheight=7
 "-------------Plug------------"
 " curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -216,7 +217,7 @@ set scrolloff=2
 set number
 set numberwidth=2
 set showmode
-" set hlsearch
+set hlsearch | nohlsearch
 set incsearch
 set linebreak
 set ignorecase
@@ -404,6 +405,7 @@ nnoremap aV :wincmd s \| e %:p:h <CR>
 nnoremap an :tabe %:p:h <CR>
 nnoremap q/ :nohlsearch <CR>
 nnoremap a<space> :nohlsearch <CR>
+" nnoremap a<space> :set hlsearch! <CR>
 " Jump last edit edges
 nnoremap [e `[
 nnoremap ]e `]
@@ -932,7 +934,7 @@ endif
 if hostname == "debian10pc"
   if !exists("g:colors_name")
     colo plastic | LineColor deus
-    set hlsearch 
+    " set hlsearch 
   endif
 endif
 
