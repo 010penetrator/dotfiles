@@ -8,10 +8,10 @@ let $VIMPLUG = expand('$HOME') . '/.vim/plugged'
 " currfile=%\ mainbin
 " let $BROWSER = 'luakit'
 " .w !bash  "exec current line 
+" %s/^\(\s\)\+$//g |" clean space lines 
 " exec  "!"  . @"  "exec yank buffer
 " read !ls -la  "paste shell output
 " g/.\{20,\}/ exec "normal gqgq" | nohls " format only longer lines
-" exec "normal! :%s/^\\(\\s\\)\\+$//g\<CR>"  |"clean space lines
 " autocmd WinNew * set numberwidth=2 winheight=7
 "-------------Plug------------"
 " curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -507,7 +507,9 @@ nnoremap <Leader>k :Denite buffer -mode=normal -immediately-1<CR>
 nnoremap <Leader>e :BufExplorer <CR>
 nnoremap qb :call GotoTerm(0)<CR>
 " Open terminal at current file directory
-nnoremap ab : wincmd n \| if isdirectory(expand('#:p:h')) \| lcd #:p:h \| endif \| terminal ++curwin ++norestore <CR>
+nnoremap ab : new \| if isdirectory(expand('#:p:h')) \| lcd #:p:h \| endif \| terminal ++curwin ++norestore <CR>
+nnoremap aB : vnew \| if isdirectory(expand('#:p:h')) \| lcd #:p:h \| endif \| terminal ++curwin ++norestore <CR>
+nnoremap aA : if isdirectory(expand('%:p:h')) \| lcd %:p:h \| endif \| terminal ++curwin ++norestore <CR>
 nnoremap <Leader>t :NewTermHere<CR>
 " Select prev tab
 nnoremap <Leader><tab> :exe "tabn ".g:lasttab<CR>
@@ -556,8 +558,9 @@ nnoremap <Leader>vb :call SwitchBackground()<CR> :echo "background=" &background
 nnoremap <Leader>vc :set termguicolors! <cr> :set termguicolors? <cr>
 nnoremap <Leader>vt :TagbarOpen fj <CR>
 nnoremap <Leader>zz :let &scrolloff=28-&scrolloff<CR>
-nnoremap <Leader>zt :silent exec 'UpdCtags' \| redraw! \| echo 'Wrote tags db in' getcwd().'/' <CR>
-nnoremap <Leader>zg :call UpdGitCtags() <CR>
+nnoremap <Leader>za :silent exec 'UpdCtags' \| redraw! \| echo 'Wrote tags db in' getcwd().'/' <CR>
+nnoremap <Leader>zg :call UpdCtagsGit() <CR>
+nnoremap <Leader>zs :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make tags") <bar> redraw! <bar> cwindow <CR>
 nnoremap <Leader>zx :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make clean") <bar> redraw! <bar> cwindow<CR>
 nnoremap <Leader>zc :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make") <bar> redraw! <bar> cwindow <CR>
 nnoremap <Leader>zv :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make run") <bar> redraw! <bar> cwindow <CR>
@@ -584,6 +587,7 @@ command! NewVifmHere exec 'silent ! $TERMINAL -e vifm %:p:h & ' | redraw!
 command! LCDhere lcd %:p:h | pwd
 command! UpdCtags !ctags -R --exclude=.git --exclude=log --exclude=wutils --c++-kinds=+p --fields=+iaS --extra=+q *
 command! UpdCtagsSudo !sudo ctags -R --exclude=.git --exclude=log --exclude=wutils --c++-kinds=+p --fields=+iaS --extra=+q *
+command! UpdCtagsGit :call UpdCtagsGit()
 command! Yall normal gg"+yG''
 command! Dall normal gg"_dG
 command! SwapPrev :call SwapPrevWin()
@@ -607,7 +611,7 @@ endif
 
 "----------Functions----------"
 
-function! UpdGitCtags()
+function! UpdCtagsGit()
   echom "Trying to update ctags in this git project"
   silent exec '! echo -e "\n\n"Trying to update ctags in this git project"..."'
   let l:starting_directory = getcwd()
@@ -616,7 +620,8 @@ function! UpdGitCtags()
   let l:proj_dir = ClimbToDirWhere(".git/index",0)
   if ( l:proj_dir != "-1" )
     silent exec '! echo Found .git in $PWD/'
-    exec '!ctags -R --exclude=.git --exclude=log --exclude=wutils --c++-kinds=+p --fields=+iaS --extra=+q *'
+    " exec '!ctags -R --exclude=.git --exclude=log --exclude=wutils --c++-kinds=+p --fields=+iaS --extra=+q *'
+    exec '!  ctags_with_deps.sh $(find . -name \*.[ch])'
   else
     echom "Cant find .git"
   endif
