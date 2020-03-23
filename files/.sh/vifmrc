@@ -52,7 +52,7 @@ nnoremap ab :! kitty @ new-window --new-tab /bin/bash -c "cd %d/ ; mpv-album %c 
 nnoremap rs :! echo -ne "\n" ; rsync -rtn --progress --delete --stats --size-only %d/ %D ; read -n 1 -s -r -p "-----======DONE======------" ; echo
 nnoremap rS :! echo -ne "\n" ; rsync -rt  --progress --delete --stats --size-only %d/ %D ; read -n 1 -s -r -p "-----======DONE======------" ; echo
 nnoremap qf :! feha %c &>/dev/null &<cr>
-" nnoremap ai :! vim %c <cr>
+nnoremap aa :! vim %c <cr>
 nnoremap q<space> :! mpv %c <cr>
 " Open file with vim server
 nnoremap av :! vimz "$PWD/%c"<cr>
