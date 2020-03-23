@@ -231,6 +231,7 @@ set display=lastline
 set hidden
 autocmd WinNew * set numberwidth=2
 autocmd FileType c setlocal commentstring=//%s
+autocmd FileType cpp setlocal commentstring=//%s
 autocmd FileType text setlocal commentstring=#%s
 autocmd FileType cmake setlocal commentstring=#%s
 set fileformat=unix
