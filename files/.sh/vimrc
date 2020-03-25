@@ -365,6 +365,7 @@ nnoremap qe    <C-W>4+
 nnoremap qd    <C-W>4-
 nnoremap qa    <C-W>_
 nnoremap aa    <C-W>_<C-W>\|
+nnoremap ad    <C-W>80-
 nnoremap aj    <C-W>w<C-W>_<C-W>\|
 nnoremap ak    <C-W>W<C-W>_<C-W>\|
 nnoremap q<tab> <C-w>p
@@ -484,7 +485,6 @@ cnoremap <C-t> <C-Right>
 
 nnoremap a <Nop>
 map ф a 
-nnoremap ad a
 nnoremap as a
 nnoremap at :tabe<CR>
 nmap aT atg<
@@ -565,6 +565,7 @@ nnoremap <Leader>zs :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","mak
 nnoremap <Leader>zx :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make clean") <bar> redraw! <bar> cwindow<CR>
 nnoremap <Leader>zc :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make") <bar> redraw! <bar> cwindow <CR>
 nnoremap <Leader>zv :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make run") <bar> redraw! <bar> cwindow <CR>
+" nnoremap <Leader>zb yap: exec "!" . @" <cr>
 nnoremap <Leader>zl : silent exec '! echo -e "\n$(pwd):"; ls -la . ; read -n 1 -s -r -p "//hit.anykey" ; echo -ne "\n" ' \| redraw! <cr>
 vnoremap z- <ESC>:call FoldSelected()<CR>za
 nnoremap d- %%dd''dd''
@@ -949,6 +950,7 @@ endif
 " colo onehalfdark
 " colo forest-night
 " LineColor atlantis
+" LineColor nord
 " LineColor deus
 " LineColor darcula
 " colo stellarized | set background=light | LineColor atlantis
