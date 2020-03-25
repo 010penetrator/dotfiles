@@ -19,7 +19,7 @@ command! rescol :! convert %c -quality 95%%  -sampling-factor '2x2,1x1,1x1' %c.j
 command! respng :! mkdir res ; for f in *.png; do d=${f%%%%.*} ; convert "$f" -quality 95%%%% -sampling-factor 4:4:4  jpg:res/"$d"".jpg" ; done # png to jpg
 command! resmusAll :! mkdir resampled; for flac in *.flac; do sox -S "${flac}" -G -b 16 ./resampled/"${flac}" rate -v -L 44100 dither ; done 
 " sox input.flac -G -b 16 output.flac rate -v -L 44100 dither
-command! resmusBit :! mkdir resampled; for flac in *.flac; do sox -S "${flac}" -b 16 ./resampled/"${flac}"; done 
+command! resmusBit :! mkdir resampled orig ; for flac in *.flac; do sox -S "${flac}" -b 16 ./resampled/"${flac}"; mv "${flac}" orig/ ; done 
 command! ff :!fehf . &>/dev/null &
 command! tok :!touch %c "--date=@$(expr $(stat -c %%%%Y KKKKKKKKKK) - 1000)"
 command! tik :!touch --date="$(date -R -r %c) + 1 day" %c

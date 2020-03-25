@@ -22,9 +22,9 @@ sxd.sh &
 # killall sxhkd; sxhkd -c ~/.sh/sxhkdrc &
 nitrogen --restore &
 
-xinput set-prop "A4TECH USB Device" "libinput Accel Speed" -.33
+xinput set-prop "A4TECH USB Device" "libinput Accel Speed" -.4
 xinput set-prop "RAPOO Rapoo 2.4G Wireless Device" "libinput Accel Speed" -.7
-xinput set-prop "pointer:Logitech MX Master 3" "libinput Accel Speed" -.3
+xinput set-prop "pointer:Logitech MX Master 3" "libinput Accel Speed" -.4
 
 if [[ "$HOSTNAME" =~ 'killer'[pc,PC] ]]; then
   # xrandr --dpi 110x110
@@ -49,7 +49,7 @@ elif [[ "$HOSTNAME" =~ ^white*(.*)ok ]]; then
 elif [[ "$HOSTNAME" =~ 'warmPC' ]]; then
   # xrdb -merge <(echo "Xft.dpi: 108") &
   sleep 1
-  trdwrap.sh & 
+  pgrep transmission-daemon | grep . || trdwrap.sh & 
   pgrep earlyoom | grep . || earlyoom -m 2 -n &> /dev/null &
 
 elif [[ "$HOSTNAME" =~ [pc,PC] ]]; then

@@ -1,6 +1,5 @@
 # killall -v transmission-daemon 2> /dev/null
-ps aux | grep transmission-daemon | grep -v grep && 
-  transmission-remote 9090 --exit
+  pgrep transmission-daemon | grep . || transmission-remote 9090 --exit
 sleep 1 
 notify-send "(re-)Starting transmission-daemon…"
 transmission-daemon --foreground --log-info 2>&1 | while read line; do

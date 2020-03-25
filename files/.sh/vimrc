@@ -954,6 +954,8 @@ endif
 " LineColor nord
 " LineColor deus
 " LineColor darcula
+" LineColor material
+" LineColor ayu_light
 " colo stellarized | set background=light | LineColor atlantis
 " colo vadelma | set background=light | LineColor deus
 " colo snow | set background=light | LineColor nord
