@@ -128,7 +128,7 @@ Plug 'nightsense/stellarized' "nice! light+dark
 Plug 'rdavison/Libertine' "applejuice
 Plug 'AlessandroYorba/Sierra' "softgray
 Plug 'AlessandroYorba/Despacio' "softdarkgrey
-Plug 'srcery-colors/srcery-vim' "consbroken
+Plug 'srcery-colors/srcery-vim' "fresh-dark consbroken
 Plug 'Jimeno0/vim-chito' "consbroken
 Plug 'aradunovic/perun.vim' "consbroken
 Plug 'HenryNewcomer/vim-theme-underflow' "consbroken
@@ -366,11 +366,11 @@ nnoremap qd    <C-W>4-
 nnoremap qa    <C-W>_
 nnoremap aa    <C-W>_<C-W>\|
 nnoremap ad    <C-W>80-
+nnoremap az    <C-W>=
 nnoremap aj    <C-W>w<C-W>_<C-W>\|
 nnoremap ak    <C-W>W<C-W>_<C-W>\|
 nnoremap q<tab> <C-w>p
 nmap al ysib<space><space>
-nnoremap qz    <C-W>=
 nnoremap <C-W>S :vsplit<CR>
 nnoremap qy :let @+ = @" <bar> :let @* = @" <CR>
 nnoremap ay "+yiw
@@ -490,7 +490,7 @@ nnoremap at :tabe<CR>
 nmap aT atg<
 nnoremap aq :qa<CR>
 nnoremap af :exec "normal i".nr2char(getchar())."\e"<CR>
-nnoremap ag :exec "normal ad".nr2char(getchar())."\e"<CR>
+nnoremap ag :exec "normal as".nr2char(getchar())."\e"<CR>
 " Leader maps
 let mapleader = ","
 nnoremap <Leader>1 1gt
@@ -530,6 +530,7 @@ nnoremap <Leader>gy ^y$:call system('yandex.sh ' . "'" . @" . "'")<CR>
 " nnoremap <Leader>gr ^y$:silent exec " !source $HOME/.bashrc && \"$BROWSER\" \"red " . @" . "\" &>/dev/null & " \| redraw!<CR>
 nnoremap <Leader>gh ^y$:silent exec " !source $HOME/.bashrc && chromium \"" . @" . "\" &>/dev/null & raise.sh chromium " \| redraw!<CR>
 nnoremap <Leader>gg :call FocusBufOrDo('wawe','e /ln/ho/4gist/wawe')<CR>
+nnoremap <Leader>gq :call FocusBufOrDo('.vimrc','e $MYVIMRC')<CR>
 nnoremap <Leader>gx :call FocusBufOrDo('sxhkd','e /ln/sh/sxhkdrc')<CR>
 nnoremap <Leader>gz :call FocusBufOrDo('zzzz','e /ln/hh/tt/zzzzzz')<CR>
 nnoremap <Leader>gp :call FocusBufOrDo('sh_history','e $HOME/.bash_history')<CR>
