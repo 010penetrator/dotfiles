@@ -49,7 +49,7 @@ elif [[ "$HOSTNAME" =~ ^white*(.*)ok ]]; then
 elif [[ "$HOSTNAME" =~ 'warmPC' ]]; then
   # xrdb -merge <(echo "Xft.dpi: 108") &
   sleep 1
-  pgrep transmission-daemon | grep . || trdwrap.sh & 
+  pgrep transmission-da | grep . || trdwrap.sh & 
   pgrep earlyoom | grep . || earlyoom -m 2 -n &> /dev/null &
 
 elif [[ "$HOSTNAME" =~ [pc,PC] ]]; then
