@@ -336,7 +336,6 @@ noremap X "_X
 " swap two chars
 nnoremap qx dlp
 " noremap s "_s
-nnoremap gb gT
 nnoremap gr gT
 nnoremap g< :tabm -1 <CR>
 nnoremap g> :tabm +1 <CR>
