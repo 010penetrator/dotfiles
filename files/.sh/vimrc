@@ -329,7 +329,7 @@ let key15=""
 let scroll=75
 nnoremap <silent> <Space> :exec 'normal! '.float2nr(round(winheight(0)*(exists("b:scroll") ? b:scroll : g:scroll)*0.01))."<C-d>"<CR>
 nnoremap <silent> <BS>    :exec 'normal! '.float2nr(round(winheight(0)*(exists("b:scroll") ? b:scroll : g:scroll)*0.01)).key15<CR>
-nnoremap <silent> <tab>   :exec 'normal! '.float2nr(round(winheight(0)*(exists("b:scroll") ? b:scroll : g:scroll)*0.01)).key15<CR>
+" nnoremap <silent> <tab>   :exec 'normal! '.float2nr(round(winheight(0)*(exists("b:scroll") ? b:scroll : g:scroll)*0.01)).key15<CR>
 " <x> will delete to no buffer
 noremap x "_x
 noremap X "_X
@@ -449,7 +449,7 @@ nnoremap m-       :<C-U>call signature#mark#Purge("all")<CR>
 nnoremap m<space> :<C-U>call signature#mark#Purge("line")<CR>
 nnoremap gz 1gt
 " Swap window with prev window
-nnoremap q' :call WinBufSwap()<CR>
+nnoremap <Leader>' :call WinBufSwap()<CR>
 nnoremap qt gg:call search('^.') <CR>k
 nnoremap qg G$:call search('^.','b') <CR>0j
 " Search my comments
@@ -513,7 +513,7 @@ nnoremap aB : vnew \| if isdirectory(expand('#:p:h')) \| lcd #:p:h \| endif \| t
 nnoremap aA : if isdirectory(expand('%:p:h')) \| lcd %:p:h \| endif \| terminal ++curwin ++norestore <CR>
 nnoremap <Leader>t :NewTermHere<CR>
 " Select prev tab
-nnoremap <Leader><tab> :exe "tabn ".g:lasttab<CR>
+nnoremap g<tab> :exe "tabn ".g:lasttab<CR>
 nnoremap <Leader>. <C-^>
 nnoremap <Leader>x :q<CR>
 nnoremap <Leader>w :w<CR>
@@ -960,4 +960,5 @@ endif
 " colo stellarized | set background=light | LineColor atlantis
 " colo vadelma | set background=light | LineColor deus
 " colo snow | set background=light | LineColor nord
+" read !ls $VIMPLUG/lightline.vim/autoload/lightline/colorscheme
 
