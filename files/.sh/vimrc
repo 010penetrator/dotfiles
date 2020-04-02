@@ -946,6 +946,7 @@ if hostname == "debian10pc"
   endif
 endif
 
+" read !ls $VIMPLUG/lightline.vim/autoload/lightline/colorscheme
 " colo Revolution
 " colo plastic
 " colo onehalfdark
@@ -960,5 +961,4 @@ endif
 " colo stellarized | set background=light | LineColor atlantis
 " colo vadelma | set background=light | LineColor deus
 " colo snow | set background=light | LineColor nord
-" read !ls $VIMPLUG/lightline.vim/autoload/lightline/colorscheme
 
