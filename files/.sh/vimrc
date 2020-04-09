@@ -411,7 +411,7 @@ nnoremap a<space> :nohlsearch <CR>
 nnoremap [e `[
 nnoremap ]e `]
 " Select last changed/yanked text
-nnoremap cv `[v`]
+nnoremap [] `[v`]
 " Jump last selection edges
 nnoremap [v `<
 nnoremap ]v `>
@@ -961,4 +961,5 @@ endif
 " colo stellarized | set background=light | LineColor atlantis
 " colo vadelma | set background=light | LineColor deus
 " colo snow | set background=light | LineColor nord
+" colo moonscape | LineColor deus
 
