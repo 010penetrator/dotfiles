@@ -29,7 +29,6 @@ xinput set-prop "pointer:Logitech MX Master 3" "libinput Accel Speed" -.4
 if [[ "$HOSTNAME" =~ 'killer'[pc,PC] ]]; then
   # xrandr --dpi 110x110
   xrdb -merge <(echo "Xft.dpi: 108") &
-  # xinput set-prop "Clearly Superior Technologies. CST Laser Trackball" "libinput Accel Speed" -.7
   sleep 2
   # echo -e 'power on\nquit' | bluetoothctl
   trdwrap.sh &
@@ -37,7 +36,6 @@ if [[ "$HOSTNAME" =~ 'killer'[pc,PC] ]]; then
   killall unclutter; unclutter &
 
 elif [[ "$HOSTNAME" =~ ^debian10pc ]]; then
-  # xinput set-prop 12 292 -.6
   # killall unclutter; unclutter &
   xrandr --output VGA-2 --off 
   ( sleep 2 ; gsettings set org.gnome.mutter overlay-key '' )  # free Win key in Gnome 3
