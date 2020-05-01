@@ -1,11 +1,14 @@
-sudo uname
 uptime -p
-du -sh /var/cache/pacman/pkg/ /var/log/journal/ ~/
-sudo journalctl --vacuum-size=50M --quiet
 # df -BGB
 lsblk -fl 
-sudo pacman -Syu
-sudo find /var/cache/pacman/pkg/ -mtime +5 -exec rm {} \;
-sudo updatedb
+sudo uname
+du -sh /var/cache/pacman/pkg/ /var/log/journal/ ~/
+sudo sh -c "
+(
+journalctl --vacuum-size=50M --quiet
+pacman -Syu
+find /var/cache/pacman/pkg/ -mtime +5 -exec rm {} \;
+updatedb
+)"
 bak.sh
 

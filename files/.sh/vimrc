@@ -961,7 +961,7 @@ endif
 " colo edge 
 " colo stellarized | set background=light | LineColor atlantis
 " colo vadelma | set background=light | LineColor deus
-" colo snow | set background=light | LineColor nord
+" colo snow | set background=light | LineColor material
 " set notermguicolors | colo moonscape | LineColor deus
 " colo forest-night | LineColor material
 
