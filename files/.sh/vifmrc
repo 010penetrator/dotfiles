@@ -113,7 +113,6 @@ nnoremap yC :! echo -n %f:p | xclip ; echo -n %f:p | xclip -selection clipboard 
 nnoremap gh :cd $HOME/<cr>
 nnoremap gq :cd /ln/mo/<cr>
 nnoremap gm :cd /ln/mus/<cr>
-" nnoremap gd :cd %c/.vifm-Trash-1000/<cr>
 nnoremap gx :trashes<cr>
 nnoremap gc :cd $HOME/.config/<cr>
 nnoremap gs :cd $HOME/.sh/<cr>
