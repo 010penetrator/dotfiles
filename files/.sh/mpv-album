@@ -14,7 +14,7 @@ then
     if ! [ -f "$FILE" ] ; then touch "$FILE" ; fi
     case `grep -xF "$PWD" "$FILE" >/dev/null; echo $?` in
       0)
-        echo This album was listened to recently..
+        echo This album has been listened to recently..
         ;;
       1)
         echo Updating history file..

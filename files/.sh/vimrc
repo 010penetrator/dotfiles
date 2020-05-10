@@ -358,8 +358,8 @@ nnoremap qj    <C-W>j
 nnoremap qk    <C-W>k
 nnoremap ql    <C-W>l
 nnoremap <C-\> <C-W>w
-nnoremap q<right>  <C-W>6>
-nnoremap q<left>   <C-W>6<
+nnoremap qm    <C-W>6>
+nnoremap qn    <C-W>6<
 nnoremap qe    <C-W>4+
 nnoremap qd    <C-W>4-
 nnoremap qa    <C-W>_
@@ -540,7 +540,7 @@ nnoremap <Leader>gs :call FocusBufOrDo('stk','e /ln/ho/use/stk.tx')<CR>
 nnoremap <Leader>gd :BD<CR>
 nnoremap <Leader>gt :call MoveToNextTab()<CR>
 nnoremap <Leader>gr :call MoveToPrevTab()<CR>
-nnoremap <Leader>fd :Ack <C-r><C-w> %:p:h 
+nnoremap <Leader>fc :Ack <C-r><C-w> %:p:h 
 nnoremap <Leader>fg :call ClimbToDirWhere(".git/index",1) \| Ack -Q <C-R><C-W> 
 " nnoremap <Leader>ff :AckFile <C-r><C-W> <CR>
 nnoremap <Leader>fw :AckWindow <C-r><C-w> <CR>
