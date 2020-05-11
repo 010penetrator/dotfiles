@@ -177,6 +177,7 @@ wpa_passphrase SSID pass > wifipassfile ; wpa_supplicant -B -i $w -c passfile # 
 wpa_supplicant -B -i $w -c passfile <(wpa_passphrase SSID pass) # unsafe oneliner
 sudo dhcpcd $w
 curl https://wtfismyip.com/text # check ip
+curl ifconfig.me
 curl -s --head http://opennet.ru # check network
 proxychains sudo wget -O- http://ya.ru # check network
 sudo nmap -sP 192.168.1-3.0/24
@@ -188,6 +189,8 @@ date -s "$(curl -s --head http://opennet.ru | grep ^Date: | sed 's/Date: //g')" 
 hwclock --systohc # sync hardware clock to system time
 torsocks curl -s --head http://flibustahezeous3.onion/ # check tor
 # torify stuff: edit /etc/tor/torrc,/etc/tor/torsocks.conf ; /etc/init.d/tor restart ==> use torsocks
+curl --proxy socks5h://localhost:1234 ifconfig.me # check socks5 proxy
+curl --socks5 localhost:1234 ifconfig.me # check socks5 proxy
 
 HW
 sudo modprobe pcspkr ; echo -e '\a' ; rmmod pcspkr ; xset -b # STOP BELL BEEP!
