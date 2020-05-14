@@ -24,7 +24,7 @@ DEB-only: xinput psmisc
 
 RICE
 Chrome: uBlock Vimium CVim Surfingkeys MidnightLizard SingleFile Stylus Rescroller Browsec Bookmarks.by.MakeItSimple RecentBookmarks EmptyNewTabPage
-Firefox: TabSuspender hide-scrollbars DefaultZoom
+Firefox: TabSuspender hide-scrollbars DefaultZoom DarkReader
 Fonts: Cantarell Liberation DejaVu Noto Arimo Tinos Caslon EB-Garamond
 Fonts Mono: xos4Terminus LiberationMono Noto Input Fira FiraCode Hack DejaVuSansMono SourceCodePro Tamzen OhSnap
 gtk: lounge mediterraneandarkest adapta mint-y flattastic libra-dark mona-3.0 carbonico arc-dark vertex menda-dark adwaita-maia green-submarine high-contrast-inverse 
@@ -92,7 +92,7 @@ smem -tw # ram info
 youtube-dl -f "bestvideo[height<=720]+bestaudio" https://... # fetch youtube
 mpv --ytdl-format='bestvideo[height<=480]+bestaudio' https://... # fetch youtube
 ffmpeg -r 30 -f image2 -i /media/Blink/rr/rma.1%05d.png -vf format=yuv420p,lutyuv="y=negval:u=128:v=128" -vcodec libx264 -crf 20 -pix_fmt yuv420p -preset veryslow /media/fast/pol-r60-s_360.mkv # movie from png
-chromium --restore-last-session &> /dev/null & disown # browsing makes people silly
+chromium --restore-last-session &> /dev/null & disown # browsing makes you silly
 vlc -vvv cdda://dev/sr0 # listen CD
 while read line ; do deadbeef --queue "$line" ; done # use stdin as arg
 while pgrep -x polybar >/dev/null; do sleep 1; done # wait until the processes have been shut down

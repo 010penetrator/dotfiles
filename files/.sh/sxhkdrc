@@ -1,17 +1,17 @@
-super + x ; { u, m, s, r, e, h, f, d, g, p, n, o, w, a, i }
+super + x ; { U, m, s, r, e, h, f, d, g, p, n, o, w, a, i }
   raise.sh { 'Luakit' 'luakit', notimem, speedcrunch, Ranger 'newranger', 'WeeChat\|weechat\|Pidgin' 'urxvt -e weechat', htop '$TERMINAL -e htop', feh 'fa /ln/dwn/', deadbeef, 'chromium\|Firefox\|Navigator' '$BROWSER', Thunar thunar, nautilus, VirtualBox '', fbreader, pavucontrol, histmpv.sh }
 
 super + x ; { q, t, j, z, k, l, b }
   { scroff.sh, raiseterm.sh, windowswitcher.sh, xdotool mousemove_relative 0 1600, i3-msg kill, listdwn.sh, listmpv.sh }
 
-super + { t, v, u, g, p, c, z, r, a, b, y }
+super + { t, v, U, g, p, c, u, r, a, b, z }
   raise.sh { 'xterm\|urxvt\|kitty', VIM 'vimz', luakit, 'chromium\|Firefox', 'MPV\|mpv' 'noti echo no mpv found', VIFM '$TERMINAL -e vifm & notify-send new_VIFM', zathura listzathura.sh, evince, 'transmission-remote\|qbittorrent' '$TERMINAL -e transmission-remote-cli -c localhost:9090', ' Browser' '', devhelp }
 
 super + { T, V, C, B }
   raisekitty.sh { bash, VIM, VIFM, MPV }
 
 # super + s , r 
-super + n ; { n, m, h, c, v, z }
+super + n ; { n, m, h, c, v, u }
   { $TERMINAL, momkitty.sh, zsh, $TERMINAL -e vifm, $TERMINAL -e vim, listzathura.sh }
 super + e
   raiseterm.sh
