@@ -14,7 +14,7 @@ setxkbmap -layout 'us,ru' -option 'grp:alt_shift_toggle,grp_led:scroll' &
 # xinput set-prop "Clearly Superior Technologies. CST Laser Trackball" "libinput Accel Speed" -.7
 # keratin -d &
 # xset s 800 800; xset -dpms ; xset dpms 0 0 0
-xset dpms 1800 0 0 &
+xset dpms 1200 0 0 &
 xset s 0 0 &
 xset -b &
 
