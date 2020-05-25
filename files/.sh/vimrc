@@ -117,7 +117,7 @@ Plug 'ErichDonGubler/vim-sublime-monokai' "edit red?
 Plug 'KimNorgaard/vim-frign' "borland_style
 Plug 'vim-scripts/Gummybears' "very_dark
 Plug 'szorfein/fromthehell.vim' "dark satur earth
-Plug 'koirand/tokyo-metro.vim' "pretty
+Plug 'koirand/tokyo-metro.vim' "pretty dark
 Plug 'nightsense/rusticated' "morning
 Plug 'KKPMW/sacredforest-vim' "lowcont
 Plug 'nightsense/snow' "soft)
@@ -562,9 +562,9 @@ nnoremap <Leader>zz :let &scrolloff=28-&scrolloff<CR>
 nnoremap <Leader>za :silent exec 'UpdCtags' \| redraw! \| echo 'Wrote tags db in' getcwd().'/' <CR>
 nnoremap <Leader>zg :call UpdCtagsGit() <CR>
 nnoremap <Leader>zs :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make tags") <bar> redraw! <bar> cwindow <CR>
-nnoremap <Leader>zx :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make clean") <bar> redraw! <bar> cwindow<CR>
-nnoremap <Leader>zc :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make") <bar> redraw! <bar> cwindow <CR>
-nnoremap <Leader>zv :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make run") <bar> redraw! <bar> cwindow <CR>
+nnoremap <Leader>zc :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make clean") <bar> redraw! <bar> cwindow<CR>
+nnoremap <Leader>zv :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make") <bar> redraw! <bar> cwindow <CR>
+nnoremap <Leader>zx :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make run") <bar> redraw! <bar> cwindow <CR>
 " nnoremap <Leader>zb yap: exec "!" . @" <cr>
 nnoremap <Leader>zl : silent exec '! echo -e "\n$(pwd):"; ls -la . ; read -n 1 -s -r -p "//hit.anykey" ; echo -ne "\n" ' \| redraw! <cr>
 vnoremap z- <ESC>:call FoldSelected()<CR>za
