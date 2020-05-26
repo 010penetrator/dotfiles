@@ -21,7 +21,7 @@ super + x ; x
   addlayout.sh ; sxd.sh ; notify-send "$(LC_ALL=C date; uptime -p)"
 # "$(transmission-remote 192.168.1.78:9090 -st | grep -A 2 CURR | grep -v CURR)"
 super + x ; T
-  notify-send "$(transmission-remote 192.168.1.78:9090 -st)"
+  notify-send "$(transmission-remote 192.168.1.160:9090 -st)"
 super + space
   raise.sh 'MPV\|mpv' 'noti echo no mpv found'
 ctrl + space
