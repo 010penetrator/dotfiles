@@ -72,7 +72,7 @@ nnoremap qg :! sox %c -n remix 2 spectrogram -o- -p2 -t %c | feh -F -B black - &
 nnoremap qd :! deadbeef --queue .<cr>
 nnoremap qx :! xdg-open %c & <cr>
 nnoremap q. :! ./%c <cr>
-nnoremap yg :! google.sh %c &>/dev/null & <cr>
+nnoremap gy :! google.sh %c &>/dev/null & <cr>
 nnoremap au :! echo Sync... ; sync && udevil umount %f<cr>
 nnoremap ai : amou <cr>
 nnoremap ao : aumo <cr>
