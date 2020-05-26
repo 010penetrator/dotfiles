@@ -19,7 +19,7 @@ let $VIMPLUG = expand('$HOME') . '/.vim/plugged'
 call plug#begin()
 Plug 'tpope/vim-sensible' "basic
 Plug 'jlanzarotta/bufexplorer' "basic
-Plug 'sheerun/vim-polyglot' "okay
+Plug 'sheerun/vim-polyglot' "okay HUGE
 Plug 'tpope/vim-commentary' "good
 Plug 'michaeljsmith/vim-indent-object' "cool
 Plug 'itchyny/lightline.vim' "cool
@@ -100,7 +100,7 @@ Plug 'vim-scripts/rdark-terminal' "good darker
 Plug 'juanpabloaj/vim-pixelmuerto' "dark
 Plug 'Lokaltog/vim-distinguished' "dark hicon
 Plug 'trevorrjohn/vim-obsidian' "satur
-Plug 'sonph/onehalf', {'rtp': 'vim'} "Nice good tone
+Plug 'sonph/onehalf', {'rtp': 'vim'} "Nice good tone HUGE
 Plug 'gilsondev/lizard' "green dark
 Plug 'ajh17/Spacegray.vim' "darker misty
 Plug 'sickill/vim-monokai' "dark hicon
@@ -128,7 +128,7 @@ Plug 'nightsense/stellarized' "nice! light+dark
 Plug 'rdavison/Libertine' "applejuice
 Plug 'AlessandroYorba/Sierra' "softgray
 Plug 'AlessandroYorba/Despacio' "softdarkgrey
-Plug 'srcery-colors/srcery-vim' "fresh-dark consbroken
+" Plug 'srcery-colors/srcery-vim' "fresh-dark consbroken HUGE
 Plug 'Jimeno0/vim-chito' "consbroken
 Plug 'aradunovic/perun.vim' "consbroken
 Plug 'HenryNewcomer/vim-theme-underflow' "consbroken
