@@ -1,21 +1,31 @@
 #! /bin/sh
 
 rc.sh &
-# sxhkd &
 # xterm &
 
 bspc monitor -d I II III IV V VI VII VIII 
+# bspc monitor HDMI-3 -d 1 2 3 
+# bspc monitor DVI-D-1 -d 4 5 6 7 8
+
+FLOATING_DESKTOP_ID=$(bspc query -D -d '^1')
+bspc subscribe node | while read -a msg ; do
+  desk_id=${msg[2]}
+  wid=${msg[3]}
+  echo ${msg[3]} ${msg[2]}
+  [ "$FLOATING_DESKTOP_ID" = "$desk_id" ] && bspc node "$wid" -t floating
+done
 
 bspc config border_width         2
-bspc config window_gap           4
+bspc config window_gap           3
 
-bspc config split_ratio          0.55
+bspc config split_ratio          0.54
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 
 bspc rule -a Gimp desktop='^8' state=floating follow=on
 bspc rule -a Chromium desktop='^2'
 bspc rule -a SpeedCrunch state=floating
+bspc rule -a Pidgin state=floating
 bspc rule -a Pavucontrol state=floating
 bspc rule -a QjackCtl state=floating
 bspc rule -a q4wine state=floating
