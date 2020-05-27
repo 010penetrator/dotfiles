@@ -1,6 +1,6 @@
 Install
 BASE: base-devel earlyoom pacli mlocate udevil cylon inxi
-TUI: mc clex lfm ranger vifm lftp fzf ncdu tree p7zip htop glances gotop dmenu keratin screenfetch lolcat tmux bc tty-clock 
+TUI: mc clex lfm ranger vifm lftp fzf ncdu tree p7zip htop glances ytop bashtop dmenu keratin screenfetch lolcat tmux bc tty-clock 
 X: xorg-server xorg-xinit xterm urxvt xvkbd xclip redshift xscreensaver nitrogen dunst unclutter-xfixes xbanish gmrun scrot wmctrl xdotool 
 FIRMWARE: bluez-utils
 GTKtune: lxappearance oomox wpgtk
@@ -19,7 +19,7 @@ GAMES: ctris urw powermanga pybik caph phlipple knetwalk cgoban liquidwar cultiv
 STUDIO: avlinux kxstudio ardour lmms calf guitarix rakarrack hydrogen zynaddsubfx amsynth qsynth 
 STUDIO-BASE: jack2 qjackctl vmpk alsa-utils gtklick gtick fluidsynth soundfont-fluid *timidity pulseeffects pulseaudio-alsa
 CHAT: weechat irssi *jitsi pidgin hexchat ring retroshare sylpheed  
-SCIENT: gnuplot kst scipy scilab mathmod
+SCIENT: gnuplot kst2 scipy scilab mathmod
 DEB-only: xinput psmisc
 
 RICE
