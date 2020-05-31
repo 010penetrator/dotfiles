@@ -109,7 +109,6 @@ Plug 'thomd/vim-wasabi-colorscheme' "dark normalcont
 Plug 'vim-scripts/sift' "underwater_fantasy
 Plug 'whatyouhide/vim-gotham' "neon/green
 Plug 'bcicen/vim-vice' "joke
-Plug 'Renxiuhu/vim-colorscheme-tatami' " monokai Bgreen PaperColor
 Plug 'vim-scripts/swamplight' "day
 Plug 'vim-scripts/C64.vim' "joke
 Plug 'szorfein/fantasy.vim' "dull
@@ -128,7 +127,6 @@ Plug 'nightsense/stellarized' "nice! light+dark
 Plug 'rdavison/Libertine' "applejuice
 Plug 'AlessandroYorba/Sierra' "softgray
 Plug 'AlessandroYorba/Despacio' "softdarkgrey
-" Plug 'srcery-colors/srcery-vim' "fresh-dark consbroken HUGE
 Plug 'Jimeno0/vim-chito' "consbroken
 Plug 'aradunovic/perun.vim' "consbroken
 Plug 'HenryNewcomer/vim-theme-underflow' "consbroken
@@ -158,6 +156,12 @@ Plug 'gmoe/vim-espresso' "mild
 " Plug 'dracula/vim' "funky
 " Plug 'tomasr/molokai' "shitty
 " 'gui need termguicolors setting
+Plug 'swalladge/paper.vim'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'markeganfuller/vim-journeyman'
+Plug 'UnrealInstrument/VimPink'
+Plug 'machakann/vim-colorscheme-tatami'
+" Plug 'srcery-colors/srcery-vim' "fresh-dark consbroken HUGE
 call plug#end()
 
 "-----------Settings----------"

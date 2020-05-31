@@ -312,8 +312,10 @@ filextype *.ps,*.eps,*.ps.gz
 
 " Audio
 filetype *.wav,*.mp3,*.flac,*.m4a,*.m4b,*.mka,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus,
-	   \ {play using mpv}
-	   \ mpv %f,
+       \ {play using mpv}
+" \ mpv %f,
+       \ echo -ne "\033]0;MPV @ VIFM\007"; mpv %f,
+       \ {Play using mpv}
        "\ {Play using ffplay}
        "\ ffplay -nodisp %c,
        \ {Play using MPlayer}
