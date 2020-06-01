@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Usage: mpv /dir/or/file DESIRED-TERMINAL-TITLE
+
 FILE="/tmp/mpv-history"
 # ignore '..' target 
 if [ "$1" == '..' ]; then set -- "." "${2}" ; fi
