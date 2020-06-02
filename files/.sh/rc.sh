@@ -37,7 +37,7 @@ if [[ "$HOSTNAME" =~ 'killer'[pc,PC] ]]; then
 
 elif [[ "$HOSTNAME" =~ ^debian10pc ]]; then
   # killall unclutter; unclutter &
-  xrandr --output VGA-2 --off 
+  # xrandr --output VGA-2 --off 
   xrandr --output DVI-D-1 --auto --right-of HDMI-3
   bspc monitor HDMI-3 -d 1 2 3 
   bspc monitor DVI-D-1 -d 4 5 6 7 8

@@ -63,6 +63,7 @@ Plug 'sandeepcr529/Buffet.vim'
 " Plug 'Yggdroot/LeaderF'
 
 " Colors:
+" ( gui themes need termguicolors setting )
 Plug 'morhetz/gruvbox' "best
 Plug 'ajmwagar/vim-dues' "deus
 Plug 'jpo/vim-railscasts-theme' "normal
@@ -147,7 +148,6 @@ Plug 'atelierbram/vim-colors_atelier-schemes' "mindfuck
 Plug 'nightsense/vimspectr' " need gui
 Plug 'colepeters/spacemacs-theme.vim' "cool
 Plug 'stulzer/mitormk-laser' "sharp
-Plug 'RussellBradley/vim-knicks' "cool blue
 Plug 'relastle/bluewery.vim' "low-con
 Plug 'arzg/vim-corvine'
 Plug 'severij/vadelma' "white good-con
@@ -155,7 +155,7 @@ Plug 'gmoe/vim-espresso' "mild
 " Plug 'dfrunza/vim' "borland,muratori,pencil,vc6
 " Plug 'dracula/vim' "funky
 " Plug 'tomasr/molokai' "shitty
-" 'gui need termguicolors setting
+Plug 'RussellBradley/vim-knicks' "cool blue 404
 Plug 'swalladge/paper.vim'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'markeganfuller/vim-journeyman'
