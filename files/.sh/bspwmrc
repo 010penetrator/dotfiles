@@ -7,6 +7,7 @@ bspc monitor -d I II III IV V VI VII VIII
 # bspc monitor HDMI-3 -d 1 2 3 
 # bspc monitor DVI-D-1 -d 4 5 6 7 8
 
+bash -c '
 FLOATING_DESKTOP_ID=$(bspc query -D -d '^1')
 bspc subscribe node | while read -a msg ; do
   desk_id=${msg[2]}
@@ -14,6 +15,7 @@ bspc subscribe node | while read -a msg ; do
   echo ${msg[3]} ${msg[2]}
   [ "$FLOATING_DESKTOP_ID" = "$desk_id" ] && bspc node "$wid" -t floating
 done
+'
 
 bspc config border_width         2
 bspc config window_gap           3
