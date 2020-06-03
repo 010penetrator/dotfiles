@@ -1,1 +1,2 @@
-you-get -o /ln/dwn/ $(xclip -o)
+you-get -o /ln/dwn/ $(xclip -o -selection clipboard)
+
