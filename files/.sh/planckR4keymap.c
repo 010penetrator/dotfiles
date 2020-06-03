@@ -178,9 +178,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Adjust (Lower + Raise)
  * ,-----------------------------------------------------------------------------------.
- * |      | Reset|      |Qwerty|Colemk|Dvorak|Plover|      |      |      |      |      |
+ * |      | Reset| Debug|      |Qwerty|Colemk|Dvorak|      |      |      |      |      |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * | CAPS |      |      |Aud on|Audoff|AGnorm|AGswap|      |      |      |      |      |
+ * | CAPS |      |MUSmod|Aud on|Audoff|AGnorm|AGswap|Qwerty|Colemk|Dvorak|Plover|      |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * |      |Voice-|Voice+|Mus on|Musoff|MIDIon|MIDIof|      |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -195,8 +195,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // )
 
 [_ADJUST] = LAYOUT_planck_grid(
-    _______     , RESET   , DEBUG   , QWERTY  , COLEMAK , DVORAK  , PLOVER  , _______ , _______ , _______ , _______ , _______ ,
-    KC_CAPSLOCK , _______ , MU_MOD  , AU_ON   , AU_OFF  , AG_NORM , AG_SWAP , _______ , _______ , _______ , _______ , _______ ,
+    _______     , RESET   , DEBUG   , _______ , QWERTY  , COLEMAK , DVORAK  , _______ , _______ , _______ , _______ , _______ ,
+    KC_CAPSLOCK , _______ , MU_MOD  , AU_ON   , AU_OFF  , AG_NORM , AG_SWAP , QWERTY  , COLEMAK , DVORAK  , PLOVER  , _______ ,
     _______     , MUV_DE  , MUV_IN  , MU_ON   , MU_OFF  , MI_ON   , MI_OFF  , _______ , _______ , _______ , _______ , _______ ,
     _______     , _______ , _______ , _______ , _______ , _______ , _______ , _______ , _______ , _______ , _______ , _______
 )
