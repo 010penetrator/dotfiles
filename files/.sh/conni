@@ -1,12 +1,13 @@
+# Connect to wi-fi on comand line
 
 #conn() { w=$(ip link | grep wlp | cut -f 2 -d ':' | cut -b 2-) ; sudo wpa_supplicant -B -i $w -c /etc/.wc && sudo dhcpcd $w ; }
 tf=/tmp/wpatmp
 [ "0" -eq `grep -c characters $tf` ] || rm $tf
 w=$(ip link | grep wlp | cut -f 2 -d ':' | cut -b 2-)
 echo interface $w
-echo Tell SSID
+echo Enter SSID
 read a
-echo Tell password
+echo Enter password
 read b
 [ -z $b ] || sudo wpa_passphrase "$a" "$b" >> $tf
 sudo wpa_supplicant -B -i "$w" -c $tf

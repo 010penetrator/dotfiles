@@ -1,3 +1,5 @@
+# Make Transmission spam journal less
+
 # killall -v transmission-daemon 2> /dev/null
   pgrep transmission-daemon | grep . || transmission-remote 9090 --exit
 sleep 1 

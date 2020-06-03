@@ -1,1 +1,3 @@
+# Wait N seconds and suspend the system
 sleep $1 && systemctl suspend & 
+

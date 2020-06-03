@@ -1,4 +1,6 @@
 #!/bin/bash
+# Go to desktop or cycle windows at current desktop
+# Usage: desk_selector_i3.sh N
 
 echo '.'
 
@@ -25,3 +27,4 @@ else
   # str=$(expr $1 + 1 )
   i3-msg "workspace "$1
 fi
+

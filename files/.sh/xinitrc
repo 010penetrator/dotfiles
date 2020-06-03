@@ -13,7 +13,7 @@ case $session in
     gnome             ) exec gnome-session;;
 #    gnome-classic     ) exec gnome-session --session=gnome-classic;;
     i3|i3wm           ) exec i3;;
-#    pekwm           ) exec pekwm;;
+#    pekwm             ) exec pekwm;;
 #    icewm             ) exec icewm-session;;
 #    jwm               ) exec jwm;;
 #    kde               ) exec startkde;;
@@ -25,7 +25,7 @@ case $session in
 #    unity             ) exec unity;;
 #    xfce|xfce4        ) exec startxfce4;;
 #    xmonad            ) exec xmonad;;
-    chromium                ) exec /usr/bin/chromium;;
-    # Не известная сессия, попробуйте запустить в качестве команды
+     chromium         ) exec /usr/bin/chromium;;
+# Не известная сессия, попробуйте запустить в качестве команды
     *) exec $1;;
 esac

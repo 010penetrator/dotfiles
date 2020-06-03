@@ -1,4 +1,5 @@
 #!/bin/bash
+# Download a video from youtube
 
 if [ -z $1 ] ; then
   echo "Usage: tube [720] https://youtube......video"

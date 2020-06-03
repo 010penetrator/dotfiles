@@ -1,5 +1,7 @@
+
 # How many my vim-servers?
 i=$(vim --serverlist | grep ^VIMSERV$ | wc -l)
 [ $i != 0 ] && echo Caution. Vim server already running. && sleep 1
 
 vim --servername VIMSERV -S ~/.vim/session.vim
+

@@ -1,7 +1,5 @@
 #!/bin/bash
-
-# for dir in /home/plasmik/*/; 
-# do     dir=${dir%*/};     echo ${dir##*/}; done
+# Handy wrapper for rsync mirroring
 
 #dirin="/ln/mo/QU64/port"
 #dirout="/ln/mo/CW-V88-QUAD/port"

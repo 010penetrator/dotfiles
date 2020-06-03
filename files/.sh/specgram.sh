@@ -1,3 +1,4 @@
+# See cool spectrogram of an audiofile
 sox "$1" -n remix 2 spectrogram -o/tmp/spec.png -p2 -t "$1" ; feh -F -B black /tmp/spec.png &>/dev/null
 # rm /tmp/spec.png
 

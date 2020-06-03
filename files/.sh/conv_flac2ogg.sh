@@ -1,3 +1,6 @@
+#!/bin/bash
+# Convert flac tracks to ogg VBR0
+
 # $1 is origin path
 # $2 is destination
 

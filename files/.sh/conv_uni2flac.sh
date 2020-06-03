@@ -1,5 +1,6 @@
 #!/bin/bash
-# Usage: uni2flac.sh target_dir
+# Convert music folder to flac format
+# Usage: conv_uni2flac.sh target_dir
 
 if [ -z $1 ] ; then
   targ='/ln/mo/blink/MUZIK/'
@@ -28,7 +29,7 @@ else
     done
     cp 2>/dev/null *[C,c]over.* [F,f]ront.* [F,f]older.* [B,b]ack.* "$targ/$drn"
   else
-    cue2flac.sh . "$targ";
+    conv_cue2flac.sh . "$targ";
   fi
 fi
 
