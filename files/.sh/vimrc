@@ -2,7 +2,8 @@
 set nocompatible              " be iMproved
 set termguicolors
 compiler gcc
-set makeprg=make\ 
+" set makeprg=make\ 
+set makeprg=gcc\ %:p\ -o\ bin
 let $VIMPLUG = expand('$HOME') . '/.vim/plugged'
 " help i_ctrl-
 " currfile=%\ mainbin
@@ -23,7 +24,6 @@ Plug 'sheerun/vim-polyglot' "okay HUGE
 Plug 'tpope/vim-commentary' "good
 Plug 'michaeljsmith/vim-indent-object' "cool
 Plug 'itchyny/lightline.vim' "cool
-" Plug 'eiginn/netrw' "basic
 Plug 'tpope/vim-vinegar' "basic
 Plug 'jamessan/vim-gnupg' "good
 Plug 'Shougo/unite.vim' "bloated
@@ -33,18 +33,18 @@ Plug 'junegunn/goyo.vim' "usable
 Plug 'godlygeek/tabular' "okay
 Plug 'chrisbra/Colorizer' "good
 Plug 'mileszs/ack.vim' "good
-" Plug 'mattn/gist-vim' "usable
-" Plug 'mattn/webapi-vim' "req4gist
 Plug 'haya14busa/vim-edgemotion' "okay
 Plug 'majutsushi/tagbar' "okay
 Plug 'tpope/vim-ragtag' "good
 Plug 'justinmk/vim-sneak' "good!
 Plug 'tpope/vim-surround' "good
+Plug 'tpope/vim-endwise' "okay
+Plug 'tpope/vim-repeat' "handy
 Plug 'wesleyche/SrcExpl' "mediocre
 Plug 'kshenoy/vim-signature' "buggy
-Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-repeat'
 "
+" Plug 'tpope/vim-unimpaired'
+" Plug 'eiginn/netrw' "basic
 " Plug 'vim-syntastic/syntastic' "wtf
 " Plug 'kien/rainbow_parentheses.vim'
 " Plug 'Shougo/neocomplete.vim'
@@ -405,9 +405,8 @@ nnoremap _  :vsplit %:p:h <cr>
 nnoremap ac :vsp <c-r><c-f> <CR> 
 nnoremap aC :sp <c-r><c-f> <CR> 
 " Split open current file directory with netrw
-nnoremap av :wincmd v \| e %:p:h <CR>
-nnoremap aV :wincmd s \| e %:p:h <CR>
-" nnoremap ae :wincmd s \| e %:p:h <CR>
+nnoremap ad :wincmd s \| e %:p:h <CR>
+nnoremap aD :wincmd v \| e %:p:h <CR>
 nnoremap an :tabe %:p:h <CR>
 nnoremap q/ :nohlsearch <CR>
 nnoremap a<space> :nohlsearch <CR>
@@ -561,7 +560,7 @@ nnoremap <Leader>vb :call SwitchBackground()<CR> :echo "background=" &background
 nnoremap <Leader>vc :set termguicolors! <cr> :set termguicolors? <cr>
 nnoremap <Leader>vt :TagbarOpen fj <CR>
 nnoremap <Leader>zz :let &scrolloff=28-&scrolloff<CR>
-nnoremap <Leader>za :silent exec 'UpdCtags' \| redraw! \| echo 'Wrote tags db in' getcwd().'/' <CR>
+nnoremap <Leader>zt :silent exec 'UpdCtags' \| redraw! \| echo 'Wrote tags db in' getcwd().'/' <CR>
 nnoremap <Leader>zg :call UpdCtagsGit() <CR>
 nnoremap <Leader>zs :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make tags") <bar> redraw! <bar> cwindow <CR>
 nnoremap <Leader>zc :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make clean") <bar> redraw! <bar> cwindow<CR>
