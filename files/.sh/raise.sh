@@ -1,4 +1,5 @@
 #x!/bin/bash
+# My run-or-raise window script
 # Usage: 'raise.sh classname-or-windowname [start command]'
 # Try 'wmctrl -l -x' to discover the names
 # wmctrl required
