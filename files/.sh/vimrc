@@ -367,13 +367,14 @@ nnoremap qm    <C-W>6>
 nnoremap qn    <C-W>6<
 nnoremap qe    <C-W>4+
 nnoremap qd    <C-W>4-
-nnoremap qa    <C-W>_
+nnoremap a_    <C-W>_
+nnoremap a-    <C-W>80-
 nnoremap aa    <C-W>_<C-W>\|
-nnoremap q-    <C-W>80-
 nnoremap qz    <C-W>=
 nnoremap aj    <C-W>w<C-W>_<C-W>\|
 nnoremap ak    <C-W>W<C-W>_<C-W>\|
 nnoremap q<tab> <C-w>p
+"Add spaces inside brackets
 nmap al ysib<space><space>
 nnoremap <C-W>S :vsplit<CR>
 nnoremap qy :let @+ = @" <bar> :let @* = @" <CR>
