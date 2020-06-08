@@ -405,8 +405,8 @@ nnoremap _  :vsplit %:p:h <cr>
 nnoremap ac :vsp <c-r><c-f> <CR> 
 nnoremap aC :sp <c-r><c-f> <CR> 
 " Split open current file directory with netrw
-nnoremap ad :wincmd s \| e %:p:h <CR>
-nnoremap aD :wincmd v \| e %:p:h <CR>
+nnoremap a. :wincmd s \| e %:p:h <CR>
+nnoremap a/ :wincmd v \| e %:p:h <CR>
 nnoremap an :tabe %:p:h <CR>
 nnoremap q/ :nohlsearch <CR>
 nnoremap a<space> :nohlsearch <CR>
@@ -439,8 +439,8 @@ nnoremap yq :@"<CR>
 nnoremap cp "_diw""P
 nnoremap co "_diw"*P
 nnoremap ar R\<S-kInsert>\<Esc>
-noremap <c-n> 12<c-e>M
-noremap <c-p> 12<c-y>M
+noremap <c-n> 12<c-e>
+noremap <c-p> 12<c-y>
 map <c-j> <Plug>(edgemotion-j)
 map <c-k> <Plug>(edgemotion-k)
 " for vim-signature
@@ -542,7 +542,7 @@ nnoremap <Leader>gs :call FocusBufOrDo('stk','e /ln/ho/use/stk.tx')<CR>
 nnoremap <Leader>gd :BD<CR>
 nnoremap <Leader>gt :call MoveToNextTab()<CR>
 nnoremap <Leader>gr :call MoveToPrevTab()<CR>
-nnoremap <Leader>fd :Ack <C-r><C-w> %:p:h 
+nnoremap <Leader>f. :Ack <C-r><C-w> %:p:h 
 nnoremap <Leader>fg :call ClimbToDirWhere(".git/index",1) \| Ack -Q <C-R><C-W> 
 " nnoremap <Leader>ff :AckFile <C-r><C-W> <CR>
 nnoremap <Leader>fw :AckWindow <C-r><C-w> <CR>
