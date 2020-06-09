@@ -510,7 +510,6 @@ nnoremap <Leader>q :qa <CR>
 nnoremap <Leader>j :Unite buffer file<CR>
 nnoremap <Leader>k :Denite buffer -mode=normal -immediately-1<CR>
 nnoremap <Leader>e :BufExplorer <CR>
-nnoremap qb :call GotoTerm(0)<CR>
 " Open terminal at current file directory
 nnoremap ab : new \| if isdirectory(expand('#:p:h')) \| lcd #:p:h \| endif \| terminal ++curwin ++norestore <CR>
 nnoremap aB : vnew \| if isdirectory(expand('#:p:h')) \| lcd #:p:h \| endif \| terminal ++curwin ++norestore <CR>
@@ -524,7 +523,8 @@ nnoremap <Leader>w :w<CR>
 nnoremap <Leader>d :bd!<CR>
 nnoremap <Leader>c :NewVifmHere<CR>
 nnoremap <Leader>C :Silent xdg-open %:p:h & <cr>
-nnoremap gb :Bash <CR>
+nnoremap qb :Bash <CR>
+nnoremap gb :call GotoTerm(0)<CR>
 nnoremap <Leader><Space> :LCDhere <CR>
 nnoremap <Leader>o :Goyo 66%x100%<CR>
 nnoremap <Leader>m ^y$:call system('$BROWSER ' . "'" . @" . "' &")<CR>
@@ -621,11 +621,27 @@ function! UpdCtagsGit()
   let l:starting_directory = getcwd()
   let l:curr_directory = expand('%:p:h')
   exec "cd " . l:curr_directory
-  let l:proj_dir = ClimbToDirWhere(".git/index",0)
+  let l:proj_dir = ClimbToDirWhere(".git/index",1)
   if ( l:proj_dir != "-1" )
     silent exec '! echo Found .git in $PWD/'
     " exec '!ctags -R --exclude=.git --exclude=log --exclude=wutils --c++-kinds=+p --fields=+iaS --extra=+q *'
-    exec '!  ctags_with_deps.sh $(find . -name \*.[ch])'
+    exec '! $sh/ctags_with_deps.sh $(find . -name \*.[ch])'
+  else
+    echom "Cant find .git"
+  endif
+  exec "cd " . l:starting_directory
+endfunction
+
+function! UpdCtagsGitFlat()
+  echom "Trying to update ctags in this git project"
+  silent exec '! echo -e "\n\n"Trying to update ctags in this git project"..."'
+  let l:starting_directory = getcwd()
+  let l:curr_directory = expand('%:p:h')
+  exec "cd " . l:curr_directory
+  let l:proj_dir = ClimbToDirWhere(".git/index",1)
+  if ( l:proj_dir != "-1" )
+    silent exec '! echo Found .git in $PWD/'
+    exec '!ctags -R --exclude=.git --exclude=log --exclude=wutils --c++-kinds=+p --fields=+iaS --extra=+q *'
   else
     echom "Cant find .git"
   endif
@@ -944,7 +960,8 @@ if hostname == "warmPC"
 endif
 if hostname == "debian10pc"
   if !exists("g:colors_name")
-    colo plastic | LineColor deus
+    " colo plastic | LineColor deus
+    colo forest-night | LineColor nord
     " set hlsearch 
   endif
 endif
