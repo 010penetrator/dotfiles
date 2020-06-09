@@ -337,13 +337,13 @@ filextype *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,*.gif,
         \ {View using mplayer}
         \ mplayer %f,
 fileviewer *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
-          \*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
-          \*.as[fx]
+         \*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
+         \*.as[fx]
          \ ffprobe -pretty %c 2>&1
 
 " Web
 filextype *.html,*.htm
-		\ chromium %c &>/dev/null & ,
+        " \ chromium %c &>/dev/null & ,
         \ firefox %f &,
         \ uzbl-browser %f %i &,
 filetype *.html,*.htm links, lynx
@@ -357,9 +357,9 @@ fileviewer *.[1-8] man ./%c | col -b
 
 " Images
 filextype *.bmp,*.jpg,*.jpeg,*.png,*.xpm,*.webp,*gif
-		\ feha %c &>/dev/null &,
-		\ eom %c &>/dev/null &,
-		\ ristretto %c,
+        \ feha %c &>/dev/null &,
+        \ eom %c &>/dev/null &,
+        \ ristretto %c,
         \ sxiv,
         \ gpicview %c,
         \ shotwell,

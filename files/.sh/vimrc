@@ -3,7 +3,7 @@ set nocompatible              " be iMproved
 set termguicolors
 compiler gcc
 " set makeprg=make\ 
-set makeprg=gcc\ %:p\ -o\ bin
+set makeprg=gcc\ %:p\ -o\ %:p:h/bin
 let $VIMPLUG = expand('$HOME') . '/.vim/plugged'
 " help i_ctrl-
 " currfile=%\ mainbin
@@ -563,6 +563,7 @@ nnoremap <Leader>vt :TagbarOpen fj <CR>
 nnoremap <Leader>zz :let &scrolloff=28-&scrolloff<CR>
 nnoremap <Leader>zt :silent exec 'UpdCtags' \| redraw! \| echo 'Wrote tags db in' getcwd().'/' <CR>
 nnoremap <Leader>zg :call UpdCtagsGit() <CR>
+nnoremap <Leader>zf :call UpdCtagsGitFlat() <CR>
 nnoremap <Leader>zs :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make tags") <bar> redraw! <bar> cwindow <CR>
 nnoremap <Leader>zc :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make clean") <bar> redraw! <bar> cwindow<CR>
 nnoremap <Leader>zv :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make") <bar> redraw! <bar> cwindow <CR>
@@ -665,16 +666,17 @@ endfunction
 " endfunction
 
 function! BuildProjectUni(Makefile,Makecommand)
-  let &makeprg=a:Makecommand
+  " let &makeprg=a:Makecommand
   let l:starting_directory = getcwd()
   let l:curr_directory = expand('%:p:h')
   exec "lcd " . l:curr_directory
   let l:proj_dir = ClimbToDirWhere(a:Makefile,1)
   if ( l:proj_dir != "-1" )
     echo l:proj_dir
-    make
+    " make
+    exec '! ' . a:Makecommand
   else 
-    echo "Makefile not found"
+    exec '! echo Makefile not found'
   endif
   Silent read -n 1 -s -r -p "//hit.anykey" ; echo -ne "\n\n"
   "reset directory
