@@ -26,7 +26,7 @@ super + space
 ctrl + space
   (setxkbmap -query | grep -q "layout:\s\+us") && setxkbmap ru || setxkbmap us
 ctrl + 7
-  xdotool getactivewindow windowminimize 
+  xdotool getactivewindow windowminimize
 alt + x
   dmouse
 
@@ -65,7 +65,7 @@ super + f ; b
   bspc node newest.marked.local -n newest.automatic.local
 
 # swap the current node and the biggest node
-super + f ; a
+super + f ; w
   bspc node -s biggest.local
 
 # set the window state
@@ -76,18 +76,18 @@ super + f ; {d,s,g,f}
 super + f ; i
   bspc node -i
 
-# send selected node to a receptacle node 
+# send selected node to a receptacle node
 super + f ; o
   bspc node -n 'any.leaf.!window' --follow
 
-# rotate the split 
+# rotate the split
 super + ctrl + {r,R}
-  bspc node -f @parent ; bspc node -R {90,-90} ; bspc node older.local -f 
+  bspc node -f @parent ; bspc node -R {90,-90} ; bspc node older.local -f
 super + f ; r
-  bspc node -f @parent ; bspc node -R {90,-90} ; bspc node older.local -f 
+  bspc node -f @parent ; bspc node -R {90,-90} ; bspc node older.local -f
 
 # set the node flags
-super + f ; {m,z,y,p}
+super + f ; {m,z,a,p}
   bspc node -g {marked,locked,sticky,private}
 
 # focus/swap the node in the given direction
@@ -98,7 +98,7 @@ super + {_,shift + }{h,j,k,l}
 super + f ; x
   bspc node -s @brother
 
-# rotate node 
+# rotate node
 super + alt + o
   bspc node -R 90
 
