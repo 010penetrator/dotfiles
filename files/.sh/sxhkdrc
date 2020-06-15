@@ -5,7 +5,7 @@ super + x ; { q, t, j, z, k, l, b }
   { scroff, raiseterm.sh, windowswitcher.sh, xdotool mousemove_relative 0 1600, i3-msg kill, listdwn.sh, listmpv.sh }
 
 super + { t, v, U, g, p, c, u, r, a, b, z }
-  raise.sh { 'xterm\|urxvt\|kitty', VIM 'vimz', luakit, 'chromium\|Firefox', 'MPV\|mpv' 'noti echo no mpv found', VIFM '$TERMINAL -e vifm & notify-send new_VIFM', zathura listzathura.sh, evince, 'transmission-remote\|qbittorrent' '$TERMINAL -e tremc -c localhost:9090', ' Browser' '', devhelp }
+  raise.sh { 'xterm\|urxvt\|kitty', VIM 'vimz', luakit, 'chromium\|Firefox', 'MPV\|mpv\|MOC' 'noti echo no player instance found', VIFM '$TERMINAL -e vifm & notify-send new_VIFM', zathura listzathura.sh, evince, 'transmission-remote\|qbittorrent' '$TERMINAL -e tremc -c localhost:9090', ' Browser' '', devhelp }
 
 super + { T, V, C, B }
   raisekitty.sh { bash, VIM, VIFM, MPV }
@@ -22,7 +22,7 @@ super + x ; x
 super + x ; T
   notify-send "$(transmission-remote 192.168.1.160:9090 -st)"
 super + space
-  raise.sh 'MPV\|mpv' 'noti echo no mpv found'
+  raise.sh 'MPV\|mpv\|MOC' 'noti echo no player instance found'
 ctrl + space
   (setxkbmap -query | grep -q "layout:\s\+us") && setxkbmap ru || setxkbmap us
 ctrl + 7
@@ -40,7 +40,7 @@ super + apostrophe
 
 # Adjust volume with pulseaudio
 alt + a
-  [ $(amixer sget Master | tail -1 | cut -d [ -f2 | cut -d % -f1) -gt 91 ] && amixer set Master 6%+ && notify-send 'Volume MAX' -t 500 || amixer set Master 5%+
+  [ $(amixer sget Master | tail -1 | cut -d [ -f2 | cut -d % -f1) -gt 92 ] && amixer set Master 5%+ && notify-send 'Volume MAX' -t 500 || amixer set Master 5%+
 alt + z
   amixer set Master 5%-
 

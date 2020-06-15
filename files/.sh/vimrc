@@ -371,8 +371,8 @@ nnoremap a_    <C-W>_
 nnoremap a-    <C-W>80-
 nnoremap aa    <C-W>_<C-W>\|
 nnoremap qz    <C-W>=
-nnoremap aj    <C-W>w<C-W>_<C-W>\|
-nnoremap ak    <C-W>W<C-W>_<C-W>\|
+nnoremap aj    <C-W>w<C-W>_
+nnoremap ak    <C-W>W<C-W>_
 nnoremap q<tab> <C-w>p
 "Add spaces inside brackets
 nmap al ysib<space><space>
@@ -666,21 +666,25 @@ endfunction
 " endfunction
 
 function! BuildProjectUni(Makefile,Makecommand)
-  " let &makeprg=a:Makecommand
+  " memorize stuff
+  let l:makeprg_bak = &makeprg
+  let &makeprg = a:Makecommand
   let l:starting_directory = getcwd()
   let l:curr_directory = expand('%:p:h')
+  " change directory
   exec "lcd " . l:curr_directory
   let l:proj_dir = ClimbToDirWhere(a:Makefile,1)
   if ( l:proj_dir != "-1" )
     echo l:proj_dir
-    " make
-    exec '! ' . a:Makecommand
+    make
+    " exec '! ' . a:Makecommand
   else 
     exec '! echo Makefile not found'
   endif
   Silent read -n 1 -s -r -p "//hit.anykey" ; echo -ne "\n\n"
-  "reset directory
+  " reset stuff
   exec "lcd " . l:starting_directory
+  let &makeprg = l:makeprg_bak
 endfunction
 
 function! ClimbToDirWhere(filename,chdir)
