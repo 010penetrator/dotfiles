@@ -519,7 +519,7 @@ nnoremap qB : if isdirectory(expand('%:p:h')) \| lcd %:p:h \| endif \| terminal 
 " Show shell
 nnoremap qb :Bash <CR>
 " Jump to already existing terminal window inside vim
-nnoremap gb :call GotoTerm(0)<CR>
+nnoremap <Leader>b :call GotoTerm(0)<CR>
 " Spawn a terminal outside vim
 nnoremap <Leader>t :NewTermHere<CR>
 " Select previous tab
