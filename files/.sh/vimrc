@@ -453,7 +453,7 @@ nmap [s [-
 nnoremap m-       :<C-U>call signature#mark#Purge("all")<CR>
 nnoremap m<space> :<C-U>call signature#mark#Purge("line")<CR>
 nnoremap gz 1gt
-" Swap window with prev window
+" Swap window with previous window
 nnoremap <Leader>' :call WinBufSwap()<CR>
 nnoremap qt gg:call search('^.') <CR>k
 nnoremap qg G$:call search('^.','b') <CR>0j
@@ -522,7 +522,7 @@ nnoremap qb :Bash <CR>
 nnoremap gb :call GotoTerm(0)<CR>
 " Spawn a terminal outside vim
 nnoremap <Leader>t :NewTermHere<CR>
-" Select prev tab
+" Select previous tab
 nnoremap g<tab> :exe "tabn ".g:lasttab<CR>
 nnoremap <Leader>. <C-^>
 nnoremap <Leader>x :q<CR>
@@ -570,6 +570,7 @@ nnoremap <Leader>zt :silent exec 'UpdCtags' \| redraw! \| echo 'Wrote tags db in
 nnoremap <Leader>zg :call UpdCtagsGit() <CR>
 nnoremap <Leader>zf :call UpdCtagsGitFlat() <CR>
 nnoremap <Leader>zs :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make tags") <bar> redraw! <bar> cwindow <CR>
+nnoremap <Leader>zm :make <bar> copen <CR>
 nnoremap <Leader>zc :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make clean") <bar> redraw! <bar> cwindow<CR>
 nnoremap <Leader>zv :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make") <bar> redraw! <bar> cwindow <CR>
 nnoremap <Leader>zx :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make run") <bar> redraw! <bar> cwindow <CR>
