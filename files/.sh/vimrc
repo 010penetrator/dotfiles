@@ -601,7 +601,7 @@ command! UpdCtagsSudo !sudo ctags -R --exclude=.git --exclude=log --exclude=wuti
 command! UpdCtagsGit :call UpdCtagsGit()
 command! Yall normal gg"+yG''
 command! Dall normal gg"_dG
-command! SwapPrev :call SwapPrevWin()
+command! SwapContentPrev :call SwapContentPrevWin()
 command! FileDel :silent exec '!rm %' | redraw! | bd
 "exec '!chromium' ali.@"
 command! -nargs=? LineColor call LightlineReload('<args>')
@@ -817,7 +817,7 @@ function! MoveToNextTab()
   exe "b".l:cur_buf
 endfunc
 
-function! SwapPrevWin()
+function! SwapContentPrevWin()
   let lines1 = getline(1, '$')
   exe 'wincmd p'
   let lines2 = getline(1, '$')

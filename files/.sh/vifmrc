@@ -259,7 +259,8 @@ set statusline="  Hint: %z%= %A %10u:%-7g %15s %20d  "
 " %m run the command in a menu window
 
 command! df df -h %m 2> /dev/null
-command! diff vim -d %f %F
+command! vimdiff vim -d %f %F
+command! diff !diff %f %F && echo 0; read -rsn1
 command! zip zip -r %f.zip %f
 command! run !! ./%f
 command! make !!make %a
