@@ -404,12 +404,14 @@ nnoremap qV :vsplit # <cr>
 nnoremap _  :vsplit %:p:h <cr>
 " Split open file under cursor with netrw 
 nnoremap ae :vsp <c-r><c-f> <CR> 
-" Split open current file directory with netrw
+" Split open current location with netrw
 nnoremap a. :wincmd s \| e %:p:h <CR>
 nnoremap a> :wincmd v \| e %:p:h <CR>
 nnoremap an :tabe %:p:h <CR>
+" Open current location with vifm within vim
 nnoremap ac :term ++close vifm %:p:h<CR>
 nnoremap aC :vertical term ++close vifm %:p:h<CR>
+nnoremap a<C-c> :term ++curwin ++close vifm %:p:h<CR>
 nnoremap q/ :nohlsearch <CR>
 nnoremap a<space> :nohlsearch <CR>
 " nnoremap a<space> :set hlsearch! <CR>
@@ -514,10 +516,10 @@ nnoremap <Leader>q :qa <CR>
 nnoremap <Leader>j :Unite buffer file<CR>
 nnoremap <Leader>k :Denite buffer -mode=normal -immediately-1<CR>
 nnoremap <Leader>e :BufExplorer <CR>
-" Split open terminal at current file directory
+" Split open terminal at current location
 nnoremap ab : new \| if isdirectory(expand('#:p:h')) \| lcd #:p:h \| endif \| terminal ++curwin ++norestore <CR>
 nnoremap aB : vnew \| if isdirectory(expand('#:p:h')) \| lcd #:p:h \| endif \| terminal ++curwin ++norestore <CR>
-" Open terminal at current file directory
+" Open terminal at current location
 nnoremap qt : if isdirectory(expand('%:p:h')) \| lcd %:p:h \| endif \| terminal ++curwin ++norestore <CR>
 " Show shell
 nnoremap qb :Bash <CR>
