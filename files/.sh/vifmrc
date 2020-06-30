@@ -56,8 +56,8 @@ nnoremap aa :! vim %c <cr>
 nnoremap q<space> :! mpv %c <cr>
 " Open file with vim server
 nnoremap av :! vimz "%c"<cr>
-nnoremap ac :! notab=1 vimz "%c"<cr>
-"           :! vim --servername vimserv --remote-send ":e $PWD/%c<CR>" 
+nnoremap ac :! MODE="current" vimz "%c"<cr>
+nnoremap a<space> :! MODE="last" vimz "%c"<cr>
 nnoremap az :! vimz "%c"<cr>:q<cr>
 nnoremap zl :! bash -c ' echo -ne \\n ls:\\n ; ls -dla %f ; read -rsn1 ' <cr>
 nnoremap zS :! clear -x; sudo lsblk -f ; read -rsn1 <cr>

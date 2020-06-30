@@ -392,8 +392,6 @@ nnoremap aP :put  +<CR>
 nnoremap aI :put! +<CR>
 " Put as single paragraph
 nnoremap ao o<Esc>:put! *<CR>`[v`]:g/^$/d<CR>:nohlsearch<CR>
-" Yank inline
-nnoremap qc ^y$:let @+ = @" <bar> :let @* = @" <CR>j
 " Yank current file full name 
 nnoremap zy :let @" = expand('%:p')
 nnoremap qu ~
@@ -405,7 +403,7 @@ nnoremap qV :vsplit # <cr>
 nnoremap _  :vsplit %:p:h <cr>
 " Split open file under cursor with netrw 
 nnoremap ac :vsp <c-r><c-f> <CR> 
-nnoremap aC :sp <c-r><c-f> <CR> 
+nnoremap aC :term ++close vifm %:p:h<CR>
 " Split open current file directory with netrw
 nnoremap a. :wincmd s \| e %:p:h <CR>
 nnoremap a/ :wincmd v \| e %:p:h <CR>
@@ -436,7 +434,10 @@ nnoremap d. "_dd
 " nnoremap d, :call DelSpace(0)<Esc>
 nnoremap cm o<Esc>O
 nnoremap z, }O
+" Yank inline
 nnoremap yc ^y$"+y$"*y$
+" nnoremap yc ^y$:let @+ = @" <bar> :let @* = @" <CR>
+" Eval yanked
 nnoremap yq :@"<CR>
 nnoremap cp "_diw""P
 nnoremap co "_diw"*P

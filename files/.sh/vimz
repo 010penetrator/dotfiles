@@ -14,19 +14,25 @@ i=$(vim --serverlist | grep ^VIMSERV$ | wc -l)
 
 if ! [ -z "$1" ] ; then 
   # Escape spaces
-  foo=$1
-  bar=${foo// /'\' }
-  if [[ $notab == 1 ]] ; then
-    # Change current Vim buffer 
-    vim --servername vimserv --remote-send "<c-w>:e $bar<CR>"
+  path=${1// /'\' }
+  # prefix with current path
+  path="$PWD/$path"
+  if [[ $MODE == current ]] ; then
+    # Edit in current Vim window
+    vim --servername vimserv --remote-send "<c-w>:e $path<CR>"
+  else
+    if [[ $MODE == last ]] ; then
+      # Edit in last Vim window
+      vim --servername vimserv --remote-send "<c-w>p:e $path<CR>"
   else
     if [ $i == 0 ] ; then
       # Populate Vim buffer
-      vim --servername vimserv --remote-send ":e $bar<CR>" 
+      vim --servername vimserv --remote-send ":e $path<CR>" 
     else
-      # Make new tab in Vim
-      vim --servername vimserv --remote-send "<c-w>:tabe $bar<CR>" 
+      # Edit in new window in Vim
+      vim --servername vimserv --remote-send "<c-w>:new $path<CR>" 
     fi
+  fi
   fi
 raise.sh VIMSERV &> /dev/null
 else
