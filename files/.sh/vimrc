@@ -312,6 +312,7 @@ imap оо <ESC>
 if v:version >= 801
   tmap oo <C-w>N:set nonumber<CR>
   tmap o<C-o>  <C-w>N :e #<CR>
+  tmap <C-x> <C-w>N :BD<CR>
   tnoremap <C-PageUp> <C-W>:tabprev<CR>
   tnoremap <C-PageDown> <C-W>:tabnext<CR>
   " tnoremap <Leader><tab> :exe "tabn ".g:lasttab<CR>
@@ -402,12 +403,13 @@ nnoremap qV :vsplit # <cr>
 " Split netrw
 nnoremap _  :vsplit %:p:h <cr>
 " Split open file under cursor with netrw 
-nnoremap ac :vsp <c-r><c-f> <CR> 
-nnoremap aC :term ++close vifm %:p:h<CR>
+nnoremap ae :vsp <c-r><c-f> <CR> 
 " Split open current file directory with netrw
 nnoremap a. :wincmd s \| e %:p:h <CR>
-nnoremap a/ :wincmd v \| e %:p:h <CR>
+nnoremap a> :wincmd v \| e %:p:h <CR>
 nnoremap an :tabe %:p:h <CR>
+nnoremap ac :term ++close vifm %:p:h<CR>
+nnoremap aC :vertical term ++close vifm %:p:h<CR>
 nnoremap q/ :nohlsearch <CR>
 nnoremap a<space> :nohlsearch <CR>
 " nnoremap a<space> :set hlsearch! <CR>
@@ -456,10 +458,10 @@ nnoremap m<space> :<C-U>call signature#mark#Purge("line")<CR>
 nnoremap gz 1gt
 " Swap window with previous window
 nnoremap <Leader>' :call WinBufSwap()<CR>
-nnoremap qt gg:call search('^.') <CR>k
-nnoremap qg G$:call search('^.','b') <CR>0j
+nnoremap q<PageUp>   gg:call search('^.') <CR>k
+nnoremap q<PageDown> G$:call search('^.','b') <CR>0j
 " Search my comments
-nnoremap ae /\s*\/\/.*\/\/$<CR>
+nnoremap am /\s*\/\/.*\/\/$<CR>
 " Jump to blank or one-char lines
 nnoremap <silent> gn :call search('^\(.\\|\(\s\)*\)$','W') <CR>
 nnoremap <silent> gp :call search('^\(.\\|\(\s\)*\)$','bW') <CR>
@@ -516,11 +518,11 @@ nnoremap <Leader>e :BufExplorer <CR>
 nnoremap ab : new \| if isdirectory(expand('#:p:h')) \| lcd #:p:h \| endif \| terminal ++curwin ++norestore <CR>
 nnoremap aB : vnew \| if isdirectory(expand('#:p:h')) \| lcd #:p:h \| endif \| terminal ++curwin ++norestore <CR>
 " Open terminal at current file directory
-nnoremap qB : if isdirectory(expand('%:p:h')) \| lcd %:p:h \| endif \| terminal ++curwin ++norestore <CR>
+nnoremap qt : if isdirectory(expand('%:p:h')) \| lcd %:p:h \| endif \| terminal ++curwin ++norestore <CR>
 " Show shell
 nnoremap qb :Bash <CR>
 " Jump to already existing terminal window inside vim
-nnoremap <Leader>b :call GotoTerm(0)<CR>
+nnoremap qg :call GotoTerm(0)<CR>
 " Spawn a terminal outside vim
 nnoremap <Leader>t :NewTermHere<CR>
 " Select previous tab
@@ -554,8 +556,8 @@ nnoremap <Leader>fg :call ClimbToDirWhere(".git/index",1) \| Ack -Q <C-R><C-W>
 " nnoremap <Leader>ff :AckFile <C-r><C-W> <CR>
 nnoremap <Leader>fw :AckWindow <C-r><C-w> <CR>
 " binding for vimz bash script; i e move current buf to vimserver 
-nnoremap <Leader>av :silent exec '!vimz "%:p"' \| redraw! \| q <CR>
-nnoremap <Leader>ac :silent exec '!notab=1 vimz "%:p"' \| redraw! \| q <CR>
+nnoremap <Leader>gv :silent exec '!vimz "%:p"' \| redraw! \| q <CR>
+nnoremap <Leader>gc :silent exec '!notab=1 vimz "%:p"' \| redraw! \| q <CR>
 " Add Plug entry
 nnoremap <Leader>vp :put + <bar> exec "normal dfmxIPlug 'A'" <CR>
 nnoremap <Leader>vs :source ~/.vim/session.vim <CR>
