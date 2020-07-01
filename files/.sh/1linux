@@ -1,5 +1,5 @@
 Install
-BASE: base-devel earlyoom pacli mlocate udevil cylon inxi
+BASE: base-devel earlyoom pacli pakku mlocate udevil cylon inxi
 TUI: mc clex lfm ranger vifm nnn lftp fzf ripgrep ncdu tree p7zip htop glances ytop bashtop dmenu keratin screenfetch lolcat tmux bc tty-clock 
 X: xorg-server xorg-xinit xterm urxvt xvkbd xclip redshift xscreensaver nitrogen dunst unclutter-xfixes xbanish gmrun scrot wmctrl xdotool 
 FIRMWARE: bluez-utils
