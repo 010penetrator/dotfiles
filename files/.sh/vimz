@@ -10,7 +10,7 @@ i=$(vim --serverlist | grep ^VIMSERV$ | wc -l)
     *)
       xterm -maximized -e "source $HOME/.bashrc ; vim --servername vimserv" & ;;
   esac
-[ $i == 0 ] && sleep 1.0
+[ $i == 0 ] && sleep 1.5
 
 if ! [ -z "$1" ] ; then 
   # Escape spaces
