@@ -411,7 +411,7 @@ nnoremap an :tabe %:p:h <CR>
 " Open current location with vifm within vim
 nnoremap ac :term ++close vifm %:p:h<CR>
 nnoremap aC :vertical term ++close vifm %:p:h<CR>
-nnoremap a<C-c> :term ++curwin ++close vifm %:p:h<CR>
+nnoremap a; :term ++curwin ++close vifm %:p:h<CR>
 nnoremap q/ :nohlsearch <CR>
 nnoremap a<space> :nohlsearch <CR>
 " nnoremap a<space> :set hlsearch! <CR>
