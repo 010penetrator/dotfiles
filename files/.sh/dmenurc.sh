@@ -1,6 +1,6 @@
 #!/bin/bash
 # ~/.dmenurc
-DMENU_FN="Liberation Mono:size=16"
+DMENU_FN="Liberation Mono:size=18"
 DMENU_NB="#111111"
 DMENU_NF="#1ABB9B"
 DMENU_SB="#1ABB9B"
