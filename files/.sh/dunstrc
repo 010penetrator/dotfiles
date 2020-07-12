@@ -1,5 +1,5 @@
 [global]
-	font = Liberation Mono 13
+	font = Liberation Mono 14.2
     #font = Monospace 12
     
     # Allow a small subset of html markup:
