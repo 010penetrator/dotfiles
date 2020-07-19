@@ -976,7 +976,7 @@ if hostname == "warmPC"
     colo forest-night | LineColor nord
   endif
 endif
-if hostname == "debian10pc"
+if hostname == "debian10pc" || hostname == "plasmikPC"
   if !exists("g:colors_name")
     " colo plastic | LineColor deus
     colo forest-night | LineColor nord

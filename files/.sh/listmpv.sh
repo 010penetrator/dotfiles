@@ -11,7 +11,7 @@ case $(echo "$d" | wc -l) in
 		pwd
     case $TERMINAL in
       kitty)
-        kitty /bin/bash -c "mpv-album ." &> /dev/null & ;;
+        kitty -o initial_window_height=500 -o initial_window_width=800 /bin/bash -c "mpv-album ." &> /dev/null & ;;
       *)
         xterm -xrm 'XTerm.vt100.allowTitleOps: true' -geometry 60x24+400+250 -e 'mpv-album .'  &> /dev/null & ;;
     esac

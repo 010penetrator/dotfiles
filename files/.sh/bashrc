@@ -134,7 +134,8 @@ hddsum () { d1=$(get_space_used /ln/mo/blink) ; d2=$(get_space_used /ln/mo/metal
 fkill() {  ps -ef | sed 1d | fzf -e -m | awk '{print $2}' | xargs kill -${1:-9} ; }
 vol () { pactl set-sink-volume 0 "$1"% ; }
 gnome-box() { killall gnome-boxes ; killall libvirtd ; virsh -c qemu:///session pool-list --all ; virsh -c qemu:///session pool-destroy gnome-boxes ;  virsh -c qemu:///session pool-undefine gnome-boxes ; rm -rf .local/share/gnome-boxes ; rm -rf .config/libvirt ; }
-conn() { w=$(ip link | grep wlp | cut -f 2 -d ':' | cut -b 2-) ; sudo wpa_supplicant -B -i $w -c /etc/wifi && sudo dhcpcd $w ; }
+export dhc_call=dhclient
+conn() { w=$(ip link | grep wlp | cut -f 2 -d ':' | cut -b 2-) ; sudo wpa_supplicant -B -i $w -c /etc/wifi && sudo $dhc_call $w ; }
 dconn() { sudo killall -v wpa_supplicant; sudo killall -v dhcpcd; }
 # fvim() { vim --servername vimserv --remote  "$(locate -i "$*" | fzf --height 55%)" ; raise.sh VIMSERV ; }
 fvim() { $EDITOR $(du -a "$1" | awk '{print $2}' | fzf --exact) ; } 

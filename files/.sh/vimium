@@ -1,4 +1,4 @@
-map gb previousTab
+map gr previousTab
 map t Vomnibar.activateInNewTab
 map e scrollFullPageUp
 map d scrollFullPageDown

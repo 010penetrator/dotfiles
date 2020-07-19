@@ -3,7 +3,7 @@ session=${1:-startlxqt}
 
 case $session in
     awesome           ) exec /usr/bin/awesome;;
-    bspwm             ) exec bspwm;;
+    bspwm             ) exec bspwm -c /ln/sh/bspwmrc;;
 #    catwm             ) exec catwm;;
 #    cinnamon          ) exec cinnamon-session;;
 #    dwm               ) exec dwm;;
