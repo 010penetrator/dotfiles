@@ -56,8 +56,12 @@ elif [[ "$HOSTNAME" =~ [pc,PC] ]]; then
 fi
 
 killall dunst
-# sleep .9
-dunst -conf $HOME/.sh/dunstrc &
+sleep .1
+if  [[ $HIDPI == "1" ]] ; then
+  dunst -conf $HOME/.sh/dunstrc -font "Liberation Mono 14.2" &
+else
+  dunst -conf $HOME/.sh/dunstrc &
+fi
 # sleep .9
 # notify-send $HOSTNAME &
 

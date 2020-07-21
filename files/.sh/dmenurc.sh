@@ -1,6 +1,10 @@
 #!/bin/bash
 # ~/.dmenurc
-DMENU_FN="Liberation Mono:size=18"
+if [[ $HIDPI == "1" ]] ; then
+  DMENU_FN="Liberation Mono:size=18"
+else
+  DMENU_FN="Liberation Mono:size=16"
+fi
 DMENU_NB="#111111"
 DMENU_NF="#1ABB9B"
 DMENU_SB="#1ABB9B"
@@ -10,3 +14,4 @@ TERMINAL_CMD="$TERMINAL"
 PANEL_HEIGHT="25"
 DMENU_OPTIONS="-nb $DMENU_NB -nf $DMENU_NF -sf $DMENU_SF -sb $DMENU_SB -i -l 15"
 export DMENU_FN DMENU_NB DMENU_NF DMENU_SF DMENU_SB DMENU_OPTIONS PANEL_HEIGHT
+
