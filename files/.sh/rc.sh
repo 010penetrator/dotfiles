@@ -1,6 +1,7 @@
 #!/bin/bash
 cd
 export PATH=$PATH:~/.sh
+HIDPI=1
 # export TERMINAL=$TERMINAL
 source ~/.bashrc
 
