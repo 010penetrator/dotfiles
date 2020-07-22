@@ -1,7 +1,8 @@
 #!/bin/bash
 cd
 export PATH=$PATH:~/.sh
-HIDPI=1
+dpi=$(xdpyinfo | grep dots | cut -d ' ' -f 7 | cut -d x -f 1)
+[[ dpi -gt 100 ]] && export HIDPI=1
 # export TERMINAL=$TERMINAL
 source ~/.bashrc
 
