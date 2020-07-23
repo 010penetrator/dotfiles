@@ -3,7 +3,7 @@
 if [[ $HIDPI == "1" ]] ; then
   DMENU_FN="Liberation Mono:size=18"
 else
-  DMENU_FN="Liberation Mono:size=16.4"
+  DMENU_FN="Liberation Mono:size=16.0"
 fi
 DMENU_NB="#111111"
 DMENU_NF="#1ABB9B"

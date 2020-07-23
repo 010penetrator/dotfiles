@@ -1,11 +1,12 @@
 #!/bin/bash
 cd
 export PATH=$PATH:~/.sh
-height=$(xdpyinfo | grep dimensions | cut -d ' ' -f 7 | cut -d x -f 1)
-echo $height
-[[ height -gt 1100 ]] && export HIDPI=1
-# export TERMINAL=$TERMINAL
+height=$(xdpyinfo | grep dimensions | cut -d ' ' -f 7 | cut -d x -f 2)
+[[ height -gt 1100 ]] && export HIDPI=1 || export HIDPI=0
+
 source ~/.bashrc
+
+[[ "$TERMINAL" == "kitty" ]] && [[ $HIDPI == "1" ]] && export TERMINAL="kitty -o font_size=14.8"
 
 # echo `whoami` "@" $PWD @ `date` >> ~/log.t
 

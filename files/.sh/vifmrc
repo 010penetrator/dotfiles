@@ -46,7 +46,7 @@ nnoremap qt :tree!<cr>
 nnoremap qq :
 " nnoremap b :! mpv-album %c VIFM; echo -ne "\e]0;VIFM_MPV\a"<cr>
 nnoremap b  :! mpv-album %c VIFM; echo -ne "\033]0;VIFM\007" <cr>
-nnoremap B  :! %i cd %c; [[ $TERMINAL=='kitty' ]] && TERMINAL="kitty -o initial_window_height=450 -o initial_window_width=650"; $TERMINAL -e /bin/bash -c "mpv-album ." &>/dev/null & <cr>
+nnoremap B  :! %i cd %c; [[ $TERMINAL=="kitty "* ]] && TERMINAL="$TERMINAL -o initial_window_height=$(expr 450 + $HIDPI \* 120) -o initial_window_width=$(expr 650 + $HIDPI \* 140)"; $TERMINAL -e /bin/bash -c "mpv-album ." &>/dev/null & <cr>
 nnoremap ab :! kitty @ new-window --new-tab /bin/bash -c "cd %d/ ; mpv-album %c VIFM ; vifm %c" <cr>
 nnoremap rs :! echo -ne "\n" ; rsync -rtn --progress --delete --stats --size-only %d/ %D ; read -n 1 -s -r -p "-----======DONE======------" ; echo
 nnoremap rS :! echo -ne "\n" ; rsync -rt  --progress --delete --stats --size-only %d/ %D ; read -n 1 -s -r -p "-----======DONE======------" ; echo
