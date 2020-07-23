@@ -1,8 +1,9 @@
 #!/bin/bash
 cd
 export PATH=$PATH:~/.sh
-dpi=$(xdpyinfo | grep dots | cut -d ' ' -f 7 | cut -d x -f 1)
-[[ dpi -gt 100 ]] && export HIDPI=1
+height=$(xdpyinfo | grep dimensions | cut -d ' ' -f 7 | cut -d x -f 1)
+echo $height
+[[ height -gt 1100 ]] && export HIDPI=1
 # export TERMINAL=$TERMINAL
 source ~/.bashrc
 
@@ -60,7 +61,7 @@ fi
 killall dunst
 sleep .1
 if  [[ $HIDPI == "1" ]] ; then
-  dunst -conf $HOME/.sh/dunstrc -font "Liberation Mono 14.2" &
+  dunst -conf $HOME/.sh/dunstrc -font "Liberation Mono 14.5" &
 else
   dunst -conf $HOME/.sh/dunstrc &
 fi
