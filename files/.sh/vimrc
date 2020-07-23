@@ -407,6 +407,8 @@ nnoremap ae :vsp <c-r><c-f> <CR>
 " Split open current location with netrw
 nnoremap a. :wincmd s \| e %:p:h <CR>
 nnoremap a> :wincmd v \| e %:p:h <CR>
+nnoremap <Leader>S :  new \| lcd #:p:h <CR>
+nnoremap <Leader>V : vnew \| lcd #:p:h <CR>
 nnoremap an :tabe %:p:h <CR>
 " Open current location with vifm within vim
 nnoremap ac :term ++close vifm %:p:h<CR>
