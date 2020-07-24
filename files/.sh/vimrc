@@ -369,15 +369,15 @@ nnoremap qm    <C-W>6>
 nnoremap qn    <C-W>6<
 nnoremap qe    <C-W>4+
 nnoremap qd    <C-W>4-
-nnoremap a_    <C-W>_
-nnoremap a-    <C-W>80-
+nnoremap ah    <C-W>_
+nnoremap al    <C-W>80-
 nnoremap aa    <C-W>_<C-W>\|
 nnoremap qz    <C-W>=
 nnoremap aj    <C-W>w<C-W>_
 nnoremap ak    <C-W>W<C-W>_
 nnoremap q<tab> <C-w>p
 "Add spaces inside brackets
-nmap al ysib<space><space>
+nmap ar ysib<space><space>
 nnoremap <C-W>S :vsplit<CR>
 nnoremap qy :let @+ = @" <bar> :let @* = @" <CR>
 nnoremap ay "+yiW
@@ -415,8 +415,8 @@ nnoremap ac :term ++close vifm %:p:h<CR>
 nnoremap aC :vertical term ++close vifm %:p:h<CR>
 nnoremap a; :term ++curwin ++close vifm %:p:h<CR>
 nnoremap q/ :nohlsearch <CR>
-nnoremap a<space> :nohlsearch <CR>
-" nnoremap a<space> :set hlsearch! <CR>
+nnoremap ar :nohlsearch <CR>
+" nnoremap ar :set hlsearch! <CR>
 " Jump last edit edges
 nnoremap [e `[
 nnoremap ]e `]
@@ -447,7 +447,7 @@ nnoremap yc ^y$"+y$"*y$
 nnoremap yq :@"<CR>
 nnoremap cp "_diw""P
 nnoremap co "_diw"*P
-nnoremap ar R\<S-kInsert>\<Esc>
+" nnoremap ar R\<S-Insert>\<Esc>
 noremap <c-n> 12<c-e>
 noremap <c-p> 12<c-y>
 map <c-j> <Plug>(edgemotion-j)
@@ -538,6 +538,7 @@ nnoremap <Leader>d :bd!<CR>
 nnoremap <Leader>c :NewVifmHere<CR>
 nnoremap <Leader>C :Silent xdg-open %:p:h & <cr>
 nnoremap <Leader><Space> :LCDhere <CR>
+nnoremap <Leader>G :call ClimbToDirWhere(".git/index",1) \| pwd <CR>
 nnoremap <Leader>o :Goyo 66%x100%<CR>
 nnoremap <Leader>m ^y$:call system('$BROWSER ' . "'" . @" . "' &")<CR>
 nnoremap <Leader>go ^y$:call system('google.sh ' . "'" . @" . "'")<CR>
@@ -639,7 +640,7 @@ function! UpdCtagsGit()
   if ( l:proj_dir != "-1" )
     silent exec '! echo Found .git in $PWD/'
     " exec '!ctags -R --exclude=.git --exclude=log --exclude=wutils --c++-kinds=+p --fields=+iaS --extra=+q *'
-    exec '! $sh/ctags_with_deps.sh $(find . -name \*.[ch])'
+    exec '! $sh/ctags_with_deps.sh $(find . -type f -name \*.[ch])'
   else
     echom "Cant find .git"
   endif
@@ -988,8 +989,11 @@ endif
 
 " list available colors..
 " read !ls $VIMPLUG/lightline.vim/autoload/lightline/colorscheme
-" let c = getcompletion('', 'color') | put =c | map M :exec 'colo' getline(line('.')) <cr>
+" let c = getcompletion('', 'color') | put =c | map M :exec 'colo' getline(line('.')) <cr>j
 
+" colo vimspectr210-dark
+" colo vimspectr180-light
+" colo vimspectr150-light
 " colo Revolution
 " colo plastic
 " colo onehalfdark
