@@ -376,8 +376,8 @@ nnoremap qz    <C-W>=
 nnoremap aj    <C-W>w<C-W>_
 nnoremap ak    <C-W>W<C-W>_
 nnoremap q<tab> <C-w>p
-"Add spaces inside brackets
-nmap ar ysib<space><space>
+"Add space inside brackets
+nmap a<space> ysib<space><space>
 nnoremap <C-W>S :vsplit<CR>
 nnoremap qy :let @+ = @" <bar> :let @* = @" <CR>
 nnoremap ay "+yiW
@@ -414,9 +414,8 @@ nnoremap an :tabe %:p:h <CR>
 nnoremap ac :term ++close vifm %:p:h<CR>
 nnoremap aC :vertical term ++close vifm %:p:h<CR>
 nnoremap a; :term ++curwin ++close vifm %:p:h<CR>
-nnoremap q/ :nohlsearch <CR>
-nnoremap ar :nohlsearch <CR>
-" nnoremap ar :set hlsearch! <CR>
+nnoremap a/ :nohlsearch <CR>
+" nnoremap a/ :set hlsearch! <CR>
 " Jump last edit edges
 nnoremap [e `[
 nnoremap ]e `]
@@ -447,7 +446,6 @@ nnoremap yc ^y$"+y$"*y$
 nnoremap yq :@"<CR>
 nnoremap cp "_diw""P
 nnoremap co "_diw"*P
-" nnoremap ar R\<S-Insert>\<Esc>
 noremap <c-n> 12<c-e>
 noremap <c-p> 12<c-y>
 map <c-j> <Plug>(edgemotion-j)
@@ -570,8 +568,8 @@ nnoremap <Leader>vv :source $MYVIMRC <CR>
 nnoremap <Leader>vq :qa! <CR>
 nnoremap <Leader>v<Leader> :call EvalThis()<CR>
 nnoremap <Leader>vf :set filetype=sh<CR>
-nnoremap <Leader>vb :call SwitchBackground()<CR> :echo "background=" &background <cr>
-nnoremap <Leader>vc :set termguicolors! <cr> :set termguicolors? <cr>
+nnoremap <Leader>vb :call SwitchBackground() <CR>:echo "background=" &background <cr>
+nnoremap <Leader>vc :set termguicolors! <cr>:set termguicolors? <cr>
 nnoremap <Leader>vt :TagbarOpen fj <CR>
 nnoremap <Leader>zz :let &scrolloff=28-&scrolloff<CR>
 nnoremap <Leader>zt :silent exec 'UpdCtags' \| redraw! \| echo 'Wrote tags db in' getcwd().'/' <CR>
