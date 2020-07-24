@@ -8,12 +8,12 @@ activeid=$(echo $activeid | cut -d ',' -f1)
 while [ ${#activeid} -lt 7 ]; do activeid=0$activeid; done
 echo activeid is $activeid
 wname="xterm\| urxvt \| kitty"
-case $TERMINAL in
-  kitty)
-    app=kitty;;
-  *)
-    app=xterm;;
-esac
+# case $TERMINAL in
+#   kitty)
+#     app=kitty;;
+#   *)
+#     app=xterm;;
+# esac
 exclude="VIM$\|VIMSERV\|VIFM$\|MPV\|transmission-remote"
 
 #If window of that name is active, there are others of that name, current is not last in list
@@ -33,7 +33,7 @@ echo Final aim $str
 if [ -z "$str" ]
 	then
 			# Run
-			$app &> /dev/null &
+			$TERMINAL &> /dev/null &
       notify-send new_TERMINAL
     # Raise
 	else wmctrl -i -a $str
