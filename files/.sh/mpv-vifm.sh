@@ -10,8 +10,8 @@ a="$1"
 # i3-msg split v
 cd "$a"
 case $TERMINAL in
-  kitty)
-    kitty /bin/bash -c "vifm . -c \:only" & ;; 
+  kitty*)
+    $TERMINAL /bin/bash -c "vifm . -c \:only" & ;; 
   *)
     xterm -e "vifm . -c \:only" &> /dev/null ;;
 esac

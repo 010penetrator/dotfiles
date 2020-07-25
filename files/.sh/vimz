@@ -5,8 +5,9 @@ i=$(vim --serverlist | grep ^VIMSERV$ | wc -l)
 # Launch great Vim
 [ $i == 0 ] && echo $i &&
   case $TERMINAL in
-    kitty)
-      kitty --start-as maximized bash -c "source $HOME/.bashrc ; sleep .1 ; vim --servername vimserv" & ;;
+    kitty*)
+      # $TERMINAL --start-as maximized bash -c "source $HOME/.bashrc ; sleep .1 ; vim --servername vimserv" & ;;
+      $TERMINAL bash -c "source $HOME/.bashrc ; sleep .1 ; vim --servername vimserv" & ;;
     *)
       xterm -maximized -e "source $HOME/.bashrc ; vim --servername vimserv" & ;;
   esac

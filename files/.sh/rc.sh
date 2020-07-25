@@ -6,7 +6,7 @@ height=$(xdpyinfo | grep dimensions | cut -d ' ' -f 7 | cut -d x -f 2)
 
 source ~/.bashrc
 
-[[ "$TERMINAL" == "kitty" ]] && [[ $HIDPI == "1" ]] && export TERMINAL="kitty -o font_size=14.8"
+[[ "$TERMINAL" == "kitty" ]] && [[ $HIDPI == "1" ]] && export TERMINAL="kitty -o font_size=14.6"
 
 # echo `whoami` "@" $PWD @ `date` >> ~/log.t
 

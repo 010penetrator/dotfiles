@@ -245,6 +245,10 @@ for f in *.ext ; do g=$f ; mv -v -- "$g" "${g:20}" ; done # shorten file names
 mkdir res ; for f in *; do convert "$f" -resize 50% -sampling-factor 4:2:0  -quality 95%  res/"$f" ; done # recompress pictures
 mkdir res ; for f in *.png; do d=${f%.*} ; convert "$f" -quality 95%  jpg:res/"$d"".jpg" ; done # png to jpg
 xdg-mime default transmission-cli.desktop x-scheme-handler/magnet # set default magnet URL handler
+kitty -T transmission-remote_tranloc_ -e tremc -c localhost:9090 
+kitty -T transmission-remote_tranpi_ -e tremc -c 192.168.1.160:9090 
+noti transmission-remote localhost:9090 -st #locstats
+noti transmission-remote 192.168.1.160:9090 -st #pistats
 xdg-mime default vim.desktop $(xdg-mime query filetype textfile.ext)
 exo-open ......../app.desktop # run app .desktop file
 ~/.local/share/applications/*.destop # .desktop location
