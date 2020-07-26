@@ -14,10 +14,10 @@ i=$(vim --serverlist | grep ^VIMSERV$ | wc -l)
 [ $i == 0 ] && sleep 1.5
 
 if ! [ -z "$1" ] ; then 
-  # Escape spaces
+  # get full name
+  path=$(realpath -s "$1")
+  # escape spaces
   path=${1// /'\' }
-  # prefix with current path
-  path="$PWD/$path"
   if [[ $MODE == current ]] ; then
     # Edit in current Vim window
     vim --servername vimserv --remote-send "<c-w>:e $path<CR>"

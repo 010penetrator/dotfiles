@@ -1,5 +1,6 @@
 # exit
 bak="$HOME/.del/"
+mkdir -p $bak
 rdir="$PWD"
 a=$(ls -lt $bak | grep bak-conf | head -1 | grep -e --0..0--)
 i=$(echo ${a##*--0} | cut -c 1-2)
