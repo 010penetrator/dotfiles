@@ -1005,6 +1005,7 @@ endif
 " LineColor darcula
 " LineColor material
 " LineColor ayu_light
+" colo stellarized | LineColor atlantis
 " colo snow | set background=light | LineColor material
 " colo stellarized | set background=dark | LineColor atlantis
 " set notermguicolors | colo moonscape | LineColor deus
