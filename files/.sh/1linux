@@ -156,7 +156,7 @@ UUID=x-x /path ext4 defaults,rw,nofail,nosuid,nodev,relatime,data=ordered 0 0 #f
 systemctl daemon-reload # reload fstab 
 rsync -rt --progress --delete /media/src/abba/ /media/dest/abba # mirror copy
 rsync -e ssh -av --progress --no-perms --no-times --delete --size-only /ln/mo/Blink/MUZ/ user@192.168.1.180:SDCard/mus/ # mirror copy over ssh
-rsync -e 'ssh -p 2222' -av --progress --no-perms --no-times --delete --size-only myphone@192.168.1.47:/storage/emulated/0/Download/prags-andro/ /ln/pr/prags-andro/ # sync with andro-phone
+rsync -e 'ssh -i .ssh/key0 -p 2222' -av --progress --no-perms --no-times --delete --size-only myphone@192.168.1.47:/storage/emulated/0/Download/prags-andro/ /ln/pr/prags-andro/ # sync with andro-phone
 git config --global credential.helper 'cache --timeout=36000' # remember git passwd
 git config credential.helper cache 6h
 git config --local credential.helper store # store git passwd
@@ -249,6 +249,8 @@ kitty -T transmission-remote_tranloc_ -e tremc -c localhost:9090
 kitty -T transmission-remote_tranpi_ -e tremc -c 192.168.1.160:9090 
 noti transmission-remote localhost:9090 -st #locstats
 noti transmission-remote 192.168.1.160:9090 -st #pistats
+rsync -e ssh -av --progress --no-perms --no-times --delete --size-only pi@192.168.1.78:/ln/red/Form*1995* /ln/torrents/red/ # reverse
+rsync -e ssh -Lav --progress --no-perms --no-times --delete --size-only pi@192.168.1.78:/ln/red/ /ln/torrents/red/ # reverse
 xdg-mime default vim.desktop $(xdg-mime query filetype textfile.ext)
 exo-open ......../app.desktop # run app .desktop file
 ~/.local/share/applications/*.destop # .desktop location

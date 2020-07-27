@@ -65,7 +65,7 @@ super + f ; b
   bspc node newest.marked.local -n newest.automatic.local
 
 # swap the current node and the biggest node
-super + f ; e
+super + f ; w
   bspc node -s biggest.local
 
 # set the window state
