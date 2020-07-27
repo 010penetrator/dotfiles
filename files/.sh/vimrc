@@ -401,7 +401,8 @@ nnoremap qv :vnew <CR>
 nnoremap qS :split # <cr>
 nnoremap qV :vsplit # <cr>
 " Split netrw
-nnoremap _  :vsplit %:p:h <cr>
+nnoremap a-   :split %:p:h <cr>
+nnoremap a_  :vsplit %:p:h <cr>
 " Split open file under cursor with netrw 
 nnoremap ae :vsp <c-r><c-f> <CR> 
 " Split open current location with netrw

@@ -2,7 +2,7 @@
 
 export HISTFILESIZE=
 export HISTSIZE=9000
-if [[ -n $TERMINAL ]] ; then
+if [[ -z $TERMINAL ]] ; then
   export TERMINAL=xterm
   command -v kitty &> /dev/null && export TERMINAL=kitty
   height=$(xdpyinfo | grep dimensions | cut -d ' ' -f 7 | cut -d x -f 2)

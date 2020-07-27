@@ -1,13 +1,14 @@
 uptime -p
 # df -BGB
 lsblk -fl 
-sudo uname
-du -sh /var/log/journal/ $HOME
+sudo echo
+# du -sh /var/log/journal/ $HOME
+sudo journalctl --disk-usage
 [ -d /var/cache/pacman/pkg/ ] && du -sh /var/cache/pacman/pkg/
 sudo bash -c "
 (
   journalctl --vacuum-size=50M --quiet
-  if  lsb_release -i | grep -q -ie "mint\\\|debian\\\|buntu"
+  if  lsb_release -i | grep -q -ie 'mint\|debian\|buntu'
     then
     apt update ; apt upgrade
   elif  lsb_release -i | grep -q -ie "arch"
@@ -17,5 +18,6 @@ sudo bash -c "
   fi
   updatedb
 )"
-bak.sh
+
+[ -d /ln/hh/tt ] && bak.sh
 
