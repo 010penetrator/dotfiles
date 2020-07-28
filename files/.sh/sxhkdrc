@@ -20,7 +20,7 @@ super + d
 super + x ; x
   addlayout.sh ; sxd.sh ; notify-send "$(LC_ALL=C date; uptime -p)"
 super + x ; T
-  notify-send "$(transmission-remote 192.168.1.160:9090 -st)"
+  notify-send "$(transmission-remote 192.168.1.78:9090 -st)"
 super + space
   raise.sh 'MPV\|mpv\|MOC' 'noti echo no player instance found'
 ctrl + space
