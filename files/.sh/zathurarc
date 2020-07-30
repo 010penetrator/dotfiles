@@ -3,20 +3,33 @@ set default-bg "#696969"
 set statusbar-fg "#aaaaaa"
 set recolor-darkcolor "#060504"
 set recolor-lightcolor "#f5edd1"
+
 map i set recolor
-# map s scroll down
-# map w scroll up
+map s scroll down
+map w scroll up
 map d scroll full-down
 map e scroll full-up
-map [fullscreen] d scroll full-down
-map [fullscreen] e scroll full-up
-# map b navigate previous
-# map n navigate next
-map [ zoom out
-map ] zoom in
+map [ navigate previous
+map ] navigate next
+map I zoom in
+map O zoom out
+map * adjust_window width
 map S toggle_statusbar 
 map x quit
 map f toggle_fullscreen
+
+map [fullscreen] i set recolor
+map [fullscreen] s scroll down
+map [fullscreen] w scroll up
+map [fullscreen] d scroll full-down
+map [fullscreen] e scroll full-up
+map [fullscreen] [ navigate previous
+map [fullscreen] ] navigate next
+map [fullscreen] I zoom in
+map [fullscreen] O zoom out
+map [fullscreen] * adjust_window width
+map [fullscreen] S toggle_statusbar 
+map [fullscreen] x quit
 map [fullscreen] f toggle_fullscreen
 
 set window-width 1280

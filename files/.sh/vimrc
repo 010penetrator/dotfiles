@@ -973,17 +973,12 @@ endfunction
 let hostname = substitute(system('hostname'), '\n', '', '')
 if hostname == "warmPC"
   if !exists("g:colors_name")
-    " colo stellarized | set background=light | LineColor atlantis
-    " colo vadelma | set background=light | LineColor deus
-    colo stellarized | LineColor nord
+    colo stellarized | set background=light | LineColor atlantis
   endif
 endif
 if hostname == "debian10pc" || hostname == "plasmikPC"
   if !exists("g:colors_name")
-    " colo plastic | LineColor deus
-    " colo forest-night | LineColor nord
-    colo vimspectr180-light | LineColor atlantis
-    " set hlsearch 
+    colo stellarized | set background=light | LineColor atlantis
   endif
 endif
 
@@ -1006,8 +1001,12 @@ endif
 " LineColor darcula
 " LineColor material
 " LineColor ayu_light
-" colo stellarized | LineColor atlantis
+" colo stellarized | set background=light | LineColor atlantis
+" colo stellarized | set background=dark | LineColor nord
+" colo vadelma | set background=light | LineColor deus
+" colo vimspectr180-light | LineColor atlantis
+" colo plastic | LineColor deus
+" colo forest-night | LineColor nord
 " colo snow | set background=light | LineColor material
-" colo stellarized | set background=dark | LineColor atlantis
 " set notermguicolors | colo moonscape | LineColor deus
 
