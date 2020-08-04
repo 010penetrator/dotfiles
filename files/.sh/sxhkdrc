@@ -4,7 +4,7 @@ super + x ; { U, m, s, r, e, h, f, d, g, p, n, o, w, a, i }
 super + x ; { q, t, j, z, k, l, b }
   { scroff, raiseterm.sh, windowswitcher.sh, xdotool mousemove_relative 0 1600, i3-msg kill, listdwn.sh, listmpv.sh }
 
-super + { t, v, U, g, p, c, u, r, a, b, z }
+super + { t, v, U, g, p, c, r, R, a, b, z }
   raise.sh { 'xterm\|urxvt\|kitty', VIM 'vimz', luakit, 'chromium\|Firefox', 'MPV\|mpv\|MOC' 'noti echo no player instance found', VIFM '$TERMINAL -e vifm & notify-send new_VIFM', zathura listzathura.sh, evince, 'transmission-remote\|tremc\|qbittorrent' '$TERMINAL -e tremc -c localhost:9090', ' Browser' '', devhelp }
 
 super + { T, V, C, B }
