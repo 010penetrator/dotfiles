@@ -11,7 +11,7 @@ super + { T, V, C, B }
   raisekitty.sh { bash, VIM, VIFM, MPV }
 
 #  s , r 
-super + n ; { n, m, h, c, v, u }
+super + n ; { n, m, h, c, v, r }
   { $TERMINAL, momkitty.sh, zsh, $TERMINAL -e vifm, $TERMINAL -e vim, listzathura.sh }
 super + e
   raiseterm.sh

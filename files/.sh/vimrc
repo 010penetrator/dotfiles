@@ -206,11 +206,19 @@ let g:seoul256_background = 234
   endfunction
 set noequalalways
 set winheight=7
-set noswapfile
-silent !mkdir -p ~/.vimbak
-set backupdir=~/.vimbak//
-set directory=~/.vimbak//
-set undodir=~/.vimbak//
+" silent !mkdir -p ~/.vimbak
+silent ! find $HOME/.vim/bak -type f -mtime +30 -delete
+if !isdirectory($HOME."/.vim")
+  call mkdir($HOME."/.vim", "", 0770)
+endif
+if !isdirectory($HOME."/.vim/bak")
+  call mkdir($HOME."/.vim/bak", "", 0700)
+endif
+set backupdir=~/.vim/bak
+set undodir=~/.vim/bak
+set undofile
+set directory=~/.vim/bak
+" set noswapfile
 set history=2500
 set tabstop=2 softtabstop=2 expandtab shiftwidth=2 smarttab 
 set textwidth=0 wrapmargin=0
