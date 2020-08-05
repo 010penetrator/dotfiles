@@ -737,7 +737,6 @@ endfunction
 
 function! FocusBufOrDo(name,cmd)
   if buflisted(bufname(a:name))
-    " exec 'Denite buffer -default-action=switch -mode=normal -immediately-1 -input=' . a:name 
     call GotoWindowByName(a:name)
     if bufname('%') != bufname(a:name)
       exec 'buffer ' . a:name
@@ -762,7 +761,6 @@ function! GotoTerm(arg)
   let ar = []
   for b in getbufinfo()
     if b.name =~ '/bin/bash' && !empty(b.windows)
-      " call add(ar,b.windows[0])
       let ar = ar + [b.windows[0]]
     endif
   endfor
