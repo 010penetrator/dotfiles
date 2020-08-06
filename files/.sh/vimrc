@@ -474,7 +474,7 @@ nnoremap m-       :<C-U>call signature#mark#Purge("all")<CR>
 nnoremap m<space> :<C-U>call signature#mark#Purge("line")<CR>
 nnoremap gz 1gt
 " Swap window with previous window
-nnoremap <Leader>' :call WinBufSwap()<CR>
+nnoremap <Leader>s :call WinBufSwap()<CR>
 nnoremap <Leader>y :call BufYank()<CR>
 nnoremap <Leader>p :call BufPut()<CR>
 nnoremap q<PageUp>   gg:call search('^.') <CR>k
@@ -580,7 +580,7 @@ nnoremap <Leader>gv :silent exec '!vimz "%:p"' \| redraw! \| q <CR>
 nnoremap <Leader>gc :silent exec '!notab=1 vimz "%:p"' \| redraw! \| q <CR>
 " Add Plug entry
 nnoremap <Leader>vp :put + <bar> exec "normal dfmxIPlug 'A'" <CR>
-nnoremap <Leader>vs :source ~/.vim/session.vim <CR>
+nnoremap <Leader>vs :source ~/.vim/session.vim \| exec "colo " . g:Color_save<CR>
 nnoremap <Leader>vv :source $MYVIMRC <CR>
 nnoremap <Leader>vq :qa! <CR>
 nnoremap <Leader>v<Leader> :call EvalThis()<CR>
@@ -612,8 +612,8 @@ command! SE r !sudo cat %
 command! KIR e ++enc=cp1251 | set fileencoding=utf-8 | set fileformat=unix
 " command! C1KIR e ++enc=cp1251 | set fileencoding=utf-8 | set fileformat=unix | wq
 command! F set fileencoding=utf-8 | set fileformat=unix
-command! QQ mksession! ~/.vim/session.vim | wa | qa
-command! SessWrite mksession! ~/.vim/session.vim
+command! SessWrite let g:Color_save=g:colors_name | mksession! ~/.vim/session.vim
+command! QQ        let g:Color_save=g:colors_name | mksession! ~/.vim/session.vim | wa | qa
 command! Bash exec 'silent ! bash' | redraw!
 command! NewTerm exec 'silent ! $TERMINAL &' | redraw!
 command! NewTermHere exec 'silent ! cd "%:p:h" && $TERMINAL &' | redraw!
