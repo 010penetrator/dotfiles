@@ -123,6 +123,8 @@ Plug 'ErichDonGubler/vim-sublime-monokai' "edit red?
 Plug 'KimNorgaard/vim-frign' "borland_style
 Plug 'vim-scripts/Gummybears' "very_dark
 Plug 'szorfein/fromthehell.vim' "dark satur earth
+Plug 'duckwork/nirvana' "shafran
+Plug 'franbach/miramare' "earth dark
 Plug 'koirand/tokyo-metro.vim' "pretty dark
 Plug 'nightsense/rusticated' "morning
 Plug 'KKPMW/sacredforest-vim' "lowcont

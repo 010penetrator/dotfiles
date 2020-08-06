@@ -1,11 +1,11 @@
 super + x ; { U, m, s, r, e, h, f, d, g, p, n, o, w, a, i }
-  raise.sh { 'Luakit' 'luakit', '' notimem, speedcrunch, Ranger 'newranger', 'WeeChat\|weechat\|Pidgin' 'urxvt -e weechat', htop '$TERMINAL -e htop', feh 'fa /ln/dwn/', deadbeef, 'chromium\|Firefox\|Navigator' '$BROWSER', Thunar thunar, nautilus, VirtualBox '', fbreader, pavucontrol, histmpv.sh }
+  raise.sh { 'Luakit' 'luakit', '' notimem, speedcrunch, Ranger 'newranger', 'WeeChat\|weechat\|Pidgin' 'urxvt -e weechat', htop '$TERMINAL -e htop', feh 'feha /ln/dwn/', deadbeef, 'chromium\|Firefox\|Navigator' '$BROWSER', Thunar thunar, nautilus, VirtualBox '', fbreader, pavucontrol, histmpv.sh }
 
-super + x ; { q, t, j, z, k, l, b }
-  { scroff, raiseterm.sh, windowswitcher.sh, xdotool mousemove_relative 0 1600, i3-msg kill, listdwn.sh, listmpv.sh }
+super + x ; { t, j, z, k, l, b }
+  { raiseterm.sh, windowswitcher.sh, xdotool mousemove_relative 0 1600, i3-msg kill, listdwn.sh, listmpv.sh }
 
-super + { t, v, U, g, p, c, r, R, a, b, z }
-  raise.sh { 'xterm\|urxvt\|kitty', VIM 'vimz', luakit, 'chromium\|Firefox', 'MPV\|mpv\|MOC' 'noti echo no player instance found', VIFM '$TERMINAL -e vifm & notify-send new_VIFM', zathura listzathura.sh, evince, 'transmission-remote\|tremc\|qbittorrent' '$TERMINAL -e tremc -c localhost:9090', ' Browser' '', devhelp }
+super + { q, t, v, U, g, p, c, r, R, a, b, z }
+  raise.sh { '' scroff, 'xterm\|urxvt\|kitty', VIM 'vimz', luakit, 'chromium\|Firefox', 'MPV\|mpv\|MOC' 'noti echo no player instance found', VIFM '$TERMINAL -e vifm & notify-send new_VIFM', zathura listzathura.sh, evince, 'transmission-remote\|tremc\|qbittorrent' '$TERMINAL -e tremc -c localhost:9090', ' Browser' '', devhelp }
 
 super + { T, V, C, B }
   raisekitty.sh { bash, VIM, VIFM, MPV }
@@ -52,9 +52,11 @@ alt + z
 super + alt + {q,r}
   bspc {quit,wm -r}
 
-# close and kill
-super + {_,shift + }q
-  bspc node -{c,k}
+# close / kill
+super + Escape
+  bspc node -c
+super + ctrl + q
+  bspc node -k
 
 # alternate between the tiled and monocle layout
 super + m

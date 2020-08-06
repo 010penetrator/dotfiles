@@ -18,6 +18,7 @@ bspc config gapless_monocle      true
 
 bspc rule -a Gimp desktop='^8' state=floating follow=on
 bspc rule -a Chromium desktop='^2'
+bspc rule -a feh state=floating
 bspc rule -a SpeedCrunch state=floating
 bspc rule -a Pidgin state=floating
 bspc rule -a Nautilus state=floating
