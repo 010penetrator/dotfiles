@@ -182,7 +182,7 @@ set t_Co=256
 if $TERMINAL == 'xterm'
   set term=xterm-256color
 endif
-if $TERMINAL == 'kitty'
+if $TERMINAL =~ 'kitty'
   let &t_ut=''
 endif
 let g:GPGPreferSymmetric=1
@@ -224,7 +224,8 @@ set backupdir=~/.vim/bak
 set undodir=~/.vim/bak
 set undofile
 set directory=~/.vim/bak
-" set noswapfile
+set swapfile
+set sessionoptions+=globals
 set history=2500
 set tabstop=2 softtabstop=2 expandtab shiftwidth=2 smarttab 
 set textwidth=0 wrapmargin=0
@@ -233,7 +234,6 @@ set autoindent
 set invlinebreak
 set list lcs=tab:\┊\ 
 set scrolloff=2
-" set relativenumber
 set number
 set numberwidth=2
 set showmode
@@ -580,7 +580,7 @@ nnoremap <Leader>gv :silent exec '!vimz "%:p"' \| redraw! \| q <CR>
 nnoremap <Leader>gc :silent exec '!notab=1 vimz "%:p"' \| redraw! \| q <CR>
 " Add Plug entry
 nnoremap <Leader>vp :put + <bar> exec "normal dfmxIPlug 'A'" <CR>
-nnoremap <Leader>vs :source ~/.vim/session.vim \| exec "colo " . g:Color_save<CR>
+nnoremap <Leader>vs :source ~/.vim/session.vim \| call LoadColor()<CR>
 nnoremap <Leader>vv :source $MYVIMRC <CR>
 nnoremap <Leader>vq :qa! <CR>
 nnoremap <Leader>v<Leader> :call EvalThis()<CR>
@@ -879,6 +879,12 @@ function! SwitchBackground()
   endif
   " exec "set background"
   " echo &background
+endfunction
+
+function! LoadColor()
+  if exists( "g:Color_save" )
+    exec "colo " . g:Color_save
+  endif
 endfunction
 
 function! SwitchCE()
