@@ -38,5 +38,6 @@ if ! [ -z "$1" ] ; then
 raise.sh VIMSERV &> /dev/null
 else
   echo "Usage: [MODE=somemode] vimz dir/file.txt"
+  exit 1
 fi
 

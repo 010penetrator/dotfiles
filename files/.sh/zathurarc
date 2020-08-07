@@ -1,4 +1,4 @@
-set scroll-step 210
+set scroll-step 230
 set default-bg "#696969"
 set statusbar-fg "#aaaaaa"
 set recolor-darkcolor "#060504"
