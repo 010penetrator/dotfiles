@@ -1006,7 +1006,7 @@ if hostname == "warmPC"
 endif
 if hostname == "debian10pc" || hostname == "plasmikPC"
   if !exists("g:colors_name")
-    colo stellarized | set background=light | LineColor atlantis
+    colo edge | set background=light | LineColor atlantis
   endif
 endif
 

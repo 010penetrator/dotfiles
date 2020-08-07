@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # How many my vim-servers?
-i=$(vim --serverlist | grep ^VIMSERV$ | wc -l)
+servers=$(vim --serverlist | grep ^VIMSERV$ | wc -l)
 # Launch great Vim
-[ $i == 0 ] && echo $i &&
+[ $servers == 0 ] && echo $servers &&
   case $TERMINAL in
     kitty*)
       # $TERMINAL --start-as maximized bash -c "source $HOME/.bashrc ; sleep .1 ; vim --servername vimserv" & ;;
@@ -11,13 +11,14 @@ i=$(vim --serverlist | grep ^VIMSERV$ | wc -l)
     *)
       xterm -maximized -e "source $HOME/.bashrc ; vim --servername vimserv" & ;;
   esac
-[ $i == 0 ] && sleep 1.5
+[ $servers == 0 ] && sleep 1.5
 
 if ! [ -z "$1" ] ; then 
   # get full name
   path=$(realpath -s "$1")
+  echo pp $path
   # escape spaces
-  path=${1// /'\' }
+  path=${path// /'\' }
   if [[ $MODE == current ]] ; then
     # Edit in current Vim window
     vim --servername vimserv --remote-send "<c-w>:e $path<CR>"
@@ -26,12 +27,12 @@ if ! [ -z "$1" ] ; then
       # Edit in last Vim window
       vim --servername vimserv --remote-send "<c-w>p:e $path<CR>"
   else
-    if [ $i == 0 ] ; then
+    if [ $servers == 0 ] ; then
       # Populate Vim buffer
-      vim --servername vimserv --remote-send ":e $path<CR>" 
+      vim --servername vimserv --remote-send ":e $path<CR>"
     else
       # Edit in new window in Vim
-      vim --servername vimserv --remote-send "<c-w>:new $path<CR>" 
+      vim --servername vimserv --remote-send "<c-w>:new $path<CR>"
     fi
   fi
   fi
