@@ -16,7 +16,6 @@ servers=$(vim --serverlist | grep ^VIMSERV$ | wc -l)
 if ! [ -z "$1" ] ; then 
   # get full name
   path=$(realpath -s "$1")
-  echo pp $path
   # escape spaces
   path=${path// /'\' }
   if [[ $MODE == current ]] ; then
