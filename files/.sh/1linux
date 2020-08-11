@@ -178,6 +178,11 @@ wpa_passphrase SSID pass > wifipassfile ; wpa_supplicant -B -i $w -c passfile # 
 wpa_supplicant -B -i $w -c passfile <(wpa_passphrase SSID pass) # unsafe oneliner
 sudo dhcpcd $w
 sudo ip address add 172.1.1.21/24 brodcast + dev enp2s0
+/etc/network/interfaces:
+. auto eth0
+. iface eth0 inet static
+.   address 172.16.1.3
+.   netmask 255.255.255.0
 curl https://wtfismyip.com/text # check ip
 curl ifconfig.me
 curl -s --head http://opennet.ru # check network
