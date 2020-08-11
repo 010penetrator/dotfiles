@@ -477,8 +477,8 @@ nnoremap gz 1gt
 nnoremap <Leader>s :call WinBufSwap()<CR>
 nnoremap <Leader>y :call BufYank()<CR>
 nnoremap <Leader>p :call BufPut()<CR>
-nnoremap q<PageUp>   gg:call search('^.') <CR>k
-nnoremap q<PageDown> G$:call search('^.','b') <CR>0j
+nnoremap g<PageUp>   gg:call search('^.') <CR>k
+nnoremap g<PageDown> G$:call search('^.','b') <CR>0j
 " Search my comments
 nnoremap am /\s*\/\/.*\/\/$<CR>
 " Jump to blank or one-char lines
@@ -565,7 +565,7 @@ nnoremap <Leader>gg :call FocusBufOrDo('wawe','e /ln/ho/4gist/wawe')<CR>
 nnoremap <Leader>gq :call FocusBufOrDo('.vimrc','e $MYVIMRC')<CR>
 nnoremap <Leader>gx :call FocusBufOrDo('sxhkd','e /ln/sh/sxhkdrc')<CR>
 nnoremap <Leader>gz :call FocusBufOrDo('zzzz','e /ln/hh/tt/zzzzzz')<CR>
-nnoremap <Leader>gh :call FocusBufOrDo('sh_history','e $HOME/.bash_history')<CR>
+nnoremap <Leader>gh :call FocusBufOrDo('sh_history','e $HOME/.bash_history')<CR>G
 nnoremap <Leader>gl :call FocusBufOrDo('1linux','e /ln/sh/1linux')<CR>
 nnoremap <Leader>gs :call FocusBufOrDo('stk','e /ln/ho/use/stk.tx')<CR>
 nnoremap <Leader>gd :BD<CR>
@@ -619,6 +619,8 @@ command! NewTerm exec 'silent ! $TERMINAL &' | redraw!
 command! NewTermHere exec 'silent ! cd "%:p:h" && $TERMINAL &' | redraw!
 command! NewVifmHere exec 'silent ! $TERMINAL -e vifm %:p:h & ' | redraw!
 command! LCDhere lcd %:p:h | pwd
+command! FollowSymLink let b:symlink = expand("%:p") | execute "file " . resolve(expand("%")) | edit
+command! UnFollowSymLink exec 'file ' . b:symlink | edit
 command! UpdCtags !ctags -R --exclude=.git --exclude=log --exclude=wutils --c++-kinds=+p --fields=+iaS --extra=+q *
 command! UpdCtagsSudo !sudo ctags -R --exclude=.git --exclude=log --exclude=wutils --c++-kinds=+p --fields=+iaS --extra=+q *
 command! UpdCtagsGit :call UpdCtagsGit()
