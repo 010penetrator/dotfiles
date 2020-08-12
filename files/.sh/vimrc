@@ -320,6 +320,7 @@ endif
 
 "-----------Shortcuts---------"
 set timeoutlen=500
+let mapleader = ","
 " Go to normal mode via home-row
 imap jj <ESC>
 imap оо <ESC>
@@ -329,7 +330,7 @@ if v:version >= 801
   tmap <C-x> <C-w>N :BD<CR>
   tnoremap <C-PageUp> <C-W>:tabprev<CR>
   tnoremap <C-PageDown> <C-W>:tabnext<CR>
-  " tnoremap <Leader><tab> :exe "tabn ".g:lasttab<CR>
+  tnoremap o<tab> <C-W>:exe "tabn ".g:lasttab<CR>
   tmap <C-\> <C-W>w
 endif
 nnoremap <C-PageUp> gT
@@ -516,10 +517,9 @@ nnoremap as a
 nnoremap at :tabe<CR>
 nmap aT atg<
 nnoremap aq :qa<CR>
+nmap q- o<esc>60i-<esc>kJgcc60ldc0W
 nnoremap af :exec "normal i".nr2char(getchar())."\e"<CR>
 nnoremap ag :exec "normal as".nr2char(getchar())."\e"<CR>
-" Leader maps
-let mapleader = ","
 nnoremap <Leader>1 1gt
 nnoremap <Leader>2 2gt
 nnoremap <Leader>3 3gt
@@ -592,10 +592,10 @@ nnoremap <Leader>zz :let &scrolloff=28-&scrolloff<CR>
 nnoremap <Leader>zt :silent exec 'UpdCtags' \| redraw! \| echo 'Wrote tags db in' getcwd().'/' <CR>
 nnoremap <Leader>zg :call UpdCtagsGit() <CR>
 nnoremap <Leader>zf :call UpdCtagsGitFlat() <CR>
-nnoremap <Leader>zs :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make tags") <bar> redraw! <bar> cwindow <CR>
 nnoremap <Leader>zw :make <bar> copen <CR>
-nnoremap <Leader>zx :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make clean") <bar> redraw! <bar> cwindow<CR>
 nnoremap <Leader>zm :lcd %:p:h <bar> silent exec '! echo Calling make @ $PWD' <bar> silent call BuildProjectUni("Makefile","make") <bar> redraw! <bar> cwindow <CR>
+nnoremap <Leader>zs :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make tags") <bar> redraw! <bar> cwindow <CR>
+nnoremap <Leader>zx :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make clean") <bar> redraw! <bar> cwindow<CR>
 nnoremap <Leader>zr :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make run") <bar> redraw! <bar> cwindow <CR>
 " nnoremap <Leader>zb yap: exec "!" . @" <cr>
 nnoremap <Leader>zl : silent exec '! echo -e "\n$(pwd):"; ls -la . ; read -n 1 -s -r -p "//hit.anykey" ; echo -ne "\n" ' \| redraw! <cr>
@@ -648,8 +648,8 @@ endif
 "----------Functions----------"
 
 function! UpdCtagsGit()
-  echom "Trying to update ctags in this git project"
-  silent exec '! echo -e "\n\n"Trying to update ctags in this git project"..."'
+  echom "Trying to update ctags with deps in this git project"
+  silent exec '! echo -e "\n\n"Trying to update ctags with deps in this git project"..."'
   let l:starting_directory = getcwd()
   let l:curr_directory = expand('%:p:h')
   exec "cd " . l:curr_directory
