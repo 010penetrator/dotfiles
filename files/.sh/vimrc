@@ -517,7 +517,8 @@ nnoremap as a
 nnoremap at :tabe<CR>
 nmap aT atg<
 nnoremap aq :qa<CR>
-nmap q- o<esc>60i-<esc>kJgcc60ldc0W
+nnoremap q- 60A-<esc>0<esc>60ld$
+" nmap q- O1<esc>gcc$xj^d0o<esc>0d$60i-<esc>kkJJ^60ldc0W
 nnoremap af :exec "normal i".nr2char(getchar())."\e"<CR>
 nnoremap ag :exec "normal as".nr2char(getchar())."\e"<CR>
 nnoremap <Leader>1 1gt
