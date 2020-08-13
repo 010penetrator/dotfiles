@@ -553,6 +553,7 @@ nnoremap <Leader>w :w<CR>
 nnoremap <Leader>d :bd!<CR>
 nnoremap <Leader>c :NewVifmHere<CR>
 nnoremap <Leader>C :Silent xdg-open %:p:h & <cr>
+unmap gx
 nnoremap <Leader><Space> :LCDhere <CR>
 nnoremap <Leader>G :call ClimbToDirWhere(".git/index",1) \| pwd <CR>
 nnoremap <Leader>o :Goyo 66%x100%<CR>
