@@ -355,8 +355,6 @@ nnoremap <silent> <BS>    :exec 'normal! '.float2nr(round(winheight(0)*(exists("
 " <x> will delete to no buffer
 noremap x "_x
 noremap X "_X
-" swap two chars
-nnoremap qx dlp
 " noremap s "_s
 nnoremap gr gT
 nnoremap g< :tabm -1 <CR>
@@ -416,8 +414,8 @@ nnoremap qv :vnew <CR>
 nnoremap qS :split # <cr>
 nnoremap qV :vsplit # <cr>
 " Split netrw
-nnoremap a-   :split %:p:h <cr>
-nnoremap a_  :vsplit %:p:h <cr>
+nnoremap a-   :split <bar> exec "normal -" <cr>
+nnoremap a_  :vsplit <bar> exec "normal -" <cr>
 " Split open file under cursor with netrw 
 nnoremap ae :vsp <c-r><c-f> <CR> 
 " Split open current location with netrw
@@ -517,7 +515,8 @@ nnoremap as a
 nnoremap at :tabe<CR>
 nmap aT atg<
 nnoremap aq :qa<CR>
-nnoremap q- 60A-<esc>0<esc>60ld$
+nnoremap q- 60A-<esc>0<esc>60ld$b
+nnoremap q= 60A=<esc>0<esc>60ld$b
 " nmap q- O1<esc>gcc$xj^d0o<esc>0d$60i-<esc>kkJJ^60ldc0W
 nnoremap af :exec "normal i".nr2char(getchar())."\e"<CR>
 nnoremap ag :exec "normal as".nr2char(getchar())."\e"<CR>
@@ -553,7 +552,8 @@ nnoremap <Leader>w :w<CR>
 nnoremap <Leader>d :bd!<CR>
 nnoremap <Leader>c :NewVifmHere<CR>
 nnoremap <Leader>C :Silent xdg-open %:p:h & <cr>
-unmap gx
+" swap two chars
+nnoremap gx dlp
 nnoremap <Leader><Space> :LCDhere <CR>
 nnoremap <Leader>G :call ClimbToDirWhere(".git/index",1) \| pwd <CR>
 nnoremap <Leader>o :Goyo 66%x100%<CR>

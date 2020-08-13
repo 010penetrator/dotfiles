@@ -22,7 +22,9 @@ echo .
 mkdir -p "$2/$drn"
 shnsplit -f "$cname" -d "$2/$drn" -t "%n %t" -o flac "$name"
 rm "$2/$drn"/*pregap.flac
-cuetag.sh "$cname" "$2/$drn"/*.flac
+# Care tags
+( command -v cuetag.sh &> /dev/null && echo 1 && cuetag.sh "$cname" "$2/$drn"/*.flac ) ||
+( command -v cuetag &> /dev/null && echo 2 && cuetag "$cname" "$2/$drn"/*.flac )
 cp 2>/dev/null *[C,c]over.* "$2/$drn/"
 cp 2>/dev/null [F,f]ront.* "$2/$drn/"
 cp 2>/dev/null [F,f]older.* "$2/$drn/"
@@ -30,5 +32,4 @@ cp 2>/dev/null [B,b]ack.* "$2/$drn/"
 cp 2>/dev/null "$basename"{jpg,JPG,jpeg} "$2/$drn/"
 ((i++))
 done
-
 

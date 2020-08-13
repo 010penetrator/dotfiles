@@ -1,15 +1,16 @@
 #!/bin/bash
 
+SERVNAME=VIMSERV
 # How many my vim-servers?
 servers=$(vim --serverlist | grep ^VIMSERV$ | wc -l)
 # Launch great Vim
 [ $servers == 0 ] && echo $servers &&
   case $TERMINAL in
     kitty*)
-      # $TERMINAL --start-as maximized bash -c "source $HOME/.bashrc ; sleep .1 ; vim --servername vimserv" & ;;
-      $TERMINAL bash -c "source $HOME/.bashrc ; sleep .1 ; vim --servername vimserv" & ;;
+      # $TERMINAL --start-as maximized bash -c "source $HOME/.bashrc ; sleep .1 ; vim --servername $SERVNAME" & ;;
+      $TERMINAL bash -c "source $HOME/.bashrc ; sleep .1 ; vim --servername $SERVNAME" & ;;
     *)
-      xterm -maximized -e "source $HOME/.bashrc ; vim --servername vimserv" & ;;
+      xterm -maximized -e "source $HOME/.bashrc ; vim --servername $SERVNAME" & ;;
   esac
 [ $servers == 0 ] && sleep 1.5
 
@@ -18,26 +19,27 @@ if ! [ -z "$1" ] ; then
   path=$(realpath -s "$1")
   # escape spaces
   path=${path// /'\' }
+
   if [[ $MODE == current ]] ; then
     # Edit in current Vim window
-    vim --servername vimserv --remote-send "<c-w>:e $path<CR>"
+    vim --servername $SERVNAME --remote-send "<c-w>:e $path<CR>"
+  elif [[ $MODE == last ]] ; then
+    # Edit in last Vim window
+    vim --servername $SERVNAME --remote-send "<c-w>:wincmd p <bar> e $path<CR>"
+  elif [[ $MODE == newtab ]] ; then
+    # Edit in new tab of Vim
+    vim --servername $SERVNAME --remote-send "<c-w>:tabe $path<CR>"
+  # elif [ $servers == 0 ] ; then
+  #   # Populate Vim buffer
+  #   vim --servername $SERVNAME --remote-send ":e $path<CR>"
   else
-    if [[ $MODE == last ]] ; then
-      # Edit in last Vim window
-      vim --servername vimserv --remote-send "<c-w>p:e $path<CR>"
-  else
-    if [ $servers == 0 ] ; then
-      # Populate Vim buffer
-      vim --servername vimserv --remote-send ":e $path<CR>"
-    else
-      # Edit in new window in Vim
-      vim --servername vimserv --remote-send "<c-w>:new $path<CR>"
-    fi
+    # Edit in new window in Vim
+    vim --servername $SERVNAME --remote-send "<c-w>:new $path<CR>"
   fi
-  fi
-raise.sh VIMSERV &> /dev/null
+
+raise.sh $SERVNAME &> /dev/null
 else
-  echo "Usage: [MODE=somemode] vimz dir/file.txt"
+  echo "Usage: [MODE=current,last,newtab] vimz dir/file.txt"
   exit 1
 fi
 
