@@ -614,8 +614,9 @@ command! SE r !sudo cat %
 command! KIR e ++enc=cp1251 | set fileencoding=utf-8 | set fileformat=unix
 " command! C1KIR e ++enc=cp1251 | set fileencoding=utf-8 | set fileformat=unix | wq
 command! F set fileencoding=utf-8 | set fileformat=unix
-command! SessWrite let g:Color_save=g:colors_name | mksession! ~/.vim/session.vim
-command! QQ        let g:Color_save=g:colors_name | mksession! ~/.vim/session.vim | wa | qa
+command! SessWrite let g:Color_save=g:colors_name | let g:Color_backgr=&background | mksession! ~/.vim/session.vim
+" command! QQ        let g:Color_save=g:colors_name | mksession! ~/.vim/session.vim | wa | qa
+command! QQ  exec 'SessWrite' | wa | qa
 command! Bash exec 'silent ! bash' | redraw!
 command! NewTerm exec 'silent ! $TERMINAL &' | redraw!
 command! NewTermHere exec 'silent ! cd "%:p:h" && $TERMINAL &' | redraw!
@@ -888,6 +889,9 @@ endfunction
 function! LoadColor()
   if exists( "g:Color_save" )
     exec "colo " . g:Color_save
+  endif
+  if exists( "g:Color_backgr" )
+    exec "set background=" . g:Color_backgr
   endif
 endfunction
 
