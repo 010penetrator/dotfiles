@@ -34,5 +34,5 @@ map [fullscreen] x quit
 map [fullscreen] f toggle_fullscreen
 
 set window-width 1280
-set window-height 1024
+set window-height 1200 
 
