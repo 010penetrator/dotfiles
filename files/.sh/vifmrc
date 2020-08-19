@@ -53,11 +53,11 @@ nnoremap rs :! echo -ne "\n" ; rsync -rtn --progress --delete --stats --size-onl
 nnoremap rS :! echo -ne "\n" ; rsync -rt  --progress --delete --stats --size-only %d/ %D ; read -n 1 -s -r -p "-----======DONE======------" ; echo
 nnoremap qf :! if [ %c == ".." ] ; then feha . ; else if [ -d %c ] ; then cd %c; feha . ; else if [ -f %c ] ; then feha %c; fi ; fi ; fi <cr>
 nnoremap qF :! fehf . <cr>
-nnoremap aa :! vim %c <cr>
 nnoremap q<space> :! mpv %c <cr>
 " Open file with vim server
 nnoremap av :! vimz "%c" &>/dev/null & <cr>
 nnoremap ac :! MODE="current" vimz "%c" &>/dev/null & <cr>
+nnoremap an :! MODE="newtab" vimz "%c" &>/dev/null & <cr>
 nnoremap a<space> :! MODE="last" vimz "%c" &>/dev/null & <cr>
 nnoremap az :! vimz "%c"<cr>:q<cr>
 nnoremap zl :! bash -c ' echo -ne \\n ls:\\n ; ls -dla %f ; read -rsn1 ' <cr>
@@ -96,7 +96,7 @@ nnoremap C :copy<cr>
 nnoremap E :move<cr>
 nnoremap cn :clone<cr>
 nnoremap am ggVG<cr>:move<cr>
-nnoremap an ggVG<cr>:copy<cr>
+nnoremap aa ggVG<cr>:copy<cr>
 nnoremap zu :! upk2dir.sh %c <cr>
 nnoremap zU :! upk2dir.sh %c %D <cr>
 nnoremap zp :! 7z a -mx=3 -xr!.git -xr!tags %c.7z %f <cr>
