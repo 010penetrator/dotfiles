@@ -411,7 +411,7 @@ nnoremap zy :let @" = expand('%:p')
 nnoremap qu ~
 nnoremap qs :new <CR>
 nnoremap qv :vnew <CR>
-nnoremap qE :checktime <cr>
+nnoremap a<BS> :checktime <cr>
 nnoremap qS :split # <cr>
 nnoremap qV :vsplit # <cr>
 " Split netrw
