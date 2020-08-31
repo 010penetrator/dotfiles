@@ -597,11 +597,11 @@ nnoremap <Leader>zg :call UpdCtagsGit() <CR>
 nnoremap <Leader>zf :call UpdCtagsGitFlat() <CR>
 nnoremap <Leader>zw :make <bar> copen <CR>
 nnoremap <Leader>zm :lcd %:p:h <bar> silent exec '! echo Calling make @ $PWD' <bar> silent call BuildProjectUni("Makefile","make") <bar> redraw! <bar> cwindow <CR>
-nnoremap <Leader>zs :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make tags") <bar> redraw! <bar> cwindow <CR>
+nnoremap <Leader>za :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make tags") <bar> redraw! <bar> cwindow <CR>
 nnoremap <Leader>zx :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make clean") <bar> redraw! <bar> cwindow<CR>
 nnoremap <Leader>zr :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make run") <bar> redraw! <bar> cwindow <CR>
 " nnoremap <Leader>zb yap: exec "!" . @" <cr>
-nnoremap <Leader>zl : silent exec '! echo -e "\n$(pwd):"; ls -la . ; read -n 1 -s -r -p "//hit.anykey" ; echo -ne "\n" ' \| redraw! <cr>
+nnoremap <Leader>zl : silent exec '! echo -e "\n$(pwd):"; ls -la . ; echo \. ; ls -la %:p ; read -n 1 -s -r -p "//hit.anykey" ; echo -ne "\n" ' \| redraw! <cr>
 vnoremap z- <ESC>:call FoldSelected()<CR>za
 nnoremap d- %%dd''dd''
 
