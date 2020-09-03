@@ -16,7 +16,6 @@ map I zoom in
 map O zoom out
 map * adjust_window width
 map S toggle_statusbar 
-map x quit
 map f toggle_fullscreen
 
 map [fullscreen] i set recolor
@@ -30,7 +29,6 @@ map [fullscreen] I zoom in
 map [fullscreen] O zoom out
 map [fullscreen] * adjust_window width
 map [fullscreen] S toggle_statusbar 
-map [fullscreen] x quit
 map [fullscreen] f toggle_fullscreen
 
 set window-width 1280

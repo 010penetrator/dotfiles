@@ -25,7 +25,7 @@ DEB-only: xinput psmisc
 RICE
 Chrome: uBlock Vimium CVim Surfingkeys MidnightLizard SingleFile Stylus Rescroller Browsec Bookmarks.by.MakeItSimple RecentBookmarks EmptyNewTabPage
 Firefox: TabSuspender hide-scrollbars DefaultZoom DarkReader FixedZoom
-Fonts: Cantarell Liberation DejaVu Noto Arimo Tinos Caslon EB-Garamond
+Fonts: Cantarell Liberation DejaVu Noto Arimo Tinos Caslon EB-Garamond Euclid-Circular-A
 Fonts Mono: xos4Terminus LiberationMono Noto Input Fira FiraCode Hack DejaVuSansMono SourceCodePro Tamzen OhSnap
 gtk: lounge mediterraneandarkest adapta mint-y flattastic libra-dark mona-3.0 carbonico arc-dark vertex menda-dark adwaita-maia green-submarine high-contrast-inverse 
 Xcursor.theme: Menda-Cursor Simple-and-Soft moblin breeze
