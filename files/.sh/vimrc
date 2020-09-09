@@ -1008,7 +1008,7 @@ endfunction
 " endif
 
 let hostname = substitute(system('hostname'), '\n', '', '')
-if hostname == "warmPC"
+if hostname == "warmPC" || hostname == "newPC"
   if !exists("g:colors_name")
     colo stellarized | set background=light | LineColor atlantis
   endif
