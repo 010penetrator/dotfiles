@@ -175,7 +175,7 @@ iw dev $w scan # wi-fi
 ip link set dev $w up
 rfkill block all # no aether disturbance!
 wpa_passphrase SSID pass > wifipassfile ; wpa_supplicant -B -i $w -c passfile # connect WPA2
-wpa_supplicant -B -i $w -c passfile <(wpa_passphrase SSID pass) # unsafe oneliner
+wpa_supplicant -B -i $w -c <(wpa_passphrase SSID pass) # unsafe oneliner
 sudo dhcpcd $w
 sudo ip address add 172.1.1.21/24 brodcast + dev enp2s0
 /etc/network/interfaces:
