@@ -40,9 +40,9 @@ if [[ "$HOSTNAME" =~ 'killer'[pc,PC] ]]; then
   killall unclutter; unclutter &
 
 elif [[ "$HOSTNAME" =~ ^debian10pc ]]; then
-  xrandr --output DVI-D-1 --auto --right-of HDMI-3
-  bspc monitor HDMI-3 -d 1 2 3 
-  bspc monitor DVI-D-1 -d 4 5 6 7 8
+  xrandr --output DVI-D-1 --auto --left-of HDMI-3
+  bspc monitor HDMI-3 -d 4 5 6 7 8
+  bspc monitor DVI-D-1 -d 1 2 3
   ( sleep 2 ; gsettings set org.gnome.mutter overlay-key '' )  # free Win key in Gnome 3
 
 elif [[ "$HOSTNAME" =~ ^white*(.*)ok ]]; then 
