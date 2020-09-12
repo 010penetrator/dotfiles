@@ -146,7 +146,6 @@ dconn() { sudo killall -v wpa_supplicant; sudo killall -v dhcpcd; }
 function launch { nohup $1 >/dev/null 2>/dev/null & disown; }
 alias mya='myfont ; sudo uname ; conn & [[ `pgrep Xorg` ]] || startx ~/.xinitrc i3'
 alias myb='myfont ; sudo uname ; conn & [[ `pgrep Xorg` ]] || startx ~/.xinitrc bspwm'
-alias l='sudo lsblk -fl'
 alias yp='fc -ln -1 | cut -c 3- | xclip ; echo yanked prev command' 
 alias ram='sudo python $sh/mem.py'
 alias myfont='setfont ter-218b'
@@ -154,8 +153,10 @@ alias dmenu='dmenu $DMENU_OPTIONS -fn "$DMENU_FN"'
 alias 1l='less ~/.sh/1linux'
 alias vf='$TERMINAL -e vifm . &'
 # alias trmclient='title transmission-remote-cli; transmission-remote-cli -c localhost:9090 ; title bash'
-amou() { target=$( sudo lsblk -f | grep .sd | fzf -e | cut -f 1 -d " " | tr -cd '[:alnum:]' ); [ ! -z "${target}" ] && udevil mount /dev/"$target" && echo "/dev/$target mounted" || echo 'No target.' ; }
-aumo() { target=$( sudo lsblk -f | grep .sd | grep '/' | cut -c 7- | fzf -e |  cut -f 1 -d " " ); [ ! -z "${target}" ] && sync && udevil umount "/dev/$target" && echo "/dev/$target unmounted" || echo 'No target.' ; }
+LSBLK="lsblk"
+alias l='$LSBLK -fl'
+amou() { target=$( $LSBLK -f | grep .sd | fzf -e | cut -f 1 -d " " | tr -cd '[:alnum:]' ); [ ! -z "${target}" ] && udevil mount /dev/"$target" && echo "/dev/$target mounted" || echo 'No target.' ; }
+aumo() { target=$( $LSBLK -f | grep .sd | grep '/' | cut -c 7- | fzf -e |  cut -f 1 -d " " ); [ ! -z "${target}" ] && sync && udevil umount "/dev/$target" && echo "/dev/$target unmounted" || echo 'No target.' ; }
 # title() { echo -ne "\e]0;$*\a"; } 
 title() { echo -ne "\033]0;$*\007"; } 
 alias leto='date +%Y-%m-%d'
