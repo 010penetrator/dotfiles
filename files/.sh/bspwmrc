@@ -1,14 +1,12 @@
 #!/bin/bash
 
-rc.sh &
 # xterm &
+rc.sh &
 
 bspc monitor -d 1 2 3 4 5 6 7 8
 # bspc monitor HDMI-1 -d 1 2 3 
 # bspc monitor HDMI-3 -d 4 5
 # bspc monitor DVI-D-1 -d 4 5 6 7 8
-
-( killall bspc bspc_rules & sleep .4 ; /./ln/sh/bspc_rules ) &
 
 bspc config border_width         2
 bspc config window_gap           3
@@ -31,4 +29,15 @@ bspc rule -a VirtualBox state=floating
 bspc rule -a Zathura state=tiled
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
+
+if [[ "$HOSTNAME" =~ ^debian10pc ]]; then
+  bspc monitor HDMI-3 -d 4 5 6 7 8
+  bspc monitor DVI-D-1 -d 1 2 3
+  export FLOATING_DESK_NUM=6
+  ( sleep .4 ; gsettings set org.gnome.mutter overlay-key '' )  # free Win key in Gnome 3
+else
+  export FLOATING_DESK_NUM=1
+fi
+
+( killall bspc bspc_rules & sleep .4 ; /./ln/sh/bspc_rules ) &
 

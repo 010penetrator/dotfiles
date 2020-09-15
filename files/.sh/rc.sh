@@ -42,9 +42,6 @@ if [[ "$HOSTNAME" =~ 'killer'[pc,PC] ]]; then
 
 elif [[ "$HOSTNAME" =~ ^debian10pc ]]; then
   xrandr --output DVI-D-1 --auto --left-of HDMI-3
-  bspc monitor HDMI-3 -d 4 5 6 7 8
-  bspc monitor DVI-D-1 -d 1 2 3
-  ( sleep 2 ; gsettings set org.gnome.mutter overlay-key '' )  # free Win key in Gnome 3
 
 elif [[ "$HOSTNAME" =~ ^white*(.*)ok ]]; then 
   xset dpms 900 0 0 
@@ -61,12 +58,14 @@ elif [[ "$HOSTNAME" =~ [pc,PC] ]]; then
 fi
 
 killall dunst
+(
 sleep .1
 if  [[ $HIDPI == "1" ]] ; then
   dunst -conf $HOME/.sh/dunstrc -font "Liberation Mono 14.5" &
 else
   dunst -conf $HOME/.sh/dunstrc &
 fi
+)
 # sleep .9
 # notify-send $HOSTNAME &
 
