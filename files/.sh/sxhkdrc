@@ -5,12 +5,12 @@ super + x ; { t, j, z, k, l, b }
   { raiseterm.sh, windowswitcher.sh, xdotool mousemove_relative 0 1600, i3-msg kill, listdwn.sh, listmpv.sh }
 
 super + { q, t, v, U, g, p, c, r, R, s, a, A, b, z }
-  raise.sh { '' scroff, 'xterm\|urxvt\|kitty', VIM 'vimz', luakit, 'chromium\|Firefox', 'MPV\|mpv\|MOC' 'noti echo no player instance found', VIFM '$TERMINAL -e vifm & notify-send new_VIFM', zathura listzathura.sh, evince, telegram-desktop, 'transmission-remote\|tremc\|qbittorrent' '$TERMINAL -e tremc -c localhost:9090', 'tremc-pi' '$TERMINAL -T tremc-pi -e tremc -c 192.168.1.78:9090', ' Browser' '', devhelp }
+  raise.sh { '' scroff, 'xterm\|urxvt\|kitty', VIM 'vimz', luakit, 'chromium\|Firefox', 'MPV\|mpv\|MOC' 'noti echo no player instance found', VIFM '$TERMINAL -e vifm & notify-send new_VIFM', zathura listzathura.sh, evince, 'Telegram\|Pidgin' '', 'transmission-remote\|tremc\|qbittorrent' '$TERMINAL -e tremc -c localhost:9090', 'tremc-pi' '$TERMINAL -T tremc-pi -e tremc -c 192.168.1.78:9090', ' Browser' '', devhelp }
 
 super + { T, V, C, B }
   raisekitty.sh { bash, VIM, VIFM, MPV }
 
-#  s 
+#  s , r 
 super + n ; { n, m, h, c, v, r }
   { $TERMINAL, momkitty.sh, zsh, $TERMINAL -e vifm, $TERMINAL -e vim, listzathura.sh }
 super + e
