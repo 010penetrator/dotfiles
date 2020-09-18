@@ -422,7 +422,7 @@ nnoremap ae :vsp <c-r><c-f> <CR>
 nnoremap aE :e <c-r><c-f> <CR> 
 " Split open current location with netrw
 nnoremap a. :wincmd s \| e %:p:h <CR>
-nnoremap a> :wincmd v \| e %:p:h <CR>
+nnoremap a, :wincmd v \| e %:p:h <CR>
 nnoremap <Leader>S :  new \| lcd #:p:h <CR>
 nnoremap <Leader>V : vnew \| lcd #:p:h <CR>
 nnoremap an :tabe %:p:h <CR>
@@ -710,6 +710,10 @@ function! BuildProjectUni(Makefile,Makecommand)
   " change directory
   exec "lcd " . l:curr_directory
   let l:proj_dir = ClimbToDirWhere(a:Makefile,1)
+  if filereadable("CMakeCache.txt")
+    cd ../
+    let l:proj_dir = ClimbToDirWhere(a:Makefile,1)
+  endif
   if ( l:proj_dir != "-1" )
     echo l:proj_dir
     make
@@ -1022,13 +1026,11 @@ endif
 
 " list available colors..
 " read !ls $VIMPLUG/lightline.vim/autoload/lightline/colorscheme
-" let c = getcompletion('', 'color') | put =c | map M :exec 'colo' getline(line('.')) <cr>j
+" let c = getcompletion('', 'color') | new | put =c | map M j:exec 'colo' getline(line('.')) <cr>
+" map M j:call EvalThis()<cr>
 
-" colo vimspectr210-dark
 " colo vimspectr180-light
 " colo vimspectr150-light
-" colo Revolution
-" colo plastic
 " colo onehalfdark
 " colo edge 
 " colo vadelma

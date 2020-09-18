@@ -192,8 +192,8 @@ set noiec
 " Selected color scheme
 
 " colorscheme Default
-" colorscheme reicheltd-light
-colo iceberg
+colorscheme reicheltd-light
+" colo iceberg
 
 " Format for displaying time in file list. For example:
 " TIME_STAMP_FORMAT=%m/%d-%H:%M
