@@ -1025,10 +1025,10 @@ if hostname == "debian10pc" || hostname == "plasmikPC"
 endif
 
 " list available colors..
-" read !ls $VIMPLUG/lightline.vim/autoload/lightline/colorscheme
-" let c = getcompletion('', 'color') | new | put =c | map M j:exec 'colo' getline(line('.')) <cr>
-" map M j:call EvalThis()<cr>
+" new | map M j: LineColor <C-R><C-W><cr>| exec "read !ls $VIMPLUG/lightline.vim/autoload/lightline/colorscheme" | goto 1 | del 1
+" let c = getcompletion('', 'color') | new | put! =c | goto 1 | map M j:exec 'colo' getline(line('.')) <cr>
 
+" map M j:call EvalThis()<cr>
 " colo vimspectr180-light
 " colo vimspectr150-light
 " colo onehalfdark
