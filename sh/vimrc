@@ -597,7 +597,7 @@ nnoremap <Leader>zt :silent exec 'UpdCtags' \| redraw! \| echo 'Wrote tags db in
 nnoremap <Leader>zg :call UpdCtagsGit() <CR>
 nnoremap <Leader>zf :call UpdCtagsGitFlat() <CR>
 nnoremap <Leader>zw :make <bar> copen <CR>
-nnoremap <Leader>zm :lcd %:p:h <bar> silent exec '! echo Calling make @ $PWD' <bar> silent call BuildProjectUni("Makefile","make") <bar> redraw! <bar> cwindow <CR>
+nnoremap <Leader>zm :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make") <bar> redraw! <bar> cwindow <CR>
 nnoremap <Leader>za :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make tags") <bar> redraw! <bar> cwindow <CR>
 nnoremap <Leader>zx :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make clean") <bar> redraw! <bar> cwindow<CR>
 nnoremap <Leader>zr :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make run") <bar> redraw! <bar> cwindow <CR>
@@ -702,6 +702,7 @@ endfunction
 " endfunction
 
 function! BuildProjectUni(Makefile,Makecommand)
+  exec "!echo " . a:Makecommand . ":"
   " memorize stuff
   let l:makeprg_bak = &makeprg
   let &makeprg = a:Makecommand
@@ -710,12 +711,14 @@ function! BuildProjectUni(Makefile,Makecommand)
   " change directory
   exec "lcd " . l:curr_directory
   let l:proj_dir = ClimbToDirWhere(a:Makefile,1)
+  " !!! ignore cmake-generated Makefile
   if filereadable("CMakeCache.txt")
     cd ../
     let l:proj_dir = ClimbToDirWhere(a:Makefile,1)
   endif
   if ( l:proj_dir != "-1" )
-    echo l:proj_dir
+    exec "!echo @ " . l:proj_dir . ":"
+    exec "!echo ----------------------------------------"
     make
     " exec '! ' . a:Makecommand
   else 
@@ -1025,13 +1028,21 @@ if hostname == "debian10pc" || hostname == "plasmikPC"
 endif
 
 " list available colors..
-" new | map M j: LineColor <C-R><C-W><cr>| exec "read !ls $VIMPLUG/lightline.vim/autoload/lightline/colorscheme" | goto 1 | del 1
-" let c = getcompletion('', 'color') | new | put! =c | goto 1 | map M j:exec 'colo' getline(line('.')) <cr>
+" let c = getcompletion('', 'color') | new | put =c | goto 1 | map M j:exec 'colo' getline(line('.')) <cr>
+" new | map M j: LineColor <C-R><C-W><cr>| exec "read ! echo; ls $VIMPLUG/lightline.vim/autoload/lightline/colorscheme" | goto 1 | del 1
 
 " map M j:call EvalThis()<cr>
+" colo PaperColor | set background=light | LineColor selenized_light
+" colo snow | set background=light | LineColor ayu_light
+" colo stellarized | set background=light | LineColor atlantis
+" colo stellarized | set background=dark | LineColor nord
+" colo vadelma | set background=dark | LineColor deus
+" colo vimspectr180-light | LineColor atlantis
+" colo plastic | LineColor deus
+" colo forest-night | LineColor atlantis
+" set notermguicolors | colo moonscape | LineColor darcula
 " colo vimspectr180-light
 " colo vimspectr150-light
-" colo onehalfdark
 " colo edge 
 " colo vadelma
 " colo forest-night
@@ -1041,12 +1052,8 @@ endif
 " LineColor darcula
 " LineColor material
 " LineColor ayu_light
-" colo stellarized | set background=light | LineColor atlantis
-" colo stellarized | set background=dark | LineColor nord
-" colo vadelma | set background=light | LineColor deus
-" colo vimspectr180-light | LineColor atlantis
-" colo plastic | LineColor deus
-" colo forest-night | LineColor nord
-" colo snow | set background=light | LineColor material
-" set notermguicolors | colo moonscape | LineColor deus
+" LineColor one
+" LineColor selenized_light
+" LineColor solarized
+" LineColor Tomorrow
 
