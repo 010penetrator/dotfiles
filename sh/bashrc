@@ -21,7 +21,6 @@ export sh=$HOME/.sh
 export mo=/ln/mo
 export mus=/ln/mus
 export iso=$mo/Metal/PRAGS/iso-linux/
-export win=$mo/Metal/PRAGS/prags-win/
 export ogg=$mo/Blink/MUZIK/
 export MANWIDTH=80
 export FZF_DEFAULT_OPTS="--layout=reverse --height 55%"

@@ -8,16 +8,18 @@ i=$(echo ${a##*--0} | cut -c 1-2)
 #echo $a .$i
 i=$((i%60))
 ((i++))
-name=$( echo bak-conf--0"$i"0--`date +%Y-%m-%d`.tar.gz )
-repo="$HOME/dotfiles/files"
+name=$( echo bak-conf-tt--0"$i"0--`date +%Y-%m-%d`.tar.gz )
+repo="$HOME/dotfiles/"
 cd "$repo"
 tar -czf "$bak"/"$name" \
-  .config .sh \
-  -C / ln
+  config sh \
+  -C / ln \
+  -C /ln/ho tt
 #ls -t "$bak"bak* | head -5
-cp "$bak"/"$name" /ln/hh/tt/bak.conf.tar.gz
-# cp "$HOME"/.config/chromium/Default/Bookmarks /ln/hh/tt/uniq/
-tar -czhf "$bak"/bak-txt-0"$i"0--`date +%Y-%m-%d`.tar.gz -C /ln/hh tt
+cp "$bak"/"$name" /ln/bl/bak/conf.tar.gz
+
+# tar -czhf "$bak"/bak-txt-0"$i"0--`date +%Y-%m-%d`.tar.gz -C /ln/ho tt
 cd "$rdir"
 
-# rsync  -rt /ln/ho/.config/transmission-daemon/torrents/ /ln/ho/.del/torrents/ --progress #trmbak 
+rsync  -rtq /ln/ho/.config/transmission-daemon/torrents/ /ln/ho/.del/torrents/ --progress #trmbak 
+
