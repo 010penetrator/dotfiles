@@ -593,7 +593,7 @@ nnoremap <Leader>vb :call SwitchBackground() <CR>:echo "background=" &background
 nnoremap <Leader>vc :set termguicolors! <cr>:set termguicolors? <cr>
 nnoremap <Leader>vt :TagbarOpen fj <CR>
 nnoremap <Leader>zz :let &scrolloff=28-&scrolloff<CR>
-nnoremap <Leader>zt :silent exec 'UpdCtags' \| redraw! \| echo 'Wrote tags db in' getcwd().'/' <CR>
+nnoremap <Leader>zd :silent exec 'UpdCtags' \| redraw! \| echo 'Wrote tags db in' getcwd().'/' <CR>
 nnoremap <Leader>zg :call UpdCtagsGit() <CR>
 nnoremap <Leader>zf :call UpdCtagsGitFlat() <CR>
 nnoremap <Leader>zw :make <bar> copen <CR>
@@ -1034,6 +1034,7 @@ endif
 " map M j:call EvalThis()<cr>
 " colo PaperColor | set background=light | LineColor selenized_light
 " colo snow | set background=light | LineColor ayu_light
+" colo Tomorrow | LineColor Tomorrow
 " colo stellarized | set background=light | LineColor atlantis
 " colo stellarized | set background=dark | LineColor nord
 " colo vadelma | set background=dark | LineColor deus
