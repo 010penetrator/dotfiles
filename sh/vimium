@@ -15,7 +15,8 @@ map gf goForward
 map a enterInsertMode
 map > moveTabRight
 map < moveTabLeft
-map <a-f> LinkHints.activateMode
+map zf LinkHints.activateMode
+map <backspace> scrollFullPageUp
 
 wiki: https://www.wikipedia.org/w/index.php?title=Special:Search&search=%s Wikipedia
 m: https://www.multitran.com/m.exe?s=%s&l1=1&l2=2 Multitran
