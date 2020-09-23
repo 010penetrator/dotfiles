@@ -711,11 +711,11 @@ function! BuildProjectUni(Makefile,Makecommand)
   " change directory
   exec "lcd " . l:curr_directory
   let l:proj_dir = ClimbToDirWhere(a:Makefile,1)
-  " !!! ignore cmake-generated Makefile
-  if filereadable("CMakeCache.txt")
-    cd ../
-    let l:proj_dir = ClimbToDirWhere(a:Makefile,1)
-  endif
+  " " !!! ignore cmake-generated Makefile
+  " if filereadable("CMakeCache.txt")
+  "   cd ../
+  "   let l:proj_dir = ClimbToDirWhere(a:Makefile,1)
+  " endif
   if ( l:proj_dir != "-1" )
     exec "!echo @ " . l:proj_dir . ":"
     exec "!echo ----------------------------------------"
@@ -1032,21 +1032,21 @@ endif
 " new | map M j: LineColor <C-R><C-W><cr>| exec "read ! echo; ls $VIMPLUG/lightline.vim/autoload/lightline/colorscheme" | goto 1 | del 1
 
 " map M j:call EvalThis()<cr>
-" colo PaperColor | set background=light | LineColor selenized_light
 " colo snow | set background=light | LineColor ayu_light
+" colo PaperColor | set background=light | LineColor selenized_light
 " colo Tomorrow | LineColor Tomorrow
-" colo stellarized | set background=light | LineColor atlantis
+" colo vimspectr180-light | LineColor solarized
+" colo stellarized | set background=light | LineColor materia
 " colo stellarized | set background=dark | LineColor nord
-" colo vadelma | set background=dark | LineColor deus
-" colo vimspectr180-light | LineColor atlantis
-" colo plastic | LineColor deus
 " colo forest-night | LineColor atlantis
-" set notermguicolors | colo moonscape | LineColor darcula
+" colo edge | set background=dark | LineColor darcula
+" colo plastic | LineColor deus
+" colo vadelma | set background=dark | LineColor deus
 " colo vimspectr180-light
 " colo vimspectr150-light
 " colo edge 
-" colo vadelma
 " colo forest-night
+" colo vadelma
 " LineColor atlantis
 " LineColor nord
 " LineColor deus
