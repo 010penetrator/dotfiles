@@ -712,10 +712,10 @@ function! BuildProjectUni(Makefile,Makecommand)
   exec "lcd " . l:curr_directory
   let l:proj_dir = ClimbToDirWhere(a:Makefile,1)
   " " !!! ignore cmake-generated Makefile
-  " if filereadable("CMakeCache.txt")
-  "   cd ../
-  "   let l:proj_dir = ClimbToDirWhere(a:Makefile,1)
-  " endif
+  while filereadable("CMakeCache.txt")
+    cd ../
+    let l:proj_dir = ClimbToDirWhere(a:Makefile,1)
+  endwhile
   if ( l:proj_dir != "-1" )
     exec "!echo @ " . l:proj_dir . ":"
     exec "!echo ----------------------------------------"
@@ -1035,8 +1035,9 @@ endif
 " colo snow | set background=light | LineColor ayu_light
 " colo PaperColor | set background=light | LineColor selenized_light
 " colo Tomorrow | LineColor Tomorrow
+" colo edge | set background=light | LineColor materia
 " colo vimspectr180-light | LineColor solarized
-" colo stellarized | set background=light | LineColor materia
+" colo stellarized | set background=light | LineColor atlantis
 " colo stellarized | set background=dark | LineColor nord
 " colo forest-night | LineColor atlantis
 " colo edge | set background=dark | LineColor darcula
