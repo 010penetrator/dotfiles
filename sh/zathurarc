@@ -1,8 +1,10 @@
 set scroll-step 220
-set default-bg "#696969"
-set statusbar-fg "#aaaaaa"
+set default-bg "#666"
+set statusbar-fg "#bbb"
+set statusbar-bg "#222"
 set recolor-darkcolor "#060504"
 set recolor-lightcolor "#f5edd1"
+set font "monospace normal 10"
 # set smooth-scroll true
 
 map i set recolor
@@ -31,6 +33,6 @@ map [fullscreen] * adjust_window width
 map [fullscreen] S toggle_statusbar 
 map [fullscreen] f toggle_fullscreen
 
-set window-width 1280
-set window-height 1200 
+set window-width 1080
+set window-height 1000 
 
