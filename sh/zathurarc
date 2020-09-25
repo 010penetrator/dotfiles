@@ -5,7 +5,7 @@ set statusbar-bg "#222"
 set recolor-darkcolor "#060504"
 set recolor-lightcolor "#f5edd1"
 set font "monospace normal 10"
-# set smooth-scroll true
+set smooth-scroll true
 
 map i set recolor
 map s scroll down
