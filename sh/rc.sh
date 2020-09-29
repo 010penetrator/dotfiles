@@ -40,6 +40,13 @@ if [[ "$HOSTNAME" =~ 'killer'[pc,PC] ]]; then
   polybar.sh &
   killall unclutter; unclutter &
 
+elif [[ "$HOSTNAME" =~ 'newPC' ]]; then
+  # xrdb -merge <(echo "Xft.dpi: 108") &
+  xrandr --output DisplayPort-0 --mode 2560x1440 --rate 120 
+  sleep 1
+  pgrep transmission-da | grep . || trdwrap.sh & 
+  # pgrep earlyoom | grep . || earlyoom -m 2 -n &> /dev/null &
+
 elif [[ "$HOSTNAME" =~ ^debian10pc ]]; then
   xrandr --output DVI-D-1 --auto --left-of HDMI-3
 

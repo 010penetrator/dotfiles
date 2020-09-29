@@ -36,7 +36,7 @@ if [[ "$HOSTNAME" =~ ^debian10pc ]]; then
   export FLOATING_DESK_NUM=6
   ( sleep .4 ; gsettings set org.gnome.mutter overlay-key '' )  # free Win key in Gnome 3
 else
-  export FLOATING_DESK_NUM=1
+  export FLOATING_DESK_NUM="1 2"
 fi
 
 ( killall bspc bspc_rules & sleep .4 ; /./ln/sh/bspc_rules ) &
