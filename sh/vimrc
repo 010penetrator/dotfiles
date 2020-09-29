@@ -409,8 +409,8 @@ nnoremap ao o<Esc>:put! *<CR>`[v`]:g/^$/d<CR>:nohlsearch<CR>
 " Yank current file full name 
 nnoremap zy :let @" = expand('%:p')
 nnoremap qu ~
-nnoremap qs :new <CR>
-nnoremap qv :vnew <CR>
+nnoremap qs :new  \| echo expand ('%') '.@.' getcwd() <CR>
+nnoremap qv :vnew \| echo expand ('%') '.@.' getcwd() <CR>
 nnoremap a<BS> :checktime <cr>
 nnoremap qS :split # <cr>
 nnoremap qV :vsplit # <cr>
@@ -418,13 +418,13 @@ nnoremap qV :vsplit # <cr>
 nnoremap a-   :split <bar> exec "normal -" <cr>
 nnoremap a_  :vsplit <bar> exec "normal -" <cr>
 " Split open file under cursor with netrw 
-nnoremap ae :vsp <c-r><c-f> <CR> 
-nnoremap aE :e <c-r><c-f> <CR> 
+nnoremap ae :vsp <c-r><c-f> <CR>
+nnoremap aE :e <c-r><c-f> <CR>
 " Split open current location with netrw
 nnoremap a. :wincmd s \| e %:p:h <CR>
 nnoremap a, :wincmd v \| e %:p:h <CR>
-nnoremap <Leader>S :  new \| lcd #:p:h <CR>
-nnoremap <Leader>V : vnew \| lcd #:p:h <CR>
+nnoremap as :  new \| lcd #:p:h \| echo expand ('%') '.@.' getcwd() <CR>
+nnoremap av : vnew \| lcd #:p:h \| echo expand ('%') '.@.' getcwd() <CR>
 nnoremap an :tabe %:p:h <CR>
 " Open current location with vifm within vim
 nnoremap ac :term ++close vifm %:p:h<CR>
@@ -475,7 +475,7 @@ nnoremap m-       :<C-U>call signature#mark#Purge("all")<CR>
 nnoremap m<space> :<C-U>call signature#mark#Purge("line")<CR>
 nnoremap gz 1gt
 " Swap window with previous window
-nnoremap <Leader>s :call WinBufSwap()<CR>
+nnoremap <Leader>as :call WinBufSwap()<CR>
 nnoremap <Leader>y :call BufYank()<CR>
 nnoremap <Leader>p :call BufPut()<CR>
 nnoremap g<PageUp>   gg:call search('^.') <CR>k
@@ -512,8 +512,8 @@ cnoremap <C-b> <C-Left>
 cnoremap <C-t> <C-Right>
 
 nnoremap a <Nop>
-map ф a 
-nnoremap as a
+map ф a
+nnoremap ar a
 nnoremap at :tabe<CR>
 nmap aT atg<
 nnoremap aq :qa<CR>
@@ -580,8 +580,8 @@ nnoremap <Leader>fg :call ClimbToDirWhere(".git/index",1) \| Ack -Q <C-R><C-W>
 " nnoremap <Leader>ff :AckFile <C-r><C-W> <CR>
 nnoremap <Leader>fw :AckWindow <C-r><C-w> <CR>
 " binding for vimz bash script; i e move current buf to vimserver 
-nnoremap <Leader>gv :silent exec '!vimz "%:p"' \| redraw! \| q <CR>
-nnoremap <Leader>gc :silent exec '!notab=1 vimz "%:p"' \| redraw! \| q <CR>
+nnoremap <Leader>av :silent exec '!vimz "%:p"' \| redraw! \| q <CR>
+nnoremap <Leader>ac :silent exec '!notab=1 vimz "%:p"' \| redraw! \| q <CR>
 " Add Plug entry
 nnoremap <Leader>vp :put + <bar> exec "normal dfmxIPlug 'A'" <CR>
 nnoremap <Leader>vs :source ~/.vim/session.vim \| call LoadColor()<CR>
@@ -594,8 +594,9 @@ nnoremap <Leader>vc :set termguicolors! <cr>:set termguicolors? <cr>
 nnoremap <Leader>vt :TagbarOpen fj <CR>
 nnoremap <Leader>zz :let &scrolloff=28-&scrolloff<CR>
 nnoremap <Leader>zd :silent exec 'UpdCtags' \| redraw! \| echo 'Wrote tags db in' getcwd().'/' <CR>
-nnoremap <Leader>zg :call UpdCtagsGit() <CR>
-nnoremap <Leader>zf :call UpdCtagsGitFlat() <CR>
+nnoremap <Leader>zh :call UpdCtagsHereDeps() <CR>
+nnoremap <Leader>zg :call UpdCtagsGitDeps() <CR>
+nnoremap <Leader>zf :call UpdCtagsGit() <CR>
 nnoremap <Leader>zw :make <bar> copen <CR>
 nnoremap <Leader>zm :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make") <bar> redraw! <bar> cwindow <CR>
 nnoremap <Leader>za :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make tags") <bar> redraw! <bar> cwindow <CR>
@@ -628,7 +629,6 @@ command! FollowSymLink let b:symlink = expand("%:p") | execute "file " . resolve
 command! UnFollowSymLink exec 'file ' . b:symlink | edit
 command! UpdCtags !ctags -R --exclude=.git --exclude=log --exclude=wutils --c++-kinds=+p --fields=+iaS --extra=+q *
 command! UpdCtagsSudo !sudo ctags -R --exclude=.git --exclude=log --exclude=wutils --c++-kinds=+p --fields=+iaS --extra=+q *
-command! UpdCtagsGit :call UpdCtagsGit()
 command! Yall normal gg"+yG''
 command! Dall normal gg"_dG
 command! SwapContentPrev :call SwapContentPrevWin()
@@ -652,7 +652,13 @@ endif
 
 "----------Functions----------"
 
-function! UpdCtagsGit()
+function! UpdCtagsHereDeps()
+  echom "Trying to update ctags with deps in this directory"
+  silent exec '! echo -e "\n\n"Trying to update ctags with deps in this directory"..."'
+  exec '! $sh/ctags_with_deps.sh $(find . -type f -name \*.[ch])'
+endfunction
+
+function! UpdCtagsGitDeps()
   echom "Trying to update ctags with deps in this git project"
   silent exec '! echo -e "\n\n"Trying to update ctags with deps in this git project"..."'
   let l:starting_directory = getcwd()
@@ -669,7 +675,7 @@ function! UpdCtagsGit()
   exec "cd " . l:starting_directory
 endfunction
 
-function! UpdCtagsGitFlat()
+function! UpdCtagsGit()
   echom "Trying to update ctags in this git project"
   silent exec '! echo -e "\n\n"Trying to update ctags in this git project"..."'
   let l:starting_directory = getcwd()
@@ -1039,10 +1045,11 @@ endif
 " colo vimspectr180-light | LineColor solarized
 " colo stellarized | set background=light | LineColor atlantis
 " colo stellarized | set background=dark | LineColor nord
+" colo vadelma | set background=dark | LineColor deus
+" colo vadelma | set background=light | LineColor one
 " colo forest-night | LineColor atlantis
 " colo edge | set background=dark | LineColor darcula
 " colo plastic | LineColor deus
-" colo vadelma | set background=dark | LineColor deus
 " colo vimspectr180-light
 " colo vimspectr150-light
 " colo edge 
