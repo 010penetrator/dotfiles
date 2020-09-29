@@ -594,8 +594,9 @@ nnoremap <Leader>vc :set termguicolors! <cr>:set termguicolors? <cr>
 nnoremap <Leader>vt :TagbarOpen fj <CR>
 nnoremap <Leader>zz :let &scrolloff=28-&scrolloff<CR>
 nnoremap <Leader>zd :silent exec 'UpdCtags' \| redraw! \| echo 'Wrote tags db in' getcwd().'/' <CR>
-nnoremap <Leader>zg :call UpdCtagsGit() <CR>
-nnoremap <Leader>zf :call UpdCtagsGitFlat() <CR>
+nnoremap <Leader>zh :call UpdCtagsHereDeps() <CR>
+nnoremap <Leader>zg :call UpdCtagsGitDeps() <CR>
+nnoremap <Leader>zf :call UpdCtagsGit() <CR>
 nnoremap <Leader>zw :make <bar> copen <CR>
 nnoremap <Leader>zm :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make") <bar> redraw! <bar> cwindow <CR>
 nnoremap <Leader>za :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make tags") <bar> redraw! <bar> cwindow <CR>
@@ -628,7 +629,6 @@ command! FollowSymLink let b:symlink = expand("%:p") | execute "file " . resolve
 command! UnFollowSymLink exec 'file ' . b:symlink | edit
 command! UpdCtags !ctags -R --exclude=.git --exclude=log --exclude=wutils --c++-kinds=+p --fields=+iaS --extra=+q *
 command! UpdCtagsSudo !sudo ctags -R --exclude=.git --exclude=log --exclude=wutils --c++-kinds=+p --fields=+iaS --extra=+q *
-command! UpdCtagsGit :call UpdCtagsGit()
 command! Yall normal gg"+yG''
 command! Dall normal gg"_dG
 command! SwapContentPrev :call SwapContentPrevWin()
@@ -652,7 +652,13 @@ endif
 
 "----------Functions----------"
 
-function! UpdCtagsGit()
+function! UpdCtagsHereDeps()
+  echom "Trying to update ctags with deps in this directory"
+  silent exec '! echo -e "\n\n"Trying to update ctags with deps in this directory"..."'
+  exec '! $sh/ctags_with_deps.sh $(find . -type f -name \*.[ch])'
+endfunction
+
+function! UpdCtagsGitDeps()
   echom "Trying to update ctags with deps in this git project"
   silent exec '! echo -e "\n\n"Trying to update ctags with deps in this git project"..."'
   let l:starting_directory = getcwd()
@@ -669,7 +675,7 @@ function! UpdCtagsGit()
   exec "cd " . l:starting_directory
 endfunction
 
-function! UpdCtagsGitFlat()
+function! UpdCtagsGit()
   echom "Trying to update ctags in this git project"
   silent exec '! echo -e "\n\n"Trying to update ctags in this git project"..."'
   let l:starting_directory = getcwd()
