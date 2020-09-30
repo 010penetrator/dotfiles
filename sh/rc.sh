@@ -16,7 +16,6 @@ setxkbmap -layout 'us,ru' -option 'grp:alt_shift_toggle,grp_led:scroll' &
 # xinput --set-prop "SYN1B7F:01 06CB:2991 Touchpad" "Synaptics Finger" 80 100 0
 # xinput --set-prop "SYN1B7F:01 06CB:2991 Touchpad" "Synaptics Edge Scrolling" 1 0 0
 # xinput set-prop "Clearly Superior Technologies. CST Laser Trackball" "libinput Accel Speed" -.7
-# keratin -d &
 # xset s 800 800; xset -dpms ; xset dpms 0 0 0
 xset dpms 1200 0 0 &
 xset s 0 0 &
@@ -27,7 +26,7 @@ sxd.sh &
 nitrogen --restore &
 
 xinput set-prop "A4TECH USB Device" "libinput Accel Speed" -.4
-xinput set-prop "LVT ENDGAME GEAR XM1" "libinput Accel Speed" -.4
+xinput set-prop "LVT ENDGAME GEAR XM1" "libinput Accel Speed" -.55
 xinput set-prop "RAPOO Rapoo 2.4G Wireless Device" "libinput Accel Speed" -.7
 xinput set-prop "pointer:Logitech MX Master 3" "libinput Accel Speed" -.5
 
