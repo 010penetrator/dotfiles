@@ -328,10 +328,11 @@ if v:version >= 801
   tmap oo <C-w>N:set nonumber<CR>
   tmap o<C-o>  <C-w>N :e #<CR>
   tmap <C-x> <C-w>N :BD<CR>
-  tnoremap <C-PageUp> <C-W>:tabprev<CR>
-  tnoremap <C-PageDown> <C-W>:tabnext<CR>
-  tnoremap o<tab> <C-W>:exe "tabn ".g:lasttab<CR>
-  tmap <C-\> <C-W>w
+  tnoremap <C-PageUp> <C-w>:tabprev<CR>
+  tnoremap <C-PageDown> <C-w>:tabnext<CR>
+  tnoremap o<tab> <C-w>:exe "tabn ".g:lasttab<CR>
+  tnoremap o<ESC> <C-w>p
+  tmap <C-\> <C-w>w
 endif
 nnoremap <C-PageUp> gT
 nnoremap <C-PageDown> gt
@@ -369,7 +370,7 @@ inoremap <Up>   <C-o>gk
 inoremap <C-U> <C-G>u<C-U>
 map q <Nop>
 map й q
-nnoremap qQ :e $MYVIMRC <CR>
+" nnoremap qQ :e $MYVIMRC <CR>
 nnoremap Q q
 nnoremap qr @@
 nnoremap qf @
@@ -384,7 +385,7 @@ nnoremap qe    <C-W>4+
 nnoremap qd    <C-W>4-
 nnoremap ah    <C-W>_
 nnoremap al    <C-W>80-
-nnoremap aa    <C-W>_<C-W>\|
+nnoremap qa    <C-W>_<C-W>\|
 nnoremap qz    <C-W>=
 nnoremap aj    <C-W>w<C-W>_
 nnoremap ak    <C-W>W<C-W>_
@@ -427,9 +428,9 @@ nnoremap as :  new \| lcd #:p:h \| echo expand ('%') '.@.' getcwd() <CR>
 nnoremap av : vnew \| lcd #:p:h \| echo expand ('%') '.@.' getcwd() <CR>
 nnoremap an :tabe %:p:h <CR>
 " Open current location with vifm within vim
-nnoremap ac :term ++close vifm %:p:h<CR>
-nnoremap aC :vertical term ++close vifm %:p:h<CR>
-nnoremap a; :term ++curwin ++close vifm %:p:h<CR>
+nnoremap ac :terminal ++close vifm %:p:h<CR>
+nnoremap aC :vertical terminal ++close vifm %:p:h<CR>
+nnoremap a; :terminal ++kill=term ++curwin ++close vifm %:p:h<CR>
 nnoremap a/ :nohlsearch <CR>
 " nnoremap a/ :set hlsearch! <CR>
 " Jump last edit edges
@@ -513,7 +514,7 @@ cnoremap <C-t> <C-Right>
 
 nnoremap a <Nop>
 map ф a
-nnoremap ar a
+nnoremap aa a
 nnoremap at :tabe<CR>
 nmap aT atg<
 nnoremap aq :qa<CR>
@@ -521,7 +522,7 @@ nnoremap q- 60A-<esc>0<esc>60ld$b
 nnoremap q= 60A=<esc>0<esc>60ld$b
 " nmap q- O1<esc>gcc$xj^d0o<esc>0d$60i-<esc>kkJJ^60ldc0W
 nnoremap af :exec "normal i".nr2char(getchar())."\e"<CR>
-nnoremap ag :exec "normal as".nr2char(getchar())."\e"<CR>
+nnoremap ag :exec "normal aa".nr2char(getchar())."\e"<CR>
 nnoremap <Leader>1 1gt
 nnoremap <Leader>2 2gt
 nnoremap <Leader>3 3gt
@@ -536,10 +537,10 @@ nnoremap <Leader>j :Unite buffer file<CR>
 nnoremap <Leader>k :Denite buffer -mode=normal -immediately-1<CR>
 nnoremap <Leader>e :BufExplorer <CR>
 " Split open terminal at current location
-nnoremap ab : new \| if isdirectory(expand('#:p:h')) \| lcd #:p:h \| endif \| terminal ++curwin ++norestore <CR>
-nnoremap aB : vnew \| if isdirectory(expand('#:p:h')) \| lcd #:p:h \| endif \| terminal ++curwin ++norestore <CR>
+nnoremap ab : new \| if isdirectory(expand('#:p:h')) \| lcd #:p:h \| endif \| terminal ++kill=term ++curwin ++norestore <CR>
+nnoremap aB : vnew \| if isdirectory(expand('#:p:h')) \| lcd #:p:h \| endif \| terminal ++kill=term ++curwin ++norestore <CR>
 " Open terminal at current location
-nnoremap qt : if isdirectory(expand('%:p:h')) \| lcd %:p:h \| endif \| terminal ++curwin ++norestore <CR>
+nnoremap qt : if isdirectory(expand('%:p:h')) \| lcd %:p:h \| endif \| terminal ++kill=term ++curwin ++norestore <CR>
 " Show shell
 nnoremap qb :Bash <CR>
 " Jump to already existing terminal window inside vim
@@ -587,6 +588,7 @@ nnoremap <Leader>vp :put + <bar> exec "normal dfmxIPlug 'A'" <CR>
 nnoremap <Leader>vs :source ~/.vim/session.vim \| call LoadColor()<CR>
 nnoremap <Leader>vv :source $MYVIMRC <CR>
 nnoremap <Leader>vq :qa! <CR>
+nnoremap <Leader>S  :SessWrite<CR>
 nnoremap <Leader>v<Leader> :call EvalThis()<CR>
 nnoremap <Leader>vf :set filetype=sh<CR>
 nnoremap <Leader>vb :call SwitchBackground() <CR>:echo "background=" &background <cr>
@@ -594,7 +596,7 @@ nnoremap <Leader>vc :set termguicolors! <cr>:set termguicolors? <cr>
 nnoremap <Leader>vt :TagbarOpen fj <CR>
 nnoremap <Leader>zz :let &scrolloff=28-&scrolloff<CR>
 nnoremap <Leader>zd :silent exec 'UpdCtags' \| redraw! \| echo 'Wrote tags db in' getcwd().'/' <CR>
-nnoremap <Leader>zh :call UpdCtagsHereDeps() <CR>
+nnoremap <Leader>zs :call UpdCtagsHereDeps() <CR>
 nnoremap <Leader>zg :call UpdCtagsGitDeps() <CR>
 nnoremap <Leader>zf :call UpdCtagsGit() <CR>
 nnoremap <Leader>zw :make <bar> copen <CR>
@@ -617,8 +619,7 @@ command! SE r !sudo cat %
 command! KIR e ++enc=cp1251 | set fileencoding=utf-8 | set fileformat=unix
 " command! C1KIR e ++enc=cp1251 | set fileencoding=utf-8 | set fileformat=unix | wq
 command! F set fileencoding=utf-8 | set fileformat=unix
-command! SessWrite let g:Color_save=g:colors_name | let g:Color_backgr=&background | mksession! ~/.vim/session.vim
-" command! QQ        let g:Color_save=g:colors_name | mksession! ~/.vim/session.vim | wa | qa
+command! SessWrite let g:Color_save=g:colors_name | let g:Color_backgr=&background | let g:Line_save=g:lightline.colorscheme | call TerminalsFuneral() | mksession! ~/.vim/session.vim
 command! QQ  exec 'SessWrite' | wa | qa
 command! Bash exec 'silent ! bash' | redraw!
 command! NewTerm exec 'silent ! $TERMINAL &' | redraw!
@@ -803,16 +804,30 @@ function! GotoTerm(arg)
   " let g:lasttermid = getbufinfo(expand('%'))[0].windows[0]
 endfunction
 
-function! RevealBufs(arg)
-  let ar = []
-  for b in getbufinfo()
-    if b.name =~ a:arg && empty(b.windows) && b.loaded == 1
-      let a = b.bufnr
-      " echo b.bufnr
-      exec "sb" . (b.bufnr)
-    endif
+function! TerminalsFuneral()
+  let bufmap = map(range(1, bufnr('$')), '[getbufvar((v:val), "&buftype"), v:val]')
+  " echo bufmap
+  let targ = filter(bufmap, 'v:val[0] =~ "terminal"')
+  " echo targ
+  for el in targ
+    " echo el[1]
+    " call term_setrestore(el[1],"++kill=term")
+    call term_setkill(el[1],"term")
   endfor
 endfunction
+
+" echo map(range(1, bufnr('$')), '[bufname(v:val), v:val]')
+
+" function! RevealBufs(arg)
+"   let ar = []
+"   for b in getbufinfo()
+"     if b.name =~ a:arg && empty(b.windows) && b.loaded == 1
+"       let a = b.bufnr
+"       " echo b.bufnr
+"       exec "sb" . (b.bufnr)
+"     endif
+"   endfor
+" endfunction
 
 function! MoveToPrevTab()
   "there is only one window
@@ -907,6 +922,9 @@ function! LoadColor()
   endif
   if exists( "g:Color_backgr" )
     exec "set background=" . g:Color_backgr
+  endif
+  if exists( "g:Line_save" )
+    exec "LineColor " . g:Line_save
   endif
 endfunction
 
@@ -1039,16 +1057,16 @@ endif
 
 " map M j:call EvalThis()<cr>
 " colo snow | set background=light | LineColor ayu_light
-" colo PaperColor | set background=light | LineColor selenized_light
-" colo Tomorrow | LineColor Tomorrow
-" colo edge | set background=light | LineColor materia
 " colo vimspectr180-light | LineColor solarized
+" colo edge | set background=light | LineColor materia
+" colo edge | set background=dark | LineColor darcula
+" colo Tomorrow | LineColor Tomorrow
+" colo PaperColor | set background=light | LineColor solarized
 " colo stellarized | set background=light | LineColor atlantis
 " colo stellarized | set background=dark | LineColor nord
-" colo vadelma | set background=dark | LineColor deus
 " colo vadelma | set background=light | LineColor one
+" colo vadelma | set background=dark | LineColor deus
 " colo forest-night | LineColor atlantis
-" colo edge | set background=dark | LineColor darcula
 " colo plastic | LineColor deus
 " colo vimspectr180-light
 " colo vimspectr150-light
