@@ -14,7 +14,7 @@ nnoremap af :<up><cr>
 command! CC :! mv /ln/dwn/cover.* . 
 command! ogg :! cd %c && conv_uni2ogg.sh &>/dev/null ; notify-send "%c converted" &
 command! flac :! cd %c && conv_uni2flac.sh &>/dev/null ; notify-send "%c converted" &
-command! respic :! echo $PWD && respic50.sh
+command! respic :! echo $PWD && respic.sh 50
 command! rescol :! convert %c -quality 95%%  -sampling-factor '2x2,1x1,1x1' %c.jpg
 command! respng :! mkdir res ; for f in *.png; do d=${f%%%%.*} ; convert "$f" -quality 95%%%% -sampling-factor 4:4:4  jpg:res/"$d"".jpg" ; done # png to jpg
 command! resmusAll :! mkdir resampled orig ; for flac in *.flac; do sox -S "${flac}" -G -b 16 ./resampled/"${flac}" rate -v -L 44100 dither ; mv "${flac}" orig/ ; done 

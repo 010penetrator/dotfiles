@@ -24,7 +24,7 @@ super + x ; T
 super + space
   raise.sh 'MPV\|mpv\|MOC' 'noti echo no player instance found'
 ctrl + space
-  (setxkbmap -query | grep -q "layout:\s\+us") && setxkbmap ru || setxkbmap us
+  (setxkbmap -query | grep -q "layout:\s\+us") && setxkbmap ru || setxkbmap us && notify-send "$(setxkbmap -query | grep layout)"
 ctrl + 7
   xdotool getactivewindow windowminimize
 alt + x
