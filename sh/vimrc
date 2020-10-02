@@ -422,8 +422,8 @@ nnoremap a_  :vsplit <bar> exec "normal -" <cr>
 nnoremap ae :vsp <c-r><c-f> <CR>
 nnoremap aE :e <c-r><c-f> <CR>
 " Split open current location with netrw
-nnoremap a. :wincmd s \| e %:p:h <CR>
-nnoremap a, :wincmd v \| e %:p:h <CR>
+nnoremap a, :wincmd s \| e %:p:h <CR>
+nnoremap a. :wincmd v \| e %:p:h <CR>
 nnoremap as :  new \| lcd #:p:h \| echo expand ('%') '.@.' getcwd() <CR>
 nnoremap av : vnew \| lcd #:p:h \| echo expand ('%') '.@.' getcwd() <CR>
 nnoremap an :tabe %:p:h <CR>
@@ -476,7 +476,7 @@ nnoremap m-       :<C-U>call signature#mark#Purge("all")<CR>
 nnoremap m<space> :<C-U>call signature#mark#Purge("line")<CR>
 nnoremap gz 1gt
 " Swap window with previous window
-nnoremap <Leader>as :call WinBufSwap()<CR>
+nnoremap <Leader><tab> :call WinBufSwap()<CR>
 nnoremap <Leader>y :call BufYank()<CR>
 nnoremap <Leader>p :call BufPut()<CR>
 nnoremap g<PageUp>   gg:call search('^.') <CR>k
@@ -1040,14 +1040,11 @@ endfunction
 " endif
 
 let hostname = substitute(system('hostname'), '\n', '', '')
-if hostname == "warmPC" || hostname == "newPC"
+if hostname == "warmPC" || hostname == "newPC" || hostname == "debian10pc"
   if !exists("g:colors_name")
-    colo stellarized | set background=light | LineColor atlantis
-  endif
-endif
-if hostname == "debian10pc" || hostname == "plasmikPC"
-  if !exists("g:colors_name")
-    colo edge | set background=light | LineColor atlantis
+    " colo PaperColor | set background=light | LineColor atlantis
+    " colo espresso | LineColor espresso
+    colo cryslominsa | LineColor cryslominsa
   endif
 endif
 
@@ -1059,21 +1056,26 @@ endif
 " colo snow | set background=light | LineColor ayu_light
 " colo vimspectr180-light | LineColor solarized
 " colo edge | set background=light | LineColor materia
-" colo edge | set background=dark | LineColor darcula
 " colo Tomorrow | LineColor Tomorrow
 " colo PaperColor | set background=light | LineColor solarized
 " colo stellarized | set background=light | LineColor atlantis
-" colo stellarized | set background=dark | LineColor nord
 " colo vadelma | set background=light | LineColor one
-" colo vadelma | set background=dark | LineColor deus
 " colo forest-night | LineColor atlantis
-" colo plastic | LineColor deus
+" colo cryslominsa | LineColor cryslominsa
+" colo zenburn | LineColor darcula
+" colo espresso | LineColor espresso
+" colo stellarized | set background=dark | LineColor nord
+" colo edge | set background=dark | LineColor darcula
+" colo vadelma | set background=dark | LineColor deus
+" set notermguicolors | colo plastic | LineColor deus
 " colo vimspectr180-light
 " colo vimspectr150-light
 " colo edge 
 " colo forest-night
 " colo vadelma
 " LineColor atlantis
+" LineColor bluewery
+" LineColor edge
 " LineColor nord
 " LineColor deus
 " LineColor darcula
