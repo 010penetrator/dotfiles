@@ -2,7 +2,7 @@ super + x ; { U, m, s, r, e, h, f, d, g, p, n, o, w, a, i }
   raise.sh { 'Luakit' 'luakit', '' notimem, speedcrunch, Ranger 'newranger', 'WeeChat\|weechat\|Pidgin' 'urxvt -e weechat', htop '$TERMINAL -e htop', feh 'feha /ln/dwn/', deadbeef, 'chromium\|Firefox\|Navigator' '$BROWSER', Thunar thunar, nautilus, VirtualBox '', fbreader, pavucontrol, histmpv.sh }
 
 super + x ; { t, j, z, k, l, b }
-  { raiseterm.sh, windowswitcher.sh, xdotool mousemove_relative 0 1600, i3-msg kill, listdwn.sh, listmpv.sh }
+  { raiseterm.sh, windowswitcher.sh, xdotool mousemove_relative 0 1600, bspc node -c, listdwn.sh, listmpv.sh }
 
 super + { q, t, v, U, g, p, c, r, R, s, a, A, b, z }
   raise.sh { '' scroff, 'xterm\|urxvt\|kitty', VIM 'vimz', luakit, 'chromium\|Firefox', 'MPV\|mpv\|MOC' 'noti echo no player instance found', VIFM '$TERMINAL -e vifm & notify-send new_VIFM', zathura listzathura.sh, evince, 'Telegram\|Pidgin' '', 'transmission-remote\|tremc\|qbittorrent' '$TERMINAL -e tremc -c localhost:9090', 'tremc-pi' '$TERMINAL -T tremc-pi -e tremc -c 192.168.1.78:9090', ' Browser' '', devhelp }
