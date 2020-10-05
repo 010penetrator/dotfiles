@@ -651,7 +651,11 @@ if !empty($WINDIR)
   command! XYp :silent exec '!source /c/Users/user/.bashrc && exp "%:p:h" &' | redraw!
 endif
 
-"----------Functions----------"
+"---------Menus---------------"
+map <F7> :emenu tags.<Tab>
+" menu tags.ru :setlocal spell spelllang=ru <CR>
+
+"---------Functions-----------"
 
 function! UpdCtagsHereDeps()
   echom "Trying to update ctags with deps in this directory"
