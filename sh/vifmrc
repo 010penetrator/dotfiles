@@ -21,8 +21,8 @@ command! resmusAll :! mkdir resampled orig ; for flac in *.flac; do sox -S "${fl
 " sox input.flac -G -b 16 output.flac rate -v -L 44100 dither
 command! resmusBit :! mkdir resampled orig ; for flac in *.flac; do sox -S "${flac}" -b 16 ./resampled/"${flac}"; mv "${flac}" orig/ ; done 
 " command! ff :!fehf . &>/dev/null &
-command! tok :!touch %c "--date=@$(expr $(stat -c %%%%Y KKK) - 1000)"
-command! tik :!touch --date="$(date -R -r %c) - 1 minute" KKK
+command! tok :!touch %c "--date=@$(expr $(stat -c %%%%Y KKK) - 100)"
+command! tik :!touch --date="$(date -R -r %c) + 10 minute" KKK
 " command! tik :!touch --date="$(date -R -r %c) + 1 day" %c
 command! amou :! bash -ic ' source /ln/ho/.bashrc ; amou '
 command! aumo :! bash -ic ' source /ln/ho/.bashrc ; aumo '
