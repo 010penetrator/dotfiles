@@ -1011,7 +1011,8 @@ command! -nargs=+ -complete=command ExPut call ExPut(<q-args>)
 
 function! BD()
   if expand('#') == ''
-    bd!
+    enew
+    bd! #
   else
     b #
     bd! #

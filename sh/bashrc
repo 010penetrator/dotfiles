@@ -18,10 +18,8 @@ export EDITOR=/usr/bin/vim
 export PAGER=less
 export BROWSER=firefox
 export sh=$HOME/.sh
-export mo=/ln/mo
-export mus=/ln/mus
-export iso=$mo/Metal/PRAGS/iso-linux/
-export ogg=$mo/Blink/MUZIK/
+export tt=$HOME/tt
+# export mus=/ln/mus
 export MANWIDTH=80
 export FZF_DEFAULT_OPTS="--layout=reverse --height 55%"
 export LSBLK="lsblk"
