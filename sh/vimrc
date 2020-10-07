@@ -458,7 +458,6 @@ nnoremap cm o<Esc>O
 nnoremap z, }O
 " Yank inline
 nnoremap yc ^y$"+y$"*y$
-" nnoremap yc ^y$:let @+ = @" <bar> :let @* = @" <CR>
 " Eval yanked
 nnoremap yq :@"<CR>
 nnoremap cp "_diw""P
@@ -652,12 +651,15 @@ if !empty($WINDIR)
 endif
 
 "---------Menus---------------"
-map <tab> :emenu tagi.<Tab>
+map <s-tab> :emenu tagi.<Tab>
 " menu tagi.ru :setlocal spell spelllang=ru <CR>
 menu tagi.basic :silent exec 'UpdCtags' \| redraw! \| echo 'Wrote tags db in' getcwd().'/' <CR>
 menu tagi.hereDeps :call UpdCtagsHereDeps() <CR>
 menu tagi.gitDeps  :call UpdCtagsGitDeps() <CR>
 menu tagi.git      :call UpdCtagsGit() <CR>
+
+"---------Macros--------------"
+let @g = "\<c-w>b,ggggzjjao:call DoOnKey(\"32\",\"b # | wincmd p\")\n"
 
 "---------Functions-----------"
 "
@@ -986,6 +988,24 @@ function! DelSpcOrPar()
   endif
 endfunction
 
+function! Parenthise()
+  while ( line(".") != line("$") )
+    if ( col('$') != 1 )
+      normal 0i"
+      normal A\n"
+    endif
+    normal j
+  endwhile
+endfunction
+
+function! DoOnKey(keycode,command)
+  let l:key = getchar()
+  " echom l:key
+  if ( l:key == 32 )
+    exec a:command
+  endif
+endfunction
+
 function! EvalThis()
   if getline(line('.')) =~ "^$"
     " If cursor is on a blank line, Eval next paragraph 
@@ -1018,7 +1038,11 @@ endfunction
 command! -nargs=+ -complete=command ExPut call ExPut(<q-args>)
 
 function! BD()
-  if expand('#') == ''
+  " if ( ( expand('#') == '' ) || ( expand('#') =~ '!/bin/bash' ) )
+  if ( expand('%') =~ '!/bin/bash' ) && ( expand('%') == expand('#') )
+    enew
+    bd! #
+  elseif ( expand('#') == '' )
     enew
     bd! #
   else
@@ -1069,7 +1093,7 @@ endif
 " colo PaperColor | set background=light | LineColor solarized
 " colo stellarized | set background=light | LineColor atlantis
 " colo vadelma | set background=light | LineColor one
-" colo forest-night | LineColor atlantis
+" colo forest-night | LineColor cryslominsa
 " colo cryslominsa | LineColor cryslominsa
 " colo zenburn | LineColor darcula
 " colo espresso | LineColor espresso
