@@ -581,8 +581,8 @@ nnoremap <Leader>fg :call ClimbToDirWhere(".git/index",1) \| Ack -Q <C-R><C-W>
 " nnoremap <Leader>ff :AckFile <C-r><C-W> <CR>
 nnoremap <Leader>fw :AckWindow <C-r><C-w> <CR>
 " binding for vimz bash script; i e move current buf to vimserver 
-nnoremap <Leader>av :silent exec '!vimz "%:p"' \| redraw! \| q <CR>
-nnoremap <Leader>ac :silent exec '!notab=1 vimz "%:p"' \| redraw! \| q <CR>
+nnoremap <Leader>va :silent exec '!vimz "%:p"' \| redraw! \| q <CR>
+nnoremap <Leader>vc :silent exec '!notab=1 vimz "%:p"' \| redraw! \| q <CR>
 " Add Plug entry
 nnoremap <Leader>vp :put + <bar> exec "normal dfmxIPlug 'A'" <CR>
 nnoremap <Leader>vs :source ~/.vim/session.vim \| call LoadColor()<CR>
@@ -592,7 +592,7 @@ nnoremap <Leader>vq :qa! <CR>
 nnoremap <Leader>v<Leader> :call EvalThis()<CR>
 nnoremap <Leader>vf :set filetype=sh<CR>
 nnoremap <Leader>vb :call SwitchBackground() <CR>:echo "background=" &background <cr>
-nnoremap <Leader>vc :set termguicolors! <cr>:set termguicolors? <cr>
+nnoremap <Leader>vg :set termguicolors! <cr>:set termguicolors? <cr>
 nnoremap <Leader>vt :TagbarOpen fj <CR>
 " nnoremap <Leader>zd :silent exec 'UpdCtags' \| redraw! \| echo 'Wrote tags db in' getcwd().'/' <CR>
 " nnoremap <Leader>zs :call UpdCtagsHereDeps() <CR>

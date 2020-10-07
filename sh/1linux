@@ -89,6 +89,8 @@ gpg --no-default-keyring --keyring /usr/share/keyrings/debian-role-keys.gpg --ve
 cat passlist | while read line ; do gpg -q --batch --passphrase "$line" -d wtf.gpg ; done # dictionary brute force gpg
 free -m # any free ram?
 smem -tw # ram info
+stress --cpu 4 # stress test 4 CPU cores
+yes > /dev/null & # fully load one CPU core
 youtube-dl -f "bestvideo[height<=720]+bestaudio" https://... # fetch youtube
 mpv --ytdl-format='bestvideo[height<=480]+bestaudio' https://... # fetch youtube
 ffmpeg -r 30 -f image2 -i /media/Blink/rr/rma.1%05d.png -vf format=yuv420p,lutyuv="y=negval:u=128:v=128" -vcodec libx264 -crf 20 -pix_fmt yuv420p -preset veryslow /media/fast/pol-r60-s_360.mkv # movie from png
