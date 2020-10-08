@@ -451,9 +451,8 @@ nnoremap qq :
 nnoremap dx 0"_D
 nnoremap dy ^"_D
 nnoremap dc "_d$
-nnoremap d<space> :call DelSpcOrPar()<Esc>
+nnoremap d<space> :call DelSpace()<Esc>
 nnoremap d. "_dd
-" nnoremap d, :call DelSpace(0)<Esc>
 nnoremap cm o<Esc>O
 nnoremap z, }O
 " Yank inline
@@ -965,27 +964,22 @@ function! LightlineReload(arg)
   call lightline#update()
 endfunction
 
-function! DelSpace(arg)
+function! DelSpace()
   let cur = line('.')
-  exec (cur - 1)
-  " let las = search('\n^\S')
-  let las = search('\n\ *\S')
-  exec (cur + 1)
-  let beg = search('\S\n^\n','beW')
-  " echom (las-beg)
-  if (las-beg+1) > a:arg
-    exec (beg)','(las-a:arg)'d'
+  let beg = search('\S$\n\(^\s*$\n\)\+','bW')
+  let beg = ( beg + 1 )
+  exec (cur)
+  let fin = search('\(^\s*$\n\)\+','eW')
+  " exec (cur - 1)
+  " " let las = search('\n^\S')
+  " let las = search('\n\ *\S')
+  " exec (cur + 1)
+  " let beg = search('\S\n^\n','beW')
+  echom (fin-beg)
+  if (fin-beg+1) > 0
+    silent exec (beg)','(fin)'d'
   endif
-endfunction
-
-function! DelSpcOrPar()
-  if getline(line('.')) =~ "^$"
-    call DelSpace(1)
-    " exec "normal! O\<Esc>"
-  else
-    " exec "normal! dap"
-    exec "normal! {d}"
-  endif
+  exec "normal! O"
 endfunction
 
 function! Parenthise()
@@ -1097,6 +1091,7 @@ endif
 " colo cryslominsa | LineColor cryslominsa
 " colo zenburn | LineColor darcula
 " colo espresso | LineColor espresso
+" colo Tomorrow-Night-Blue | LineColor bluewery
 " colo stellarized | set background=dark | LineColor nord
 " colo edge | set background=dark | LineColor darcula
 " colo vadelma | set background=dark | LineColor deus

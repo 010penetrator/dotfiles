@@ -22,6 +22,7 @@ bspc rule -a SpeedCrunch state=floating
 bspc rule -a Pidgin state=floating
 bspc rule -a Nautilus state=floating
 bspc rule -a Pavucontrol state=floating
+bspc rule -a LearnOpenGL state=floating
 bspc rule -a QjackCtl state=floating
 bspc rule -a q4wine state=floating
 bspc rule -a Wine state=floating
