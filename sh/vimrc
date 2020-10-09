@@ -1081,18 +1081,19 @@ endif
 
 " map M j:call EvalThis()<cr>
 " colo snow | set background=light | LineColor ayu_light
+" colo vadelma | set background=light | LineColor one
 " colo vimspectr180-light | LineColor solarized
 " colo edge | set background=light | LineColor materia
 " colo Tomorrow | LineColor Tomorrow
 " colo PaperColor | set background=light | LineColor solarized
 " colo stellarized | set background=light | LineColor atlantis
-" colo vadelma | set background=light | LineColor one
-" colo forest-night | LineColor cryslominsa
 " colo cryslominsa | LineColor cryslominsa
-" colo zenburn | LineColor darcula
+" colo forest-night | LineColor cryslominsa
+" colo Tomorrow-Night | LineColor darcula
+" colo OceanicNext | LineColor bluewery
+" colo stellarized | set background=dark | LineColor nord
 " colo espresso | LineColor espresso
 " colo Tomorrow-Night-Blue | LineColor bluewery
-" colo stellarized | set background=dark | LineColor nord
 " colo edge | set background=dark | LineColor darcula
 " colo vadelma | set background=dark | LineColor deus
 " set notermguicolors | colo plastic | LineColor deus
