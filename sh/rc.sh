@@ -10,8 +10,9 @@ source ~/.bashrc
 
 # echo `whoami` "@" $PWD @ `date` >> ~/log.t
 
-xrdb merge ~/.sh/Xresources &
-setxkbmap -layout 'us,ru' -option 'grp:alt_shift_toggle,grp_led:scroll' &
+# xrdb merge ~/.sh/Xresources &
+# setxkbmap -layout 'us,ru' -option 'grp:alt_shift_toggle,grp_led:scroll' &
+
 # xinput --set-prop "SYN1B7F:01 06CB:2991 Touchpad" "Synaptics Two-Finger Scrolling" 1 1
 # xinput --set-prop "SYN1B7F:01 06CB:2991 Touchpad" "Synaptics Finger" 80 100 0
 # xinput --set-prop "SYN1B7F:01 06CB:2991 Touchpad" "Synaptics Edge Scrolling" 1 0 0

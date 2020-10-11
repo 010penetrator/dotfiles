@@ -23,7 +23,7 @@ SCIENT: gnuplot kst2 scipy scilab mathmod
 DEB-only: xinput psmisc
 
 RICE
-Chrome: uBlock Vimium CVim Surfingkeys MidnightLizard SingleFile Stylus Rescroller Browsec Bookmarks.by.MakeItSimple RecentBookmarks EmptyNewTabPage
+Chrome: uBlock Vimium CVim Surfingkeys MidnightLizard SingleFile Stylus Rescroller Browsec Bookmarks.by.MakeItSimple RecentBookmarks EmptyNewTabPage CopyTabInfo CopyUrl.rus
 Firefox: TabSuspender TabList hide-scrollbars DefaultZoom DarkReader FixedZoom
 Fonts: Cantarell Liberation DejaVu Noto Arimo Tinos Caslon EB-Garamond Euclid-Circular-A
 Fonts Mono: xos4Terminus LiberationMono Noto Input Fira FiraCode Hack DejaVuSansMono SourceCodePro Tamzen OhSnap
