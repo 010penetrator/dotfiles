@@ -496,8 +496,8 @@ onoremap <silent> gy :call search('^\(.\\|\(\s\)*\)$','bW') <CR>
 nnoremap ze :call SwitchCE()<CR>
 nnoremap z; :set wrap!<CR>
 nmap <C-c> <C-y>
-noremap <C-e> 6<C-e>
-noremap <C-y> 6<C-y>
+noremap <C-e> 5<C-e>
+noremap <C-y> 5<C-y>
 nnoremap ]l :lnext<cr>
 nnoremap [l :lprev<cr>
 " xmap s <Plug>Sneak_s
