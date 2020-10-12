@@ -456,7 +456,7 @@ nnoremap d<space> :call DelSpace()<Esc>
 nnoremap d. "_dd
 nnoremap c, o<Esc>O
 " Edit new line after current paragraph
-nnoremap c. }:if (line(".") == line("$")) \| exec "normal o" \| else \| exec "normal O" \| endif<CR>i
+nnoremap c. }:if (line(".") == line("$")) \| exec "normal o" \| endif<CR>O
 " Yank inline
 nnoremap yc ^y$"+y$"*y$
 " Eval yanked
