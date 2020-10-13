@@ -135,7 +135,7 @@ grub-install --target=x86_64-efi --efi-directory=EfiSystemPart --boot-directory=
 :GRUB EFI install to removable media:
 grub-install --target=x86_64-efi --efi-directory=/media/GLIM --removable --boot-directory=/media/GLIM/boot /dev/sdc
 :manual grub boot:
-grub2> set root=(hd0,2) ; linux /boot/vmlinuz-linux root=/dev/sda2 ; initrd /boot/initrd.img ; boot
+grub2> set root=(hd0,2) ; linux /boot/vmlinuz-linux root=/dev/sdX2 ; initrd /boot/initrd.img ; boot
 :grub rescue to normal mode 
 ls; set root=(hd0,msdos1); set prefix=/boot/grub; insmod ext2; insmod normal; normal
 .
