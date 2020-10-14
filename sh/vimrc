@@ -662,7 +662,7 @@ menu tagi.gitDeps  :call UpdCtagsGitDeps() <CR>
 menu tagi.git      :call UpdCtagsGit() <CR>
 
 "---------Macros--------------"
-let @g = "\<c-w>b,ggggzjjao:call DoOnKey(\"32\",\"b # | wincmd p\")\n"
+let @g = ",ggggzjjao:call DoOnKey(\"32\",\"b # | wincmd p\")\n"
 
 "---------Functions-----------"
 "
