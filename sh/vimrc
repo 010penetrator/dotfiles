@@ -657,16 +657,16 @@ set wcm=<tab>
 map <Leader><tab> :emenu tagi.<tab>
 " menu tagi.ru :setlocal spell spelllang=ru <CR>
 menu tagi.basic :silent exec 'UpdCtags' \| redraw! \| echo 'Wrote tags db in' getcwd().'/' <CR>
-menu tagi.hereDeps :call UpdCtagsHereDeps() <CR>
-menu tagi.gitDeps  :call UpdCtagsGitDeps() <CR>
-menu tagi.git      :call UpdCtagsGit() <CR>
+menu tagi.dirDeps :call UpdCtagsDirDeps() <CR>
+menu tagi.gitDeps :call UpdCtagsGitDeps() <CR>
+menu tagi.git     :call UpdCtagsGit() <CR>
 
 "---------Macros--------------"
-let @g = ",ggggzjjao:call DoOnKey(\"32\",\"b # | wincmd p\")\n"
+let @g = ",ggggzjjao:call DoOnKey(\"32\",\"b #\")\n"
 
 "---------Functions-----------"
 "
-function! UpdCtagsHereDeps()
+function! UpdCtagsDirDeps()
   echom "Trying to update ctags with deps in this directory"
   silent exec '! echo -e "\n\n"Trying to update ctags with deps in this directory"..."'
   exec '! $sh/ctags_with_deps.sh $(find . -type f -name \*.[ch])'

@@ -5,8 +5,8 @@ export HISTSIZE=9000
 if [[ -z $TERMINAL ]] ; then
   export TERMINAL=xterm
   command -v kitty &> /dev/null && export TERMINAL=kitty
-  height=$(xdpyinfo | grep dimensions | cut -d ' ' -f 7 | cut -d x -f 2)
-  [[ height -gt 1100 ]] && export HIDPI=1 || export HIDPI=0
+  desk_len=$(xdpyinfo | grep dimensions | cut -d ' ' -f 7 | cut -d x -f 1)
+  [[ desk_len -gt 1900 ]] && export HIDPI=1 || export HIDPI=0
   [[ "$TERMINAL" == "kitty" ]] && [[ $HIDPI == "1" ]] && export TERMINAL="kitty -o font_size=14.8"
 fi
 [ COLORTERM==truecolor ] && TERM=xterm-256color

@@ -48,7 +48,7 @@ elif [[ "$HOSTNAME" =~ 'newPC' ]]; then
   # pgrep earlyoom | grep . || earlyoom -m 2 -n &> /dev/null &
 
 elif [[ "$HOSTNAME" =~ ^debian10pc ]]; then
-  xrandr --output DVI-D-1 --auto --left-of HDMI-3
+  xrandr --output DVI-D-0 --auto --left-of HDMI-0
 
 elif [[ "$HOSTNAME" =~ ^white*(.*)ok ]]; then 
   xset dpms 900 0 0 
