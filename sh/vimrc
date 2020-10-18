@@ -479,6 +479,7 @@ nnoremap gz 1gt
 nnoremap <Leader>s :call WinBufSwap()<CR>
 nnoremap <Leader>y :call BufYank()<CR>
 nnoremap <Leader>p :call BufPut()<CR>
+" Go to text start/finish in file
 nnoremap g<PageUp>   gg:call search('^.') <CR>k
 nnoremap g<PageDown> G$:call search('^.','b') <CR>0j
 " Search my comments
@@ -620,7 +621,7 @@ command! KIR e ++enc=cp1251 | set fileencoding=utf-8 | set fileformat=unix
 command! F set fileencoding=utf-8 | set fileformat=unix
 command! SessWrite let g:Color_save=g:colors_name | let g:Color_backgr=&background | let g:Line_save=g:lightline.colorscheme | call TerminalsFuneral() | mksession! ~/.vim/session.vim
 command! QQ  exec 'SessWrite' | wa | qa
-nnoremap FF :SessWrite<CR>
+nnoremap FF :wa\|SessWrite<CR>
 command! Bash exec 'silent ! bash' | redraw!
 command! NewTerm exec 'silent ! $TERMINAL &' | redraw!
 command! NewTermHere exec 'silent ! cd "%:p:h" && $TERMINAL &' | redraw!
