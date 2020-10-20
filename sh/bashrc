@@ -6,7 +6,7 @@ export HISTSIZE=9000
 # if [[ -z $TERiMINAL ]] ; then
   export TERMINAL=xterm
   command -v kitty &> /dev/null && export TERMINAL=kitty
-  [[ "$TERMINAL" == "kitty" ]] && [[ $HIDPI == "1" ]] && export TERMINAL="kitty -o font_size=14.6"
+  [[ "$TERMINAL" == "kitty" ]] && [[ $HIDPI == "1" ]] && export TERMINAL="kitty -o font_size=14.8"
 # fi
 
 [ COLORTERM==truecolor ] && TERM=xterm-256color

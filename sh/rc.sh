@@ -70,7 +70,7 @@ killall dunst
 (
 sleep .1
 if  [[ $HIDPI == "1" ]] ; then
-  dunst -conf $HOME/.sh/dunstrc -font "Liberation Mono 14.5" &
+  dunst -conf $HOME/.sh/dunstrc -font "Liberation Mono 14.4" &
 else
   dunst -conf $HOME/.sh/dunstrc &
 fi

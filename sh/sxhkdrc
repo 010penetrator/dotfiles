@@ -17,6 +17,8 @@ super + e
   raiseterm.sh
 super + d
   dmouse
+super + f ; v
+  xdotool mousemove_relative 0 1600
 super + x ; x
   addlayout.sh ; sxd.sh ; notify-send "$(LC_ALL=C date; uptime -p)"
 super + x ; T
