@@ -1,8 +1,7 @@
 #!/bin/bash
 # Convert .cue music to ogg
 
-# $1 is cue path
-# $2 is destination
+# Usage: conv_cue2ogg.sh path/to/cue destination/dir
 
 if [ -z "$1" ] ; then set -- "." "${2}" ; fi
 if [ -z "$2" ] ; then set -- "${1}" "." ; fi

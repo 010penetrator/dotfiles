@@ -16,8 +16,8 @@ for f in *.flac; do
   # ffmpeg -i "$f" -qscale:a 8.4 "$2/$drn/$f.ogg"
 done
 
-cp *[C,c]over.* "$2/$drn"
-cp [F,f]ront.* "$2/$drn"
-cp [F,f]older.* "$2/$drn"
-cp [B,b]ack.* "$2/$drn"
+cp *[C,c]over.* "$2/$drn/"
+cp [F,f]ront.* "$2/$drn/"
+cp [F,f]older.* "$2/$drn/"
+cp [B,b]ack.* "$2/$drn/"
 

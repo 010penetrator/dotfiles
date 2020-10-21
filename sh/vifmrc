@@ -12,8 +12,8 @@
 " USERadd
 nnoremap af :<up><cr>
 command! CC :! mv /ln/dwn/cover.* . 
-command! ogg :! cd %c && conv_uni2ogg.sh &>/dev/null ; notify-send "%c converted" &
-command! flac :! cd %c && conv_uni2flac.sh &>/dev/null ; notify-send "%c converted" &
+command! ogg :! cd %c && conv_uni2ogg.sh . %D &>/dev/null ; notify-send "%c converted" &
+command! flac :! cd %c && conv_uni2flac.sh %D &>/dev/null ; notify-send "%c converted" &
 command! respic :! echo $PWD && respic.sh 50
 command! rescol :! convert %c -quality 95%%  -sampling-factor '2x2,1x1,1x1' %c.jpg
 command! respng :! mkdir res ; for f in *.png; do d=${f%%%%.*} ; convert "$f" -quality 95%%%% -sampling-factor 4:4:4  jpg:res/"$d"".jpg" ; done # png to jpg
@@ -45,6 +45,7 @@ nnoremap qn 8<c-w><
 nnoremap qm 8<c-w>>
 nnoremap qt :tree!<cr>
 nnoremap qq :
+nnoremap qc :flac <cr>
 " nnoremap b :! mpv-album %c VIFM; echo -ne "\e]0;VIFM_MPV\a"<cr>
 nnoremap b  :! mpv-album %c VIFM; echo -ne "\033]0;VIFM\007" <cr>
 nnoremap B  :! %i cd %c; [[ $TERMINAL=="kitty "* ]] && TERMINAL="$TERMINAL -o initial_window_height=$(expr 450 + $HIDPI \* 100) -o initial_window_width=$(expr 650 + $HIDPI \* 130)"; $TERMINAL -e /bin/bash -c "mpv-album ." &>/dev/null & <cr>
