@@ -18,7 +18,8 @@ endif
 " read !ls -la  "paste shell output
 " g/.\{20,\}/ exec "normal gqgq" | nohls " format longer lines
 " autocmd WinNew * set numberwidth=2 winheight=7
-"-------------Plug------------"
+"
+"---------Plug----------------"
 " curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 " Plug 'junegunn/vim-plug'
 call plug#begin()
@@ -172,7 +173,7 @@ Plug 'machakann/vim-colorscheme-tatami'
 " Plug 'srcery-colors/srcery-vim' "fresh-dark consbroken HUGE
 call plug#end()
 
-"-----------Settings----------"
+"---------Settings------------"
 set fileencodings=ucs-bom,utf-8,default,cp1251,latin1
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
 " set keymap=russian-jcukenwin
@@ -319,7 +320,7 @@ if has("cscope")
     nmap <C-@>D :scs find d <C-R>=expand("<cword>")<CR><CR>
 endif
 
-"-----------Shortcuts---------"
+"---------Shortcuts-----------"
 set timeoutlen=500
 let mapleader = ","
 " Go to normal mode via home-row
@@ -609,7 +610,7 @@ nnoremap <Leader>zl : silent exec '! echo -e "\n$(pwd):"; ls -la . ; echo \. ; l
 vnoremap z- <ESC>:call FoldSelected()<CR>za
 nnoremap d- %%dd''dd''
 
-"-----------Commands----------"
+"---------Commands------------"
 command! -nargs=1 Silent exec 'silent !' . <q-args> | exec 'redraw!'
 "Usage : Silent ls; read -rsn1 -p "//hit.anykey"; echo;
 command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
@@ -657,7 +658,7 @@ set wildmenu
 set wcm=<tab>
 map <Leader><tab> :emenu tagi.<tab>
 " menu tagi.ru :setlocal spell spelllang=ru <CR>
-menu tagi.basic :silent exec 'UpdCtags' \| redraw! \| echo 'Wrote tags db in' getcwd().'/' <CR>
+menu tagi.basic   :silent exec 'UpdCtags' \| redraw! \| echo 'Wrote tags db in' getcwd().'/' <CR>
 menu tagi.dirDeps :call UpdCtagsDirDeps() <CR>
 menu tagi.gitDeps :call UpdCtagsGitDeps() <CR>
 menu tagi.git     :call UpdCtagsGit() <CR>

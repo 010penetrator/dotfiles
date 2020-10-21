@@ -43,7 +43,7 @@ super + apostrophe
 # Adjust volume with pulseaudio
   # [ $(amixer sget Master | tail -1 | cut -d [ -f2 | cut -d % -f1) -gt 97 ] && amixer set Master 2%+ && notify-send 'Volume MAX' -t 500 || amixer set Master 2%+
 alt + a
-  [ $(amixer set Master 2%+ | tail -1 | cut -d [ -f2 | cut -d % -f1) -gt 99 ] && notify-send 'Volume MAX' -t 400
+  [ $(amixer set Master 3%+ | tail -1 | cut -d [ -f2 | cut -d % -f1) -gt 99 ] && notify-send 'Volume MAX' -t 400
 alt + z
   amixer set Master 3%-
 
