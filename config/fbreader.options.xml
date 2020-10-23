@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+  <group name="Keys">
+    <option name="Action0" value="pageBackward"/>
+    <option name="Action1" value="pageBackward"/>
+    <option name="Action2" value="quit"/>
+    <option name="Action3" value="lineForward"/>
+    <option name="Action4" value="lineBackward"/>
+    <option name="Action5" value="quit"/>
+    <option name="Action6" value="pageForward"/>
+    <option name="Action7" value="previousTOCSection"/>
+    <option name="Action8" value="nextTOCSection"/>
+    <option name="Key0" value="&lt;B&gt;"/>
+    <option name="Key1" value="&lt;BackSpace&gt;"/>
+    <option name="Key2" value="&lt;Ctrl&gt;+&lt;Q&gt;"/>
+    <option name="Key3" value="&lt;J&gt;"/>
+    <option name="Key4" value="&lt;K&gt;"/>
+    <option name="Key5" value="&lt;Q&gt;"/>
+    <option name="Key6" value="&lt;Space&gt;"/>
+    <option name="Key7" value="&lt;[&gt;"/>
+    <option name="Key8" value="&lt;]&gt;"/>
+    <option name="Number" value="9"/>
+  </group>
+  <group name="SmallScrolling">
+    <option name="LinesToScroll" value="3"/>
+  </group>
+  <group name="TapScrolling">
+    <option name="Enabled" value="false"/>
+  </group>
+  <group name="Web Browser">
+    <option name="Name" value="Browser"/>
+  </group>
+  <group name="gotoPageDialog">
+    <option name="Index" value="401"/>
+  </group>
+</config>

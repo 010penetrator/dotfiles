@@ -1,16 +1,15 @@
-super + x ; { U, m, s, r, e, h, f, d, g, p, n, o, w, a, i }
-  raise.sh { 'Luakit' 'luakit', '' notimem, speedcrunch, Ranger 'newranger', 'WeeChat\|weechat\|Pidgin' 'urxvt -e weechat', htop '$TERMINAL -e htop', feh 'feha /ln/dwn/', deadbeef, 'chromium\|Firefox\|Navigator' '$BROWSER', Thunar thunar, nautilus, VirtualBox '', fbreader, pavucontrol, histmpv.sh }
+super + x ; { m, s, e, h, f, g, p, n, o, w, a, i }
+  raise.sh { '' notimem, speedcrunch, 'WeeChat\|weechat' 'urxvt -e weechat', htop '$TERMINAL -e htop', feh 'feha /ln/dwn/', 'chromium\|Firefox\|Navigator' '$BROWSER', Thunar thunar, nautilus, VirtualBox '', fbreader, pavucontrol, histmpv.sh }
 
-super + x ; { t, j, z, k, l, b }
+super + x ; { t, j, z, k, l, c }
   { raiseterm.sh, windowswitcher.sh, xdotool mousemove_relative 0 1600, bspc node -c, listdwn.sh, listmpv.sh }
 
 super + { q, t, v, U, s, p, c, r, R, g, a, A, b, z }
-  raise.sh { '' scroff, 'xterm\|urxvt\|kitty', VIM 'vimz', luakit, 'chromium\|Firefox', 'MPV\|mpv\|MOC' 'noti echo no player instance found', VIFM '$TERMINAL -e vifm & notify-send new_VIFM', zathura listzathura.sh, evince, 'Telegram\|Pidgin' '', 'transmission-remote\|tremc\|qbittorrent' '$TERMINAL -e tremc -c localhost:9090', 'tremc-pi' '$TERMINAL -T tremc-pi -e tremc -c 192.168.1.78:9090', ' Browser' '', devhelp }
+  raise.sh { '' scroff, 'xterm\|urxvt\|kitty', VIM 'vimz', luakit, 'chromium\|Firefox', 'deadbeef\|MPV\|mpv\|MOC' 'noti echo no player instance found', VIFM '$TERMINAL -e vifm & notify-send new_VIFM', zathura listzathura.sh, evince, 'Telegram\|Pidgin' '', 'transmission-remote\|tremc\|qbittorrent' '$TERMINAL -e tremc -c localhost:9090', 'tremc-pi' '$TERMINAL -T tremc-pi -e tremc -c 192.168.1.78:9090', ' Browser' '', fbreader }
 
 super + { T, V, C, B }
   raisekitty.sh { bash, VIM, VIFM, MPV }
 
-#  s , r 
 super + n ; { n, m, h, c, v, r }
   { $TERMINAL, momkitty.sh, zsh, $TERMINAL -e vifm, $TERMINAL -e vim, listzathura.sh }
 super + e
@@ -24,7 +23,7 @@ super + x ; x
 super + x ; T
   notify-send "$(transmission-remote 192.168.1.78:9090 -st)"
 super + space
-  raise.sh 'MPV\|mpv\|MOC' 'noti echo no player instance found'
+  raise.sh 'deadbeef\|MPV\|mpv\|MOC' 'noti echo no player instance found'
 ctrl + space
   (setxkbmap -query | grep -q "layout:\s\+us") && setxkbmap ru || setxkbmap us && notify-send "$(setxkbmap -query | grep layout)"
 ctrl + 7
