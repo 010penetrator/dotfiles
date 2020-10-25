@@ -238,6 +238,7 @@ LD_PRELOAD=/usr/lib/i386-linux-gnu/libstdc++.so.6 DISPLAY=:0 steam
 pacman -U file.xz
 pacman -Sc
 pacman -Ss '^vim-'
+pacman -Sy archlinux-keyring
 sudo find /var/cache/ -mtime +7 -exec rm {} \; # tidy cache from week-old files
 sudo pacman-mirrors -g
 expac -s "%-30n %m" | sort -rhk 2 | less
