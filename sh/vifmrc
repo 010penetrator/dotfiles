@@ -98,7 +98,7 @@ nnoremap C :copy<cr>
 nnoremap E :move<cr>
 nnoremap cn :clone<cr>
 nnoremap am ggVG<cr>:move<cr>
-nnoremap aa ggVG<cr>:copy<cr>
+nnoremap ay ggVG<cr>:copy<cr>
 nnoremap zu :! upk2dir.sh %c <cr>
 nnoremap zU :! upk2dir.sh %c %D <cr>
 nnoremap zp :! 7z a -mx=3 -xr!.git -xr!tags %c.7z %f <cr>
