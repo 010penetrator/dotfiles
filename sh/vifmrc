@@ -365,7 +365,7 @@ fileviewer *.[1-8] man ./%c | col -b
 
 " Images
 filextype *.bmp,*.jpg,*.jpeg,*.png,*.xpm,*.webp,*gif
-        \ fehf %c &>/dev/null &,
+        \ feha %c &>/dev/null &,
         \ eom %c &>/dev/null &,
         \ ristretto %c,
         \ sxiv,

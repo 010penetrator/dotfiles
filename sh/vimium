@@ -1,5 +1,8 @@
 map gr previousTab
 map t Vomnibar.activateInNewTab
+map O Vomnibar.activateEditUrlInNewTab
+map go Vomnibar.activateEditUrl
+map gb Vomnibar.activateBookmarks
 map e scrollFullPageUp
 map d scrollFullPageDown
 map b scrollFullPageUp
