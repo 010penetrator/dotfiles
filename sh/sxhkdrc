@@ -5,7 +5,7 @@ super + x ; { t, j, z, k, l, c }
   { raiseterm.sh, windowswitcher.sh, xdotool mousemove_relative 0 1600, bspc node -c, listdwn.sh, listmpv.sh }
 
 super + { q, t, v, U, s, p, c, r, R, g, a, A, b, z }
-  raise.sh { '' scroff, 'xterm\|urxvt\|kitty', VIM 'vimz', luakit, 'chromium\|Firefox', 'deadbeef\|MPV\|mpv\|MOC' 'noti echo no player instance found', VIFM '$TERMINAL -e vifm & notify-send new_VIFM', zathura listzathura.sh, evince, 'Telegram\|Pidgin' '', 'transmission-remote\|tremc\|qbittorrent' '$TERMINAL -e tremc -c localhost:9090', 'tremc-pi' '$TERMINAL -T tremc-pi -e tremc -c 192.168.1.78:9090', ' Browser' '', fbreader }
+  raise.sh { '' scroff, 'xterm\|urxvt\|kitty', VIM 'vimz', luakit, 'chromium\|Firefox', 'deadbeef\|MPV\|mpv\|MOC' 'noti echo no player instance found', VIFM '$TERMINAL -e vifm & notify-send new_VIFM', zathura listzathura.sh, evince, 'Telegram\|Pidgin' '', 'transmission-remote\|tremc\|qbittorrent' '$TERMINAL -e tremc -c localhost:9090', 'tremc-pi' '$TERMINAL -T tremc-pi -e tremc -c 192.168.1.78:9090', ' Browser' 'noti echo starting TorBro... ; exo-open .trb.desktop' , fbreader }
 
 super + { T, V, C, B }
   raisekitty.sh { bash, VIM, VIFM, MPV }
@@ -25,7 +25,7 @@ super + x ; T
 super + space
   raise.sh 'deadbeef\|MPV\|mpv\|MOC' 'noti echo no player instance found'
 ctrl + space
-  (setxkbmap -query | grep -q "layout:\s\+us") && setxkbmap ru || setxkbmap us && notify-send "$(setxkbmap -query | grep layout)"
+  (setxkbmap -query | grep -q "layout:\s\+us") && setxkbmap ru || setxkbmap us && notify-send "$( setxkbmap -query | grep layout | tr -s ' ' )" -t 600
 ctrl + 7
   xdotool getactivewindow windowminimize
 alt + x
@@ -46,9 +46,7 @@ alt + a
 alt + z
   amixer set Master 3%-
 
-#
-# bspwm hotkeys
-#
+# bspwm hotkeys #
 
 # quit/restart bspwm
 super + alt + {q,r}

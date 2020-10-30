@@ -98,7 +98,7 @@ nnoremap C :copy<cr>
 nnoremap E :move<cr>
 nnoremap cn :clone<cr>
 nnoremap am ggVG<cr>:move<cr>
-nnoremap aa ggVG<cr>:copy<cr>
+nnoremap ay ggVG<cr>:copy<cr>
 nnoremap zu :! upk2dir.sh %c <cr>
 nnoremap zU :! upk2dir.sh %c %D <cr>
 nnoremap zp :! 7z a -mx=3 -xr!.git -xr!tags %c.7z %f <cr>
@@ -266,8 +266,13 @@ set statusline="  Hint: %z%= %A %10u:%-7g %15s %20d  "
 
 command! df df -h %m 2> /dev/null
 command! vimdiff vim -d %f %F
+<<<<<<< HEAD
 command! diff ! echo; diff %f %F && echo 0; read -rsn1
 command! diffnear ! echo; diff %f && echo 0; read -rsn1
+=======
+command! diff ! echo; diff %c %C && echo 0; read -rsn1
+command! diffpane ! echo; diff %f && echo 0; read -rsn1
+>>>>>>> 602a1b72ba5424874735fc6a81ccfa7ff4cef535
 command! zip zip -r %f.zip %f
 command! run !! ./%f
 command! make !!make %a
@@ -365,7 +370,7 @@ fileviewer *.[1-8] man ./%c | col -b
 
 " Images
 filextype *.bmp,*.jpg,*.jpeg,*.png,*.xpm,*.webp,*gif
-        \ feha %c &>/dev/null &,
+        \ fehf %c &>/dev/null &,
         \ eom %c &>/dev/null &,
         \ ristretto %c,
         \ sxiv,

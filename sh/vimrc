@@ -608,7 +608,6 @@ nnoremap <Leader>zr :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","mak
 " nnoremap <Leader>zb yap: exec "!" . @" <cr>
 nnoremap <Leader>zl : silent exec '! echo -e "\n$(pwd):"; ls -la . ; echo \. ; ls -la %:p ; read -n 1 -s -r -p "//hit.anykey" ; echo -ne "\n" ' \| redraw! <cr>
 vnoremap z- <ESC>:call FoldSelected()<CR>za
-nnoremap d- %%dd''dd''
 
 "---------Commands------------"
 command! -nargs=1 Silent exec 'silent !' . <q-args> | exec 'redraw!'
