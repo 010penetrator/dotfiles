@@ -478,7 +478,7 @@ nnoremap m<space> :<C-U>call signature#mark#Purge("line")<CR>
 nnoremap gz 1gt
 " Swap window with previous window
 nnoremap <Leader>s :call WinBufSwap()<CR>
-nnoremap <Leader>y :call BufYank()<CR>
+noremap <Leader>y :call BufYank()<CR>
 nnoremap <Leader>p :call BufPut()<CR>
 " Go to text start/finish in file
 nnoremap g<PageUp>   gg:call search('^.') <CR>k
@@ -1063,6 +1063,7 @@ function! FoldSelected()
   exec "normal `>o------------------------------}}}\<ESC>`<O------------------------------{{{\<ESC>"
 endfunction
 
+"Highlight some line
 highlight boo ctermbg=2 ctermfg=0
 sign define mybookmark text=!> linehl=boo texthl=boo
 map <F9> :exe ":sign place 666 line=" . line(".") ." name=mybookmark file=" . expand("%:p")<CR>
