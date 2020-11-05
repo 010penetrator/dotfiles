@@ -984,7 +984,12 @@ function! DelSpace()
   if (fin-beg+1) > 0
     silent exec (beg)','(fin)'d'
   endif
-  exec "normal! O"
+  if ( line(".") == line("$") )
+    " end-of-file case
+    exec "normal! o"
+  else
+    exec "normal! O"
+  endif
 endfunction
 
 function! Parenthise()
