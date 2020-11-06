@@ -542,9 +542,9 @@ nnoremap <Leader>e :BufExplorer <CR>
 nnoremap ab : new \| if isdirectory(expand('#:p:h')) \| lcd #:p:h \| endif \| terminal ++kill=term ++curwin ++norestore <CR>
 nnoremap aB : vnew \| if isdirectory(expand('#:p:h')) \| lcd #:p:h \| endif \| terminal ++kill=term ++curwin ++norestore <CR>
 " Open terminal at current location
-nnoremap qt : if isdirectory(expand('%:p:h')) \| lcd %:p:h \| endif \| terminal ++kill=term ++curwin ++norestore <CR>
+nnoremap qb : if isdirectory(expand('%:p:h')) \| lcd %:p:h \| endif \| terminal ++kill=term ++curwin ++norestore <CR>
 " Show shell
-nnoremap qb :Bash <CR>
+nnoremap qt :Bash <CR>
 " Jump to already existing terminal window inside vim
 nnoremap qg :call GotoTerm(0)<CR>
 " Spawn a terminal outside vim
@@ -733,10 +733,10 @@ function! BuildProjectUni(Makefile,Makecommand)
   exec "lcd " . l:curr_directory
   let l:proj_dir = ClimbToDirWhere(a:Makefile,1)
   " " !!! ignore cmake-generated Makefile
-  while filereadable("CMakeCache.txt")
-    cd ../
-    let l:proj_dir = ClimbToDirWhere(a:Makefile,1)
-  endwhile
+  " while filereadable("CMakeCache.txt")
+  "   cd ../
+  "   let l:proj_dir = ClimbToDirWhere(a:Makefile,1)
+  " endwhile
   if ( l:proj_dir != "-1" )
     exec "!echo @ " . l:proj_dir . ":"
     exec "!echo ----------------------------------------"
