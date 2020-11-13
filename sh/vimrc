@@ -360,8 +360,10 @@ noremap x "_x
 noremap X "_X
 " noremap s "_s
 nnoremap gr gT
-nnoremap g< :tabm -1 <CR>
-nnoremap g> :tabm +1 <CR>
+nnoremap q< :tabm -1 <CR>
+nnoremap q> :tabm +1 <CR>
+nnoremap q. :call MoveToNextTab()<CR>
+nnoremap q, :call MoveToPrevTab()<CR>
 nnoremap <Down> gj
 nnoremap <Up>   gk
 vnoremap <Down> gj
@@ -576,8 +578,6 @@ nnoremap <Leader>gh :call FocusBufOrDo('sh_history','e $HOME/.bash_history')<CR>
 nnoremap <Leader>gl :call FocusBufOrDo('1linux','e /ln/sh/1linux')<CR>
 nnoremap <Leader>gs :call FocusBufOrDo('stk','e /ln/ho/use/stk.tx')<CR>
 nnoremap <Leader>gd :BD<CR>
-nnoremap <Leader>gt :call MoveToNextTab()<CR>
-nnoremap <Leader>gr :call MoveToPrevTab()<CR>
 nnoremap <Leader>f. :Ack <C-r><C-w> %:p:h 
 nnoremap <Leader>fg :call ClimbToDirWhere(".git/index",1) \| Ack -Q <C-R><C-W> 
 " nnoremap <Leader>ff :AckFile <C-r><C-W> <CR>
@@ -733,10 +733,10 @@ function! BuildProjectUni(Makefile,Makecommand)
   exec "lcd " . l:curr_directory
   let l:proj_dir = ClimbToDirWhere(a:Makefile,1)
   " " !!! ignore cmake-generated Makefile
-  " while filereadable("CMakeCache.txt")
-  "   cd ../
-  "   let l:proj_dir = ClimbToDirWhere(a:Makefile,1)
-  " endwhile
+  while filereadable("vim_make_ignore")
+    cd ../
+    let l:proj_dir = ClimbToDirWhere(a:Makefile,1)
+  endwhile
   if ( l:proj_dir != "-1" )
     exec "!echo @ " . l:proj_dir . ":"
     exec "!echo ----------------------------------------"
