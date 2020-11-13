@@ -723,7 +723,7 @@ endfunction
 " endfunction
 
 function! BuildProjectUni(Makefile,Makecommand)
-  exec "!echo " . a:Makecommand . ":"
+  " exec "!echo " . a:Makecommand . ":"
   " memorize stuff
   let l:makeprg_bak = &makeprg
   let &makeprg = a:Makecommand
@@ -738,8 +738,8 @@ function! BuildProjectUni(Makefile,Makecommand)
     let l:proj_dir = ClimbToDirWhere(a:Makefile,1)
   endwhile
   if ( l:proj_dir != "-1" )
-    exec "!echo @ " . l:proj_dir . ":"
-    exec "!echo ----------------------------------------"
+    exec "!echo " . a:Makecommand . " @ " . l:proj_dir . ":"
+    exec "!echo ------------------------------------------------"
     make
     " exec '! ' . a:Makecommand
   else 
