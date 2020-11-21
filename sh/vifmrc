@@ -107,7 +107,7 @@ nnoremap as :! tar -I 'zstd -11 -T0' -cf %c.tar.zst --exclude='.git' --exclude='
 nnoremap aS :! tar -I 'zstd -11 -T0' -cf %D/%c.tar.zst --exclude='.git' --exclude='tags' %f 
 nnoremap ze :! upk.sh %c <cr>
 nnoremap zE :! cd %D; upk.sh %d/%c <cr>
-nnoremap ar ggvGcw
+nnoremap qr ggvGcw
 nnoremap qo :!cp -r %c /ln/mus/0/ <cr>
 nnoremap qO :!mv %c /ln/mus/0/ <cr>
 nnoremap qM :! echo Copy \'%c\' to MUZIK.. ; cp -r %c /ln/mo/blink/MUZIK/ <cr>

@@ -4,8 +4,8 @@ super + x ; { m, s, e, h, f, g, p, n, o, w, a, i }
 super + x ; { t, j, z, k, l, c }
   { raiseterm.sh, windowswitcher.sh, xdotool mousemove_relative 0 1600, bspc node -c, listdwn.sh, listmpv.sh }
 
-super + { q, t, v, U, s, p, c, r, R, g, a, A, b, z }
-  raise.sh { '' scroff, 'xterm\|urxvt\|kitty', VIM 'vimz', luakit, 'chromium\|Firefox', 'deadbeef\|MPV\|mpv\|MOC' 'noti echo no player instance found', VIFM '$TERMINAL -e vifm & notify-send new_VIFM', zathura listzathura.sh, evince, 'Telegram\|Pidgin' '', 'transmission-remote\|tremc\|qbittorrent' '$TERMINAL -e tremc -c localhost:9090', 'tremc-pi' '$TERMINAL -T tremc-pi -e tremc -c 192.168.1.78:9090', ' Browser' 'noti echo starting TorBro... ; exo-open .trb.desktop' , fbreader }
+super + { q, S, t, v, U, s, p, c, r, R, g, a, A, b, z }
+  raise.sh { '' scroff, '' 'systemctl suspend', 'xterm\|urxvt\|kitty', VIM 'vimz', luakit, 'chromium\|Firefox', 'deadbeef\|MPV\|mpv\|MOC' 'noti echo no player instance found', VIFM '$TERMINAL -e vifm & notify-send new_VIFM', zathura listzathura.sh, evince, 'Telegram\|Pidgin' '', 'transmission-remote\|tremc\|qbittorrent' '$TERMINAL -e tremc -c localhost:9090', 'tremc-pi' '$TERMINAL -T tremc-pi -e tremc -c 192.168.1.78:9090', ' Browser' 'noti echo starting TorBro... ; exo-open .trb.desktop' , fbreader }
 
 super + { T, V, C, B }
   raisekitty.sh { bash, VIM, VIFM, MPV }
@@ -134,11 +134,11 @@ super + ctrl + {o,i}
   bspc node {older,newer} -f; \
   bspc wm -h on
 
-# focus or send to the given desktop
+# focus or move to the given desktop
 super + {_,shift + }{1-9,0}
   bspc {desktop -f,node -d} '^{1-9,10}'
 
-super + ctrl + {comma,period}
+super + alt + {comma,period}
   bspc node -d {prev,next}.local
 
 #
