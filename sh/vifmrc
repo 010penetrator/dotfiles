@@ -12,7 +12,7 @@
 " USERadd
 nnoremap af :<up><cr>
 command! CC :! mv /ln/dwn/cover.* . 
-command! ogg :! cd %c && conv_uni2ogg.sh . %D &>/dev/null ; notify-send "%c converted" &
+command! ogg :! cd %c && conv_uni2ogg.sh %D &>/dev/null ; notify-send "%c converted" &
 command! flac :! cd %c && conv_uni2flac.sh %D &>/dev/null ; notify-send "%c converted" &
 command! respic :! echo $PWD && respic.sh 50
 command! rescol :! convert %c -quality 95%%  -sampling-factor '2x2,1x1,1x1' %c.jpg

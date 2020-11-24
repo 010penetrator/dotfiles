@@ -138,7 +138,7 @@ super + ctrl + {o,i}
 super + {_,shift + }{1-9,0}
   bspc {desktop -f,node -d} '^{1-9,10}'
 
-super + alt + {comma,period}
+super + alt + bracket{left,right}
   bspc node -d {prev,next}.local
 
 #
