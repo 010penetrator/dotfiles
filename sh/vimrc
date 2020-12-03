@@ -360,10 +360,12 @@ noremap x "_x
 noremap X "_X
 " noremap s "_s
 nnoremap gr gT
-nnoremap q< :tabm -1 <CR>
-nnoremap q> :tabm +1 <CR>
-nnoremap q. :call MoveToNextTab()<CR>
-nnoremap q, :call MoveToPrevTab()<CR>
+nnoremap q] gt
+nnoremap q[ gT
+nnoremap q{ :tabm -1 <CR>
+nnoremap q} :tabm +1 <CR>
+nnoremap q< :call MoveToPrevTab()<CR>
+nnoremap q> :call MoveToNextTab()<CR>
 nnoremap <Down> gj
 nnoremap <Up>   gk
 vnoremap <Down> gj
