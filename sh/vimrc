@@ -360,10 +360,12 @@ noremap x "_x
 noremap X "_X
 " noremap s "_s
 nnoremap gr gT
-nnoremap q< :tabm -1 <CR>
-nnoremap q> :tabm +1 <CR>
-nnoremap q. :call MoveToNextTab()<CR>
-nnoremap q, :call MoveToPrevTab()<CR>
+nnoremap q] gt
+nnoremap q[ gT
+nnoremap q{ :tabm -1 <CR>
+nnoremap q} :tabm +1 <CR>
+nnoremap q< :call MoveToPrevTab()<CR>
+nnoremap q> :call MoveToNextTab()<CR>
 nnoremap <Down> gj
 nnoremap <Up>   gk
 vnoremap <Down> gj
@@ -663,7 +665,7 @@ menu tagi.gitDeps :call UpdCtagsGitDeps() <CR>
 menu tagi.git     :call UpdCtagsGit() <CR>
 
 "---------Macros--------------"
-let @g = ",ggggzjjao:call DoOnKey(\"32\",\"b #\")\n"
+let @g = ",ggggzjjao:call DoOnKey(\"103\",\"b #\")\n"
 
 "---------Functions-----------"
 "
@@ -1005,7 +1007,7 @@ endfunction
 function! DoOnKey(keycode,command)
   let l:key = getchar()
   " echom l:key
-  if ( l:key == 32 )
+  if ( l:key == a:keycode )
     exec a:command
   endif
 endfunction
