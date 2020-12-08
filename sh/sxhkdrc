@@ -1,7 +1,7 @@
 super + x ; { m, s, e, h, f, g, p, n, o, w, a, i }
   raise.sh { '' notimem, speedcrunch, 'WeeChat\|weechat' 'urxvt -e weechat', htop '$TERMINAL -e htop', feh 'feha /ln/dwn/', 'chromium\|Firefox\|Navigator' '$BROWSER', Thunar thunar, nautilus, VirtualBox '', fbreader, pavucontrol, histmpv.sh }
 
-super + x ; { t, j, z, k, l, c }
+super + x ; { t, j, z, q, l, c }
   { raiseterm.sh, windowswitcher.sh, xdotool mousemove_relative 0 1600, bspc node -c, listdwn.sh, listmpv.sh }
 
 super + { q, S, t, v, U, s, p, c, r, R, g, a, A, b, z }
@@ -53,8 +53,6 @@ super + alt + {q,r}
   bspc {quit,wm -r}
 
 # close / kill
-super + Escape
-  bspc node -c
 super + ctrl + q
   bspc node -k
 
@@ -129,7 +127,7 @@ super + Tab
   bspc node -f last
 
 # focus the older or newer node in the focus history
-super + ctrl + {o,i}
+super + {o,i}
   bspc wm -h off; \
   bspc node {older,newer} -f; \
   bspc wm -h on
