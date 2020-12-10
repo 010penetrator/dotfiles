@@ -1,4 +1,4 @@
-super + x ; { m, s, e, h, g, f, n, o, w, a, i }
+super + x ; { m, s, e, h, g, p, n, o, w, a, i }
   raise.sh { '' notimem, speedcrunch, 'WeeChat\|weechat' 'urxvt -e weechat', htop '$TERMINAL -e htop', feh 'feha /ln/dwn/', Thunar thunar, nautilus, VirtualBox '', fbreader, pavucontrol, histmpv.sh }
 
 super + x ; { t, j, z, q, l, c }
@@ -121,9 +121,9 @@ super + {comma,period}
 # focus the last node/desktop
 alt + Tab
   bspc desktop -f last
-super + BackSpace
-  bspc desktop -f last
 super + Tab
+  bspc desktop -f last
+super + BackSpace
   bspc node -f last
 
 # focus the older or newer node in the focus history
