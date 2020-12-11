@@ -1,4 +1,4 @@
-" vim: filetype=vifm :
+" vim: filetype=vim :
 " Sample configuration file for vifm (last updated: 28 June, 2016)
 " You can edit this file by hand.
 " The " character at the beginning of a line comments out the line.
@@ -57,6 +57,7 @@ nnoremap qF :! fehf . <cr>
 nnoremap q<space> :! mpv %c <cr>
 " Open file with vim server
 nnoremap av :! vimz "%c" &>/dev/null & <cr>
+nnoremap aV :! MODE="vert" vimz "%c" &>/dev/null & <cr>
 nnoremap ac :! MODE="current" vimz "%c" &>/dev/null & <cr>
 nnoremap an :! MODE="newtab" vimz "%c" &>/dev/null & <cr>
 nnoremap aw :! $TERMINAL -e vim %c &>/dev/null & <cr>
@@ -144,9 +145,15 @@ set cpoptions=fs
 " If you would like to use another vi clone such as Elvis or Vile
 " you will need to change this setting.
 
-set vicmd='source $HOME/.bashrc; vim --cmd "set titlestring=VIM\ @\ VIFM"'
+" set vicmd='source $HOME/.bashrc; vim --cmd "set titlestring=VIM\ @\ VIFM"'
 " set vicmd=elvis\ -G\ termcap
 " set vicmd=vile
+
+if (system('echo $INVIM') == "1")
+  set vicmd='source $HOME/.bashrc; MODE="current" vimz'
+else
+  set vicmd='source $HOME/.bashrc; vim --cmd "set titlestring=VIM\ @\ VIFM"'
+endif
 
 " Trash Directory
 " The default is to move files that are deleted with dd or :d to

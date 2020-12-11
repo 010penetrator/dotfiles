@@ -434,9 +434,9 @@ nnoremap as :  new \| lcd #:p:h \| echo expand ('%') '.@.' getcwd() <CR>
 nnoremap av : vnew \| lcd #:p:h \| echo expand ('%') '.@.' getcwd() <CR>
 nnoremap an :tabe %:p:h <CR>
 " Open current location with vifm within vim
-nnoremap ac :terminal ++close vifm %:p:h<CR>
-nnoremap aC :vertical terminal ++close vifm %:p:h<CR>
-nnoremap a; :terminal ++kill=term ++curwin ++close vifm %:p:h<CR>
+nnoremap ac :terminal ++close bash -c "INVIM=1 vifm %:p:h"<CR>
+nnoremap aC :vertical terminal ++close bash -c "INVIM=1 vifm %:p:h"<CR>
+nnoremap a; :terminal ++kill=term ++curwin ++close bash -c "INVIM=1 vifm %:p:h"<CR>
 nnoremap a/ :nohlsearch <CR>
 " nnoremap a/ :set hlsearch! <CR>
 " Jump last edit edges
@@ -480,8 +480,8 @@ nmap [s [-
 nnoremap m-       :<C-U>call signature#mark#Purge("all")<CR>
 nnoremap m<space> :<C-U>call signature#mark#Purge("line")<CR>
 nnoremap gz 1gt
-" Swap window with previous window
-nnoremap <Leader>s :call WinBufSwap()<CR>
+" Swap current and previous window
+nnoremap <Leader>s :call WinSwap()<CR>
 nnoremap <Leader>y :call BufYank()<CR>
 nnoremap <Leader>p :call BufPut()<CR>
 " Go to text start/finish in file
@@ -635,7 +635,7 @@ command! UpdCtags !ctags -R --exclude=.git --exclude=log --exclude=wutils --c++-
 command! UpdCtagsSudo !sudo ctags -R --exclude=.git --exclude=log --exclude=wutils --c++-kinds=+p --fields=+iaS --extra=+q *
 command! Yall normal gg"+yG''
 command! Dall normal gg"_dG
-command! SwapContentPrev :call SwapContentPrevWin()
+command! SwapContentPrevWin :call SwapContentPrevWin()
 command! FileDel :silent exec '!rm %' | redraw! | bd
 "exec '!chromium' ali.@"
 command! -nargs=? LineColor call LightlineReload('<args>')
@@ -910,7 +910,7 @@ function! BufPut()
   exec "b" . g:bufnra
 endfunction
 
-function! WinBufSwap()
+function! WinSwap()
   let thiswin = winnr()
   let thisbuf = bufnr("%")
   let lastwin = winnr("#")

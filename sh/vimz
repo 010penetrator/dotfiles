@@ -29,9 +29,9 @@ if ! [ -z "$1" ] ; then
   elif [[ $MODE == newtab ]] ; then
     # Edit in new tab of Vim
     vim --servername $SERVNAME --remote-send "<c-w>:tabe $path<CR>"
-  # elif [ $servers == 0 ] ; then
-  #   # Populate Vim buffer
-  #   vim --servername $SERVNAME --remote-send ":e $path<CR>"
+  elif [[ $MODE == vert ]] ; then
+    # Edit in nev vertical window in Vim
+    vim --servername $SERVNAME --remote-send "<c-w>:vnew $path<CR>"
   else
     # Edit in new window in Vim
     vim --servername $SERVNAME --remote-send "<c-w>:new $path<CR>"

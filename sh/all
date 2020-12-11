@@ -19,5 +19,7 @@ sudo bash -c "
   updatedb
 )"
 
+[ -d $HOME/.vim ] && cp $HOME/.vim/session.vim $HOME/.vim/session.vimBAK
+
 [ -d /ln/hh/tt ] && bak.sh
 
