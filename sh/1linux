@@ -100,6 +100,36 @@ while read line ; do deadbeef --queue "$line" ; done # use stdin as arg
 while pgrep -x polybar >/dev/null; do sleep 1; done # wait until the processes have been shut down
 cat /proc/uptime | cut -d ' ' -f1 #get uptime in secs
 
+GRUB
+:restore Grub2:
+mount -t ext4 /dev/sdXN /mnt
+mount -t proc /proc /mnt/proc ; mount --bind /dev /mnt/dev ; mount --bind /sys /mnt/sys 
+chroot /mnt #OR# arch-chroot /mnt
+grub-mkconfig -o /boot/grub/grub.cfg ; grub-install /dev/sdX
+:GRUB EFI install:
+grub-install --target=x86_64-efi --efi-directory=EfiSystemPart --boot-directory=/boot --bootloader-id=NewName 
+:GRUB EFI install to removable media:
+grub-install --target=x86_64-efi --efi-directory=/media/GLIM --removable --boot-directory=/media/GLIM/boot /dev/sdc
+:manual grub boot:
+grub2> set root=(hd0,2) ; linux /boot/vmlinuz-linux root=/dev/sdX2 ; initrd /boot/initrd.img ; boot
+:grub rescue to normal mode 
+ls; set root=(hd0,msdos1); set prefix=/boot/grub; insmod ext2; insmod normal; normal
+.
+qemu-system-x86_64 -hda /dev/sdc # check bootloader
+grub2> echo $grub_platform # check efi/bios in grub manual
+ls /sys/firmware/efi # check efi mode
+bootlace.com /dev/sdb
+sync && echo 3 | sudo tee /proc/sys/vm/drop_caches ; sudo qemu-system-x86_64 -m 1024 -enable-kvm -hda /dev/sdc # going nuts
+refind-install --usedefault  /dev/esp
+.
+menuentry "Local Linux installation" {
+  search --no-floppy --fs-uuid --set ...-..-..-..-...
+  probe --set rootuuid --fs-uuid $root
+  linux /boot/... root=/dev/disk/by-uuid/${rootuuid}
+  initrd /boot/...
+  boot
+}
+
 X
 setxkbmap -layout 'us,ru' -option 'grp:alt_shift_toggle,grp_led:scroll' # подключить смену языка
 xset s 1800 1800 ; xset -dpms # screen-off timer
@@ -123,28 +153,6 @@ xrandr --output eDP1 --brightness 1.0 # software dim screen brightness
 ps -u $(id -u) -o pid= | while read pid; do
         cat /proc/$pid/environ 2>/dev/null | tr '\0' '\n' | grep '^DISPLAY=:'
     done | grep -o ':[0-9]*' | sort -u # return current display id 
-
-GRUB
-:restore Grub2:
-mount -t ext4 /dev/sdXN /mnt
-mount -t proc /proc /mnt/proc ; mount --bind /dev /mnt/dev ; mount --bind /sys /mnt/sys 
-chroot /mnt #OR# arch-chroot /mnt
-grub-mkconfig -o /boot/grub/grub.cfg ; grub-install /dev/sdX
-:GRUB EFI install:
-grub-install --target=x86_64-efi --efi-directory=EfiSystemPart --boot-directory=/boot --bootloader-id=NewName 
-:GRUB EFI install to removable media:
-grub-install --target=x86_64-efi --efi-directory=/media/GLIM --removable --boot-directory=/media/GLIM/boot /dev/sdc
-:manual grub boot:
-grub2> set root=(hd0,2) ; linux /boot/vmlinuz-linux root=/dev/sdX2 ; initrd /boot/initrd.img ; boot
-:grub rescue to normal mode 
-ls; set root=(hd0,msdos1); set prefix=/boot/grub; insmod ext2; insmod normal; normal
-.
-qemu-system-x86_64 -hda /dev/sdc # check bootloader
-grub2> echo $grub_platform # check efi/bios in grub manual
-ls /sys/firmware/efi # check efi mode
-bootlace.com /dev/sdb
-sync && echo 3 | sudo tee /proc/sys/vm/drop_caches ; sudo qemu-system-x86_64 -m 1024 -enable-kvm -hda /dev/sdc # going nuts
-refind-install --usedefault  /dev/esp
 
 FS
 mkfs.vfat -F32 /dev/sdx1
