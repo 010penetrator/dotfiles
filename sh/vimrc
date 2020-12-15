@@ -32,8 +32,7 @@ Plug 'itchyny/lightline.vim' "cool
 Plug 'tpope/vim-vinegar' "basic
 Plug 'jamessan/vim-gnupg' "good
 Plug 'Shougo/unite.vim' "bloated
-Plug 'Shougo/vimproc' "req4unite
-Plug 'Shougo/denite.nvim' "too complex
+Plug 'Shougo/vimproc' "for unite
 Plug 'junegunn/goyo.vim' "usable
 Plug 'godlygeek/tabular' "okay
 Plug 'chrisbra/Colorizer' "good
@@ -52,7 +51,6 @@ Plug 'kshenoy/vim-signature' "buggy
 " Plug 'eiginn/netrw' "basic
 " Plug 'vim-syntastic/syntastic' "wtf
 " Plug 'kien/rainbow_parentheses.vim'
-" Plug 'Shougo/neocomplete.vim'
 " Plug 'Valloric/YouCompleteMe'
 " Plug 'ajh17/VimCompletesMe'
 " Plug 'craigemery/vim-autotag' "errors
@@ -68,6 +66,11 @@ Plug 'sandeepcr529/Buffet.vim'
 " Plug 'vim-scripts/QuickBuf'
 " Plug 'Yggdroot/LeaderF'
 Plug 'vim-scripts/CycleColor'
+" Plug 'Shougo/denite.nvim' "not working
+Plug 'roxma/nvim-yarp' "for denite
+Plug 'roxma/vim-hug-neovim-rpc' "for denite
+Plug 'Shougo/deoplete.nvim'
+Plug 'Shougo/neoinclude.vim'
 
 " Colors:
 " ( gui themes need termguicolors setting )
@@ -174,6 +177,7 @@ Plug 'machakann/vim-colorscheme-tatami'
 call plug#end()
 
 "---------Settings------------"
+let g:deoplete#enable_at_startup = 1
 set fileencodings=ucs-bom,utf-8,default,cp1251,latin1
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
 " set keymap=russian-jcukenwin
@@ -437,6 +441,7 @@ nnoremap an :tabe %:p:h <CR>
 nnoremap ac :terminal ++close bash -c "INVIM=1 vifm %:p:h"<CR>
 nnoremap aC :vertical terminal ++close bash -c "INVIM=1 vifm %:p:h"<CR>
 nnoremap a; :terminal ++kill=term ++curwin ++close bash -c "INVIM=1 vifm %:p:h"<CR>
+nnoremap a: :tabe \| terminal ++kill=term ++curwin bash -c "INVIM=1 vifm #:p:h"<CR>
 nnoremap a/ :nohlsearch <CR>
 " nnoremap a/ :set hlsearch! <CR>
 " Jump last edit edges
@@ -540,6 +545,7 @@ nnoremap <Leader>8 8gt
 nnoremap <Leader>9 9gt
 nnoremap <Leader>q :qa <CR>
 nnoremap <Leader>j :Unite buffer file<CR>
+nnoremap <Leader>l :Unite buffer file<CR>i
 nnoremap <Leader>k :Denite buffer -mode=normal -immediately-1<CR>
 nnoremap <Leader>e :BufExplorer <CR>
 " Split open terminal at current location
