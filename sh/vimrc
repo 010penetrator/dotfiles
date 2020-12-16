@@ -434,6 +434,7 @@ nnoremap aE :e <c-r><c-f> <CR>
 " Split open current location with netrw
 nnoremap a, :wincmd s \| e %:p:h <CR>
 nnoremap a. :wincmd v \| e %:p:h <CR>
+nnoremap a<tab> :wincmd p \| e %:p:h <CR>
 nnoremap as :  new \| lcd #:p:h \| echo expand ('%') '.@.' getcwd() <CR>
 nnoremap av : vnew \| lcd #:p:h \| echo expand ('%') '.@.' getcwd() <CR>
 nnoremap an :tabe %:p:h <CR>
