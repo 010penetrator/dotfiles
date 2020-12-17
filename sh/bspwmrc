@@ -30,7 +30,7 @@ bspc rule -a QjackCtl state=floating
 bspc rule -a q4wine state=floating
 bspc rule -a Wine state=floating
 bspc rule -a VirtualBox state=floating
-bspc rule -a Zathura state=tiled
+bspc rule -a Zathura state=floating
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
 

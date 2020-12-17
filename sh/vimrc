@@ -642,6 +642,7 @@ command! UpdCtags !ctags -R --exclude=.git --exclude=log --exclude=wutils --c++-
 command! UpdCtagsSudo !sudo ctags -R --exclude=.git --exclude=log --exclude=wutils --c++-kinds=+p --fields=+iaS --extra=+q *
 command! Yall normal gg"+yG''
 command! Dall normal gg"_dG
+command! Call normal gg"_dGP
 command! SwapContentPrevWin :call SwapContentPrevWin()
 command! FileDel :silent exec '!rm %' | redraw! | bd
 "exec '!chromium' ali.@"
