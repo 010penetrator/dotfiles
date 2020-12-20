@@ -2,11 +2,11 @@
 # Convert music folder to flac format
 # Usage: conv_uni2flac.sh target_dir
 
-if [ -z $1 ] ; then
-  targ='/ln/mo/blink/MUZIK/'
-else
-  targ="$1"
-fi
+if [ -z "$1" ] ; then set -- "." "${2}" ; fi
+if [ -z "$2" ] ; then set -- "${1}" "." ; fi
+
+cd "$1"
+targ="$2"
 
 drn=${PWD##*/}
 f=$(ls | grep -c '\.flac$')
