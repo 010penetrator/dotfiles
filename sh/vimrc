@@ -1117,7 +1117,7 @@ endif
 " colo forest-night | LineColor cryslominsa
 " colo Tomorrow-Night | LineColor darcula
 " colo OceanicNext | LineColor bluewery
-" colo stellarized | set background=dark | LineColor nord
+" colo stellarized | set background=dark | LineColor bluewery
 " colo espresso | LineColor espresso
 " colo Tomorrow-Night-Blue | LineColor bluewery
 " colo edge | set background=dark | LineColor darcula
