@@ -23,6 +23,7 @@ bspc rule -a feh state=floating
 bspc rule -a SpeedCrunch state=floating
 bspc rule -a Fbreader state=floating
 bspc rule -a Pidgin state=floating
+bspc rule -a TelegramDesktop state=floating
 bspc rule -a Nautilus state=floating
 bspc rule -a Pavucontrol state=floating
 bspc rule -a LearnOpenGL state=floating
