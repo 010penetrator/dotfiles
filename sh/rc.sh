@@ -29,7 +29,7 @@ sxd.sh &
 nitrogen --restore &
 
 xinput set-prop "A4TECH USB Device" "libinput Accel Speed" -.4
-xinput set-prop "LVT ENDGAME GEAR XM1" "libinput Accel Speed" -.55
+xinput set-prop "LVT ENDGAME GEAR XM1" "libinput Accel Speed" -.5
 xinput set-prop "RAPOO Rapoo 2.4G Wireless Device" "libinput Accel Speed" -.7
 xinput set-prop "pointer:Logitech MX Master 3" "libinput Accel Speed" -.5
 
@@ -42,9 +42,9 @@ if [[ "$HOSTNAME" =~ 'killer'[pc,PC] ]]; then
   polybar.sh &
   killall unclutter; unclutter &
 
-elif [[ "$HOSTNAME" =~ 'newPC' ]]; then
+elif [[ "$HOSTNAME" =~ 'machine' ]]; then
   # xrdb -merge <(echo "Xft.dpi: 108") &
-  xrandr --output DisplayPort-0 --mode 2560x1440 --rate 120 
+  xrandr --output DP-1 --mode 2560x1440 --rate 120 
   sleep 1
   pgrep transmission-da | grep . || trdwrap.sh & 
   # pgrep earlyoom | grep . || earlyoom -m 2 -n &> /dev/null &

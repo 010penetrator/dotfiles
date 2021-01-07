@@ -69,8 +69,8 @@ Plug 'vim-scripts/CycleColor'
 " Plug 'Shougo/denite.nvim' "not working
 Plug 'roxma/nvim-yarp' "for denite
 Plug 'roxma/vim-hug-neovim-rpc' "for denite
-Plug 'Shougo/deoplete.nvim'
-Plug 'Shougo/neoinclude.vim'
+" Plug 'Shougo/deoplete.nvim'
+" Plug 'Shougo/neoinclude.vim'
 
 " Colors:
 " ( gui themes need termguicolors setting )
@@ -177,7 +177,7 @@ Plug 'machakann/vim-colorscheme-tatami'
 call plug#end()
 
 "---------Settings------------"
-let g:deoplete#enable_at_startup = 1
+" let g:deoplete#enable_at_startup = 1
 set fileencodings=ucs-bom,utf-8,default,cp1251,latin1
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
 " set keymap=russian-jcukenwin
@@ -579,7 +579,7 @@ nnoremap <Leader>gw yiw:call system('google.sh ' . "'" . @" . "'")<CR>
 nnoremap <Leader>gy ^y$:call system('yandex.sh ' . "'" . @" . "'")<CR>
 " nnoremap <Leader>gr ^y$:silent exec " !source $HOME/.bashrc && \"$BROWSER\" \"red " . @" . "\" &>/dev/null & " \| redraw!<CR>
 " nnoremap <Leader>gh ^y$:silent exec " !source $HOME/.bashrc && chromium \"" . @" . "\" &>/dev/null & raise.sh chromium " \| redraw!<CR>
-nnoremap <Leader>gg :call FocusBufOrDo('wawe','e /ln/ho/4gist/wawe')<CR>
+nnoremap <Leader>gg :call FocusBufOrDo('wawe','e /ln/ho/moment/4gist/wawe')<CR>
 nnoremap <Leader>gq :call FocusBufOrDo('.vimrc','e $MYVIMRC')<CR>
 nnoremap <Leader>gx :call FocusBufOrDo('sxhkd','e /ln/sh/sxhkdrc')<CR>
 nnoremap <Leader>gz :call FocusBufOrDo('zzzz','e $tt/zzzzzz')<CR>
@@ -1093,7 +1093,7 @@ map <C-F9> :sign unplace<CR>
 " endif
 
 let hostname = substitute(system('hostname'), '\n', '', '')
-if hostname == "warmPC" || hostname == "newPC" || hostname == "debian10pc"
+if hostname == "warmPC" || hostname == "machine" || hostname == "debian10pc"
   if !exists("g:colors_name")
     " colo PaperColor | set background=light | LineColor atlantis
     " colo espresso | LineColor espresso

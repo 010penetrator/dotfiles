@@ -1,25 +1,28 @@
 # exit
-bak="$HOME/.del/"
+bak="$HOME/bak/"
+bak2="/ln/bl/bak"
 mkdir -p $bak
 rdir="$PWD"
-a=$(ls -lt $bak | grep bak-conf | head -1 | grep -e --0..0--)
-i=$(echo ${a##*--0} | cut -c 1-2)
+
+a=$( ls -t $bak | grep my_bak_ | head -1 )
+i=$( echo ${a##my_bak_} | cut -c 1-2 )
 ! [[ $a ]] && i=11
-#echo $a .$i
-i=$((i%60))
+i=$((i%30))
 ((i++))
-name=$( echo bak-conf-tt--0"$i"0--`date +%Y-%m-%d`.tar.gz )
-repo="$HOME/dotfiles/"
-cd "$repo"
+
+name=$( echo my_bak_"$i"_`date +%Y-%m-%d`.tar.gz )
+cd "/ln/ho/dotfiles"
 tar -czf "$bak"/"$name" \
   config sh \
   -C / ln \
   -C /ln/ho tt
-#ls -t "$bak"bak* | head -5
 cp "$bak"/"$name" /ln/bl/bak/conf.tar.gz
 
-# tar -czhf "$bak"/bak-txt-0"$i"0--`date +%Y-%m-%d`.tar.gz -C /ln/ho tt
-cd "$rdir"
+[ -d /ln/co/transmission-daemon ] && cd /ln/co/ && tar -czf "$bak"/trm.tar.gz transmission-daemon
 
-rsync  -rtq /ln/ho/.config/transmission-daemon/torrents/ /ln/ho/.del/torrents/ --progress #trmbak 
+[ -d "$bak2" ] &&
+  cp -f "$bak"/"$name" "$bak2"/my_bak.tar.gz &&
+  cp -f "$bak"/trm.tar.gz /ln/torrents/torrents-bak/
+
+cd "$rdir"
 

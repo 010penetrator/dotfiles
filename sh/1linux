@@ -1,5 +1,5 @@
 Install
-BASE: base-devel earlyoom pacli pakku yay mlocate udevil cylon inxi
+BASE: base-devel inetutils earlyoom pacli pakku mlocate udevil cylon inxi
 TUI: mc clex lfm ranger vifm nnn lftp fzf ripgrep ncdu tree p7zip htop glances ytop bashtop dmenu keratin screenfetch lolcat tmux bc tty-clock 
 X: xorg-server xorg-xinit xterm urxvt xvkbd xclip redshift xscreensaver nitrogen dunst unclutter-xfixes xbanish gmrun scrot wmctrl xdotool 
 FIRMWARE: bluez-utils
@@ -18,7 +18,7 @@ LEARN: klavaro gtypist solfege brainworkshop stellarium
 GAMES: ctris urw powermanga pybik caph phlipple knetwalk cgoban liquidwar cultivation neverball typespeed speedpad minuet
 STUDIO: avlinux kxstudio ardour lmms calf guitarix rakarrack hydrogen zynaddsubfx amsynth qsynth 
 STUDIO-BASE: jack2 qjackctl vmpk alsa-utils gtklick gtick fluidsynth soundfont-fluid *timidity pulseeffects pulseaudio-alsa
-CHAT: weechat irssi *jitsi pidgin hexchat ring retroshare sylpheed  
+CHAT: weechat irssi *jitsi pidgin hexchat ring retroshare sylpheed 
 SCIENT: gnuplot kst2 scipy scilab mathmod
 DEB-only: xinput psmisc
 
@@ -164,6 +164,7 @@ e2label /dev/sdXN mint95 # set ext2+ fs label
 dosfslabel # set ntfs label
 UUID=x-x /path ext4 defaults,rw,nofail,nosuid,nodev,relatime,data=ordered 0 0 #fstab stub
 systemctl daemon-reload # reload fstab 
+sudo udevadm control --reload-rules && sudo udevadm trigger # reload udev rules
 rsync -rt --progress --delete /media/src/abba/ /media/dest/abba # mirror copy
 rsync -e ssh -av --progress --no-perms --no-times --delete --size-only /path/dir/ user@192.168.1.180:/path/dir/ # mirror copy over ssh
 rsync -e 'ssh -i .ssh/key0 -p 2222' -av --progress --no-perms --no-times --delete --size-only myphone@192.168.1.88:/storage/emulated/0/Download/prags-andro/ /ln/pr/prags-andro/ # sync with andro-phone
@@ -252,6 +253,10 @@ sudo pacman-mirrors -g
 expac -s "%-30n %m" | sort -rhk 2 | less
 pacman -Rsn $(pacman -Qdtq) # remove all orphans
 comm -23 <(pacman -Qqt | sort) <(echo "" | tr ' ' '\n' | cat <(pacman -Sqg "base base-devel") - | sort -u) #show all packages that nothing else depends on
+.
+git clone https://aur.archlinux.org/pakku.git
+pacman -U https://archive.archlinux.org/packages/n/nim/nim-1.0.6-1-x86_64.pkg.tar.zst
+makepkg -si
 
 ALSO
 cp -a /source/. /target # add source/ contents to target/
