@@ -16,7 +16,6 @@ tar -czf "$bak"/"$name" \
   config sh \
   -C / ln \
   -C /ln/ho tt
-cp "$bak"/"$name" /ln/bl/bak/conf.tar.gz
 
 [ -d /ln/co/transmission-daemon ] && cd /ln/co/ && tar -czf "$bak"/trm.tar.gz transmission-daemon
 
