@@ -167,7 +167,7 @@ gsync() {
   git commit -a -m another | grep '[^[:blank:]]' --color=none
   git pull ; git push
   echo
-  cd ~/moment/ ; pwd
+  cd ~/moment/4gist/ ; pwd
   git add .
   git commit -a -m newnote | grep '[^[:blank:]]' --color=none
   git pull ; git push ; )
