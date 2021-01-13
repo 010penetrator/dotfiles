@@ -15,7 +15,7 @@ cd "/ln/ho/dotfiles"
 tar -czf "$bak"/"$name" \
   config sh \
   -C / ln \
-  -C /ln/ho tt
+  -C $tt/../ tt
 
 [ -d /ln/co/transmission-daemon ] && cd /ln/co/ && tar -czf "$bak"/trm.tar.gz transmission-daemon
 
