@@ -21,6 +21,6 @@ cd "$dest"
 upk.sh "$ground/$1" || exit 1
 
 if [ "$dirname" != ".del" ] ; then
-  cd "$ground" && mkdir -p .del && mv "$1" .del/"$1"
+  cd "$ground" && [ -d ".del" ] && mv "$1" .del/"$1"
 fi
 

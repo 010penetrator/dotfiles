@@ -1,6 +1,6 @@
 #!/bin/bash
 cd
-export PATH=$PATH:~/.sh
+# export PATH=$PATH:~/.sh
 
 # height=$(xdpyinfo | grep dimensions | cut -d ' ' -f 7 | cut -d x -f 2)
 # [[ height -gt 1100 ]] && export HIDPI=1 || export HIDPI=0
