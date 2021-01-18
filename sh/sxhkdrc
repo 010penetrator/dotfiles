@@ -45,6 +45,8 @@ alt + a
   [ $(amixer set Master 3%+ | tail -1 | cut -d [ -f2 | cut -d % -f1) -gt 99 ] && notify-send 'Volume MAX' -t 400
 alt + z
   amixer set Master 3%-
+alt + q
+  amixer set Master 100%
 
 # bspwm hotkeys #
 
