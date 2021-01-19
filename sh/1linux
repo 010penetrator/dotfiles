@@ -87,6 +87,8 @@ LC_ALL=C man # run command in C locale
 export LD_LIBRARY_PATH=/usr/lib32
 su - user1 -c uname # run command as user1
 sudo -H -u user2 echo $HOME # check his home dir
+who -r # show run-level
+systemctl get-default 
 BINDIR="$(dirname "$(readlink -fn "$0")")" # where are binaries?
 ps aux | grep mydaemon # is mydaemon running?
 gpg --no-default-keyring --keyring /usr/share/keyrings/debian-role-keys.gpg --verify MD5SUMS.sign.txt MD5SUMS.txt 
