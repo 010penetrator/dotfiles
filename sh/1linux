@@ -30,7 +30,10 @@ Fonts Mono: xos4Terminus LiberationMono Noto Input Fira FiraCode Hack DejaVuSans
 gtk: lounge mediterraneandarkest adapta mint-y flattastic libra-dark mona-3.0 carbonico arc-dark vertex menda-dark adwaita-maia green-submarine high-contrast-inverse 
 Xcursor.theme: Menda-Cursor Simple-and-Soft moblin breeze
 Icons: Moka Breeze ultraflat maia ardis papirus
-Gnome3: Dash-to-panel Arc-menu 
+Gnome3: Arc-menu,
+gnome-shell-extension-top-icons-plus
+gnome-shell-extension-dashtodock
+gnome-shell-extension-dash-to-panel
 gsettings set org.gnome.mutter overlay-key '' # free Win key in Gnome 3 
 gsettings set org.gnome.desktop.sound event-sounds false # mute that Gnome prick
 gsettings set org.gnome.settings-daemon.plugins.orientation active false # disable gyro screen
