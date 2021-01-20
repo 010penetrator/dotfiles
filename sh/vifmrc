@@ -28,7 +28,6 @@ command! amou :! bash -ic ' source /ln/ho/.bashrc ; amou '
 command! aumo :! bash -ic ' source /ln/ho/.bashrc ; aumo '
 command! own  :! sudo chown 1000:100 .
 nnoremap ,x :quit <cr>
-nnoremap ax :quit <cr>
 nnoremap ,q :exec '! echo -ne "\033]0;\007"' | qa <cr>
 nnoremap ,i :pushd . <cr>
 nnoremap ,l :dirs <cr>

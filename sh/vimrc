@@ -407,10 +407,11 @@ nnoremap qy :let @+ = @" <bar> :let @* = @" <CR>
 nnoremap ay "+yiW
 nnoremap qo o<Esc>
 nnoremap qi O<Esc>
-nnoremap qw :w<CR>
+" Swap current and previous window
+nnoremap qw :call WinSwap()<CR>
 nnoremap aw :w<CR>
-nnoremap ax :q<CR>
-nnoremap aX :q! <CR>
+" nnoremap ax :q<CR>
+" nnoremap aX :q! <CR>
 nnoremap ap :put  *<CR>
 nnoremap ai :put! *<CR>
 nnoremap aP :put  +<CR>
@@ -472,7 +473,7 @@ nnoremap c, }:if (line(".") == line("$")) \| exec "normal o" \| endif<CR>O
 nnoremap yc ^y$"+y$"*y$
 " Eval yanked
 nnoremap yq :@"<CR>
-nnoremap cp "_diw""P
+nnoremap cO "_diw""P
 nnoremap co "_diw"*P
 noremap <c-n> 12<c-e>
 noremap <c-p> 12<c-y>
@@ -486,8 +487,7 @@ nmap [s [-
 nnoremap m-       :<C-U>call signature#mark#Purge("all")<CR>
 nnoremap m<space> :<C-U>call signature#mark#Purge("line")<CR>
 nnoremap gz 1gt
-" Swap current and previous window
-nnoremap <Leader>s :call WinSwap()<CR>
+" nnoremap <Leader>s :call WinSwap()<CR>
 nnoremap <Leader>y :call BufYank()<CR>
 nnoremap <Leader>p :call BufPut()<CR>
 " Go to text start/finish in file
@@ -817,7 +817,8 @@ function! GotoTerm(arg)
     if a:arg == 1
       wincmd n
     endif
-    call FocusBufOrDo('/bin/bash','echo "A new terminal!" | terminal ++curwin ++norestore')
+    call FocusBufOrDo('/bin/bash','echo "No terminal found."')
+    " call FocusBufOrDo('/bin/bash','echo "A new terminal!" | terminal ++curwin ++norestore')
     return
   endif
   " if ( exists("g:lasttermid") && (index(ar,cur)<0) )
