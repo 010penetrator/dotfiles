@@ -408,8 +408,8 @@ nnoremap ay "+yiW
 nnoremap qo o<Esc>
 nnoremap qi O<Esc>
 " Swap current and previous window
-nnoremap qw :call WinSwap()<CR>
 nnoremap qx :q<CR>
+nnoremap qw :call WinSwap()<CR><C-W>p
 nnoremap aw :w<CR>
 nnoremap ap :put  *<CR>
 nnoremap ai :put! *<CR>
@@ -534,15 +534,15 @@ nnoremap q= 60A=<esc>0<esc>60ld$b
 " nmap q- O1<esc>gcc$xj^d0o<esc>0d$60i-<esc>kkJJ^60ldc0W
 nnoremap af :exec "normal i".nr2char(getchar())."\e"<CR>
 nnoremap ag :exec "normal aa".nr2char(getchar())."\e"<CR>
-nnoremap <Leader>1 1gt
-nnoremap <Leader>2 2gt
-nnoremap <Leader>3 3gt
-nnoremap <Leader>4 4gt
-nnoremap <Leader>5 5gt
-nnoremap <Leader>6 6gt
-nnoremap <Leader>7 7gt
-nnoremap <Leader>8 8gt
-nnoremap <Leader>9 9gt
+nnoremap q1 1gt
+nnoremap q2 2gt
+nnoremap q3 3gt
+nnoremap q4 4gt
+nnoremap q5 5gt
+nnoremap q6 6gt
+nnoremap q7 7gt
+nnoremap q8 8gt
+nnoremap q9 9gt
 nnoremap <Leader>q :qa <CR>
 nnoremap <Leader>j :Unite buffer file<CR>
 nnoremap <Leader>l :Unite buffer file<CR>i
