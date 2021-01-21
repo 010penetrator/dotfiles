@@ -28,6 +28,7 @@ command! amou :! bash -ic ' source /ln/ho/.bashrc ; amou '
 command! aumo :! bash -ic ' source /ln/ho/.bashrc ; aumo '
 command! own  :! sudo chown 1000:100 .
 nnoremap ,x :quit <cr>
+nnoremap qx :quit <cr>
 nnoremap ,q :exec '! echo -ne "\033]0;\007"' | qa <cr>
 nnoremap ,i :pushd . <cr>
 nnoremap ,l :dirs <cr>
@@ -75,7 +76,7 @@ nnoremap qh :! xxd %c | less <cr>
 nnoremap qG :! spek %c &>/dev/null &<cr>
 nnoremap qg :! specgram.sh %c <cr>
 nnoremap qd :! deadbeef --queue %c<cr>
-nnoremap qx :! xdg-open %c & <cr>
+nnoremap qo :! xdg-open %c & <cr>
 nnoremap q. :! ./%c <cr>
 nnoremap go :! google.sh %c &>/dev/null & <cr>
 nnoremap au :! echo Sync... ; sync && udevil umount %f<cr>
@@ -108,9 +109,6 @@ nnoremap aS :! tar -I 'zstd -11 -T0' -cf %D/%c.tar.zst --exclude='.git' --exclud
 nnoremap ze :! upk.sh %c <cr>
 nnoremap zE :! cd %D; upk.sh %d/%c <cr>
 nnoremap qr ggvGcw
-nnoremap qo :!cp -r %c /ln/mus/0/ <cr>
-nnoremap qO :!mv %c /ln/mus/0/ <cr>
-nnoremap qM :! echo Copy \'%c\' to MUZIK.. ; cp -r %c /ln/mo/blink/MUZIK/ <cr>
 nnoremap yc :! echo -n %f | xclip ; echo -n %f | xclip -selection clipboard %i <cr>:echo "filename in X buffer"<cr>
 nnoremap yC :! echo -n %f:p | xclip ; echo -n %f:p | xclip -selection clipboard %i <cr>:echo "full filepath in X buffer"<cr>
 " nnoremap - <C-b>

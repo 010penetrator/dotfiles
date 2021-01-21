@@ -409,9 +409,8 @@ nnoremap qo o<Esc>
 nnoremap qi O<Esc>
 " Swap current and previous window
 nnoremap qw :call WinSwap()<CR>
+nnoremap qx :q<CR>
 nnoremap aw :w<CR>
-" nnoremap ax :q<CR>
-" nnoremap aX :q! <CR>
 nnoremap ap :put  *<CR>
 nnoremap ai :put! *<CR>
 nnoremap aP :put  +<CR>
