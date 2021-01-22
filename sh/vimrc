@@ -46,6 +46,8 @@ Plug 'tpope/vim-endwise' "okay
 Plug 'tpope/vim-repeat' "handy
 Plug 'wesleyche/SrcExpl' "mediocre
 " Plug 'kshenoy/vim-signature' "buggy
+Plug 'ZeroKnight/vim-signjump' "buggy
+Plug 'chrisbra/SaveSigns.vim' "usable
 "
 " Plug 'tpope/vim-unimpaired'
 " Plug 'eiginn/netrw' "basic
@@ -71,8 +73,6 @@ Plug 'roxma/nvim-yarp' "for denite
 Plug 'roxma/vim-hug-neovim-rpc' "for denite
 " Plug 'Shougo/deoplete.nvim'
 " Plug 'Shougo/neoinclude.vim'
-Plug 'ZeroKnight/vim-signjump'
-Plug 'chrisbra/SaveSigns.vim'
 
 " Colors:
 " ( gui themes need termguicolors setting )
@@ -599,7 +599,7 @@ nnoremap <Leader>va :silent exec '!MODE=newtab vimz "%:p"' \| redraw! \| q <CR>
 nnoremap <Leader>vc :silent exec '!vimz "%:p"' \| redraw! \| q <CR>
 " Add Plug entry
 nnoremap <Leader>vp :put + <bar> exec "normal dfmxIPlug 'A'" <CR>
-nnoremap <Leader>vs :source ~/.vim/session.vim \| call LoadColor()<CR>
+nnoremap <Leader>vs :source ~/.vim/session.vim \| source ~/.vim/signs.sav \| call LoadColor() \| call MySigns()<CR>
 nnoremap <Leader>vv :source $MYVIMRC <CR>
 nnoremap <Leader>vq :qa! <CR>
 nnoremap <Leader>v<Leader> :call EvalThis()<CR>
@@ -631,7 +631,7 @@ command! SuE r !sudo cat %
 command! KIR e ++enc=cp1251 | set fileencoding=utf-8 | set fileformat=unix
 " command! C1KIR e ++enc=cp1251 | set fileencoding=utf-8 | set fileformat=unix | wq
 command! F set fileencoding=utf-8 | set fileformat=unix
-command! SessWrite let g:Color_save=g:colors_name | let g:Color_backgr=&background | let g:Line_save=g:lightline.colorscheme | call TerminalsFuneral() | mksession! ~/.vim/session.vim
+command! SessWrite let g:Color_save=g:colors_name | let g:Color_backgr=&background | let g:Line_save=g:lightline.colorscheme | call TerminalsFuneral() | mksession! ~/.vim/session.vim | SaveSigns! ~/.vim/signs.sav
 command! QQ  exec 'SessWrite' | wa | qa
 nnoremap FF :wa\|SessWrite<CR>
 command! Bash exec 'silent ! bash' | redraw!
@@ -643,9 +643,9 @@ command! FollowSymLink let b:symlink = expand("%:p") | execute "file " . resolve
 command! UnFollowSymLink exec 'file ' . b:symlink | edit
 command! UpdCtags !ctags -R --exclude=.git --exclude=log --exclude=wutils --c++-kinds=+p --fields=+iaS --extra=+q *
 command! UpdCtagsSudo !sudo ctags -R --exclude=.git --exclude=log --exclude=wutils --c++-kinds=+p --fields=+iaS --extra=+q *
-command! Yall normal gg"+yG''
-command! Dall normal gg"_dG
-command! Call normal gg"_dGP
+command! Yall %y _
+command! Dall %d _
+command! Call %d _ | put!
 command! SwapContentPrevWin :call SwapContentPrevWin()
 command! FileDel :silent exec '!rm %' | redraw! | bd
 "exec '!chromium' ali.@"
@@ -1082,14 +1082,16 @@ function! FoldSelected()
   exec "normal `>o------------------------------}}}\<ESC>`<O------------------------------{{{\<ESC>"
 endfunction
 
-"Highlight some line
-highlight myboo ctermbg=3 ctermfg=0
-highlight mywar ctermbg=1 ctermfg=0
-sign define mybookmark text=>> linehl=myboo texthl=myboo
-sign define mywarning  text=!> linehl=mywar texthl=mywar
-map <F8> :exe ":sign place 777 line=" . line(".") ." name=mywarning file=" . expand("%:p")<CR>
-map <F9> :exe ":sign place 666 line=" . line(".") ." name=mybookmark file=" . expand("%:p")<CR>
-map <F10> :sign unplace<CR>
+"Highlight some line via signs
+function! MySigns()
+  highlight myboo ctermbg=3 ctermfg=0
+  highlight mywar ctermbg=1 ctermfg=0
+  sign define mybookmark text=>> linehl=myboo texthl=myboo
+  sign define mywarning  text=!> linehl=mywar texthl=mywar
+  nnoremap <F8> :exe ":sign place 777 line=" . line(".") ." name=mywarning file=" . expand("%:p")<CR>
+  nnoremap <F9> :exe ":sign place 666 line=" . line(".") ." name=mybookmark file=" . expand("%:p")<CR>
+  nnoremap <F10> :sign unplace<CR>
+endfunc
 
 "---------Theming-------------"
 " hi! Search ctermbg=222
