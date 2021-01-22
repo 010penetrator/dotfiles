@@ -10,7 +10,7 @@ export HISTSIZE=9000
 # fi
 
 [ COLORTERM==truecolor ] && TERM=xterm-256color
-export PATH=$PATH:~/.sh
+[[ $PATH == *"$HOME/.sh"* ]] || export PATH=$PATH:$HOME/.sh
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CONFIG_DIRS=/usr/etc/xdg:/etc/xdg
 export GUI_EDITOR=/usr/bin/xed
@@ -19,7 +19,6 @@ export PAGER=less
 export BROWSER=firefox
 export sh=$HOME/.sh
 export tt=$HOME/tt
-# export mus=/ln/mus
 export MANWIDTH=80
 export FZF_DEFAULT_OPTS="--layout=reverse --height 55%"
 export LSBLK="lsblk"

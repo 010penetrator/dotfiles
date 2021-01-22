@@ -45,7 +45,7 @@ Plug 'tpope/vim-surround' "good
 Plug 'tpope/vim-endwise' "okay
 Plug 'tpope/vim-repeat' "handy
 Plug 'wesleyche/SrcExpl' "mediocre
-Plug 'kshenoy/vim-signature' "buggy
+" Plug 'kshenoy/vim-signature' "buggy
 "
 " Plug 'tpope/vim-unimpaired'
 " Plug 'eiginn/netrw' "basic
@@ -71,6 +71,8 @@ Plug 'roxma/nvim-yarp' "for denite
 Plug 'roxma/vim-hug-neovim-rpc' "for denite
 " Plug 'Shougo/deoplete.nvim'
 " Plug 'Shougo/neoinclude.vim'
+Plug 'ZeroKnight/vim-signjump'
+Plug 'chrisbra/SaveSigns.vim'
 
 " Colors:
 " ( gui themes need termguicolors setting )
@@ -357,6 +359,7 @@ let key4=""
 let key15=""
 let scroll=75
 nnoremap <silent> <Space> :exec 'normal! '.float2nr(round(winheight(0)*(exists("b:scroll") ? b:scroll : g:scroll)*0.01))."<C-d>"<CR>
+nnoremap <silent> <CR> :exec 'normal! '.float2nr(round(winheight(0)*(exists("b:scroll") ? b:scroll : g:scroll)*0.01))."<C-d>"<CR>
 nnoremap <silent> <BS>    :exec 'normal! '.float2nr(round(winheight(0)*(exists("b:scroll") ? b:scroll : g:scroll)*0.01)).key15<CR>
 " nnoremap <silent> <tab>   :exec 'normal! '.float2nr(round(winheight(0)*(exists("b:scroll") ? b:scroll : g:scroll)*0.01)).key15<CR>
 " <x> will delete to no buffer
@@ -479,12 +482,12 @@ noremap <c-p> 12<c-y>
 map <c-j> <Plug>(edgemotion-j)
 map <c-k> <Plug>(edgemotion-k)
 " for vim-signature
-nmap [a ['
-nmap ]a ]'
-nmap ]s ]-
-nmap [s [-
-nnoremap m-       :<C-U>call signature#mark#Purge("all")<CR>
-nnoremap m<space> :<C-U>call signature#mark#Purge("line")<CR>
+" nmap [a ['
+" nmap ]a ]'
+" nmap ]s ]-
+" nmap [s [-
+" nnoremap m-       :<C-U>call signature#mark#Purge("all")<CR>
+" nnoremap m<space> :<C-U>call signature#mark#Purge("line")<CR>
 nnoremap gz 1gt
 " nnoremap <Leader>s :call WinSwap()<CR>
 nnoremap <Leader>y :call BufYank()<CR>
@@ -1080,10 +1083,13 @@ function! FoldSelected()
 endfunction
 
 "Highlight some line
-highlight boo ctermbg=2 ctermfg=0
-sign define mybookmark text=!> linehl=boo texthl=boo
+highlight myboo ctermbg=3 ctermfg=0
+highlight mywar ctermbg=1 ctermfg=0
+sign define mybookmark text=>> linehl=myboo texthl=myboo
+sign define mywarning  text=!> linehl=mywar texthl=mywar
+map <F8> :exe ":sign place 777 line=" . line(".") ." name=mywarning file=" . expand("%:p")<CR>
 map <F9> :exe ":sign place 666 line=" . line(".") ." name=mybookmark file=" . expand("%:p")<CR>
-map <C-F9> :sign unplace<CR>
+map <F10> :sign unplace<CR>
 
 "---------Theming-------------"
 " hi! Search ctermbg=222
