@@ -5,8 +5,8 @@ cd
 # height=$(xdpyinfo | grep dimensions | cut -d ' ' -f 7 | cut -d x -f 2)
 # [[ height -gt 1100 ]] && export HIDPI=1 || export HIDPI=0
 
-desk_len=$(xdpyinfo | grep dimensions | cut -d ' ' -f 7 | cut -d x -f 1)
-[[ desk_len -gt 1900 ]] && export HIDPI=1 || export HIDPI=0
+desk_len=$(xdpyinfo | grep dimensions | cut -d ' ' -f 7 | cut -d x -f 2)
+[[ desk_len -gt 1200 ]] && export HIDPI=1 || export HIDPI=0
 
 source ~/.bashrc
 
