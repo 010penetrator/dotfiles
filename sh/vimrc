@@ -45,7 +45,7 @@ Plug 'tpope/vim-surround' "good
 Plug 'tpope/vim-endwise' "okay
 Plug 'tpope/vim-repeat' "handy
 Plug 'wesleyche/SrcExpl' "mediocre
-" Plug 'kshenoy/vim-signature' "buggy
+Plug 'kshenoy/vim-signature' "buggy
 Plug 'ZeroKnight/vim-signjump' "buggy
 Plug 'chrisbra/SaveSigns.vim' "usable
 "
@@ -71,8 +71,8 @@ Plug 'vim-scripts/CycleColor'
 " Plug 'Shougo/denite.nvim' "not working
 Plug 'roxma/nvim-yarp' "for denite
 Plug 'roxma/vim-hug-neovim-rpc' "for denite
-" Plug 'Shougo/deoplete.nvim'
-" Plug 'Shougo/neoinclude.vim'
+Plug 'Shougo/deoplete.nvim'
+Plug 'Shougo/neoinclude.vim'
 
 " Colors:
 " ( gui themes need termguicolors setting )
@@ -482,12 +482,12 @@ noremap <c-p> 12<c-y>
 map <c-j> <Plug>(edgemotion-j)
 map <c-k> <Plug>(edgemotion-k)
 " for vim-signature
-" nmap [a ['
-" nmap ]a ]'
-" nmap ]s ]-
-" nmap [s [-
-" nnoremap m-       :<C-U>call signature#mark#Purge("all")<CR>
-" nnoremap m<space> :<C-U>call signature#mark#Purge("line")<CR>
+nmap [a ['
+nmap ]a ]'
+nmap ]s ]-
+nmap [s [-
+nnoremap m-       :<C-U>call signature#mark#Purge("all")<CR>
+nnoremap m<space> :<C-U>call signature#mark#Purge("line")<CR>
 nnoremap gz 1gt
 " nnoremap <Leader>s :call WinSwap()<CR>
 nnoremap <Leader>y :call BufYank()<CR>
