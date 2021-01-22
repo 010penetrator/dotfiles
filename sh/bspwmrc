@@ -9,13 +9,12 @@ bspc monitor -d 1 2 3 4 5 6 7 8
 # bspc monitor DVI-D-1 -d 4 5 6 7 8
 
 bspc config border_width          3
-bspc config window_gap            3
+bspc config window_gap            2
 bspc config normal_border_color   "#333333"
-bspc config focused_border_color  "#99bb99"
-bspc config focused_border_color  "#79A55F"
+bspc config active_border_color   "#505050"
 bspc config focused_border_color  "#5E8448"
 
-bspc config split_ratio          0.54
+bspc config split_ratio          0.53
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 
@@ -37,11 +36,14 @@ bspc rule -a Zathura state=floating
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
 
+
+# wmctrl -m | grep "Name:" | awk '{print $2}'
+#   ( sleep .4 ; gsettings set org.gnome.mutter overlay-key '' )  # free Win key in Gnome 3
+
 if [[ "$HOSTNAME" =~ ^debian10pc ]]; then
   bspc monitor HDMI-0 -d 4 5 6 7 8
   bspc monitor DVI-D-0 -d 1 2 3
   export FLOATING_DESK_NUM=5
-  ( sleep .4 ; gsettings set org.gnome.mutter overlay-key '' )  # free Win key in Gnome 3
 else
   export FLOATING_DESK_NUM="1 2"
 fi
