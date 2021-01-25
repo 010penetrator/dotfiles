@@ -46,7 +46,7 @@ Plug 'tpope/vim-endwise' "okay
 Plug 'tpope/vim-repeat' "handy
 Plug 'wesleyche/SrcExpl' "mediocre
 Plug 'kshenoy/vim-signature' "buggy
-Plug 'ZeroKnight/vim-signjump' "buggy
+" Plug 'ZeroKnight/vim-signjump' "buggy
 Plug 'chrisbra/SaveSigns.vim' "usable
 "
 " Plug 'tpope/vim-unimpaired'
@@ -516,8 +516,6 @@ noremap <C-e> 5<C-e>
 noremap <C-y> 5<C-y>
 nnoremap ]l :lnext<cr>
 nnoremap [l :lprev<cr>
-" xmap s <Plug>Sneak_s
-" xmap S <Plug>Sneak_S
 nmap s <Plug>Sneak_s
 nmap S <Plug>Sneak_S
 nnoremap cx s
