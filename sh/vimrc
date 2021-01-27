@@ -597,7 +597,7 @@ nnoremap <Leader>va :silent exec '!MODE=newtab vimz "%:p"' \| redraw! \| q <CR>
 nnoremap <Leader>vc :silent exec '!vimz "%:p"' \| redraw! \| q <CR>
 " Add Plug entry
 nnoremap <Leader>vp :put + <bar> exec "normal dfmxIPlug 'A'" <CR>
-nnoremap <Leader>vs :source ~/.vim/session.vim \| source ~/.vim/signs.sav \| call LoadColor() \| call MySigns()<CR>
+nnoremap <Leader>vs :source ~/.vim/session.vim \| call LoadColor() \| call MySigns()<CR>
 nnoremap <Leader>vv :source $MYVIMRC <CR>
 nnoremap <Leader>vq :qa! <CR>
 nnoremap <Leader>v<Leader> :call EvalThis()<CR>
@@ -1089,6 +1089,7 @@ function! MySigns()
   nnoremap <F8> :exe ":sign place 777 line=" . line(".") ." name=mywarning file=" . expand("%:p")<CR>
   nnoremap <F9> :exe ":sign place 666 line=" . line(".") ." name=mybookmark file=" . expand("%:p")<CR>
   nnoremap <F10> :sign unplace<CR>
+  source ~/.vim/signs.sav
 endfunc
 
 "---------Theming-------------"
