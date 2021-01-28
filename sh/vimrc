@@ -1089,7 +1089,9 @@ function! MySigns()
   nnoremap <F8> :exe ":sign place 777 line=" . line(".") ." name=mywarning file=" . expand("%:p")<CR>
   nnoremap <F9> :exe ":sign place 666 line=" . line(".") ." name=mybookmark file=" . expand("%:p")<CR>
   nnoremap <F10> :sign unplace<CR>
-  source ~/.vim/signs.sav
+  if filereadable("~/.vim/signs.sav")
+    source ~/.vim/signs.sav
+  endif
 endfunc
 
 "---------Theming-------------"
