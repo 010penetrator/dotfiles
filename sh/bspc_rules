@@ -13,8 +13,10 @@ keep_floating () {
         [ "$FLOATING_DESKTOP_ID" = "$desk_id" ] &&
         [[ ${wid} == $(bspc query -N -n "focused") ]] &&
           # check if bspc message is not garbage
-        [ -z $(bspc query -N -n "${wid}.sticky") ]
+        [ -z $(bspc query -N -n "${wid}.sticky") ] &&
           # ignore sticky windows
+        [ -z $(bspc query -N -n "${wid}.fullscreen") ]
+          # ignore fullscreen windows
       )
     then
       bspc node "$wid" -t floating
