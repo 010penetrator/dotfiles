@@ -16,7 +16,7 @@ then youtube-dl $1
 fi
 fi
 
-youtube-dl -f "$a" $2
+youtube-dl --no-mtime -f "$a" $2
 
 echo .
 echo 'output is:' 
