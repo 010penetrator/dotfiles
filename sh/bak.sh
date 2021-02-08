@@ -5,10 +5,11 @@ mkdir -p $bak
 rdir="$PWD"
 
 a=$( ls -t $bak | grep my_bak_ | head -1 )
-i=$( echo ${a##my_bak_} | cut -c 1-2 )
+i=$( echo ${a##my_bak_} | cut -d '_' -f1 )
 ! [[ $a ]] && i=11
-i=$((i%30))
-((i++))
+i=$(( i%30 ))
+(( i++ ))
+[ ${#i} -lt 2 ] && i=0$i
 
 name=$( echo my_bak_"$i"_`date +%Y-%m-%d`.tar.gz )
 cd "/ln/ho/dotfiles"
