@@ -123,6 +123,7 @@ nnoremap gs :cd $HOME/.sh/<cr>
 nmap K :cd /ln/torrents/red/KKK/<cr>omh
 nnoremap gl gf 
 nnoremap al :!ln -s $PWD/%c %D/%c <cr>
+nnoremap ah :!ln  $PWD/%c %D/%c <cr>
 nnoremap ap al
 " nnoremap ap :!ln -sr $PWD/%c %D/%c <cr>
 nnoremap aL :!ln -s $PWD/%c %d/%cL <cr>
