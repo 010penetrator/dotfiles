@@ -176,7 +176,13 @@ Plug 'markeganfuller/vim-journeyman'
 Plug 'UnrealInstrument/VimPink'
 Plug 'machakann/vim-colorscheme-tatami'
 " Plug 'srcery-colors/srcery-vim' "fresh-dark consbroken HUGE
+Plug 'victorze/foo' "abyss,github-old,hacker,hyper,mr-robot
+Plug 'stillwwater/vim-nebula'
+Plug 'sainnhe/sonokai'
+Plug 'franbach/miramare'
+Plug 'Mizux/vim-colorschemes' "betternoguipencil
 call plug#end()
+
 
 "---------Settings------------"
 " let g:deoplete#enable_at_startup = 1

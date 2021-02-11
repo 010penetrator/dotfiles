@@ -180,6 +180,7 @@ git config credential.helper cache 6h
 git config --local credential.helper store # store git passwd
 git log --follow somefile 
 git checkout INDEX~1 somefile # restore somefile just before INDEX commit
+git reset --hard origin/master ; git pull origin master # discard all local changes/commits and pull from upstream
 7z a dir.7z Dir -p -mhe=on #create encrypted 7z 
 7z a -mx=3 -xr!.git -xr!tags out.7z Projekt # create quick 7z
 tar -I 'zstd -11 -T0' -cf somedir.tar.zst --exclude='.git' --exclude='tags' somedir # create tar.zst
