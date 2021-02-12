@@ -77,7 +77,7 @@ Plug 'Shougo/neoinclude.vim'
 " Colors:
 " ( gui themes need termguicolors setting )
 Plug 'morhetz/gruvbox' "best
-Plug 'ajmwagar/vim-dues' "deus
+Plug 'ajmwagar/vim-dues' "soft coffee 'deus
 Plug 'jpo/vim-railscasts-theme' "normal
 Plug 'chriskempson/vim-tomorrow-theme' "Nice dark+light
 Plug 'nanotech/jellybeans.vim' "good4html
@@ -87,6 +87,7 @@ Plug 'mhartington/oceanic-next' "soft nice
 Plug 'w0ng/vim-hybrid' "beautiful
 Plug 'kristijanhusak/vim-hybrid-material' "nice Sane dark
 Plug 'vim-scripts/strange' "darker 
+Plug 'severij/vadelma' "white good-con
 Plug 'the31k/vim-colors-tayra' "Nice gray
 Plug 'jacoborus/tender.vim' "sane soft dark
 Plug 'cocopon/iceberg.vim' "soft cold dark
@@ -99,10 +100,10 @@ Plug 'CruizeMissile/Revolution.vim' "cool lowcont
 Plug 'romainl/Apprentice' "nostrain
 Plug 'Heorhiy/VisualStudioDark.vim' "mid con
 Plug 'altercation/vim-colors-solarized' "yellow
-Plug 'JarrodCTaylor/spartan' "Spartan,Immortals
-Plug 'jlund3/colorschemer' "'lucid' nice termcolors
+Plug 'JarrodCTaylor/spartan' " 'spartan,immortals
+Plug 'jlund3/colorschemer' "semibroken 'lucid
 Plug 'pbrisbin/vim-colors-off'
-Plug 'jakwings/vim-colors' "moody,garden,messy
+Plug 'jakwings/vim-colors' "'moody,garden,messy
 Plug 'vim-scripts/xterm16.vim' "variable
 Plug 'Drogglbecher/vim-moonscape' "NIGHT
 Plug 'bf4/vim-dark_eyes' "NIGHT
@@ -112,6 +113,7 @@ Plug 'vim-scripts/peaksea' "good trad dark+light
 Plug 'vim-scripts/rdark-terminal' "good darker
 Plug 'juanpabloaj/vim-pixelmuerto' "dark
 Plug 'Lokaltog/vim-distinguished' "dark hicon
+Plug 'arzg/vim-corvine' "good warm light&dark
 Plug 'trevorrjohn/vim-obsidian' "satur
 Plug 'sonph/onehalf', {'rtp': 'vim'} "Nice good tone HUGE
 Plug 'gilsondev/lizard' "green dark
@@ -145,7 +147,7 @@ Plug 'AlessandroYorba/Despacio' "softdarkgrey
 Plug 'Jimeno0/vim-chito' "consbroken
 Plug 'aradunovic/perun.vim' "consbroken
 Plug 'HenryNewcomer/vim-theme-underflow' "consbroken
-Plug 'beigebrucewayne/min_solo' "'subtle' consbroken
+Plug 'beigebrucewayne/min_solo' "consbroken 'subtle
 Plug 'therubymug/vim-pyte' "light gui
 Plug 'vim-scripts/proton' "light ok 
 Plug 'junegunn/seoul256.vim' "beautiful
@@ -163,24 +165,21 @@ Plug 'nightsense/vimspectr' " need gui
 Plug 'colepeters/spacemacs-theme.vim' "cool
 Plug 'stulzer/mitormk-laser' "sharp
 Plug 'relastle/bluewery.vim' "low-con
-Plug 'arzg/vim-corvine'
-Plug 'severij/vadelma' "white good-con
 Plug 'gmoe/vim-espresso' "mild
 " Plug 'dfrunza/vim' "borland,muratori,pencil,vc6
 " Plug 'dracula/vim' "funky
 " Plug 'tomasr/molokai' "shitty
-Plug 'RussellBradley/vim-knicks' "cool blue 404
-Plug 'swalladge/paper.vim'
-Plug 'NLKNguyen/papercolor-theme'
-Plug 'markeganfuller/vim-journeyman'
-Plug 'UnrealInstrument/VimPink'
-Plug 'machakann/vim-colorscheme-tatami'
+Plug 'RussellBradley/vim-knicks' "great blue 404
+Plug 'swalladge/paper.vim' "dry white
+Plug 'NLKNguyen/papercolor-theme' "soft white 'PaperColor
+Plug 'markeganfuller/vim-journeyman' "pale dark
+Plug 'machakann/vim-colorscheme-tatami' "fun green
 " Plug 'srcery-colors/srcery-vim' "fresh-dark consbroken HUGE
-Plug 'victorze/foo' "abyss,github-old,hacker,hyper,mr-robot
-Plug 'stillwwater/vim-nebula'
-Plug 'sainnhe/sonokai'
-Plug 'franbach/miramare'
-Plug 'Mizux/vim-colorschemes' "betternoguipencil
+Plug 'victorze/foo' " 'abyss,github-old,hacker,hyper,mr-robot
+Plug 'stillwwater/vim-nebula' "cold dark
+Plug 'sainnhe/sonokai' "great dark gui&nogui
+Plug 'franbach/miramare' "coffee dark
+Plug 'Mizux/vim-colorschemes' "better nogui pencil
 call plug#end()
 
 
@@ -1129,14 +1128,16 @@ endif
 " map M j:call EvalThis()<cr>
 " colo snow | set background=light | LineColor ayu_light
 " colo vadelma | set background=light | LineColor one
+" colo PaperColor | set background=light | LineColor solarized
 " colo vimspectr180-light | LineColor solarized
 " colo edge | set background=light | LineColor materia
 " colo Tomorrow | LineColor Tomorrow
-" colo PaperColor | set background=light | LineColor solarized
+" colo corvine_light | LineColor selenized_light
 " colo stellarized | set background=light | LineColor atlantis
 " colo cryslominsa | LineColor cryslominsa
 " colo forest-night | LineColor cryslominsa
 " colo Tomorrow-Night | LineColor bluewery
+" colo corvine | LineColor bluewery
 " colo OceanicNext | LineColor bluewery
 " colo stellarized | set background=dark | LineColor bluewery
 " colo espresso | LineColor espresso
@@ -1149,16 +1150,16 @@ endif
 " colo edge 
 " colo forest-night
 " colo vadelma
-" LineColor atlantis
-" LineColor bluewery
-" LineColor edge
-" LineColor nord
-" LineColor deus
-" LineColor darcula
-" LineColor material
 " LineColor ayu_light
 " LineColor one
+" LineColor edge
 " LineColor selenized_light
-" LineColor solarized
+" LineColor material
 " LineColor Tomorrow
+" LineColor solarized
+" LineColor nord
+" LineColor atlantis
+" LineColor darcula
+" LineColor bluewery
+" LineColor deus
 
