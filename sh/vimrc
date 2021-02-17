@@ -594,10 +594,6 @@ nnoremap <Leader>gh :call FocusBufOrDo('sh_history','e $HOME/.bash_history')<CR>
 nnoremap <Leader>gl :call FocusBufOrDo('1linux','e /ln/sh/1linux')<CR>
 nnoremap <Leader>gs :call FocusBufOrDo('stk','e /ln/ho/use/stk.tx')<CR>
 nnoremap <Leader>gd :BD<CR>
-nnoremap <Leader>f. :Ack <C-r><C-w> %:p:h 
-nnoremap <Leader>fg :call ClimbToDirWhere(".git/index",1) \| Ack -Q <C-R><C-W> 
-" nnoremap <Leader>ff :AckFile <C-r><C-W> <CR>
-nnoremap <Leader>fw :AckWindow <C-r><C-w> <CR>
 " binding for vimz bash script; i e move current buf to vimserver 
 nnoremap <Leader>va :silent exec '!MODE=newtab vimz "%:p"' \| redraw! \| q <CR>
 nnoremap <Leader>vc :silent exec '!vimz "%:p"' \| redraw! \| q <CR>
@@ -611,12 +607,16 @@ nnoremap <Leader>vf :set filetype=sh<CR>
 nnoremap <Leader>vb :call SwitchBackground() <CR>:echo "background=" &background <cr>
 nnoremap <Leader>vg :set termguicolors! <cr>:set termguicolors? <cr>
 nnoremap <Leader>vt :TagbarOpen fj <CR>
-" nnoremap <Leader>zd :silent exec 'UpdCtags' \| redraw! \| echo 'Wrote tags db in' getcwd().'/' <CR>
-" nnoremap <Leader>zs :call UpdCtagsHereDeps() <CR>
-" nnoremap <Leader>zg :call UpdCtagsGitDeps() <CR>
-" nnoremap <Leader>zf :call UpdCtagsGit() <CR>
+" nnoremap <Leader>.. :silent exec 'UpdCtags' \| redraw! \| echo 'Wrote tags db in' getcwd().'/' <CR>
+" nnoremap <Leader>.. :call UpdCtagsHereDeps() <CR>
+" nnoremap <Leader>.. :call UpdCtagsGitDeps() <CR>
+" nnoremap <Leader>.. :call UpdCtagsGit() <CR>
+nnoremap <Leader>za :Ack <C-r><C-w> %:p:h 
+nnoremap <Leader>zg :call ClimbToDirWhere(".git/index",1) \| Ack -Q <C-R><C-W> 
+" nnoremap <Leader>ff :AckFile <C-r><C-W> <CR>
+nnoremap <Leader>zw :AckWindow <C-r><C-w> <CR>
 nnoremap <Leader>zz :let &scrolloff=28-&scrolloff<CR>
-nnoremap <Leader>zw :make <bar> copen <CR>
+nnoremap <Leader>zo :make <bar> copen <CR>
 nnoremap <Leader>zm :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make") <bar> redraw! <bar> cwindow <CR>
 nnoremap <Leader>zt :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make tags") <bar> redraw! <bar> cwindow <CR>
 nnoremap <Leader>zx :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make clean") <bar> redraw! <bar> cwindow<CR>
@@ -1115,9 +1115,9 @@ call MySigns()
 let hostname = substitute(system('hostname'), '\n', '', '')
 if hostname == "warmPC" || hostname == "machine" || hostname == "debian10pc"
   if !exists("g:colors_name")
-    " colo PaperColor | set background=light | LineColor atlantis
+    colo PaperColor | set background=light | LineColor solarized
     " colo espresso | LineColor espresso
-    colo cryslominsa | LineColor cryslominsa
+    " colo cryslominsa | LineColor cryslominsa
   endif
 endif
 
