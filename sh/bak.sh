@@ -5,8 +5,8 @@ mkdir -p $bak
 rdir="$PWD"
 
 a=$( ls -t $bak | grep my_bak_ | head -1 )
-i=$( echo ${a##my_bak_} | cut -d '_' -f1 )
-! [[ $a ]] && i=11
+! [[ $a ]] && i=11 || i=$( echo ${a##my_bak_} | cut -d '_' -f1 )
+shopt -s extglob ; i=${i##+(0)}
 i=$(( i%30 ))
 (( i++ ))
 [ ${#i} -lt 2 ] && i=0$i
