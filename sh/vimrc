@@ -343,8 +343,8 @@ if v:version >= 801
   tmap <C-x> <C-w>N :BD<CR>
   tnoremap <C-PageUp> <C-w>:tabprev<CR>
   tnoremap <C-PageDown> <C-w>:tabnext<CR>
-  tnoremap o<tab> <C-w>:exe "tabn ".g:lasttab<CR>
-  tnoremap o<ESC> <C-w>p
+  tnoremap g<tab> <C-w>:exe "tabn ".g:lasttab<CR>
+  tnoremap q<tab> <C-w>p
   tmap <C-\> <C-w>w
 endif
 nnoremap <C-PageUp> gT
