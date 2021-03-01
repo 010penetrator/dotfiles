@@ -77,7 +77,7 @@ nnoremap qi :! mediainfo %c | less<cr>
 nnoremap qh :! xxd %c | less <cr>
 nnoremap qG :! spek %c &>/dev/null &<cr>
 nnoremap qg :! specgram.sh %c <cr>
-nnoremap qd :! /./opt/deadbeef/bin/deadbeef --queue %c<cr>
+nnoremap qd :! /./opt/deadbeef/bin/deadbeef --queue %c &>/dev/null & <cr>
 nnoremap qo :! xdg-open %c & <cr>
 nnoremap q. :! ./%c <cr>
 nnoremap go :! google.sh %c &>/dev/null & <cr>

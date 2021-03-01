@@ -416,8 +416,8 @@ nnoremap qy :let @+ = @" <bar> :let @* = @" <CR>
 nnoremap ay "+yiW
 nnoremap qo o<Esc>
 nnoremap qi O<Esc>
-" Swap current and previous window
 nnoremap qx :q<CR>
+" Swap current and previous window
 nnoremap qw :call WinSwap()<CR><C-W>p
 nnoremap aw :w<CR>
 nnoremap ap :put  *<CR>
