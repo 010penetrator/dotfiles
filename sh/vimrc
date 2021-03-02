@@ -364,7 +364,7 @@ let key4=""
 let key15=""
 let scroll=82
 nnoremap <silent> <Space> :exec 'normal! '.float2nr(round(winheight(0)*(exists("b:scroll") ? b:scroll : g:scroll)*0.01))."<C-d>"<CR>
-nnoremap <silent> <CR> :exec 'normal! '.float2nr(round(winheight(0)*(exists("b:scroll") ? b:scroll : g:scroll)*0.01))."<C-d>"<CR>
+" nnoremap <silent> <CR> :exec 'normal! '.float2nr(round(winheight(0)*(exists("b:scroll") ? b:scroll : g:scroll)*0.01))."<C-d>"<CR>
 nnoremap <silent> <BS>    :exec 'normal! '.float2nr(round(winheight(0)*(exists("b:scroll") ? b:scroll : g:scroll)*0.01)).key15<CR>
 nnoremap q<cr> <cr>
 " nnoremap <silent> <tab>   :exec 'normal! '.float2nr(round(winheight(0)*(exists("b:scroll") ? b:scroll : g:scroll)*0.01)).key15<CR>
