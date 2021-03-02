@@ -1,4 +1,4 @@
-super + x ; { m, s, e, h, g, p, n, o, w, a, i }
+super + x ; { m, s, e, h, f, p, n, o, w, a, i }
   raise.sh { '' notimem, speedcrunch, 'WeeChat\|weechat' 'urxvt -e weechat', htop '$TERMINAL -e htop', feh 'feha /ln/dwn/', Thunar thunar, nautilus, VirtualBox '', fbreader, pavucontrol, histmpv.sh }
 
 super + x ; { t, j, z, q, l, c }
