@@ -681,6 +681,7 @@ menu tagi.git     :call UpdCtagsGit() <CR>
 
 "---------Macros--------------"
 let @g = ",ggggzjjzzao:call DoOnKey(\"103\",\"b #\")\n"
+let @s = "i \<Esc>ll."
 
 "---------Functions-----------"
 "
