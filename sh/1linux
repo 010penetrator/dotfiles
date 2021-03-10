@@ -142,6 +142,7 @@ xset s 1800 1800 ; xset -dpms # screen-off timer
 echo -ne "\e]0;xterm\a" # set terminal title
 echo -e "\033]0;newtitle\007" # set terminal title
 wmctrl -r :SELECT: -T 'another title' # now click a window to set its title
+sleep 1 ; xdotool getwindowfocus getwindowname ; xdotool getactivewindow getwindowname
 xinput list-props N # get input device props
 xinput set-prop "pointer:RAPOO RAPOO 2.4G Wireless Device" "Device Accel Constant Deceleration" 3
 xrdb -merge <(echo "Xft.dpi: 100") # set dpi
