@@ -594,9 +594,10 @@ nnoremap <Leader>gh :call FocusBufOrDo('sh_history','e $HOME/.bash_history')<CR>
 nnoremap <Leader>gl :call FocusBufOrDo('1linux','e /ln/sh/1linux')<CR>
 nnoremap <Leader>gs :call FocusBufOrDo('stk','e /ln/ho/use/stk.tx')<CR>
 nnoremap <Leader>gd :BD<CR>
-" binding for vimz bash script; i e move current buf to vimserver 
-nnoremap <Leader>va :silent exec '!MODE=newtab vimz "%:p"' \| redraw! \| q <CR>
-nnoremap <Leader>vc :silent exec '!vimz "%:p"' \| redraw! \| q <CR>
+" binding for vimz bash script; i e move current buf to vimserver's vim
+nnoremap <Leader>vn :silent exec '! ( sleep 0 ; MODE=newtab vimz "%:p" ) & ' \| redraw! \| q <CR>
+nnoremap <Leader>v<space> :silent exec '! ( sleep 0 ; MODE=current vimz "%:p" ) & ' \| redraw! \| q <CR>
+nnoremap <Leader>va :silent exec '! ( sleep 0 ; vimz "%:p" ) & ' \| redraw! \| q <CR>
 " Add Plug entry
 nnoremap <Leader>vp :put + <bar> exec "normal dfmxIPlug 'A'" <CR>
 nnoremap <Leader>vs :source ~/.vim/session.vim \| call LoadColor() \| call MySigns()<CR>
