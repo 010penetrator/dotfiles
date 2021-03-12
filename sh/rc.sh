@@ -74,6 +74,8 @@ fi
 # sleep .9
 # notify-send $HOSTNAME &
 
+killall osdsh ; osdsh -c blue -p 0 -a 2 -d 1 -f -adobe-helvetica-bold-r-*-*-*-240-*-*-*-*-iso8859-*
+
 # echo RC done &
 notify-send 'RC complete' &
 
