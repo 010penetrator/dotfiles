@@ -32,9 +32,8 @@ ctrl + 7
   xdotool getactivewindow windowminimize
 alt + x
   dmouse
-
 alt + e
-  osdctl -s "$(date +%H:%M) $(setxkbmap -query | grep layout | cut -d ":" -f 2 | tr -d ', ') d$(bspc query -D -d focused --names) , "
+  osdctl -s "$(date +%H:%M) $(setxkbmap -query | grep layout | cut -d ":" -f 2 | tr -d ', ') .$(bspc query -D -d focused --names) , "
 
 # # i3 select desktop
 # super + {1,2,3,4,5,6,7,8,9}
