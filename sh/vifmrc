@@ -96,7 +96,7 @@ nnoremap q; :<up>
 nnoremap ch :chmod<cr>
 nnoremap cj :chmod 644 <cr>j
 " nnoremap cb :copy | ! notify-send COPY Done!<cr>
-noremap cb :copy<cr>
+" noremap cb :copy<cr>
 noremap cm :move<cr>
 nnoremap C :copy<cr>
 nnoremap E :move<cr>

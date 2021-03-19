@@ -376,8 +376,8 @@ noremap X "_X
 nnoremap gr gT
 nnoremap q] gt
 nnoremap q[ gT
-nnoremap q{ :tabm -1 <CR>
-nnoremap q} :tabm +1 <CR>
+nnoremap q{ :tabmove -1 <CR>
+nnoremap q} :tabmove +1 <CR>
 nnoremap q< :call MoveToPrevTab()<CR>
 nnoremap q> :call MoveToNextTab()<CR>
 nnoremap <Down> gj
@@ -535,7 +535,7 @@ nnoremap a <Nop>
 map ф a
 nnoremap aa a
 nnoremap at :tabe<CR>
-nmap aT atg<
+nnoremap aT :-tabe<CR>
 nnoremap aq :qa<CR>
 nnoremap q- 60A-<esc>0<esc>60ld$b
 nnoremap q= 60A=<esc>0<esc>60ld$b
