@@ -10,6 +10,7 @@ if !filereadable($HOME."/.vim/autoload/plug.vim")
   silent call system("curl -s --head -m 1 https://github.com 1>/dev/null && curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim")
 endif
 " help i_ctrl-
+" help map-which-keys
 " currfile=%\ mainbin
 " let $BROWSER = 'luakit'
 " .w !bash  "exec current line 
@@ -415,7 +416,7 @@ nnoremap <C-W>S :vsplit<CR>
 nnoremap qy :let @+ = @" <bar> :let @* = @" <CR>
 nnoremap ay "+yiW
 nnoremap qo o<Esc>
-nnoremap qi O<Esc>
+nnoremap qO O<Esc>
 nnoremap qx :q<CR>
 " Swap current and previous window
 nnoremap qw :call WinSwap()<CR><C-W>p
