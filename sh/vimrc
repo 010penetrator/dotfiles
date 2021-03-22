@@ -290,6 +290,9 @@ if !exists('g:lasttab')
   let g:lasttab = 1
 endif
 au TabLeave * let g:lasttab = tabpagenr()
+" Remember folds ??
+" au BufWinLeave * mkview
+" au BufWinEnter * silent loadview
 " "Powerline
 " let $PYTHONPATH='/usr/lib/python3.6/site-packages'
 " set laststatus=2
@@ -682,7 +685,7 @@ menu tagi.gitDeps :call UpdCtagsGitDeps() <CR>
 menu tagi.git     :call UpdCtagsGit() <CR>
 
 "---------Macros--------------"
-let @g = ",ggggzjjzzao:call DoOnKey(\"103\",\"b #\")\n"
+let @g = ",gggg2zjjzzao:call DoOnKey(\"103\",\"b #\")\n"
 let @s = "i \<Esc>ll."
 
 "---------Functions-----------"
