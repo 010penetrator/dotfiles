@@ -1146,8 +1146,8 @@ endif
 " colo Tomorrow-Night | LineColor bluewery
 " colo corvine | LineColor bluewery
 " colo OceanicNext | LineColor bluewery
-" colo stellarized | set background=dark | LineColor bluewery
 " colo espresso | LineColor espresso
+" colo stellarized | set background=dark | LineColor bluewery
 " colo Tomorrow-Night-Blue | LineColor bluewery
 " colo edge | set background=dark | LineColor darcula
 " colo vadelma | set background=dark | LineColor deus
