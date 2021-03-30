@@ -397,6 +397,9 @@ map й q
 nnoremap Q q
 nnoremap qr @@
 nnoremap qf @
+" Save last insert as Macro register @l
+command! -nargs=1 LastToMacro exec "let @" . <q-args> . " = \"i\" . @. . \"<Esc>\""
+nnoremap q. :LastToMacro l<CR>
 nnoremap qh    <C-W>h
 nnoremap qj    <C-W>j
 nnoremap qk    <C-W>k
