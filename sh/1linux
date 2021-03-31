@@ -195,6 +195,7 @@ ifconfig
 iw dev $w link
 iw dev $w scan # wi-fi
 ip link set dev $w up
+ethtool $w # get info and stuff
 rfkill block all # no aether disturbance!
 wpa_passphrase SSID pass > wifipassfile ; wpa_supplicant -B -i $w -c passfile # connect WPA2
 wpa_supplicant -B -i $w -c <(wpa_passphrase SSID pass) # unsafe oneliner
