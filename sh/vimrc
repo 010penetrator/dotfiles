@@ -1119,12 +1119,15 @@ call MySigns()
 " endif
 
 let hostname = substitute(system('hostname'), '\n', '', '')
-if hostname == "warmPC" || hostname == "machine" || hostname == "debian10pc"
-  if !exists("g:colors_name")
+if !exists("g:colors_name")
+  if hostname == "warmPC" || hostname == "machine" || hostname == "debian10pc"
     " colo PaperColor | set background=light | LineColor solarized
     colo Tomorrow | LineColor Tomorrow
     " colo espresso | LineColor espresso
     " colo cryslominsa | LineColor cryslominsa
+  endif
+  if hostname == "machine"
+    colo stellarized | set background=light | LineColor atlantis
   endif
 endif
 

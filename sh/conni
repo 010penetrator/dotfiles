@@ -2,7 +2,7 @@
 
 #conn() { w=$(ip link | grep wlp | cut -f 2 -d ':' | cut -b 2-) ; sudo wpa_supplicant -B -i $w -c /etc/.wc && sudo dhcpcd $w ; }
 tf=/tmp/wpatmp
-[ "0" -eq `grep -c characters $tf` ] || rm $tf
+rm -rf $tf
 w=$(ip link | grep wlp | cut -f 2 -d ':' | cut -b 2-)
 echo interface $w
 echo Enter SSID
@@ -12,6 +12,7 @@ read b
 [ -z $b ] || sudo wpa_passphrase "$a" "$b" >> $tf
 sudo wpa_supplicant -B -i "$w" -c $tf
 sudo dhcpcd $w
+rm -rf $tf
 
 #c=$(wpa_passphrase "$a" "$b")
 #echo $c
