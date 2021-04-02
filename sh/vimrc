@@ -409,8 +409,8 @@ nnoremap qm    <C-W>6>
 nnoremap qn    <C-W>6<
 nnoremap qe    <C-W>4+
 nnoremap qd    <C-W>4-
-nnoremap a+    <C-W>_
-nnoremap a-    <C-W>80-
+nnoremap ah    <C-W>_
+nnoremap al    <C-W>80-
 nnoremap qa    <C-W>_<C-W>\|
 nnoremap qz    <C-W>=
 nnoremap aj    <C-W>w<C-W>_

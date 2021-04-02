@@ -69,7 +69,7 @@ nnoremap az :! vimz "%c"<cr>:q<cr>
 nnoremap zl :! bash -c ' echo -ne \\n ls:\\n ; ls -dla %f ; du -sh %f ;du -sb %f ; read -rsn1 ' <cr>
 nnoremap za :! clear -x; $LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT ; read -rsn1 <cr>
 nnoremap zs :! clear -x; df -BMB ; read -rsn1 <cr>
-nnoremap zy :! echo; date ; echo Sync... ; sync <cr>
+nnoremap zy :! echo; date ; echo Sync... ; sync ; echo "Done!" ; read -rsn1 <cr>
 " nnoremap qy :! echo; date ; echo Sync... ; sync <cr>
 nnoremap qj :! nomacs %c &>/dev/null &<cr>
 nnoremap qk :! qview %c &>/dev/null &<cr>
