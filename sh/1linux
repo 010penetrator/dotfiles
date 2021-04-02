@@ -239,7 +239,8 @@ smartctl --smart=on /dev/sdb; smartctl -a /dev/sdb # get smart
 hdparm -i /dev/hda       # получение характеристик IDE устройства
 hdparm -S 30 /dev/sda    # отключение (остановка) жёсткого диска через 150сек после последнего обращения
 hdparm -Tt /dev/sda      # получение скорости ЧТЕНИЯ с жесткого диска
-tune2fs -m1 /dev/sdXN #set ext reserved blocks to 1%
+tune2fs -m1 /dev/sdXN # set ext reserved blocks to 1%
+tune2fs -U $(uuidgen) /dev/sdX # change partition's UUID
 # if dd command is used to monitor performance of a drive especially for a usb disk, conv=fsync should be set in order to flush the memory each time during the write operation.
 hwinfo --gfxcard
 inxi -v7 # system info
