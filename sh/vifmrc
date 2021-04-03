@@ -41,6 +41,7 @@ nnoremap o :sort<cr>
 nnoremap O :invert o<CR>
 nnoremap qs :split <cr>
 nnoremap qv :vsplit <cr>
+nnoremap ,b :colo <cr>
 nnoremap qw :wincmd o<cr>
 nnoremap qz :wincmd =<cr>
 nnoremap qn 8<c-w><
@@ -204,8 +205,8 @@ set noiec
 " Selected color scheme
 
 " colorscheme Default
-" colorscheme reicheltd-light
-colo dracula
+colorscheme reicheltd-light
+" colo dracula
 
 " Format for displaying time in file list. For example:
 " TIME_STAMP_FORMAT=%m/%d-%H:%M
