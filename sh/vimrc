@@ -488,7 +488,7 @@ nnoremap c<CR> }:if (line(".") == line("$")) \| exec "normal o" \| endif<CR>O
 nnoremap yc ^y$"+y$"*y$
 " Eval yanked
 nnoremap yq :@"<CR>
-nnoremap cO "_diw""P
+nnoremap cp "_diw""P
 nnoremap co "_diw"*P
 noremap <c-n> 12<c-e>
 noremap <c-p> 12<c-y>
