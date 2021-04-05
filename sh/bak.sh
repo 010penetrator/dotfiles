@@ -14,7 +14,7 @@ i=$(( i%30 ))
 name=$( echo my_bak_"$i"_`date +%Y-%m-%d`.tar.gz )
 cd "/ln/ho/dotfiles"
 tar -czf "$bak"/"$name" \
-  config sh \
+  sh \
   -C / ln \
   -C $tt/../ tt
 
