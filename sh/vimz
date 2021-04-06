@@ -20,7 +20,12 @@ if ! [ -z "$1" ] ; then
   # escape spaces
   path=${path// /'\' }
 
-  if [[ $MODE == current ]] ; then
+  if [[ $MODE == '' ]] ; then
+    MODE="newtab"
+  fi
+  # echo MODE $MODE
+
+  if [[ $MODE == cur ]] ; then
     # Edit in current Vim window
     vim --servername $SERVNAME --remote-send "<c-w>:e $path<CR>"
   elif [[ $MODE == last ]] ; then
@@ -30,11 +35,13 @@ if ! [ -z "$1" ] ; then
     # Edit in new tab of Vim
     vim --servername $SERVNAME --remote-send "<c-w>:tabe $path<CR>"
   elif [[ $MODE == vert ]] ; then
-    # Edit in nev vertical window in Vim
+    # Edit in new vertical split in Vim
     vim --servername $SERVNAME --remote-send "<c-w>:vnew $path<CR>"
-  else
-    # Edit in new window in Vim
-    vim --servername $SERVNAME --remote-send "<c-w>:new $path<CR>"
+  elif [[ $MODE == split ]] ; then
+    # Edit in new horizontal split in Vim
+    vim --servernaame $SERVNAME --remote-send "<c-w>:new $path<CR>"
+  # else
+  #   vim --servername $SERVNAME --remote-send "<c-w>:tabe $path<CR>"
   fi
 
 raise.sh $SERVNAME &> /dev/null
