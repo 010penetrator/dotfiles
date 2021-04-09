@@ -654,7 +654,7 @@ command! FollowSymLink let b:symlink = expand("%:p") | execute "file " . resolve
 command! UnFollowSymLink exec 'file ' . b:symlink | edit
 command! UpdCtags !ctags -R --exclude=.git --exclude=log --exclude=wutils --c++-kinds=+p --fields=+iaS --extra=+q *
 command! UpdCtagsSudo !sudo ctags -R --exclude=.git --exclude=log --exclude=wutils --c++-kinds=+p --fields=+iaS --extra=+q *
-command! Yall %y _
+command! Yall %y "
 command! Dall %d _
 command! Call %d _ | put!
 command! SwapContentPrevWin :call SwapContentPrevWin()
