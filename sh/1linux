@@ -301,6 +301,7 @@ exo-open ......../app.desktop # run app .desktop file
 /set buflist.look.enabled 1
 /set weechat.bar.buflist.size_max 14
 /server add BNC my.bouncer.net/6667 -username=username/network -password=password
+/connect ip.ip.ip.ip/port
 steam steam://rungameid/999 # run steam game
 lpstat -p -d # show cups queue
 lpr -P HP_LaserJet_1020 /usr/share/cups/data/testprint 
