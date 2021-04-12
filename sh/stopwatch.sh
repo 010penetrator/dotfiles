@@ -1,4 +1,5 @@
 #!/bin/bash
+# Cool cli stopwatch!
 
 date
 

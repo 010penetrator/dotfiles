@@ -1,3 +1,4 @@
+#!/bin/bash
 # Rename files to be accepted in NTFS
 
 if [ -z $1 ];then echo Give target directory; exit 0; fi

@@ -154,7 +154,7 @@ set cpoptions=fs
 " set vicmd=vile
 
 if (system('echo $INVIM') == "1")
-  set vicmd='source $HOME/.bashrc; MODE="current" vimz'
+  set vicmd='source $HOME/.bashrc; MODE="cur" vimz'
 else
   set vicmd='source $HOME/.bashrc; vim --cmd "set titlestring=VIM\ @\ VIFM"'
 endif

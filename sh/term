@@ -1,2 +1,4 @@
-# S() { sh ~/.sh/ldir.sh "$*"  ; } 
+#!/bin/bash
+# Launch xterm...?
+
 xterm -class myterm $*

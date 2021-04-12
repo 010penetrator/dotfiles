@@ -1,4 +1,6 @@
 #!/bin/bash
+# rc script for my systems
+
 cd
 
 desk_height=$(xdpyinfo | grep dimensions | cut -d ' ' -f 7 | cut -d x -f 2)

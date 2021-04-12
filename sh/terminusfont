@@ -1,4 +1,5 @@
 #!/bin/bash
 # Set tty font to Terminus
+
 setfont ter-218b || 
 setfont $( ls /usr/share/consolefonts/ | grep -i terminus | grep -i Bold | grep 20 | grep Uni | head -1 | cut -d . -f 1 )

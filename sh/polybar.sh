@@ -1,3 +1,5 @@
+# Abandoned polybar rc
+
 killall polybar
 w=$(ip link | grep state\ UP | cut -f 2 -d ':' | cut -b 2-)  
 echo $w

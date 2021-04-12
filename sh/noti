@@ -1,2 +1,6 @@
+#!/bin/bash
+# Evaluate argument and send output to notification system
+# Usage: $ noti uname -a
+
 notify-send "$($*)"
 

@@ -1,5 +1,5 @@
-##~/torchroot-setup.sh
 #!/bin/bash
+
 export TORCHROOT=/opt/torchroot
 
 mkdir -p $TORCHROOT

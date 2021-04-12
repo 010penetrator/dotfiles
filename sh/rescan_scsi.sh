@@ -1,4 +1,5 @@
-#! /bin/bash
+#!/bin/bash
+# Use it to hot-plug HDD
 
 SCSI=/sys/class/scsi_host
 test ! -d "$SCSI" && echo "Error: cannot find $SCSI directory." && exit 1

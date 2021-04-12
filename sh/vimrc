@@ -74,6 +74,8 @@ Plug 'roxma/nvim-yarp' "for denite
 Plug 'roxma/vim-hug-neovim-rpc' "for denite
 Plug 'Shougo/deoplete.nvim'
 Plug 'Shougo/neoinclude.vim'
+Plug 'zefei/vim-colortuner' "fun
+Plug 'ryanoasis/vim-devicons' "not working
 
 " Colors:
 " ( gui themes need termguicolors setting )
@@ -181,11 +183,13 @@ Plug 'stillwwater/vim-nebula' "cold dark
 Plug 'sainnhe/sonokai' "great dark gui&nogui
 Plug 'franbach/miramare' "coffee dark
 Plug 'Mizux/vim-colorschemes' "better nogui pencil
+Plug 'zefei/simple-dark'
+Plug 'zefei/cake16' "cool medium
 call plug#end()
-
 
 "---------Settings------------"
 " let g:deoplete#enable_at_startup = 1
+set encoding=UTF-8
 set fileencodings=ucs-bom,utf-8,default,cp1251,latin1
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
 " set keymap=russian-jcukenwin
@@ -422,7 +426,7 @@ nnoremap <C-W>S :vsplit<CR>
 nnoremap qy :let @+ = @" <bar> :let @* = @" <CR>
 nnoremap ay "+yiW
 nnoremap qo o<Esc>
-nnoremap qO O<Esc>
+nnoremap qi O<Esc>
 nnoremap qx :q<CR>
 " Swap current and previous window
 nnoremap qw :call WinSwap()<CR><C-W>p
