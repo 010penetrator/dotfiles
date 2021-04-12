@@ -91,7 +91,6 @@ Plug 'w0ng/vim-hybrid' "beautiful
 Plug 'kristijanhusak/vim-hybrid-material' "nice Sane dark
 Plug 'vim-scripts/strange' "darker 
 Plug 'severij/vadelma' "white good-con
-Plug 'the31k/vim-colors-tayra' "Nice gray
 Plug 'jacoborus/tender.vim' "sane soft dark
 Plug 'cocopon/iceberg.vim' "soft cold dark
 Plug 'vim-scripts/desertEx' "Nice gray
@@ -148,7 +147,6 @@ Plug 'rdavison/Libertine' "applejuice
 Plug 'AlessandroYorba/Sierra' "softgray
 Plug 'AlessandroYorba/Despacio' "softdarkgrey
 Plug 'Jimeno0/vim-chito' "consbroken
-Plug 'aradunovic/perun.vim' "consbroken
 Plug 'HenryNewcomer/vim-theme-underflow' "consbroken
 Plug 'beigebrucewayne/min_solo' "consbroken 'subtle
 Plug 'therubymug/vim-pyte' "light gui
@@ -172,7 +170,6 @@ Plug 'gmoe/vim-espresso' "mild
 " Plug 'dfrunza/vim' "borland,muratori,pencil,vc6
 " Plug 'dracula/vim' "funky
 " Plug 'tomasr/molokai' "shitty
-Plug 'RussellBradley/vim-knicks' "great blue 404
 Plug 'swalladge/paper.vim' "dry white
 Plug 'NLKNguyen/papercolor-theme' "soft white 'PaperColor
 Plug 'markeganfuller/vim-journeyman' "pale dark
@@ -185,6 +182,10 @@ Plug 'franbach/miramare' "coffee dark
 Plug 'Mizux/vim-colorschemes' "better nogui pencil
 Plug 'zefei/simple-dark'
 Plug 'zefei/cake16' "cool medium
+Plug '010penetrator/vim-colors-forplasma' "collection
+" Plug 'RussellBradley/vim-knicks' "great blue 404
+" Plug 'aradunovic/perun.vim' "consbroken 404
+" Plug 'the31k/vim-colors-tayra' "Nice gray 404
 call plug#end()
 
 "---------Settings------------"
