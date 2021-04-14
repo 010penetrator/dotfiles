@@ -1,3 +1,6 @@
+#!/bin/bash
+# Launch terminal emulator with biger fonts
+
 if [ -z "$1" ] && [ -z "$2" ] ; then
   echo "Usage: bigterm.sh \"size\" \"font\""
   exit

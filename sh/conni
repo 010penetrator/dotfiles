@@ -1,3 +1,4 @@
+#!/bin/bash
 # Connect to wi-fi on comand line
 
 #conn() { w=$(ip link | grep wlp | cut -f 2 -d ':' | cut -b 2-) ; sudo wpa_supplicant -B -i $w -c /etc/.wc && sudo dhcpcd $w ; }

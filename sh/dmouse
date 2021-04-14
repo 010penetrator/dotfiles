@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/bin/bash
+# Invoke dmenu launcher!
+
 # . $sh/dmenurc.sh
 
 #DMENU_FN="xos4 Terminus"

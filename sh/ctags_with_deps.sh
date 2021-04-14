@@ -1,4 +1,5 @@
 #!/bin/sh
+
 TMPFILE=/tmp/ctagsourcelist
 touch $TMPFILE
 

@@ -1,3 +1,6 @@
+#!/bin/bash
+# Mount block device with udevil and dmenu.
+
 . $sh/dmenurc.sh
 
 LSBLK="lsblk"

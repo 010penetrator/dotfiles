@@ -1,2 +1,5 @@
+#!/bin/bash
+# Make alarming beep after given time. Also change sound volume to low afterwards ( to bring attention in case of loud music going on )
+
 sleep $1 && ( pactl set-sink-volume 0 90%; true ) && play -b 16 -n rate 44100 synth 5 sine 270-2180 fade 0 0:5 0:0.2 &>/dev/null && pactl set-sink-volume 0 20% & # alarm
 

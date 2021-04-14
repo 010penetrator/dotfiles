@@ -1,4 +1,5 @@
-# exit
+#!/bin/bash
+
 bak="$HOME/bak/"
 bak2="/ln/bl/bak"
 mkdir -p $bak
