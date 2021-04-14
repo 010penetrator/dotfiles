@@ -1,1 +1,4 @@
+#!/bin/bash
+# Chain scrot to nomacs editor
+
 scrot -d .2 /tmp/scrot.png -e 'nomacs $f' 

@@ -1,3 +1,6 @@
+#!/bin/bash
+# Save list of music albums in my music folders. And a brief report.
+
 . $sh/dmenurc.sh
 find -L /ln/mus/ -type f \( -name "*.flac" -or -name "*.mp3" -or -name "*.ogg" -or -name "*.wv" -or -name "*.ape" -or -name "*.wma" \) -printf '%h\n' | sort -u > .mus-list
 a=$(wc -l .mus-list | cut -d " " -f1)

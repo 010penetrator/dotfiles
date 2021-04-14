@@ -1,3 +1,4 @@
+#!/bin/bash
 
 [ -z "$1" ] && set -- "VIM"
 TITLE=$1

@@ -1,2 +1,4 @@
+#!/bin/bash
+
 xterm -xrm 'XTerm.vt100.allowTitleOps: false' -T "$*" -geometry 80x24+360+240 -e "$*" &> /dev/null & disown
 

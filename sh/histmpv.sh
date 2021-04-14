@@ -1,3 +1,5 @@
+#!/bin/bash
+
 . $sh/dmenurc.sh
 d=$(tac /tmp/mpv-history | dmenu $DMENU_OPTIONS -fn "$DMENU_FN")
 if [ -z "$d" ]; then echo no selection !; exit; fi

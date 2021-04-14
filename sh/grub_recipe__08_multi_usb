@@ -11,3 +11,4 @@ menuentry 'GLIM' {
   configfile /boot/grub/grub.cfg
 }
 EOF
+

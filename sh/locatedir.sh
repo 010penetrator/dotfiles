@@ -1,3 +1,6 @@
+#!/bin/bash
+# Locate directories with 'locate'
+
 locatedir () {
     locate -i "$*" | while read line
     do 

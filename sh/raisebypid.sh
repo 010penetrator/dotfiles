@@ -1,3 +1,4 @@
+#!/bin/bash
 
 mypid=$1
 idlist=$(xprop -root _NET_CLIENT_LIST)

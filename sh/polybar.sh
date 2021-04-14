@@ -1,3 +1,4 @@
+#!/bin/bash
 # Abandoned polybar rc
 
 killall polybar

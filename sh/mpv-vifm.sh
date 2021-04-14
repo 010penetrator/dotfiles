@@ -1,3 +1,4 @@
+#!/bin/bash
 # Script to launch vifm on current file/directory. I call it via a hotkey from mpv. 
 
 echo "$1"

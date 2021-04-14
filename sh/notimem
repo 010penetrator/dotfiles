@@ -1,3 +1,6 @@
+#!/bin/bash
+# notify about memory usage
+
 # notify-send "$(free -m | head -2 | cut -c1-8,12-22,70-)"
 notify-send "$(free -m | cut -c1-6,12-22,26-34)"
 

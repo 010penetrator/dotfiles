@@ -1,4 +1,5 @@
-# experimental; should cycle through xterm windows
+#!/bin/bash
+# Cycle through terminal windows
 
 echo '.'
 activeid=$(xprop -root _NET_ACTIVE_WINDOW | cut -d "#" -f2 | cut -c 4-) &&

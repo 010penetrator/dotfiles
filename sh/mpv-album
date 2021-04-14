@@ -1,4 +1,5 @@
 #!/bin/bash
+# This is how I listen to music albums with mpv
 
 # Usage: mpv /dir/or/file DESIRED-TERMINAL-TITLE
 

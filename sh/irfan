@@ -1,2 +1,3 @@
+#!/bin/sh
 wine /ln/mo/blink/exe/IrfanView/i_view32.exe
 
