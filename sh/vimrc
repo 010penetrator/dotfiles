@@ -158,7 +158,7 @@ Plug 'lithammer/vim-eighties' "trueeeee
 Plug 'sainnhe/gruvbox-material' "improved 
 Plug 'arzg/vim-substrata' "cold neon
 Plug 'sainnhe/edge' "good soft
-Plug 'sainnhe/vim-color-forest-night' "cream lowcon
+Plug 'sainnhe/everforest' "cream lowcon
 Plug 'sainnhe/archived-colors' "atlantis,cryslominsa,desert_night,fairy_garden,grimoire,ice_age,lost_shrine,vanilla_cake
 Plug 'flrnd/plastic.vim' "juicy
 Plug 'atelierbram/vim-colors_atelier-schemes' "mindfuck
@@ -1151,9 +1151,11 @@ endif
 " colo edge | set background=light | LineColor materia
 " colo Tomorrow | LineColor Tomorrow
 " colo corvine_light | LineColor selenized_light
-" colo stellarized | set background=light | LineColor atlantis
+" colo cake16 | LineColor selenized_light
+" colo stellarized | set background=light | LineColor PaperColor_light
+" colo lost-shrine | LineColor nord
 " colo cryslominsa | LineColor cryslominsa
-" colo forest-night | LineColor cryslominsa
+" colo everforest | LineColor cryslominsa
 " colo Tomorrow-Night | LineColor bluewery
 " colo corvine | LineColor bluewery
 " colo OceanicNext | LineColor bluewery
@@ -1166,7 +1168,7 @@ endif
 " colo vimspectr180-light
 " colo vimspectr150-light
 " colo edge 
-" colo forest-night
+" colo everforest
 " colo vadelma
 " LineColor ayu_light
 " LineColor one

@@ -39,14 +39,14 @@ if ! [ -z "$1" ] ; then
     vim --servername $SERVNAME --remote-send "<c-w>:vnew $path<CR>"
   elif [[ $MODE == split ]] ; then
     # Edit in new horizontal split in Vim
-    vim --servernaame $SERVNAME --remote-send "<c-w>:new $path<CR>"
+    vim --servername $SERVNAME --remote-send "<c-w>:new $path<CR>"
   # else
   #   vim --servername $SERVNAME --remote-send "<c-w>:tabe $path<CR>"
   fi
 
 raise.sh $SERVNAME &> /dev/null
 else
-  echo "Usage: [MODE=current,last,newtab] vimz dir/file.txt"
+  echo "Usage: [ MODE=cur,last,newtab,split,vert ] vimz dir/file.txt"
   exit 1
 fi
 
