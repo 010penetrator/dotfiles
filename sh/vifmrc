@@ -60,7 +60,7 @@ nnoremap qf :! if [ %c == ".." ] ; then feha . ; else if [ -d %c ] ; then cd %c;
 nnoremap qF :! fehf . <cr>
 nnoremap q<space> :! mpv %c <cr>
 " Open file with vim server
-nnoremap av :! MODE="split"  vimz "%c" &>/dev/null & <cr>
+nnoremap av :! MODE="split"  vimz "%c"  <cr>
 nnoremap aV :! MODE="vert"   vimz "%c" &>/dev/null & <cr>
 nnoremap ac :! MODE="cur"    vimz "%c" &>/dev/null & <cr>
 nnoremap an :! MODE="newtab" vimz "%c" &>/dev/null & <cr>

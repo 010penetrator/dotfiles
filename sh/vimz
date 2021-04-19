@@ -1,52 +1,59 @@
 #!/bin/bash
 
-SERVNAME=VIMSERV
-# How many my vim-servers?
-servers=$(vim --serverlist | grep ^VIMSERV$ | wc -l)
-# Launch great Vim
-[ $servers == 0 ] && echo $servers &&
+if [ -z "$1" ] ; then
+  echo "Usage: [VIM_SERVERNAME=name] [MODE=cur,last,newtab,split,vert] vimz file.c"
+  # exit 1
+fi
+
+[[ $MODE == '' ]] && MODE="newtab"
+
+echo "VIMZ: Given servername is $VIM_SERVERNAME"
+[ -z $VIM_SERVERNAME ] && VIM_SERVERNAME='VIMSERV' && echo "Will try VIMSERV"
+
+if [ $(vim --serverlist | wc -l) == 0 ] ; then
+  echo "No Vim servers found"
+  # Launch great Vim-server
   case $TERMINAL in
     kitty*)
-      # $TERMINAL --start-as maximized bash -c "source $HOME/.bashrc ; sleep .1 ; vim --servername $SERVNAME" & ;;
-      $TERMINAL bash -c "source $HOME/.bashrc ; sleep .1 ; vim --servername $SERVNAME" & ;;
+      # $TERMINAL --start-as maximized bash -c "source $HOME/.bashrc ; sleep .1 ; vim --servername $VIM_SERVERNAME" & ;;
+      $TERMINAL bash -c "source $HOME/.bashrc ; sleep .1 ; vim --servername $VIM_SERVERNAME" & ;;
     *)
-      xterm -maximized -e "source $HOME/.bashrc ; vim --servername $SERVNAME" & ;;
+      xterm -maximized -e "source $HOME/.bashrc ; sleep .1 ;vim --servername $VIM_SERVERNAME" & ;;
   esac
-[ $servers == 0 ] && sleep 1.5
+  # Wait for it
+  sleep .5
+elif [ -n $VIM_SERVERNAME ] && [ $(vim --serverlist | grep $VIM_SERVERNAME ) == 0 ] ; then
+# elif ! [ -z $VIM_SERVERNAME ] ; then
+  VIM_SERVERNAME=$(vim --serverlist | head -n 1)
+  echo "Found Vim servers:"
+  vim --serverlist
+  echo "No desired Vim-server! Will try $VIM_SERVERNAME"
+fi
 
-if ! [ -z "$1" ] ; then
-  # get full name
-  path=$(realpath -s "$1")
-  # escape spaces
-  path=${path// /'\' }
-
-  if [[ $MODE == '' ]] ; then
-    MODE="newtab"
-  fi
-  # echo MODE $MODE
-
+if ! [[ -z "$1" ]] ; then
+# get full name
+path=$(realpath -s "$1")
+# escape spaces
+path=${path// /'\' }
   if [[ $MODE == cur ]] ; then
     # Edit in current Vim window
-    vim --servername $SERVNAME --remote-send "<c-w>:e $path<CR>"
+    vim --servername $VIM_SERVERNAME --remote-send "<c-w>:e $path<CR>"
   elif [[ $MODE == last ]] ; then
     # Edit in last Vim window
-    vim --servername $SERVNAME --remote-send "<c-w>:wincmd p <bar> e $path<CR>"
+    vim --servername $VIM_SERVERNAME --remote-send "<c-w>:wincmd p <bar> e $path<CR>"
   elif [[ $MODE == newtab ]] ; then
     # Edit in new tab of Vim
-    vim --servername $SERVNAME --remote-send "<c-w>:tabe $path<CR>"
+    vim --servername $VIM_SERVERNAME --remote-send "<c-w>:tabe $path<CR>"
   elif [[ $MODE == vert ]] ; then
     # Edit in new vertical split in Vim
-    vim --servername $SERVNAME --remote-send "<c-w>:vnew $path<CR>"
+    vim --servername $VIM_SERVERNAME --remote-send "<c-w>:vnew $path<CR>"
   elif [[ $MODE == split ]] ; then
     # Edit in new horizontal split in Vim
-    vim --servername $SERVNAME --remote-send "<c-w>:new $path<CR>"
-  # else
-  #   vim --servername $SERVNAME --remote-send "<c-w>:tabe $path<CR>"
+    vim --servername $VIM_SERVERNAME --remote-send "<c-w>:new $path<CR>"
+    # else
+    #   vim --servername $VIM_SERVERNAME --remote-send "<c-w>:tabe $path<CR>"
   fi
-
-raise.sh $SERVNAME &> /dev/null
-else
-  echo "Usage: [ MODE=cur,last,newtab,split,vert ] vimz dir/file.txt"
-  exit 1
 fi
+
+raise.sh $VIM_SERVERNAME &> /dev/null
 

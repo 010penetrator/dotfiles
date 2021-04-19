@@ -182,6 +182,8 @@ git config --local credential.helper store # store git passwd
 git log --follow somefile 
 git checkout INDEX~1 somefile # restore somefile just before INDEX commit
 git reset --hard origin/master ; git pull origin master # discard all local changes/commits and pull from upstream
+git --follow file.c # show file history tracking renames
+git status -vv file.c # diff against last commit
 7z a dir.7z Dir -p -mhe=on #create encrypted 7z 
 7z a -mx=3 -xr!.git -xr!tags out.7z Projekt # create quick 7z
 tar -I 'zstd -11 -T0' -cf somedir.tar.zst --exclude='.git' --exclude='tags' somedir # create tar.zst
@@ -208,8 +210,8 @@ sudo ip address add 172.1.1.21/24 brodcast + dev enp2s0
 .   netmask 255.255.255.0
 curl https://wtfismyip.com/text # check ip
 curl ifconfig.me
-curl -s --head http://opennet.ru # check network
-proxychains sudo wget -O- http://ya.ru # check network
+curl -s --head http://opennet.ru # check network and date
+proxychains sudo wget -O- http://ya.ru 
 sudo nmap -sP 192.168.1-3.0/24
 nmap -p 80 example.com # "ping" by port
 iptables -t nat -A OUTPUT -p tcp -m tcp --dport 80 -d 195.82.146.120/30 -j DNAT --to-destination 163.172.167.207:3128 ##route rutracker torrenting

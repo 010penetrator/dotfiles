@@ -75,7 +75,7 @@ Plug 'roxma/vim-hug-neovim-rpc' "for denite
 Plug 'Shougo/deoplete.nvim'
 Plug 'Shougo/neoinclude.vim'
 Plug 'zefei/vim-colortuner' "fun
-Plug 'ryanoasis/vim-devicons' "not working
+" Plug 'ryanoasis/vim-devicons' "not working
 
 " Colors:
 " ( gui themes need termguicolors setting )
@@ -650,7 +650,7 @@ command! KIR e ++enc=cp1251 | set fileencoding=utf-8 | set fileformat=unix
 command! F set fileencoding=utf-8 | set fileformat=unix
 command! SessWrite let g:Color_save=g:colors_name | let g:Color_backgr=&background | let g:Line_save=g:lightline.colorscheme | call TerminalsFuneral() | mksession! ~/.vim/session.vim | SaveSigns! ~/.vim/signs.sav
 command! QQ  exec 'SessWrite' | wa | qa
-nnoremap FF :wa\|SessWrite<CR>
+nnoremap zZ :wa\|SessWrite<CR>
 command! Bash exec 'silent ! bash' | redraw!
 command! NewTerm exec 'silent ! $TERMINAL &' | redraw!
 command! NewTermHere exec 'silent ! cd "%:p:h" && $TERMINAL &' | redraw!
