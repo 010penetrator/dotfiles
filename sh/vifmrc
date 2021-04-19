@@ -125,7 +125,7 @@ nnoremap gx :trashes<cr>
 nnoremap gc :cd $HOME/.config/<cr>
 nnoremap gs :cd $HOME/.sh/<cr>
 nnoremap gd :cd $HOME/Downloads/<cr>
-nnoremap K :cd /ln/torrents/red/KKK/<cr>omh
+nnoremap gk :cd /ln/torrents/red/KKK/<cr>:sort<cr>mh
 nnoremap gl gf 
 nnoremap al :!ln -s $PWD/%c %D/%c <cr>
 nnoremap ah :!ln  $PWD/%c %D/%c <cr>
