@@ -248,7 +248,6 @@ set history=2500
 set tabstop=2 softtabstop=2 expandtab shiftwidth=2 smarttab 
 set textwidth=0 wrapmargin=0
 set smartindent
-set autoindent
 set invlinebreak
 set sidescroll=12
 set list lcs=tab:\┊\ 
