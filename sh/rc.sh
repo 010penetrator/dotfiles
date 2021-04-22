@@ -49,6 +49,7 @@ elif [[ "$HOSTNAME" =~ 'machine' ]]; then
 
 elif [[ "$HOSTNAME" =~ ^debian10pc ]]; then
   xrandr --output DVI-D-0 --auto --left-of HDMI-0
+  xrandr --output HDMI-2 --auto --right-of HDMI-1
 
 elif [[ "$HOSTNAME" =~ ^white*(.*)ok ]]; then 
   xset dpms 900 0 0 
