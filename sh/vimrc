@@ -413,7 +413,7 @@ nnoremap qm    <C-W>6>
 nnoremap qn    <C-W>6<
 nnoremap qe    <C-W>4+
 nnoremap qd    <C-W>4-
-nnoremap ah    <C-W>_
+nnoremap aa    <C-W>_
 nnoremap al    <C-W>80-
 nnoremap qa    <C-W>_<C-W>\|
 nnoremap qz    <C-W>=
@@ -543,7 +543,7 @@ cnoremap <C-t> <C-Right>
 
 nnoremap a <Nop>
 map ф a
-nnoremap aa a
+nnoremap ad a
 nnoremap at :tabe<CR>
 nnoremap aT :-tabe<CR>
 nnoremap aq :qa<CR>
@@ -625,6 +625,7 @@ nnoremap <Leader>vt :TagbarOpen fj <CR>
 " nnoremap <Leader>.. :call UpdCtagsGit() <CR>
 nnoremap <Leader>za :Ack <C-r><C-w> %:p:h 
 nnoremap <Leader>zg :call ClimbToDirWhere(".git/index",1) \| Ack -Q <C-R><C-W> 
+nnoremap <Leader>zf :call ClimbToDirWhere("Makefile",1) \| Ack -Q <C-R><C-W> 
 " nnoremap <Leader>ff :AckFile <C-r><C-W> <CR>
 nnoremap <Leader>zw :AckWindow <C-r><C-w> <CR>
 nnoremap <Leader>zz :let &scrolloff=28-&scrolloff<CR>
