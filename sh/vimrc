@@ -597,8 +597,9 @@ nnoremap <Leader>gw yiw:call system('google.sh ' . "'" . @" . "'")<CR>
 nnoremap <Leader>gy ^y$:call system('yandex.sh ' . "'" . @" . "'")<CR>
 " nnoremap <Leader>gr ^y$:silent exec " !source $HOME/.bashrc && chromium \"red " . @" . "\" &>/dev/null & " \| redraw!<CR>
 nnoremap <Leader>gg :call FocusBufOrDo('wawe','e /ln/ho/moment/4gist/wawe')<CR>
-nnoremap <Leader>gq :call FocusBufOrDo('.vimrc','e $MYVIMRC')<CR>
+nnoremap <Leader>gv :call FocusBufOrDo('.vimrc','e $MYVIMRC')<CR>
 nnoremap <Leader>gx :call FocusBufOrDo('sxhkd','e /ln/sh/sxhkdrc')<CR>
+nnoremap <Leader>gm :call FocusBufOrDo('material','e $tt/material')<CR>
 nnoremap <Leader>gz :call FocusBufOrDo('zzzz','e $tt/zzzzzz')<CR>
 nnoremap <Leader>gu :call FocusBufOrDo('ff','e $tt/u*/ff*')<CR>
 nnoremap <Leader>gh :call FocusBufOrDo('sh_history','e $HOME/.bash_history')<CR>G
