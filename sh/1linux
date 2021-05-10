@@ -146,6 +146,8 @@ sleep 1 ; xdotool getwindowfocus getwindowname ; xdotool getactivewindow getwind
 xinput list-props N # get input device props
 xinput set-prop "pointer:RAPOO RAPOO 2.4G Wireless Device" "Device Accel Constant Deceleration" 3
 xrdb -merge <(echo "Xft.dpi: 100") # set dpi
+xrdb -query | grep dpi # show DPI
+xrandr --dpi 108 # set DPI
 xdpyinfo | grep dots # show DPI
 sudo rm /etc/fonts/conf.d/70-no-bitmaps.conf; sudo fc-cache -f -v  # enable .pcf font on ubuntu
 mv 'SomeFont.otf' ~/.local/share/fonts/ ; fc-cache -vf ~/.local/share/fonts/ # install otf font

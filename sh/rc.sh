@@ -41,7 +41,7 @@ if [[ "$HOSTNAME" =~ 'killer'[pc,PC] ]]; then
   killall unclutter; unclutter &
 
 elif [[ "$HOSTNAME" =~ 'machine' ]]; then
-  # xrdb -merge <(echo "Xft.dpi: 108") &
+  xrdb -merge <(echo "Xft.dpi: 108") &
   xrandr --output DP-1 --mode 2560x1440 --rate 120 
   sleep 1
   pgrep transmission-da | grep . || trdwrap.sh & 
