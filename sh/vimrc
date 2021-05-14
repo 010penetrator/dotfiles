@@ -598,6 +598,7 @@ nnoremap <Leader>gy ^y$:call system('yandex.sh ' . "'" . @" . "'")<CR>
 " nnoremap <Leader>gr ^y$:silent exec " !source $HOME/.bashrc && chromium \"red " . @" . "\" &>/dev/null & " \| redraw!<CR>
 nnoremap <Leader>gg :call FocusBufOrDo('wawe','e /ln/ho/moment/4gist/wawe')<CR>
 nnoremap <Leader>gq :call FocusBufOrDo('.vimrc','e $MYVIMRC')<CR>
+nnoremap <Leader>gb :call FocusBufOrDo('.bashrc$','e $HOME/.bashrc')<CR>
 nnoremap <Leader>gx :call FocusBufOrDo('sxhkd','e /ln/sh/sxhkdrc')<CR>
 nnoremap <Leader>gm :call FocusBufOrDo('material','e $tt/material')<CR>
 nnoremap <Leader>gz :call FocusBufOrDo('zzzz','e $tt/zzzzzz')<CR>
@@ -613,6 +614,7 @@ nnoremap <Leader>va :silent exec '! ( sleep 0 ; vimz "%:p" ) & ' \| redraw! \| q
 " Add Plug entry
 nnoremap <Leader>vp :put + <bar> exec "normal dfmxIPlug 'A'" <CR>
 nnoremap <Leader>vs :source ~/.vim/session.vim \| call LoadColor() \| call MySigns()<CR>
+nnoremap <Leader>zs :wa\|SessWrite<CR>
 nnoremap <Leader>vv :source $MYVIMRC <CR>
 nnoremap <Leader>vq :qa! <CR>
 nnoremap <Leader>v<Leader> :call EvalThis()<CR>
@@ -651,7 +653,6 @@ command! KIR e ++enc=cp1251 | set fileencoding=utf-8 | set fileformat=unix
 command! F set fileencoding=utf-8 | set fileformat=unix
 command! SessWrite let g:Color_save=g:colors_name | let g:Color_backgr=&background | let g:Line_save=g:lightline.colorscheme | call TerminalsFuneral() | mksession! ~/.vim/session.vim | SaveSigns! ~/.vim/signs.sav
 command! QQ  exec 'SessWrite' | wa | qa
-nnoremap zZ :wa\|SessWrite<CR>
 command! Bash exec 'silent ! bash' | redraw!
 command! NewTerm exec 'silent ! $TERMINAL &' | redraw!
 command! NewTermHere exec 'silent ! cd "%:p:h" && $TERMINAL &' | redraw!
