@@ -666,7 +666,7 @@ command! Yall %y "
 command! Dall %d _
 command! Call %d _ | put!
 command! SwapContentPrevWin :call SwapContentPrevWin()
-command! FileDel :silent exec '!rm %' | redraw! | bd
+command! Fdel :silent exec '!rm %' | redraw! | bd
 "exec '!chromium' ali.@"
 command! -nargs=? LineColor call LightlineReload('<args>')
 
