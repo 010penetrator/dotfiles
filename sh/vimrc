@@ -551,7 +551,7 @@ nnoremap q- 60A-<esc>0<esc>60ld$b
 nnoremap q= 60A=<esc>0<esc>60ld$b
 " nmap q- O1<esc>gcc$xj^d0o<esc>0d$60i-<esc>kkJJ^60ldc0W
 nnoremap af :exec "normal i".nr2char(getchar())."\e"<CR>
-nnoremap ag :exec "normal aa".nr2char(getchar())."\e"<CR>
+nnoremap ag :exec "normal ad".nr2char(getchar())."\e"<CR>
 nnoremap q1 1gt
 nnoremap q2 2gt
 nnoremap q3 3gt

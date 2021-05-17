@@ -43,7 +43,7 @@ path=${path// /'\' }
     vim --servername $VIM_SERVERNAME --remote-send "<c-w>:wincmd p <bar> e $path<CR>"
   elif [[ $MODE == newtab ]] ; then
     # Edit in new tab of Vim
-    vim --servername $VIM_SERVERNAME --remote-send "<c-w>:tabe $path<CR>"
+    vim --servername $VIM_SERVERNAME --remote-send "<c-w>:-tabe $path<CR>"
   elif [[ $MODE == vert ]] ; then
     # Edit in new vertical split in Vim
     vim --servername $VIM_SERVERNAME --remote-send "<c-w>:vnew $path<CR>"
@@ -51,7 +51,7 @@ path=${path// /'\' }
     # Edit in new horizontal split in Vim
     vim --servername $VIM_SERVERNAME --remote-send "<c-w>:new $path<CR>"
     # else
-    #   vim --servername $VIM_SERVERNAME --remote-send "<c-w>:tabe $path<CR>"
+    #   vim --servername $VIM_SERVERNAME --remote-send "<c-w>:-tabe $path<CR>"
   fi
 fi
 
