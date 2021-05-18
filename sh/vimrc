@@ -414,7 +414,7 @@ nnoremap qn    <C-W>6<
 nnoremap qe    <C-W>4+
 nnoremap qd    <C-W>4-
 nnoremap aa    <C-W>_
-nnoremap al    <C-W>80-
+nnoremap az    <C-W>80-
 nnoremap qa    <C-W>_<C-W>\|
 nnoremap qz    <C-W>=
 nnoremap aj    <C-W>w<C-W>_
@@ -546,7 +546,7 @@ map ф a
 nnoremap ad a
 nnoremap at :tabe<CR>
 nnoremap aT :-tabe<CR>
-nnoremap aq :qa<CR>
+" nnoremap aq :qa<CR>
 nnoremap q- 60A-<esc>0<esc>60ld$b
 nnoremap q= 60A=<esc>0<esc>60ld$b
 " nmap q- O1<esc>gcc$xj^d0o<esc>0d$60i-<esc>kkJJ^60ldc0W
@@ -600,6 +600,7 @@ nnoremap <Leader>gg :call FocusBufOrDo('wawe','e /ln/ho/moment/4gist/wawe')<CR>
 nnoremap <Leader>gq :call FocusBufOrDo('.vimrc','e $MYVIMRC')<CR>
 nnoremap <Leader>gb :call FocusBufOrDo('.bashrc$','e $HOME/.bashrc')<CR>
 nnoremap <Leader>gx :call FocusBufOrDo('sxhkd','e /ln/sh/sxhkdrc')<CR>
+nnoremap <Leader>gk :call FocusBufOrDo('kitty.conf','e /ln/sh/kitty.conf')<CR>
 nnoremap <Leader>gm :call FocusBufOrDo('material','e $tt/material')<CR>
 nnoremap <Leader>gz :call FocusBufOrDo('zzzz','e $tt/zzzzzz')<CR>
 nnoremap <Leader>gu :call FocusBufOrDo('ff','e $tt/u*/ff*')<CR>
