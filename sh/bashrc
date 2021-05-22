@@ -165,7 +165,7 @@ alias p='ps aux | grep -v grep | grep '
 alias 8='ping 8.8.8.8 '
 
 gsync() {
-  ( cd ~/dotfiles/ ; pwd
+  ( cd ~/moment/dotfiles/ ; pwd
   git add .
   git commit -a -m another | grep '[^[:blank:]]' --color=none
   git pull ; git push
