@@ -176,8 +176,6 @@ gsync() {
   git pull ; git push ; )
 }
 
-# if [ -f $HOME/.dmenurc ]; then . $HOME/.dmenurc; fi
-
 # # Use pacmd
 # pa-list() { pacmd list-sinks | awk '/index/ || /name:/'; }
 # pa-set() {
