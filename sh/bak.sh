@@ -13,7 +13,7 @@ i=$(( i%30 ))
 [ ${#i} -lt 2 ] && i=0$i
 
 name=$( echo my_bak_"$i"_`date +%Y-%m-%d`.tar.gz )
-cd "/ln/ho/dotfiles"
+cd "/ln/ho/moment/dotfiles"
 tar -czf "$bak"/"$name" \
   sh \
   -C / ln \
