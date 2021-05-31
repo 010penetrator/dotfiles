@@ -45,11 +45,13 @@ elif [[ "$HOSTNAME" =~ 'machine' ]]; then
   xrandr --output DP-1 --mode 2560x1440 --rate 120 
   sleep 1
   pgrep transmission-da | grep . || trdwrap.sh & 
+  compton.sh &
   # pgrep earlyoom | grep . || earlyoom -m 2 -n &> /dev/null &
 
 elif [[ "$HOSTNAME" =~ ^debian10pc ]]; then
   xrandr --output DVI-D-0 --auto --left-of HDMI-0
   xrandr --output HDMI-2 --auto --right-of HDMI-1
+  compton.sh &
 
 elif [[ "$HOSTNAME" =~ ^white*(.*)ok ]]; then 
   xset dpms 900 0 0 
