@@ -590,7 +590,7 @@ nnoremap gx dlp
 nnoremap <Leader><Space> :LCDhere <CR>
 " nnoremap <Leader>G :call ClimbToDirWhere(".git/index",1) \| pwd <CR>
 nnoremap <Leader>o :Goyo 66%x100%<CR>
-nnoremap <Leader>m ^y$:call system('$BROWSER ' . "'" . @" . "' &")<CR>
+nnoremap <Leader>m ^y$:call system('xdg-open ' . "'" . @" . "' &")<CR>
 nnoremap <Leader>M ^y$:call system('chromium ' . "'" . @" . "' &")<CR>
 nnoremap <Leader>go ^y$:call system('google.sh ' . "'" . @" . "'")<CR>
 nnoremap <Leader>gw yiw:call system('google.sh ' . "'" . @" . "'")<CR>
