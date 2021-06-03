@@ -546,7 +546,6 @@ map ф a
 nnoremap ad a
 nnoremap at :tabe<CR>
 nnoremap aT :-tabe<CR>
-" nnoremap aq :qa<CR>
 nnoremap q- 60A-<esc>0<esc>60ld$b
 nnoremap q= 60A=<esc>0<esc>60ld$b
 " nmap q- O1<esc>gcc$xj^d0o<esc>0d$60i-<esc>kkJJ^60ldc0W
@@ -618,6 +617,7 @@ nnoremap <Leader>vs :source ~/.vim/session.vim \| call LoadColor() \| call MySig
 nnoremap <Leader>zs :wa\|SessWrite<CR>
 nnoremap <Leader>vv :source $MYVIMRC <CR>
 nnoremap <Leader>vq :qa! <CR>
+nnoremap <Leader>vw :wa<CR>
 nnoremap <Leader>v<Leader> :call EvalThis()<CR>
 nnoremap <Leader>vf :set filetype=sh<CR>
 nnoremap <Leader>vb :call SwitchBackground() <CR>:echo "background=" &background <cr>
