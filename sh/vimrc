@@ -251,7 +251,7 @@ set smartindent
 set invlinebreak
 set sidescroll=12
 set list lcs=tab:\┊\ 
-set scrolloff=2
+set scrolloff=4
 set number
 set numberwidth=2
 set showmode
