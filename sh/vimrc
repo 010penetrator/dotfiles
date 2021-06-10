@@ -77,7 +77,7 @@ Plug 'zefei/vim-colortuner' "fun
 " Plug 'scrooloose/syntastic'
 Plug 'dense-analysis/ale'
 Plug 'tpope/vim-eunuch'
-Plugin 'valloric/youcompleteme'
+Plug 'valloric/youcompleteme'
 
 """"""""""""""""""""""""
 ""      Colors:       ""
