@@ -214,3 +214,6 @@ gsync() {
 #   ssh-add ~/.ssh/*.k &>/dev/null
 # fi
 
+. "$HOME/.cargo/env"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

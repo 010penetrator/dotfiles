@@ -66,6 +66,7 @@ nnoremap aV :! MODE="vert"   vimz "%c" &>/dev/null & <cr>
 nnoremap ac :! MODE="cur"    vimz "%c" &>/dev/null & <cr>
 nnoremap an :! MODE="newtab" vimz "%c" &>/dev/null & <cr>
 nnoremap a; :! vim %c <cr>
+nnoremap ,v :! $TERMINAL vim %c <cr>
 nnoremap a<space> :! MODE="last" vimz "%c" &>/dev/null & <cr>
 nnoremap az :! vimz "%c"<cr>:q<cr>
 nnoremap zl :! bash -c ' echo -ne \\n ls:\\n ; ls -dla %f ; du -sh %f ;du -sb %f ; read -rsn1 ' <cr>
