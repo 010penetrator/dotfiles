@@ -19,49 +19,46 @@ endif
 " read !ls -la  "paste shell output
 " g/.\{20,\}/ exec "normal gqgq" | nohls " format longer lines
 " autocmd WinNew * set numberwidth=2 winheight=7
-"
-"---------Plug----------------"
-" curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-" Plug 'junegunn/vim-plug'
+
+""""""""""""""""""""""""
+""      Plugins:      ""
+""""""""""""""""""""""""
 call plug#begin()
 Plug 'tpope/vim-sensible' "basic
 Plug 'jlanzarotta/bufexplorer' "basic
 Plug 'sheerun/vim-polyglot' "okay HUGE
-Plug 'tpope/vim-commentary' "good
-Plug 'michaeljsmith/vim-indent-object' "cool
 Plug 'itchyny/lightline.vim' "cool
-Plug 'tpope/vim-vinegar' "basic
-Plug 'jamessan/vim-gnupg' "good
-Plug 'Shougo/unite.vim' "bloated
-Plug 'Shougo/vimproc' "for unite
-Plug 'junegunn/goyo.vim' "usable
-Plug 'godlygeek/tabular' "okay
-Plug 'chrisbra/Colorizer' "good
-Plug 'mileszs/ack.vim' "good
-Plug 'haya14busa/vim-edgemotion' "okay
-Plug 'majutsushi/tagbar' "okay
-Plug 'tpope/vim-ragtag' "good
 Plug 'justinmk/vim-sneak' "good!
+Plug 'tpope/vim-commentary' "good
+Plug 'tpope/vim-vinegar' "basic
 Plug 'tpope/vim-surround' "good
 Plug 'tpope/vim-endwise' "okay
 Plug 'tpope/vim-repeat' "handy
-Plug 'wesleyche/SrcExpl' "mediocre
+Plug 'tpope/vim-ragtag' "good
+Plug 'michaeljsmith/vim-indent-object' "cool
+Plug 'godlygeek/tabular' "okay
+Plug 'jamessan/vim-gnupg' "good
+Plug 'chrisbra/Colorizer' "good
+Plug 'mileszs/ack.vim' "good
+Plug 'junegunn/goyo.vim' "usable
+Plug 'haya14busa/vim-edgemotion' "okay
+Plug 'majutsushi/tagbar' "okay
+Plug 'Shougo/unite.vim' "bloated
+Plug 'Shougo/vimproc' "for unite
 Plug 'kshenoy/vim-signature' "buggy
-" Plug 'ZeroKnight/vim-signjump' "buggy
 Plug 'chrisbra/SaveSigns.vim' "usable
-"
+Plug 'wesleyche/SrcExpl' "mediocre
+
 " Plug 'tpope/vim-unimpaired'
 " Plug 'eiginn/netrw' "basic
-" Plug 'vim-syntastic/syntastic' "wtf
+" Plug 'ZeroKnight/vim-signjump' "buggy
 " Plug 'kien/rainbow_parentheses.vim'
-" Plug 'Valloric/YouCompleteMe'
 " Plug 'ajh17/VimCompletesMe'
 " Plug 'craigemery/vim-autotag' "errors
-" Plug 'junegunn/fzf.vim'
-" Plug 'wincent/command-t' "40MB
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf'
 " Plug 'vim-scripts/LustyExplorer'
 " Plug 'hari-rangarajan/CCTree'
-" Plug 'tpope/vim-fugitive'
 " Plug 'easymotion/vim-easymotion'
 " Plug 'SirVer/ultisnips'
 " Plug 'honza/vim-snippets'
@@ -75,10 +72,17 @@ Plug 'roxma/vim-hug-neovim-rpc' "for denite
 Plug 'Shougo/deoplete.nvim'
 Plug 'Shougo/neoinclude.vim'
 Plug 'zefei/vim-colortuner' "fun
+" Plug 'tpope/vim-fugitive'
 " Plug 'ryanoasis/vim-devicons' "not working
+" Plug 'scrooloose/syntastic'
+Plug 'dense-analysis/ale'
+Plug 'tpope/vim-eunuch'
+Plug 'valloric/youcompleteme'
 
-" Colors:
-" ( gui themes need termguicolors setting )
+""""""""""""""""""""""""
+""      Colors:       ""
+""""""""""""""""""{{{}}}
+" gui themes need termguicolors setting
 Plug 'morhetz/gruvbox' "best
 Plug 'ajmwagar/vim-dues' "soft coffee 'deus
 Plug 'jpo/vim-railscasts-theme' "normal
@@ -188,7 +192,9 @@ Plug '010penetrator/vim-colors-forplasma' "collection
 " Plug 'the31k/vim-colors-tayra' "Nice gray 404
 call plug#end()
 
-"---------Settings------------"
+""""""""""""""""""""""""
+""     Settings:      ""
+""""""""""""""""""""""""
 " let g:deoplete#enable_at_startup = 1
 set encoding=UTF-8
 set fileencodings=ucs-bom,utf-8,default,cp1251,latin1
@@ -251,7 +257,7 @@ set smartindent
 set invlinebreak
 set sidescroll=12
 set list lcs=tab:\┊\ 
-set scrolloff=2
+set scrolloff=4
 set number
 set numberwidth=2
 set showmode
@@ -284,31 +290,17 @@ endif
 if &diff
   colo wasabi256
 endif
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
-endif
 if executable('rg')
   let g:ackprg = 'rg --vimgrep'
+endif
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
 endif
 if !exists('g:lasttab')
   let g:lasttab = 1
 endif
 au TabLeave * let g:lasttab = tabpagenr()
-" Remember folds ??
-" au BufWinLeave * mkview
-" au BufWinEnter * silent loadview
-" "Powerline
-" let $PYTHONPATH='/usr/lib/python3.6/site-packages'
-" set laststatus=2
-" let g:Powerline_symbols = "fancy"
-" let g:LustyExplorerSuppressRubyWarning = 1
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_check_on_wq = 0
+
 let g:SrcExpl_pluginList = [ "__Tag_List__" ] 
 let g:ScrExpl_refreshTime=200
 let g:SrcExpl_winHeight = 13
@@ -339,7 +331,9 @@ if has("cscope")
   nmap <C-@>D :scs find d <C-R>=expand("<cword>")<CR><CR>
 endif
 
-"---------Shortcuts-----------"
+""""""""""""""""""""""""
+""     Mappings:      ""
+""""""""""""""""""{{{}}}
 set timeoutlen=500
 let mapleader = ","
 " Go to normal mode via home-row
@@ -429,7 +423,7 @@ nnoremap qo o<Esc>
 nnoremap qi O<Esc>
 nnoremap qx :q<CR>
 " Swap current and previous window
-nnoremap qw :call WinSwap()<CR><C-W>p
+nnoremap qs :call WinSwap()<CR><C-W>p
 nnoremap aw :w<CR>
 nnoremap ap :put  *<CR>
 nnoremap ai :put! *<CR>
@@ -440,10 +434,10 @@ nnoremap ao o<Esc>:put! *<CR>`[v`]:g/^$/d<CR>:nohlsearch<CR>
 " Yank current file full name 
 nnoremap zy :let @" = expand('%:p')
 nnoremap qu ~
-nnoremap qs :new  \| echo expand ('%') '.@.' getcwd() <CR>
+nnoremap qw :new  \| echo expand ('%') '.@.' getcwd() <CR>
 nnoremap qv :vnew \| echo expand ('%') '.@.' getcwd() <CR>
 nnoremap a<BS> :checktime <cr>
-nnoremap qS :split # <cr>
+nnoremap qW :split # <cr>
 nnoremap qV :vsplit # <cr>
 " Split netrw
 nnoremap a-   :split <bar> exec "normal -" <cr>
@@ -540,13 +534,11 @@ nnoremap c<Space> c$
 cnoremap <C-a> <Home>
 cnoremap <C-b> <C-Left>
 cnoremap <C-t> <C-Right>
-
 nnoremap a <Nop>
 map ф a
 nnoremap ad a
 nnoremap at :tabe<CR>
 nnoremap aT :-tabe<CR>
-" nnoremap aq :qa<CR>
 nnoremap q- 60A-<esc>0<esc>60ld$b
 nnoremap q= 60A=<esc>0<esc>60ld$b
 " nmap q- O1<esc>gcc$xj^d0o<esc>0d$60i-<esc>kkJJ^60ldc0W
@@ -590,7 +582,7 @@ nnoremap gx dlp
 nnoremap <Leader><Space> :LCDhere <CR>
 " nnoremap <Leader>G :call ClimbToDirWhere(".git/index",1) \| pwd <CR>
 nnoremap <Leader>o :Goyo 66%x100%<CR>
-nnoremap <Leader>m ^y$:call system('$BROWSER ' . "'" . @" . "' &")<CR>
+nnoremap <Leader>m ^y$:call system('xdg-open ' . "'" . @" . "' &")<CR>
 nnoremap <Leader>M ^y$:call system('chromium ' . "'" . @" . "' &")<CR>
 nnoremap <Leader>go ^y$:call system('google.sh ' . "'" . @" . "'")<CR>
 nnoremap <Leader>gw yiw:call system('google.sh ' . "'" . @" . "'")<CR>
@@ -618,6 +610,7 @@ nnoremap <Leader>vs :source ~/.vim/session.vim \| call LoadColor() \| call MySig
 nnoremap <Leader>zs :wa\|SessWrite<CR>
 nnoremap <Leader>vv :source $MYVIMRC <CR>
 nnoremap <Leader>vq :qa! <CR>
+nnoremap <Leader>vw :wa<CR>
 nnoremap <Leader>v<Leader> :call EvalThis()<CR>
 nnoremap <Leader>vf :set filetype=sh<CR>
 nnoremap <Leader>vb :call SwitchBackground() <CR>:echo "background=" &background <cr>
@@ -642,11 +635,15 @@ nnoremap <Leader>zr :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","mak
 nnoremap <Leader>zl : silent exec '! echo -e "\n$(pwd):"; ls -la . ; echo \. ; ls -la %:p ; read -n 1 -s -r -p "//hit.anykey" ; echo -ne "\n" ' \| redraw! <cr>
 vnoremap z- <ESC>:call FoldSelected()<CR>za
 
-"---------Commands------------"
+""""""""""""""""""""""""
+""     Commands:      ""
+""""""""""""""""""""""""
 command! -nargs=1 Silent exec 'silent !' . <q-args> | exec 'redraw!'
 "Usage : Silent ls; read -rsn1 -p "//hit.anykey"; echo;
 command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
           \ | wincmd p | diffthis
+" Sum lines of numbers in range
+command! -range Sum :echo eval(substitute(join(getline(<line1>,<line2>),'+'),',','.',"g"))
 command! SuW w !sudo tee %
 command! SuE r !sudo cat %
 command! KIR e ++enc=cp1251 | set fileencoding=utf-8 | set fileformat=unix
@@ -668,10 +665,11 @@ command! Dall %d _
 command! Call %d _ | put!
 command! SwapContentPrevWin :call SwapContentPrevWin()
 command! Fdel :silent exec '!rm %' | redraw! | bd
-"exec '!chromium' ali.@"
 command! -nargs=? LineColor call LightlineReload('<args>')
 
-"---------OS-dependant--------"
+""""""""""""""""""""""""
+""     MS_stuff:      ""
+""""""""""""""""""""""""
 if !empty($WINDIR)
 " If windows
   " set makeprg=\./make.bat
@@ -685,7 +683,9 @@ if !empty($WINDIR)
   command! XYp :silent exec '!source /c/Users/user/.bashrc && exp "%:p:h" &' | redraw!
 endif
 
-"---------Menus---------------"
+""""""""""""""""""""""""
+""       Menus:       ""
+""""""""""""""""""""""""
 set wildmenu
 set wcm=<tab>
 map <Leader><tab> :emenu tagi.<tab>
@@ -695,12 +695,15 @@ menu tagi.dirDeps :call UpdCtagsDirDeps() <CR>
 menu tagi.gitDeps :call UpdCtagsGitDeps() <CR>
 menu tagi.git     :call UpdCtagsGit() <CR>
 
-"---------Macros--------------"
+""""""""""""""""""""""""
+""      Macros:       ""
+""""""""""""""""""""""""
 let @g = ",gggg2zjjzzao:call DoOnKey(\"103\",\"b #\")\n"
 let @s = "i \<Esc>ll."
 
-"---------Functions-----------"
-"
+""""""""""""""""""""""""
+""     Functions:     ""
+""""""""""""""""""""""""
 function! UpdCtagsDirDeps()
   echom "Trying to update ctags with deps in this directory"
   silent exec '! echo -e "\n\n"Trying to update ctags with deps in this directory"..."'
@@ -1097,15 +1100,6 @@ function! SortParagraphs() range
   put!
 endfunction
 
-function! FoldSelected()
-  " exec "normal O\<c-m>}}}\<c-[>ki{{{\<c-[>p"
-  " exec "normal O------------------------------{{{\<c-m>\<BS>------------------------------}}}\<c-[>kp"
-  exec "normal `>o------------------------------}}}\<ESC>`<O------------------------------{{{\<ESC>"
-endfunction
-
-" Sum lines of numbers in range
-command! -range Sum :echo eval(substitute(join(getline(<line1>,<line2>),'+'),',','.',"g"))
-
 "Highlight some line via signs
 function! MySigns()
   highlight myboo ctermbg=3 ctermfg=0
@@ -1121,7 +1115,10 @@ function! MySigns()
 endfunc
 call MySigns()
 
-"---------Theming-------------"
+""""""""""""""""""""""""
+""      Theming:      ""
+""""""""""""""""""{{{}}}
+
 " hi! Search ctermbg=222
 " hi! Normal ctermbg=234
 
@@ -1185,4 +1182,89 @@ endif
 " LineColor darcula
 " LineColor bluewery
 " LineColor deus
+
+""""""""""""""""""""""""
+""       Trial:       ""
+""""""""""""""""""{{{}}}
+
+function! FoldSelected()
+  " exec "normal O\<c-m>}}}\<c-[>ki{{{\<c-[>p"
+  " exec "normal O------------------------------{{{\<c-m>\<BS>------------------------------}}}\<c-[>kp"
+  exec "normal `>o------------------------------}}}\<ESC>`<O------------------------------{{{\<ESC>"
+endfunction
+
+function! s:list_buffers()
+  redir => list
+  silent ls
+  redir END
+  return split(list, "\n")
+endfunction
+function! s:delete_buffers(lines)
+  execute 'bwipeout' join(map(a:lines, {_, line -> split(line)[0]}))
+endfunction
+command! BufD call fzf#run(fzf#wrap({
+  \ 'source': s:list_buffers(),
+  \ 'sink*': { lines -> s:delete_buffers(lines) },
+  \ 'options': '--multi --reverse --bind ctrl-a:select-all+accept'
+\ }))
+
+let $FZF_DEFAULT_OPTS='--exact --layout=reverse'
+
+function! Delete_buffers()
+  let l:preview_window = get(g:, 'fzf_preview_window', &columns >= 120 ? 'right': '')
+  let l:options = [
+        \   '-m',
+        \   '--tiebreak=index',
+        \   '-d', '\t',
+        \   '--prompt', 'Delete> '
+        \ ]
+  if len(l:preview_window)
+    let l:options = extend(l:options, get(fzf#vim#with_preview(
+          \   {"placeholder": "{2}"},
+          \   l:preview_window
+          \ ), 'options', []))
+  endif
+  return fzf#run(fzf#wrap({
+        \ 'source':  map(
+        \   filter(
+        \     range(1, bufnr('$')),
+        \     {_, nr -> buflisted(nr) && !getbufvar(nr, "&modified")}
+        \   ),
+        \   {_, nr -> s:format_buffer(nr)}
+        \ ),
+        \ 'sink*': {
+        \   lines -> execute('bdelete ' . join(map(lines, {
+        \     _, line -> substitute(split(line)[0], '^\[\|\]$', '', 'g')
+        \   })), 'silent!')
+        \ },
+        \ 'options': l:options,
+        \}))
+endfunction
+function! s:format_buffer(b)
+  let l:name = bufname(a:b)
+  let l:name = empty(l:name) ? '[No Name]' : fnamemodify(l:name, ":p:~:.")
+  let l:flag = a:b == bufnr('')  ? '%' :
+        \ (a:b == bufnr('#') ? '#' : ' ')
+  let l:modified = getbufvar(a:b, '&modified') ? ' [+]' : ''
+  let l:readonly = getbufvar(a:b, '&modifiable') ? '' : ' [RO]'
+  let l:extra = join(filter([l:modified, l:readonly], '!empty(v:val)'), '')
+  return substitute(printf("[%s] %s\t%s\t%s", a:b, l:flag, l:name, l:extra), '^\s*\|\s*$', '', 'g')
+endfunction
+
+" Remember folds ??
+" au BufWinLeave * mkview
+" au BufWinEnter * silent loadview
+" "Powerline
+" let $PYTHONPATH='/usr/lib/python3.6/site-packages'
+" set laststatus=2
+" let g:Powerline_symbols = "fancy"
+" let g:LustyExplorerSuppressRubyWarning = 1
+
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
 

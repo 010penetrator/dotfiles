@@ -20,6 +20,7 @@ map * adjust_window width
 map S toggle_statusbar 
 map f toggle_fullscreen
 map <Space> scroll full-down
+map b scroll full-up
 map <BackSpace> scroll full-up
 
 map [fullscreen] i set recolor
@@ -35,6 +36,7 @@ map [fullscreen] * adjust_window width
 map [fullscreen] S toggle_statusbar 
 map [fullscreen] f toggle_fullscreen
 map [fullscreen] <Space> scroll full-down
+map [fullscreen] b scroll full-up
 map [fullscreen] <BackSpace> scroll full-up
 
 set window-width 1080
