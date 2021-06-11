@@ -1199,26 +1199,18 @@ function! s:list_buffers()
   redir END
   return split(list, "\n")
 endfunction
-
-" function! s:delete_buffers(lines)
-"   execute 'bwipeout' join(map(a:lines, {_, line -> split(line)[0]}))
-" endfunction
-
+function! s:delete_buffers(lines)
+  execute 'bwipeout' join(map(a:lines, {_, line -> split(line)[0]}))
+endfunction
 command! BufD call fzf#run(fzf#wrap({
   \ 'source': s:list_buffers(),
-  \ 'sink*': { lines -> s:delete_buffers() },
+  \ 'sink*': { lines -> s:delete_buffers(lines) },
   \ 'options': '--multi --reverse --bind ctrl-a:select-all+accept'
 \ }))
 
-" command! BufD call fzf#run(fzf#wrap({
-"   \ 'source': s:list_buffers(),
-"   \ 'sink*': { lines -> s:delete_buffers(lines) },
-"   \ 'options': ['+m', '-x', '--tiebreak=index', header_lines, '--ansi', '-d', '\t', '--with-nth', '3..', '-n', '2,1..2', '--prompt', 'Buf> ', '--query', query, '--preview-window', '+{2}-/2', '--tabstop', tabstop]
-" \ }))
-
 let $FZF_DEFAULT_OPTS='--exact --layout=reverse'
 
-function! s:delete_buffers()
+function! Delete_buffers()
   let l:preview_window = get(g:, 'fzf_preview_window', &columns >= 120 ? 'right': '')
   let l:options = [
         \   '-m',
