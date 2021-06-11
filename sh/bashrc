@@ -10,7 +10,7 @@ export HISTSIZE=9000
   [[ "$TERMINAL" == "kitty" ]] && [[ $HIDPI == "1" ]] && export TERMINAL="kitty -o font_size=14.2 -o initial_window_width=1250 -o initial_window_height=900"
 # fi
 
-[ COLORTERM==truecolor ] && TERM=xterm-256color
+[[ $COLORTERM == truecolor ]] && TERM=xterm-256color
 [[ $PATH == *"$HOME/.sh"* ]] || export PATH=$PATH:$HOME/.sh
 [[ $PATH == *"$HOME/.local/bin"* ]] || export PATH=$PATH:$HOME/.local/bin
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -23,6 +23,7 @@ export sh=$HOME/.sh
 export tt=$HOME/tt
 export MANWIDTH=80
 export FZF_DEFAULT_OPTS="--layout=reverse --height 55%"
+export FZF_CTRL_R_OPTS="--no-sort --exact"
 export LSBLK="lsblk"
 
 if [ -f ~/.bashrc.local ] ; then
@@ -102,7 +103,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+  . ~/.bash_aliases
 fi
 
 # enable programmable completion features (you don't need to enable
@@ -214,6 +215,7 @@ gsync() {
 #   ssh-add ~/.ssh/*.k &>/dev/null
 # fi
 
-. "$HOME/.cargo/env"
+# . "$HOME/.cargo/env"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
