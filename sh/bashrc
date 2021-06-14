@@ -22,7 +22,7 @@ export BROWSER=firefox
 export sh=$HOME/.sh
 export tt=$HOME/tt
 export MANWIDTH=80
-export FZF_DEFAULT_OPTS="--layout=reverse --height 55%"
+export FZF_DEFAULT_OPTS="--exact --layout=reverse --height 55%"
 export FZF_CTRL_R_OPTS="--no-sort --exact"
 export LSBLK="lsblk"
 
@@ -218,4 +218,11 @@ gsync() {
 # . "$HOME/.cargo/env"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+source /usr/share/fzf/key-bindings.bash
+source /usr/share/fzf/completion.bash
+# bind -X "\C-r: reverse-search-history" 
+# bind -x '"\C-r": reverse-search-history' 
+
+function fzfpaadd { pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S ; }
+function fzfparem { pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns ; }
 

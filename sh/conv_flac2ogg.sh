@@ -11,7 +11,7 @@ cd $1
 drn=${PWD##*/}
 mkdir -p "$2/$drn"
 for f in *.flac; do
-  oggenc -q 8.4 -n "$2/$drn/$f.ogg" "$f" 
+  oggenc -q 8.4 -n "$2/$drn/$f.ogg" "$f" &
   # ffmpeg -i "$f" -qscale:a 8.4 "$2/$drn/$f.ogg"
 done
 
