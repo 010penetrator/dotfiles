@@ -1160,6 +1160,7 @@ endif
 " colo cake16 | LineColor selenized_light
 " colo stellarized | set background=light | LineColor PaperColor_light
 " colo lost-shrine | LineColor nord
+" colo knicks-away | LineColor bluewery
 " colo cryslominsa | LineColor cryslominsa
 " colo everforest | LineColor cryslominsa
 " colo Tomorrow-Night | LineColor bluewery
