@@ -227,6 +227,7 @@ torsocks curl -s --head http://flibustahezeous3.onion/ # check tor
 ??? curl --proxy socks5h://localhost:1234 ifconfig.me # check socks5 proxy
 curl --socks5 localhost:1234 ifconfig.me # check socks5 proxy
 systemctl restart privoxy ; http_proxy=127.0.0.1:8118 curl ifconfig.me --head # get tor as http proxy
+http_proxy="localhost:8118" wget -q --spider http://ya.ru && echo 1 # check proxy
 
 HW
 sudo modprobe pcspkr ; echo -e '\a' ; rmmod pcspkr ; xset -b # STOP BELL BEEP!

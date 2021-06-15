@@ -34,21 +34,24 @@ Plug 'tpope/vim-vinegar' "basic
 Plug 'tpope/vim-surround' "good
 Plug 'tpope/vim-endwise' "okay
 Plug 'tpope/vim-repeat' "handy
+Plug 'tpope/vim-eunuch' "handy
 Plug 'tpope/vim-ragtag' "good
 Plug 'michaeljsmith/vim-indent-object' "cool
+Plug 'sandeepcr529/Buffet.vim' "good
 Plug 'godlygeek/tabular' "okay
 Plug 'jamessan/vim-gnupg' "good
 Plug 'chrisbra/Colorizer' "good
 Plug 'mileszs/ack.vim' "good
 Plug 'junegunn/goyo.vim' "usable
-Plug 'haya14busa/vim-edgemotion' "okay
+Plug 'haya14busa/vim-edgemotion' "good
+Plug 'vim-scripts/CycleColor' "works
 Plug 'majutsushi/tagbar' "okay
+
 Plug 'Shougo/unite.vim' "bloated
 Plug 'Shougo/vimproc' "for unite
 Plug 'kshenoy/vim-signature' "buggy
 Plug 'chrisbra/SaveSigns.vim' "usable
 Plug 'wesleyche/SrcExpl' "mediocre
-
 " Plug 'tpope/vim-unimpaired'
 " Plug 'eiginn/netrw' "basic
 " Plug 'ZeroKnight/vim-signjump' "buggy
@@ -62,10 +65,8 @@ Plug 'junegunn/fzf'
 " Plug 'easymotion/vim-easymotion'
 " Plug 'SirVer/ultisnips'
 " Plug 'honza/vim-snippets'
-Plug 'sandeepcr529/Buffet.vim'
 " Plug 'vim-scripts/QuickBuf'
 " Plug 'Yggdroot/LeaderF'
-Plug 'vim-scripts/CycleColor'
 " Plug 'Shougo/denite.nvim' "not working
 Plug 'roxma/nvim-yarp' "for denite
 Plug 'roxma/vim-hug-neovim-rpc' "for denite
@@ -76,8 +77,7 @@ Plug 'zefei/vim-colortuner' "fun
 " Plug 'ryanoasis/vim-devicons' "not working
 " Plug 'scrooloose/syntastic'
 Plug 'dense-analysis/ale'
-Plug 'tpope/vim-eunuch'
-Plug 'valloric/youcompleteme'
+" Plug 'valloric/youcompleteme'
 
 """"""""""""""""""""""""
 ""      Colors:       ""
@@ -304,6 +304,11 @@ au TabLeave * let g:lasttab = tabpagenr()
 let g:SrcExpl_pluginList = [ "__Tag_List__" ] 
 let g:ScrExpl_refreshTime=200
 let g:SrcExpl_winHeight = 13
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 25
 if has("cscope")
   " set cscopetag
   set csto=0
@@ -423,7 +428,7 @@ nnoremap qo o<Esc>
 nnoremap qi O<Esc>
 nnoremap qx :q<CR>
 " Swap current and previous window
-nnoremap qs :call WinSwap()<CR><C-W>p
+nnoremap qw :call WinSwap()<CR><C-W>p
 nnoremap aw :w<CR>
 nnoremap ap :put  *<CR>
 nnoremap ai :put! *<CR>
@@ -434,10 +439,10 @@ nnoremap ao o<Esc>:put! *<CR>`[v`]:g/^$/d<CR>:nohlsearch<CR>
 " Yank current file full name 
 nnoremap zy :let @" = expand('%:p')
 nnoremap qu ~
-nnoremap qw :new  \| echo expand ('%') '.@.' getcwd() <CR>
+nnoremap qs :new  \| echo expand ('%') '.@.' getcwd() <CR>
 nnoremap qv :vnew \| echo expand ('%') '.@.' getcwd() <CR>
 nnoremap a<BS> :checktime <cr>
-nnoremap qW :split # <cr>
+nnoremap qS :split # <cr>
 nnoremap qV :vsplit # <cr>
 " Split netrw
 nnoremap a-   :split <bar> exec "normal -" <cr>
@@ -582,9 +587,9 @@ nnoremap gx dlp
 nnoremap <Leader><Space> :LCDhere <CR>
 " nnoremap <Leader>G :call ClimbToDirWhere(".git/index",1) \| pwd <CR>
 nnoremap <Leader>o :Goyo 66%x100%<CR>
+nnoremap <Leader>n :Vexplore<CR>
 nnoremap <Leader>m ^y$:call system('xdg-open ' . "'" . @" . "' &")<CR>
 nnoremap <Leader>M ^y$:call system('chromium ' . "'" . @" . "' &")<CR>
-nnoremap <Leader>go ^y$:call system('google.sh ' . "'" . @" . "'")<CR>
 nnoremap <Leader>gw yiw:call system('google.sh ' . "'" . @" . "'")<CR>
 nnoremap <Leader>gy ^y$:call system('yandex.sh ' . "'" . @" . "'")<CR>
 " nnoremap <Leader>gr ^y$:silent exec " !source $HOME/.bashrc && chromium \"red " . @" . "\" &>/dev/null & " \| redraw!<CR>
@@ -600,6 +605,7 @@ nnoremap <Leader>gh :call FocusBufOrDo('sh_history','e $HOME/.bash_history')<CR>
 nnoremap <Leader>gl :call FocusBufOrDo('1linux','e /ln/sh/1linux')<CR>
 nnoremap <Leader>gs :call FocusBufOrDo('stk','e /ln/ho/use/stk.tx')<CR>
 nnoremap <Leader>gd :BD<CR>
+nnoremap <Leader>vo ^y$:call system('google.sh ' . "'" . @" . "'")<CR>
 " binding for vimz bash script; i e move current buf to vimserver's vim
 nnoremap <Leader>vn :silent exec '! ( sleep 0 ; MODE=newtab vimz "%:p" ) & ' \| redraw! \| q <CR>
 nnoremap <Leader>v<space> :silent exec '! ( sleep 0 ; MODE=current vimz "%:p" ) & ' \| redraw! \| q <CR>
