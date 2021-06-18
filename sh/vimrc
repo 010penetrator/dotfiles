@@ -75,8 +75,8 @@ Plug 'Shougo/neoinclude.vim'
 Plug 'zefei/vim-colortuner' "fun
 " Plug 'tpope/vim-fugitive'
 " Plug 'ryanoasis/vim-devicons' "not working
-" Plug 'scrooloose/syntastic'
 Plug 'dense-analysis/ale'
+" Plug 'scrooloose/syntastic'
 " Plug 'valloric/youcompleteme'
 
 """"""""""""""""""""""""
