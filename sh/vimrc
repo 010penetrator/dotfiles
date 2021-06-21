@@ -1,4 +1,4 @@
- vim: ts=2 sw=2:
+" vim: ts=2 sw=2:
 set nocompatible              " be iMproved
 set termguicolors
 compiler gcc
