@@ -1,4 +1,4 @@
-" vim: ts=2 sw=2:
+ vim: ts=2 sw=2:
 set nocompatible              " be iMproved
 set termguicolors
 compiler gcc
@@ -77,7 +77,8 @@ Plug 'zefei/vim-colortuner' "fun
 " Plug 'ryanoasis/vim-devicons' "not working
 Plug 'dense-analysis/ale'
 " Plug 'scrooloose/syntastic'
-" Plug 'valloric/youcompleteme'
+Plug 'valloric/youcompleteme'
+Plug 'Townk/vim-autoclose'
 
 """"""""""""""""""""""""
 ""      Colors:       ""
@@ -190,6 +191,7 @@ Plug '010penetrator/vim-colors-forplasma' "collection
 " Plug 'RussellBradley/vim-knicks' "great blue 404
 " Plug 'aradunovic/perun.vim' "consbroken 404
 " Plug 'the31k/vim-colors-tayra' "Nice gray 404
+Plug 'Townk/vim-autoclose'
 call plug#end()
 
 """"""""""""""""""""""""
@@ -640,6 +642,8 @@ nnoremap <Leader>zr :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","mak
 " nnoremap <Leader>zb yap: exec "!" . @" <cr>
 nnoremap <Leader>zl : silent exec '! echo -e "\n$(pwd):"; ls -la . ; echo \. ; ls -la %:p ; read -n 1 -s -r -p "//hit.anykey" ; echo -ne "\n" ' \| redraw! <cr>
 vnoremap z- <ESC>:call FoldSelected()<CR>za
+nnoremap <Leader>b :Buffers<cr>
+nnoremap <silent> <Esc><Esc> <Esc>:nohlsearch<CR><Esc>
 
 """"""""""""""""""""""""
 ""     Commands:      ""

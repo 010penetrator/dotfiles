@@ -1,15 +1,9 @@
 #!/bin/bash
 # ~/.bashrc
 
+# Variables #
 export HISTFILESIZE=
 export HISTSIZE=9000
-
-# if [[ -z $TERiMINAL ]] ; then
-  export TERMINAL=xterm
-  command -v kitty &> /dev/null && export TERMINAL=kitty
-  [[ "$TERMINAL" == "kitty" ]] && [[ $HIDPI == "1" ]] && export TERMINAL="kitty -o font_size=14.2 -o initial_window_width=1250 -o initial_window_height=900"
-# fi
-
 [[ $COLORTERM == truecolor ]] && TERM=xterm-256color
 [[ $PATH == *"$HOME/.sh"* ]] || export PATH=$PATH:$HOME/.sh
 [[ $PATH == *"$HOME/.local/bin"* ]] || export PATH=$PATH:$HOME/.local/bin
@@ -25,10 +19,80 @@ export MANWIDTH=80
 export FZF_DEFAULT_OPTS="--exact --layout=reverse --height 55%"
 export FZF_CTRL_R_OPTS="--no-sort --exact"
 export LSBLK="lsblk"
+#
+export TERMINAL=xterm
+command -v kitty &> /dev/null && export TERMINAL=kitty
+[[ "$TERMINAL" == "kitty" ]] && [[ $HIDPI == "1" ]] && export TERMINAL="kitty -o font_size=14.2 -o initial_window_width=1250 -o initial_window_height=900"
+#
+#PS1='[\u@\h \W]\$ '
+#PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w \$\[\033[00m\]'
+#PS1="\[$(tput bold)\]\[$(tput setaf 7)\]┌[\d][\t][\u@\h][\W]\n└\$ \[$(tput sgr0)\]"
+#PS1='\[\033[01;32m\]☿\[\e[38m\]\[\033[00m\] \w\[\e[m\] \[\033[01;34m\]\$\[\033[00m\] '
+#PS1=$'\[$(tput bold)\]\[$(tput setaf 2)\]\xe2\x98\xbf[\W]\$ \[$(tput sgr0)\]'
+#PS1=$'\[$(tput bold)\]\[$(tput setaf 46)\]\u \W \$ \[$(tput sgr0)\]'
+# PS1=$'\[$(tput bold)\]\[$(tput setaf 113)\]\u\[$(tput setaf 2)\] \W \$ \[$(tput sgr0)\]'
+#PS1='\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[33m\]\w\[\e[0m\]\n\$'
+#PS1="\[\e]0;\h: \a\]$PS1"
+PS1=$'\[$(tput bold)\]\[$(tput setaf 34)\]\u\[$(tput setaf 78)\] \W \[$(tput setaf 34)\]\$ \[$(tput sgr0)\]'
 
-if [ -f ~/.bashrc.local ] ; then
-  source ~/.bashrc.local
-fi
+# Aliases #
+alias bb='terminusfont ; tty | grep -q /dev/tty && sudo /./bin/conn & startx /ln/sh/xinitrc bspwm'
+alias gs='( [ -f $HOME/.env ] && . $HOME/.env ; gsync )'
+alias yp='fc -ln -1 | cut -c 3- | xclip ; echo yanked prev command'
+alias ram='sudo python $sh/mem.py'
+alias chmodre='find . -type f -exec chmod 644 {} \;'
+alias terfont='setfont ter-218b'
+alias dmenu='dmenu $DMENU_OPTIONS -fn "$DMENU_FN"'
+alias 1l='less ~/.sh/1linux'
+alias vf='$TERMINAL -e vifm . &'
+# alias trmclient='title transmission-remote-cli; transmission-remote-cli -c localhost:9090 ; title bash'
+alias l='$LSBLK -f'
+alias lb='$LSBLK -f | grep sd --color=none'
+alias lm='$LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT'
+amou() { target=$( $LSBLK -f | grep .sd | fzf -e | cut -f 1 -d " " | tr -cd '[:alnum:]' ); [ ! -z "${target}" ] && udevil mount /dev/"$target" && echo "/dev/$target mounted" || echo 'No target.' ; }
+aumo() { target=$( $LSBLK -f | grep .sd | grep '/' | cut -c 7- | fzf -e |  cut -f 1 -d " " ); [ ! -z "${target}" ] && sync && udevil umount "/dev/$target" && echo "/dev/$target unmounted" || echo 'No target.' ; }
+# title() { echo -ne "\e]0;$*\a"; }
+title() { echo -ne "\033]0;$*\007"; }
+alias leto='date +%Y-%m-%d'
+alias p='ps aux | grep -v grep | grep '
+alias 8='ping 8.8.8.8'
+
+# Functions #
+zz() { du -csh $*; local IFS="_"; tar -I 'zstd -10 -T0' -cf "$*".tar.zst --exclude='.git' --exclude='tags' $*; du -sh "$*".tar.zst; }
+x() { xdg-open "$*" &> /dev/null & disown ; } 
+get_space_used() { df -BMB "$1" --output=used | tail -1 | grep -o '[0-9]*' ; }
+hddsum() { d1=$(get_space_used /ln/mo/blink) ; d2=$(get_space_used /ln/mo/metal) ; echo Σ= "$(( d1 + d2 ))" Mb ; }
+fkill() {  ps -ef | sed 1d | fzf -e -m | awk '{print $2}' | xargs kill -${1:-9} ; }
+vol() { pactl set-sink-volume 0 "$1"% ; }
+gnome-box() { killall gnome-boxes ; killall libvirtd ; virsh -c qemu:///session pool-list --all ; virsh -c qemu:///session pool-destroy gnome-boxes ;  virsh -c qemu:///session pool-undefine gnome-boxes ; rm -rf .local/share/gnome-boxes ; rm -rf .config/libvirt ; }
+#
+if [ -x /bin/dhclient ] || [ -x /usr/sbin/dhclient ] ; then dhc_call=dhclient ; fi
+[ -x /bin/dhcpcd ] && dhc_call=dhcpcd
+type -f conn &>/dev/null || conn() { w=$(ip link | grep "wlp\|wlan" | cut -f 2 -d ':' | cut -b 2-) ; [ -z $w ] && ( echo "No wlan present" ; pgrep $dhc_call || sudo $dhc_call ) || ( sudo wpa_supplicant -B -i $w -c /etc/wpass.conf && sudo $dhc_call $w ) ; }
+type -f dconn &>/dev/null || dconn() { sudo killall -v wpa_supplicant; sudo killall -v dhcpcd; }
+function launch { nohup $1 >/dev/null 2>/dev/null & disown; }
+
+gsync() {
+  ( cd ~/moment/dotfiles/ ; pwd
+  git add .
+  git commit -a -m another | grep '[^[:blank:]]' --color=none
+  git pull ; git push
+  echo
+  cd ~/moment/4gist/ ; pwd
+  git add .
+  git commit -a -m newnote | grep '[^[:blank:]]' --color=none
+  git pull ; git push ; )
+}
+
+# FZF #
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f /usr/share/fzf/key-bindings.bash ] && source /usr/share/fzf/key-bindings.bash
+[ -f /usr/share/fzf/completion.bash ] && source /usr/share/fzf/completion.bash
+# bind -X "\C-r: reverse-search-history" 
+function fzfpaadd { pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S ; }
+function fzfparem { pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns ; }
+
+[ -f ~/.bashrc.local ] && source ~/.bashrc.local
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -37,7 +101,6 @@ fi
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
-
 
 # don't put duplicate lines or lines starting with space in the history.
 HISTCONTROL=ignoreboth
@@ -64,7 +127,7 @@ esac
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
-#force_color_prompt=yes
+force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
@@ -88,23 +151,15 @@ fi
 
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
-# alias fgrep='fgrep --color=auto'
-# alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
 
 # colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-if [ -f ~/.bash_aliases ]; then
-  . ~/.bash_aliases
-fi
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -116,67 +171,6 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-
-
-
-#PS1='[\u@\h \W]\$ '
-#PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w \$\[\033[00m\]'
-#PS1="\[$(tput bold)\]\[$(tput setaf 7)\]┌[\d][\t][\u@\h][\W]\n└\$ \[$(tput sgr0)\]"
-#PS1='\[\033[01;32m\]☿\[\e[38m\]\[\033[00m\] \w\[\e[m\] \[\033[01;34m\]\$\[\033[00m\] '
-#PS1=$'\[$(tput bold)\]\[$(tput setaf 2)\]\xe2\x98\xbf[\W]\$ \[$(tput sgr0)\]'
-#PS1=$'\[$(tput bold)\]\[$(tput setaf 46)\]\u \W \$ \[$(tput sgr0)\]'
-# PS1=$'\[$(tput bold)\]\[$(tput setaf 113)\]\u\[$(tput setaf 2)\] \W \$ \[$(tput sgr0)\]'
-#PS1='\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[33m\]\w\[\e[0m\]\n\$'
-PS1=$'\[$(tput bold)\]\[$(tput setaf 34)\]\u\[$(tput setaf 78)\] \W \[$(tput setaf 34)\]\$ \[$(tput sgr0)\]'
-
-# PS1="\[\e]0;\h: \a\]$PS1"
-
-alias ls='ls --color=auto'
-S() { sh ~/.sh/ldir.sh "$*"  ; } 
-x() { xdg-open "$*" &> /dev/null & disown ; } 
-get_space_used () { df -BMB "$1" --output=used | tail -1 | grep -o '[0-9]*' ; }
-hddsum () { d1=$(get_space_used /ln/mo/blink) ; d2=$(get_space_used /ln/mo/metal) ; echo Σ= "$(( d1 + d2 ))" Mb ; }
-fkill() {  ps -ef | sed 1d | fzf -e -m | awk '{print $2}' | xargs kill -${1:-9} ; }
-vol () { pactl set-sink-volume 0 "$1"% ; }
-gnome-box() { killall gnome-boxes ; killall libvirtd ; virsh -c qemu:///session pool-list --all ; virsh -c qemu:///session pool-destroy gnome-boxes ;  virsh -c qemu:///session pool-undefine gnome-boxes ; rm -rf .local/share/gnome-boxes ; rm -rf .config/libvirt ; }
-( [ -x /bin/dhclient ] || [ /usr/sbin/dhclient ] ) && dhc_call=dhclient
-[ -x /bin/dhcpcd ] && dhc_call=dhcpcd
-type -f conn &>/dev/null || conn() { w=$(ip link | grep "wlp\|wlan" | cut -f 2 -d ':' | cut -b 2-) ; [ -z $w ] && ( echo "No wlan present" ; pgrep $dhc_call || sudo $dhc_call ) || ( sudo wpa_supplicant -B -i $w -c /etc/wpass.conf && sudo $dhc_call $w ) ; }
-type -f dconn &>/dev/null || dconn() { sudo killall -v wpa_supplicant; sudo killall -v dhcpcd; }
-function launch { nohup $1 >/dev/null 2>/dev/null & disown; }
-# alias sess='tty | grep -q /dev/tty && ( sudo uname ; conn & [[ $(pgrep Xorg) ]] || startx $sh/xinitrc bspwm --:0 )'
-alias bb='terminusfont ; tty | grep -q /dev/tty && sudo /./bin/conn & startx /ln/sh/xinitrc bspwm'
-alias gs='( [ -f $HOME/.env ] && . $HOME/.env ; gsync )'
-alias yp='fc -ln -1 | cut -c 3- | xclip ; echo yanked prev command'
-alias ram='sudo python $sh/mem.py'
-alias chmodre='find . -type f -exec chmod 644 {} \;'
-alias terfont='setfont ter-218b'
-alias dmenu='dmenu $DMENU_OPTIONS -fn "$DMENU_FN"'
-alias 1l='less ~/.sh/1linux'
-alias vf='$TERMINAL -e vifm . &'
-# alias trmclient='title transmission-remote-cli; transmission-remote-cli -c localhost:9090 ; title bash'
-alias l='$LSBLK -f'
-alias lb='$LSBLK -f | grep sd --color=none'
-alias lm='$LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT'
-amou() { target=$( $LSBLK -f | grep .sd | fzf -e | cut -f 1 -d " " | tr -cd '[:alnum:]' ); [ ! -z "${target}" ] && udevil mount /dev/"$target" && echo "/dev/$target mounted" || echo 'No target.' ; }
-aumo() { target=$( $LSBLK -f | grep .sd | grep '/' | cut -c 7- | fzf -e |  cut -f 1 -d " " ); [ ! -z "${target}" ] && sync && udevil umount "/dev/$target" && echo "/dev/$target unmounted" || echo 'No target.' ; }
-# title() { echo -ne "\e]0;$*\a"; }
-title() { echo -ne "\033]0;$*\007"; }
-alias leto='date +%Y-%m-%d'
-alias p='ps aux | grep -v grep | grep '
-alias 8='ping 8.8.8.8 '
-
-gsync() {
-  ( cd ~/moment/dotfiles/ ; pwd
-  git add .
-  git commit -a -m another | grep '[^[:blank:]]' --color=none
-  git pull ; git push
-  echo
-  cd ~/moment/4gist/ ; pwd
-  git add .
-  git commit -a -m newnote | grep '[^[:blank:]]' --color=none
-  git pull ; git push ; )
-}
 
 # # Use pacmd
 # pa-list() { pacmd list-sinks | awk '/index/ || /name:/'; }
@@ -216,12 +210,4 @@ gsync() {
 # fi
 
 # . "$HOME/.cargo/env"
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-[ -f /usr/share/fzf/key-bindings.bash ] && source /usr/share/fzf/key-bindings.bash
-[ -f /usr/share/fzf/completion.bash ] && source /usr/share/fzf/completion.bash
-# bind -X "\C-r: reverse-search-history" 
-
-function fzfpaadd { pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S ; }
-function fzfparem { pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns ; }
 

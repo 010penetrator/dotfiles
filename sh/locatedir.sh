@@ -15,6 +15,6 @@ locatedir "$*" | sort | while read line ; do
 #last=$(echo ${line##*/} | grep -i "$*")
 #echo $last
 
-if [[ $(echo ${line##*/} | grep -i "$*") ]] ; then echo "$line" ; fi
+if [ $(echo ${line##*/} | grep -i "$*") ] ; then echo "$line" ; fi
 done
 

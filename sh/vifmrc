@@ -280,6 +280,7 @@ set statusline="  Hint: %z%= %A %10u:%-7g %15s %20d  "
 
 command! df df -h %m 2> /dev/null
 command! vimdiff vim -d %f %F
+command! vimdiffpane vim -d %f
 command! diff ! echo; diff %c %C && echo "files identical"; read -rsn1
 command! diffpane ! echo; diff %f && echo "files identical"; read -rsn1
 command! zip zip -r %f.zip %f
