@@ -191,7 +191,7 @@ Plug '010penetrator/vim-colors-forplasma' "collection
 " Plug 'RussellBradley/vim-knicks' "great blue 404
 " Plug 'aradunovic/perun.vim' "consbroken 404
 " Plug 'the31k/vim-colors-tayra' "Nice gray 404
-Plug 'Townk/vim-autoclose'
+Plug 'ayu-theme/ayu-vim'
 call plug#end()
 
 """"""""""""""""""""""""
@@ -342,6 +342,7 @@ endif
 ""     Mappings:      ""
 """"""""""""""""""{{{}}}
 set timeoutlen=500
+let g:AutoClosePumvisible = {"ENTER": "", "ESC": ""}
 let mapleader = ","
 " Go to normal mode via home-row
 imap jj <ESC>
@@ -589,7 +590,7 @@ nnoremap gx dlp
 nnoremap <Leader><Space> :LCDhere <CR>
 " nnoremap <Leader>G :call ClimbToDirWhere(".git/index",1) \| pwd <CR>
 nnoremap <Leader>o :Goyo 66%x100%<CR>
-nnoremap <Leader>n :Vexplore<CR>
+nnoremap <Leader>n :call RaiseNetRW()<CR>
 nnoremap <Leader>m ^y$:call system('xdg-open ' . "'" . @" . "' &")<CR>
 nnoremap <Leader>M ^y$:call system('chromium ' . "'" . @" . "' &")<CR>
 nnoremap <Leader>gw yiw:call system('google.sh ' . "'" . @" . "'")<CR>
@@ -620,6 +621,8 @@ nnoremap <Leader>vv :source $MYVIMRC <CR>
 nnoremap <Leader>vq :qa! <CR>
 nnoremap <Leader>vw :wa<CR>
 nnoremap <Leader>v<Leader> :call EvalThis()<CR>
+" Evaluate a paragraph in Vimscript and re-run last command
+nnoremap <Leader>vi yap:@<CR>:<up><CR>
 nnoremap <Leader>vf :set filetype=sh<CR>
 nnoremap <Leader>vb :call SwitchBackground() <CR>:echo "background=" &background <cr>
 nnoremap <Leader>vg :set termguicolors! <cr>:set termguicolors? <cr>
@@ -628,11 +631,12 @@ nnoremap <Leader>vt :TagbarOpen fj <CR>
 " nnoremap <Leader>.. :call UpdCtagsHereDeps() <CR>
 " nnoremap <Leader>.. :call UpdCtagsGitDeps() <CR>
 " nnoremap <Leader>.. :call UpdCtagsGit() <CR>
+" Ack stuff
 nnoremap <Leader>za :Ack <C-r><C-w> %:p:h 
-nnoremap <Leader>zg :call ClimbToDirWhere(".git/index",1) \| Ack -Q <C-R><C-W> 
-nnoremap <Leader>zf :call ClimbToDirWhere("Makefile",1) \| Ack -Q <C-R><C-W> 
 " nnoremap <Leader>ff :AckFile <C-r><C-W> <CR>
 nnoremap <Leader>zw :AckWindow <C-r><C-w> <CR>
+nnoremap <Leader>zg :call ClimbToDirWhere(".git/index",1) \| Ack -Q <C-R><C-W> 
+nnoremap <Leader>zf :call ClimbToDirWhere("Makefile",1) \| Ack -Q <C-R><C-W> 
 nnoremap <Leader>zz :let &scrolloff=28-&scrolloff<CR>
 nnoremap <Leader>zo :make <bar> copen <CR>
 nnoremap <Leader>zm :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make") <bar> redraw! <bar> cwindow <CR>
@@ -880,7 +884,7 @@ endfunction
 
 " echo map(range(1, bufnr('$')), '[bufname(v:val), v:val]')
 
-" function! RevealBufs(arg)
+" function! RevealBuf(arg)
 "   let ar = []
 "   for b in getbufinfo()
 "     if b.name =~ a:arg && empty(b.windows) && b.loaded == 1
@@ -890,6 +894,29 @@ endfunction
 "     endif
 "   endfor
 " endfunction
+
+function! RevealWindowOnTab(arg)
+  let tabnum = tabpagenr()
+  for bufnum in tabpagebuflist()
+    if bufname(bufnum) =~ a:arg
+      for buf in getbufinfo(bufnum)
+        for bw in buf.windows
+          if win_id2tabwin(bw)[0] == tabnum
+            call win_gotoid(bw)
+            return 1
+          endif
+        endfor
+      endfor
+    endif
+  endfor
+endfunction
+
+function! RaiseNetRW()
+  let r = RevealWindowOnTab("NetRWTreeListing")
+  if r != 1
+    exec "Vexplore"
+  endif
+endfunction
 
 function! MoveToPrevTab()
   "there is only one window
@@ -1060,7 +1087,7 @@ endfunction
 
 function! EvalThis()
   if getline(line('.')) =~ "^$"
-    " If cursor is on a blank line, Eval next paragraph 
+    " If cursor is on a blank line, Eval next paragraph
     exec "normal! yap:@\"\<CR>"
   else
     " Eval current line 
@@ -1168,6 +1195,7 @@ endif
 " colo cryslominsa | LineColor cryslominsa
 " colo everforest | LineColor cryslominsa
 " colo Tomorrow-Night | LineColor bluewery
+" let ayucolor="mirage" | colo ayu | LineColor ayu_mirage
 " colo corvine | LineColor bluewery
 " colo OceanicNext | LineColor bluewery
 " colo espresso | LineColor espresso
