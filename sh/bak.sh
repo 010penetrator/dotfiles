@@ -5,7 +5,7 @@ bak2="/ln/bl/bak"
 mkdir -p $bak
 rdir="$PWD"
 
-a=$( ls -t $bak | grep my_bak_ | head -1 )
+a=$( ls $bak | grep my_bak_ | tail -1 )
 ! [[ $a ]] && i=11 || i=$( echo ${a##my_bak_} | cut -d '_' -f1 )
 shopt -s extglob ; i=${i##+(0)}
 i=$(( i%30 ))

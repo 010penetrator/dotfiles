@@ -4,7 +4,9 @@ set termguicolors
 compiler gcc
 " set makeprg=make\ 
 set makeprg=gcc\ %:p\ -o\ %:p:h/bin
-let $VIMPLUG = expand('$HOME') . '/.vim/plugged'
+let $RTP=split(&runtimepath, ',')[0]
+" let $RTP = expand('$HOME') . '/.vim'
+let $VIMPLUG = $RTP/"plugged"
 if !filereadable($HOME."/.vim/autoload/plug.vim")
   echom "Will try to download Plug.vim"
   silent call system("curl -s --head -m 1 https://github.com 1>/dev/null && curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim")
@@ -222,7 +224,7 @@ let xterm16_brightness = '#aac8c2' | let xterm16_colormap='soft'
 let g:seoul256_background = 234
 " Check lightline themes here:
 " read !ls $VIMPLUG/lightline.vim/autoload/lightline/colorscheme
-" set colorcolumn=80
+set colorcolumn=80
 " augroup mysettings
 " au FileType tex set wrap shiftwidth=2 softtabstop=2 expandtab
 " augroup END
@@ -238,18 +240,18 @@ let g:seoul256_background = 234
   endfunction
 set noequalalways
 set winheight=7
-" silent !mkdir -p ~/.vimbak
-silent ! find $HOME/.vim/bak -type f -mtime +30 -delete
-if !isdirectory($HOME."/.vim")
-  call mkdir($HOME."/.vim", "", 0770)
+" Handle backups
+silent ! find $RTP/bak -type f -mtime +30 -delete
+if !isdirectory($RTP)
+  call mkdir($RTP, "", 0770)
 endif
-if !isdirectory($HOME."/.vim/bak")
-  call mkdir($HOME."/.vim/bak", "", 0700)
+if !isdirectory($RTP/"bak")
+  call mkdir($RTP/"bak", "", 0700)
 endif
-set backupdir=~/.vim/bak
-set undodir=~/.vim/bak
+set backupdir=$RTP/bak
+set undodir=$RTP/bak
 set undofile
-set directory=~/.vim/bak
+set directory=$RTP/bak
 set swapfile
 set sessionoptions+=globals
 set history=2500
@@ -615,7 +617,7 @@ nnoremap <Leader>v<space> :silent exec '! ( sleep 0 ; MODE=current vimz "%:p" ) 
 nnoremap <Leader>va :silent exec '! ( sleep 0 ; vimz "%:p" ) & ' \| redraw! \| q <CR>
 " Add Plug entry
 nnoremap <Leader>vp :put + <bar> exec "normal dfmxIPlug 'A'" <CR>
-nnoremap <Leader>vs :source ~/.vim/session.vim \| call LoadColor() \| call MySigns()<CR>
+nnoremap <Leader>vs :source $RTP/session.vim \| call LoadColor() \| call MySigns()<CR>
 nnoremap <Leader>zs :wa\|SessWrite<CR>
 nnoremap <Leader>vv :source $MYVIMRC <CR>
 nnoremap <Leader>vq :qa! <CR>
@@ -663,7 +665,7 @@ command! SuE r !sudo cat %
 command! KIR e ++enc=cp1251 | set fileencoding=utf-8 | set fileformat=unix
 " command! C1KIR e ++enc=cp1251 | set fileencoding=utf-8 | set fileformat=unix | wq
 command! F set fileencoding=utf-8 | set fileformat=unix
-command! SessWrite let g:Color_save=g:colors_name | let g:Color_backgr=&background | let g:Line_save=g:lightline.colorscheme | call TerminalsFuneral() | mksession! ~/.vim/session.vim | SaveSigns! ~/.vim/signs.sav
+command! SessWrite let g:Color_save=g:colors_name | let g:Color_backgr=&background | let g:Line_save=g:lightline.colorscheme | call TerminalsFuneral() | mksession! $RTP/session.vim | SaveSigns! $RTP/signs.sav
 command! QQ  exec 'SessWrite' | wa | qa
 command! Bash exec 'silent ! bash' | redraw!
 command! NewTerm exec 'silent ! $TERMINAL &' | redraw!
@@ -1146,8 +1148,8 @@ function! MySigns()
   nnoremap <F8> :exe ":sign place 777 line=" . line(".") ." name=mywarning file=" . expand("%:p")<CR>
   nnoremap <F9> :exe ":sign place 666 line=" . line(".") ." name=mybookmark file=" . expand("%:p")<CR>
   nnoremap <F10> :sign unplace<CR>
-  if filereadable("~/.vim/signs.sav")
-    source ~/.vim/signs.sav
+  if filereadable("$RTP/signs.sav")
+    source $RTP/signs.sav
   endif
 endfunc
 call MySigns()
