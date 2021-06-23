@@ -1,12 +1,15 @@
 " vim: ts=2 sw=2:
+" vi: noswapfile bufhidden=wipe
 set nocompatible              " be iMproved
 set termguicolors
 compiler gcc
 " set makeprg=make\ 
 set makeprg=gcc\ %:p\ -o\ %:p:h/bin
+set path=.,**
+" set wildignore=*.swp
 let $RTP=split(&runtimepath, ',')[0]
 " let $RTP = expand('$HOME') . '/.vim'
-let $VIMPLUG = $RTP/"plugged"
+let $VIMPLUG = $RTP . "/plugged"
 if !filereadable($HOME."/.vim/autoload/plug.vim")
   echom "Will try to download Plug.vim"
   silent call system("curl -s --head -m 1 https://github.com 1>/dev/null && curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim")
@@ -16,7 +19,8 @@ endif
 " currfile=%\ mainbin
 " let $BROWSER = 'luakit'
 " .w !bash  "exec current line 
-" %s/^\(\s\)\+$//g |" clean space lines 
+" %s/^\(\s\)\+$//g | "clean space lines 
+" s/\(|\|\\\)/\\\1/g "screen backslashes for saving command
 " exec  "!"  . @"  "exec yank buffer
 " read !ls -la  "paste shell output
 " g/.\{20,\}/ exec "normal gqgq" | nohls " format longer lines
@@ -214,8 +218,6 @@ if $TERMINAL =~ 'kitty'
   let &t_ut=''
 endif
 let g:GPGPreferSymmetric=1
-" vi: noswapfile bufhidden=wipe
-" vim: autoindent nobackup nowritebackup noswapfile bufhidden=wipe foldmethod=indent fdo=insert fcl=all fdl=1
 " set nofoldenable    " disable folding
 set foldmethod=marker
 let g:UltiSnipsSnippetDirectories=[$HOME."/.vim/ultisnips"]
@@ -224,10 +226,10 @@ let xterm16_brightness = '#aac8c2' | let xterm16_colormap='soft'
 let g:seoul256_background = 234
 " Check lightline themes here:
 " read !ls $VIMPLUG/lightline.vim/autoload/lightline/colorscheme
-set colorcolumn=80
 " augroup mysettings
 " au FileType tex set wrap shiftwidth=2 softtabstop=2 expandtab
 " augroup END
+
 " Taming netrw:
   autocmd FileType netrw setl bufhidden=delete
   augroup netrw_mapping
@@ -238,6 +240,8 @@ set colorcolumn=80
     noremap <buffer> x :q<cr>
     " unmap <buffer> a
   endfunction
+
+set colorcolumn=80
 set noequalalways
 set winheight=7
 " Handle backups
@@ -245,8 +249,8 @@ silent ! find $RTP/bak -type f -mtime +30 -delete
 if !isdirectory($RTP)
   call mkdir($RTP, "", 0770)
 endif
-if !isdirectory($RTP/"bak")
-  call mkdir($RTP/"bak", "", 0700)
+if !isdirectory($RTP . "/bak")
+  call mkdir($RTP . "/bak", "", 0700)
 endif
 set backupdir=$RTP/bak
 set undodir=$RTP/bak
@@ -599,7 +603,7 @@ nnoremap <Leader>gw yiw:call system('google.sh ' . "'" . @" . "'")<CR>
 nnoremap <Leader>gy ^y$:call system('yandex.sh ' . "'" . @" . "'")<CR>
 " nnoremap <Leader>gr ^y$:silent exec " !source $HOME/.bashrc && chromium \"red " . @" . "\" &>/dev/null & " \| redraw!<CR>
 nnoremap <Leader>gg :call FocusBufOrDo('wawe','e /ln/ho/moment/4gist/wawe')<CR>
-nnoremap <Leader>gq :call FocusBufOrDo('.vimrc','e $MYVIMRC')<CR>
+nnoremap <Leader>gq :call FocusBufOrDo('.vimrc$','e $MYVIMRC')<CR>
 nnoremap <Leader>gb :call FocusBufOrDo('.bashrc$','e $HOME/.bashrc')<CR>
 nnoremap <Leader>gx :call FocusBufOrDo('sxhkd','e /ln/sh/sxhkdrc')<CR>
 nnoremap <Leader>gk :call FocusBufOrDo('kitty.conf','e /ln/sh/kitty.conf')<CR>
@@ -964,6 +968,7 @@ function! MoveToNextTab()
   exe "b".l:cur_buf
 endfunc
 
+" Swap content of 2 windows
 function! SwapContentPrevWin()
   let lines1 = getline(1, '$')
   exe 'wincmd p'

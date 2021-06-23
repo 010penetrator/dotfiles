@@ -5,7 +5,8 @@ if [ -z "$1" ] ; then
   # exit 1
 fi
 
-[[ $MODE == '' ]] && MODE="newtab"
+# Set default new buffer placement in Vim:
+[[ $MODE == '' ]] && MODE="last"
 
 echo "VIMZ: Given servername is $VIM_SERVERNAME"
 [ -z $VIM_SERVERNAME ] && VIM_SERVERNAME='VIMSERV' && echo "Will try VIMSERV"
@@ -22,7 +23,7 @@ if [ $(vim --serverlist | wc -l) == 0 ] ; then
   esac
   # Wait for it
   sleep .5
-elif [ -n $VIM_SERVERNAME ] && [ $(vim --serverlist | grep $VIM_SERVERNAME ) == 0 ] ; then
+elif [ -n "$VIM_SERVERNAME" ] && [ $(vim --serverlist | grep "$VIM_SERVERNAME" ) == 0 ] ; then
 # elif ! [ -z $VIM_SERVERNAME ] ; then
   VIM_SERVERNAME=$(vim --serverlist | head -n 1)
   echo "Found Vim servers:"
