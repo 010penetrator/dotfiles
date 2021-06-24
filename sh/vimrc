@@ -651,7 +651,7 @@ nnoremap <Leader>zx :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","mak
 nnoremap <Leader>zr :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make run") <bar> redraw! <bar> cwindow <CR>
 " nnoremap <Leader>zb yap: exec "!" . @" <cr>
 nnoremap <Leader>zl : silent exec '! echo -e "\n$(pwd):"; ls -la . ; echo \. ; ls -la %:p ; read -n 1 -s -r -p "//hit.anykey" ; echo -ne "\n" ' \| redraw! <cr>
-vnoremap z- <ESC>:call FoldSelected()<CR>za
+vnoremap <Leader>f :<C-U>call FoldSelection()<CR>
 nnoremap <Leader>b :Buffers<cr>
 nnoremap <silent> <Esc><Esc> <Esc>:nohlsearch<CR><Esc>
 
@@ -1231,12 +1231,44 @@ endif
 
 """"""""""""""""""""""""
 ""       Trial:       ""
-""""""""""""""""""{{{}}}
+""""""""""""""""""""""""
 
-function! FoldSelected()
-  " exec "normal O\<c-m>}}}\<c-[>ki{{{\<c-[>p"
-  " exec "normal O------------------------------{{{\<c-m>\<BS>------------------------------}}}\<c-[>kp"
-  exec "normal `>o------------------------------}}}\<ESC>`<O------------------------------{{{\<ESC>"
+nnoremap <silent> ,1 :set opfunc=FoldMotion<cr>g@
+function! Transform(type, ...)
+  if a:0  " Invoked from Visual mode, use '< and '> marks.
+    silent exe "normal! `<" . a:type . "`>y"
+  " elseif a:type == 'line'
+  endif
+  " echom a:type
+endfunction
+
+function! SelectMotion(type)
+  if a:type == 'line'
+    silent exe "normal '[V']"
+  endif
+endfunction
+
+function! FoldMotion(type)
+  if a:type == 'line'
+    let l:line=&commentstring[0] . "------------------------------"
+    let l:foldbeg=split(&foldmarker,",")[0]
+    let l:foldend=split(&foldmarker,",")[1]
+    let l:newline="\n\n"
+    exec "normal! '[V']d"
+    " put! =l:line . l:foldbeg
+    " put
+    put  =l:line . l:foldend . l:newline .  l:newline . l:line
+  endif
+endfunction
+
+function! FoldSelection()
+let l:line=&commentstring[0] . "------------------------------"
+let l:foldbeg=split(&foldmarker,",")[0]
+let l:foldend=split(&foldmarker,",")[1]
+  silent exec "normal `>"
+  silent put  =l:line . l:foldend
+  silent exec "normal `<"
+  silent put! =l:line . l:foldbeg
 endfunction
 
 function! s:list_buffers()
