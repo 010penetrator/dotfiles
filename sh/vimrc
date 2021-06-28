@@ -1056,16 +1056,15 @@ endfunction
 
 function! DelSpace()
   let cur = line('.')
+  " Search end of previous paragraph
   let beg = search('\S$\n\(^\s*$\n\)\+','bW')
   let beg = ( beg + 1 )
   exec (cur)
+  " Search end of blank space after current paragraph
   let fin = search('\(^\s*$\n\)\+','eW')
-  " exec (cur - 1)
-  " " let las = search('\n^\S')
-  " let las = search('\n\ *\S')
-  " exec (cur + 1)
-  " let beg = search('\S\n^\n','beW')
-  echom (fin-beg)
+  if fin == 0 | let fin = line('$') | endif
+  " echom "fin" (fin)
+  " echom (fin-beg)
   if (fin-beg+1) > 0
     silent exec (beg)','(fin)'d'
   endif
