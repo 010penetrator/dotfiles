@@ -24,7 +24,7 @@ DEB-only: xinput psmisc
 
 RICE
 Chrome: uBlock Vimium CVim Surfingkeys MidnightLizard SingleFile Stylus Rescroller Browsec Bookmarks.by.MakeItSimple RecentBookmarks EmptyNewTabPage CopyTabInfo CopyUrl.rus
-Firefox: TabSuspender tablist VerticalTabsReloaded hide-scrollbars DarkReader *DefaultZoom FixedZoom
+Firefox: Vimium TabSuspender NoPlaylistAutoplayForYouTube tablist VerticalTabsReloaded hide-scrollbars DarkReader *DefaultZoom FixedZoom
 Fonts: Cantarell Liberation DejaVu Noto Arimo Tinos Caslon EB-Garamond Euclid-Circular-A
 Fonts Mono: xos4Terminus LiberationMono Noto Input Fira FiraCode Hack DejaVuSansMono SourceCodePro Tamzen OhSnap
 gtk: lounge mediterraneandarkest adapta mint-y flattastic libra-dark mona-3.0 carbonico arc-dark vertex menda-dark adwaita-maia green-submarine high-contrast-inverse 
@@ -245,6 +245,9 @@ smartctl --smart=on /dev/sdb; smartctl -a /dev/sdb # get smart
 hdparm -i /dev/hda       # получение характеристик IDE устройства
 hdparm -S 30 /dev/sda    # отключение (остановка) жёсткого диска через 150сек после последнего обращения
 hdparm -Tt /dev/sda      # получение скорости ЧТЕНИЯ с жесткого диска
+sudo smartctl -c /dev/sda         # длительность тестов
+sudo smartctl -t short /dev/sda   # short тест
+sudo smartctl -H /dev/sda         # результаты short теста
 tune2fs -m1 /dev/sdXN # set ext reserved blocks to 1%
 tune2fs -U $(uuidgen) /dev/sdX # change partition's UUID
 # if dd command is used to monitor performance of a drive especially for a usb disk, conv=fsync should be set in order to flush the memory each time during the write operation.
