@@ -83,7 +83,7 @@ Plug 'zefei/vim-colortuner' "fun
 " Plug 'ryanoasis/vim-devicons' "not working
 Plug 'dense-analysis/ale'
 " Plug 'scrooloose/syntastic'
-Plug 'valloric/youcompleteme'
+" Plug 'valloric/youcompleteme'
 Plug 'Townk/vim-autoclose'
 
 """"""""""""""""""""""""
@@ -240,6 +240,11 @@ let g:seoul256_background = 234
     noremap <buffer> x :q<cr>
     " unmap <buffer> a
   endfunction
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 0
+let g:netrw_altv = 1
+let g:netrw_winsize = 25
 
 set colorcolumn=80
 set noequalalways
@@ -312,11 +317,6 @@ au TabLeave * let g:lasttab = tabpagenr()
 let g:SrcExpl_pluginList = [ "__Tag_List__" ] 
 let g:ScrExpl_refreshTime=200
 let g:SrcExpl_winHeight = 13
-let g:netrw_banner = 0
-let g:netrw_liststyle = 3
-let g:netrw_browse_split = 4
-let g:netrw_altv = 1
-let g:netrw_winsize = 25
 if has("cscope")
   " set cscopetag
   set csto=0
