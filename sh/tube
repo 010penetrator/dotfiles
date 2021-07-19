@@ -8,18 +8,17 @@ fi
 
 cd /ln/hh/yt 2>/dev/null || cd /ln/dwn
 if ! [ -z $2 ]
-then a="bestvideo[height<=$1]+bestaudio"
-  echo format is $a
-else if ! [ -z $1 ]
-then youtube-dl $1
-  a="bestvideo[height<=720]+bestaudio"
+then
+  url=$2
+  youtube-dl --no-mtime -f "bestvideo[height<=$1]+bestaudio" $url
+elif ! [ -z $1 ]
+then
+  url=$1
+  youtube-dl --no-mtime -f "bestvideo[height<=1080]+bestaudio" $url
 fi
-fi
-
-youtube-dl --no-mtime -f "$a" $2
 
 echo .
 echo 'output is:' 
-ls -lh "$PWD"/*"$(echo "$@" | cut -d = -f2)".*
+ls -lh "$PWD"/*"$(echo "$url" | cut -d = -f2)".*
 cd - &>/dev/null
 

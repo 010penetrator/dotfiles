@@ -107,7 +107,7 @@ nnoremap E :move<cr>
 nnoremap cn :clone<cr>
 nnoremap am ggVG<cr>:move<cr>
 nnoremap a, ggVG<cr>:copy<cr>
-nnoremap zu :! upk2dir.sh %c ; echo <cr>
+nnoremap zu :! upk2dir.sh %c <cr>
 nnoremap zU :! upk2dir.sh %c %D <cr>
 nnoremap zp :! 7z a -mx=3 -xr!.git -xr!tags %c.7z %f <cr>
 nnoremap z0 :! 7z a -mx=1 -xr!.git -xr!tags %c.7z %f
@@ -124,6 +124,7 @@ nnoremap yC :! echo -n %f:p | xclip ; echo -n %f:p | xclip -selection clipboard 
 nnoremap gh :cd $HOME/<cr>
 nnoremap gz :cd /ln/hh/<cr>
 nnoremap gq :cd /ln/mo/<cr>
+nnoremap g/ :cd /ln/<cr>
 nnoremap gm :cd /ln/mus/<cr>
 nnoremap gx :trashes<cr>
 nnoremap gc :cd $HOME/.config/<cr>

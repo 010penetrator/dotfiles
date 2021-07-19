@@ -28,7 +28,7 @@ Firefox: Vimium TabSuspender NoPlaylistAutoplayForYouTube tablist VerticalTabsRe
 Fonts: Cantarell Liberation DejaVu Noto Arimo Tinos Caslon EB-Garamond Euclid-Circular-A
 Fonts Mono: xos4Terminus LiberationMono Noto Input Fira FiraCode Hack DejaVuSansMono SourceCodePro Tamzen OhSnap
 gtk: lounge mediterraneandarkest adapta mint-y flattastic libra-dark mona-3.0 carbonico arc-dark vertex menda-dark adwaita-maia green-submarine high-contrast-inverse 
-Xcursor.theme: Menda-Cursor Simple-and-Soft moblin breeze
+Xcursor.theme: Menda-Cursor Simple-and-Soft moblin breeze pTux
 Icons: Moka Breeze ultraflat maia ardis papirus
 Gnome3: Arc-menu,
 gnome-shell-extension-top-icons-plus
@@ -60,6 +60,7 @@ xterm -geometry 96x36+300+250 -e "vim -S $HOME/.vim/session.vim" &> /dev/null & 
 urxvt -fn "Hack:size=12:style=Regular:antialias=true"
 diff -y <(xxd foo1.bin) <(xxd foo2.bin) # diff binary files
 vimdiff <(xxd foo1.bin) <(xxd foo2.bin)
+find . -exec touch -r {} /ln/mo/messed/{} \; # copy times
 dmesg -L=always | less -r # dmesg-to-less with colors
 find . -type f -exec chmod 644 {} \; # chmod current dir recursively
 chown -R 1001:100 /media/some-place/ # change ownership to user:users

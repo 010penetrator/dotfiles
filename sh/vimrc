@@ -598,8 +598,10 @@ nnoremap <Leader><Space> :LCDhere <CR>
 nnoremap <Leader>o :Goyo 66%x100%<CR>
 nnoremap <Leader>n :call RaiseNetRW()<CR>
 nnoremap <Leader>m ^y$:call system('xdg-open ' . "'" . @" . "' &")<CR>
+vnoremap <Leader>m :<C-U>call SystemOpenEveryLine()<CR>
 nnoremap <Leader>M ^y$:call system('chromium ' . "'" . @" . "' &")<CR>
 nnoremap <Leader>gw yiw:call system('google.sh ' . "'" . @" . "'")<CR>
+nnoremap <Leader>go ^y$:call system('google.sh ' . "'" . @" . "'")<CR>
 nnoremap <Leader>gy ^y$:call system('yandex.sh ' . "'" . @" . "'")<CR>
 " nnoremap <Leader>gr ^y$:silent exec " !source $HOME/.bashrc && chromium \"red " . @" . "\" &>/dev/null & " \| redraw!<CR>
 nnoremap <Leader>gg :call FocusBufOrDo('wawe','e /ln/ho/moment/4gist/wawe')<CR>
@@ -614,7 +616,6 @@ nnoremap <Leader>gh :call FocusBufOrDo('sh_history','e $HOME/.bash_history')<CR>
 nnoremap <Leader>gl :call FocusBufOrDo('1linux','e /ln/sh/1linux')<CR>
 nnoremap <Leader>gs :call FocusBufOrDo('stk','e /ln/ho/use/stk.tx')<CR>
 nnoremap <Leader>gd :BD<CR>
-nnoremap <Leader>vo ^y$:call system('google.sh ' . "'" . @" . "'")<CR>
 " binding for vimz bash script; i e move current buf to vimserver's vim
 nnoremap <Leader>vn :silent exec '! ( sleep 0 ; MODE=newtab vimz "%:p" ) & ' \| redraw! \| q <CR>
 nnoremap <Leader>v<space> :silent exec '! ( sleep 0 ; MODE=current vimz "%:p" ) & ' \| redraw! \| q <CR>
@@ -630,7 +631,7 @@ nnoremap <Leader>v<Leader> :call EvalThis()<CR>
 nnoremap <Leader>vp m'yip:@"<CR>''
 nnoremap <Leader>vl yy:@"<CR>
 " Evaluate a paragraph in Vimscript and re-run last command
-nnoremap <Leader>vi yap:@<CR>:<up><CR>
+nnoremap <Leader>vi yap:@"<CR>:<up><CR>
 nnoremap <Leader>vf :set filetype=sh<CR>
 nnoremap <Leader>vb :call SwitchBackground() <CR>:echo "background=" &background <cr>
 nnoremap <Leader>vg :set termguicolors! <cr>:set termguicolors? <cr>
@@ -1257,6 +1258,20 @@ let l:foldend=split(&foldmarker,",")[1]
   silent put  =l:line . l:foldend
   silent exec "normal `<"
   silent put! =l:line . l:foldbeg
+endfunction
+
+function! SystemOpenEveryLine()
+  silent exec "normal `>"
+  let l:end = line('.')
+  silent exec "normal `<"
+  let l:beg = line('.')
+  for lineno in range(l:beg, l:end)
+    let l:line = getline(lineno)
+    " Open l:line with its xdg program
+    silent call system('xdg-open ' . "'" . l:line . "' &>/dev/null &")
+  endfor
+  " Restore selection
+  exec "normal `>V`<"
 endfunction
 
 function! s:list_buffers()
