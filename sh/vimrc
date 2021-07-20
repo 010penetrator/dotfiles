@@ -458,7 +458,8 @@ nnoremap a-   :split <bar> exec "normal -" <cr>
 nnoremap a_  :vsplit <bar> exec "normal -" <cr>
 " Split open file under cursor with netrw 
 nnoremap ae :vsp <c-r><c-f> <CR>
-nnoremap aE :e <c-r><c-f> <CR>
+nnoremap aE :sp <c-r><c-f> <CR>
+" nnoremap aE :e <c-r><c-f> <CR>
 " Split open current location with netrw
 nnoremap a, :wincmd s \| e %:p:h <CR>
 nnoremap a. :wincmd v \| e %:p:h <CR>
