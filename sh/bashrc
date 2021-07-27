@@ -16,8 +16,6 @@ export BROWSER=firefox
 export sh=$HOME/.sh
 export tt=$HOME/tt
 export MANWIDTH=80
-export FZF_DEFAULT_OPTS="--exact --layout=reverse --height 55%"
-export FZF_CTRL_R_OPTS="--no-sort --exact"
 export LSBLK="lsblk"
 #
 export TERMINAL=xterm
@@ -85,9 +83,14 @@ gsync() {
 }
 
 # FZF #
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-[ -f /usr/share/fzf/key-bindings.bash ] && source /usr/share/fzf/key-bindings.bash
-[ -f /usr/share/fzf/completion.bash ] && source /usr/share/fzf/completion.bash
+# [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+# [ -f /usr/share/fzf/key-bindings.bash ] && source /usr/share/fzf/key-bindings.bash
+# [ -f /usr/share/fzf/completion.bash ] && source /usr/share/fzf/completion.bash
+[[ ! "$PATH" == */moment/fzf/bin* ]] && export PATH="${PATH:+${PATH}:}/$HOME/moment/fzf/bin"
+[[ $- == *i* ]] && source "$HOME/moment/fzf/shell/completion.bash" 2> /dev/null
+source "$HOME/moment/fzf/shell/key-bindings.bash"
+export FZF_DEFAULT_OPTS="--exact --layout=reverse --height 55%"
+export FZF_CTRL_R_OPTS="--no-sort --exact"
 # bind -X "\C-r: reverse-search-history" 
 function fzfpaadd { pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S ; }
 function fzfparem { pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns ; }
