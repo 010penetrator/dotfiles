@@ -5,7 +5,7 @@ super + x ; { t, j, z, q, l, c, d, space }
   { raiseterm.sh, windowswitcher.sh, xdotool mousemove_relative 0 1600, bspc node -c, listdwn.sh, listmpv.sh, deadbeef, listdeadbeef.sh }
 
 super + { q, S, t, v, s, p, c, r, R, g, a, A, b, z }
-  raise.sh { '' scroff, '' 'systemctl suspend', 'xterm\|urxvt\|kitty', VIM 'vimz', 'chromium\|Firefox' '', Thunar thunar, VIFM '$TERMINAL -e vifm & notify-send new_VIFM', zathura listzathura.sh, evince, 'Telegram\|Pidgin\|TuxGuitar' '', 'transmission-remote\|tremc\|qbittorrent' '$TERMINAL -e tremc -c localhost:9090', 'tremc-pi' '$TERMINAL -T tremc-pi -e tremc -c 192.168.1.78:9090', ' Browser' 'noti echo starting TorBro... ; [ -f .trb.desktop ] && exo-open .trb.desktop || torbrowser-launcher', FBReader }
+  raise.sh { '' scroff, '' 'systemctl suspend', 'xterm\|urxvt\|kitty', VIM 'vimz', 'chromium\|Firefox' '', Thunar thunar, VIFM '$TERMINAL -e vifm & notify-send new_VIFM', zathura listzathura.sh, evince, 'Telegram\|Pidgin\|TuxGuitar\|hydrogen' '', 'transmission-remote\|tremc\|qbittorrent' '$TERMINAL -e tremc -c localhost:9090', 'tremc-pi' '$TERMINAL -T tremc-pi -e tremc -c 192.168.1.78:9090', ' Browser' 'noti echo starting TorBro... ; [ -f .trb.desktop ] && exo-open .trb.desktop || torbrowser-launcher', FBReader }
 
 super + { T, V, C, B }
   raisekitty.sh { bash, VIM, VIFM, MPV }
