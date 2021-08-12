@@ -134,8 +134,8 @@ nnoremap gk :cd /ln/torrents/red/KKK/<cr>:sort<cr>mh
 nnoremap gl gf 
 nnoremap al :!ln -s $PWD/%c %D/%c <cr>
 nnoremap ah :!ln  $PWD/%c %D/%c <cr>
-nnoremap ap al
-" nnoremap ap :!ln -sr $PWD/%c %D/%c <cr>
+" nnoremap ap al
+nnoremap ap :!ln -sr $PWD/%c %D/%c <cr>
 nnoremap aL :!ln -s $PWD/%c %d/%cL <cr>
 nnoremap ae :winrun , cd %C <cr><tab>
 nnoremap a= :winrun , cd %D <cr><tab>
@@ -382,8 +382,8 @@ fileviewer *.[1-8] man ./%c | col -b
 
 " Images
 filextype *.bmp,*.jpg,*.jpeg,*.png,*.xpm,*.webp,*gif
-        \ nomacs -f -m frameless %c &>/dev/null &,
         \ feha %c &>/dev/null &,
+        \ nomacs -f -m frameless %c &>/dev/null &,
         \ eom %c &>/dev/null &,
         \ ristretto %c,
         \ sxiv,
