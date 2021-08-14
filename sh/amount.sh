@@ -5,7 +5,7 @@
 
 LSBLK="lsblk"
 # NAME,FSTYPE,LABEL,FSUSE%,FSSIZE,MOUNTPOINT 
-target=$( $LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT | grep .sd | dmenu $DMENU_OPTIONS -fn "$DMENU_FN" | cut -f 1 -d " " | tr -cd '[:alnum:]' )
+target=$( $LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT | grep -e ".sd\|.nvme" | dmenu $DMENU_OPTIONS -fn "$DMENU_FN" | cut -f 1 -d " " | tr -cd '[:alnum:]' )
 echo $target
 if [ ! -z "${target}" ] ; then
     udevil mount /dev/$target &> /tmp/vil1 

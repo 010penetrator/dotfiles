@@ -47,8 +47,8 @@ alias vf='$TERMINAL -e vifm . &'
 alias l='$LSBLK -f'
 alias lb='$LSBLK -f | grep sd --color=none'
 alias lm='$LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT'
-amou() { target=$( $LSBLK -f | grep .sd | fzf -e | cut -f 1 -d " " | tr -cd '[:alnum:]' ); [ ! -z "${target}" ] && udevil mount /dev/"$target" && echo "/dev/$target mounted" || echo 'No target.' ; }
-aumo() { target=$( $LSBLK -f | grep .sd | grep '/' | cut -c 7- | fzf -e |  cut -f 1 -d " " ); [ ! -z "${target}" ] && sync && udevil umount "/dev/$target" && echo "/dev/$target unmounted" || echo 'No target.' ; }
+amou() { target=$( $LSBLK -f | grep -e ".sd\|.nvme" | fzf -e | cut -f 1 -d " " | tr -cd '[:alnum:]' ); [ ! -z "${target}" ] && udevil mount /dev/"$target" && echo "/dev/$target mounted" || echo 'No target.' ; }
+aumo() { target=$( $LSBLK -f | grep -e ".sd\|.nvme" | grep '/' | cut -c 7- | fzf -e |  cut -f 1 -d " " ); [ ! -z "${target}" ] && sync && udevil umount "/dev/$target" && echo "/dev/$target unmounted" || echo 'No target.' ; }
 # title() { echo -ne "\e]0;$*\a"; }
 title() { echo -ne "\033]0;$*\007"; }
 alias leto='date +%Y-%m-%d'
