@@ -624,7 +624,7 @@ nnoremap <Leader>va :silent exec '! ( sleep 0 ; vimz "%:p" ) & ' \| redraw! \| q
 " Add Plug entry
 nnoremap <Leader>vp :put + <bar> exec "normal dfmxIPlug 'A'" <CR>
 nnoremap <Leader>vs :source $RTP/session.vim \| call LoadColor() \| call MySigns()<CR>
-nnoremap <Leader>zs :wa\|SessWrite<CR>
+nnoremap <Leader>zs :wa\|SessWrite<CR>:wq<CR>
 nnoremap <Leader>vq :qa! <CR>
 nnoremap <Leader>vw :wa<CR>
 nnoremap <Leader>vv :source $MYVIMRC <CR>
@@ -675,7 +675,7 @@ command! KIR e ++enc=cp1251 | set fileencoding=utf-8 | set fileformat=unix
 " command! C1KIR e ++enc=cp1251 | set fileencoding=utf-8 | set fileformat=unix | wq
 command! F set fileencoding=utf-8 | set fileformat=unix
 command! SessWrite let g:Color_save=g:colors_name | let g:Color_backgr=&background | let g:Line_save=g:lightline.colorscheme | call TerminalsFuneral() | mksession! $RTP/session.vim | SaveSigns! $RTP/signs.sav
-command! QQ  exec 'SessWrite' | wa | qa
+command! QQ exec 'SessWrite' | wa | qa
 command! Bash exec 'silent ! bash' | redraw!
 command! NewTerm exec 'silent ! $TERMINAL &' | redraw!
 command! NewTermHere exec 'silent ! cd "%:p:h" && $TERMINAL &' | redraw!
