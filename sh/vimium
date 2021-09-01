@@ -35,3 +35,18 @@ c: https://en.cppreference.com/mwiki/index.php?search=%s
 urban: https://www.urbandictionary.com/define.php?term=%s Urban dict
 ru: https://rutracker.org/forum/tracker.php?nm=%s RuTracker
 
+div > .vimiumHintMarker {
+/* linkhint boxes */
+background: azure;
+border: none;
+padding: 1px 2px 0px 2px;
+}
+div > .vimiumHintMarker span {
+/* linkhint text */
+color: #087518;
+font-weight: bold;
+font-size: 13px;
+}
+div > .vimiumHintMarker > .matchingCharacter {
+}
+
