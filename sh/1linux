@@ -147,6 +147,8 @@ wmctrl -r :SELECT: -T 'another title' # now click a window to set its title
 sleep 1 ; xdotool getwindowfocus getwindowname ; xdotool getactivewindow getwindowname
 xinput list-props N # get input device props
 xinput set-prop "pointer:RAPOO RAPOO 2.4G Wireless Device" "Device Accel Constant Deceleration" 3
+xinput --set-prop <device id> 'libinput Accel Profile Enabled' 0, 1
+xinput set-prop 18 "libinput Accel Speed" -.5
 xrdb -merge <(echo "Xft.dpi: 100") # set dpi
 xrdb -query | grep dpi # show DPI
 xrandr --dpi 108 # set DPI

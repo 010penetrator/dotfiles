@@ -26,10 +26,10 @@ sxd.sh &
 # killall sxhkd; sxhkd -c ~/.sh/sxhkdrc &
 nitrogen --restore &
 
-xinput set-prop "A4TECH USB Device" "libinput Accel Speed" -.5
-xinput set-prop "LVT ENDGAME GEAR XM1" "libinput Accel Speed" -.5
+# xinput set-prop "A4TECH USB Device" "libinput Accel Speed" -.5
+# xinput set-prop "LVT ENDGAME GEAR XM1" "libinput Accel Speed" -.5
 xinput set-prop "RAPOO Rapoo 2.4G Wireless Device" "libinput Accel Speed" -.7
-xinput set-prop "pointer:Logitech MX Master 3" "libinput Accel Speed" -.5
+# xinput set-prop "pointer:Logitech MX Master 3" "libinput Accel Speed" -.5
 
 if [[ "$HOSTNAME" =~ 'killer'[pc,PC] ]]; then
   # xrandr --dpi 110x110
