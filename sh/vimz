@@ -16,8 +16,8 @@ if [ $(vim --serverlist | wc -l) == 0 ] ; then
   # Launch great Vim-server
   case $TERMINAL in
     kitty*)
-      # $TERMINAL --start-as maximized bash -c "source $HOME/.bashrc ; sleep .1 ; vim --servername $VIM_SERVERNAME" & ;;
-      $TERMINAL bash -c "source $HOME/.bashrc ; sleep .1 ; vim --servername $VIM_SERVERNAME" & ;;
+      $TERMINAL --start-as maximized bash -c "source $HOME/.bashrc ; sleep .1 ; vim --servername $VIM_SERVERNAME" & ;;
+      # $TERMINAL bash -c "source $HOME/.bashrc ; sleep .1 ; vim --servername $VIM_SERVERNAME" & ;;
     *)
       xterm -maximized -e "source $HOME/.bashrc ; sleep .1 ;vim --servername $VIM_SERVERNAME" & ;;
   esac

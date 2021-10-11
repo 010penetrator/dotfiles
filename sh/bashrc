@@ -20,7 +20,7 @@ export LSBLK="lsblk"
 #
 export TERMINAL=xterm
 command -v kitty &> /dev/null && export TERMINAL=kitty
-[[ "$TERMINAL" == "kitty" ]] && [[ $HIDPI == "1" ]] && export TERMINAL="kitty -o font_size=14.2 -o initial_window_width=1250 -o initial_window_height=900"
+[[ "$TERMINAL" == "kitty" ]] && [[ $HIDPI == "1" ]] && export TERMINAL="kitty -o font_size=14.2 -o initial_window_width=1350 -o initial_window_height=900"
 #
 #PS1='[\u@\h \W]\$ '
 #PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w \$\[\033[00m\]'
