@@ -521,6 +521,8 @@ nnoremap <Leader>p :call BufPut()<CR>
 " Go to text start/finish in file
 nnoremap g<PageUp>   gg:call search('^.') <CR>k
 nnoremap g<PageDown> G$:call search('^.','b') <CR>0j
+nnoremap gT  gg:call search('^.') <CR>k
+nnoremap gB  G$:call search('^.','b') <CR>0j
 " Search my comments
 nnoremap am /\s*\/\/.*\/\/$<CR>
 " Jump to blank or one-char lines
@@ -569,6 +571,7 @@ nnoremap q7 7gt
 nnoremap q8 8gt
 nnoremap q9 9gt
 nnoremap <Leader>q :qa <CR>
+nnoremap <Leader>; :4mes<CR>
 nnoremap <Leader>j :Unite buffer file<CR>
 nnoremap <Leader>l :Unite buffer file<CR>i
 nnoremap <Leader>k :Denite buffer -mode=normal -immediately-1<CR>
@@ -624,7 +627,7 @@ nnoremap <Leader>va :silent exec '! ( sleep 0 ; vimz "%:p" ) & ' \| redraw! \| q
 " Add Plug entry
 nnoremap <Leader>vp :put + <bar> exec "normal dfmxIPlug 'A'" <CR>
 nnoremap <Leader>vs :source $RTP/session.vim \| call LoadColor() \| call MySigns()<CR>
-nnoremap <Leader>zs :wa\|SessWrite<CR>
+nnoremap <Leader>zs :wa\|SessWrite<CR>:wq<CR>
 nnoremap <Leader>vq :qa! <CR>
 nnoremap <Leader>vw :wa<CR>
 nnoremap <Leader>vv :source $MYVIMRC <CR>
@@ -1097,11 +1100,14 @@ function! DoOnKey(keycode,command)
 endfunction
 
 function! EvalThis()
+    " echom "beginin"
   if getline(line('.')) =~ "^$"
     " If cursor is on a blank line, Eval next paragraph
-    exec "normal! yip:@\"\<CR>"
+    exec "normal! yap:@\"\<CR>"
+    " echom "whole par"
   else
     " Eval current line 
+    " echom "one line"
     if getline(line('.')) =~ '^\%[\s]*["].*'
       " Ignore the comment sign <"> if it was detected
       exec "normal! 0^wy$:@\"\<CR>"
