@@ -1,6 +1,8 @@
 [global]
     # font = Liberation Mono 14.2
+    width = 0
     font = Liberation Mono 12.0
+    # geometry = "450x5-18+12"
     # font = Monospace 11.6
     
     # Allow a small subset of html markup:
@@ -13,7 +15,7 @@
     # <http://developer.gnome.org/pango/stable/PangoMarkupFormat.html>.
     # If markup is not allowed, those tags will be stripped out of the
     # message.
-    allow_markup = yes
+    # allow_markup = yes
     
     # The format of the message.  Possible variables are:
     #   %a  appname
@@ -27,7 +29,7 @@
     
     # Sort messages by urgency.
     sort = yes
-    
+
     # Show how many messages are currently hidden (because of geometry).
     indicate_hidden = yes
     
@@ -52,8 +54,7 @@
     
     # Ignore newlines '\n' in notifications.
     ignore_newline = no
-    
-    
+
     # The geometry of the window:
     #   [{width}]x{height}[+/-{x}+/-{y}]
     # The geometry of the message window.
@@ -66,7 +67,6 @@
     # the top and down respectevly.
     # The width can be negative.  In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-    geometry = "450x5-18+12"
     # geometry = "dmenu-like"
 
     # Shrink window if it's smaller than the width.  Will be ignored if
@@ -150,10 +150,6 @@
     # Paths to default icons.
     icon_folders = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
 
-[frame]
-    width = 0
-    color = "#888888"
-
 [shortcuts]
 
     # Shortcuts are specified as [modifier+][modifier+]...key
@@ -166,7 +162,7 @@
     close = mod1+Next
     
     # Close all notifications.
-    #close_all = ctrl+shift+space
+    close_all = ctrl+shift+space
     
     # Redisplay last message(s).
     # On the US keyboard layout "grave" is normally above TAB and left
@@ -190,6 +186,7 @@
     timeout = 10
 
 [urgency_critical]
+    frame_color = "#888888"
     background = "#900000"
     foreground = "#ffffff"
     timeout = 0

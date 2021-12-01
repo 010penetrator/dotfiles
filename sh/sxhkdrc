@@ -25,13 +25,15 @@ super + Q
 super + x ; T
   notify-send "$(transmission-remote 192.168.1.78:9090 -st)"
 super + space
-  raise.sh 'deadbeef\|MPV\|mpv\|MOC' 'noti echo no player instance found'
+  raise.sh 'deadbeef\|MPV\|mpv\|YouTube\|MOC' 'noti echo no player instance found'
 ctrl + space
   (setxkbmap -query | grep -q "layout:\s\+us") && setxkbmap ru || setxkbmap us && notify-send "$( setxkbmap -query | grep layout | tr -s ' ' )" -t 600
 super + Escape
   setxkbmap us
 ctrl + 7
   xdotool getactivewindow windowminimize
+alt + { Prior, Next, BackSpace }
+  dunstctl { history-pop, close, close-all }
 alt + x
   dmouse
 alt + e
