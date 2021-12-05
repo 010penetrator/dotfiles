@@ -246,7 +246,7 @@ let g:netrw_browse_split = 0
 let g:netrw_altv = 1
 let g:netrw_winsize = 25
 
-set colorcolumn=80
+set colorcolumn=
 set noequalalways
 set winheight=7
 " Handle backups
@@ -270,7 +270,7 @@ set smartindent
 set invlinebreak
 set sidescroll=12
 set list lcs=tab:\┊\ 
-set scrolloff=4
+set scrolloff=1
 set number
 set numberwidth=2
 set showmode
@@ -291,6 +291,7 @@ autocmd FileType c setlocal commentstring=//%s
 autocmd FileType cpp setlocal commentstring=//%s
 autocmd FileType text setlocal commentstring=#%s
 autocmd FileType cmake setlocal commentstring=#%s
+autocmd FileType c setlocal colorcolumn=80
 set fileformat=unix
 " autocmd CursorHold * normal! m'
 if has('mouse')
@@ -627,7 +628,8 @@ nnoremap <Leader>va :silent exec '! ( sleep 0 ; vimz "%:p" ) & ' \| redraw! \| q
 " Add Plug entry
 nnoremap <Leader>vp :put + <bar> exec "normal dfmxIPlug 'A'" <CR>
 nnoremap <Leader>vs :source $RTP/session.vim \| call LoadColor() \| call MySigns()<CR>
-nnoremap <Leader>zs :wa\|SessWrite<CR>:wq<CR>
+nnoremap <Leader>zs :SessWriteB<CR><esc>
+nnoremap <Leader>zq :SessWriteB<CR>: wa \| qa<CR>
 nnoremap <Leader>vq :qa! <CR>
 nnoremap <Leader>vw :wa<CR>
 nnoremap <Leader>vv :source $MYVIMRC <CR>
@@ -645,12 +647,13 @@ nnoremap <Leader>vt :TagbarOpen fj <CR>
 " nnoremap <Leader>.. :call UpdCtagsGitDeps() <CR>
 " nnoremap <Leader>.. :call UpdCtagsGit() <CR>
 " Ack stuff
-nnoremap <Leader>za :Ack <C-r><C-w> %:p:h 
+nnoremap <Leader>fa :Ack <C-r><C-w> %:p:h 
 " nnoremap <Leader>ff :AckFile <C-r><C-W> <CR>
-nnoremap <Leader>zw :AckWindow <C-r><C-w> <CR>
+nnoremap <Leader>fw :AckWindow <C-r><C-w> <CR>
 nnoremap <Leader>zg :call ClimbToDirWhere(".git/index",1) \| Ack -Q <C-R><C-W> 
 nnoremap <Leader>zf :call ClimbToDirWhere("Makefile",1) \| Ack -Q <C-R><C-W> 
-nnoremap <Leader>zz :let &scrolloff=28-&scrolloff<CR>
+nnoremap <Leaer>zz :let &scrolloff=28-&scrolloff<CR>
+nnoremap <Leader>zn :set number!<CR>
 nnoremap <Leader>zo :make <bar> copen <CR>
 nnoremap <Leader>zm :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make") <bar> redraw! <bar> cwindow <CR>
 nnoremap <Leader>zt :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make tags") <bar> redraw! <bar> cwindow <CR>
@@ -677,8 +680,9 @@ command! SuE r !sudo cat %
 command! KIR e ++enc=cp1251 | set fileencoding=utf-8 | set fileformat=unix
 " command! C1KIR e ++enc=cp1251 | set fileencoding=utf-8 | set fileformat=unix | wq
 command! F set fileencoding=utf-8 | set fileformat=unix
-command! SessWrite let g:Color_save=g:colors_name | let g:Color_backgr=&background | let g:Line_save=g:lightline.colorscheme | call TerminalsFuneral() | mksession! $RTP/session.vim | SaveSigns! $RTP/signs.sav
-command! QQ exec 'SessWrite' | wa | qa
+command! SessWriteA let g:Color_save=g:colors_name | let g:Color_backgr=&background | let g:Line_save=g:lightline.colorscheme | call TerminalsFuneral() | mksession! $RTP/session.vim | SaveSigns! $RTP/signs.sav
+command! SessWriteB exec 'SessWriteA' | call BufFocusedThenDo('signs.sav','wq')
+" command! QQ exec 'SessWriteB' | wa | qa
 command! Bash exec 'silent ! bash' | redraw!
 command! NewTerm exec 'silent ! $TERMINAL &' | redraw!
 command! NewTermHere exec 'silent ! cd "%:p:h" && $TERMINAL &' | redraw!
@@ -847,7 +851,15 @@ function! FocusBufOrDo(name,cmd)
     " echo 'No such buffer'
     exec a:cmd
   endif 
-endfunc
+endfunction
+
+function! BufFocusedThenDo(name,cmd)
+  if bufname('%') =~ a:name
+    exec a:cmd
+  else
+    echo 'Not current buffer'
+  endif
+endfunction
 
 function! GotoWindowByName(name)
   for b in getbufinfo()
@@ -1338,6 +1350,8 @@ function! s:format_buffer(b)
   let l:extra = join(filter([l:modified, l:readonly], '!empty(v:val)'), '')
   return substitute(printf("[%s] %s\t%s\t%s", a:b, l:flag, l:name, l:extra), '^\s*\|\s*$', '', 'g')
 endfunction
+
+""""""""""""""""""{{{}}}
 
 " Remember folds ??
 " au BufWinLeave * mkview
