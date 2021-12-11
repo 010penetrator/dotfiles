@@ -1184,27 +1184,14 @@ call MySigns()
 """"""""""""""""""""""""
 ""      Theming:      ""
 """"""""""""""""""{{{}}}
-
+"
 " hi! Search ctermbg=222
 " hi! Normal ctermbg=234
-
+"
 " if filereadable($HOME."/.vimrc.local")
 "   source $HOME/.vimrc.local
 " endif
-
-let hostname = substitute(system('hostname'), '\n', '', '')
-if !exists("g:colors_name")
-  if hostname == "warmPC" || hostname == "machine" || hostname == "debian10pc"
-    " colo PaperColor | set background=light | LineColor solarized
-    colo Tomorrow | LineColor Tomorrow
-    " colo espresso | LineColor espresso
-    " colo cryslominsa | LineColor cryslominsa
-  endif
-  if hostname == "machine"
-    colo stellarized | set background=light | LineColor atlantis
-  endif
-endif
-
+"
 " list available colors..
 " let c = getcompletion('', 'color') | new | put =c | goto 1 | map M j:exec 'colo' getline(line('.')) <cr>
 " new | map M j: LineColor <C-R><C-W><cr>| exec "read ! echo; ls $VIMPLUG/lightline.vim/autoload/lightline/colorscheme" | goto 1 | del 1
@@ -1250,6 +1237,19 @@ endif
 " LineColor darcula
 " LineColor bluewery
 " LineColor deus
+
+let hostname = substitute(system('hostname'), '\n', '', '')
+if !exists("g:colors_name")
+  if hostname == "warmPC" || hostname == "machine" || hostname == "debian10pc"
+    " colo PaperColor | set background=light | LineColor solarized
+    colo Tomorrow | LineColor Tomorrow
+    " colo espresso | LineColor espresso
+    " colo cryslominsa | LineColor cryslominsa
+  endif
+  if hostname == "machine"
+    colo stellarized | set background=light | LineColor atlantis
+  endif
+endif
 
 """"""""""""""""""""""""
 ""       Trial:       ""
