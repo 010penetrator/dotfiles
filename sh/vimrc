@@ -198,6 +198,7 @@ Plug '010penetrator/vim-colors-forplasma' "collection
 " Plug 'aradunovic/perun.vim' "consbroken 404
 " Plug 'the31k/vim-colors-tayra' "Nice gray 404
 Plug 'ayu-theme/ayu-vim'
+Plug 'wuelnerdotexe/vim-enfocado'
 call plug#end()
 
 """"""""""""""""""""""""
@@ -624,6 +625,7 @@ nnoremap <Leader>gd :BD<CR>
 " binding for vimz bash script; i e move current buf to vimserver's vim
 nnoremap <Leader>vn :silent exec '! ( sleep 0 ; MODE=newtab vimz "%:p" ) & ' \| redraw! \| q <CR>
 nnoremap <Leader>v<space> :silent exec '! ( sleep 0 ; MODE=current vimz "%:p" ) & ' \| redraw! \| q <CR>
+" Open current buffer in vim session by "vimz" shell script
 nnoremap <Leader>va :silent exec '! ( sleep 0 ; vimz "%:p" ) & ' \| redraw! \| q <CR>
 " Add Plug entry
 nnoremap <Leader>vp :put + <bar> exec "normal dfmxIPlug 'A'" <CR>
@@ -634,7 +636,7 @@ nnoremap <Leader>vq :qa! <CR>
 nnoremap <Leader>vw :wa<CR>
 nnoremap <Leader>vv :source $MYVIMRC <CR>
 nnoremap <Leader>v<Leader> :call EvalThis()<CR>
-nnoremap <Leader>vp m'yip:@"<CR>''
+" nnoremap <Leader>vp m'yip:@"<CR>''
 nnoremap <Leader>vl yy:@"<CR>
 " Evaluate a paragraph in Vimscript and re-run last command
 nnoremap <Leader>vi yap:@"<CR>:<up><CR>
