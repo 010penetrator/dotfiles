@@ -70,7 +70,7 @@ nnoremap a; :! vim %c <cr>
 nnoremap ,v :! $TERMINAL vim %c <cr>
 nnoremap a<space> :! MODE="last" vimz "%c" &>/dev/null & <cr>
 nnoremap az :! vimz "%c"<cr>:q<cr>
-nnoremap zl :! bash -c ' echo -ne \\n ls:\\n ; ls -dla %f ; du -sh %f ;du -sb %f ; read -rsn1 ' <cr>
+nnoremap zc :! bash -c ' echo -ne \\n ls:\\n ; ls -dla %f ; du -sh %f ;du -sb %f ; read -rsn1 ' <cr>
 nnoremap za :! clear -x; $LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT ; read -rsn1 <cr>
 nnoremap zs :! clear -x; df -BMB ; read -rsn1 <cr>
 nnoremap zy :! echo; date ; echo Sync... ; sync ; echo "Done!" ; read -rsn1 <cr>
@@ -135,8 +135,8 @@ nnoremap gk :cd /ln/torrents/red/KKK/<cr>:sort<cr>mh
 nnoremap gl gf 
 nnoremap al :!ln -s $PWD/%c %D/%c <cr>
 nnoremap ah :!ln  $PWD/%c %D/%c <cr>
-" nnoremap ap al
-nnoremap ap :!ln -sr $PWD/%c %D/%c <cr>
+nnoremap ap al
+" nnoremap ap :!ln -sr $PWD/%c %D/%c <cr>
 nnoremap aL :!ln -s $PWD/%c %d/%cL <cr>
 nnoremap ae :winrun , cd %C <cr><tab>
 nnoremap a= :winrun , cd %D <cr><tab>
