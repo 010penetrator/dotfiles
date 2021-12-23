@@ -10,6 +10,9 @@ set path=.,**
 let $RTP=split(&runtimepath, ',')[0]
 " let $RTP = expand('$HOME') . '/.vim'
 let $VIMPLUG = $RTP . "/plugged"
+if filereadable($HOME."/.vimrc_msys")
+  source $HOME/.vimrc_msys
+endif
 if !filereadable($HOME."/.vim/autoload/plug.vim")
   echom "Will try to download Plug.vim"
   silent call system("curl -s --head -m 1 https://github.com 1>/dev/null && curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim")
@@ -29,7 +32,7 @@ endif
 """"""""""""""""""""""""
 ""      Plugins:      ""
 """"""""""""""""""""""""
-call plug#begin()
+call plug#begin('$VIMPLUG')
 Plug 'tpope/vim-sensible' "basic
 Plug 'jlanzarotta/bufexplorer' "basic
 Plug 'sheerun/vim-polyglot' "okay HUGE
