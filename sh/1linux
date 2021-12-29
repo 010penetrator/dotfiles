@@ -191,6 +191,7 @@ git checkout INDEX~1 somefile # restore somefile just before INDEX commit
 git reset --hard origin/master ; git pull origin master # discard all local changes/commits and pull from upstream
 git --follow file.c # show file history tracking renames
 git status -vv file.c # diff against last commit
+git remote update ; git show-branch *master # check if remote master has been updated
 7z a dir.7z Dir -p -mhe=on #create encrypted 7z 
 7z a -mx=3 -xr!.git -xr!tags out.7z Projekt # create quick 7z
 tar -I 'zstd -11 -T0' -cf somedir.tar.zst --exclude='.git' --exclude='tags' somedir # create tar.zst

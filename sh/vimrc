@@ -37,7 +37,7 @@ Plug 'tpope/vim-sensible' "basic
 Plug 'jlanzarotta/bufexplorer' "basic
 Plug 'sheerun/vim-polyglot' "okay HUGE
 Plug 'itchyny/lightline.vim' "cool
-Plug 'justinmk/vim-sneak' "good!
+" Plug 'justinmk/vim-sneak' "good!
 Plug 'tpope/vim-commentary' "good
 Plug 'tpope/vim-vinegar' "basic
 Plug 'tpope/vim-surround' "good
@@ -62,7 +62,7 @@ Plug 'kshenoy/vim-signature' "buggy
 Plug 'chrisbra/SaveSigns.vim' "usable
 Plug 'wesleyche/SrcExpl' "mediocre
 " Plug 'tpope/vim-unimpaired'
-" Plug 'eiginn/netrw' "basic
+Plug 'eiginn/netrw' "basic
 " Plug 'ZeroKnight/vim-signjump' "buggy
 " Plug 'kien/rainbow_parentheses.vim'
 " Plug 'ajh17/VimCompletesMe'
@@ -235,13 +235,15 @@ let g:seoul256_background = 234
 " augroup END
 
 " Taming netrw:
-  autocmd FileType netrw setl bufhidden=delete
   augroup netrw_mapping
     autocmd!
-    autocmd filetype netrw call NetrwMapping()
+    autocmd FileType netrw setl bufhidden=delete
+    autocmd FileType netrw call NetrwMapping()
+    autocmd FileType netrw echom 1
   augroup END
   function! NetrwMapping()
     noremap <buffer> x :q<cr>
+    " nmap <buffer> <silent> <nowait> s <Plug>NetrwSortStyle
     " unmap <buffer> a
   endfunction
 let g:netrw_banner = 0
@@ -461,10 +463,10 @@ nnoremap qV :vsplit # <cr>
 " Split netrw
 nnoremap a-   :split <bar> exec "normal -" <cr>
 nnoremap a_  :vsplit <bar> exec "normal -" <cr>
+nnoremap a<CR> :e <c-r><c-f> <CR>
 " Split open file under cursor with netrw 
 nnoremap ae :vsp <c-r><c-f> <CR>
 nnoremap aE :sp <c-r><c-f> <CR>
-" nnoremap aE :e <c-r><c-f> <CR>
 " Split open current location with netrw
 nnoremap a, :wincmd s \| e %:p:h <CR>
 nnoremap a. :wincmd v \| e %:p:h <CR>
@@ -530,6 +532,8 @@ nnoremap gT  gg:call search('^.') <CR>k
 nnoremap gB  G$:call search('^.','b') <CR>0j
 " Search my comments
 nnoremap am /\s*\/\/.*\/\/$<CR>
+nnoremap <F2> [c
+nnoremap <F3> ]c
 " Jump to blank or one-char lines
 nnoremap <silent> gn :call search('^\(.\\|\(\s\)*\)$','W') <CR>
 nnoremap <silent> gp :call search('^\(.\\|\(\s\)*\)$','bW') <CR>
@@ -549,8 +553,9 @@ noremap <C-e> 5<C-e>
 noremap <C-y> 5<C-y>
 nnoremap ]l :lnext<cr>
 nnoremap [l :lprev<cr>
-nmap s <Plug>Sneak_s
-nmap S <Plug>Sneak_S
+" nmap s <Plug>Sneak_s
+" nmap S <Plug>Sneak_S
+" let g:sneak#map_netrw = 0
 nnoremap cx s
 nnoremap c<Space> c$
 cnoremap <C-a> <Home>
@@ -576,7 +581,7 @@ nnoremap q7 7gt
 nnoremap q8 8gt
 nnoremap q9 9gt
 nnoremap <Leader>q :qa <CR>
-nnoremap <Leader>; :4mes<CR>
+nnoremap <Leader>; :6mes<CR>
 nnoremap <Leader>j :Unite buffer file<CR>
 nnoremap <Leader>l :Unite buffer file<CR>i
 nnoremap <Leader>k :Denite buffer -mode=normal -immediately-1<CR>
@@ -604,6 +609,8 @@ nnoremap <Leader>C :Silent xdg-open %:p:h & <cr>
 nnoremap gx dlp
 nnoremap <Leader><Space> :LCDhere <CR>
 " nnoremap <Leader>G :call ClimbToDirWhere(".git/index",1) \| pwd <CR>
+nnoremap <Leader>h :diffthis \| wincmd w<CR>
+nnoremap <Leader>H :diffoff  \| wincmd w<CR>
 nnoremap <Leader>o :Goyo 66%x100%<CR>
 nnoremap <Leader>n :call RaiseNetRW()<CR>
 nnoremap <Leader>m ^y$:call system('xdg-open ' . "'" . @" . "' &")<CR>
@@ -643,6 +650,7 @@ nnoremap <Leader>v<Leader> :call EvalThis()<CR>
 nnoremap <Leader>vl yy:@"<CR>
 " Evaluate a paragraph in Vimscript and re-run last command
 nnoremap <Leader>vi yap:@"<CR>:<up><CR>
+nnoremap <Leader>v. yap:@"<CR>
 nnoremap <Leader>vf :set filetype=sh<CR>
 nnoremap <Leader>vb :call SwitchBackground() <CR>:echo "background=" &background <cr>
 nnoremap <Leader>vg :set termguicolors! <cr>:set termguicolors? <cr>
@@ -1248,8 +1256,13 @@ if !exists("g:colors_name")
   if hostname == "warmPC" || hostname == "machine" || hostname == "debian10pc"
     " colo PaperColor | set background=light | LineColor solarized
     colo Tomorrow | LineColor Tomorrow
+    " colo Tomorrow-Night | LineColor bluewery
+    " colo Tomorrow-Night-Eighties | LineColor ayu_mirage
     " colo espresso | LineColor espresso
     " colo cryslominsa | LineColor cryslominsa
+  endif
+  if hostname == "0000-0000-0000"
+    colo Tomorrow-Night | LineColor bluewery
   endif
   if hostname == "machine"
     colo stellarized | set background=light | LineColor atlantis
