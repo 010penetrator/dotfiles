@@ -37,7 +37,7 @@ Plug 'tpope/vim-sensible' "basic
 Plug 'jlanzarotta/bufexplorer' "basic
 Plug 'sheerun/vim-polyglot' "okay HUGE
 Plug 'itchyny/lightline.vim' "cool
-" Plug 'justinmk/vim-sneak' "good!
+Plug 'justinmk/vim-sneak' "good!
 Plug 'tpope/vim-commentary' "good
 Plug 'tpope/vim-vinegar' "basic
 Plug 'tpope/vim-surround' "good
@@ -235,17 +235,16 @@ let g:seoul256_background = 234
 " augroup END
 
 " Taming netrw:
-  augroup netrw_mapping
-    autocmd!
-    autocmd FileType netrw setl bufhidden=delete
-    autocmd FileType netrw call NetrwMapping()
-    autocmd FileType netrw echom 1
-  augroup END
-  function! NetrwMapping()
-    noremap <buffer> x :q<cr>
-    " nmap <buffer> <silent> <nowait> s <Plug>NetrwSortStyle
-    " unmap <buffer> a
-  endfunction
+autocmd FileType netrw setl bufhidden=delete
+augroup my_netrw_mapping
+  autocmd!
+  autocmd filetype netrw call MyNetrwMapping()
+augroup END
+function! MyNetrwMapping()
+  noremap <buffer> x :q<cr>
+  nnoremap <buffer> a <Nop>
+endfunction
+"
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 let g:netrw_browse_split = 0
@@ -555,7 +554,7 @@ nnoremap ]l :lnext<cr>
 nnoremap [l :lprev<cr>
 " nmap s <Plug>Sneak_s
 " nmap S <Plug>Sneak_S
-" let g:sneak#map_netrw = 0
+let g:sneak#map_netrw = 0
 nnoremap cx s
 nnoremap c<Space> c$
 cnoremap <C-a> <Home>
