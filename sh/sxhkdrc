@@ -1,16 +1,28 @@
-super + x ; { m, s, e, h, H, f, n, o, w, a, i }
-  raise.sh { '' notimem, speedcrunch, 'WeeChat\|weechat' 'urxvt -e weechat', htop '$TERMINAL -e htop', btop '$TERMINAL -e btop', feh 'feha /ln/dwn/', nautilus, VirtualBox '', fbreader, pavucontrol, histmpv.sh }
+super + x ; { m, s, e, h, f, n, o, w, a, i }
+  raise.sh { '' notimem, speedcrunch, 'WeeChat\|weechat' 'urxvt -e weechat', htop '$TERMINAL -e htop', feh 'feha /ln/dwn/', nautilus, VirtualBox '', fbreader, pavucontrol, histmpv.sh }
 
-super + x ; { t, j, z, q, l, c, d, space }
-  { raiseterm.sh, windowswitcher.sh, xdotool mousemove_relative 0 1600, bspc node -c, listdwn.sh, listmpv.sh, deadbeef, listdeadbeef.sh }
+super + x ; { j, z, q, l, c, d, space }
+  { windowswitcher.sh, xdotool mousemove_relative 0 1600, bspc node -c, listdwn.sh, listmpv.sh, deadbeef, listdeadbeef.sh }
 
-super + { q, Q, t, v, s, p, c, r, R, g, a, A, b, z }
-  raise.sh { '' scroff, '' 'sus 1', 'xterm\|urxvt\|kitty', 'VIM\|QtCreator' 'vimz', 'chromium\|Firefox' '', Thunar thunar, 'VIFM\|Thunar' '$TERMINAL -e vifm & notify-send new_VIFM', zathura listzathura.sh, evince, 'Telegram\|Pidgin\|TuxGuitar\|hydrogen' '', 'transmission-remote\|tremc\|rtorrent\|qbittorrent' '$TERMINAL -e tremc -c localhost:9090', 'tremc-pi' '$TERMINAL -T tremc-pi -e tremc -c 192.168.1.78:9090', ' Browser' 'noti echo starting TorBro... ; torbrowser-launcher', FBReader }
+super + { q, Q, t, v, s, p, r, R, z, g }
+  raise.sh { \
+  '' scroff, '' 'sus 1', 'xterm\|urxvt\|kitty', \
+  'VIM\|QtCreator' 'vimz', 'chromium\|Firefox' '', \
+  Thunar thunar, zathura listzathura.sh, evince, FBReader, \
+  'Telegram\|Pidgin\|TuxGuitar\|hydrogen' '' }
+
+super + { c, a, A, b, m }
+  raise.sh { \
+  'VIFM\|Thunar' '$TERMINAL -e vifm & notify-send new_VIFM', \
+  'transmission-remote\|tremc\|rtorrent\|qbittorrent' '$TERMINAL -e tremc -c localhost:9090', \
+  'tremc-pi' '$TERMINAL -T tremc-pi -e tremc -c 192.168.1.78:9090', \
+  ' Browser' 'noti echo starting TorBro... ; torbrowser-launcher', \
+  'btop\|htop' '$TERMINAL -e btop' }
 
 super + { T, V, C, B }
   raisekitty.sh { bash, VIM, VIFM, MPV }
 
-super + n ; { n, m, h, p, c, v, r, t, a }
+super + n ; { n, M, h, p, c, v, r, o, a }
   { $TERMINAL, momkitty.sh, zsh, thunar, $TERMINAL -e vifm, $TERMINAL -e vim, listzathura.sh, $TERMINAL -e rtorrent, $TERMINAL -e tremc -c localhost:9090 }
 super + e
   raiseterm.sh

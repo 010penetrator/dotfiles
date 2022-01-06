@@ -1,4 +1,4 @@
-" vim: ts=2 sw=2:
+" vim: ts=2 sw=2 ft=vim
 " vi: noswapfile bufhidden=wipe
 set nocompatible              " be iMproved
 set termguicolors
@@ -658,13 +658,19 @@ nnoremap <Leader>vt :TagbarOpen fj <CR>
 " nnoremap <Leader>.. :call UpdCtagsHereDeps() <CR>
 " nnoremap <Leader>.. :call UpdCtagsGitDeps() <CR>
 " nnoremap <Leader>.. :call UpdCtagsGit() <CR>
-" Ack stuff
-nnoremap <Leader>fa :Ack <C-r><C-w> %:p:h 
+"
+" Ripgrep
+set grepprg=rg\ --smart-case\ --vimgrep\ --follow
+" Output of :grep should go to cwindow
+autocmd QuickFixCmdPost *grep* cwindow
+" nnoremap <Leader>fa :Ack <C-r><C-w> %:p:h 
 " nnoremap <Leader>ff :AckFile <C-r><C-W> <CR>
-nnoremap <Leader>fw :AckWindow <C-r><C-w> <CR>
-nnoremap <Leader>zg :call ClimbToDirWhere(".git/index",1) \| Ack -Q <C-R><C-W> 
-nnoremap <Leader>zf :call ClimbToDirWhere("Makefile",1) \| Ack -Q <C-R><C-W> 
-nnoremap <Leaer>zz :let &scrolloff=28-&scrolloff<CR>
+" nnoremap <Leader>fw :AckWindow <C-r><C-w> <CR>
+" nnoremap <Leader>zg :call ClimbToDirWhere(".git/index",1) \| Ack -Q <C-R><C-W> 
+" nnoremap <Leader>zf :call ClimbToDirWhere("Makefile",1) \| Ack -Q <C-R><C-W> 
+"
+" Make
+nnoremap <Leader>zz :let &scrolloff=28-&scrolloff<CR>
 nnoremap <Leader>zn :set number!<CR>
 nnoremap <Leader>zo :make <bar> copen <CR>
 nnoremap <Leader>zm :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make") <bar> redraw! <bar> cwindow <CR>
@@ -1259,12 +1265,13 @@ if !exists("g:colors_name")
     " colo Tomorrow-Night-Eighties | LineColor ayu_mirage
     " colo espresso | LineColor espresso
     " colo cryslominsa | LineColor cryslominsa
+    " colo stellarized | set background=light | LineColor atlantis
   endif
   if hostname == "0000-0000-0000"
     colo Tomorrow-Night | LineColor bluewery
   endif
   if hostname == "machine"
-    colo stellarized | set background=light | LineColor atlantis
+    colo Tomorrow-Night | LineColor bluewery
   endif
 endif
 
