@@ -1,12 +1,13 @@
-super + x ; { m, s, e, h, f, n, o, w, a, i, g }
-  raise.sh { '' notimem, speedcrunch, 'WeeChat\|weechat' 'urxvt -e weechat', htop '$TERMINAL -e htop', feh 'feha /ln/dwn/', nautilus, VirtualBox '', fbreader, pavucontrol, histmpv.sh, games.sh }
+super + x ; { m, s, e, h, n, o, w, a, i, g }
+  raise.sh { '' notimem, speedcrunch, 'WeeChat\|weechat' 'urxvt -e weechat', htop '$TERMINAL -e htop', nautilus, VirtualBox '', fbreader, pavucontrol, histmpv.sh, games.sh }
 
-super + x ; { j, z, q, l, c, d, space }
-  { windowswitcher.sh, xdotool mousemove_relative 0 1600, bspc node -c, listdwn.sh, listmpv.sh, deadbeef, listdeadbeef.sh }
+super + x ; { z, f, q, l, c, d, space }
+  { xdotool mousemove_relative 0 1600, rofi -show window, bspc node -c, listdwn.sh, listmpv.sh, deadbeef, listdeadbeef.sh }
 
-super + { q, Q, t, v, s, p, r, R, z, g }
+super + { q, Q, D, F, t, v, s, p, r, R, z, g }
   raise.sh { \
-  '' scroff, '' 'sus 1', 'xterm\|urxvt\|kitty', \
+  '' scroff, '' 'sus 1', windowswitcher.sh, '' 'rofi -show window', \
+  'xterm\|urxvt\|kitty', \
   'VIM\|QtCreator' 'vimz', 'chromium\|Firefox' '', \
   Thunar thunar, zathura listzathura.sh, evince, FBReader, \
   'Telegram\|Pidgin\|TuxGuitar\|hydrogen' '' }
@@ -73,11 +74,13 @@ alt + s
 # bspwm hotkeys #
 
 # quit/restart bspwm
-super + alt + {q,r}
+super + f ; {q,r}
   bspc {quit,wm -r}
 
 # close / kill
 super + ctrl + q
+  bspc node -k
+super + f ; x
   bspc node -k
 
 # alternate between the tiled and monocle layout
@@ -85,12 +88,8 @@ super + m
   bspc desktop -l next
 
 # send the newest marked node to the newest preselected node
-super + f ; b
+super + f ; p
   bspc node newest.marked.local -n newest.automatic.local
-
-# swap the current node and the biggest node
-super + f ; w
-  bspc node -s biggest.local
 
 # set the window state
 super + f ; {d,s,g,f}
@@ -104,26 +103,28 @@ super + f ; i
 super + f ; o
   bspc node -n 'any.leaf.!window' --follow
 
-# rotate the split
-super + ctrl + {r,R}
-  bspc node -f @parent ; bspc node -R {90,-90} ; bspc node older.local -f
-super + f ; r
-  bspc node -f @parent ; bspc node -R {90,-90} ; bspc node older.local -f
-
 # set the node flags
-super + f ; {m,z,a,p}
+super + f ; {m,t,a,y}
   bspc node -g {marked,locked,sticky,private}
 
 # focus/swap the node in the given direction
 super + {_,shift + }{h,j,k,l}
   bspc node -{f,s} {west,south,north,east}
-
+#
+# swap the current node and the biggest node
+super + f ; b
+  bspc node -s biggest.local
+#
 # swap with brother
-super + f ; x
+super + ctrl + s
   bspc node -s @brother
-
+#
+# rotate the split
+super + ctrl + {r,R}
+  bspc node -f @parent ; bspc node -R {90,-90} ; bspc node older.local -f
+#
 # rotate node
-super + alt + x
+super + alt + r
   bspc node -R 90
 
 # focus the node for the given path jump
