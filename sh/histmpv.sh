@@ -1,7 +1,8 @@
 #!/bin/bash
+# Play again one of the recent music albums
 
 . $sh/dmenurc.sh
-d=$(tac /tmp/mpv-history | dmenu $DMENU_OPTIONS -fn "$DMENU_FN")
+d=$(tac /$HOME/.mpv-history | dmenu $DMENU_OPTIONS -fn "$DMENU_FN")
 if [ -z "$d" ]; then echo no selection !; exit; fi
 cd "$d"
 echo $d
@@ -16,3 +17,4 @@ case $TERMINAL in
     *)
         xterm -xrm 'XTerm.vt100.allowTitleOps: true' -geometry 60x24+400+250 -e 'mpv-album .'  &> /dev/null & ;;
 esac
+

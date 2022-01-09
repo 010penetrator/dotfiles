@@ -1,5 +1,5 @@
-super + x ; { m, s, e, h, f, n, o, w, a, i }
-  raise.sh { '' notimem, speedcrunch, 'WeeChat\|weechat' 'urxvt -e weechat', htop '$TERMINAL -e htop', feh 'feha /ln/dwn/', nautilus, VirtualBox '', fbreader, pavucontrol, histmpv.sh }
+super + x ; { m, s, e, h, f, n, o, w, a, i, g }
+  raise.sh { '' notimem, speedcrunch, 'WeeChat\|weechat' 'urxvt -e weechat', htop '$TERMINAL -e htop', feh 'feha /ln/dwn/', nautilus, VirtualBox '', fbreader, pavucontrol, histmpv.sh, games.sh }
 
 super + x ; { j, z, q, l, c, d, space }
   { windowswitcher.sh, xdotool mousemove_relative 0 1600, bspc node -c, listdwn.sh, listmpv.sh, deadbeef, listdeadbeef.sh }
