@@ -339,7 +339,7 @@ let g:UltiSnipsSnippetDirectories=[$HOME."/.vim/ultisnips"]
 let g:solarized_termcolors=256
 let xterm16_brightness = '#aac8c2' | let xterm16_colormap='soft'
 let g:seoul256_background = 234
-" let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_at_startup = 1
 
 " let g:SrcExpl_pluginList = [ "__Tag_List__" ] 
 " let g:ScrExpl_refreshTime=200

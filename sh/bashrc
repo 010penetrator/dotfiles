@@ -16,8 +16,9 @@ export BROWSER=firefox
 export sh=$HOME/.sh
 export tt=$HOME/tt
 export MANWIDTH=80
-export LSBLK="lsblk"
-#
+export LSBLK=lsblk
+export OVMF=/usr/share/edk2-ovmf/x64/OVMF_CODE.fd 
+
 export TERMINAL=xterm
 command -v kitty &> /dev/null && export TERMINAL=kitty
 [[ "$TERMINAL" == "kitty" ]] && [[ $HIDPI == "1" ]] && export TERMINAL="kitty -o font_size=14.2 -o initial_window_width=1140 -o initial_window_height=900"
@@ -49,12 +50,14 @@ alias lb='$LSBLK -f | grep sd --color=none'
 alias lm='$LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT'
 alias m='df -BMB'
 amou() { target=$( $LSBLK -f | grep -e ".sd\|.nvme" | fzf -e | cut -f 1 -d " " | tr -cd '[:alnum:]' ); [ ! -z "${target}" ] && udevil mount /dev/"$target" && echo "/dev/$target mounted" || echo 'No target.' ; }
-aumo() { target=$( $LSBLK -f | grep -e ".sd\|.nvme" | grep '/' | cut -c 7- | fzf -e |  cut -f 1 -d " " ); [ ! -z "${target}" ] && sync && udevil umount "/dev/$target" && echo "/dev/$target unmounted" || echo 'No target.' ; }
+aumo() { target=$( $LSBLK -f | grep -e ".sd\|.nvme" | grep '/' | cut -c 7- | fzf -e |  cut -f 1 -d " " ); [ ! -z "${target}" ] && sync "/dev/$target" && udevil umount "/dev/$target" && echo "/dev/$target unmounted" || echo 'No target.' ; }
 # title() { echo -ne "\e]0;$*\a"; }
 title() { echo -ne "\033]0;$*\007"; }
 alias leto='date +%Y-%m-%d'
-alias p='ps aux | grep -v grep | grep '
-alias 8='ping 8.8.8.8'
+alias p='ps aux | grep -v grep | grep'
+alias dropcs='sync && echo 3 | sudo tee /proc/sys/vm/drop_caches'
+alias normfreq='sudo cpupower frequency-set -u 3300MHz >/dev/null ; cpupower frequency-info | grep policy'
+alias gamefreq='sudo cpupower frequency-set -u 3800MHz >/dev/null ; cpupower frequency-info | grep policy'
 
 # Functions #
 zz() { du -csh $*; local IFS="_"; filename=$(echo "$*" | tr / _); tar -I 'zstd -10 -T0' -cf "$filename".tar.zst --exclude='.git' --exclude='tags' $*; du -sh "$filename".tar.zst; }

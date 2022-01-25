@@ -8,7 +8,7 @@ super + { q, Q, D, F, t, v, s, p, r, R, z, g }
   raise.sh { \
   '' scroff, '' 'sus 1', windowswitcher.sh, '' 'rofi -show window', \
   'xterm\|urxvt\|kitty', \
-  'VIM\|QtCreator' 'vimz', 'chromium\|Firefox' '', \
+  'VIM\|nvim $\|QtCreator' 'vimz', 'chromium\|Firefox' '', \
   Thunar thunar, zathura listzathura.sh, evince, FBReader, \
   'Telegram\|Pidgin\|TuxGuitar\|hydrogen' '' }
 
