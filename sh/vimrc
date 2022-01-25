@@ -18,7 +18,13 @@ endif
 if filereadable($HOME."/.vimrc.local")
   source $HOME/.vimrc.local
 endif
-if !filereadable($HOME."/.vim/autoload/plug.vim")
+let vstatus = 300
+if has('nvim')
+  if !filereadable($HOME."/.local/share/nvim/site/autoload/plug.vim")
+    echom "Will try to download Plug.vim for NeoVim"
+    silent call system("curl -s --head -m 1 https://github.com 1>/dev/null && curl -fLo ${HOME}/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim && echo success with curl!")
+  endif
+elseif !filereadable($HOME."/.vim/autoload/plug.vim")
   echom "Will try to download Plug.vim"
   silent call system("curl -s --head -m 1 https://github.com 1>/dev/null && curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim")
 endif
@@ -42,6 +48,9 @@ endif
 ""      Plugins:      ""
 """"""""""""""""""""""""
 
+"if exists('g:loaded_plug')
+if empty(execute('filter /plug.vim$/ scriptnames'))
+" Looks like vim-plug was loaded! Now plug the plugins
 call plug#begin('$VIMPLUG')
 "
 " Plugs I do use
@@ -217,6 +226,7 @@ Plug '010penetrator/vim-colors-forplasma' "collection
 Plug 'ayu-theme/ayu-vim'
 Plug 'wuelnerdotexe/vim-enfocado'
 call plug#end()
+endif
 
 """"""""""""""""""""""""
 ""     Settings:      ""
