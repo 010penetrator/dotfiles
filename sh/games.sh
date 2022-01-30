@@ -11,7 +11,7 @@ if [ $targ ] ; then
   case "$targ" in
     Noita)
       # notify-send 1
-      cd /ln/ho/gog/Noita
+      cd "/ln/ho/Games/gog/noita/drive_c/GOG Games/Noita/"
       wine noita.exe
     ;;
     Quake3)

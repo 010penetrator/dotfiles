@@ -18,22 +18,25 @@ then
   echo focus another $wname
 else
   wname=$1
-  if [ -z "$1" ] ; then echo "Please, provide argument"; exit 1 ; fi
+  # if [ -z "$1" ] ; then echo "Please, provide argument"; exit 1 ; fi
+  # if [ -z "$1" ] ; then wname="543yhv89nt7u8h43q34q8gh" ; fi # to select no candidate
 fi
 
-# If window of that name is active, there are others of that name, current is not last in list
-if
-  [[ $(wmctrl -l -x | grep "$wname" | grep $activeid) ]] &&
-  [[ $(wmctrl -l -x | grep -v -e "^...........-" | grep "$wname" | wc -l) > 1 ]] &&
-  # [[ $(wmctrl -l -x | grep $wname | wc -l) != $(wmctrl -l -x | grep $wname | grep -n $activeid | cut -d ":" -f1) ]]
-  [[ $(wmctrl -l -x | grep "$wname" | grep -A1 $activeid | wc -l) > 1 ]]
-then
-  # Need to choose next window of same name
-  echo "choosing next"
-  str=$(wmctrl -l -x | grep -v -e "^...........-" | grep "$wname" | grep -A1 $activeid | tail -1 | cut -c -10)
-else
-  echo s1
-  str=$(wmctrl -l -x | grep -v -e "^...........-" | grep -m 1 "$wname" | cut -c -10)
+if [ -n "$1" ] ; then
+  # If window of that name is active, there are others of that name, current is not last in list
+  if
+    [[ $(wmctrl -l -x | grep "$wname" | grep $activeid) ]] &&
+    [[ $(wmctrl -l -x | grep -v -e "^...........-" | grep "$wname" | wc -l) > 1 ]] &&
+    # [[ $(wmctrl -l -x | grep $wname | wc -l) != $(wmctrl -l -x | grep $wname | grep -n $activeid | cut -d ":" -f1) ]]
+    [[ $(wmctrl -l -x | grep "$wname" | grep -A1 $activeid | wc -l) > 1 ]]
+  then
+    # Need to choose next window of same name
+    echo "choosing next"
+    str=$(wmctrl -l -x | grep -v -e "^...........-" | grep "$wname" | grep -A1 $activeid | tail -1 | cut -c -10)
+  else
+    echo s1
+    str=$(wmctrl -l -x | grep -v -e "^...........-" | grep -m 1 "$wname" | cut -c -10)
+  fi
 fi
 
 echo Final aim $str
