@@ -15,7 +15,8 @@ wname="xterm\| urxvt \| kitty"
 #   *)
 #     app=xterm;;
 # esac
-exclude="VIM$\|VIMSERV\|VIFM$\|htop$\|btop$\|MPV\|transmission-remote\|tremc\|rtorrent"
+exclude="-E VIM$|nvim.$|VIMSERV|VIFM$|htop$|btop$|MPV|transmission-remote|tremc|rtorrent.?$"
+# exclude="VIM$\|nvim.$\|VIMSERV\|VIFM$\|htop$\|btop$\|MPV\|transmission-remote\|tremc\|rtorrent.$"
 
 #If window of that name is active, there are others of that name, current is not last in list
 if
