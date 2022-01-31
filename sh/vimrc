@@ -475,8 +475,8 @@ noremap <c-p> 12<c-y>
 map <c-j> <Plug>(edgemotion-j)
 map <c-k> <Plug>(edgemotion-k)
 " go to text start/finish in file
-nnoremap g<PageUp>   gg:call search('^.') <CR>k
-nnoremap g<PageDown> G$:call search('^.','b') <CR>0j
+nnoremap g<Home>   gg:call search('^.') <CR>k
+nnoremap g<End> G$:call search('^.','b') <CR>0j
 nnoremap gT  gg:call search('^.') <CR>k
 nnoremap gB  G$:call search('^.','b') <CR>0j
 " search such //comments//
@@ -523,8 +523,8 @@ nnoremap a, :wincmd s \| e %:p:h <CR>
 nnoremap a. :wincmd v \| e %:p:h <CR>
 nnoremap as :new  \| lcd #:p:h \| echo expand ('%') '.@.' getcwd() <CR>
 nnoremap av :vnew \| lcd #:p:h \| echo expand ('%') '.@.' getcwd() <CR>
-nnoremap qs :new  \| echo expand ('%') '.@.' getcwd() <CR>
-nnoremap qv :vnew \| echo expand ('%') '.@.' getcwd() <CR>
+nnoremap qs :new  \| lcd #:p:h \| echo expand ('%') '.@.' getcwd() <CR>
+nnoremap qv :vnew \| lcd #:p:h \| echo expand ('%') '.@.' getcwd() <CR>
 nnoremap qS :split # <cr>
 nnoremap qV :vsplit # <cr>
 nnoremap <C-W>S :vsplit<CR>
