@@ -1,0 +1,73 @@
+#!/usr/bin/env python3
+# Open files in existing nVim via RPC feature
+
+import os, sys
+
+# Env setup is lower merit, cli setup is higher
+serv = (os.getenv('NVIMSERV'))
+if (os.getenv('MODE')):
+    mode = (os.getenv('MODE'))
+else: # introduce default option here
+    mode = 'newtabinsert'
+file = ''
+
+def get_cli_input():
+    import getopt
+    global serv,mode,file
+    try:
+        argv = sys.argv[1:]
+        opts, args = getopt.getopt(argv, "s:m:")
+    except getopt.GetoptError:
+        print('usage: nvim_rpc.py -s /tmp/NVRPCSERVER -m newtab /etc/file')
+        # sys.exit(2)
+    for opt in opts:
+        if opt == '-s':
+            serv = arg
+        if opt == '-m':
+            mode = arg
+    if args:
+        file = args[0]
+    else:
+        print('Target file not provided!')
+        file = '.'
+    if not os.path.exists((serv)):
+        print('RPC address', serv, 'is not present!\nWill launch nVim to listen that address.')
+        start_neovim()
+        os.system('sleep .4')
+
+def start_neovim():
+    global serv,mode
+    mode = ''
+    print('serv is ', serv)
+    os.system('NVIMSERV=' + serv + ' nvimnew')
+
+# Okay, we will actually do stuff now
+
+print('stage1')
+get_cli_input()
+print('argv..', sys.argv, len(sys.argv) )
+print('stage2')
+print('file is', file)
+
+from pynvim import attach
+nvim = attach('socket', path=serv)
+
+# Select/create window for editing the file
+if mode == 'last':
+    nvim.command('wincmd p')
+if mode == 'newtab':
+    nvim.command('tabe')
+if mode == 'newtabinsert':
+    nvim.command('-tabe')
+if mode == 'vert':
+    nvim.command('vnew')
+if mode == 'split':
+    nvim.command('new')
+
+file = os.path.join( os.getcwd(), file )
+print('stage3')
+print('final address', file)
+nvim.command("e " + file)
+
+os.system("raise.sh ' - NVIM$' ''")
+

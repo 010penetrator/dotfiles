@@ -1,0 +1,57 @@
+#!/bin/bash
+# Open files in existing Vim via RPC server feature
+
+if [ -z "$1" ] ; then
+  echo "Usage: [VIMSERV=name] [MODE=cur,last,newtab,newtabinsert,split,vert] vimz file.c"
+  # exit 1
+fi
+
+# Set default new buffer placement in Vim:
+[[ $MODE == '' ]] && MODE="last"
+
+[ -z $VIMSERV ] && echo "Servername not provided!" || \
+  echo "VIMZ: Given servername is $VIMSERV"
+
+if [ $(vim --serverlist | wc -l) == 0 ] ; then
+  echo "No Vim servers found"
+  # Start great Vim-server
+  vimsnew
+  # Wait for it
+  sleep .4
+elif [ -n "$VIMSERV" ] && [ $(vim --serverlist | grep "$VIMSERV" ) == 0 ] ; then
+  VIMSERV=$(vim --serverlist | head -n 1)
+  echo "Found Vim servers:"
+  vim --serverlist
+  echo "No desired Vim-server! Will try $VIMSERV"
+fi
+
+if ! [[ -z "$1" ]] ; then
+# get full name
+path=$(realpath -s "$1")
+# escape spaces
+path=${path// /'\' }
+  if [[ $MODE == cur ]] ; then
+    # Edit in current Vim window
+    vim --servername $VIMSERV --remote-send "<c-w>:e $path<CR>"
+  elif [[ $MODE == last ]] ; then
+    # Edit in last Vim window
+    vim --servername $VIMSERV --remote-send "<c-w>:wincmd p <bar> e $path<CR>"
+  elif [[ $MODE == newtab ]] ; then
+    # Edit in new tab of Vim
+    vim --servername $VIMSERV --remote-send "<c-w>:tabe $path<CR>"
+  elif [[ $MODE == newtabinsert ]] ; then
+    # Edit in new tab of Vim
+    vim --servername $VIMSERV --remote-send "<c-w>:-tabe $path<CR>"
+  elif [[ $MODE == vert ]] ; then
+    # Edit in new vertical split in Vim
+    vim --servername $VIMSERV --remote-send "<c-w>:vnew $path<CR>"
+  elif [[ $MODE == split ]] ; then
+    # Edit in new horizontal split in Vim
+    vim --servername $VIMSERV --remote-send "<c-w>:new $path<CR>"
+  fi
+else
+  echo "No file provided!"
+fi
+
+raise.sh $VIMSERV &> /dev/null
+

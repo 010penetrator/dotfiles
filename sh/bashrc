@@ -10,7 +10,11 @@ export HISTSIZE=9000
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CONFIG_DIRS=/usr/etc/xdg:/etc/xdg
 export GUI_EDITOR=/usr/bin/xed
-export EDITOR=/usr/bin/vim
+export EDITOR=/usr/bin/vi
+command -v  vim &>/dev/null && export EDITOR=/usr/bin/vim
+command -v nvim &>/dev/null && export EDITOR=/usr/bin/nvim
+export NVIMSERV=/tmp/neovimrpc
+export VIMSERV=VIMSERV
 export PAGER=less
 export BROWSER=firefox
 export sh=$HOME/.sh
@@ -20,7 +24,7 @@ export LSBLK=lsblk
 export OVMF=/usr/share/edk2-ovmf/x64/OVMF_CODE.fd 
 
 export TERMINAL=xterm
-command -v kitty &> /dev/null && export TERMINAL=kitty
+command -v kitty &>/dev/null && export TERMINAL=kitty
 [[ "$TERMINAL" == "kitty" ]] && [[ $HIDPI == "1" ]] && export TERMINAL="kitty -o font_size=14.2 -o initial_window_width=1140 -o initial_window_height=900"
 #
 #PS1='[\u@\h \W]\$ '

@@ -62,14 +62,14 @@ nnoremap qf :! if [ %c == ".." ] ; then feha . ; else if [ -d %c ] ; then cd %c;
 nnoremap qF :! fehf . <cr>
 nnoremap q<space> :! mpv %c <cr>
 " Open file with vim server
-nnoremap av :! MODE="split"  vimz "%c"  <cr>
-nnoremap aV :! MODE="vert"   vimz "%c" &>/dev/null & <cr>
-nnoremap ac :! MODE="cur"    vimz "%c" &>/dev/null & <cr>
-nnoremap an :! MODE="newtab" vimz "%c" &>/dev/null & <cr>
+nnoremap av :! MODE="split"  vimrpc "%c"  <cr>
+nnoremap aV :! MODE="vert"   vimrpc "%c" &>/dev/null & <cr>
+nnoremap ac :! MODE="cur"    vimrpc "%c" &>/dev/null & <cr>
+nnoremap an :! MODE="newtab" vimrpc "%c" &>/dev/null & <cr>
 nnoremap a; :! vim %c <cr>
 nnoremap ,v :! $TERMINAL vim %c <cr>
-nnoremap a<space> :! MODE="last" vimz "%c" &>/dev/null & <cr>
-nnoremap az :! vimz "%c"<cr>:q<cr>
+nnoremap a<space> :! MODE="last" vimrpc "%c" &>/dev/null & <cr>
+nnoremap az :! vimrpc "%c"<cr>:q<cr>
 nnoremap zc :! bash -c ' echo -ne \\n ls:\\n ; ls -dla %f ; du -sh %f ;du -sb %f ; read -rsn1 ' <cr>
 nnoremap za :! clear -x; $LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT ; read -rsn1 <cr>
 nnoremap zs :! clear -x; df -BMB ; read -rsn1 <cr>
@@ -158,7 +158,7 @@ set cpoptions=fs
 " set vicmd=vile
 
 if (system('echo $INVIM') == "1")
-  set vicmd='source $HOME/.bashrc; MODE="cur" vimz'
+  set vicmd='source $HOME/.bashrc; MODE="cur" vimrpc'
 else
   set vicmd='source $HOME/.bashrc; vim --cmd "set titlestring=VIM\ @\ VIFM"'
 endif

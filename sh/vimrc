@@ -402,7 +402,7 @@ nnoremap qf @
 " Free <a> key
 nnoremap a <Nop>
 map ф a
-nnoremap aa a
+nnoremap ad a
 
 " go back to normal mode with <j> double tap
 imap jj <ESC>
@@ -439,7 +439,7 @@ nnoremap q= 60A=<esc>0<esc>60ld$b
 " nmap q- O1<esc>gcc$xj^d0o<esc>0d$60i-<esc>kkJJ^60ldc0W
 " insert one char
 nnoremap af :exec "normal i".nr2char(getchar())."\e"<CR>
-nnoremap ag :exec "normal ad".nr2char(getchar())."\e"<CR>
+nnoremap ag :exec "normal! a".nr2char(getchar())."\e"<CR>
 
 " Move around
 nnoremap <Down> gj
@@ -593,12 +593,12 @@ nnoremap <Leader>vw :wa<CR>
 nnoremap <Leader>vq :qa! <CR>
 nnoremap <Leader>zs :SessWriteB<CR><esc>
 nnoremap <Leader>zq :SessWriteB<CR>: wa \| qa<CR>
-" Open current file at vimserver session via my "vimz" shell script
-nnoremap <Leader>va :silent exec '! ( sleep 0 ; vimz "%:p" ) & ' \| redraw! \| q <CR>
-" Open current file at vimserver session at new tab via my "vimz" shell script
-nnoremap <Leader>vn :silent exec '! ( sleep 0 ; MODE=newtab vimz "%:p" ) & ' \| redraw! \| q <CR>
-" Open current file at vimserver session at active window via my "vimz" shell script
-nnoremap <Leader>v<space> :silent exec '! ( sleep 0 ; MODE=current vimz "%:p" ) & ' \| redraw! \| q <CR>
+" Open current file at vimserver session via my "vimrpc" shell script
+nnoremap <Leader>va :silent exec '! ( sleep 0 ; vimrpc "%:p" ) & ' \| redraw! \| q <CR>
+" Open current file at vimserver session at new tab via my "vimrpc" shell script
+nnoremap <Leader>vn :silent exec '! ( sleep 0 ; MODE=newtab vimrpc "%:p" ) & ' \| redraw! \| q <CR>
+" Open current file at vimserver session at active window via my "vimrpc" shell script
+nnoremap <Leader>v<space> :silent exec '! ( sleep 0 ; MODE=current vimrpc "%:p" ) & ' \| redraw! \| q <CR>
 
 " Have mappings in terminal mode
 if v:version >= 801
@@ -1497,4 +1497,6 @@ endfunction
 " augroup mysettings
 " au FileType tex set wrap shiftwidth=2 softtabstop=2 expandtab
 " augroup END
+
+set title
 

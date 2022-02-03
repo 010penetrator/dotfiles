@@ -1,0 +1,25 @@
+#!/bin/bash
+# Spawn new Vim in a terminal, with RPC server
+
+RPC_OPTION=''
+if [ -z "$VIMSERV" ]
+then
+    echo "Servername not provided!"
+else
+    RPC_OPTION="--servername $VIMSERV"
+fi
+
+# How many my vim-servers?
+i=$(vim --serverlist | grep ^VIMSERV$ | wc -l)
+[ $i != 0 ] && VIMSERV="''" && \
+  echo Caution. Vim server already running. i will not make one more && sleep 1
+
+case $TERMINAL in
+  kitty*)
+    $TERMINAL --start-as maximized bash -c "source $HOME/.bashrc ; sleep .1 ; vim $RPC_OPTION" 
+    ;;
+  *)
+    xterm -maximized -e "source $HOME/.bashrc ; sleep .1 ; vim $RPC_OPTION"
+    ;;
+esac
+
