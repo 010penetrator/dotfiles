@@ -52,8 +52,8 @@ endif
 if empty(execute('filter /plug.vim$/ scriptnames'))
 " Looks like vim-plug was loaded! Now plug the plugins
 call plug#begin('$VIMPLUG')
-"
-" Plugs I do use
+
+" Basic sane stuff
 Plug 'tpope/vim-sensible' "basic
 Plug 'jlanzarotta/bufexplorer' "basic
 Plug 'sheerun/vim-polyglot' "okay HUGE
@@ -65,51 +65,65 @@ Plug 'tpope/vim-surround' "good
 Plug 'tpope/vim-endwise' "okay
 Plug 'tpope/vim-repeat' "handy
 Plug 'tpope/vim-eunuch' "handy
-Plug 'tpope/vim-ragtag' "good
+Plug 'tpope/vim-ragtag' "ok
 Plug 'michaeljsmith/vim-indent-object' "cool
-Plug 'sandeepcr529/Buffet.vim' "good
 Plug 'godlygeek/tabular' "okay
 Plug 'jamessan/vim-gnupg' "good
 Plug 'chrisbra/Colorizer' "good
-Plug 'mileszs/ack.vim' "good
 Plug 'junegunn/goyo.vim' "usable
 Plug 'haya14busa/vim-edgemotion' "good
 Plug 'vim-scripts/CycleColor' "works
-Plug 'majutsushi/tagbar' "okay
-"
-" Plugs I consider
+Plug 'eiginn/netrw' "basic
+Plug 'Townk/vim-autoclose' "usable
+
+" Navigate/Search
 Plug 'Shougo/unite.vim' "bloated
 Plug 'Shougo/vimproc' "for unite
-Plug 'kshenoy/vim-signature' "buggy
-Plug 'chrisbra/SaveSigns.vim' "usable
-Plug 'wesleyche/SrcExpl' "mediocre
-" Plug 'tpope/vim-unimpaired'
-Plug 'eiginn/netrw' "basic
-" Plug 'ZeroKnight/vim-signjump' "buggy
-" Plug 'kien/rainbow_parentheses.vim'
-" Plug 'ajh17/VimCompletesMe'
-" Plug 'craigemery/vim-autotag' "errors
+Plug 'mileszs/ack.vim' "usable
+Plug 'majutsushi/tagbar' "okay
+Plug 'sandeepcr529/Buffet.vim' "good
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf'
+
+" Try now
+Plug 'kshenoy/vim-signature' "buggy
+Plug 'chrisbra/SaveSigns.vim' "usable
+Plug 'zefei/vim-colortuner' "fun
+Plug 'tpope/vim-fugitive'
+
+" Try later
+" Plug 'tpope/vim-unimpaired'
+" Plug 'ZeroKnight/vim-signjump' "buggy
+" Plug 'kien/rainbow_parentheses.vim'
+" Plug 'craigemery/vim-autotag' "errors
 " Plug 'vim-scripts/LustyExplorer'
 " Plug 'hari-rangarajan/CCTree'
-" Plug 'easymotion/vim-easymotion'
 " Plug 'SirVer/ultisnips'
 " Plug 'honza/vim-snippets'
 " Plug 'vim-scripts/QuickBuf'
 " Plug 'Yggdroot/LeaderF'
-" Plug 'Shougo/denite.nvim' "not working
+" Plug 'ryanoasis/vim-devicons' "not working
+
+" Archive
+" Plug 'wesleyche/SrcExpl' "mediocre
+" Plug 'Shougo/denite.nvim'
 Plug 'roxma/nvim-yarp' "for denite
 Plug 'roxma/vim-hug-neovim-rpc' "for denite
+
+" Language processing
 Plug 'Shougo/deoplete.nvim'
-Plug 'Shougo/neoinclude.vim'
-Plug 'zefei/vim-colortuner' "fun
-" Plug 'tpope/vim-fugitive'
-" Plug 'ryanoasis/vim-devicons' "not working
+Plug 'Shougo/neoinclude.vim' "for deoplete
 Plug 'dense-analysis/ale'
-" Plug 'scrooloose/syntastic'
-" Plug 'valloric/youcompleteme'
-Plug 'Townk/vim-autoclose'
+
+if has("nvim")
+  Plug 'neovim/nvim-lspconfig'
+  Plug 'nvim-treesitter/nvim-treesitter', {'do':':TSUpdate'}
+  Plug 'nvim-lua/completion-nvim'
+  Plug 'glepnir/lspsaga.nvim'
+  Plug 'nvim-telescope/telescope.nvim'
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'nvim-lualine/lualine.nvim'
+endif
 
 """"""""""""""""""""""""
 ""      Colors:       ""
