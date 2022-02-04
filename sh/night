@@ -2,5 +2,5 @@
 # Needs 'redshift'
 # Dim and warm screen
 
-ga=.9; redshift -O 4500 -g $ga:$ga:$ga & disown
+ga=.9; redshift -O 4800 -g $ga:$ga:$ga & disown
 
