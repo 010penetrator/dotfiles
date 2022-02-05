@@ -48,8 +48,15 @@ endif
 ""      Plugins:      ""
 """"""""""""""""""""""""
 
-"if exists('g:loaded_plug')
-if empty(execute('filter /plug.vim$/ scriptnames'))
+if filereadable($HOME."/.local/share/nvim/site/autoload/plug.vim") || 
+      \ filereadable($HOME."/.vim/autoload/plug.vim")
+  let g:vimplug_available=1
+else
+  let g:vimplug_available=0
+endif
+" if ! empty(execute('filter /plug.vim$/ scriptnames'))
+
+if (g:vimplug_available)
 " Looks like vim-plug was loaded! Now plug the plugins
 call plug#begin('$VIMPLUG')
 
@@ -111,12 +118,15 @@ Plug 'roxma/nvim-yarp' "for denite
 Plug 'roxma/vim-hug-neovim-rpc' "for denite
 
 " Language processing
-Plug 'Shougo/deoplete.nvim'
-Plug 'Shougo/neoinclude.vim' "for deoplete
-Plug 'dense-analysis/ale'
+if has("nvim") == 0
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'Shougo/neoinclude.vim' "for deoplete
+  Plug 'dense-analysis/ale'
+endif
 
 if has("nvim")
   Plug 'neovim/nvim-lspconfig'
+  Plug 'kabouzeid/nvim-lspinstall'
   Plug 'nvim-treesitter/nvim-treesitter', {'do':':TSUpdate'}
   Plug 'nvim-lua/completion-nvim'
   Plug 'glepnir/lspsaga.nvim'
@@ -221,7 +231,6 @@ Plug 'gmoe/vim-espresso' "mild
 " Plug 'dfrunza/vim' "borland,muratori,pencil,vc6
 " Plug 'dracula/vim' "funky
 " Plug 'tomasr/molokai' "shitty
-Plug 'swalladge/paper.vim' "dry white
 Plug 'NLKNguyen/papercolor-theme' "soft white 'PaperColor
 Plug 'markeganfuller/vim-journeyman' "pale dark
 Plug 'machakann/vim-colorscheme-tatami' "fun green
@@ -395,6 +404,15 @@ if has("cscope")
   nmap <C-@>I :scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
   nmap <C-@>D :scs find d <C-R>=expand("<cword>")<CR><CR>
 endif
+
+""""""""""""""""""""""""
+""      NeoVim:       ""
+""""""""""""""""""""""""
+
+if has("nvim")
+  source $sh/nvim-lsp.init
+endif
+
 
 """"""""""""""""""""""""
 ""     Mappings:      ""

@@ -62,12 +62,20 @@ nnoremap qf :! if [ %c == ".." ] ; then feha . ; else if [ -d %c ] ; then cd %c;
 nnoremap qF :! fehf . <cr>
 nnoremap q<space> :! mpv %c <cr>
 " Open file with vim server
-nnoremap av :! MODE="split"  vimrpc "%c"  <cr>
-nnoremap aV :! MODE="vert"   vimrpc "%c" &>/dev/null & <cr>
-nnoremap ac :! MODE="cur"    vimrpc "%c" &>/dev/null & <cr>
-nnoremap an :! MODE="newtab" vimrpc "%c" &>/dev/null & <cr>
-nnoremap a; :! vim %c <cr>
-nnoremap ,v :! $TERMINAL vim %c <cr>
+if (system('echo $EDITOR') == "vim")
+    nnoremap av :! MODE="split"  vimrpc "%c"  <cr>
+    nnoremap aV :! MODE="vert"   vimrpc "%c" &>/dev/null & <cr>
+    nnoremap ac :! MODE="cur"    vimrpc "%c" &>/dev/null & <cr>
+    nnoremap an :! MODE="newtab" vimrpc "%c" &>/dev/null & <cr>
+elseif (system('echo $EDITOR') == "nvim")
+    nnoremap av :! MODE="split"  nvimrpc "%c"  <cr>
+    nnoremap aV :! MODE="vert"   nvimrpc "%c" &>/dev/null & <cr>
+    nnoremap ac :! MODE="cur"    nvimrpc "%c" &>/dev/null & <cr>
+    nnoremap an :! MODE="newtab" nvimrpc "%c" &>/dev/null & <cr>
+endif
+    nnoremap av :! MODE="split"  nvimrpc "%c"  <cr>
+nnoremap a; :! $EDITOR %c <cr>
+nnoremap ,v :! $TERMINAL $EDITOR %c <cr>
 nnoremap a<space> :! MODE="last" vimrpc "%c" &>/dev/null & <cr>
 nnoremap az :! vimrpc "%c"<cr>:q<cr>
 nnoremap zc :! bash -c ' echo -ne \\n ls:\\n ; ls -dla %f ; du -sh %f ;du -sb %f ; read -rsn1 ' <cr>
