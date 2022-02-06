@@ -410,7 +410,7 @@ endif
 """"""""""""""""""""""""
 
 if has("nvim")
-  source $sh/nvim-lsp.init
+  luafile $sh/nvim-lsp.init
 endif
 
 

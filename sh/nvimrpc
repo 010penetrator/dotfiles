@@ -20,11 +20,12 @@ def get_cli_input():
     except getopt.GetoptError:
         print('usage: nvim_rpc.py -s /tmp/NVRPCSERVER -m newtab /etc/file')
         # sys.exit(2)
-    for opt in opts:
-        if opt == '-s':
-            serv = arg
-        if opt == '-m':
-            mode = arg
+    for o, a in opts:
+        print('stage c1', o, a)
+        if o == '-s':
+            serv = a
+        if o == '-m':
+            mode = a
     if args:
         file = args[0]
     else:
@@ -43,31 +44,31 @@ def start_neovim():
 
 # Okay, we will actually do stuff now
 
-print('stage1')
 get_cli_input()
 print('argv..', sys.argv, len(sys.argv) )
-print('stage2')
 print('file is', file)
 
 from pynvim import attach
 nvim = attach('socket', path=serv)
 
+file = os.path.join( os.getcwd(), file )
+print('final address', file)
+print('mode', mode)
+
 # Select/create window for editing the file
 if mode == 'last':
     nvim.command('wincmd p')
-if mode == 'newtab':
-    nvim.command('tabe')
-if mode == 'newtabinsert':
-    nvim.command('-tabe')
-if mode == 'vert':
-    nvim.command('vnew')
-if mode == 'split':
-    nvim.command('new')
-
-file = os.path.join( os.getcwd(), file )
-print('stage3')
-print('final address', file)
-nvim.command("e " + file)
+    nvim.command('e ' + file)
+elif mode == 'newtab':
+    nvim.command('tabe ' + file)
+elif mode == 'newtabinsert':
+    nvim.command('-tabe ' + file)
+elif mode == 'vert':
+    nvim.command('vsplit ' + file)
+elif mode == 'split':
+    nvim.command('split ' + file)
+else:
+    nvim.command('e ' + file)
 
 os.system("raise.sh ' - NVIM$' ''")
 
