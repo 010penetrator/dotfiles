@@ -15,9 +15,9 @@ case $(echo "$d" | wc -l) in
     case $TERMINAL in
       kitty*)
         TERMINAL="$TERMINAL -o initial_window_height=$(expr 450 + $HIDPI \* 100) -o initial_window_width=$(expr 650 + $HIDPI \* 130)"
-        $TERMINAL /bin/bash -c "mpv-album ." &> /dev/null & ;;
+        $TERMINAL /bin/bash -c "mpv-album . ; ask_album.sh" &> /dev/null & ;;
       *)
-        xterm -xrm 'XTerm.vt100.allowTitleOps: true' -geometry 60x24+400+250 -e 'mpv-album .'  &> /dev/null & ;;
+        xterm -xrm 'XTerm.vt100.allowTitleOps: true' -geometry 60x24+400+250 -e 'mpv-album . ; ask_album.sh'  &> /dev/null & ;;
     esac
     ;;
   *)

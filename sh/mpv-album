@@ -38,12 +38,18 @@ else
   echo -ne "\033]0;MPV @ $PWD\007"
 fi
 
+if [[ "$PAUSE" == 0 ]] ; then
+  PAUSE=''
+else
+  PAUSE='--pause'
+fi
+
 if [[ $(ls | grep -ic '\.ape$\|\.flac$\|\.wv$') == $(ls | grep -ic '\.cue$') && $(ls | grep -ic '\.cue$') > 0 ]]
   then
   echo : play cue with mpv...
-  mpv --pause --no-video *.cue
+  mpv $PAUSE --no-video *.cue
 else
   echo : play audio files...
-  mpv --pause --no-video *.{flac,mp3,ogg,ape,wv}
+  mpv $PAUSE --no-video *.{flac,mp3,ogg,ape,wv}
 fi
 
