@@ -139,7 +139,7 @@ nnoremap gd :cd $HOME/Downloads/<cr>
 nnoremap gb :cd /ln/mo/blink/bak/<cr>
 nnoremap gk :cd /ln/torrents/red/KKK/<cr>:sort<cr>mh
 nnoremap gl gf 
-nnoremap al :!ln -s $PWD/%c %D/%c <cr>
+nnoremap al :!ln -rs $PWD/%c %D/%c <cr>
 nnoremap ah :!ln  $PWD/%c %D/%c <cr>
 nnoremap ap al
 " nnoremap ap :!ln -sr $PWD/%c %D/%c <cr>

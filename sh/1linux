@@ -238,9 +238,10 @@ systemctl restart privoxy ; http_proxy=127.0.0.1:8118 curl ifconfig.me --head # 
 https_proxy="localhost:8118" wget -q --spider https://ya.ru && echo 1 # check proxy
 
 HW
+xset r rate 220 30 # set keyboard repeat rate
 sudo modprobe pcspkr ; echo -e '\a' ; rmmod pcspkr ; xset -b # STOP BELL BEEP!
-sudo sh -c "sync && echo 3 > /proc/sys/vm/drop_caches" # do not sync
-sync && echo 3 | sudo tee /proc/sys/vm/drop_caches # using tee for sudo access
+sudo sh -c "sync && echo 3 > /proc/sys/vm/drop_caches" # drop caches
+echo 3 | sudo tee /proc/sys/vm/drop_caches # using tee for sudo echo
 echo "- - -" > /sys/class/scsi_host/hostX/scan # rescan sata port
 cd /sys/bus/scsi/devices; cat "8:0:0:0/model"; echo 1 > "8:0:0:0/rescan" # rescan sata device
 echo 1 > /sys/block/sda/device/delete # forget hdd

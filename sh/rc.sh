@@ -1,5 +1,5 @@
 #!/bin/bash
-# rc script for my systems
+# rc script for the operating system
 
 cd
 
@@ -18,9 +18,10 @@ source ~/.bashrc
 # xinput --set-prop "SYN1B7F:01 06CB:2991 Touchpad" "Synaptics Edge Scrolling" 1 0 0
 # xinput set-prop "Clearly Superior Technologies. CST Laser Trackball" "libinput Accel Speed" -.7
 # xset s 800 800; xset -dpms ; xset dpms 0 0 0
-xset dpms 1200 0 0 &
-xset s 0 0 &
-xset -b &
+xset dpms 1200 0 0
+xset s 0 0
+xset -b
+xset r rate 220 30 # set keyboard repeat rate
 
 sxd.sh &
 # killall sxhkd; sxhkd -c ~/.sh/sxhkdrc &
@@ -81,6 +82,6 @@ fi
 
 killall osdsh ; osdsh  -p 0 -a 2 -d 1 -f -adobe-helvetica-bold-r-*-*-*-240-*-*-*-*-iso8859-* -c teal 
 
-# echo RC done &
-notify-send 'RC complete' &
+# echo RC done
+notify-send 'RC complete'
 
