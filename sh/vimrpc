@@ -21,7 +21,7 @@ echo "stag B"
 if [ $(vim --serverlist | wc -l) == 0 ] ; then
   echo "No Vim servers found"
   # Start great Vim-server
-  vimsnew
+  vimsnew &
   # Wait for it
   sleep .4
 elif [ -n "$VIMSERV" ] && [ $(vim --serverlist | grep "$VIMSERV" ) == 0 ] ; then
@@ -32,10 +32,11 @@ elif [ -n "$VIMSERV" ] && [ $(vim --serverlist | grep "$VIMSERV" ) == 0 ] ; then
 fi
 
 if ! [[ -z "$1" ]] ; then
-# get full name
-path=$(realpath -s "$1")
-# escape spaces
-path=${path// /'\' }
+  echo "stag C"
+  # get full name
+  path=$(realpath -s "$1")
+  # escape spaces
+  path=${path// /'\' }
   if [[ $MODE == cur ]] ; then
     # Edit in current Vim window
     vim --servername $VIMSERV --remote-send "<c-w>:e $path<CR>"

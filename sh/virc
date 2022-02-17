@@ -1,0 +1,19 @@
+#!/bin/bash
+# Remote call vim or nvim
+
+source $HOME/.bashrc
+
+echo editor is $EDITOR
+
+echo args are $*
+
+echo "STAGe B"
+
+if [[ $EDITOR =~ .*nvim ]] ; then
+    echo ed is nvim
+    nvimrpc $*
+elif [[ $EDITOR =~ .*vim ]] ; then
+    echo ed is vim
+    vimrpc $*
+fi
+
