@@ -413,7 +413,7 @@ endif
 """"""""""""""""""""""""
 
 if has("nvim")
-  luafile $sh/nvim-lsp.init
+"  luafile $sh/nvim-lsp.init
 endif
 
 
@@ -628,6 +628,7 @@ nnoremap <Leader>vw :wa<CR>
 nnoremap <Leader>vq :qa! <CR>
 nnoremap <Leader>zs :SessWriteB<CR><esc>
 nnoremap <Leader>zq :SessWriteB<CR>: wa \| qa<CR>
+nnoremap <Leader>ve :call AddRpcEar()<CR>
 " Open current file at vimserver session via my "vimrpc" shell script
 nnoremap <Leader>va :silent exec '! ( sleep 0 ; vimrpc "%:p" ) & ' \| redraw! \| q <CR>
 " Open current file at vimserver session at new tab via my "vimrpc" shell script
@@ -928,6 +929,29 @@ function! UpdCtagsGit()
     echom "Cant find .git"
   endif
   exec "cd " . l:starting_directory
+endfunction
+
+function! AddRpcEar()
+  echo "Will launch an rpc server with default address for this editor.."
+  if has('nvim')
+    if !empty($NVIMSERV)
+      call serverstart(expand("$NVIMSERVER"))
+    else
+      echom "Rpc address for neoVim not provided"
+    endif
+  elseif v:version >= 800
+    if !empty($VIMSERV)
+      " if v:servername == expand("$VIMSERV")
+      " echo "old rpc address was " . expand("%")
+      if empty(v:servername)
+        call remote_startserver(expand("$VIMSERVER"))
+      else
+        echom "Sorry, this Vim instance already runs an rpc server"
+      endif
+    else
+      echom "Rpc address for Vim not provided"
+    endif
+  endif
 endfunction
 
 function! BuildProject1()
