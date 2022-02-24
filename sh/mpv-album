@@ -16,7 +16,6 @@ then
     echo we are in $PWD
     if ! [ -f "$file" ] ; then touch "$file" ; fi
     recent=$(tail $file -n 14)
-    echo $recent
     fresh=$(echo "$recent" | grep -xF "$PWD" >/dev/null; echo $?)
     case $fresh in
       0)

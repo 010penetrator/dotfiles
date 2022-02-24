@@ -1,0 +1,17 @@
+#!/bin/bash
+# Spawn new Vim or neoVim in new terminal instance with RPC feature
+
+source $HOME/.bashrc
+
+echo editor is $EDITOR
+
+# echo args are $*
+
+if [[ $EDITOR =~ .*nvim ]] ; then
+    echo ed is nvim
+    nvimnew $*
+elif [[ $EDITOR =~ .*vim ]] ; then
+    echo ed is vim
+    vimnew $*
+fi
+

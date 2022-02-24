@@ -8,7 +8,7 @@ super + { q, Q, D, F, t, v, s, p, r, R, z, g }
   raise.sh { \
   '' scroff, '' 'sus 1', windowswitcher.sh, '' 'rofi -show window', \
   'xterm\|urxvt\|kitty', \
-  'VIM$\| - NVIM$\|nvim $\|QtCreator' 'nvimnew', 'chromium\|Firefox' '', \
+  ' - VIMSERV\|VIM$\| - NVIM$\|nvim $\|QtCreator' 'vinew', 'chromium\|Firefox' '', \
   'Thunar\| YouTube ' '', zathura listzathura.sh, evince, FBReader, \
   'Telegram\|Pidgin\|TuxGuitar\|hydrogen' '' }
 
@@ -24,7 +24,7 @@ super + { T, V, C, B }
   raisekitty.sh { bash, VIM, VIFM, MPV }
 
 super + n ; { n, M, h, p, c, v, r, o, a }
-  { $TERMINAL, momkitty.sh, zsh, thunar, $TERMINAL -e vifm, $TERMINAL -e vim, listzathura.sh, $TERMINAL -e rtorrent, $TERMINAL -e tremc -c localhost:9090 }
+  { $TERMINAL, momkitty.sh, zsh, thunar, $TERMINAL -e vifm, vinew, listzathura.sh, $TERMINAL -e rtorrent, $TERMINAL -e tremc -c localhost:9090 }
 super + e
   raiseterm.sh
 super + d

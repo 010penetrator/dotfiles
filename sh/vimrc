@@ -15,8 +15,8 @@ let $VIMPLUG = $RTP . "/plugged"
 if filereadable($HOME."/.vimrc_msys")
   source $HOME/.vimrc_msys
 endif
-if filereadable($HOME."/.vimrc.local")
-  source $HOME/.vimrc.local
+if filereadable("/ln/lo/vimrc.local")
+  source /ln/lo/vimrc.local
 endif
 let vstatus = 300
 if has('nvim')
@@ -48,8 +48,11 @@ endif
 ""      Plugins:      ""
 """"""""""""""""""""""""
 
-if filereadable($HOME."/.local/share/nvim/site/autoload/plug.vim") || 
-      \ filereadable($HOME."/.vim/autoload/plug.vim")
+if has('nvim')
+  if filereadable($HOME."/.local/share/nvim/site/autoload/plug.vim")
+    let g:vimplug_available=1
+  endif
+elseif filereadable($HOME."/.vim/autoload/plug.vim")
   let g:vimplug_available=1
 else
   let g:vimplug_available=0
