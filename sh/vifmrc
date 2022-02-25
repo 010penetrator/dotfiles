@@ -155,7 +155,6 @@ nnoremap t tj
 nnoremap cv cW
 noremap gr :tabprev<cr>
 nnoremap at :tabnew<cr>
-nnoremap FF :!(source /ln/ho/.bashrc.local && flush) 2>&1 &<cr>
 
 set syscalls
 set confirm=permdelete
