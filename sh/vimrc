@@ -746,8 +746,6 @@ nnoremap <Leader>m ^y$:call system('xdg-open ' . "'" . @" . "' &")<CR>
 vnoremap <Leader>m :<C-U>call SystemOpenEveryLine()<CR>
 " open current line with firefox
 nnoremap <Leader>M ^y$:call system('firefox ' . "'" . @" . "' &")<CR>
-" google current word
-nnoremap <Leader>gw yiw:call system('google.sh ' . "'" . @" . "'")<CR>
 " google current line
 nnoremap <Leader>go ^y$:call system('google.sh ' . "'" . @" . "'")<CR>
 " yandex current line
@@ -935,7 +933,7 @@ function! AddRpcEar()
   echo "Will launch an rpc server with default address for this editor.."
   if has('nvim')
     if !empty($NVIMSERV)
-      call serverstart(expand("$NVIMSERVER"))
+      call serverstart(expand($NVIMSERV))
     else
       echom "Rpc address for neoVim not provided"
     endif
@@ -944,7 +942,7 @@ function! AddRpcEar()
       " if v:servername == expand("$VIMSERV")
       " echo "old rpc address was " . expand("%")
       if empty(v:servername)
-        call remote_startserver(expand("$VIMSERVER"))
+        call remote_startserver(expand($VIMSERV))
       else
         echom "Sorry, this Vim instance already runs an rpc server"
       endif
@@ -1425,7 +1423,7 @@ if !exists("g:colors_name")
     " colo cryslominsa | LineColor cryslominsa
     " colo stellarized | set background=light | LineColor atlantis
   endif
-  if hostname == "0000-0000-0000"
+  if hostname == "user-pc"
     colo Tomorrow-Night | LineColor bluewery
   endif
   if hostname == "machine"

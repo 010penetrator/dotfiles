@@ -24,7 +24,7 @@ if [ $(vim --serverlist | wc -l) == 0 ] ; then
   vimsnew &
   # Wait for it
   sleep .4
-elif [ -n "$VIMSERV" ] && [ $(vim --serverlist | grep "$VIMSERV" ) == 0 ] ; then
+elif [ -n "$VIMSERV" ] && [[ $(vim --serverlist | grep -c "$VIMSERV") == 0 ]] ; then
   VIMSERV=$(vim --serverlist | head -n 1)
   echo "Found Vim servers:"
   vim --serverlist
