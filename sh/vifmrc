@@ -52,9 +52,7 @@ nnoremap gn hjl
 nnoremap gp hkl
 nnoremap qq :
 nnoremap qc :flac <cr>
-" nnoremap b :! mpv-album %c VIFM; echo -ne "\e]0;VIFM_MPV\a"<cr>
-nnoremap b  :! mpv-album %c VIFM; echo -ne "\033]0;VIFM\007" <cr>
-" nnoremap B  :! %i cd %c; [[ $TERMINAL=="kitty "* ]] && TERMINAL="$TERMINAL -o initial_window_height=$(expr 450 + $HIDPI \* 100) -o initial_window_width=$(expr 650 + $HIDPI \* 130)"; $TERMINAL -e /bin/bash -c "bash" &>/dev/null & <cr>
+nnoremap b  :! INVIFM=1 ASK=1 mpv-album %c VIFM; echo -ne "\033]0;VIFM\007" <cr>
 nnoremap B  :! %i cd %c; [[ $TERMINAL=="kitty "* ]] && TERMINAL="$TERMINAL -o initial_window_height=$(expr 450 + $HIDPI \* 100) -o initial_window_width=$(expr 650 + $HIDPI \* 130)"; $TERMINAL -e /bin/bash -c "mpv-album . ; ask_album.sh" &>/dev/null & <cr>
 nnoremap ab :! kitty @ new-window --new-tab /bin/bash -c "cd %d/ ; mpv-album %c VIFM ; vifm --select %c" <cr>
 nnoremap rs :! echo -ne "\n========== dry-run\n" ; rsync -rtln --progress --delete --stats --size-only %d/ %D ; read -n 1 -s -r -p "Press F or ENTER or SPACE to sync; ESC to cancel" key ; echo -ne "\n\n========== real\n" ; [[ "$key" == 'f' || "$key" == '' ]] && ( rsync -rtl  --progress --delete --stats --size-only %d/ %D ; read -n 1 -s -r -p "========== DONE!" ; echo ) || echo

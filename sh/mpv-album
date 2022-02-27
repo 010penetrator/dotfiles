@@ -7,13 +7,16 @@ file="$HOME/.mpv-history"
 # ignore '..' target 
 if [ "$1" == '..' ]; then set -- "." "${2}" ; fi
 
+clear
+
 # cd to $1
 if [ -n "$1" ]
 then
   if [ -e "$1" ]
   then
-    cd "$1"
+    [ -d "$1" ] && cd "$1"
     echo . $PWD
+    echo
     if ! [ -f "$file" ] ; then touch "$file" ; fi
     recent=$(tail $file -n 14)
     fresh=$(echo "$recent" | grep -xF "$PWD" >/dev/null; echo $?)
@@ -46,12 +49,17 @@ else
   PAUSE='--pause'
 fi
 
+shopt -s nullglob
+shopt -s nocaseglob
+
 if [[ $(ls | grep -ic '\.ape$\|\.flac$\|\.wv$') == $(ls | grep -ic '\.cue$') && $(ls | grep -ic '\.cue$') > 0 ]]
   then
   echo ==play cue with mpv==
   mpv $PAUSE --no-video *.cue
+  [[ "$ASK" == 1 ]] && ask_album.sh
 else
   echo ==play audio files==
   mpv $PAUSE --no-video *.{flac,mp3,ogg,ape,wv}
+  [[ "$ASK" == 1 ]] && ask_album.sh
 fi
 
