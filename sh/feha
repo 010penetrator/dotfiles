@@ -1,9 +1,10 @@
 #!/bin/bash
 # call nice feh
 
-FEH_PARAMS="--auto-rotate --edit -B black -xrnq."
+FEH_PARAMS="--auto-rotate -B #333 -Fxrnq."
+# FEH_PARAMS="--auto-rotate --edit -B black -xrnq."
 echo pwd : `pwd`
-echo feh arg : \'"$1"\'
+echo feha arg : \'"$1"\'
 
 if [ "$1" = "." ]
 then

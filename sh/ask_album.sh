@@ -3,7 +3,7 @@
 
 clear
 echo What would you like to do next?
-echo at
+echo .
 echo $PWD
 echo
 echo "q" - quit
