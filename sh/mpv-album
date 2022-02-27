@@ -13,7 +13,7 @@ then
   if [ -e "$1" ]
   then
     cd "$1"
-    echo we are in $PWD
+    echo . $PWD
     if ! [ -f "$file" ] ; then touch "$file" ; fi
     recent=$(tail $file -n 14)
     fresh=$(echo "$recent" | grep -xF "$PWD" >/dev/null; echo $?)
@@ -48,10 +48,10 @@ fi
 
 if [[ $(ls | grep -ic '\.ape$\|\.flac$\|\.wv$') == $(ls | grep -ic '\.cue$') && $(ls | grep -ic '\.cue$') > 0 ]]
   then
-  echo : play cue with mpv...
+  echo ==play cue with mpv==
   mpv $PAUSE --no-video *.cue
 else
-  echo : play audio files...
+  echo ==play audio files==
   mpv $PAUSE --no-video *.{flac,mp3,ogg,ape,wv}
 fi
 

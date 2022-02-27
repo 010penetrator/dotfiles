@@ -62,7 +62,7 @@ nnoremap rS :! echo -ne "\n========== dry-run\n" ; rsync -rtKn --progress --dele
 " nnoremap rS :! echo -ne "\n" ; rsync -rt  --progress --delete --stats --size-only %d/ %D ; read -n 1 -s -r -p "========== DONE!" ; echo
 nnoremap qf :! if [ %c == ".." ] ; then feha . ; else if [ -d %c ] ; then cd %c; feha . ; else if [ -f %c ] ; then feha %c; fi ; fi ; fi <cr>
 nnoremap qF :! fehf . <cr>
-nnoremap q<space> :! mpv %c <cr>
+nnoremap q<space> :! mpv --keep-open=always *.{mp4,MP4,webm,mkv,mov,MOV} <cr>
 " Open file with vim server
 " if (system('echo $EDITOR') == "vim")
 "     nnoremap av :! MODE="split"  vimrpc "%c"  <cr>

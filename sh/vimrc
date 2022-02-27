@@ -759,12 +759,13 @@ nnoremap <Leader>gq :call FocusBufOrDo('.vimrc$','e $MYVIMRC')<CR>
 nnoremap <Leader>gb :call FocusBufOrDo('.bashrc$','e $HOME/.bashrc')<CR>
 nnoremap <Leader>gx :call FocusBufOrDo('sxhkd','e $sh/sxhkdrc')<CR>
 nnoremap <Leader>gk :call FocusBufOrDo('kitty.conf','e $sh/kitty.conf')<CR>
+nnoremap <Leader>gc :call FocusBufOrDo('rc.sh','e $sh/rc.sh')<CR>
 nnoremap <Leader>gm :call FocusBufOrDo('material','e $tt/material')<CR>
 nnoremap <Leader>gz :call FocusBufOrDo('zzzz','e $tt/zzzzzz')<CR>
 nnoremap <Leader>gu :call FocusBufOrDo('ff','e $tt/u*/ff*')<CR>
 nnoremap <Leader>gh :call FocusBufOrDo('sh_history','e $HOME/.bash_history')<CR>G
 nnoremap <Leader>gl :call FocusBufOrDo('1linux','e $sh/1linux')<CR>
-nnoremap <Leader>gs :call FocusBufOrDo('stk','e /ln/ho/use/stk.tx')<CR>
+" nnoremap <Leader>gs :call FocusBufOrDo('stk','e /ln/ho/use/stk.tx')<CR>
 
 " Appearance
 nnoremap z; :set wrap!<CR>

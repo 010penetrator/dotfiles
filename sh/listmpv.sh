@@ -3,8 +3,10 @@
 
 . ~/.sh/dmenurc.sh
 d=$(cat .mus-list | sort -R | dmenu $DMENU_OPTIONS -fn "$DMENU_FN")
-# echo $d;
 if [ -z "$d" ]; then echo no selection !; exit; fi
+
+PLAYBACK_CMD="mpv-album . ; ask_album.sh"
+
 case $(echo "$d" | wc -l) in
   0)
     echo noth
@@ -15,9 +17,9 @@ case $(echo "$d" | wc -l) in
     case $TERMINAL in
       kitty*)
         TERMINAL="$TERMINAL -o initial_window_height=$(expr 450 + $HIDPI \* 100) -o initial_window_width=$(expr 650 + $HIDPI \* 130)"
-        $TERMINAL /bin/bash -c "mpv-album . ; ask_album.sh" &> /dev/null & ;;
+        $TERMINAL /bin/bash -c "$PLAYBACK_CMD" &> /dev/null & ;;
       *)
-        xterm -xrm 'XTerm.vt100.allowTitleOps: true' -geometry 60x24+400+250 -e 'mpv-album . ; ask_album.sh'  &> /dev/null & ;;
+        xterm -xrm 'XTerm.vt100.allowTitleOps: true' -geometry 60x24+400+250 -e "$PLAYBACK_CMD"  &> /dev/null & ;;
     esac
     ;;
   *)
