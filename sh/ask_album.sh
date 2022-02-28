@@ -9,6 +9,9 @@ if [[ "$PWD" =~ "torrents/red/" ]] ; then
     [[ . -nt /ln/torrents/red/KKK ]] && echo --it is a new torrent
     [[ . -ot /ln/torrents/red/KKK ]] && echo --it is an archive torrent
 fi
+if [[ $(grep "$PWD" $HOME/.mpv-favourites -c) -gt 0 ]] ; then
+    echo --it is in favourites list
+fi
 echo
 [[ $INVIFM == 1 ]] && echo "q" - back to vifm || \
 echo "q" - quit

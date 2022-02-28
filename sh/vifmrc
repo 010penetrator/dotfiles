@@ -100,7 +100,7 @@ nnoremap qd :! deadbeef --queue %c &>/dev/null & <cr>
 nnoremap qo :! xdg-open %c & <cr>
 nnoremap q. :! ./%c <cr>
 nnoremap qb :file &<cr>l
-nnoremap go :! google.sh %c &>/dev/null & <cr>
+nnoremap ,o :! google.sh %c &>/dev/null & <cr>
 nnoremap au :! echo Sync... ; sync %f && udevil umount %f<cr>
 nnoremap ai : amou <cr>
 nnoremap ao : aumo <cr>
@@ -138,6 +138,7 @@ nnoremap ge :cd /ln/mo<cr>
 nnoremap gq :cd /ln/ho/qq<cr>
 nnoremap g/ :cd /ln<cr>
 nnoremap gm :cd /ln/mus<cr>
+nnoremap go :cd /ln/ho/moment<cr>
 nnoremap gx :trashes<cr>
 nnoremap gc :cd $HOME/.config<cr>
 nnoremap gs :cd /ln/sh<cr>

@@ -756,7 +756,7 @@ nnoremap <Leader>gy ^y$:call system('yandex.sh ' . "'" . @" . "'")<CR>
 " Jump to favourite files
 nnoremap <Leader>gg :call FocusBufOrDo('wawe','e /ln/ho/moment/4gist/wawe')<CR>
 nnoremap <Leader>gq :call FocusBufOrDo('.vimrc$','e $MYVIMRC')<CR>
-nnoremap <Leader>gb :call FocusBufOrDo('.bashrc$','e $HOME/.bashrc')<CR>
+nnoremap <Leader>gb :call FocusBufOrDo('bashrc$','e $sh/bashrc')<CR>
 nnoremap <Leader>gx :call FocusBufOrDo('sxhkd','e $sh/sxhkdrc')<CR>
 nnoremap <Leader>gk :call FocusBufOrDo('kitty.conf','e $sh/kitty.conf')<CR>
 nnoremap <Leader>gc :call FocusBufOrDo('rc.sh','e $sh/rc.sh')<CR>

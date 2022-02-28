@@ -115,8 +115,6 @@ export FZF_CTRL_R_OPTS="--no-sort --exact"
 function fzfpaadd { pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S ; }
 function fzfparem { pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns ; }
 
-[ -f /ln/lo/bashrc.local ] && source /ln/lo/bashrc.local
-
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
@@ -237,4 +235,6 @@ fi
 # BEGIN_KITTY_SHELL_INTEGRATION
 if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
 # END_KITTY_SHELL_INTEGRATION
+
+[ -f /ln/lo/bashrc.local ] && source /ln/lo/bashrc.local
 
