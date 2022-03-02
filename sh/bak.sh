@@ -12,7 +12,7 @@ tar -chzf "$bak/$name" -C /ln/  sh lo \
                   -C $tt/../ tt
 
 [ -d /ln/co/transmission-daemon ] &&
-  tar -czf "$bak"/trm.tar.gz /ln/co/transmission-daemon
+  tar -czf "$bak"/trm.tar.gz -C /ln/co/ transmission-daemon
 
 [ -d "$bak2" ] &&
   cp -f "$bak/$name" "$bak2"/my_bak.tar.gz &&
