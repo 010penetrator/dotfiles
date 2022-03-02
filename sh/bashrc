@@ -71,7 +71,7 @@ get_space_used() { df -BMB "$1" --output=used | tail -1 | grep -o '[0-9]*' ; }
 hddsum() { d1=$(get_space_used /ln/mo/blink) ; d2=$(get_space_used /ln/mo/metal) ; echo Σ= "$(( d1 + d2 ))" Mb ; }
 fkill() {  ps -ef | sed 1d | fzf -e -m | awk '{print $2}' | xargs kill -${1:-9} ; }
 vol() { pactl set-sink-volume 0 "$1"% ; }
-gnome-box() { killall gnome-boxes ; killall libvirtd ; virsh -c qemu:///session pool-list --all ; virsh -c qemu:///session pool-destroy gnome-boxes ;  virsh -c qemu:///session pool-undefine gnome-boxes ; rm -rf .local/share/gnome-boxes ; rm -rf .config/libvirt ; }
+gnome_box() { killall gnome-boxes ; killall libvirtd ; virsh -c qemu:///session pool-list --all ; virsh -c qemu:///session pool-destroy gnome-boxes ;  virsh -c qemu:///session pool-undefine gnome-boxes ; rm -rf .local/share/gnome-boxes ; rm -rf .config/libvirt ; }
 #
 if [ -x /bin/dhclient ] || [ -x /usr/sbin/dhclient ] ; then dhc_call=dhclient ; fi
 [ -x /bin/dhcpcd ] && dhc_call=dhcpcd

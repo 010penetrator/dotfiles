@@ -292,14 +292,14 @@ set display=lastline
 set hidden
 set fileformat=unix
 
-" Handle backups
-silent ! find $RTP/bak -type f -mtime +30 -delete
 if !isdirectory($RTP)
   call mkdir($RTP, "", 0770)
 endif
+" Handle backups
 if !isdirectory($RTP . "/bak")
   call mkdir($RTP . "/bak", "", 0700)
 endif
+silent ! find $RTP/bak -type f -mtime +30 -delete
 set backupdir=$RTP/bak
 set undodir=$RTP/bak
 set undofile
@@ -1366,11 +1366,12 @@ call MySigns()
 
 let hostname = substitute(system('hostname'), '\n', '', '')
 if !exists("g:colors_name")
-  if hostname == "warmPC" || hostname == "machine" || hostname == "debian10pc"
+  if hostname == "warmPC" || hostname == "rpi4b" || hostname == "machine" || hostname == "debian10pc"
     " colo PaperColor | set background=light | LineColor solarized
-    colo Tomorrow | LineColor Tomorrow
+    " colo Tomorrow | LineColor Tomorrow
     " colo Tomorrow-Night | LineColor bluewery
     " colo Tomorrow-Night-Eighties | LineColor ayu_mirage
+    colo edge | set background=dark | LineColor darcula
     " colo espresso | LineColor espresso
     " colo cryslominsa | LineColor cryslominsa
     " colo stellarized | set background=light | LineColor atlantis

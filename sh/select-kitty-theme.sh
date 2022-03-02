@@ -17,7 +17,7 @@ go_through () {
     [[ $key == 'd' ]] && mkdir -p del && mv "$t" "del/$t"
     [[ $key == 'q' ]] && break
     [[ $key == '' ]] && echo CR
-    [[ $key == 'a' ]] && cp -f $t ~/.config/kitty/theme.conf
+    [[ $key == 'a' ]] && cp -f $t ~/.config/kitty/theme.conf && exit
   done 
   echo
   if [ -d favs ] && [ "$( ls -A favs/ )" ] ; then
