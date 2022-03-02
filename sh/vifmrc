@@ -123,7 +123,7 @@ nnoremap zU :! upk2dir.sh %c %D <cr>
 nnoremap zp :! 7z a -mx=3 -xr!.git -xr!tags %c.7z %f <cr>
 nnoremap z0 :! 7z a -mx=1 -xr!.git -xr!tags %c.7z %f
 nnoremap zP :! 7z a -mx=3 -xr!.git -xr!tags %D/%c.7z %f <cr>
-nnoremap as :! tar -I 'zstd -10 -T0' -cf %c.tar.zst --exclude='.git' --exclude='tags' --exclude='debug/*' %f 
+nnoremap as :! tar -I 'zstd -10 -T0' -cf %c.tar.zst --exclude='.git' --exclude='tags' --exclude='debug/*' --exclude='build/*' %f 
 nnoremap aS :! tar -I 'zstd -10 -T0' -cf %D/%c.tar.zst --exclude='.git' --exclude='tags' --exclude='debug/*' %f 
 nnoremap ze :! upk.sh %c <cr>
 nnoremap zE :! cd %D; upk.sh %d/%c <cr>

@@ -29,7 +29,7 @@ elif [[ $prompt == "h" ]] ; then
     echo $PWD/// >> $HOME/.mpv-history
 elif [[ $prompt == "f" ]] ; then
     echo $PWD >> $HOME/.mpv-favourites
-elif [[ $prompt == "c" && $INVIFM == 1 ]] ; then
+elif [[ $prompt == "c" && $INVIFM != 1 ]] ; then
     vifm .
 elif [[ $prompt == "p" ]] ; then
     PAUSE=0 mpv-album . -c "wincmd o"
