@@ -1363,10 +1363,23 @@ call MySigns()
 """"""""""""""""""""""""
 ""      Theming:      ""
 """"""""""""""""""{{{}}}
-"
-" hi! Search ctermbg=222
-" hi! Normal ctermbg=234
-"
+
+let hostname = substitute(system('hostname'), '\n', '', '')
+if !exists("g:colors_name")
+  if hostname == "warmPC" || hostname == "machine" || hostname == "debian10pc"
+    " colo PaperColor | set background=light | LineColor solarized
+    colo Tomorrow | LineColor Tomorrow
+    " colo Tomorrow-Night | LineColor bluewery
+    " colo Tomorrow-Night-Eighties | LineColor ayu_mirage
+    " colo espresso | LineColor espresso
+    " colo cryslominsa | LineColor cryslominsa
+    " colo stellarized | set background=light | LineColor atlantis
+  endif
+  if hostname == "user-pc" || hostname == "raspberrypi"
+    colo Tomorrow-Night | LineColor bluewery
+  endif
+endif
+
 " list available colors..
 " let c = getcompletion('', 'color') | new | put =c | goto 1 | map M j:exec 'colo' getline(line('.')) <cr>
 " new | map M j: LineColor <C-R><C-W><cr>| exec "read ! echo; ls $VIMPLUG/lightline.vim/autoload/lightline/colorscheme" | goto 1 | del 1
@@ -1413,21 +1426,8 @@ call MySigns()
 " LineColor bluewery
 " LineColor deus
 
-let hostname = substitute(system('hostname'), '\n', '', '')
-if !exists("g:colors_name")
-  if hostname == "warmPC" || hostname == "machine" || hostname == "debian10pc"
-    " colo PaperColor | set background=light | LineColor solarized
-    colo Tomorrow | LineColor Tomorrow
-    " colo Tomorrow-Night | LineColor bluewery
-    " colo Tomorrow-Night-Eighties | LineColor ayu_mirage
-    " colo espresso | LineColor espresso
-    " colo cryslominsa | LineColor cryslominsa
-    " colo stellarized | set background=light | LineColor atlantis
-  endif
-  if hostname == "user-pc" || hostname == "raspberrypi"
-    colo Tomorrow-Night | LineColor bluewery
-  endif
-endif
+" hi! Search ctermbg=222
+" hi! Normal ctermbg=234
 
 """"""""""""""""""""""""
 ""       Trial:       ""
