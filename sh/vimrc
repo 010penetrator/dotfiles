@@ -1424,10 +1424,7 @@ if !exists("g:colors_name")
     " colo cryslominsa | LineColor cryslominsa
     " colo stellarized | set background=light | LineColor atlantis
   endif
-  if hostname == "user-pc"
-    colo Tomorrow-Night | LineColor bluewery
-  endif
-  if hostname == "machine"
+  if hostname == "user-pc" || hostname == "raspberrypi"
     colo Tomorrow-Night | LineColor bluewery
   endif
 endif
