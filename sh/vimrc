@@ -554,10 +554,8 @@ nnoremap a<CR> :e <c-r><c-f> <CR>
 nnoremap ae :vsp <c-r><c-f> <CR>
 nnoremap aE :sp <c-r><c-f> <CR>
 " split open current location with netrw
-nnoremap a, :wincmd s \| e %:p:h <CR>
-nnoremap a. :wincmd v \| e %:p:h <CR>
-nnoremap as :new  \| lcd #:p:h \| echo expand ('%') '.@.' getcwd() <CR>
-nnoremap av :vnew \| lcd #:p:h \| echo expand ('%') '.@.' getcwd() <CR>
+nnoremap as :wincmd s \| e %:p:h <CR>
+nnoremap av :wincmd v \| e %:p:h <CR>
 nnoremap qs :new  \| lcd #:p:h \| echo expand ('%') '.@.' getcwd() <CR>
 nnoremap qv :vnew \| lcd #:p:h \| echo expand ('%') '.@.' getcwd() <CR>
 nnoremap qS :split # <cr>
