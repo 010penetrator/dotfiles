@@ -4,13 +4,14 @@
 # Try 'wmctrl -l -x' to discover the names
 # wmctrl required
 
-echo '.'
+# DEBUG=1
+[[ $DEBUG == '1' ]] && echo '.'
 activeid=$(xprop -root _NET_ACTIVE_WINDOW | cut -d "#" -f2 | cut -c 4-) &&
 # drop '0x0'
 activeid=$(echo $activeid | cut -d ',' -f1)
 # zero pad it
 while [ ${#activeid} -lt 7 ] ; do activeid=0$activeid; done
-echo activeid is $activeid
+[[ $DEBUG == '1' ]] && echo activeid is $activeid
 if [ "$1" == '0' ]
 # if argument is null, cycle through windows of same class as current
 then 
@@ -34,12 +35,11 @@ if [ -n "$1" ] ; then
     echo "choosing next"
     str=$(wmctrl -l -x | grep -v -e "^...........-" | grep "$wname" | grep -A1 $activeid | tail -1 | cut -c -10)
   else
-    echo s1
     str=$(wmctrl -l -x | grep -v -e "^...........-" | grep -m 1 "$wname" | cut -c -10)
   fi
 fi
 
-echo Final aim $str
+[[ $DEBUG == '1' ]] && echo Final aim $str
 if [ -z "$str" ]
   then
     if [ -n "$2" ]
@@ -49,6 +49,6 @@ if [ -z "$str" ]
       else
         $wname &> /dev/null &
     fi
-  else wmctrl -i -a $str
+  else wmctrl -i -a $str 1>/dev/null
 fi
 

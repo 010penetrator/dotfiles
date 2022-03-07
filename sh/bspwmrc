@@ -40,14 +40,19 @@ bspc rule -a Screenkey manage=off
 # wmctrl -m | grep "Name:" | awk '{print $2}'
 #   ( sleep .4 ; gsettings set org.gnome.mutter overlay-key '' )  # free Win key in Gnome 3
 
+
+# if FDN is not unset, export it
+[[ -z ${FLOATING_DESKTOPS+x} ]] || export FLOATING_DESKTOPS
+
 if [[ "$HOSTNAME" =~ ^debian10pc ]]; then
   bspc monitor HDMI-0 -d 4 5 6 7 8
   bspc monitor DVI-D-0 -d 1 2 3
   bspc monitor HDMI-1 -d 1 2 3
   bspc monitor HDMI-2 -d 4 5 6 7 8
-  export FLOATING_DESK_NUM=5
+  [[ -z ${FLOATING_DESKTOPS+x} ]] && export FLOATING_DESKTOPS=5
+  # [[ -n FLOATING_DESKTOPS ]] && export FLOATING_DESKTOPS=5
 else
-  export FLOATING_DESK_NUM="2"
+  [[ -z ${FLOATING_DESKTOPS+x} ]] && export FLOATING_DESKTOPS=3
 fi
 
 ( killall bspc bspc_rules & sleep .4 ; /./ln/sh/bspc_rules ) &

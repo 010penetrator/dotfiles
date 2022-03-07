@@ -1,5 +1,5 @@
 #!/bin/bash
-# Reload sxhkd
+# Reload sxhkd silent
 
-killall sxhkd; sxhkd -c  ~/.sh/sxhkdrc &
+killall sxhkd; sxhkd -c  $sh/sxhkdrc 1>/dev/null &
 # notify-send TERMINAL "$TERMINAL" #debug

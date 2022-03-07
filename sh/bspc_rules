@@ -6,7 +6,7 @@ keep_floating () {
   bspc subscribe node | while read -a msg ; do
     desk_id=${msg[2]}
     wid=${msg[3]}
-    echo ${msg[2]} ':' ${msg[3]} ${msg[2]}
+    # echo ${msg[2]} ':' ${msg[3]} ${msg[2]}
     # echo $(bspc query --tree -n ${wid} | grep sticky..true -c) 
     if 
       (
@@ -24,7 +24,8 @@ keep_floating () {
   done
 }
 
-for num in $FLOATING_DESK_NUM ; do
+echo Floating desktops are: $FLOATING_DESKTOPS
+for num in $FLOATING_DESKTOPS ; do
   keep_floating &
 done
 

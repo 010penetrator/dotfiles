@@ -54,15 +54,12 @@ alias lb='$LSBLK -f | grep sd --color=none'
 alias lm='$LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT'
 alias m='df -BMB'
 amou() { target=$( $LSBLK -f | grep -e ".sd\|.nvme" | fzf -e | cut -f 1 -d " " | tr -cd '[:alnum:]' ); [ ! -z "${target}" ] && udevil mount /dev/"$target" && echo "/dev/$target mounted" || echo 'No target.' ; }
-aumo() { target=$( $LSBLK -f | grep -e ".sd\|.nvme" | grep '/' | cut -c 7- | fzf -e |  cut -f 1 -d ' ' ); mopoi=$( mount | grep "${target}" | cut -f 3 -d ' ' ); [ ! -z "${target}" ] && sync "$mopoi" && udevil umount "/dev/$target" && echo "/dev/$target unmounted" || echo 'No target.' ; }
+aumo() { target=$( $LSBLK -f | grep -e ".sd\|.nvme" | grep '/' | cut -c 7- | fzf -e |  cut -f 1 -d ' ' ); mopoi=$( mount | grep "${target}" | cut -f 3 -d ' ' ); [ ! -z "${target}" ] && sync "$mopoi" && udevil umount "/dev/$target" && echo "/dev/$target unmounted from $mopoi" || echo 'No target.' ; }
 # title() { echo -ne "\e]0;$*\a"; }
 title() { echo -ne "\033]0;$*\007"; }
 alias leto='date +%Y-%m-%d'
 alias p='ps aux | grep -v grep | grep'
 alias dropcs='sync && echo 3 | sudo tee /proc/sys/vm/drop_caches'
-alias lowfreq='sudo cpupower frequency-set -u 2400MHz >/dev/null ; cpupower frequency-info | grep policy'
-alias normfreq='sudo cpupower frequency-set -u 3300MHz >/dev/null ; cpupower frequency-info | grep policy'
-alias gamefreq='sudo cpupower frequency-set -u 3800MHz >/dev/null ; cpupower frequency-info | grep policy'
 
 # Functions #
 zz() { du -csh $*; local IFS="_"; filename=$(echo "$*" | tr / _); tar -I 'zstd -10 -T0' -cf "$filename".tar.zst --exclude='.git' --exclude='tags' $*; du -sh "$filename".tar.zst; }

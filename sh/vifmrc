@@ -101,7 +101,7 @@ nnoremap qo :! xdg-open %c & <cr>
 nnoremap q. :! ./%c <cr>
 nnoremap qb :file &<cr>l
 nnoremap ,o :! google.sh %c &>/dev/null & <cr>
-nnoremap au :! echo Sync... ; sync %c && udevil umount %c<cr>
+nnoremap au :! echo Sync... ; sync %f && udevil umount %f<cr>
 nnoremap ai : amou <cr>
 nnoremap ao : aumo <cr>
 nnoremap del :! sudo rm -r %c <cr>
@@ -226,6 +226,7 @@ set noiec
 " colorscheme Default
 " colorscheme reicheltd-light
 colo dracula
+" colo iceberg
 
 " Format for displaying time in file list. For example:
 " TIME_STAMP_FORMAT=%m/%d-%H:%M

@@ -3,11 +3,6 @@
 # Originally based on code by Dieter Plaetinck.
 # Pretty much re-written by Mina Nagy (mnzaki)
 
-# if ! [ -f "$HOME/.dmenurc.sh" ]; then
-# 	cp /usr/share/dmenu/dmenurc $HOME/.dmenurc
-# fi
-. ~/.sh/dmenurc.sh
-
 #dmenu_cmd="dmenu $DMENU_OPTIONS"
 terminal="$TERMINAL_CMD"
 max_recent=199 # Number of recent commands to track
@@ -70,3 +65,4 @@ fi
 [[ "$type" = "terminal" ]] && exec $terminal "$cmd"
 [[ "$type" = "terminal_hold" ]] &&
     exec $terminal sh -c "$cmd && echo Press Enter to kill me... && read line"
+
