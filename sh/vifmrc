@@ -4,12 +4,15 @@
 " The " character at the beginning of a line comments out the line.
 " Blank lines are ignored.
 " The basic format for each item is shown with an example.
-
 " ------------------------------------------------------------------------------
-!echo -ne "\033]0;VIFM\007"
-" wincmd o
 
-" USERadd
+" Selected color scheme
+" colorscheme Default
+" colorscheme reicheltd-light
+colo dracula
+" colo iceberg
+
+!echo -ne "\033]0;VIFM\007"
 nnoremap af :<up><cr>
 command! CC :! mv /ln/dwn/cover.* . 
 command! ogg :! cd %c && conv_uni2ogg.sh . %D &>/dev/null ; notify-send "%c converted" &
@@ -220,13 +223,6 @@ set norunexec
 " Use KiB, MiB, ... instead of KB, MB, ...
 
 set noiec
-
-" Selected color scheme
-
-" colorscheme Default
-" colorscheme reicheltd-light
-colo dracula
-" colo iceberg
 
 " Format for displaying time in file list. For example:
 " TIME_STAMP_FORMAT=%m/%d-%H:%M
