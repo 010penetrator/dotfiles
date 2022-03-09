@@ -138,7 +138,7 @@ nnoremap yC :! echo -n %f:p | xclip ; echo -n %f:p | xclip -selection clipboard 
 nnoremap gh :cd $HOME<cr>
 nnoremap gz :cd /ln/hh<cr>
 nnoremap ge :cd /ln/mo<cr>
-nnoremap gq :cd /ln/ho/qq<cr>
+nnoremap gq :cd /ln/ho/qq<cr>:sort<cr>N
 nnoremap g/ :cd /ln<cr>
 nnoremap gm :cd /ln/mus<cr>
 nnoremap go :cd /ln/ho/moment<cr>

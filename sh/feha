@@ -1,8 +1,7 @@
 #!/bin/bash
 # call nice feh
 
-FEH_PARAMS="--auto-rotate -B #333 -Fxrnq."
-# FEH_PARAMS="--auto-rotate --edit -B black -xrnq."
+FEH_PARAMS="--auto-rotate -B #333 -Fxnq."
 echo pwd : `pwd`
 echo feha arg : \'"$1"\'
 

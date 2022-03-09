@@ -59,7 +59,7 @@ box_drawing_scale 0.001, 1, 1.5, 2
 #: }}}
 
 #: Cursor customization {{{
-# cursor #ff00ff
+cursor #ff00ff
 
 #: Default cursor color
 # cursor_text_color #111111
@@ -68,12 +68,12 @@ box_drawing_scale 0.001, 1, 1.5, 2
 #: with the background color of the cell underneath instead, use the
 #: special keyword: background
 
-cursor_shape block
 
 #: The cursor shape can be one of (block, beam, underline)
 
-cursor_blink_interval      1.0
-cursor_stop_blinking_after 10.0
+cursor_shape block
+cursor_blink_interval      0.5
+cursor_stop_blinking_after 2.6
 
 #: The interval (in seconds) at which to blink the cursor. Set to zero
 #: to disable blinking. Note that numbers smaller than repaint_delay
@@ -898,18 +898,20 @@ map kitty_mod+delete clear_terminal reset active
 
 # }}}
 
-map kitty_mod+i set_colors --all /ln/co/kitty-themes/themes/Wez.conf
-
 # include more_kitty.conf
-include ./theme.conf
-cd ~/.config/kitty-themes/themes/ ; for t in *.conf ; do echo $t ; kitty @ set-colors -a "~/.config/kitty-themes/themes/$t" ; read -rs -n1 key; [[ $key == 'f' ]] &&  done 
 
-# cursor #ff00ff
+# include ./theme.conf
+# map kitty_mod+i set_colors /ln/co/kitty/theme.conf
+
+# BEGIN_KITTY_THEME
+# Clrs
+include current-theme.conf
+# END_KITTY_THEME
+
+cursor #cc00dd
 # cursor #e619e5
 # cursor #cc33cc
 
-# BEGIN_KITTY_THEME
-# Pencil Light
-include current-theme.conf
-# END_KITTY_THEME
+shell_integration no-cursor
+cursor_shape block
 

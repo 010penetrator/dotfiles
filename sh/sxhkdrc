@@ -41,7 +41,7 @@ super + space
   raise.sh 'deadbeef\|MPV \|mpv$' 'noti echo no player instance found'
 ctrl + space
   (setxkbmap -query | grep -q "layout:\s\+us") && setxkbmap ru || setxkbmap us && notify-send "$( setxkbmap -query | grep layout | tr -s ' ' )" -t 600
-super + Escape
+super + BackSpace
   setxkbmap us
 ctrl + 7
   xdotool getactivewindow windowminimize
@@ -142,7 +142,7 @@ super + {comma,period}
   bspc desktop -f {prev,next}.local
 
 # focus the last node
-super + BackSpace
+super + Escape
   bspc node -f last
 super + ctrl + f
   bspc node -f last
