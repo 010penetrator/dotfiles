@@ -32,7 +32,7 @@ super + d
 super + f ; v
   xdotool mousemove_relative 0 1600
 super + x ; x
-  addlayout.sh ; xinputupd.sh ; sxd.sh ; notify-send "$(LC_ALL=C date; uptime -p)"
+  addlayout.sh ; xinputupd.sh ; sxd.sh ; notify-send "$( LC_ALL=ru_RU.UTF-8 date; uptime -p )"
 super + X
   bspc node -c
 super + x ; T

@@ -3,7 +3,7 @@
 
 uptime -p
 # df -BGB
-lsblk -fl 
+$LSBLK -o NAME,LABEL,MOUNTPOINT,SIZE,FSUSE% | grep "sd\|nvme" --color=none
 sudo echo
 # du -sh /var/log/journal/ $HOME
 sudo journalctl --disk-usage

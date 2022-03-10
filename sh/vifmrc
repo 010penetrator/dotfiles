@@ -6,11 +6,10 @@
 " The basic format for each item is shown with an example.
 " ------------------------------------------------------------------------------
 
-" Selected color scheme
 " colorscheme Default
-" colorscheme reicheltd-light
-colo dracula
-" colo iceberg
+" colo reicheltd-light
+" colo dracula
+colo iceberg
 
 !echo -ne "\033]0;VIFM\007"
 nnoremap af :<up><cr>
@@ -30,8 +29,8 @@ command! resmusBit :! mkdir resampled orig ; for flac in *.flac; do sox -S "${fl
 command! tok :!touch %c "--date=@$(expr $(stat -c %%%%Y KKK) - 100)"
 command! tik :!touch --date="$(date -R -r %c) + 10 minute" KKK
 " command! tik :!touch --date="$(date -R -r %c) + 1 day" %c
-command! amou :! bash -ic ' source /ln/ho/.bashrc ; amou '
-command! aumo :! bash -ic ' source /ln/ho/.bashrc ; aumo '
+command! amou :! bash -ic ' source /ln/sh/bashrc && amou '
+command! aumo :! bash -ic ' source /ln/sh/bashrc && aumo '
 command! own  :! sudo chown 1000:100 .
 nnoremap ,x :quit <cr>
 nnoremap qx :quit <cr>
@@ -86,7 +85,7 @@ nnoremap ,d :! vim -d %c %D/%c <cr>
 nnoremap a<space> :! MODE="last" vimrpc "%c" &>/dev/null & <cr>
 nnoremap az :! vimrpc "%c"<cr>:q<cr>
 nnoremap ,n :! ncdu -x %c<cr>
-nnoremap zc :! bash -c 'echo -ne \\n  ls current :\\n ; ls -dla %c ; du -sh %c ; du -sb %c ; read -rsn1'<cr>
+nnoremap zc :! bash -c 'echo; ls -dla %c ; du -sh %c ; du -sb %c ; df -BGB . | tail -1 ; read -rsn1'<cr>
 nnoremap z. :! bash -c 'echo -ne \\n  ls dir :\\n ; ls -la --color=auto . ; read -rsn1'<cr>
 nnoremap za :! clear -x; $LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT ; read -rsn1 <cr>
 nnoremap zs :! clear -x; df -BMB ; read -rsn1 <cr>
@@ -126,8 +125,8 @@ nnoremap zU :! upk2dir.sh %c %D <cr>
 nnoremap zp :! 7z a -mx=3 -xr!.git -xr!tags %c.7z %f <cr>
 nnoremap z0 :! 7z a -mx=1 -xr!.git -xr!tags %c.7z %f
 nnoremap zP :! 7z a -mx=3 -xr!.git -xr!tags %D/%c.7z %f <cr>
-nnoremap as :! tar -I 'zstd -10 -T0' -cf    %c.tar.zst --exclude='.git' --exclude='tags' --exclude='debug/*' --exclude='build/*' --exclude='~$*' %f 
-nnoremap aS :! tar -I 'zstd -10 -T0' -cf %D/%c.tar.zst --exclude='.git' --exclude='tags' --exclude='debug/*' --exclude='build/*' --exclude='~$*' %f 
+nnoremap as :! tar -I 'zstd -10v -T0' -cf    %c.tar.zst --exclude='.git' --exclude='tags' --exclude='debug/*' --exclude='build/*' --exclude='~$*' %f 
+nnoremap aS :! tar -I 'zstd -10v -T0' -cf %D/%c.tar.zst --exclude='.git' --exclude='tags' --exclude='debug/*' --exclude='build/*' --exclude='~$*' %f 
 nnoremap ze :! upk.sh %c <cr>
 nnoremap zE :! cd %D; upk.sh %d/%c <cr>
 nnoremap qr ggvGcw
@@ -146,7 +145,7 @@ nnoremap gx :trashes<cr>
 nnoremap gc :cd $HOME/.config<cr>
 nnoremap gs :cd /ln/sh<cr>
 nnoremap gd :cd /ln/dwn<cr>
-nnoremap gb :cd /ln/mo/blink/bak/<cr>
+nnoremap gb :cd $bak<cr>
 nnoremap gk :cd /ln/torrents/red/KKK<cr>:sort<cr>mh
 nnoremap gl gf 
 nnoremap al :!ln -rs $PWD/%c %D/%c <cr>
@@ -173,6 +172,7 @@ set cpoptions=fs
 " set vicmd='source $HOME/.bashrc; vim --cmd "set titlestring=VIM\ @\ VIFM"'
 " set vicmd=elvis\ -G\ termcap
 " set vicmd=vile
+set vicmd=$EDITOR
 
 if (system('echo $INVIM') == "1")
   set vicmd='source $HOME/.bashrc; MODE="cur" vimrpc'

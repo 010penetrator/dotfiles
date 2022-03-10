@@ -171,10 +171,12 @@ ps -u $(id -u) -o pid= | while read pid; do
 
 FS
 mkfs.vfat -F32 /dev/sdx1
-dd bs=4M if=~/linux.iso of=/dev/sdb && sync
-dd if=/dev/zero of=/dev/sdx bs=4k && sync
-sudo dd if=/dev/zero of=zero.file #if you don't use sudo then all but 5% of the will be used (5% is reseved for the root login)
-cat /dev/zero > zero.file # fill free space
+dd bs=4M if=~/image.img of=/dev/sdb && sync # restore partition from file
+dd if=/dev/zero of=/dev/sdx bs=4k && sync # wipe partition
+sudo dd if=/dev/zero of=zero.file # wipe free space # if you don't use sudo then all but 5% of the will be used (5% is reseved for the root login)
+cat /dev/zero > zero.file ; sync ; rm zero.file # wipe free space
+sudo sh -c "zstd -10v -T0 </dev/nvme0n1p6 >$bak/root.zst" # backup partition with zst compression
+zstdcat -v root.zst >/dev/sdXn # restore zst archived image
 e2label /dev/sdXN mint95 # set ext2+ fs label
 dosfslabel # set ntfs label
 UUID=x-x /path ext4 defaults,rw,nofail,nosuid,nodev,relatime,data=ordered 0 0 #fstab stub

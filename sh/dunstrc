@@ -2,7 +2,7 @@
     # font = Liberation Mono 14.2
     width = 0
     font = Liberation Mono 12.0
-    # geometry = "450x5-18+12"
+    geometry = "450x5-18+12"
     # font = Monospace 11.6
     
     # Allow a small subset of html markup:

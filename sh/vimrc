@@ -50,6 +50,7 @@ endif
 ""      Plugins:      ""
 """"""""""""""""""""""""
 
+let g:vimplug_available=0
 if has('nvim')
   if filereadable($HOME."/.local/share/nvim/site/autoload/plug.vim")
     let g:vimplug_available=1
@@ -755,7 +756,7 @@ nnoremap <Leader>gy ^y$:call system('yandex.sh ' . "'" . @" . "'")<CR>
 
 " Jump to favourite files
 nnoremap <Leader>gg :call FocusBufOrDo('wawe','e /ln/ho/moment/4gist/wawe')<CR>
-nnoremap <Leader>gq :call FocusBufOrDo('.vimrc$','e $MYVIMRC')<CR>
+nnoremap <Leader>gq :call FocusBufOrDo('vimrc$','e $MYVIMRC')<CR>
 nnoremap <Leader>gb :call FocusBufOrDo('bashrc$','e $sh/bashrc')<CR>
 nnoremap <Leader>gx :call FocusBufOrDo('sxhkd','e $sh/sxhkdrc')<CR>
 nnoremap <Leader>gk :call FocusBufOrDo('kitty.conf','e $sh/kitty.conf')<CR>
@@ -1376,8 +1377,9 @@ if !exists("g:colors_name")
     " colo cryslominsa | LineColor cryslominsa
     " colo stellarized | set background=light | LineColor atlantis
   endif
-  if hostname == "user-pc" || hostname == "raspberrypi"
-    colo Tomorrow-Night | LineColor bluewery
+  if hostname == "user-pc" || hostname == "debpc"
+    " colo Tomorrow-Night | LineColor bluewery
+    colo Tomorrow | LineColor Tomorrow
   endif
 endif
 
@@ -1401,9 +1403,9 @@ endif
 " colo everforest | LineColor cryslominsa
 " colo Tomorrow-Night | LineColor bluewery
 " let ayucolor="mirage" | colo ayu | LineColor ayu_mirage
+" colo espresso | LineColor espresso
 " colo corvine | LineColor bluewery
 " colo OceanicNext | LineColor bluewery
-" colo espresso | LineColor espresso
 " colo stellarized | set background=dark | LineColor bluewery
 " colo Tomorrow-Night-Blue | LineColor bluewery
 " colo edge | set background=dark | LineColor darcula
