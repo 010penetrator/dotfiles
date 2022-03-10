@@ -1,7 +1,11 @@
 #!/bin/bash
 # Play youtube URL in clipboard via mpv
 
-if [[ $(xclip -selection clipboard -o | grep youtu) ]] ; then adr=$(xclip -selection clipboard -o)
-	else if [[ $(xclip -o | grep youtu) ]] ; then adr=$(xclip -o); fi; fi
+if [[ $(xclip -selection clipboard -o | grep youtu) ]] ; then
+  adr=$(xclip -selection clipboard -o)
+elif [[ $(xclip -o | grep youtu) ]] ; then
+  adr=$(xclip -o)
+fi
+
 mpv $adr -ytdl-format='bestvideo[height<=720]+bestaudio'
 

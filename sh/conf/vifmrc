@@ -7,9 +7,9 @@
 " ------------------------------------------------------------------------------
 
 " colorscheme Default
-" colo reicheltd-light
+colo reicheltd-light
 " colo dracula
-colo iceberg
+" colo iceberg
 
 !echo -ne "\033]0;VIFM\007"
 nnoremap af :<up><cr>

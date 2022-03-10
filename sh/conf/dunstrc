@@ -1,10 +1,16 @@
 [global]
     # font = Liberation Mono 14.2
     width = 0
-    font = Liberation Mono 12.0
-    geometry = "450x5-18+12"
+    font = Liberation Mono 13.0
     # font = Monospace 11.6
-    
+
+    geometry = "450x5-18+42"
+
+    width = 400
+    height = 200
+    origin = top-right
+    offset = 16x20
+
     # Allow a small subset of html markup:
     #   <b>bold</b>
     #   <i>italic</i>
@@ -150,6 +156,10 @@
     # Paths to default icons.
     icon_folders = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
 
+    frame_width = 2
+
+    corner_radius = 5
+
 [shortcuts]
 
     # Shortcuts are specified as [modifier+][modifier+]...key
@@ -178,12 +188,13 @@
     # Otherwise the "#" and following would be interpreted as a comment.
     background = "#222222"
     foreground = "#888888"
-    timeout = 10
+    timeout = 8
 
 [urgency_normal]
     background = "#285577"
+    frame_color = "#285577"
     foreground = "#eded77"
-    timeout = 10
+    timeout = 8
 
 [urgency_critical]
     frame_color = "#888888"
@@ -245,3 +256,4 @@
 #    urgency = normal
 #
 # vim: ft=cfg
+

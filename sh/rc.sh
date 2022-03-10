@@ -1,9 +1,9 @@
 #!/bin/bash
-# rc script for the operating system
+# rc script for my desktop environment
 
 cd
 
-desk_height=$(xdpyinfo | grep dimensions | cut -d ' ' -f 7 | cut -d x -f 2)
+desk_height=$( xdpyinfo | grep dimensions | cut -d ' ' -f 7 | cut -d x -f 2 )
 [[ desk_height -gt 1200 ]] && export HIDPI=1 || export HIDPI=0
 
 source ~/.bashrc
@@ -21,7 +21,7 @@ source ~/.bashrc
 xset dpms 1200 0 0
 xset s 0 0
 xset -b
-xset r rate 210 40 # set keyboard repeat rate
+xset r rate 220 44 # set keyboard repeat rate
 
 sxd.sh &
 # killall sxhkd; sxhkd -c ~/.sh/sxhkdrc &
@@ -71,16 +71,14 @@ fi
 killall dunst
 (
 sleep .1
-if  [[ $HIDPI == "1" ]] ; then
-  dunst -conf /ln/sh/dunstrc -font "Liberation Mono 14.4" &
-else
-  dunst -conf /ln/sh/dunstrc &
-fi
+# [[ $HIDPI == "1" ]] && OPT='-font "Liberation Mono 14.4"'
+dunst -conf /ln/sh/conf/dunstrc &
+# dunst &
 )
 # sleep .9
 # notify-send $HOSTNAME &
 
-killall osdsh ; osdsh  -p 0 -a 2 -d 1 -f -adobe-helvetica-bold-r-*-*-*-240-*-*-*-*-iso8859-* -c teal 
+# killall osdsh ; osdsh  -p 0 -a 2 -d 1 -f -adobe-helvetica-bold-r-*-*-*-240-*-*-*-*-iso8859-* -c teal 
 
 # echo RC done
 notify-send 'RC complete'

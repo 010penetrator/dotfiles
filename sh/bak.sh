@@ -1,9 +1,10 @@
 #!/bin/bash
+# Backup using tar
 
 bak1="$HOME/bak/"
 mkdir -p $bak1
 bak2="/ln/bl/bak"
-rdir="$PWD"
+begin_dir="$PWD"
 name="my_bak_$(date +%Y-%m-%d).tar.gz"
 [ -f "$bak1/$name" ] && rm "$bak1/$name"
 
@@ -18,5 +19,5 @@ tar -chzf "$bak1/$name" -C /ln/  sh lo \
   cp -f "$bak1/$name" "$bak2"/my_bak.tar.gz &&
   cp -f "$bak1"/trm.tar.gz /ln/torrents/torrents-bak/
 
-cd "$rdir"
+cd "$begin_dir"
 

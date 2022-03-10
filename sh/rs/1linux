@@ -1,4 +1,7 @@
-Install
+# vim: ts=4 sw=4 ft=text
+# some Bash oneliners AND pieces of general Linux wisdom
+
+==Install
 BASE: base-devel inetutils earlyoom mlocate udevil cylon inxi
 ARCHIE: pacli pakku yay baph
 TUI: mc clex lfm ranger vifm nnn lftp fzf ripgrep silversearcher-ag ncdu tree p7zip htop ytop bashtop bpytop glances dmenu keratin screenfetch lolcat tmux bc tty-clock 
@@ -23,7 +26,11 @@ CHAT: weechat irssi *jitsi pidgin hexchat ring retroshare sylpheed
 SCIENT: gnuplot kst2 scipy scilab mathmod
 DEB-only: xinput psmisc
 
-RICE
+--Debian pkgs
+dmenu rofi wmctrl xdotool vim-gtk kitty pavucontrol htop vifm fdisk gparted nnn thunar bash-completion mlocate sxhkd fonts-hack ncdu xclip zathura zathura-djvu gitg mpv remmina xinput feh rsync inxi lshw mediainfo ripgrep silversearcher-ag libnotify-bin imagemagick efibootmgr unrar sox git make cmake curl zstd zip gparted strace speedcrunch ctags 
+qtcreator qtcreator-doc qtcreator-data build-essential qtbase5-examples qtbase5-dev
+
+==RICE
 Chrome: uBlock Vimium CVim Surfingkeys MidnightLizard SingleFile Stylus Rescroller Browsec Bookmarks_MakeItSimple RecentBookmarks EmptyNewTabPage CopyTabInfo CopyUrl.rus
 Firefox: Vimium TabStash DarkReader VerticalTabsReloaded NoPlaylistAutoplayForYouTube HLSdownloader HumbleNewTabPage TabSuspender tablist_slymax hide-scrollbars *DefaultZoom FixedZoom
 Fonts: Cantarell Liberation DejaVu Noto Arimo Tinos Caslon EB-Garamond Euclid-Circular-A
@@ -44,7 +51,7 @@ Cinnamon: Moka dark-glass2
 https://github.com/bhilburn/powerlevel9k
 https://github.com/powerline/fonts/tree/master/LiberationMono
 
-UNIX
+==UNIX
 /etc/passwd /etc/group /etc/default/grub /boot/grub/grub.cfg /etc/systemd/system.conf # usable
 showconsolefont ; ls /usr/share/kbd/consolefonts/ ; setfont ter-218b # set tty font
 usermod -a -G vboxusers user1 # add user to group
@@ -109,19 +116,19 @@ while read line ; do deadbeef --queue "$line" ; done # use stdin as arg
 while pgrep -x polybar >/dev/null; do sleep 1; done # wait until the processes have been shut down
 cat /proc/uptime | cut -d ' ' -f1 #get uptime in secs
 
-GRUB
-:restore Grub2:
+==GRUB
+--restore Grub2:
 mount -t ext4 /dev/sdXN /mnt
 mount -t proc /proc /mnt/proc ; mount --bind /dev /mnt/dev ; mount --bind /sys /mnt/sys 
 chroot /mnt #OR# arch-chroot /mnt
 grub-mkconfig -o /boot/grub/grub.cfg ; grub-install /dev/sdX
-:GRUB EFI install:
+--GRUB EFI install:
 grub-install --target=x86_64-efi --efi-directory=EfiSystemPart --boot-directory=/boot --bootloader-id=NewName 
-:GRUB EFI install to removable media:
+--GRUB EFI install to removable media:
 grub-install --target=x86_64-efi --efi-directory=/media/GLIM --removable --boot-directory=/media/GLIM/boot /dev/sdc
-:manual grub boot:
+--manual grub boot:
 grub2> set root=(hd0,2) ; linux /boot/vmlinuz-linux root=/dev/sdX2 ; initrd /boot/initrd.img ; boot
-:grub rescue to normal mode 
+--grub rescue to normal mode 
 ls; set root=(hd0,msdos1); set prefix=/boot/grub; insmod ext2; insmod normal; normal
 .
 qemu-system-x86_64 -hda /dev/sdc # check bootloader
@@ -131,6 +138,7 @@ bootlace.com /dev/sdb
 sync && echo 3 | sudo tee /proc/sys/vm/drop_caches ; sudo qemu-system-x86_64 -m 1024 -enable-kvm -hda /dev/sdc # going nuts
 refind-install --usedefault  /dev/esp
 .
+--grub.cfg option general look:
 menuentry "Local Linux installation" {
   search --no-floppy --fs-uuid --set ...-..-..-..-...
   probe --set rootuuid --fs-uuid $root
@@ -139,7 +147,7 @@ menuentry "Local Linux installation" {
   boot
 }
 
-X
+==X
 setxkbmap -layout 'us,ru' -option 'grp:alt_shift_toggle,grp_led:scroll' # подключить смену языка
 xset s 1800 1800 ; xset -dpms # screen-off timer
 echo -ne "\e]0;xterm\a" # set terminal title
@@ -169,14 +177,14 @@ ps -u $(id -u) -o pid= | while read pid; do
         cat /proc/$pid/environ 2>/dev/null | tr '\0' '\n' | grep '^DISPLAY=:'
     done | grep -o ':[0-9]*' | sort -u # return current display id 
 
-FS
+==FS
 mkfs.vfat -F32 /dev/sdx1
 dd bs=4M if=~/image.img of=/dev/sdb && sync # restore partition from file
 dd if=/dev/zero of=/dev/sdx bs=4k && sync # wipe partition
 sudo dd if=/dev/zero of=zero.file # wipe free space # if you don't use sudo then all but 5% of the will be used (5% is reseved for the root login)
 cat /dev/zero > zero.file ; sync ; rm zero.file # wipe free space
 sudo sh -c "zstd -10v -T0 </dev/nvme0n1p6 >$bak/root.zst" # backup partition with zst compression
-zstdcat -v root.zst >/dev/sdXn # restore zst archived image
+zstdcat root.zst >/dev/nvme0n1p6 # restore zst archived image
 e2label /dev/sdXN mint95 # set ext2+ fs label
 dosfslabel # set ntfs label
 UUID=x-x /path ext4 defaults,rw,nofail,nosuid,nodev,relatime,data=ordered 0 0 #fstab stub
@@ -200,7 +208,7 @@ git remote update ; git show-branch *master # check if remote master has been up
 tar -I 'zstd -11 -T0' -cf somedir.tar.zst --exclude='.git' --exclude='tags' somedir # create tar.zst
 zip -r -1 arc.zip Dir Dir2 #create zip
 
-NET
+==NET
 ip link
 w=$(ip link | grep wlp | cut -f 2 -d : | cut -b 2-) # get wireless adapter name
 ip addr show
@@ -239,7 +247,7 @@ curl --socks5 localhost:1234 ifconfig.me # check socks5 proxy
 systemctl restart privoxy ; http_proxy=127.0.0.1:8118 curl ifconfig.me --head # get tor as http proxy
 https_proxy="localhost:8118" wget -q --spider https://ya.ru && echo 1 # check proxy
 
-HW
+==HW
 xset r rate 220 30 # set keyboard repeat rate
 sudo modprobe pcspkr ; echo -e '\a' ; rmmod pcspkr ; xset -b # STOP BELL BEEP!
 sudo sh -c "sync && echo 3 > /proc/sys/vm/drop_caches" # drop caches
@@ -264,14 +272,14 @@ tune2fs -U $(uuidgen) /dev/sdX # change partition's UUID
 hwinfo --gfxcard
 inxi -v7 # system info
 
-MCU
+==MCU
 avrdude -c avrisp -p atmega32u4 -U flash:w:planck_rev4_plasmik.hex:i 
 sleep 3 && sudo dfu-programmer atmega32u4 erase && sudo dfu-programmer atmega32u4 flash /ln/mo/GLIM/planck_rev4_plasmik.hex 
 sudo make xd60/rev3:plasmik:dfu
 make planck/rev6:plasmik:dfu-util
 cd qmk_firmware/ && make atreis:default && sudo bash flash.sh atreis_default.hex
 
-PKG
+==PKG
 apt-cache policy libgtk2.0-0 libgtk-3-0
 gnome-shell --version
 dpkg --configure -a
@@ -292,7 +300,7 @@ git clone https://aur.archlinux.org/pakku.git
 pacman -U https://archive.archlinux.org/packages/n/nim/nim-1.0.6-1-x86_64.pkg.tar.zst
 makepkg -si
 
-ALSO
+==ALSO
 cp -a /source/. /target # add source/ contents to target/
 cp -aT  /source /target # add source/ contents to target/
 for f in * ; do d=${f%.*} ; 7z x -o./"$d" "$f" ; done # unpack all files with 7z 
@@ -305,8 +313,8 @@ kitty -T transmission-remote_tranloc_ -e tremc -c localhost:9090
 kitty -T transmission-remote_tranpi_ -e tremc -c 192.168.1.160:9090 
 noti transmission-remote localhost:9090 -st #locstats
 noti transmission-remote 192.168.1.160:9090 -st #pistats
-rsync -e ssh -av --progress --no-perms --no-times --delete --size-only pi@192.168.1.78:/ln/red/Form*1995* /ln/torrents/red/ # reverse
-rsync -e ssh -Lav --progress --exclude=".*/" --no-perms --no-times --delete --size-only pi@192.168.1.78:/ln/red/ /ln/torrents/red/ # reverse
+rsync -e ssh -av --progress --no-perms --no-times --delete --size-only pi@192.168.1.78:/ln/red/Form*1995* /ln/torrents/red/ # reverse transfer
+rsync -e ssh -Lav --progress --exclude=".*/" --no-perms --no-times --delete --size-only pi@192.168.1.78:/ln/red/ /ln/torrents/red/ # reverse transfer
 xdg-mime default vim.desktop $(xdg-mime query filetype textfile.ext)
 exo-open ......../app.desktop # run app .desktop file
 ~/.local/share/applications/*.destop # .desktop location
@@ -329,7 +337,7 @@ echo firstt $(($(date +%s%N)/1000000)) && sleep 1 && echo second $(($(date +%s%N
 du -a . | awk '{print $2}' | fzf | xargs -r $EDITOR # search and edit multiple files 
 # jdownloader outputs blank screen under bspwm? ==> $ wmname LG3D; java -jar path/JDownloader.jar
 
-SOUND
+==SOUND
 amixer -c 0 # list ALSA controls for card 0
 amixer -c USB controls
 aplay -l # list devices

@@ -7,32 +7,32 @@ if [ -z $1 ] ; then set -- "+0" ; fi
 key=$(echo $1 | head -c 1)
 
 case $key in
-	u)
-		new=$(expr $old + 1 + $old / 9)
-		;;
-	d)
-		new=$(expr $old - 1 - $old / 9)
-		;;
-	+)
-		new=$(expr $old + ${1:1})
-		;;
-	-)
-		new=$(expr $old - ${1:1})
-		;;
+  u)
+    new=$(expr $old + 1 + $old / 9)
+    ;;
+  d)
+    new=$(expr $old - 1 - $old / 9)
+    ;;
+  +)
+    new=$(expr $old + ${1:1})
+    ;;
+  -)
+    new=$(expr $old - ${1:1})
+    ;;
 esac
 
 if [ -z "$new" ] ; then
-	new=$1;
+  new=$1;
 fi
 
 if [ $new -gt $max ] ; then 
-	echo too much !
-	new=$max
+  echo too much !
+  new=$max
 fi
 
 if [ 0 -gt $new ] ; then
-	echo too little !
-	new=1
+  echo too little !
+  new=1
 fi
 
 echo Trying to set backlight to $new

@@ -1,28 +1,37 @@
 #!/bin/bash
-# Update and tidy my Arch Linux
+# vim: ts=2 sw=2 ft=sh
+# Update and tidy my Arch Linux (or Debian Linux as well)
 
 uptime -p
+echo
 # df -BGB
 $LSBLK -o NAME,LABEL,MOUNTPOINT,SIZE,FSUSE% | grep "sd\|nvme" --color=none
-sudo echo
 # du -sh /var/log/journal/ $HOME
-sudo journalctl --disk-usage
-[ -d /var/cache/pacman/pkg/ ] && du -sh /var/cache/pacman/pkg/
+echo
+
+# Call few commands with a single 'sudo' call
 sudo bash -c "
 (
   journalctl --vacuum-size=50M --quiet
+  journalctl --disk-usage
+  echo
   if  lsb_release -i | grep -q -ie 'mint\|debian\|buntu'
-    then
-    apt update ; apt upgrade
+  then
+    apt update
+    apt upgrade
   elif  lsb_release -i | grep -q -ie "arch"
-    then
+  then
     pacman -Syu
+    # Drop older package downloads
     find /var/cache/pacman/pkg/ -mtime +5 -exec rm {} \;
+    [ -d /var/cache/pacman/pkg/ ] && du -sh /var/cache/pacman/pkg/
   fi
   updatedb
 )"
 
+# Backup vim-session cause I am known to overwrite it by accident
 [ -d $HOME/.vim ] && cp $HOME/.vim/session.vim $HOME/.vim/session.vimBAK
 
-[ -d "$tt" ] && bak.sh || echo "UNABLE TO MAKE BACKUP!"
+# Backup something else
+[ -d "$tt" ] && bak.sh || echo "UNABLE TO MAKE TEXTS BACKUP!"
 

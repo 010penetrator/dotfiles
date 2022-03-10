@@ -36,7 +36,7 @@ endif
 " help map-which-keys
 " currfile=%\ mainbin
 " let $BROWSER = 'luakit'
-" .w !bash  "exec current line 
+" .w !bash  "exec current line with bash
 " %s/^\(\s\)\+$//g | "clean space lines 
 " s/\(|\|\\\)/\\\1/g "screen backslashes for saving command
 " exec  "!"  . @"  "exec yank buffer
@@ -69,7 +69,7 @@ call plug#begin('$VIMPLUG')
 " Basic sane stuff
 Plug 'tpope/vim-sensible' "basic
 Plug 'jlanzarotta/bufexplorer' "basic
-Plug 'sheerun/vim-polyglot' "okay HUGE
+" Plug 'sheerun/vim-polyglot' "okay HUGE
 Plug 'itchyny/lightline.vim' "cool
 Plug 'justinmk/vim-sneak' "good!
 Plug 'tpope/vim-commentary' "good
@@ -547,8 +547,9 @@ nnoremap <Leader>H :diffoff  \| wincmd w<CR>
 nnoremap q<Space> :echo expand ('%') '.@.' getcwd() <CR>
 nnoremap <Leader><Space> :LCDhere <CR>
 " nnoremap <Leader>G :call ClimbToDirWhere(".git/index",1) \| pwd <CR>
-nnoremap a<BS> :checktime <cr>
-nnoremap q<BS> :enew <CR>
+nnoremap a<BS> :checktime<cr>
+nnoremap q<BS> :enew<CR>
+nnoremap z<BS> :e!<CR>
 " new split to netrw
 nnoremap a-  : split <bar> exec "normal -" <cr>
 nnoremap a_  :vsplit <bar> exec "normal -" <cr>
@@ -758,15 +759,14 @@ nnoremap <Leader>gy ^y$:call system('yandex.sh ' . "'" . @" . "'")<CR>
 nnoremap <Leader>gg :call FocusBufOrDo('wawe','e /ln/ho/moment/4gist/wawe')<CR>
 nnoremap <Leader>gq :call FocusBufOrDo('vimrc$','e $MYVIMRC')<CR>
 nnoremap <Leader>gb :call FocusBufOrDo('bashrc$','e $sh/bashrc')<CR>
-nnoremap <Leader>gx :call FocusBufOrDo('sxhkd','e $sh/sxhkdrc')<CR>
-nnoremap <Leader>gk :call FocusBufOrDo('kitty.conf','e $sh/kitty.conf')<CR>
+nnoremap <Leader>gx :call FocusBufOrDo('sxhkd','e $sh/conf/sxhkdrc')<CR>
+nnoremap <Leader>gk :call FocusBufOrDo('kitty.conf','e $sh/conf/kitty.conf')<CR>
 nnoremap <Leader>gc :call FocusBufOrDo('rc.sh','e $sh/rc.sh')<CR>
 nnoremap <Leader>gm :call FocusBufOrDo('material','e $tt/material')<CR>
 nnoremap <Leader>gz :call FocusBufOrDo('zzzz','e $tt/zzzzzz')<CR>
 nnoremap <Leader>gu :call FocusBufOrDo('ff','e $tt/u*/ff*')<CR>
 nnoremap <Leader>gh :call FocusBufOrDo('sh_history','e $HOME/.bash_history')<CR>G
-nnoremap <Leader>gl :call FocusBufOrDo('1linux','e $sh/1linux')<CR>
-" nnoremap <Leader>gs :call FocusBufOrDo('stk','e /ln/ho/use/stk.tx')<CR>
+nnoremap <Leader>gl :call FocusBufOrDo('1linux','e $sh/rs/1linux')<CR>
 
 " Appearance
 nnoremap z; :set wrap!<CR>
@@ -784,6 +784,7 @@ nnoremap <Leader>vt :TagbarOpen fj <CR>
 " nnoremap <Leader>.. :call UpdCtagsGit() <CR>
 
 " Search
+nnoremap <Leader>r :Rg<CR>
 " nnoremap <Leader>fa :Ack <C-r><C-w> %:p:h 
 " nnoremap <Leader>ff :AckFile <C-r><C-W> <CR>
 " nnoremap <Leader>fw :AckWindow <C-r><C-w> <CR>
@@ -891,6 +892,10 @@ let @s = "i \<Esc>ll."
 """"""""""""""""""""""""
 ""     Functions:     ""
 """"""""""""""""""""""""
+
+function! RunSelBash()
+  echo system(join(getline(a:firstline,a:lastline), "\n"))
+endfunction
 
 function! UpdCtagsDirDeps()
   echom "Trying to update ctags with deps in this directory"
@@ -1384,10 +1389,10 @@ if !exists("g:colors_name")
 endif
 
 " list available colors..
-" let c = getcompletion('', 'color') | new | put =c | goto 1 | map M j:exec 'colo' getline(line('.')) <cr>
-" new | map M j: LineColor <C-R><C-W><cr>| exec "read ! echo; ls $VIMPLUG/lightline.vim/autoload/lightline/colorscheme" | goto 1 | del 1
+" let c = getcompletion('', 'color') | new | put =c | goto 1 | map <buffer> M j:exec 'colo' getline(line('.')) <cr>
+" new | map <buffer> M j: LineColor <C-R><C-W><cr>| exec "read ! echo; ls $VIMPLUG/lightline.vim/autoload/lightline/colorscheme" | goto 1 | del 1
 
-" map M j:call EvalThis()<cr>
+" map <buffer> M j:call EvalThis()<cr>
 " colo snow | set background=light | LineColor ayu_light
 " colo vadelma | set background=light | LineColor one
 " colo PaperColor | set background=light | LineColor solarized
