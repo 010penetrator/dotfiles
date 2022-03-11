@@ -1,10 +1,10 @@
 [global]
     # font = Liberation Mono 14.2
     width = 0
-    font = Liberation Mono 13.0
+    font = Fira Code 11.8
     # font = Monospace 11.6
 
-    geometry = "450x5-18+42"
+    geometry = "450x5-15+20"
 
     width = 400
     height = 200
@@ -137,7 +137,7 @@
     #  * foreground: use the same color as the foreground;
     #  * frame: use the same color as the frame;
     #  * anything else will be interpreted as a X color.
-    separator_color = frame
+    separator_color = foreground
     
     # Print a notification on startup.
     # This is mainly for error detection, since dbus (re-)starts dunst
