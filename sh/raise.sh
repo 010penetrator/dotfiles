@@ -15,7 +15,7 @@ while [ ${#activeid} -lt 7 ] ; do activeid=0$activeid; done
 if [ "$1" == '0' ]
 # if argument is null, cycle through windows of same class as current
 then 
-  wname=$(wmctrl -l -x | grep $activeid | cut -d " " -f4 | cut -d "." -f1)
+  wname=$(wmctrl -l -x | grep -a $activeid | cut -d " " -f4 | cut -d "." -f1)
   echo focus another $wname
 else
   wname=$1
@@ -24,18 +24,20 @@ else
 fi
 
 if [ -n "$1" ] ; then
-  # If window of that name is active, there are others of that name, current is not last in list
   if
-    [[ $(wmctrl -l -x | grep "$wname" | grep $activeid) ]] &&
-    [[ $(wmctrl -l -x | grep -v -e "^...........-" | grep "$wname" | wc -l) > 1 ]] &&
-    # [[ $(wmctrl -l -x | grep $wname | wc -l) != $(wmctrl -l -x | grep $wname | grep -n $activeid | cut -d ":" -f1) ]]
-    [[ $(wmctrl -l -x | grep "$wname" | grep -A1 $activeid | wc -l) > 1 ]]
+    # If window of that name is active, there are others of that name, current is not last in list
+    [[ $(wmctrl -l -x | grep -a "$wname" | grep -a $activeid) ]] &&
+    [[ $(wmctrl -l -x | grep -a -v -e "^.\{9\}\s" | grep -a "$wname" | wc -l) > 1 ]] &&
+    # [[ $(wmctrl -l -x | grep -a $wname | wc -l) != $(wmctrl -l -x | grep -a $wname | grep -a -n $activeid | cut -d ":" -f1) ]]
+    [[ $(wmctrl -l -x | grep -a "$wname" | grep -a -A1 $activeid | wc -l) > 1 ]]
   then
-    # Need to choose next window of same name
+    # Choose next window of same name
     echo "choosing next"
-    str=$(wmctrl -l -x | grep -v -e "^...........-" | grep "$wname" | grep -A1 $activeid | tail -1 | cut -c -10)
+    str=$(wmctrl -l -x | grep -a -v -e "^\{9\}\s" | grep -a "$wname" | grep -a -A1 $activeid | tail -1 | cut -c -10)
   else
-    str=$(wmctrl -l -x | grep -v -e "^...........-" | grep -m 1 "$wname" | cut -c -10)
+    # Just choose window which includes desired name
+    echo "choosing simple"
+    str=$(wmctrl -l -x | grep -a -v -e "^\{9\}\s" | grep -a -m 1 "$wname" | cut -c -10)
   fi
 fi
 

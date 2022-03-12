@@ -904,7 +904,7 @@ include theme.conf
 # map kitty_mod+i set_colors /ln/co/kitty/theme.conf
 
 # BEGIN_KITTY_THEME
-# Aquarium Dark
+# Kaolin Breeze
 include current-theme.conf
 # END_KITTY_THEME
 
