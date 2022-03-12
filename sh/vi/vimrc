@@ -79,6 +79,7 @@ Plug 'tpope/vim-endwise' "okay
 Plug 'tpope/vim-repeat' "handy
 Plug 'tpope/vim-eunuch' "handy
 Plug 'tpope/vim-ragtag' "ok
+Plug 'tpope/vim-fugitive' "handy
 Plug 'michaeljsmith/vim-indent-object' "cool
 Plug 'godlygeek/tabular' "okay
 Plug 'jamessan/vim-gnupg' "good
@@ -98,11 +99,12 @@ Plug 'sandeepcr529/Buffet.vim' "good
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf'
 
+" Fun
+Plug 'zefei/vim-colortuner' "fun
+
 " Try now
 Plug 'kshenoy/vim-signature' "buggy
 Plug 'chrisbra/SaveSigns.vim' "usable
-Plug 'zefei/vim-colortuner' "fun
-Plug 'tpope/vim-fugitive'
 
 " Try later
 " Plug 'tpope/vim-unimpaired'
@@ -231,6 +233,7 @@ Plug 'sainnhe/edge' "good soft
 Plug 'sainnhe/everforest' "cream lowcon
 Plug 'sainnhe/archived-colors' "atlantis,cryslominsa,desert_night,fairy_garden,grimoire,ice_age,lost_shrine,vanilla_cake
 Plug 'flrnd/plastic.vim' "juicy
+Plug 'EdenEast/nightfox.nvim'
 Plug 'atelierbram/vim-colors_atelier-schemes' "mindfuck
 Plug 'nightsense/vimspectr' " need gui
 Plug 'colepeters/spacemacs-theme.vim' "cool
@@ -276,7 +279,7 @@ set winheight=7
 " set iminsert=0
 " set imsearch=0
 " set nofoldenable    " disable folding
-set tabstop=2 softtabstop=2 expandtab shiftwidth=2 smarttab 
+set tabstop=2 softtabstop=2 expandtab shiftwidth=4 smarttab 
 set textwidth=0 wrapmargin=0
 set smartindent
 set invlinebreak
@@ -455,7 +458,7 @@ imap оо <ESC>
 noremap x "_x
 noremap X "_X
 noremap c "_c
-noremap S "_C
+noremap C "_C
 " noremap s "_s
 
 " Editing
@@ -712,9 +715,9 @@ nnoremap <Leader>vp :put + <bar> exec "normal dfmxIPlug 'A'" <CR>
 " evaluate one line as Vimscript
 nnoremap <Leader>vl yy:@"<CR>
 " evaluate a paragraph as Vimscript
-nnoremap <Leader>v. yap:@"<CR>
+nnoremap <Leader>vi yap:@"<CR>
 " evaluate a paragraph as Vimscript and re-run last command
-nnoremap <Leader>vi yap:@"<CR>:<up><CR>
+nnoremap <Leader>v. yap:@"<CR>:<up><CR>
 " evaluate one line or one paragraph as Vimscript
 nnoremap <Leader>v<Leader> :call EvalThis()<CR>
 
@@ -1428,11 +1431,12 @@ endif
 " colo edge 
 " colo everforest
 " colo vadelma
+"
 " LineColor ayu_light
-" LineColor one
 " LineColor edge
-" LineColor selenized_light
+" LineColor one
 " LineColor material
+" LineColor selenized_light
 " LineColor Tomorrow
 " LineColor solarized
 " LineColor nord

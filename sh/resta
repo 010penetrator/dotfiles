@@ -1,0 +1,28 @@
+#!/bin/bash
+# Kill a process and start it afterwards
+
+if [ -z "$TIMES" ] ; then
+    TIMES=50
+fi
+
+if [ -z "$1" ] ; then
+    echo Please provide a program name to restart it!
+    exit
+else
+    PROC="$1"
+fi
+
+co=0
+while ( [[ $(pgrep "$PROC" | wc -l) > 0 ]] && [[ $co < $TIMES ]] ) ; do
+    sleep .1
+    pkill -x "$PROC"
+    ((co=co+1))
+done
+
+if [[ $(pgrep "$PROC" | wc -l) == 0 ]] ; then
+    echo Will start $PROC now..
+    "$PROC" &
+else
+    echo No success killing $PROC!
+fi
+
