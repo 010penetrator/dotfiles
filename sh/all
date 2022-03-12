@@ -2,26 +2,26 @@
 # vim: ts=2 sw=2 ft=sh
 # Update and tidy my Arch Linux (or Debian Linux as well)
 
-uptime -p
-echo
+uptime -p ; echo
 # df -BGB
-$LSBLK -o NAME,LABEL,MOUNTPOINT,SIZE,FSUSE% | grep "sd\|nvme" --color=none
-# du -sh /var/log/journal/ $HOME
-echo
+$LSBLK -o NAME,LABEL,MOUNTPOINT,SIZE,FSUSE% | grep "sd\|nvme" --color=none ; echo
+
+du -sh $HOME
+du -sh /var/log/journal/
+[ -d /var/cache/pacman/pkg/ ] && du -sh /var/cache/pacman/pkg/ && echo
 
 # Call few commands with a single 'sudo' call
 sudo bash -c "
 (
   journalctl --vacuum-size=50M --quiet
-  journalctl --disk-usage
+  # journalctl --disk-usage ; echo
   if  lsb_release -i | grep -q -ie 'mint\|debian\|buntu' ; then
     apt update
     apt upgrade
-  elif  lsb_release -i | grep -q -ie "arch" ; then
-    find /var/cache/pacman/pkg/ -mtime +7 -exec rm {} \; # Drop older package downloads
-    echo
-    [ -d /var/cache/pacman/pkg/ ] && du -sh /var/cache/pacman/pkg/
+  elif  lsb_release -i | grep -q -ie 'arch' ; then
     pacman -Syu
+    find /var/cache/pacman/pkg/ -mtime +7 -exec rm {} \; # Drop older package downloads
+    # du -sh /var/cache/pacman/pkg/
   fi
   updatedb
 )"
