@@ -1386,8 +1386,9 @@ if !exists("g:colors_name")
     " colo PaperColor | set background=light | LineColor solarized
     " colo Tomorrow | LineColor Tomorrow
     " colo Tomorrow-Night | LineColor bluewery
+    colo bluewery-light | LineColor bluewery
     " colo Tomorrow-Night-Eighties | LineColor ayu_mirage
-    colo edge | set background=dark | LineColor darcula
+    " colo edge | set background=dark | LineColor darcula
     " colo espresso | LineColor espresso
     " colo cryslominsa | LineColor cryslominsa
     " colo stellarized | set background=light | LineColor atlantis

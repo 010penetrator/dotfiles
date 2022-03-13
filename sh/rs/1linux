@@ -4,7 +4,7 @@
 ==Install
 BASE: base-devel inetutils earlyoom mlocate udevil cylon inxi
 ARCHIE: pacli pakku yay baph
-TUI: mc clex lfm ranger vifm nnn exa fd lftp fzf ripgrep silversearcher-ag ncdu tree p7zip htop ytop bashtop bpytop glances dmenu keratin screenfetch lolcat tmux bc tty-clock 
+TUI: networkmanager nmtui mc clex lfm ranger vifm nnn exa fd lftp fzf ripgrep silversearcher-ag ncdu tree p7zip htop ytop bashtop bpytop glances dmenu keratin screenfetch lolcat tmux bc tty-clock 
 X: xorg-server xorg-xinit xterm urxvt xvkbd xclip redshift xscreensaver nitrogen dunst unclutter-xfixes xbanish gmrun scrot wmctrl xdotool 
 FIRMWARE: bluez-utils
 GTKtune: lxappearance oomox wpgtk
