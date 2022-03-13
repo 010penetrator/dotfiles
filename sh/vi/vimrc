@@ -260,6 +260,7 @@ Plug '010penetrator/vim-colors-forplasma' "collection
 " Plug 'the31k/vim-colors-tayra' "Nice gray 404
 Plug 'ayu-theme/ayu-vim'
 Plug 'wuelnerdotexe/vim-enfocado'
+Plug 'https://gitlab.com/protesilaos/tempus-themes-vim.git'
 call plug#end()
 endif
 
