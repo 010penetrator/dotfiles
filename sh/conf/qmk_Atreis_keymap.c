@@ -3,6 +3,7 @@
 // #include QMK_KEYBOARD_H
 // #include "action_layer.h"
 #define F_T(kc) LT(MO(1), kc)
+#define KC_PIPE LSFT(KC_BSLS)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -19,8 +20,8 @@ KEYMAP(
 KC_GRV        , KC_F1    , KC_F2   ,  KC_F3   , KC_F4   , KC_F5   , KC_F6   , KC_F7    , KC_F8   , KC_F9    , KC_F10  , KC_DEL  ,
 KC_TILD       , KC_Q     , KC_PGUP ,  KC_END  , KC_R    , KC_TILD , KC_Y    , KC_U     , KC_INS  , KC_F11   , KC_F12  , KC_PGUP ,
 KC_LALT       , KC_HOME  , KC_S    ,  KC_D    , KC_PGDN , KC_GRV  , KC_LEFT , KC_DOWN  , KC_UP   , KC_RIGHT , KC_QUOT , KC_PGDN ,
-KC_LCTL       , KC_MINS  , KC_PLUS ,  KC_UNDS , KC_EQL  , KC_PGUP , KC_BSLS , KC_MINS  , KC_PLUS , KC_UNDS  , KC_EQL  , KC_ENT  ,
-     MO(1) , LSFT(KC_SPC) , KC_LGUI , KC_CAPSLOCK ,                 LSFT(KC_BSLS) , KC_RSFT , KC_LEFT , KC_RIGHT )
+KC_LCTL       , KC_MINS  , KC_PLUS ,  KC_UNDS , KC_EQL  , KC_PGUP , KC_PIPE , KC_MINS  , KC_PLUS , KC_UNDS  , KC_EQL  , KC_ENT  ,
+     MO(1) , LSFT(KC_SPC) , KC_LGUI , KC_CAPS ,                     KC_BSLS , KC_RSFT , KC_LEFT , KC_RIGHT )
 };
 
 // Custom Actions

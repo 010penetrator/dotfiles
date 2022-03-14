@@ -87,7 +87,7 @@ nnoremap ,d :! vim -d %c %D/%c <cr>
 nnoremap a<space> :! MODE="last" vimrpc "%c" &>/dev/null & <cr>
 nnoremap az :! vimrpc "%c"<cr>:q<cr>
 nnoremap ,n :! ncdu -x %c<cr>
-nnoremap zc :! bash -c 'echo; ls -dla %c ; du -sh %c ; du -sb %c ; df -BGB . | tail -1 ; read -rsn1'<cr>
+nnoremap zc :! bash -c 'echo; ls -dla %c ; du -sb %c | cut -f1 '' ; du -sh %c | cut -f1 '' ; df -BGB . | tail -1 ; read -rsn1'<cr>
 nnoremap z. :! bash -c 'echo -ne \\n  ls dir :\\n ; ls -la --color=auto . ; read -rsn1'<cr>
 nnoremap za :! clear -x; $LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT ; read -rsn1 <cr>
 nnoremap zs :! clear -x; df -BMB ; read -rsn1 <cr>

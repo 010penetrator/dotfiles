@@ -280,7 +280,8 @@ make planck/rev6:plasmik:dfu-util
 cd qmk_firmware/ && make atreis:default && sudo bash flash.sh atreis_default.hex
 
 ==PKG
-apt-cache policy libgtk2.0-0 libgtk-3-0
+apt-cache policy libgtk2.0-0 libgtk-3-0 # check pkg origin
+sudo apt-get --purge autoremove packagename # remove pkg completely
 gnome-shell --version
 dpkg --configure -a
 dpkg-reconfigure xserver-org
