@@ -38,7 +38,7 @@ go_through ()
       [[ $key == 'q' ]] && exit
       [[ $key == 'i' ]] && break
       [[ $key == 'b' ]] && break
-      [[ $key == 'a' ]] && ln -srf "$t" ~/.config/kitty/theme.conf && echo --Applied! && exit
+      [[ $key == 'a' ]] && ln -srf "$t" ~/.config/kitty/current-theme.conf && echo --Applied! && exit
     done 
     echo
   done

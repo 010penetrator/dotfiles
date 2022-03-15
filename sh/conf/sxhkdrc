@@ -4,12 +4,12 @@ super + x ; { m, s, e, h, n, o, a, g }
 super + x ; { z, i, f, q, l, c, d, space }
   { xdotool mousemove_relative 0 1600, listmpvfile.sh /ln/ho/.mpv-history, listmpvfile.sh /ln/ho/.mpv-favourites, bspc node -c, listdwn.sh, listmpv.sh /ln/ho/.mus-list, deadbeef, listdeadbeef.sh }
 
-super + { q, Q, D, Tab, t, v, s, p, r, R, z, g }
+super + { q, Q, D, F, t, v, s, p, r, R, z, g }
   raise.sh { \
   '' scroff, '' 'sus 1', windowswitcher.sh, '' 'rofi -show window', \
   'xterm\|urxvt\|kitty', \
   ' - VIMSERV\|VIM$\| - NVIM$\|nvim $\|QtCreator' 'vinew', 'chromium\|Firefox\|Remmina' '', \
-  'Thunar\| YouTube ' '', zathura listzathura.sh, evince, FBReader, \
+  'Thunar\| YouTube \|office.libreoffice' '', zathura listzathura.sh, evince, FBReader, \
   'Telegram\|Pidgin\|TuxGuitar\|hydrogen' '' }
 
 super + { c, a, A, b, m }
@@ -133,7 +133,7 @@ super + ctrl + {p,b,i,o}
 
 # focus the next/previous node in the current desktop
 super + {_,shift + }w
-  bspc node -f {next,prev}.local
+  bspc node -f {next,prev}.local.!hidden.window
 
 # focus the next/previous desktop in the current monitor
 super + bracket{left,right}
@@ -143,13 +143,15 @@ super + {comma,period}
 
 # focus the last node
 super + Escape
+  bspc node -f last.local
+super + Tab
   bspc node -f last
 
 # focus the last desktop
 alt + Tab
   bspc desktop -f last
-# super + Tab
-#   bspc desktop -f last
+super + ctrl + f
+  bspc desktop -f last
 
 # focus the older or newer node in the focus history
 super + {o,i}

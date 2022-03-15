@@ -1,0 +1,6 @@
+.git/*
+debug/*
+build/*
+tags
+~$*
+
