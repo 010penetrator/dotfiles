@@ -12,12 +12,6 @@ set path=.,**
 let $RTP=split(&runtimepath, ',')[0]
 " let $RTP = expand('$HOME') . '/.vim'
 let $VIMPLUG = $RTP . "/plugged"
-if filereadable($HOME."/.vimrc_msys")
-  source $HOME/.vimrc_msys
-endif
-if filereadable("/ln/lo/vimrc.local")
-    source /ln/lo/vimrc.local
-endif
 " let vstatus = 300
 
 ""  Useful memories  ""
@@ -422,78 +416,6 @@ if has("cscope")
 endif
 
 """"""""""""""""""""""""
-""      Theming:      ""
-""""""""""""""""""{{{}}}
-
-let hostname = substitute(system('hostname'), '\n', '', '')
-if exists("g:colors_name")
-    set nohls
-elseif hostname == "warmPC" || hostname == "rpi4b" || hostname == "machine" || hostname == "debian10pc"
-    " colo PaperColor | set background=light | LineColor solarized
-    " colo Tomorrow | LineColor Tomorrow
-    " colo Tomorrow-Night | LineColor bluewery
-    colo bluewery-light | LineColor bluewery
-    " colo Tomorrow-Night-Eighties | LineColor ayu_mirage
-    " colo edge | set background=dark | LineColor darcula
-    " colo espresso | LineColor espresso
-    " colo cryslominsa | LineColor cryslominsa
-    " colo stellarized | set background=light | LineColor atlantis
-elseif hostname == "user-pc" || hostname == "debpc"
-    " colo Tomorrow-Night | LineColor bluewery
-    colo Tomorrow | LineColor Tomorrow
-endif
-
-" list available colors..
-" let c = getcompletion('', 'color') | new | put =c | goto 1 | map <buffer> M j:exec 'colo' getline(line('.')) <cr>
-" new | map <buffer> M j: LineColor <C-R><C-W><cr>| exec "read ! echo; ls $VIMPLUG/lightline.vim/autoload/lightline/colorscheme" | goto 1 | del 1
-
-" map <buffer> M j:call EvalThis()<cr>
-" colo snow | set background=light | LineColor ayu_light
-" colo vadelma | set background=light | LineColor one
-" colo PaperColor | set background=light | LineColor solarized
-" colo vimspectr180-light | LineColor solarized
-" colo edge | set background=light | LineColor materia
-" colo Tomorrow | LineColor Tomorrow
-" colo corvine_light | LineColor selenized_light
-" colo cake16 | LineColor selenized_light
-" colo stellarized | set background=light | LineColor PaperColor_light
-" colo lost-shrine | LineColor nord
-" colo knicks-away | LineColor bluewery
-" colo cryslominsa | LineColor cryslominsa
-" colo everforest | LineColor cryslominsa
-" colo Tomorrow-Night | LineColor bluewery
-" let ayucolor="mirage" | colo ayu | LineColor ayu_mirage
-" colo espresso | LineColor espresso
-" colo corvine | LineColor bluewery
-" colo OceanicNext | LineColor bluewery
-" colo stellarized | set background=dark | LineColor bluewery
-" colo Tomorrow-Night-Blue | LineColor bluewery
-" colo edge | set background=dark | LineColor darcula
-" colo vadelma | set background=dark | LineColor deus
-" set notermguicolors | colo plastic | LineColor deus
-" colo vimspectr180-light
-" colo vimspectr150-light
-" colo edge 
-" colo everforest
-" colo vadelma
-"
-" LineColor ayu_light
-" LineColor edge
-" LineColor one
-" LineColor material
-" LineColor selenized_light
-" LineColor Tomorrow
-" LineColor solarized
-" LineColor deus
-" LineColor bluewery
-" LineColor nord
-" LineColor atlantis
-" LineColor darcula
-
-" hi! Search ctermbg=222
-" hi! Normal ctermbg=234
-
-""""""""""""""""""""""""
 ""      NeoVim:       ""
 """"""""""""""""""""""""
 
@@ -620,16 +542,16 @@ nnoremap m<space> :<C-U>call signature#mark#Purge("line")<CR>
 " Open and close files (buffers)
 nnoremap aw :w<CR>
 nnoremap qx :q<CR>
-nnoremap <Leader>x :q<CR>
-nnoremap <Leader>q :qa <CR>
-nnoremap <Leader>d :bd!<CR>
-nnoremap <Leader>bd :BDandgotoprev<CR>
-nnoremap <Leader>i :diffthis \| wincmd w<CR>
-nnoremap <Leader>I :diffoff  \| wincmd w<CR>
+nnoremap ,x :q<CR>
+nnoremap ,q :qa <CR>
+nnoremap ,d :bd!<CR>
+nnoremap ,bd :BDandgotoprev<CR>
+nnoremap ,i :diffthis \| wincmd w<CR>
+nnoremap ,I :diffoff  \| wincmd w<CR>
 nnoremap qc :echo expand ('%') '.@.' getcwd() <CR>
-nnoremap <Leader>cc :LCDhere <CR>
-nnoremap <Leader>cg :call ClimbToDirWhere(".git/index",1) \| pwd <CR>
-nnoremap <Leader>cm :call ClimbToDirWhere("Makefile",1) \| pwd <CR>
+nnoremap ,cc :LCDhere <CR>
+nnoremap ,cg :call ClimbToDirWhere(".git/index",1) \| pwd <CR>
+nnoremap ,cm :call ClimbToDirWhere("Makefile",1) \| pwd <CR>
 nnoremap a<BS> :checktime<cr>
 nnoremap q<BS> :enew<CR>
 nnoremap z<BS> :e!<CR>
@@ -649,9 +571,9 @@ nnoremap qS :split # <cr>
 nnoremap qV :vsplit # <cr>
 nnoremap <C-W>S :vsplit<CR>
 nnoremap an :tabe %:p:h <CR>
-nnoremap <Leader>. <C-^>
-nnoremap <Leader>y :call BufYank()<CR>
-nnoremap <Leader>p :call BufPut()<CR>
+nnoremap ,. <C-^>
+nnoremap ,y :call BufYank()<CR>
+nnoremap ,p :call BufPut()<CR>
 
 " Handle windows
 nnoremap qh    <C-W>h
@@ -671,7 +593,7 @@ nnoremap aj    <C-W>w<C-W>_
 nnoremap ak    <C-W>W<C-W>_
 nnoremap q<tab> <C-w>p
 " swap current and previous window
-nnoremap <Leader>bs :call WinSwap()<CR><C-W>p
+nnoremap ,S :call WinSwap()<CR><C-W>p
 
 " Handle tabs
 nnoremap at :tabe<CR>
@@ -699,26 +621,26 @@ nnoremap q9 9gt
 nnoremap gz 1gt
 
 " Navigate buffers
-nnoremap <Leader>bu :Unite buffer file<CR>
-nnoremap <Leader>bi :Unite buffer file<CR>i
-nnoremap <Leader>bk :Denite buffer -mode=normal -immediately-1<CR>
-nnoremap <Leader>be :BufExplorer <CR>
-nnoremap <Leader>O :Goyo 66%x100%<CR>
+nnoremap ,bu :Unite buffer file<CR>
+nnoremap ,bi :Unite buffer file<CR>i
+nnoremap ,bk :Denite buffer -mode=normal -immediately-1<CR>
+nnoremap ,be :BufExplorer <CR>
+nnoremap ,O :Goyo 66%x100%<CR>
 
 " Start and quit Vim
-nnoremap <Leader>V :source $MYVIMRC <CR>
-nnoremap <Leader>vs :source $RTP/session.vim \| call LoadColor() \| call MySigns()<CR>
-nnoremap <Leader>vw :wa<CR>
-nnoremap <Leader>vq :qa! <CR>
-nnoremap <Leader>zs :SessWriteB<CR><esc>
-nnoremap <Leader>zq :SessWriteB<CR>: wa \| qa<CR>
-nnoremap <Leader>ve :call AddRpcEar()<CR>
+nnoremap ,V :source $MYVIMRC <CR>
+nnoremap ,vs :source $RTP/session.vim \| call LoadColor() \| call MySigns()<CR>
+nnoremap ,vw :wa<CR>
+nnoremap ,vq :qa! <CR>
+nnoremap ,zs :SessWriteB<CR><esc>
+nnoremap ,zq :SessWriteB<CR>: wa \| qa<CR>
+nnoremap ,ve :call AddRpcEar()<CR>
 " Open current file at vimserver session via my "vimrpc" shell script
-nnoremap <Leader>va :silent exec '! ( sleep 0 ; vimrpc "%:p" ) & ' \| redraw! \| q <CR>
+nnoremap ,va :silent exec '! ( sleep 0 ; vimrpc "%:p" ) & ' \| redraw! \| q <CR>
 " Open current file at vimserver session at new tab via my "vimrpc" shell script
-nnoremap <Leader>vn :silent exec '! ( sleep 0 ; MODE=newtab vimrpc "%:p" ) & ' \| redraw! \| q <CR>
+nnoremap ,vn :silent exec '! ( sleep 0 ; MODE=newtab vimrpc "%:p" ) & ' \| redraw! \| q <CR>
 " Open current file at vimserver session at active window via my "vimrpc" shell script
-nnoremap <Leader>vc :silent exec '! ( sleep 0 ; MODE=current vimrpc "%:p" ) & ' \| redraw! \| q <CR>
+nnoremap ,vc :silent exec '! ( sleep 0 ; MODE=current vimrpc "%:p" ) & ' \| redraw! \| q <CR>
 
 " Have mappings in terminal mode
 if v:version >= 801
@@ -779,19 +701,19 @@ cnoremap <C-a> <Home>
 cnoremap <C-b> <C-Left>
 cnoremap <C-t> <C-Right>
 
-nnoremap <Leader>; :6mes<CR>
+nnoremap ,; :6mes<CR>
 " Eval yanked
 nnoremap yq :@"<CR>
 " Add Plug entry
-nnoremap <Leader>vp :put + <bar> exec "normal dfmxIPlug 'A'" <CR>
+nnoremap ,vp :put + <bar> exec "normal dfmxIPlug 'A'" <CR>
 " Evaluate one line as Vimscript
-nnoremap <Leader>vl yy:@"<CR>
+nnoremap ,vl yy:@"<CR>
 " Evaluate a paragraph as Vimscript
-nnoremap <Leader>vi yap:@"<CR>
+nnoremap ,vi yap:@"<CR>
 " Evaluate one line or one paragraph as Vimscript
-nnoremap <Leader>v<Leader> :call EvalThis()<CR>
+nnoremap ,v, :call EvalThis()<CR>
 " Evaluate a paragraph as Vimscript and re-run last command
-nnoremap <Leader>v<CR> yap:@"<CR>:<up><CR>
+nnoremap ,v<CR> yap:@"<CR>:<up><CR>
 
 " Open current location with vifm within vim
 nnoremap ac :terminal ++close bash -c "INVIM=1 vifm %:p:h"<CR>
@@ -811,89 +733,90 @@ nnoremap qb : if isdirectory(expand('%:p:h')) \| lcd %:p:h \| endif \| terminal 
 " Go to shell
 nnoremap qt :Bash <CR>
 " Spawn a terminal outside vim
-nnoremap <Leader>t :NewTermHere<CR>
+nnoremap ,t :NewTermHere<CR>
 " Spawn vifm in terminal outside vim
-nnoremap <Leader>c :NewVifmHere<CR>
+nnoremap ,c :NewVifmHere<CR>
 
 " Jump to terminal window
 nnoremap qg :call GotoTerm(0)<CR>
 " Jump to netrw window
-nnoremap <Leader>n :call RaiseNetRW()<CR>
+nnoremap ,n :call RaiseNetRW()<CR>
 
 " Exec current paragraph with shell
-nnoremap <Leader>B yap: exec "!" . @" <cr>
+nnoremap ,B yap: exec "!" . @" <cr>
 
 " Call system
 " system open current file
-nnoremap <Leader>C :Silent xdg-open %:p:h & <cr>
+nnoremap ,C :Silent xdg-open %:p:h & <cr>
 " system open current line (usable for http links)
-nnoremap <Leader>m ^y$:call system('xdg-open ' . "'" . @" . "' &")<CR>
+nnoremap ,m ^y$:call system('xdg-open ' . "'" . @" . "' &")<CR>
 " system open selected lines
-vnoremap <Leader>m :<C-U>call SystemOpenEveryLine()<CR>
+vnoremap ,m :<C-U>call SystemOpenEveryLine()<CR>
 " open current line with firefox
-nnoremap <Leader>M ^y$:call system('firefox ' . "'" . @" . "' &")<CR>
+nnoremap ,M ^y$:call system('firefox ' . "'" . @" . "' &")<CR>
 " google current line
-nnoremap <Leader>go ^y$:call system('google.sh ' . "'" . @" . "'")<CR>
+nnoremap ,go ^y$:call system('google.sh ' . "'" . @" . "'")<CR>
 " yandex current line
-nnoremap <Leader>gy ^y$:call system('yandex.sh ' . "'" . @" . "'")<CR>
+nnoremap ,gy ^y$:call system('yandex.sh ' . "'" . @" . "'")<CR>
 " wiki current line
-" nnoremap <Leader>gr ^y$:silent exec " !source $HOME/.bashrc && chromium \"wiki " . @" . "\" &>/dev/null & " \| redraw!<CR>
+" nnoremap ,gr ^y$:silent exec " !source $HOME/.bashrc && chromium \"wiki " . @" . "\" &>/dev/null & " \| redraw!<CR>
 
 " Jump to favourite files
-nnoremap <Leader>gg :call FocusBufOrDo('wawe','e /ln/ho/moment/4gist/wawe')<CR>
-nnoremap <Leader>gv :call FocusBufOrDo('vimrc','e $sh/vi/vimrc')<CR>
-nnoremap <Leader>gb :call FocusBufOrDo('bashrc','e $sh/bashrc')<CR>
-nnoremap <Leader>gx :call FocusBufOrDo('sxhkd','e $sh/conf/sxhkdrc')<CR>
-nnoremap <Leader>gk :call FocusBufOrDo('kitty.conf','e $sh/conf/kitty.conf')<CR>
-nnoremap <Leader>gc :call FocusBufOrDo('rc.sh','e $sh/rc.sh')<CR>
-nnoremap <Leader>gm :call FocusBufOrDo('material','e $tt/material')<CR>
-nnoremap <Leader>gz :call FocusBufOrDo('zzzz','e $tt/zzzzzz')<CR>
-nnoremap <Leader>gu :call FocusBufOrDo('ff','e $tt/u*/ff*')<CR>
-nnoremap <Leader>gh :call FocusBufOrDo('sh_history','e $HOME/.bash_history')<CR>G
-nnoremap <Leader>gl :call FocusBufOrDo('1linux','e $sh/rs/1linux')<CR>
+nnoremap ,gg :call FocusBufOrDo('wawe','e /ln/ho/moment/4gist/wawe')<CR>
+nnoremap ,gv :call FocusBufOrDo('vimrc','e $sh/vi/vimrc')<CR>
+nnoremap ,gt :call FocusBufOrDo('vimrc_themes','e $sh/vi/vimrc_themes')<CR>
+nnoremap ,gb :call FocusBufOrDo('bashrc','e $sh/bashrc')<CR>
+nnoremap ,gx :call FocusBufOrDo('sxhkd','e $sh/conf/sxhkdrc')<CR>
+nnoremap ,gk :call FocusBufOrDo('kitty.conf','e $sh/conf/kitty.conf')<CR>
+nnoremap ,gc :call FocusBufOrDo('rc.sh','e $sh/rc.sh')<CR>
+nnoremap ,gm :call FocusBufOrDo('material','e $tt/material')<CR>
+nnoremap ,gz :call FocusBufOrDo('zzzz','e $tt/zzzzzz')<CR>
+nnoremap ,gu :call FocusBufOrDo('ff','e $tt/u*/ff*')<CR>
+nnoremap ,gh :call FocusBufOrDo('sh_history','e $HOME/.bash_history')<CR>G
+nnoremap ,gl :call FocusBufOrDo('1linux','e $sh/rs/1linux')<CR>
 
 " Appearance
 nnoremap z; :set wrap!<CR>
-nnoremap <Leader>zz :let &scrolloff=28-&scrolloff<CR>
-nnoremap <Leader>zn :set number!<CR>
-nnoremap <Leader>vf :set filetype=sh<CR>
-nnoremap <Leader>vb :call SwitchBackground() <CR>:echo "background=" &background <cr>
-nnoremap <Leader>vg :set termguicolors! <cr>:set termguicolors? <cr>
+nnoremap ,zz :let &scrolloff=28-&scrolloff<CR>
+nnoremap ,zn :set number!<CR>
+nnoremap ,vf :set filetype=sh<CR>
+nnoremap ,vb :call SwitchBackground() <CR>:echo "background=" &background <cr>
+nnoremap ,vg :set termguicolors! <cr>:set termguicolors? <cr>
 
 " Tags
-nnoremap <Leader>vt :TagbarOpen fj <CR>
-" nnoremap <Leader>.. :silent exec 'UpdCtags' \| redraw! \| echo 'Wrote tags db in' getcwd().'/' <CR>
-" nnoremap <Leader>.. :call UpdCtagsHereDeps() <CR>
-" nnoremap <Leader>.. :call UpdCtagsGitDeps() <CR>
-" nnoremap <Leader>.. :call UpdCtagsGit() <CR>
+nnoremap ,vt :TagbarOpen fj <CR>
+" nnoremap ,* :silent exec 'UpdCtags' \| redraw! \| echo 'Wrote tags db in' getcwd().'/' <CR>
+" nnoremap ,* :call UpdCtagsHereDeps() <CR>
+" nnoremap ,* :call UpdCtagsGitDeps() <CR>
+" nnoremap ,* :call UpdCtagsGit() <CR>
 
 " Search
-nnoremap <Leader>r :Rg<CR>
-" nnoremap <Leader>fa :Ack <C-r><C-w> %:p:h 
-" nnoremap <Leader>ff :AckFile <C-r><C-W> <CR>
-" nnoremap <Leader>fw :AckWindow <C-r><C-w> <CR>
-" nnoremap <Leader>zg :call ClimbToDirWhere(".git/index",1) \| Ack -Q <C-R><C-W> 
-" nnoremap <Leader>zf :call ClimbToDirWhere("Makefile",1) \| Ack -Q <C-R><C-W> 
-nnoremap <Leader>b :Buffers<cr>
+nnoremap ,r :Rg<CR>
+" nnoremap ,fa :Ack <C-r><C-w> %:p:h 
+" nnoremap ,ff :AckFile <C-r><C-W> <CR>
+" nnoremap ,fw :AckWindow <C-r><C-w> <CR>
+" nnoremap ,zg :call ClimbToDirWhere(".git/index",1) \| Ack -Q <C-R><C-W> 
+" nnoremap ,zf :call ClimbToDirWhere("Makefile",1) \| Ack -Q <C-R><C-W> 
+nnoremap ,b :Buffers<cr>
 nnoremap <silent> <Esc><Esc> <Esc>:nohlsearch<CR><Esc>
 
 " Make and run project
-nnoremap <Leader>zo :make <bar> copen <CR>
-nnoremap <Leader>zm :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make") <bar> redraw! <bar> cwindow <CR>
-nnoremap <Leader>zt :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make tags") <bar> redraw! <bar> cwindow <CR>
-nnoremap <Leader>zx :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make clean") <bar> redraw! <bar> cwindow<CR>
-nnoremap <Leader>zr :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make run") <bar> redraw! <bar> cwindow <CR>
+nnoremap ,zo :make <bar> copen <CR>
+nnoremap ,zm :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make") <bar> redraw! <bar> cwindow <CR>
+nnoremap ,zt :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make tags") <bar> redraw! <bar> cwindow <CR>
+nnoremap ,zx :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make clean") <bar> redraw! <bar> cwindow<CR>
+nnoremap ,zr :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make run") <bar> redraw! <bar> cwindow <CR>
 
 " Folding
-vnoremap <Leader>f :<C-U>call FoldSelection()<CR>
-nnoremap <Leader>f :set opfunc=FoldMotion<cr>g@
+vnoremap ,f :<C-U>call FoldSelection()<CR>
+nnoremap ,f :set opfunc=FoldMotion<cr>g@
 
 " Save last insert as Macro at "l"
 command! -nargs=1 LastToMacro exec "let @" . <q-args> . " = \"i\" . @. . \"<Esc>\""
 nnoremap q. :LastToMacro l<CR>
 
 " Show current dir & current file stats
-nnoremap <Leader>zl : silent exec '! echo -e "\n$(pwd):"; ls -la . ; echo \. ; ls -la %:p ; read -n 1 -s -r -p "//hit.anykey" ; echo -ne "\n" ' \| redraw! <cr>
+nnoremap ,zl : silent exec '! echo -e "\n$(pwd):"; ls -la . ; echo \. ; ls -la %:p ; read -n 1 -s -r -p "//hit.anykey" ; echo -ne "\n" ' \| redraw! <cr>
 
 """"""""""""""""""""""""
 ""     Commands:      ""
@@ -959,7 +882,7 @@ endif
 
 set wildmenu
 set wcm=<tab>
-map <Leader><tab> :emenu tagi.<tab>
+map ,<tab> :emenu tagi.<tab>
 " menu tagi.ru :setlocal spell spelllang=ru <CR>
 menu tagi.basic   :silent exec 'UpdCtags' \| redraw! \| echo 'Wrote tags db in' getcwd().'/' <CR>
 menu tagi.dirDeps :call UpdCtagsDirDeps() <CR>
@@ -975,7 +898,7 @@ let @s = "i \<Esc>ll."
 
 """"""""""""""""""""""""
 ""     Functions:     ""
-""""""""""""""""""""""""
+""""""""""""""""""{{{}}}
 
 function! RunSelBash()
     echo system(join(getline(a:firstline,a:lastline), "\n"))

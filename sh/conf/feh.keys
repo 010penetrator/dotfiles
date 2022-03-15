@@ -4,7 +4,7 @@ scroll_left H
 scroll_down J
 scroll_up K
 scroll_right L
-delete X
+delete D
 
 save_filelist
 save_image

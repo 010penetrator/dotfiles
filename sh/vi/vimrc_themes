@@ -1,0 +1,74 @@
+
+""""""""""""""""""""""""
+""      Theming:      ""
+""""""""""""""""""""""""
+" vim: ts=4 sw=4 ft=vim
+
+let hostname = substitute(system('hostname'), '\n', '', '')
+if exists("g:colors_name")
+    set nohls
+elseif hostname == "warmPC" || hostname == "rpi4b" || hostname == "machine" || hostname == "debian10pc"
+    " colo PaperColor | set background=light | LineColor solarized
+    " colo Tomorrow | LineColor Tomorrow
+    " colo Tomorrow-Night | LineColor bluewery
+    colo bluewery-light | LineColor bluewery
+    " colo Tomorrow-Night-Eighties | LineColor ayu_mirage
+    " colo edge | set background=dark | LineColor darcula
+    " colo espresso | LineColor espresso
+    " colo cryslominsa | LineColor cryslominsa
+    " colo stellarized | set background=light | LineColor atlantis
+elseif hostname == "user-pc" || hostname == "debpc"
+    " colo Tomorrow-Night | LineColor bluewery
+    colo Tomorrow | LineColor Tomorrow
+endif
+
+" list available colors..
+" let c = getcompletion('', 'color') | new | put =c | goto 1 | map <buffer> M j:exec 'colo' getline(line('.')) <cr>
+" new | map <buffer> M j: LineColor <C-R><C-W><cr>| exec "read ! echo; ls $VIMPLUG/lightline.vim/autoload/lightline/colorscheme" | goto 1 | del 1
+
+" map <buffer> M j:call EvalThis()<cr>
+" colo snow | set background=light | LineColor ayu_light
+" colo vadelma | set background=light | LineColor one
+" colo PaperColor | set background=light | LineColor solarized
+" colo vimspectr180-light | LineColor solarized
+" colo edge | set background=light | LineColor materia
+" colo Tomorrow | LineColor Tomorrow
+" colo corvine_light | LineColor selenized_light
+" colo cake16 | LineColor selenized_light
+" colo stellarized | set background=light | LineColor PaperColor_light
+" colo lost-shrine | LineColor nord
+" colo knicks-away | LineColor bluewery
+" colo cryslominsa | LineColor cryslominsa
+" colo everforest | LineColor cryslominsa
+" colo Tomorrow-Night | LineColor bluewery
+" let ayucolor="mirage" | colo ayu | LineColor ayu_mirage
+" colo espresso | LineColor espresso
+" colo corvine | LineColor bluewery
+" colo OceanicNext | LineColor bluewery
+" colo stellarized | set background=dark | LineColor bluewery
+" colo Tomorrow-Night-Blue | LineColor bluewery
+" colo edge | set background=dark | LineColor darcula
+" colo vadelma | set background=dark | LineColor deus
+" set notermguicolors | colo plastic | LineColor deus
+" colo vimspectr180-light
+" colo vimspectr150-light
+" colo edge 
+" colo everforest
+" colo vadelma
+"
+" LineColor ayu_light
+" LineColor edge
+" LineColor one
+" LineColor material
+" LineColor selenized_light
+" LineColor Tomorrow
+" LineColor solarized
+" LineColor deus
+" LineColor bluewery
+" LineColor nord
+" LineColor atlantis
+" LineColor darcula
+
+" hi! Search ctermbg=222
+" hi! Normal ctermbg=234
+

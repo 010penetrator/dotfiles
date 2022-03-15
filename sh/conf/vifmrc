@@ -10,10 +10,9 @@
 colo reicheltd-light
 " colo dracula
 " colo iceberg
- 
 !echo -ne "\033]0;VIFM\007"
 " wincmd o
-nnoremap af :<up><cr>
+
 command! CC :! mv /ln/dwn/cover.* . 
 command! ogg :! cd %c && conv_uni2ogg.sh . %D &>/dev/null ; notify-send "%c converted" &
 command! flac :! cd %c && conv_uni2flac.sh . %D &>/dev/null ; notify-send "%c converted" &
@@ -34,6 +33,12 @@ command! tik :!touch --date="$(date -R -r %c) + 10 minute" KKK
 command! amou :! bash -ic ' source /ln/ho/.bashrc ; amou '
 command! aumo :! bash -ic ' source /ln/ho/.bashrc ; aumo '
 command! own  :! sudo chown 1000:100 .
+
+""""""""""""""""""""""""
+""     Mappings:      ""
+""""""""""""""""""""""""
+
+" fly vifm "
 nnoremap ,x :quit <cr>
 nnoremap qx :quit <cr>
 nnoremap ,q :exec '! echo -ne "\033]0;\007"' | qa <cr>
@@ -49,79 +54,100 @@ nnoremap qv :vsplit <cr>
 nnoremap ,b :colo <cr>
 nnoremap qw :wincmd o<cr>
 nnoremap qz :wincmd =<cr>
-nnoremap qn 8<c-w><
-nnoremap qm 8<c-w>>
+nnoremap q, 8<c-w><
+nnoremap q. 8<c-w>>
 nnoremap qt :tree!<cr>
 nnoremap gn hjl
 nnoremap gp hkl
 nnoremap qq :
-nnoremap qc :flac <cr>
-nnoremap b :! PAUSE=0 mpv-album %c VIFM; echo -ne "\033]0;VIFM\007" <cr>
-nnoremap B :! %i cd %c; [[ $TERMINAL=="kitty "* ]] && TERMINAL="$TERMINAL -o initial_window_height=$(expr 450 + $HIDPI \* 100) -o initial_window_width=$(expr 650 + $HIDPI \* 130)"; $TERMINAL -e /bin/bash -c "mpv-album . ; ask_album.sh" &>/dev/null & <cr>
-nnoremap qb :! kitty @ new-window --new-tab /bin/bash -c "cd %d/ ; mpv-album %c VIFM ; vifm --select %c" <cr>
-nnoremap rs :! echo -ne "\n========== dry-run\n" ; rsync -rtln --progress --delete --stats --size-only %d/ %D ; read -n 1 -s -r -p "Press F or ENTER or SPACE to sync; ESC to cancel" key ; echo -ne "\n\n========== real\n" ; [[ "$key" == 'f' || "$key" == '' ]] && ( rsync -rtl  --progress --delete --stats --size-only %d/ %D ; read -n 1 -s -r -p "========== DONE!" ; echo ) || echo
-nnoremap rS :! echo -ne "\n========== dry-run\n" ; rsync -rtKn --progress --delete --stats --size-only %d/ %D ; read -n 1 -s -r -p "Press F or ENTER or SPACE to sync; ESC to cancel" key ; echo -ne "\n========== real\n" ; [[ "$key" == 'f' || "$key" == '' ]] && ( rsync -rtK  --progress --delete --stats --size-only %d/ %D ; read -n 1 -s -r -p "========== DONE!" ; echo ) || echo
-" nnoremap rS :! echo -ne "\n" ; rsync -rt  --progress --delete --stats --size-only %d/ %D ; read -n 1 -s -r -p "========== DONE!" ; echo
+nnoremap q; :<up>
+nnoremap af :<up><cr>
+nnoremap ,V :source $MYVIFMRC <cr>
+nnoremap ar ggvGcw
+nnoremap ae :winrun , cd %C <cr><tab>
+nnoremap a= :winrun , cd %D <cr><tab>
+nnoremap cv cW
+nnoremap t tj
+noremap gr :tabprev<cr>
+nnoremap at :tabnew<cr>
+nnoremap gl gf 
+nnoremap yc :! echo -n %f | xclip ; echo -n %f | xclip -selection clipboard %i <cr>:echo "filename in X buffer"<cr>
+nnoremap yC :! echo -n %f:p | xclip ; echo -n %f:p | xclip -selection clipboard %i <cr>:echo "full filepath in X buffer"<cr>
+" nnoremap - <C-b>
+" nnoremap = <C-f>
+
+" Open current file "
+nnoremap qc :! ./%c <cr>
+nnoremap qj :! nomacs %c &>/dev/null &<cr>
 nnoremap qf :! if [ %c == ".." ] ; then feha . ; else if [ -d %c ] ; then cd %c; feha . ; else if [ -f %c ] ; then feha %c; fi ; fi ; fi <cr>
 nnoremap qF :! fehf . <cr>
+nnoremap qn :! ncdu -x %c<cr>
 nnoremap q<space> :! mpv --keep-open=always *.{mp4,MP4,webm,mkv,mov,MOV} <cr>
-" Open file with vim server
-" if (system('echo $EDITOR') == "vim")
-"     nnoremap av :! MODE="split"  vimrpc "%c"  <cr>
-"     nnoremap aV :! MODE="vert"   vimrpc "%c" &>/dev/null & <cr>
-"     nnoremap ac :! MODE="cur"    vimrpc "%c" &>/dev/null & <cr>
-"     nnoremap an :! MODE="newtab" vimrpc "%c" &>/dev/null & <cr>
-" elseif (system('echo $EDITOR') == "nvim")
-"     nnoremap av :! MODE="split"  nvimrpc "%c"  <cr>
-"     nnoremap aV :! MODE="vert"   nvimrpc "%c" &>/dev/null & <cr>
-"     nnoremap ac :! MODE="cur"    nvimrpc "%c" &>/dev/null & <cr>
-"     nnoremap an :! MODE="newtab" nvimrpc "%c" &>/dev/null & <cr>
-" endif
-nnoremap av :! MODE="split"  virpc "%c"  <cr>
-nnoremap aV :! MODE="vert"   virpc "%c" &>/dev/null & <cr>
-nnoremap ac :! MODE="cur"    virpc "%c" &>/dev/null & <cr>
-nnoremap an :! MODE="newtab" virpc "%c" &>/dev/null & <cr>
-nnoremap a; :! $EDITOR %c <cr>
-nnoremap ,v :! $TERMINAL $EDITOR %c <cr>
-nnoremap ,d :! vim -d %c %D/%c <cr>
-nnoremap a<space> :! MODE="last" vimrpc "%c" &>/dev/null & <cr>
-nnoremap az :! vimrpc "%c"<cr>:q<cr>
-nnoremap ,n :! ncdu -x %c<cr>
-nnoremap zc :! bash -c 'echo; ls -dla %c ; du -sb %c | cut -f1 '' ; du -sh %c | cut -f1 '' ; df -BGB . | tail -1 ; read -rsn1'<cr>
-nnoremap z. :! bash -c 'echo -ne \\n  ls dir :\\n ; ls -la --color=auto . ; read -rsn1'<cr>
-nnoremap za :! clear -x; $LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT ; read -rsn1 <cr>
-nnoremap zs :! clear -x; df -BMB ; read -rsn1 <cr>
-nnoremap zy :! echo; date ; echo Sync... ; sync ; echo "Done!" ; read -rsn1 <cr>
-" nnoremap qy :! echo; date ; echo Sync... ; sync <cr>
-nnoremap qj :! nomacs %c &>/dev/null &<cr>
 nnoremap qk :! qview %c &>/dev/null &<cr>
-nnoremap qe :! eom %c &>/dev/null &<cr>
+nnoremap qy :! eom %c &>/dev/null &<cr>
 nnoremap qi :! mediainfo %c | less<cr>
 nnoremap qh :! xxd %c | less <cr>
 nnoremap qG :! spek %c &>/dev/null &<cr>
 nnoremap qg :! specgram.sh %c <cr>
 nnoremap qd :! deadbeef --queue %c &>/dev/null & <cr>
+nnoremap qe :! $EDITOR %c <cr>
 nnoremap qo :! xdg-open %c & <cr>
-nnoremap q. :! ./%c <cr>
-" nnoremap qb :file &<cr>l
+nnoremap q<cr> :file &<cr>l
 nnoremap ,o :! google.sh %c &>/dev/null & <cr>
-nnoremap au :! echo Sync... ; sync %f && udevil umount %f<cr>
+nnoremap ,v :! $TERMINAL $EDITOR %c <cr>
+
+" Calc space "
+nnoremap zc :! bash -c 'echo; ls -dla %c ; du -sb %c | cut -f1 '' ; du -sh %c | cut -f1 '' ; df -BGB . | tail -1 ; read -rsn1'<cr>
+nnoremap z. :! bash -c 'echo -ne \\n  ls dir :\\n ; ls -la --color=auto . ; read -rsn1'<cr>
+nnoremap za :! clear -x; $LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT ; read -rsn1 <cr>
+nnoremap zs :! clear -x; df -BMB ; read -rsn1 <cr>
+nnoremap zy :! echo; date ; echo Sync... ; sync ; echo "Done!" ; read -rsn1 <cr>
+
+" Send to vim server "
+nnoremap av :! MODE="split"  virpc "%c"  <cr>
+nnoremap aV :! MODE="vert"   virpc "%c" &>/dev/null & <cr>
+nnoremap ac :! MODE="cur"    virpc "%c" &>/dev/null & <cr>
+nnoremap an :! MODE="newtab" virpc "%c" &>/dev/null & <cr>
+nnoremap a<space> :! MODE="last" virpc "%c" &>/dev/null & <cr>
+nnoremap az :! virpc "%c"<cr>:q<cr>
+nnoremap ,d :! vim -d %c %D/%c <cr>
+" if (system('echo $EDITOR') == "vim")
+"     nnoremap an :! MODE="newtab" vimrpc "%c" &>/dev/null & <cr>
+" endif
+
+" Play with mpv "
+nnoremap b :! PAUSE=0 ASK=1 mpv-album %c VIFM; echo -ne "\033]0;VIFM\007" <cr>
+nnoremap B :! %i cd %c; [[ $TERMINAL=="kitty "* ]] && TERMINAL="$TERMINAL -o initial_window_height=$(expr 450 + $HIDPI \* 100) -o initial_window_width=$(expr 650 + $HIDPI \* 130)"; $TERMINAL -e /bin/bash -c "mpv-album . ; ask_album.sh" &>/dev/null & <cr>
+nnoremap qb :! kitty @ new-window --new-tab /bin/bash -c "cd %d/ ; mpv-album %c VIFM ; vifm --select %c" <cr>
+
+" Do rsync "
+nnoremap rs :! echo -ne "\n========== dry-run\n" ; rsync -rtln --progress --delete --stats --size-only %d/ %D ; read -n 1 -s -r -p "Press F or ENTER or SPACE to sync; ESC to cancel" key ; echo -ne "\n\n========== real\n" ; [[ "$key" == 'f' || "$key" == '' ]] && ( rsync -rtl  --progress --delete --stats --size-only %d/ %D ; read -n 1 -s -r -p "========== DONE!" ; echo ) || echo
+nnoremap rS :! echo -ne "\n========== dry-run\n" ; rsync -rtKn --progress --delete --stats --size-only %d/ %D ; read -n 1 -s -r -p "Press F or ENTER or SPACE to sync; ESC to cancel" key ; echo -ne "\n========== real\n" ; [[ "$key" == 'f' || "$key" == '' ]] && ( rsync -rtK  --progress --delete --stats --size-only %d/ %D ; read -n 1 -s -r -p "========== DONE!" ; echo ) || echo
+" nnoremap rS :! echo -ne "\n" ; rsync -rt  --progress --delete --stats --size-only %d/ %D ; read -n 1 -s -r -p "========== DONE!" ; echo
+
+" Operate files "
 nnoremap ai : amou <cr>
 nnoremap ao : aumo <cr>
+nnoremap au :! echo Sync... ; sync %f && udevil umount %f<cr>
 nnoremap ab ggVG<cr>:copy<cr>
 nnoremap am ggVG<cr>:move<cr>
 nnoremap del :! sudo rm -r %c <cr>
 nnoremap qU ggVG: !mv --backup=numbered %f ../<cr>
 nnoremap qu :! mv --backup=numbered %f ../<cr>
-nnoremap q; :<up>
 nnoremap ch :chmod<cr>
 nnoremap cj :chmod 644 <cr>j
-" nnoremap cb :copy | ! notify-send COPY Done!<cr>
-" noremap cb :copy<cr>
-" noremap cm :move<cr>
+nnoremap cb :copy | ! notify-send COPY Done!<cr>
+nnoremap cB :copy<cr>
+nnoremap cm :move<cr>
 nnoremap C :copy<cr>
 nnoremap E :move<cr>
 nnoremap cn :clone<cr>
+nnoremap ah :!ln  $PWD/%c %D/%c <cr>
+nnoremap al :!ln -rs $PWD/%c %D/%c <cr>
+nnoremap ap al
+nnoremap aL :!ln -s $PWD/%c %d/%cL <cr>
+
+" Compress files "
 nnoremap zu :! upk2dir.sh %c <cr>
 nnoremap zU :! upk2dir.sh %c %D <cr>
 nnoremap zp :! 7z a -mx=3 -xr!.git -xr!tags %c.7z %f <cr>
@@ -131,11 +157,8 @@ nnoremap as :! tar -I 'zstd -10v -T0' -cf    %c.tar.zst --exclude='.git' --exclu
 nnoremap aS :! tar -I 'zstd -10v -T0' -cf %D/%c.tar.zst --exclude='.git' --exclude='tags' --exclude='debug/*' --exclude='build/*' --exclude='~$*' %f 
 nnoremap ze :! upk.sh %c <cr>
 nnoremap zE :! cd %D; upk.sh %d/%c <cr>
-nnoremap ar ggvGcw
-nnoremap yc :! echo -n %f | xclip ; echo -n %f | xclip -selection clipboard %i <cr>:echo "filename in X buffer"<cr>
-nnoremap yC :! echo -n %f:p | xclip ; echo -n %f:p | xclip -selection clipboard %i <cr>:echo "full filepath in X buffer"<cr>
-" nnoremap - <C-b>
-" nnoremap = <C-f>
+
+" Jump to places "
 nnoremap gh :cd $HOME<cr>
 nnoremap gz :cd /ln/hh<cr>
 nnoremap ge :cd /ln/mo<cr>
@@ -149,18 +172,10 @@ nnoremap gs :cd /ln/sh<cr>
 nnoremap gd :cd /ln/dwn<cr>
 nnoremap gb :cd $bak<cr>
 nnoremap gk :cd /ln/torrents/red/KKK<cr>:sort<cr>mh
-nnoremap gl gf 
-nnoremap al :!ln -rs $PWD/%c %D/%c <cr>
-nnoremap ah :!ln  $PWD/%c %D/%c <cr>
-nnoremap ap al
-" nnoremap ap :!ln -sr $PWD/%c %D/%c <cr>
-nnoremap aL :!ln -s $PWD/%c %d/%cL <cr>
-nnoremap ae :winrun , cd %C <cr><tab>
-nnoremap a= :winrun , cd %D <cr><tab>
-nnoremap t tj
-nnoremap cv cW
-noremap gr :tabprev<cr>
-nnoremap at :tabnew<cr>
+
+""""""""""""""""""""""""
+""     Settings:      ""
+""""""""""""""""""""""""
 
 set syscalls
 set confirm=permdelete
@@ -177,9 +192,9 @@ set cpoptions=fs
 set vicmd=$EDITOR
 
 if (system('echo $INVIM') == "1")
-  set vicmd='source $HOME/.bashrc; MODE="cur" vimrpc'
+    set vicmd='source $HOME/.bashrc; MODE="cur" vimrpc'
 else
-  set vicmd='source $HOME/.bashrc; vim --cmd "set titlestring=VIM\ @\ VIFM"'
+    set vicmd='source $HOME/.bashrc; vim --cmd "set titlestring=VIM\ @\ VIFM"'
 endif
 
 " Trash Directory
