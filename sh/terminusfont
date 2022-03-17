@@ -1,5 +1,21 @@
 #!/bin/bash
 # Set tty font to Terminus
 
-setfont ter-218b || 
-setfont $( ls /usr/share/consolefonts/ | grep -i terminus | grep -i Bold | grep 20 | grep Uni | head -1 | cut -d . -f 1 )
+# setfont ter-218b && echo reserv
+# ( echo reserv; setfont $( ls /usr/share/consolefonts/ | grep -i terminus | grep -i Bold | grep 20 | grep Uni | head -1 | cut -d . -f 1 ) )
+
+candidat1='ter-218b'
+candidat2=$( ls /usr/share/consolefonts/ | grep -i terminus | grep -i bold | grep 20 | grep Uni | head -1 | cut -d . -f 1 )
+
+if [[ $( ls /usr/share/consolefonts | grep -c "$candidat1" ) != 0 ]] ; then
+    fn="$candidat1"
+elif [[ -n $candidat2 ]] ; then
+    fn="$candidat2"
+else
+    echo Cant find terminus tty font on this system. Exiting.
+    exit 1
+fi
+
+echo Will use $fn
+setfont $fn
+

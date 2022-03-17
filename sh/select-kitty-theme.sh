@@ -24,21 +24,20 @@ go_through ()
     echo Themes are:
     ls -x *.conf
     echo ------------
-    echo current theme is $(readlink /ln/co/kitty/theme.conf)
+    echo current theme is $(readlink /ln/co/kitty/current-theme.conf)
     echo
     #
-    for t in *.conf
-    do
+    for t in *.conf ; do
       unset key
       echo $t
       kitty @ set-colors -a "$PWD/$t"
       read -rsn 1 key
       [[ $key == 'f' ]] && mkdir -p favs && cp "$t" "favs/$t"
       [[ $key == 'd' ]] && mkdir -p del && mv "$t" "del/$t"
-      [[ $key == 'q' ]] && exit
+      [[ $key == 'q' ]] && echo --Reverting to $(readlink /ln/co/kitty/current-theme.conf) && kitty @ set-colors -a ~/.config/kitty/current-theme.conf && exit
       [[ $key == 'i' ]] && break
       [[ $key == 'b' ]] && break
-      [[ $key == 'a' ]] && ln -srf "$t" ~/.config/kitty/current-theme.conf && echo --Applied! && exit
+      [[ $key == 'a' ]] && ln -srf "$t" ~/.config/kitty/current-theme.conf && echo --Applied!
     done 
     echo
   done

@@ -548,7 +548,7 @@ nnoremap ,d :bd!<CR>
 nnoremap ,bd :BDandgotoprev<CR>
 nnoremap ,i :diffthis \| wincmd w<CR>
 nnoremap ,I :diffoff  \| wincmd w<CR>
-nnoremap qc :echo expand ('%') '.@.' getcwd() <CR>
+nnoremap q<space> :echo expand ('%') '.@.' getcwd() <CR>
 nnoremap ,cc :LCDhere <CR>
 nnoremap ,cg :call ClimbToDirWhere(".git/index",1) \| pwd <CR>
 nnoremap ,cm :call ClimbToDirWhere("Makefile",1) \| pwd <CR>
@@ -778,6 +778,7 @@ nnoremap ,gl :call FocusBufOrDo('1linux','e $sh/rs/1linux')<CR>
 " Appearance
 nnoremap z; :set wrap!<CR>
 nnoremap ,zz :let &scrolloff=28-&scrolloff<CR>
+nnoremap ,zc :let &colorcolumn=80-&colorcolumn<CR>
 nnoremap ,zn :set number!<CR>
 nnoremap ,vf :set filetype=sh<CR>
 nnoremap ,vb :call SwitchBackground() <CR>:echo "background=" &background <cr>

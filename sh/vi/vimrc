@@ -1,10 +1,10 @@
 " vim: ts=4 sw=4 ft=vim
 " This file should be sourced as $MYVIMRC
 
-command! -nargs=1 SSource if filereadable('<args>') | source <args> | endif
+command! -nargs=1 SSource if filereadable(expand('<args>')) | source <args> | endif
 
-SSource /ln/sh/vi/init.vim
-SSource /ln/sh/vi/vimrc_themes
-SSource /ln/lo/vimrc.local
+SSource $sh/vi/init.vim
+SSource $sh/vi/vimrc_themes
+SSource $lo/vimrc.local
 SSource $HOME/.vimrc_msys
 

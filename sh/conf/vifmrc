@@ -59,6 +59,7 @@ nnoremap q. 8<c-w>>
 nnoremap qt :tree!<cr>
 nnoremap gn hjl
 nnoremap gp hkl
+nnoremap cd :cd<space>
 nnoremap qq :
 nnoremap q; :<up>
 nnoremap af :<up><cr>
@@ -661,5 +662,5 @@ nnoremap <f8> :delete<cr>
 
 "! i3-msg "split v"
 
-source /ln/lo/vifmrc.local
+source $lo/cur/vifmrc.local
 

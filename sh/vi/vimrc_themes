@@ -35,6 +35,7 @@ map <buffer> N k:call EvalThis()<cr>
 " colo vimspectr180-light | LineColor one
 " colo edge | set background=light | LineColor materia
 " colo Tomorrow | LineColor Tomorrow
+" colo Tomorrow-Night | LineColor bluewery
 " colo corvine_light | LineColor selenized_light
 " colo cake16 | LineColor selenized_light
 " colo stellarized | set background=light | LineColor PaperColor_light
@@ -42,7 +43,7 @@ map <buffer> N k:call EvalThis()<cr>
 " colo knicks-away | LineColor bluewery
 " colo cryslominsa | LineColor cryslominsa
 " colo everforest | LineColor cryslominsa
-" colo Tomorrow-Night | LineColor bluewery
+" colo tempus_dusk | LineColor solarized
 " let ayucolor="mirage" | colo ayu | LineColor ayu_mirage
 " colo espresso | LineColor espresso
 " colo corvine | LineColor bluewery
@@ -57,18 +58,18 @@ map <buffer> N k:call EvalThis()<cr>
 " colo edge 
 " colo everforest
 " colo vadelma
-"
+
 " LineColor ayu_light
-" LineColor edge
-" LineColor one
-" LineColor material
 " LineColor selenized_light
 " LineColor Tomorrow
+" LineColor material
+" LineColor edge
+" LineColor one
+" LineColor nord
+" LineColor atlantis
 " LineColor solarized
 " LineColor deus
 " LineColor bluewery
-" LineColor nord
-" LineColor atlantis
 " LineColor darcula
 
 " hi! Search ctermbg=222

@@ -8,8 +8,8 @@ begin_dir="$PWD"
 name="my_bak_$(date +%Y-%m-%d).tar.gz"
 [ -f "$bak1/$name" ] && rm "$bak1/$name"
 
-tar -czf /ln/lo/linkdir.tar.gz -C / ln
-tar -chzf "$bak1/$name" -C /ln/  sh lo \
+tar -czf /ln/lo/cur/linkdir.tar.gz -C / ln
+tar -chzf "$bak1/$name" -C /ln/ --exclude=lo/cur sh lo \
                   -C $tt/../ tt
 
 [ -d /ln/co/transmission-daemon ] &&
