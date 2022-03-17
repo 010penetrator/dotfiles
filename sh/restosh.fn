@@ -1,0 +1,44 @@
+#!/bin/bash
+
+restosh()
+{
+  sambdev=$($LSBLK -l -o NAME,LABEL | grep SAMV | cut -f1 -d ' ')
+  [[ "$sambdev" == '' ]] && echo SAM is nowhere around && return 1
+  need_umount=0
+  if [[ $( mount | grep SAMV | grep $sambdev -c ) == 0 ]] ; then
+    echo ==mounting SAM..
+    udevil mount /dev/$sambdev /ln/mo/SAMV && need_umount=1
+  fi
+  if [[ $( mount | grep SAMV | grep $sambdev -c ) != 1 ]] ; then
+    echo --Flash drive unavailable!
+    return 1
+  else
+    arc="$(ls -1t /ln/mo/SAMV/*bak*tar.gz | head -n1)"
+    echo -n 'arc is '
+    ls -lh "$arc" | cut -f9- -d ' '
+    # Now extract and remove files not present in archive
+    (
+    cd "$(readlink /ln/sh)" &&
+      touch stmp ; sleep .1
+      tar -xf "$arc" sh --strip-components=1 &&
+        find . -depth ! -path '.' ! -path './stmp' ! -cnewer stmp -print |
+        while read f ; do
+          rm -rfv "$f"
+        done
+      rm stmp
+    cd "$(readlink /ln/lo)" &&
+      touch stmp ; sleep .1
+      tar -xf "$arc" lo --strip-components=1 &&
+        find . -depth ! -path '.' ! -path './stmp' ! -type l ! -cnewer stmp -print |
+        while read f ; do
+          rm -rfv "$f"
+        done
+      rm stmp
+    )
+    # tar -xf "$arc" -C "$(readlink /ln/sh)" sh --strip-components=1
+    # tar -xf "$arc" -C "$(readlink /ln/lo)" lo --strip-components=1
+  fi
+  [[ "$need_umount" == 1 ]] && echo ==unmounting SAM.. && udevil umount /ln/mo/SAMV && need_umount=0
+  echo --Done!
+}
+

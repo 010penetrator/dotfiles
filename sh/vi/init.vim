@@ -629,6 +629,7 @@ nnoremap ,O :Goyo 66%x100%<CR>
 
 " Start and quit Vim
 nnoremap ,V :source $MYVIMRC <CR>
+nnoremap ,vv :source $MYVIMRC <CR>
 nnoremap ,vs :source $RTP/session.vim \| call LoadColor() \| call MySigns()<CR>
 nnoremap ,vw :wa<CR>
 nnoremap ,vq :qa! <CR>

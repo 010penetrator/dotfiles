@@ -1,0 +1,62 @@
+#!/bin/bash
+# Turn current system into suitable environment for me!
+
+suc=false
+var='v'
+key=''
+
+read_key() {
+    echo Press   's' to enter shell , 'q' to exit , 'n' to go to next stage
+    read -rsn 1 key
+    [[ $key == 'f' ]] && echo key is F
+    [[ $key == 'q' ]] && exit
+    [[ $key == 'n' ]] && return
+    [[ $key == 's' ]] && bash
+}
+
+read_key
+read_key
+
+if ($suc) ; then
+    echo success
+fi
+
+{
+    echo --Gonna clone my git repo
+    cd
+    # cd && rm -rf .dotfiles.git && mkdir .dotfiles.git && cd .dotfiles.git
+    git clone https://github.com/010penetrator/dotfiles .dotfiles.git
+}
+
+{
+    echo --Gonna create /ln/ and some links there
+    sudo mkdir /ln
+    sudo chown $USER:$USER /ln
+    cd /ln
+    ln -sn $HOME ho
+    ln -sn /ln/ho/.sh sh
+    ln -sn /ln/ho/.lo lo
+    ln -sn /mnt mo
+    ln -sn /ln/ho/.config co
+    # ln -sn /ln/ho/Downloads dwn
+}
+
+{
+    echo --Gonna link config files
+    cd
+    ln -snf .dotfiles.git/sh .sh
+    ( [[ -f .bashrc ]] && ! [[ -L .bashrc ]] ) &&
+        (
+        echo --will move current .bashrc to exclusive trash file
+        echo -e "\n\n----------$(date)-----.bashrc-------------\n\n" >> .bashrc_trash
+        cat .bashrc >> .bashrc_trash
+        )
+    ln -sf .sh/bashrc_main .bashrc
+    # ln -sf .sh/Xresources .Xresources
+    ln -sf .sh/vi/vimrc .vimrc
+    mkdir -p /ln/co/nvim
+    ln -srf .sh/vi/init.vim .config/nvim/init.vim
+}
+
+echo
+
