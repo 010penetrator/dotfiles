@@ -96,7 +96,7 @@ rgf() {
 
 gsync() {
   (
-  cd ~/moment/dotfiles/ ; pwd
+  cd ~/.dotfiles.git/ ; pwd
   git add .
   git commit -a -m another | grep '[^[:blank:]]' --color=none
   git pull ; git push

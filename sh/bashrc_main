@@ -3,7 +3,7 @@
 
 export BASH_IS_PLASMIFIED=false
 
-[ -f $HOME/.bashrc_ORIG ] && source $HOME/.bashrc_ORIG
+# [ -f $HOME/.bashrc_ORIG ] && source $HOME/.bashrc_ORIG
 [ -f $HOME/.sh/bashrc ] && source $HOME/.sh/bashrc
 [ -f $sh/restosh.fn ] && source $sh/restosh.fn
 [ -f $HOME/.lo/bashrc.local ] && source $HOME/.lo/bashrc.local

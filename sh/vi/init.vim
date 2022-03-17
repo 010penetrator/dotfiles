@@ -443,7 +443,7 @@ nnoremap qf @
 " Free <a> key
 nnoremap a <Nop>
 map ф a
-nnoremap ad a
+nnoremap aa a
 
 " go back to normal mode with <j> double tap
 imap jj <ESC>
@@ -585,7 +585,7 @@ nnoremap qm    <C-W>6>
 nnoremap qn    <C-W>6<
 nnoremap qe    <C-W>4+
 nnoremap qd    <C-W>4-
-nnoremap aa    <C-W>_
+nnoremap aq    <C-W>_
 nnoremap az    <C-W>80-
 nnoremap qa    <C-W>_<C-W>\|
 nnoremap qz    <C-W>=
@@ -621,7 +621,7 @@ nnoremap q9 9gt
 nnoremap gz 1gt
 
 " Navigate buffers
-nnoremap ,bu :Unite buffer file<CR>
+nnoremap ,bj :Unite buffer file<CR>
 nnoremap ,bi :Unite buffer file<CR>i
 nnoremap ,bk :Denite buffer -mode=normal -immediately-1<CR>
 nnoremap ,be :BufExplorer <CR>
@@ -744,11 +744,14 @@ nnoremap qg :call GotoTerm(0)<CR>
 nnoremap ,n :call RaiseNetRW()<CR>
 
 " Exec current paragraph with shell
-nnoremap ,B yap: exec "!" . @" <cr>
+nnoremap ,B yap: exec "!" . @" <CR>
+
+" Exec selection with shell
+vnoremap ,b :call RunSelBash()<CR>
 
 " Call system
 " system open current file
-nnoremap ,C :Silent xdg-open %:p:h & <cr>
+nnoremap ,C :Silent xdg-open %:p:h & <CR>
 " system open current line (usable for http links)
 nnoremap ,m ^y$:call system('xdg-open ' . "'" . @" . "' &")<CR>
 " system open selected lines
