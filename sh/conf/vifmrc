@@ -7,8 +7,8 @@
 " ------------------------------------------------------------------------------
 
 " colorscheme Default
-" colo reicheltd-light
-colo dracula
+colo reicheltd-light
+" colo dracula
 " colo iceberg
 !echo -ne "\033]0;VIFM\007"
 " wincmd o
@@ -172,7 +172,8 @@ nnoremap gx :trashes<cr>
 nnoremap gc :cd $HOME/.config<cr>
 nnoremap gs :cd /ln/sh<cr>
 nnoremap gd :cd /ln/dwn<cr>
-nnoremap gb :cd $bak<cr>
+nnoremap gb :cd $bakcld<cr>
+nnoremap gB :cd $bakhot<cr>
 nnoremap gk :cd /ln/torrents/red/KKK<cr>:sort<cr>mh
 
 """"""""""""""""""""""""
@@ -662,5 +663,5 @@ nnoremap <f8> :delete<cr>
 
 "! i3-msg "split v"
 
-source $lo/cur/vifmrc.local
+source $lo/vifmrc.local
 

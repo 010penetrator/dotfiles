@@ -13,7 +13,7 @@ restosh()
     echo --Flash drive unavailable!
     return 1
   else
-    arc="$(ls -1t /ln/mo/SAMV/*bak*tar.gz | head -n1)"
+    arc="$(ls -1t $baksam/*bak*tar.gz | head -n1)"
     echo -n 'arc is '
     ls -lh "$arc" | cut -f9- -d ' '
     # Now extract and remove files not present in archive

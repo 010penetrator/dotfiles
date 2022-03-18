@@ -1,23 +1,25 @@
 #!/bin/bash
 # Backup using tar
 
-bak1="$HOME/bak/"
-mkdir -p $bak1
-bak2="/ln/bl/bak"
-begin_dir="$PWD"
-name="my_bak_$(date +%Y-%m-%d).tar.gz"
-[ -f "$bak1/$name" ] && rm "$bak1/$name"
+mkdir -p "$bakhot"
+! [[ -d $bakhot ]] && echo Error! Hot backup dir not available! && exit
+echo stage1
+
+DAY="$(date +%Y-%m-%d)"
+[[ -d $bakhot/$DAY ]] && rm -rf "$bakhot/$DAY"
+mkdir "$bakhot/$DAY"
 
 tar -czf /ln/lo/cur/linkdir.tar.gz -C / ln
-tar -chzf "$bak1/$name" -C /ln/ --exclude=lo/cur sh lo \
-                  -C $tt/../ tt
+tar -chzf "$bakhot/$DAY/words.tar.gz" \
+        -C /ln/ --exclude=lo/cur sh lo \
+        -C $tt/../ tt
+tar -czf "$bakhot/$DAY/torrents.tar.gz" --ignore-failed-read \
+        -C /ln/ho .config/transmission-daemon .rtorrent
+tar -czf "$bakhot/$DAY/conf.tar.gz" --ignore-failed-read \
+        -C / etc/fstab etc/udevil/udevil.conf ln/ho/.ssh ln/ho/.vim ln/co/nvim
 
-[ -d /ln/co/transmission-daemon ] &&
-  tar -czf "$bak1"/trm.tar.gz -C /ln/co/ transmission-daemon
+! [[ -d $bakcld ]] && echo Warning! Cold backup dir not available! && exit
+echo stage2
 
-[ -d "$bak2" ] &&
-  cp -f "$bak1/$name" "$bak2"/my_bak.tar.gz &&
-  cp -f "$bak1"/trm.tar.gz /ln/torrents/torrents-bak/
-
-cd "$begin_dir"
+cp -rf "$bakhot/$DAY" "$bakcld/"
 

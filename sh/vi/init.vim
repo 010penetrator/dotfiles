@@ -559,9 +559,11 @@ nnoremap z<BS> :e!<CR>
 nnoremap a-  : split <bar> exec "normal -" <cr>
 nnoremap a_  :vsplit <bar> exec "normal -" <cr>
 nnoremap a<CR> :e <c-r><c-f> <CR>
-" split open file under cursor with netrw 
+" split open file under cursor
 nnoremap ae :vsp <c-r><c-f> <CR>
 nnoremap aE :sp <c-r><c-f> <CR>
+" open file under cursor in previous window
+nnoremap a<tab> :wincmd p \| e <c-r><c-f> <CR>
 " split open current location with netrw
 nnoremap as :wincmd s \| e %:p:h <CR>
 nnoremap av :wincmd v \| e %:p:h <CR>
@@ -722,8 +724,8 @@ nnoremap aC :vertical terminal ++close bash -c "INVIM=1 vifm %:p:h"<CR>
 nnoremap a; :terminal ++kill=term ++curwin ++close bash -c "INVIM=1 vifm %:p:h"<CR>
 nnoremap a: :tabe \| terminal ++kill=term ++curwin bash -c "INVIM=1 vifm #:p:h"<CR>
 
-nnoremap a/ :nohlsearch <CR>
-" nnoremap a/ :set hlsearch! <CR>
+" nnoremap a/ :nohlsearch <CR>
+nnoremap a/ :set hlsearch! <CR>
 
 " Split open terminal at current location
 nnoremap ab : new \| if isdirectory(expand('#:p:h')) \| lcd #:p:h \| endif \| terminal ++kill=term ++curwin ++norestore <CR>

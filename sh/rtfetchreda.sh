@@ -1,3 +1,4 @@
+#!/bin/bash
 
 source /ln/ho/.sh/dmenurc.sh
 list=$(ls /ln/dwn/*.torrent | dmenu $DMENU_OPTIONS -fn "$DMENU_FN")

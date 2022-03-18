@@ -26,7 +26,7 @@ fi
 }
 
 {
-    echo -e '\n'--Gonna create /ln/ and some links there
+    echo -e '\n'--Gonna create /ln/ and short links there
     sudo mkdir /ln
     sudo chown $USER:$USER /ln
     cd /ln
@@ -60,15 +60,15 @@ fi
     # ln -sf .sh/Xresources .Xresources
     ln -s .sh/vi/vimrc .vimrc
     mkdir -p /ln/co/nvim
-    ln -sr .sh/vi/init.vim .config/nvim/init.vim
+    ln -srfv .sh/vi/vimrc .config/nvim/init.vim
     mkdir -p /ln/co/kitty
-    ln -sf /ln/sh/conf/kitty.conf /ln/ho/.config/kitty/
-    ln -sf /ln/sh/conf/feh.keys /ln/ho/.config/feh/keys
-    sudo ln -sf /ln/sh/99-libinput-custom.conf /etc/X11/xorg.conf.d/
+    ln -srfv .sh/conf/kitty.conf .config/kitty/
+    ln -srfv .sh/conf/feh.keys .config/feh/keys
+    sudo ln -sfv /ln/sh/99-libinput-custom.conf /etc/X11/xorg.conf.d/
+    mkdir -p .config/vifm/
+    ln -sv .sh/conf/vifmrc .config/vifm/vifmrc
     mkdir -p .local/share/applications/
     cp /ln/sh/transmission*desktop .local/share/applications/
-    mkdir -p .config/vifm/
-    ln -s .sh/conf/vifmrc .config/vifm/vifmrc
     # xdg-mime default transmission-cli.desktop x-scheme-handler/magnet
     # xdg-mime default transmission-cli.desktop application/x-bittorrent 
 }
@@ -76,6 +76,6 @@ fi
 {
     echo -e '\n'--Gonna pull some more config files
     git clone --depth 1 https://github.com/dexpota/kitty-themes.git ~/.config/kitty-themes
-    ln -s /ln/co/kitty-themes/themes/gruvbox_light.conf /ln/co/kitty/current-theme.conf
+    ln -sfrv .config/kitty-themes/themes/gruvbox_light.conf .config/kitty/current-theme.conf
 }
 

@@ -1,10 +1,10 @@
 #!/bin/bash
 # Main bashrc
 
-export BASH_IS_PLASMIFIED=false
+export BASH_IS_PLASMIFIED=true
 
 # [ -f $HOME/.bashrc_ORIG ] && source $HOME/.bashrc_ORIG
 [ -f $HOME/.sh/bashrc ] && source $HOME/.sh/bashrc
 [ -f $sh/restosh.fn ] && source $sh/restosh.fn
-[ -f $HOME/.lo/bashrc.local ] && source $HOME/.lo/bashrc.local
+[ -f $lo/bashrc.local ] && source $lo/bashrc.local
 
