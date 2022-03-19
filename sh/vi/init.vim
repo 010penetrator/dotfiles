@@ -61,7 +61,6 @@ call plug#begin('$VIMPLUG')
 " Basic sane stuff
 Plug 'tpope/vim-sensible' "basic
 Plug 'jlanzarotta/bufexplorer' "basic
-" Plug 'sheerun/vim-polyglot' "okay HUGE
 Plug 'itchyny/lightline.vim' "cool
 Plug 'justinmk/vim-sneak' "good!
 Plug 'tpope/vim-commentary' "good
@@ -72,6 +71,7 @@ Plug 'tpope/vim-repeat' "handy
 Plug 'tpope/vim-eunuch' "handy
 Plug 'tpope/vim-ragtag' "ok
 Plug 'tpope/vim-fugitive' "handy
+" Plug 'sheerun/vim-polyglot' "okay HUGE
 Plug 'michaeljsmith/vim-indent-object' "cool
 Plug 'godlygeek/tabular' "okay
 Plug 'jamessan/vim-gnupg' "good
@@ -85,7 +85,7 @@ Plug 'Townk/vim-autoclose' "usable
 " Navigate/Search
 Plug 'Shougo/unite.vim' "bloated
 Plug 'Shougo/vimproc' "for unite
-Plug 'mileszs/ack.vim' "usable
+" Plug 'mileszs/ack.vim' "usable
 Plug 'majutsushi/tagbar' "okay
 Plug 'sandeepcr529/Buffet.vim' "good
 Plug 'junegunn/fzf.vim'
@@ -97,6 +97,7 @@ Plug 'zefei/vim-colortuner' "fun
 " Try now
 Plug 'kshenoy/vim-signature' "buggy
 Plug 'chrisbra/SaveSigns.vim' "usable
+Plug 'airblade/vim-gitgutter'
 
 " Try later
 " Plug 'tpope/vim-unimpaired'
@@ -136,6 +137,8 @@ if has("nvim")
   Plug 'nvim-telescope/telescope.nvim'
   Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-lualine/lualine.nvim'
+  Plug 'hoschi/yode-nvim'
+  Plug 'kwkarlwang/bufjump.nvim'
 endif
 
 """"""""""""""""""""""""
@@ -449,6 +452,9 @@ nnoremap aa a
 imap jj <ESC>
 imap оо <ESC>
 
+" double <esc> will switch off search highlighting
+nnoremap <silent> <Esc><Esc> <Esc>:nohlsearch<CR><Esc>
+
 " <x> and <s> will delete to no buffer
 noremap x "_x
 noremap X "_X
@@ -513,8 +519,8 @@ nnoremap ]l :lnext<cr>
 nnoremap [l :lprev<cr>
 " nmap s <Plug>Sneak_s
 " nmap S <Plug>Sneak_S
-noremap <c-n> 12<c-e>
-noremap <c-p> 12<c-y>
+" noremap <c-n> 12<c-e>
+" noremap <c-p> 12<c-y>
 map <c-j> <Plug>(edgemotion-j)
 map <c-k> <Plug>(edgemotion-k)
 " go to text start/finish in file
@@ -799,13 +805,13 @@ nnoremap ,vt :TagbarOpen fj <CR>
 
 " Search
 nnoremap ,r :Rg<CR>
+nnoremap ,fb :Buffers<CR>
+nnoremap ,fg :GitFiles<CR>
 " nnoremap ,fa :Ack <C-r><C-w> %:p:h 
 " nnoremap ,ff :AckFile <C-r><C-W> <CR>
 " nnoremap ,fw :AckWindow <C-r><C-w> <CR>
 " nnoremap ,zg :call ClimbToDirWhere(".git/index",1) \| Ack -Q <C-R><C-W> 
 " nnoremap ,zf :call ClimbToDirWhere("Makefile",1) \| Ack -Q <C-R><C-W> 
-nnoremap ,b :Buffers<cr>
-nnoremap <silent> <Esc><Esc> <Esc>:nohlsearch<CR><Esc>
 
 " Make and run project
 nnoremap ,zo :make <bar> copen <CR>
