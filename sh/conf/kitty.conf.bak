@@ -900,11 +900,11 @@ map kitty_mod+delete clear_terminal reset active
 
 # include more_kitty.conf
 
-include theme.conf
+# include theme.conf
 # map kitty_mod+i set_colors /ln/co/kitty/theme.conf
 
 # BEGIN_KITTY_THEME
-# Kaolin Light
+# duckbones
 include current-theme.conf
 # END_KITTY_THEME
 
