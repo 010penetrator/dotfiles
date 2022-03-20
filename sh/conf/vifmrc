@@ -6,10 +6,10 @@
 " The basic format for each item is shown with an example.
 " ------------------------------------------------------------------------------
 
-" colorscheme Default
-colo reicheltd-light
+" colo reicheltd-light
+colo iceberg
 " colo dracula
-" colo iceberg
+" colorscheme Default
 !echo -ne "\033]0;VIFM\007"
 " wincmd o
 
