@@ -4,6 +4,9 @@ super + x ; { m, s, e, h, n, o, a, g }
 super + x ; { z, i, f, q, l, c, d, space }
   { xdotool mousemove_relative 0 1600, listmpvfile.sh /ln/ho/.mpv-history, listmpvfile.sh /ln/ho/.mpv-favourites, bspc node -c, listdwn.sh, listmpv.sh /ln/ho/.mus-list, deadbeef, listdeadbeef.sh }
 
+super + n ; { n, M, h, p, c, v, r, o, a }
+  { $TERMINAL, momkitty.sh, zsh, thunar, $TERMINAL -e vifm, vinew, listzathura.sh, $TERMINAL -e rtorrent, $TERMINAL -e tremc -c localhost:9090 }
+
 super + { q, Q, D, F, t, v, s, p, r, R, z, g }
   raise.sh { \
   '' scroff, '' 'sus 1', windowswitcher.sh, '' 'rofi -show window', \
@@ -11,6 +14,9 @@ super + { q, Q, D, F, t, v, s, p, r, R, z, g }
   ' - VIMSERV\|VIM$\| - NVIM$\|nvim $\|QtCreator' 'vinew', 'chromium\|Firefox\|Remmina' '', \
   'Thunar\| YouTube \|office.libreoffice' '', zathura listzathura.sh, evince, FBReader, \
   'Telegram\|Pidgin\|TuxGuitar\|hydrogen' '' }
+
+super + { Return, e, d, X, BackSpace }
+  { $TERMINAL, raiseterm.sh, dmouse, bspc node -c, setxkbmap us, 
 
 super + { c, a, A, b, m }
   raise.sh { \
@@ -23,34 +29,24 @@ super + { c, a, A, b, m }
 super + { T, V, C, B }
   raisekitty.sh { bash, VIM, VIFM, MPV }
 
-super + n ; { n, M, h, p, c, v, r, o, a }
-  { $TERMINAL, momkitty.sh, zsh, thunar, $TERMINAL -e vifm, vinew, listzathura.sh, $TERMINAL -e rtorrent, $TERMINAL -e tremc -c localhost:9090 }
-super + e
-  raiseterm.sh
-super + d
-  dmouse
 super + f ; v
   xdotool mousemove_relative 0 1600
 super + x ; x
   addlayout.sh ; xinputupd.sh ; sxd.sh ; notify-send "$( LC_ALL=ru_RU.UTF-8 date; uptime -p )"
-super + X
-  bspc node -c
 super + x ; R
   notify-send "$(transmission-remote 192.168.1.78:9090 -st)"
 super + space
   raise.sh 'deadbeef\|MPV \|mpv$' 'noti echo no player instance found'
 ctrl + space
   (setxkbmap -query | grep -q "layout:\s\+us") && setxkbmap ru || setxkbmap us && notify-send "$( setxkbmap -query | grep layout | tr -s ' ' )" -t 600
-super + BackSpace
-  setxkbmap us
-ctrl + 7
-  xdotool getactivewindow windowminimize
 alt + { Prior, Next, BackSpace }
   dunstctl { history-pop, close, close-all }
+ctrl + 7
+  xdotool getactivewindow windowminimize
 alt + x
   dmouse
-alt + e
-  osdctl -s "$(date +%H:%M) $(setxkbmap -query | grep layout | cut -d ":" -f 2 | tr -d ', ') .$(bspc query -D -d focused --names) , "
+# alt + e
+#   osdctl -s "$(date +%H:%M) $(setxkbmap -query | grep layout | cut -d ":" -f 2 | tr -d ', ') .$(bspc query -D -d focused --names) , "
 
 # # i3 select desktop
 # super + {1,2,3,4,5,6,7,8,9}

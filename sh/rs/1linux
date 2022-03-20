@@ -115,6 +115,7 @@ vlc -vvv cdda://dev/sr0 # listen CD
 while read line ; do deadbeef --queue "$line" ; done # use stdin as arg
 while pgrep -x polybar >/dev/null; do sleep 1; done # wait until the processes have been shut down
 cat /proc/uptime | cut -d ' ' -f1 #get uptime in secs
+cat ~/.ssh/zz_rsa.pub | ssh user@192.168.1.78 "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"  # manually install your public ssh key to remote machine
 
 ==GRUB
 --restore Grub2:
@@ -194,6 +195,8 @@ rsync -rt --progress --delete /media/src/abba/ /media/dest/abba # mirror copy
 rsync -e ssh -av --progress --no-perms --no-times --delete --size-only /path/dir/ user@192.168.1.180:/path/dir/ # mirror copy over ssh
 rsync -e ssh -rln -vK --progress --delete --checksum --stats --no-perms --no-times /ln/dir/ servak@192.162.1.99
 rsync -e 'ssh -i .ssh/key0 -p 2222' -av --progress --no-perms --no-times --delete --size-only myphone@192.168.1.88:/storage/emulated/0/Download/prags-andro/ /ln/pr/prags-andro/ # sync with andro-phone
+rsync -e ssh -av --progress --no-perms --no-times --delete --size-only pi@192.168.1.78:/ln/red/Form*1995* /ln/torrents/red/ # reverse transfer
+rsync -e ssh -Lav --progress --exclude=".*/" --no-perms --no-times --delete --size-only pi@192.168.1.78:/ln/red/ /ln/torrents/red/ # reverse transfer
 7z a dir.7z Dir -p -mhe=on #create encrypted 7z 
 7z a -mx=3 -xr!.git -xr!tags out.7z Projekt # create quick 7z
 tar -I 'zstd -11 -T0' -cf somedir.tar.zst --exclude='.git' --exclude='tags' somedir # create tar.zst
@@ -320,8 +323,6 @@ kitty -T transmission-remote_tranloc_ -e tremc -c localhost:9090
 kitty -T transmission-remote_tranpi_ -e tremc -c 192.168.1.160:9090 
 noti transmission-remote localhost:9090 -st #locstats
 noti transmission-remote 192.168.1.160:9090 -st #pistats
-rsync -e ssh -av --progress --no-perms --no-times --delete --size-only pi@192.168.1.78:/ln/red/Form*1995* /ln/torrents/red/ # reverse transfer
-rsync -e ssh -Lav --progress --exclude=".*/" --no-perms --no-times --delete --size-only pi@192.168.1.78:/ln/red/ /ln/torrents/red/ # reverse transfer
 xdg-mime default vim.desktop $(xdg-mime query filetype textfile.ext)
 exo-open ......../app.desktop # run app .desktop file
 ~/.local/share/applications/*.destop # .desktop location

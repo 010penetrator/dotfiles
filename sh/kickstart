@@ -67,6 +67,8 @@ fi
     sudo ln -sfv /ln/sh/99-libinput-custom.conf /etc/X11/xorg.conf.d/
     mkdir -p .config/vifm/
     ln -sv .sh/conf/vifmrc .config/vifm/vifmrc
+    ln -srnf .sh/conf/mpv/input.conf .config/mpv/
+    ln -srnf .sh/conf/mpv/mpv.conf .config/mpv/
     mkdir -p .local/share/applications/
     cp /ln/sh/transmission*desktop .local/share/applications/
     # xdg-mime default transmission-cli.desktop x-scheme-handler/magnet

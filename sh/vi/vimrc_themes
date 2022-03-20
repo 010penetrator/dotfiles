@@ -10,7 +10,7 @@ elseif hostname == "warmPC" || hostname == "rpi4b" || hostname == "machine" || h
     " colo PaperColor | set background=light | LineColor solarized
     " colo Tomorrow | LineColor Tomorrow
     " colo Tomorrow-Night | LineColor bluewery
-    colo bluewery-light | LineColor bluewery
+    colo bluewery-light | LineColor selenized_light
     " colo Tomorrow-Night-Eighties | LineColor ayu_mirage
     " colo edge | set background=dark | LineColor darcula
     " colo espresso | LineColor espresso

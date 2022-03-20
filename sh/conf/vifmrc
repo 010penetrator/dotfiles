@@ -83,7 +83,7 @@ nnoremap qj :! nomacs %c &>/dev/null &<cr>
 nnoremap qf :! if [ %c == ".." ] ; then feha . ; else if [ -d %c ] ; then cd %c; feha . ; else if [ -f %c ] ; then feha %c; fi ; fi ; fi <cr>
 nnoremap qF :! fehf . <cr>
 nnoremap qn :! ncdu -x %c<cr>
-nnoremap q<space> :! mpv --keep-open=always *.{mp4,MP4,webm,mkv,mov,MOV} <cr>
+nnoremap q<space> :! mpv --fs --keep-open=always *.{mp4,MP4,webm,mkv,mov,MOV} &>/dev/null & <cr>
 nnoremap qk :! qview %c &>/dev/null &<cr>
 nnoremap qy :! eom %c &>/dev/null &<cr>
 nnoremap qi :! mediainfo %c | less<cr>
@@ -116,7 +116,7 @@ nnoremap ,d :! vim -d %c %D/%c <cr>
 "     nnoremap an :! MODE="newtab" vimrpc "%c" &>/dev/null & <cr>
 " endif
 
-" Play with mpv "
+" Play music with mpv "
 nnoremap b :! PAUSE=0 ASK=1 mpv-album %c VIFM; echo -ne "\033]0;VIFM\007" <cr>
 nnoremap B :! %i cd %c; [[ $TERMINAL=="kitty "* ]] && TERMINAL="$TERMINAL -o initial_window_height=$(expr 450 + $HIDPI \* 100) -o initial_window_width=$(expr 650 + $HIDPI \* 130)"; $TERMINAL -e /bin/bash -c "mpv-album . ; ask_album.sh" &>/dev/null & <cr>
 nnoremap qb :! kitty @ new-window --new-tab /bin/bash -c "cd %d/ ; mpv-album %c VIFM ; vifm --select %c" <cr>
@@ -369,11 +369,10 @@ filextype *.ps,*.eps,*.ps.gz
 " Audio
 filetype *.wav,*.mp3,*.flac,*.m4a,*.m4b,*.mka,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus,
        \ {play using mpv}
-" \ mpv %f,
+       \ mpv %f,
        \ echo -ne "\033]0;MPV @ VIFM\007"; mpv %f,
-       \ {Play using mpv}
-       "\ {Play using ffplay}
-       "\ ffplay -nodisp %c,
+       \ {Play using ffmpeg}
+       \ ffplay -nodisp %c,
        \ {Play using MPlayer}
        \ mplayer %f,
 fileviewer *.mp3 mp3info
