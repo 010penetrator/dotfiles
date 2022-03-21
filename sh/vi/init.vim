@@ -126,7 +126,7 @@ if has("nvim") == 0
 endif
 if has("nvim")
     Plug 'neovim/nvim-lspconfig'
-    Plug 'kabouzeid/nvim-lspinstall'
+    Plug 'williamboman/nvim-lsp-installer'
     Plug 'nvim-treesitter/nvim-treesitter', {'do':':TSUpdate'}
     Plug 'nvim-lua/completion-nvim'
     Plug 'glepnir/lspsaga.nvim'
