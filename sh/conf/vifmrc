@@ -6,8 +6,14 @@
 " The basic format for each item is shown with an example.
 " ------------------------------------------------------------------------------
 
+if (system('[ -f /tmp/now_is_day ] && echo 1') == "1" )
+    colo dracula
+elseif (system('[ -f /tmp/now_is_night ] && echo 1') == "1" )
+    colo iceberg
+endif
+
 " colo reicheltd-light
-colo iceberg
+" colo iceberg
 " colo dracula
 " colorscheme Default
 !echo -ne "\033]0;VIFM\007"
