@@ -3,5 +3,7 @@
 # Dim and warm screen
 
 ga=.9
-redshift -O 4800 -g $ga:$ga:$ga & disown
+redshift -O 4900 -g $ga:$ga:$ga & disown
+
+nowis night
 

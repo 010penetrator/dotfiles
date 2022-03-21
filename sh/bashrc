@@ -52,11 +52,11 @@ alias 1l='less ~/.sh/1linux'
 # alias vf='$TERMINAL -e vifm . &'
 # alias trmclient='title transmission-remote-cli; transmission-remote-cli -c localhost:9090 ; title bash'
 if  lsb_release -i | grep -q -ie 'arch' ; then
-    alias ps='pacman -Ss'
-    alias pi='sudo pacman -S'
+    alias as='pacman -Ss'
+    alias ai='sudo pacman -S'
 elif  lsb_release -i | grep -q -ie 'mint\|debian\|buntu' ; then
-    alias ps='apt search'
-    alias pi='sudo apt install'
+    alias as='apt search'
+    alias ai='sudo apt install'
 fi
 alias l='$LSBLK -f'
 alias lb='$LSBLK -o NAME,LABEL,MOUNTPOINT,SIZE,FSUSE% | grep "sd\|nvme" --color=none'

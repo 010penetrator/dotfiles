@@ -6,6 +6,10 @@
 let hostname = substitute(system('hostname'), '\n', '', '')
 if exists("g:colors_name")
     set nohlsearch
+elseif filereadable('/tmp/now_is_day')
+    colo frign | LineColor Tomorrow
+elseif filereadable('/tmp/now_is_night')
+    colo Tomorrow-Night | LineColor bluewery
 elseif hostname == "warmPC" || hostname == "rpi4b" || hostname == "machine" || hostname == "debian10pc"
     " colo PaperColor | set background=light | LineColor solarized
     " colo Tomorrow | LineColor Tomorrow
@@ -27,7 +31,6 @@ endif
 
 map <buffer> M j:call EvalThis()<cr>
 map <buffer> H k:call EvalThis()<cr>
-
 " colo snow | set background=light | LineColor ayu_light
 " colo vadelma | set background=light | LineColor one
 " colo PaperColor | set background=light | LineColor one
@@ -43,8 +46,8 @@ map <buffer> H k:call EvalThis()<cr>
 " colo cryslominsa | LineColor cryslominsa
 " colo everforest | LineColor cryslominsa
 " colo tempus_dusk | LineColor solarized
-" let ayucolor="mirage" | colo ayu | LineColor ayu_mirage
 " colo espresso | LineColor espresso
+" let ayucolor="mirage" | colo ayu | LineColor ayu_mirage
 " colo corvine | LineColor bluewery
 " colo OceanicNext | LineColor bluewery
 " colo stellarized | set background=dark | LineColor bluewery

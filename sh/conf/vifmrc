@@ -7,15 +7,17 @@
 " ------------------------------------------------------------------------------
 
 if (system('[ -f /tmp/now_is_day ] && echo 1') == "1" )
-    colo dracula
+    colo reicheltd-light
 elseif (system('[ -f /tmp/now_is_night ] && echo 1') == "1" )
-    colo iceberg
+    colo dracula
+    " colo iceberg
+else
+    " colo reicheltd-light
+    " colo iceberg
+    " colo dracula
+    colorscheme Default
 endif
 
-" colo reicheltd-light
-" colo iceberg
-" colo dracula
-" colorscheme Default
 !echo -ne "\033]0;VIFM\007"
 " wincmd o
 
@@ -69,7 +71,7 @@ nnoremap cd :cd<space>
 nnoremap qq :
 nnoremap q; :<up>
 nnoremap af :<up><cr>
-nnoremap ,V :source $MYVIFMRC <cr>
+nnoremap ,vv :source $MYVIFMRC <cr>
 nnoremap ar ggvGcw
 nnoremap ae :winrun , cd %C <cr><tab>
 nnoremap a= :winrun , cd %D <cr><tab>
@@ -141,6 +143,7 @@ nnoremap am ggVG<cr>:move<cr>
 nnoremap del :! sudo rm -r %c <cr>
 nnoremap qU ggVG: !mv --backup=numbered %f ../<cr>
 nnoremap qu :! mv --backup=numbered %f ../<cr>
+nnoremap tok :tok<cr>
 nnoremap ch :chmod<cr>
 nnoremap cj :chmod 644 <cr>j
 nnoremap cb :copy | ! notify-send COPY Done!<cr>

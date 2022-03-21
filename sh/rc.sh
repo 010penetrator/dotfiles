@@ -73,9 +73,11 @@ killall dunst
 sleep .1
 # [[ $HIDPI == "1" ]] && OPT='-font "Liberation Mono 14.4"'
 dunst -conf /ln/sh/conf/dunstrc &
-# dunst &
 )
-# sleep .9
+
+resta xbanish
+compton.sh
+
 # notify-send $HOSTNAME &
 
 # killall osdsh ; osdsh  -p 0 -a 2 -d 1 -f -adobe-helvetica-bold-r-*-*-*-240-*-*-*-*-iso8859-* -c teal 

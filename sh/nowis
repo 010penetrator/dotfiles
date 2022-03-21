@@ -1,0 +1,8 @@
+#!/bin/bash
+# Store in a file the current time of day
+# i.e. call "nowis day"
+
+rm /tmp/now_is_* &> /dev/null
+
+touch /tmp/now_is_"$1"
+

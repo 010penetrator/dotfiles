@@ -3,4 +3,5 @@
 # Undo nighttime screen attenuation
 
 redshift -x & disown
+nowis day
 

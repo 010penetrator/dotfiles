@@ -453,7 +453,7 @@ imap jj <ESC>
 imap оо <ESC>
 
 " double <esc> will switch off search highlighting
-nnoremap <silent> <Esc><Esc> <Esc>:nohlsearch<CR><Esc>
+" nnoremap <silent> <Esc><Esc> <Esc>:nohlsearch<CR><Esc>
 
 " <x> and <s> will delete to no buffer
 noremap x "_x
@@ -851,7 +851,11 @@ command! KIR e ++enc=cp1251 | set fileencoding=utf-8 | set fileformat=unix
 " command! C1KIR e ++enc=cp1251 | set fileencoding=utf-8 | set fileformat=unix | wq
 command! F set fileencoding=utf-8 | set fileformat=unix
 
-command! SessWriteA let g:Color_save=g:colors_name | let g:Color_backgr=&background | let g:Line_save=g:lightline.colorscheme | call TerminalsFuneral() | mksession! $RTP/session.vim | SaveSigns! $RTP/signs.sav
+function! RunSelBash()
+    echo system(join(getline(a:firstline,a:lastline), "\n"))
+endfunction
+
+command! SessWriteA call SaveColor() | call TerminalsFuneral() | mksession! $RTP/session.vim | SaveSigns! $RTP/signs.sav
 command! SessWriteB exec 'SessWriteA' | call BufFocusedThenDo('signs.sav','wq')
 " command! QQ exec 'SessWriteB' | wa | qa
 
@@ -1237,17 +1241,44 @@ function! SwitchBackground()
   " echo &background
 endfunction
 
-function! LoadColor()
-  if exists( "g:Color_save" )
-    exec "colo " . g:Color_save
-  endif
-  if exists( "g:Color_backgr" )
-    exec "set background=" . g:Color_backgr
-  endif
-  if exists( "g:Line_save" )
-    exec "LineColor " . g:Line_save
-  endif
+function! SaveColor(...)
+    if !exists("g:colist")
+        let g:colist = { 'day':'', 'nox':'', 'def':'' }
+    endif
+    if exists("a:1")
+        let phase = a:1
+    elseif filereadable('/tmp/now_is_day')
+        let phase = 'day'
+    elseif filereadable('tmp/now_is_night')
+        let phase = 'nox'
+    else
+        let phase = 'def'
+    endif
+    let g:colist[phase] = ['a','b','c']
+    let g:colist[phase][0] = g:colors_name
+    let g:colist[phase][1] = g:lightline.colorscheme
+    let g:colist[phase][2] = &background
 endfunction
+function! LoadColor(...)
+    if !exists("g:colist")
+        echom "NO saved colors are present"
+        return
+    endif
+    if exists("a:1")
+        let phase = a:1
+    elseif filereadable('/tmp/now_is_day')
+        let phase = 'day'
+    elseif filereadable('/tmp/now_is_night')
+        let phase = 'nox'
+    else
+        let phase = 'def'
+    endif
+    exec "colo " .           g:colist[phase][0]
+    exec "LineColor " .      g:colist[phase][1]
+    exec "set background=" . g:colist[phase][2]
+endfunction
+command! -nargs=1 SaveColor call SaveColor('<args>')
+command! -nargs=1 LoadColor call LoadColor('<args>')
 
 function! SwitchCE()
   if mapcheck("<C-e>") == ''

@@ -9,6 +9,7 @@ $LSBLK -o NAME,LABEL,MOUNTPOINT,SIZE,FSUSE% | grep "sd\|nvme" --color=none ; ech
 du -sh $HOME
 du -sh /var/log/journal/
 [ -d /var/cache/pacman/pkg/ ] && du -sh /var/cache/pacman/pkg/ && echo
+[ -d /var/cache/apt ] && { du -sh /var/cache/apt/ 2>/dev/null ; echo ; }
 
 # Call few commands with a single 'sudo' call
 sudo bash -c "
