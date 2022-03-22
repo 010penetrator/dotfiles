@@ -29,8 +29,6 @@ endif
 " let c = getcompletion('', 'color') | new | put =c | goto 1 | map <buffer> M j:exec 'colo' getline(line('.')) <cr>
 " new | map <buffer> M j: LineColor <C-R><C-W><cr>| exec "read ! echo; ls $VIMPLUG/lightline.vim/autoload/lightline/colorscheme" | goto 1 | del 1
 
-map <buffer> M j:call EvalThis()<cr>
-map <buffer> H k:call EvalThis()<cr>
 " colo snow | set background=light | LineColor ayu_light
 " colo vadelma | set background=light | LineColor one
 " colo PaperColor | set background=light | LineColor one
@@ -60,6 +58,8 @@ map <buffer> H k:call EvalThis()<cr>
 " colo edge 
 " colo everforest
 " colo vadelma
+map <buffer> M j:call EvalThis()<cr>
+map <buffer> H k:call EvalThis()<cr>
 
 " LineColor ayu_light
 " LineColor selenized_light

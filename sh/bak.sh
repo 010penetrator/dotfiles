@@ -6,6 +6,7 @@ mkdir -p "$bakhot"
 echo stage1
 
 DAY="$(date +%Y-%m-%d)"
+MON="$(date +%Y-%m)"
 [[ -d $bakhot/$DAY ]] && rm -rf "$bakhot/$DAY"
 mkdir "$bakhot/$DAY"
 
@@ -21,5 +22,6 @@ tar -czf "$bakhot/$DAY/conf.tar.gz" --ignore-failed-read \
 ! [[ -d $bakcld ]] && echo Warning! Cold backup dir not available! && exit
 echo stage2
 
-cp -rf "$bakhot/$DAY" "$bakcld/"
+mkdir -p "$bakcld/$MON"
+cp -rf "$bakhot/$DAY/"* "$bakcld/$MON"
 

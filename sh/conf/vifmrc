@@ -180,6 +180,7 @@ nnoremap go :cd /ln/ho/moment<cr>
 nnoremap gx :trashes<cr>
 nnoremap gc :cd $HOME/.config<cr>
 nnoremap gs :cd /ln/sh<cr>
+nnoremap gw :cd $wo<cr>
 nnoremap gd :cd /ln/dwn<cr>
 nnoremap gb :cd $bakcld<cr>
 nnoremap gB :cd $bakhot<cr>

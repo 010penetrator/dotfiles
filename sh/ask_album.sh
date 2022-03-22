@@ -38,8 +38,8 @@ else
     clear
     echo pwd is $PWD
     echo
-    echo Will exit in 3 seconds..
-    sleep 3
+    echo Will exit in a second..
+    sleep 1.8
     exit
 fi
 
