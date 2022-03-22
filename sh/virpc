@@ -7,7 +7,10 @@ echo editor is $EDITOR
 
 echo args are $*
 
-echo "STAGe B"
+if [ -z "$1" ] ; then
+  echo "Usage: [VIMSERV=name] [MODE=cur,last,newtab,newtabinsert,split,vert] vimz file.c"
+  # exit 1
+fi
 
 if [[ $EDITOR =~ .*nvim ]] ; then
     echo ed is nvim

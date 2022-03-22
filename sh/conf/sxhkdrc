@@ -112,7 +112,7 @@ super + f ; b
   bspc node -s biggest.local
 #
 # swap with brother
-super + f ; z
+super + f ; x
   bspc node -s @brother
 #
 # rotate the split

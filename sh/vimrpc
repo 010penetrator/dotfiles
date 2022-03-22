@@ -6,10 +6,10 @@ if [ -z "$1" ] ; then
   # exit 1
 fi
 
-if [ "$EDITOR" == "nvim" ] ; then
-  nvimrpc $*
-  exit
-fi
+# if [ "$EDITOR" == "nvim" ] ; then
+#   nvimrpc $*
+#   exit
+# fi
 echo "stag B"
 
 # Set default new buffer placement in Vim:
