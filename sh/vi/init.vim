@@ -1254,6 +1254,9 @@ function! SaveColor(...)
     else
         let phase = 'def'
     endif
+    if phase != 'day' && phase != 'nox'
+        echom "Provide me day or nox, please!"
+    endif
     let g:colist[phase] = ['a','b','c']
     let g:colist[phase][0] = g:colors_name
     let g:colist[phase][1] = g:lightline.colorscheme
