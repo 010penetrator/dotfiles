@@ -18,6 +18,7 @@ if ($suc) ; then
     echo success
 fi
 
+[ -d .dotfiles.git ] ||
 {
     echo -e '\n'--Gonna clone my git repo
     cd
@@ -66,7 +67,8 @@ fi
     ln -srfv .sh/conf/feh.keys .config/feh/keys
     sudo ln -sfv /ln/sh/99-libinput-custom.conf /etc/X11/xorg.conf.d/
     mkdir -p .config/vifm/
-    ln -sv .sh/conf/vifmrc .config/vifm/vifmrc
+    cp .sh/conf/vifm-colors/*.vifm .config/vifm/colors/
+    ln -srfv .sh/conf/vifmrc .config/vifm/vifmrc
     ln -srnf .sh/conf/mpv/input.conf .config/mpv/
     ln -srnf .sh/conf/mpv/mpv.conf .config/mpv/
     mkdir -p .local/share/applications/

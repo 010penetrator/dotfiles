@@ -31,5 +31,6 @@ sudo bash -c "
 [ -d $HOME/.vim ] && cp $HOME/.vim/session.vim $HOME/.vim/session.vimBAK
 
 # Backup something else
-[ -d "$tt" ] && bak.sh || echo "UNABLE TO MAKE TEXTS BACKUP!"
+# [ -d "$tt" ]
+bak.sh
 

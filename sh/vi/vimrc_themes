@@ -1,44 +1,46 @@
 """"""""""""""""""""""""
 ""      Theming:      ""
 """"""""""""""""""""""""
+" vim: set foldmethod=marker
 " vim: ts=4 sw=4 ft=vim
 
 let hostname = substitute(system('hostname'), '\n', '', '')
 if exists("g:colors_name")
     set nohlsearch
 elseif filereadable('/tmp/now_is_day')
-    colo frign | LineColor Tomorrow
+    colo stellarized | set bg=light | LineColor PaperColor_light
 elseif filereadable('/tmp/now_is_night')
-    colo Tomorrow-Night | LineColor bluewery
-elseif hostname == "warmPC" || hostname == "rpi4b" || hostname == "machine" || hostname == "debian10pc"
-    " colo PaperColor | set background=light | LineColor solarized
+    colo tempus_dusk | LineColor bluewery
+" elseif hostname == "warmPC" || hostname == "rpi4b" || hostname == "machine" || hostname == "debian10pc"
+else
+    colo frign | LineColor Tomorrow
+    " colo PaperColor | set bg=light | LineColor solarized
     " colo Tomorrow | LineColor Tomorrow
     " colo Tomorrow-Night | LineColor bluewery
-    colo bluewery-light | LineColor selenized_light
+    " colo bluewery-light | LineColor selenized_light
     " colo Tomorrow-Night-Eighties | LineColor ayu_mirage
-    " colo edge | set background=dark | LineColor darcula
+    " colo edge | set bg=dark | LineColor darcula
     " colo espresso | LineColor espresso
     " colo cryslominsa | LineColor cryslominsa
-    " colo stellarized | set background=light | LineColor atlantis
-elseif hostname == "user-pc" || hostname == "debpc"
-    " colo Tomorrow-Night | LineColor bluewery
-    colo Tomorrow | LineColor Tomorrow
+    " colo stellarized | set bg=light | LineColor atlantis
 endif
 
-" list available colors..
+" List available colors..
 " let c = getcompletion('', 'color') | new | put =c | goto 1 | map <buffer> M j:exec 'colo' getline(line('.')) <cr>
+" List available lighline themes
 " new | map <buffer> M j: LineColor <C-R><C-W><cr>| exec "read ! echo; ls $VIMPLUG/lightline.vim/autoload/lightline/colorscheme" | goto 1 | del 1
 
-" colo snow | set background=light | LineColor ayu_light
-" colo vadelma | set background=light | LineColor one
-" colo PaperColor | set background=light | LineColor one
+" {{{}}}
+" colo snow | set bg=light | LineColor ayu_light
+" colo vadelma | set bg=light | LineColor one
+" colo PaperColor | set bg=light | LineColor one
 " colo vimspectr180-light | LineColor one
-" colo edge | set background=light | LineColor materia
+" colo edge | set bg=light | LineColor materia
 " colo Tomorrow | LineColor Tomorrow
-" colo Tomorrow-Night | set background=light | LineColor bluewery
+" colo Tomorrow-Night | set bg=light | LineColor bluewery
 " colo corvine_light | LineColor selenized_light
 " colo cake16 | LineColor selenized_light
-" colo stellarized | set background=light | LineColor PaperColor_light
+" colo stellarized | set bg=light | LineColor PaperColor_light
 " colo lost-shrine | LineColor nord
 " colo knicks-away | LineColor bluewery
 " colo cryslominsa | LineColor cryslominsa
@@ -48,10 +50,10 @@ endif
 " let ayucolor="mirage" | colo ayu | LineColor ayu_mirage
 " colo corvine | LineColor bluewery
 " colo OceanicNext | LineColor bluewery
-" colo stellarized | set background=dark | LineColor bluewery
+" colo stellarized | set bg=dark | LineColor bluewery
 " colo Tomorrow-Night-Blue | LineColor bluewery
-" colo edge | set background=dark | LineColor darcula
-" colo vadelma | set background=dark | LineColor deus
+" colo edge | set bg=dark | LineColor darcula
+" colo vadelma | set bg=dark | LineColor deus
 " set notermguicolors | colo plastic | LineColor deus
 " colo vimspectr180-light
 " colo vimspectr150-light
@@ -61,18 +63,22 @@ endif
 map <buffer> M j:call EvalThis()<cr>
 map <buffer> H k:call EvalThis()<cr>
 
+" {{{}}}
 " LineColor ayu_light
-" LineColor selenized_light
-" LineColor Tomorrow
-" LineColor material
 " LineColor edge
+" LineColor material
 " LineColor one
+" LineColor selenized_light
+" LineColor PaperColor_light
+" LineColor Tomorrow
 " LineColor nord
 " LineColor atlantis
 " LineColor solarized
 " LineColor deus
 " LineColor bluewery
 " LineColor darcula
+map <buffer> M j:call EvalThis()<cr>
+map <buffer> H k:call EvalThis()<cr>
 
 " hi! Search ctermbg=222
 " hi! Normal ctermbg=234

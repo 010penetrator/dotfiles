@@ -139,6 +139,8 @@ if has("nvim")
   Plug 'nvim-lualine/lualine.nvim'
   Plug 'hoschi/yode-nvim'
   Plug 'kwkarlwang/bufjump.nvim'
+  Plug 'hrsh7th/nvim-cmp'
+  Plug 'kyazdani42/nvim-tree.lua'
 endif
 
 """"""""""""""""""""""""
@@ -318,9 +320,7 @@ set sessionoptions+=globals
 set history=2500
 
 set t_Co=256
-if $TERMINAL == 'xterm'
-    set term=xterm-256color
-endif
+"  if $TERMINAL == 'xterm' | set term=xterm-256color | endif
 if $TERMINAL =~ 'kitty'
     let &t_ut=''
 endif
@@ -699,8 +699,8 @@ nnoremap yc ^y$"+y$"*y$
 " yank current file full name 
 nnoremap zy :let @" = expand('%:p')
 " replace current word with register contents
-nnoremap cp "_diw""P
-nnoremap co "_diw"*P
+nnoremap cp "_ciw<c-r>"<esc>
+nnoremap co "_ciw<c-r>*<esc>
 
 " Commanding Vim
 nnoremap q; :<up>
@@ -714,7 +714,7 @@ nnoremap ,; :6mes<CR>
 " Eval yanked
 nnoremap yq :@"<CR>
 " Add Plug entry
-nnoremap ,vp :put + <bar> exec "normal dfmxIPlug 'A'" <CR>
+nnoremap ,vp :put + <bar> exec "normal dfmxIPlug 'A'" <CR>==
 " Evaluate one line as Vimscript
 nnoremap ,vl yy:@"<CR>
 " Evaluate a paragraph as Vimscript

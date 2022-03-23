@@ -90,7 +90,7 @@ nnoremap qc :! ./%c <cr>
 nnoremap qj :! nomacs %c &>/dev/null &<cr>
 nnoremap qf :! if [ %c == ".." ] ; then feha . ; else if [ -d %c ] ; then cd %c; feha . ; else if [ -f %c ] ; then feha %c; fi ; fi ; fi <cr>
 nnoremap qF :! fehf . <cr>
-nnoremap ,n :! ncdu -x %c<cr>
+nnoremap qn :! ncdu -x %c<cr>
 nnoremap q<space> :! mpv --fs --keep-open=always *.{mp4,MP4,webm,mkv,mov,MOV} &>/dev/null & <cr>
 nnoremap qk :! qview %c &>/dev/null &<cr>
 nnoremap qy :! eom %c &>/dev/null &<cr>

@@ -20,6 +20,7 @@ export BROWSER=firefox
 export sh=/ln/sh
 export lo=/ln/lo/cur
 export bakhot=$HOME/bak
+export baksam=/ln/mo/SAMV/bak
 export MANWIDTH=80
 export LSBLK=lsblk
 export OVMF=/usr/share/edk2-ovmf/x64/OVMF_CODE.fd 
@@ -51,7 +52,7 @@ alias chmodre='find . -type f -exec chmod 644 {} \;'
 alias 1l='less ~/.sh/1linux'
 # alias vf='$TERMINAL -e vifm . &'
 # alias trmclient='title transmission-remote-cli; transmission-remote-cli -c localhost:9090 ; title bash'
-if  lsb_release -i | grep -q -ie 'arch' ; then
+if  lsb_release -i | grep -q -ie 'arch\|manjaro' ; then
     alias as='pacman -Ss'
     alias ai='sudo pacman -S'
 elif  lsb_release -i | grep -q -ie 'mint\|debian\|buntu' ; then
