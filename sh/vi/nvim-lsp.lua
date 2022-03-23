@@ -2,8 +2,11 @@
 local lsp_installer = require("nvim-lsp-installer")
 -- Register a handler that will be called for each installed server when it's ready (i.e. when installation is finished
 -- or if the server is already installed).
+
 lsp_installer.on_server_ready(function(server)
+    local opts = {}
     if server.name == "sumneko_lua" then
+-- vim.api.nvim_command('echom 88')
         opts = {
         settings = {
             Lua = {
@@ -14,7 +17,6 @@ lsp_installer.on_server_ready(function(server)
             }
         }
     end
-    local opts = {}
     -- (optional) Customize the options passed to the server
     -- if server.name == "tsserver" then
     --     opts.root_dir = function() ... end

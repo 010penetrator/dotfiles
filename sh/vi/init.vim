@@ -98,6 +98,7 @@ Plug 'zefei/vim-colortuner' "fun
 Plug 'kshenoy/vim-signature' "buggy
 Plug 'chrisbra/SaveSigns.vim' "usable
 Plug 'airblade/vim-gitgutter'
+Plug 'mhinz/vim-startify'
 
 " Try later
 " Plug 'tpope/vim-unimpaired'
@@ -119,7 +120,7 @@ Plug 'roxma/nvim-yarp' "for denite
 Plug 'roxma/vim-hug-neovim-rpc' "for denite
 
 " Language processing
-if has("nvim") == 0
+if !has("nvim")
     Plug 'Shougo/deoplete.nvim'
     Plug 'Shougo/neoinclude.vim' "for deoplete
     Plug 'dense-analysis/ale'
@@ -138,8 +139,12 @@ if has("nvim")
   Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-lualine/lualine.nvim'
   Plug 'hoschi/yode-nvim'
-  Plug 'kwkarlwang/bufjump.nvim'
+  " Plug 'kwkarlwang/bufjump.nvim'
   Plug 'hrsh7th/nvim-cmp'
+  Plug 'hrsh7th/cmp-buffer'
+  Plug 'hrsh7th/cmp-path'
+  Plug 'hrsh7th/cmp-cmdline'
+  Plug 'hrsh7th/cmp-nvim-lsp'
   Plug 'kyazdani42/nvim-tree.lua'
 endif
 
@@ -372,7 +377,7 @@ elseif executable('ag')
 endif
 
 " Remember last tab to use it later!
-if !exists('g:lasttab')
+if !exists("g:lasttab")
     let g:lasttab = 1
 endif
 au TabLeave * let g:lasttab = tabpagenr()
@@ -423,7 +428,6 @@ endif
 """"""""""""""""""""""""
 
 if has("nvim")
-" luafile $sh/nvim-lsp.init
 endif
 
 """"""""""""""""""""""""
@@ -1242,46 +1246,66 @@ function! SwitchBackground()
 endfunction
 
 function! SaveColor(...)
-    if !exists("g:colist")
-        let g:colist = { 'day':'', 'nox':'', 'def':'' }
-    endif
-    if exists("a:1")
-        let phase = a:1
-    elseif filereadable('/tmp/now_is_day')
-        let phase = 'day'
-    elseif filereadable('tmp/now_is_night')
-        let phase = 'nox'
-    else
-        let phase = 'def'
-    endif
-    if phase != 'day' && phase != 'nox'
-        echom "Provide me day or nox, please!"
-    endif
-    let g:colist[phase] = ['a','b','c']
-    let g:colist[phase][0] = g:colors_name
-    let g:colist[phase][1] = g:lightline.colorscheme
-    let g:colist[phase][2] = &background
-endfunction
-function! LoadColor(...)
-    if !exists("g:colist")
-        echom "NO saved colors are present"
-        return
-    endif
+    " if !exists("g:ColList")
+    "     let g:ColList = { 'day':'', 'nox':'', 'def':'' }
+    " endif
     if exists("a:1")
         let phase = a:1
     elseif filereadable('/tmp/now_is_day')
         let phase = 'day'
     elseif filereadable('/tmp/now_is_night')
         let phase = 'nox'
-    else
-        let phase = 'def'
     endif
-    exec "colo " .           g:colist[phase][0]
-    exec "LineColor " .      g:colist[phase][1]
-    exec "set background=" . g:colist[phase][2]
+    if phase != 'day' && phase != 'nox'
+        echom "phase is" phase
+        echom "Provide me day or nox, please!"
+        let phase = 'day'
+    endif
+    " let g:ColList[phase] = ['a','b','c']
+    if phase == 'day'
+        let g:ColorDayName = g:colors_name
+        let g:ColorDayLine = g:lightline.colorscheme
+        let g:ColorDayBg = &background
+    elseif phase == 'nox'
+        let g:ColorNoxName = g:colors_name
+        let g:ColorNoxLine = g:lightline.colorscheme
+        let g:ColorNoxBg = &background
+    endif
 endfunction
-command! -nargs=1 SaveColor call SaveColor('<args>')
-command! -nargs=1 LoadColor call LoadColor('<args>')
+function! LoadColor(...)
+    if exists("a:1")
+        let phase = a:1
+    elseif filereadable('/tmp/now_is_day')
+        let phase = 'day'
+    elseif filereadable('/tmp/now_is_night')
+        let phase = 'nox'
+    endif
+    if phase != 'day' && phase != 'nox'
+        let phase = 'day'
+        echom "Just assuming phase is day"
+    endif
+    if phase == 'day'
+        if !exists("g:ColorDayName")
+            echom "NO saved colors for this phase of day!"
+            return
+        else
+            exec "colo " .           g:ColorDayName
+            exec "LineColor " .      g:ColorDayLine
+            exec "set background=" . g:ColorDayBg
+        endif
+    elseif phase == 'nox'
+        if !exists("g:ColorNoxName")
+            echom "NO saved colors for this phase of day!"
+            return
+        else
+            exec "colo " .           g:ColorNoxName
+            exec "LineColor " .      g:ColorNoxLine
+            exec "set background=" . g:ColorNoxBg
+        endif
+    endif
+endfunction
+command! -nargs=? SaveColor call SaveColor('<args>')
+command! -nargs=? LoadColor call LoadColor('<args>')
 
 function! SwitchCE()
   if mapcheck("<C-e>") == ''
