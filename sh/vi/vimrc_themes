@@ -8,7 +8,8 @@ let hostname = substitute(system('hostname'), '\n', '', '')
 if exists("g:colors_name")
     set nohlsearch
 elseif filereadable('/tmp/now_is_day')
-    colo stellarized | set bg=light | LineColor PaperColor_light
+    colo Tomorrow | LineColor Tomorrow
+    " colo stellarized | set bg=light | LineColor PaperColor_light
 elseif filereadable('/tmp/now_is_night')
     colo tempus_dusk | LineColor bluewery
 " elseif hostname == "warmPC" || hostname == "rpi4b" || hostname == "machine" || hostname == "debian10pc"

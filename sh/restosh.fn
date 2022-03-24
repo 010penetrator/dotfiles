@@ -1,13 +1,16 @@
 #!/bin/bash
 
+[[ $1 == '--keep' ]] && KEEP_MNT=true
+
 restosh()
 {
   sambdev=$($LSBLK -l -o NAME,LABEL | grep SAMV | cut -f1 -d ' ')
   [[ "$sambdev" == '' ]] && echo SAM is nowhere around && return 1
-  need_umount=0
+  need_umount=false
   if [[ $( mount | grep SAMV | grep $sambdev -c ) == 0 ]] ; then
     echo ==mounting SAM..
-    udevil mount /dev/$sambdev /ln/mo/SAMV && need_umount=1
+    udevil mount /dev/$sambdev /ln/mo/SAMV && [[ $KEEP_MNT == false ]] &&
+        need_umount=true
   fi
   if [[ $( mount | grep SAMV | grep $sambdev -c ) != 1 ]] ; then
     echo --Flash drive unavailable!
@@ -38,7 +41,7 @@ restosh()
     # tar -xf "$arc" -C "$(readlink /ln/sh)" sh --strip-components=1
     # tar -xf "$arc" -C "$(readlink /ln/lo)" lo --strip-components=1
   fi
-  [[ "$need_umount" == 1 ]] && echo ==unmounting SAM.. && udevil umount /ln/mo/SAMV && need_umount=0
+  [[ $need_umount == true ]] && echo ==unmounting SAM.. && udevil umount /ln/mo/SAMV
   echo --Done!
 }
 

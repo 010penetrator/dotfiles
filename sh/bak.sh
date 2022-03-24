@@ -21,8 +21,8 @@ tar -chzf "$bakhot/$DAY/words.tar.gz" \
 [[ -d /ln/torrents ]] &&
     tar -czf "$bakhot/$DAY/torrents.tar.gz" --ignore-failed-read \
         -C /ln/ho .config/transmission-daemon .rtorrent
-# tar -czf "$bakhot/$DAY/conf.tar.gz" --ignore-failed-read \
-#         -C / etc/fstab etc/udevil/udevil.conf ln/ho/.ssh ln/ho/.vim ln/co/nvim
+tar -czf "$bakhot/$DAY/conf.tar.gz" --ignore-failed-read \
+        -C / etc/fstab etc/udevil/udevil.conf ln/ho/.ssh ln/ho/.vim ln/co/nvim
 
 [[ -d $bakcld ]] &&
     {

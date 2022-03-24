@@ -123,7 +123,7 @@ Plug 'roxma/vim-hug-neovim-rpc' "for denite
 if !has("nvim")
     Plug 'Shougo/deoplete.nvim'
     Plug 'Shougo/neoinclude.vim' "for deoplete
-    Plug 'dense-analysis/ale'
+    " Plug 'dense-analysis/ale'
 endif
 if has("nvim")
     Plug 'neovim/nvim-lspconfig'
@@ -326,13 +326,9 @@ set history=2500
 
 set t_Co=256
 "  if $TERMINAL == 'xterm' | set term=xterm-256color | endif
-if $TERMINAL =~ 'kitty'
-    let &t_ut=''
-endif
+if $TERMINAL =~ 'kitty' | let &t_ut='' | endif
 
-if has('mouse')
-    set mouse=a
-endif
+if has('mouse') | set mouse=a | endif
 if &t_Co > 2 || has("gui_running")
     syntax on
     let c_comment_strings=1
@@ -445,7 +441,7 @@ map q <Nop>
 map й q
 nnoremap Q q
 nnoremap qr @@
-nnoremap qf @
+nnoremap qm @
 
 " Free <a> key
 nnoremap a <Nop>
@@ -562,6 +558,7 @@ nnoremap q<space> :echo expand ('%') '.@.' getcwd() <CR>
 nnoremap ,cc :LCDhere <CR>
 nnoremap ,cg :call ClimbToDirWhere(".git/index",1) \| pwd <CR>
 nnoremap ,cm :call ClimbToDirWhere("Makefile",1) \| pwd <CR>
+nnoremap ,c, :call GetProjDir()<cr>
 nnoremap a<BS> :checktime<cr>
 nnoremap q<BS> :enew<CR>
 nnoremap z<BS> :e!<CR>
@@ -593,8 +590,8 @@ nnoremap qj    <C-W>j
 nnoremap qk    <C-W>k
 nnoremap ql    <C-W>l
 nnoremap <C-\> <C-W>w
-nnoremap qm    <C-W>6>
-nnoremap qn    <C-W>6<
+nnoremap q,    <C-W>6>
+nnoremap q.    <C-W>6<
 nnoremap qe    <C-W>4+
 nnoremap qd    <C-W>4-
 nnoremap aq    <C-W>_
@@ -632,11 +629,29 @@ nnoremap q8 8gt
 nnoremap q9 9gt
 nnoremap gz 1gt
 
-" Navigate buffers
+" Navigate buffers/files
 nnoremap ,bj :Unite buffer file<CR>
 nnoremap ,bi :Unite buffer file<CR>i
 nnoremap ,bk :Denite buffer -mode=normal -immediately-1<CR>
 nnoremap ,be :BufExplorer <CR>
+nnoremap ,bo :Telescope oldfiles<CR>
+nnoremap ,bf :Files<CR>
+nnoremap qf  :FilesProj<CR>
+
+" Jump to favourite files
+nnoremap ,gg :call FocusBufOrDo('wawe','e /ln/ho/moment/4gist/wawe')<CR>
+nnoremap ,gv :call FocusBufOrDo('init.vim','e $sh/vi/init.vim')<CR>
+nnoremap ,gt :call FocusBufOrDo('vimrc_themes','e $sh/vi/vimrc_themes')<CR>
+nnoremap ,gb :call FocusBufOrDo('bashrc','e $sh/bashrc')<CR>
+nnoremap ,gx :call FocusBufOrDo('sxhkd','e $sh/conf/sxhkdrc')<CR>
+nnoremap ,gk :call FocusBufOrDo('kitty.conf','e $sh/conf/kitty.conf')<CR>
+nnoremap ,gc :call FocusBufOrDo('rc.sh','e $sh/rc.sh')<CR>
+nnoremap ,gm :call FocusBufOrDo('material','e $tt/material')<CR>
+nnoremap ,gz :call FocusBufOrDo('zzzz','e $tt/zzzzzz')<CR>
+nnoremap ,gu :call FocusBufOrDo('ff','e $tt/u*/ff*')<CR>
+nnoremap ,gh :call FocusBufOrDo('sh_history','e $HOME/.bash_history')<CR>G
+nnoremap ,gl :call FocusBufOrDo('1linux','e $sh/rs/1linux')<CR>
+
 nnoremap ,O :Goyo 66%x100%<CR>
 
 " Start and quit Vim
@@ -722,7 +737,7 @@ nnoremap ,vp :put + <bar> exec "normal dfmxIPlug 'A'" <CR>==
 " Evaluate one line as Vimscript
 nnoremap ,vl yy:@"<CR>
 " Evaluate a paragraph as Vimscript
-nnoremap ,vi yap:@"<CR>
+nnoremap ,,i yap:@"<CR>
 " Evaluate one line or one paragraph as Vimscript
 nnoremap ,v, :call EvalThis()<CR>
 " Evaluate a paragraph as Vimscript and re-run last command
@@ -746,9 +761,9 @@ nnoremap qb : if isdirectory(expand('%:p:h')) \| lcd %:p:h \| endif \| terminal 
 " Go to shell
 nnoremap qt :Bash <CR>
 " Spawn a terminal outside vim
-nnoremap ,t :NewTermHere<CR>
+nnoremap ,,t :NewTermHere<CR>
 " Spawn vifm in terminal outside vim
-nnoremap ,c :NewVifmHere<CR>
+nnoremap ,,c :NewVifmHere<CR>
 
 " Jump to terminal window
 nnoremap qg :call GotoTerm(0)<CR>
@@ -776,20 +791,6 @@ nnoremap ,go ^y$:call system('google.sh ' . "'" . @" . "'")<CR>
 nnoremap ,gy ^y$:call system('yandex.sh ' . "'" . @" . "'")<CR>
 " wiki current line
 " nnoremap ,gr ^y$:silent exec " !source $HOME/.bashrc && chromium \"wiki " . @" . "\" &>/dev/null & " \| redraw!<CR>
-
-" Jump to favourite files
-nnoremap ,gg :call FocusBufOrDo('wawe','e /ln/ho/moment/4gist/wawe')<CR>
-nnoremap ,gv :call FocusBufOrDo('init.vim','e $sh/vi/init.vim')<CR>
-nnoremap ,gt :call FocusBufOrDo('vimrc_themes','e $sh/vi/vimrc_themes')<CR>
-nnoremap ,gb :call FocusBufOrDo('bashrc','e $sh/bashrc')<CR>
-nnoremap ,gx :call FocusBufOrDo('sxhkd','e $sh/conf/sxhkdrc')<CR>
-nnoremap ,gk :call FocusBufOrDo('kitty.conf','e $sh/conf/kitty.conf')<CR>
-nnoremap ,gc :call FocusBufOrDo('rc.sh','e $sh/rc.sh')<CR>
-nnoremap ,gm :call FocusBufOrDo('material','e $tt/material')<CR>
-nnoremap ,gz :call FocusBufOrDo('zzzz','e $tt/zzzzzz')<CR>
-nnoremap ,gu :call FocusBufOrDo('ff','e $tt/u*/ff*')<CR>
-nnoremap ,gh :call FocusBufOrDo('sh_history','e $HOME/.bash_history')<CR>G
-nnoremap ,gl :call FocusBufOrDo('1linux','e $sh/rs/1linux')<CR>
 
 " Appearance
 nnoremap z; :set wrap!<CR>
@@ -830,7 +831,7 @@ nnoremap ,f :set opfunc=FoldMotion<cr>g@
 
 " Save last insert as Macro at "l"
 command! -nargs=1 LastToMacro exec "let @" . <q-args> . " = \"i\" . @. . \"<Esc>\""
-nnoremap q. :LastToMacro l<CR>
+nnoremap qL :LastToMacro l<CR>
 
 " Show current dir & current file stats
 nnoremap ,zl : silent exec '! echo -e "\n$(pwd):"; ls -la . ; echo \. ; ls -la %:p ; read -n 1 -s -r -p "//hit.anykey" ; echo -ne "\n" ' \| redraw! <cr>
@@ -866,7 +867,7 @@ command! SessWriteB exec 'SessWriteA' | call BufFocusedThenDo('signs.sav','wq')
 command! Bash exec 'silent ! bash' | redraw!
 command! NewTerm exec 'silent ! $TERMINAL &' | redraw!
 command! NewTermHere exec 'silent ! cd "%:p:h" && $TERMINAL &' | redraw!
-command! NewVifmHere exec 'silent ! $TERMINAL -e vifm %:p:h & ' | redraw!
+command! NewVifmHere exec 'silent ! $TERMINAL -e vifm --select %:p & ' | redraw!
 command! LCDhere lcd %:p:h | pwd
 
 command! FollowSymLink let b:symlink = expand("%:p") | execute "file " . resolve(expand("%")) | edit
@@ -879,6 +880,8 @@ command! Yall %y "
 command! Dall %d _
 command! Call %d _ | put!
 command! SwapContentPrevWin :call SwapContentPrevWin()
+
+command! -bang FilesProj call GetProjDir() <bar> call fzf#vim#files(expand(b:proj_dir), fzf#vim#with_preview({'options': ['--layout=reverse','--info=inline']}), <bang>0)
 
 """"""""""""""""""""""""
 ""     MS_stuff:      ""
@@ -1034,23 +1037,42 @@ endfunction
 
 function! ClimbToDirWhere(filename,chdir)
   let l:init_dir = getcwd()
+  exec "lcd " . expand('%:p:h')
   while 1
-    " check if the file exist in the current directory
+    " Check if the file exist in the current directory
     if filereadable(a:filename)
       let l:result = getcwd()
-      " change directory if chdir==1
+      " Change directory if chdir==1
       if a:chdir !=# 1
         exec "lcd " . l:init_dir
       endif
       return l:result
+    " If we've hit the top level directory, break out
     elseif getcwd() ==# "/" || getcwd() =~# '^[^/]..$'
-      "if we've hit the top level directory, break out
       exec "lcd " . l:init_dir
       return -1
     else
       lcd ..
     endif
   endwhile
+  exec "lcd " . l:init_dir
+endfunction
+
+function! GetProjDir()
+    let l:proj_dir = ClimbToDirWhere("_proj_root",0)
+    if ( l:proj_dir == -1 )
+        let l:proj_dir = ClimbToDirWhere(".git/index",0)
+    endif
+    if ( l:proj_dir == -1 )
+        let l:proj_dir = ClimbToDirWhere(".gitignore",0)
+    endif
+    if ( l:proj_dir == -1 )
+        let l:proj_dir = ClimbToDirWhere("Makefile",0)
+    endif
+    if ( l:proj_dir == -1 )
+        let l:proj_dir = expand('%:p:h')
+    endif
+    let b:proj_dir = l:proj_dir
 endfunction
 
 function! FocusBufOrDo(name,cmd)
@@ -1320,18 +1342,20 @@ function! SwitchCE()
 endfunc
 
 function! LightlineReload(arg)
-  if a:arg != ''
-    if a:arg == '1'
-      source %
+    " '1' to reload the current theme when you edit its file
+    " '' to print name of current theme
+    if a:arg != ''
+        if a:arg == '1'
+            source %
+        else
+            let g:lightline = { 'colorscheme': a:arg, }
+        endif
     else
-      let g:lightline = { 'colorscheme': a:arg, }
+        echo g:lightline
     endif
-  else
-    echo g:lightline
-  endif
-  call lightline#init()
-  call lightline#colorscheme()
-  call lightline#update()
+    call lightline#init()
+    call lightline#colorscheme()
+    call lightline#update()
 endfunction
 command! -nargs=? LineColor call LightlineReload('<args>')
 

@@ -39,7 +39,7 @@ nnoremap <silent> gF <cmd>lua vim.lsp.buf.type_definitions()<CR> |\
 nnoremap <silent>  K <cmd>lua vim.lsp.buf.hover()<CR> |\
 nnoremap <silent> gK K |\
 nnoremap <silent> <F7> <cmd>lua vim.lsp.buf.signature_help()<CR> |\
-nnoremap <silent> <F5> <cmd>lua vim.lsp.diagnostic.goto_prev()<CR> |\
+nnoremap <silent> <F5> k<cmd>lua vim.lsp.diagnostic.goto_prev()<CR> |\
 nnoremap <silent> <F6> <cmd>lua vim.lsp.diagnostic.goto_next()<CR> |\
 autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 100) |\
 ')
