@@ -6,12 +6,13 @@ local lsp_installer = require("nvim-lsp-installer")
 lsp_installer.on_server_ready(function(server)
     local opts = {}
     if server.name == "sumneko_lua" then
--- vim.api.nvim_command('echom 88')
+        -- vim.api.nvim_command('echom 88')
         opts = {
-        settings = {
-            Lua = {
-                diagnostics = {
-                    globals = { 'vim', 'use' }
+            -- cmd = { "~/.local/share/nvim/lsp_servers/sumneko_lua" },
+            settings = {
+                Lua = {
+                    diagnostics = {
+                        globals = { 'vim', 'use' }
                     },
                 }
             }
