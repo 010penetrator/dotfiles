@@ -95,6 +95,7 @@ rgf() {
   fi
 }
 
+# This does mirror my dotfiles to remote git, thanks I am the only developer in the project =))
 gsync() {
   (
   cd ~/.dotfiles.git/ ; pwd
