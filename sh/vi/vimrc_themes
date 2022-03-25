@@ -9,12 +9,13 @@ if exists("g:colors_name")
     set nohlsearch
 elseif filereadable('/tmp/now_is_day')
     colo Tomorrow | LineColor Tomorrow
+    " colo stellarized | set bg=light | LineColor aqua_plasm
     " colo stellarized | set bg=light | LineColor PaperColor_light
 elseif filereadable('/tmp/now_is_night')
     colo tempus_dusk | LineColor bluewery
 " elseif hostname == "warmPC" || hostname == "rpi4b" || hostname == "machine" || hostname == "debian10pc"
 else
-    colo frign | LineColor Tomorrow
+    colo frign | LineColor aqua_plasm
     " colo PaperColor | set bg=light | LineColor solarized
     " colo Tomorrow | LineColor Tomorrow
     " colo Tomorrow-Night | LineColor bluewery
@@ -29,7 +30,7 @@ endif
 " List available colors..
 " let c = getcompletion('', 'color') | new | put =c | goto 1 | map <buffer> M j:exec 'colo' getline(line('.')) <cr>
 " List available lighline themes
-" new | map <buffer> M j: LineColor <C-R><C-W><cr>| exec "read ! echo; ls $VIMPLUG/lightline.vim/autoload/lightline/colorscheme" | goto 1 | del 1
+" new | map <buffer> M j: LineColor <C-R><C-W><cr>| map <buffer> H k: LineColor <C-R><C-W><cr>| call ExPut('echo glob("$RTP/plugged/**/autoload/lightline/colorscheme/*.vim")') | %s/^\/.*\/// | %s/\.vim$// | goto 1 | del 1
 
 " {{{}}}
 " colo snow | set bg=light | LineColor ayu_light

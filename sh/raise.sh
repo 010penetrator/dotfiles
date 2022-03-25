@@ -1,8 +1,14 @@
 #!/bin/bash
 # My run-or-raise window script
-# Usage: 'raise.sh classname-or-windowname [start command]'
-# Try 'wmctrl -l -x' to discover the names
-# wmctrl required
+# Cycle through windows of matching class/name or run something when no desired windows are present
+# Dependency : wmctrl
+#
+# Usage: 'raise.sh classname-or-windowname [run command]'
+# Example: raise.sh speedcrunch
+# Example: raise.sh zathura cool-zathura-launcher.sh
+# Example: breoffice.libreoffice 'notify-send Libreoffice is not running'
+# Example: raise.sh ' - VIM$\| - NVIM$\|Qtreator' '$TERMINAL nvim'
+# Hint: Try 'wmctrl -l -x' to discover classnames and windownames
 
 # DEBUG=1
 [[ $DEBUG == '1' ]] && echo '.'
@@ -12,9 +18,8 @@ activeid=$(echo $activeid | cut -d ',' -f1)
 # zero pad it
 while [ ${#activeid} -lt 7 ] ; do activeid=0$activeid; done
 [[ $DEBUG == '1' ]] && echo activeid is $activeid
-if [ "$1" == '0' ]
-# if argument is null, cycle through windows of same class as current
-then 
+# If classname not provided, use current window's class
+if [ "$1" == '0' ] ; then 
   wname=$(wmctrl -l -x | grep -a $activeid | cut -d " " -f4 | cut -d "." -f1)
   echo focus another $wname
 else
@@ -33,24 +38,22 @@ if [ -n "$1" ] ; then
   then
     # Choose next window of same name
     echo "choosing next"
-    str=$(wmctrl -l -x | grep -a -v -e "^\{9\}\s" | grep -a "$wname" | grep -a -A1 $activeid | tail -1 | cut -c -10)
+    target=$(wmctrl -l -x | grep -a -v -e "^\{9\}\s" | grep -a "$wname" | grep -a -A1 $activeid | tail -1 | cut -c -10)
   else
     # Just choose window which includes desired name
     echo "choosing simple"
-    str=$(wmctrl -l -x | grep -a -v -e "^\{9\}\s" | grep -a -m 1 "$wname" | cut -c -10)
+    target=$(wmctrl -l -x | grep -a -v -e "^\{9\}\s" | grep -a -m 1 "$wname" | cut -c -10)
   fi
 fi
 
-[[ $DEBUG == '1' ]] && echo Final aim $str
-if [ -z "$str" ]
-  then
-    if [ -n "$2" ]
-      #Exec
-      then
-        eval " source $HOME/.bashrc ; $2 " &> /dev/null &
-      else
-        $wname &> /dev/null &
-    fi
-  else wmctrl -i -a $str 1>/dev/null
+[[ $DEBUG == '1' ]] && echo Final aim $target
+if [ -z "$target" ] ; then
+  if [ -n "$2" ] ; then
+    # Exec
+    eval " source $HOME/.bashrc ; $2 " &> /dev/null &
+  else
+    $wname &> /dev/null &
+  fi
+else wmctrl -i -a $target 1>/dev/null
 fi
 

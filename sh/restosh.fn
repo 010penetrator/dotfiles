@@ -1,7 +1,5 @@
 #!/bin/bash
 
-[[ $1 == '--keep' ]] && KEEP_MNT=true
-
 restosh()
 {
   sambdev=$($LSBLK -l -o NAME,LABEL | grep SAMV | cut -f1 -d ' ')
@@ -9,7 +7,7 @@ restosh()
   need_umount=false
   if [[ $( mount | grep SAMV | grep $sambdev -c ) == 0 ]] ; then
     echo ==mounting SAM..
-    udevil mount /dev/$sambdev /ln/mo/SAMV && [[ $KEEP_MNT == false ]] &&
+    udevil mount /dev/$sambdev /ln/mo/SAMV && [[ $1 != '--keep' ]] &&
         need_umount=true
   fi
   if [[ $( mount | grep SAMV | grep $sambdev -c ) != 1 ]] ; then

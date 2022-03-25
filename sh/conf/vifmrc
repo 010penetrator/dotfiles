@@ -77,8 +77,12 @@ nnoremap ae :winrun , cd %C <cr><tab>
 nnoremap a= :winrun , cd %D <cr><tab>
 nnoremap cv cW
 nnoremap t tj
-noremap gr :tabprev<cr>
 nnoremap at :tabnew<cr>
+nnoremap gr :tabprev<cr>
+nnoremap q[ :tabprev<cr>
+nnoremap q] :tabnext<cr>
+nnoremap q{ :tabmove-<cr>
+nnoremap q} :tabmove+<cr>
 nnoremap gl gf 
 nnoremap yc :! echo -n %f | xclip ; echo -n %f | xclip -selection clipboard %i <cr>:echo "filename in X buffer"<cr>
 nnoremap yC :! echo -n %f:p | xclip ; echo -n %f:p | xclip -selection clipboard %i <cr>:echo "full filepath in X buffer"<cr>
@@ -90,7 +94,7 @@ nnoremap qc :! ./%c <cr>
 nnoremap qj :! nomacs %c &>/dev/null &<cr>
 nnoremap qf :! if [ %c == ".." ] ; then feha . ; else if [ -d %c ] ; then cd %c; feha . ; else if [ -f %c ] ; then feha %c; fi ; fi ; fi <cr>
 nnoremap qF :! fehf . <cr>
-nnoremap qn :! ncdu -x %c<cr>
+nnoremap ,n :! ncdu -x %c<cr>
 nnoremap q<space> :! mpv --fs --keep-open=always *.{mp4,MP4,webm,mkv,mov,MOV} &>/dev/null & <cr>
 nnoremap qk :! qview %c &>/dev/null &<cr>
 nnoremap qy :! eom %c &>/dev/null &<cr>
@@ -194,6 +198,7 @@ set syscalls
 set confirm=permdelete
 set title
 set cpoptions=fs
+set vimhelp
 
 " This is the actual command used to start vi.  The default is vim.
 " If you would like to use another vi clone such as Elvis or Vile
@@ -243,7 +248,7 @@ set undolevels=100
 " If you installed the vim.txt help file set vimhelp.
 " If would rather use a plain text help file set novimhelp.
 
-set novimhelp
+" set novimhelp
 
 " If you would like to run an executable file when you
 " press return on the file name set this.

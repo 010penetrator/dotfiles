@@ -21,7 +21,8 @@ let $VIMPLUG = $RTP . "/plugged"
 " let $BROWSER = 'luakit'
 " .w !bash  "exec current line with bash
 " %s/^\(\s\)\+$//g | "clean space lines 
-" s/\(|\|\\\)/\\\1/g "screen backslashes for saving command
+" s/\(|\|\\\)/\\\1/g "screen backslashes for saving vim command
+" %s/\([\[\]]\) [\[\]]/\1\1/g " change '[ [' to '[[' and '] ]' to ']]'
 " exec  "!"  . @"  "exec yank buffer
 " read !ls -la  "paste shell output
 " g/.\{20,\}/ exec "normal gqgq" | nohls " format longer lines
@@ -565,7 +566,7 @@ nnoremap z<BS> :e!<CR>
 " new split to netrw
 nnoremap a-  : split <bar> exec "normal -" <cr>
 nnoremap a_  :vsplit <bar> exec "normal -" <cr>
-nnoremap a<CR> :e <c-r><c-f> <CR>
+" nnoremap a<CR> :e <c-r><c-f> <CR>
 " split open file under cursor
 nnoremap ae :vsp <c-r><c-f> <CR>
 nnoremap aE :sp <c-r><c-f> <CR>
@@ -635,8 +636,16 @@ nnoremap ,bi :Unite buffer file<CR>i
 nnoremap ,bk :Denite buffer -mode=normal -immediately-1<CR>
 nnoremap ,be :BufExplorer <CR>
 nnoremap ,bo :Telescope oldfiles<CR>
-nnoremap ,bf :Files<CR>
+nnoremap ,ff :Files<CR>
+nnoremap ,bb :Buffers<CR>
+nnoremap ,fg :GitFiles<CR>
 nnoremap qf  :FilesProj<CR>
+
+" Search text
+nnoremap ,fr :Rg<CR>
+" nnoremap ,fa :Ack <C-r><C-w> %:p:h 
+" nnoremap ,ff :AckFile <C-r><C-W> <CR>
+" nnoremap ,fw :AckWindow <C-r><C-w> <CR>
 
 " Jump to favourite files
 nnoremap ,gg :call FocusBufOrDo('wawe','e /ln/ho/moment/4gist/wawe')<CR>
@@ -807,16 +816,6 @@ nnoremap ,vt :TagbarOpen fj <CR>
 " nnoremap ,* :call UpdCtagsHereDeps() <CR>
 " nnoremap ,* :call UpdCtagsGitDeps() <CR>
 " nnoremap ,* :call UpdCtagsGit() <CR>
-
-" Search
-nnoremap ,r :Rg<CR>
-nnoremap ,fb :Buffers<CR>
-nnoremap ,fg :GitFiles<CR>
-" nnoremap ,fa :Ack <C-r><C-w> %:p:h 
-" nnoremap ,ff :AckFile <C-r><C-W> <CR>
-" nnoremap ,fw :AckWindow <C-r><C-w> <CR>
-" nnoremap ,zg :call ClimbToDirWhere(".git/index",1) \| Ack -Q <C-R><C-W> 
-" nnoremap ,zf :call ClimbToDirWhere("Makefile",1) \| Ack -Q <C-R><C-W> 
 
 " Make and run project
 nnoremap ,zo :make <bar> copen <CR>
@@ -1348,7 +1347,8 @@ function! LightlineReload(arg)
         if a:arg == '1'
             source %
         else
-            let g:lightline = { 'colorscheme': a:arg, }
+            " let g:lightline = { 'colorscheme': a:arg, }
+            let g:lightline = { 'colorscheme': a:arg }
         endif
     else
         echo g:lightline
