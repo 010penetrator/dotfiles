@@ -5,7 +5,7 @@ xinput | grep "Kensington Orbit Fusion" -m2 | tail -2 | \
     while read line ; do
         unset id
         id=$( echo ${line#*id=} | cut -d ' ' -f 1 )
-        echo Kensington id detected as $id
+        echo 'Kensington id probably is' $id '; trying to set acceleration..'
         if [ -n "$id" ]
         then
             # Now we know the thing's probable id, do the setups

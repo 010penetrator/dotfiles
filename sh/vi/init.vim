@@ -552,7 +552,7 @@ nnoremap qx :q<CR>
 nnoremap ,x :q<CR>
 nnoremap ,q :qa <CR>
 nnoremap ,d :bd!<CR>
-nnoremap ,bd :BDandgotoprev<CR>
+nnoremap ,bd :BDnJump<CR>
 nnoremap ,i :diffthis \| wincmd w<CR>
 nnoremap ,I :diffoff  \| wincmd w<CR>
 nnoremap q<space> :echo expand ('%') '.@.' getcwd() <CR>
@@ -654,7 +654,7 @@ nnoremap ,gt :call FocusBufOrDo('vimrc_themes','e $sh/vi/vimrc_themes')<CR>
 nnoremap ,gb :call FocusBufOrDo('bashrc','e $sh/bashrc')<CR>
 nnoremap ,gx :call FocusBufOrDo('sxhkd','e $sh/conf/sxhkdrc')<CR>
 nnoremap ,gk :call FocusBufOrDo('kitty.conf','e $sh/conf/kitty.conf')<CR>
-nnoremap ,gc :call FocusBufOrDo('rc.sh','e $sh/rc.sh')<CR>
+nnoremap ,gr :call FocusBufOrDo('rc.sh','e $sh/rc.sh')<CR>
 nnoremap ,gm :call FocusBufOrDo('material','e $tt/material')<CR>
 nnoremap ,gz :call FocusBufOrDo('zzzz','e $tt/zzzzzz')<CR>
 nnoremap ,gu :call FocusBufOrDo('ff','e $tt/u*/ff*')<CR>
@@ -683,7 +683,7 @@ nnoremap ,vc :silent exec '! ( sleep 0 ; MODE=current vimrpc "%:p" ) & ' \| redr
 if v:version >= 801
   tmap oo <C-w>N:set nonumber<CR>
   tmap o<C-o>  <C-w>N :e #<CR>
-  tmap <C-x> <C-w>N :BDandgotoprev<CR>
+  tmap <C-x> <C-w>N :BDnJump<CR>
   tnoremap <C-PageUp> <C-w>:tabprev<CR>
   tnoremap <C-PageDown> <C-w>:tabnext<CR>
   tnoremap g<tab> <C-w>:exe "tabn ".g:lasttab<CR>
@@ -1276,10 +1276,10 @@ function! SaveColor(...)
         let phase = 'day'
     elseif filereadable('/tmp/now_is_night')
         let phase = 'nox'
-    endif
-    if phase != 'day' && phase != 'nox'
-        echom "phase is" phase
+    else
+    " if phase != 'day' && phase != 'nox'
         echom "Provide me day or nox, please!"
+        " echom "phase is" phase
         let phase = 'day'
     endif
     " let g:ColList[phase] = ['a','b','c']
@@ -1300,8 +1300,8 @@ function! LoadColor(...)
         let phase = 'day'
     elseif filereadable('/tmp/now_is_night')
         let phase = 'nox'
-    endif
-    if phase != 'day' && phase != 'nox'
+    " if phase != 'day' && phase != 'nox'
+    else
         let phase = 'day'
         echom "Just assuming phase is day"
     endif
@@ -1433,20 +1433,22 @@ function! ExPut(cmd)
 endfunction
 command! -nargs=+ -complete=command ExPut call ExPut(<q-args>)
 
-function! BDandgotoprev()
-  " if ( ( expand('#') == '' ) || ( expand('#') =~ '!/bin/bash' ) )
-  if ( expand('%') =~ '!/bin/bash' ) && ( expand('%') == expand('#') )
-    enew
-    bd! #
-  elseif ( expand('#') == '' )
-    enew
-    bd! #
-  else
-    b #
-    bd! #
-  endif
+" Delete buffer and load previous buffer, or just any other
+function! BDnJump()
+    " if ( ( expand('#') == '' ) || ( expand('#') =~ '!/bin/bash' ) )
+    " if ( expand('%') =~ '!/bin/bash' ) && ( expand('%') == expand('#') )
+    "   " Current and prev buffers are terminals
+    if ( expand('#') == '' ) " Previous buffer is unset
+        " Jump to any other buffer
+        bnext
+        bd! #
+    else
+        " Jump to the previous buffer
+        b #
+        bd! #
+    endif
 endfunction
-command! BDandgotoprev call BDandgotoprev()
+command! BDnJump call BDnJump()
 
 function! SortParagraphs() range
   exec a:firstline . "," . a:lastline . 'd'

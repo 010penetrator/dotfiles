@@ -97,7 +97,7 @@ nnoremap qF :! fehf . <cr>
 nnoremap ,n :! ncdu -x %c<cr>
 nnoremap q<space> :! mpv --fs --keep-open=always *.{mp4,MP4,webm,mkv,mov,MOV} &>/dev/null & <cr>
 nnoremap qk :! qview %c &>/dev/null &<cr>
-nnoremap qy :! eom %c &>/dev/null &<cr>
+" nnoremap qy :! eom %c &>/dev/null &<cr>
 nnoremap qi :! mediainfo %c | less<cr>
 nnoremap qh :! xxd %c | less <cr>
 nnoremap qG :! spek %c &>/dev/null &<cr>
@@ -114,7 +114,7 @@ nnoremap zc :! bash -c 'echo; ls -dla %c ; du -sb %c | cut -f1 '' ; du -sh %c | 
 nnoremap z. :! bash -c 'echo -ne \\n  ls dir :\\n ; ls -la --color=auto . ; read -rsn1'<cr>
 nnoremap za :! clear -x; $LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT ; read -rsn1 <cr>
 nnoremap zs :! clear -x; df -BMB ; read -rsn1 <cr>
-nnoremap zy :! echo; date ; echo Sync... ; sync ; echo "Done!" ; read -rsn1 <cr>
+nnoremap ,, :! echo; date ; echo Sync... ; sync ; echo "Done!" ; read -rsn1 <cr>
 
 " Send to vim server "
 nnoremap av :! MODE="split"  virpc "%c"  <cr>

@@ -35,14 +35,12 @@ xinput set-prop "RAPOO Rapoo 2.4G Wireless Device" "libinput Accel Speed" -.7
 if [[ "$HOSTNAME" =~ 'killer'[pc,PC] ]]; then
   # xrandr --dpi 110x110
   xrdb -merge <(echo "Xft.dpi: 108") &
-  sleep 2
   # echo -e 'power on\nquit' | bluetoothctl
-  trdwrap.sh &
   polybar.sh &
   killall unclutter; unclutter &
 
 elif [[ "$HOSTNAME" =~ 'machine' ]]; then
-  xrdb -merge <(echo "Xft.dpi: 108") &
+  xrdb -merge <(echo "Xft.dpi: 128") &
   xrandr --output DP-1 --mode 2560x1440 --rate 120 
   sleep 1
   # pgrep transmission-da | grep . || trdwrap.sh & 
@@ -71,7 +69,6 @@ fi
 killall dunst
 (
 sleep .1
-# [[ $HIDPI == "1" ]] && OPT='-font "Liberation Mono 14.4"'
 dunst -conf /ln/sh/conf/dunstrc &
 )
 
