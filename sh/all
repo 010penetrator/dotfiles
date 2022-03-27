@@ -3,8 +3,6 @@
 # Update and tidy my Arch Linux (or Debian Linux as well)
 
 uptime -p ; echo
-# df -BGB
-$LSBLK -o NAME,LABEL,MOUNTPOINT,SIZE,FSUSE% | grep "sd\|nvme" --color=none ; echo
 
 du -sh $HOME
 du -sh /var/log/journal/
@@ -33,4 +31,7 @@ sudo bash -c "
 # Backup something else
 # [ -d "$tt" ]
 bak.sh
+
+echo; df -BGB
+# $LSBLK -o NAME,LABEL,MOUNTPOINT,SIZE,FSUSE% | grep "sd\|nvme" --color=none ; echo
 

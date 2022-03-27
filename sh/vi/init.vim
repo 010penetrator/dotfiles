@@ -31,7 +31,7 @@ let $VIMPLUG = $RTP . "/plugged"
 " read !ls $VIMPLUG/lightline.vim/autoload/lightline/colorscheme
 
 """"""""""""""""""""""""
-""      Plug:         ""
+""       Plug:        ""
 """"""""""""""""""""""""
 
 if ( has('nvim')  && !filereadable($HOME."/.local/share/nvim/site/autoload/plug.vim") )
@@ -150,7 +150,7 @@ if has("nvim")
 endif
 
 """"""""""""""""""""""""
-""   Plug Colors:     ""
+""    Plug Colors:    ""
 """"""""""""""""""{{{}}}
 
 " gui themes need termguicolors setting
@@ -520,8 +520,8 @@ nnoremap ]l :lnext<cr>
 nnoremap [l :lprev<cr>
 " nmap s <Plug>Sneak_s
 " nmap S <Plug>Sneak_S
-" noremap <c-n> 12<c-e>
-" noremap <c-p> 12<c-y>
+noremap <c-n> 12<c-e>
+noremap <c-p> 12<c-y>
 map <c-j> <Plug>(edgemotion-j)
 map <c-k> <Plug>(edgemotion-k)
 " go to text start/finish in file
@@ -650,6 +650,8 @@ nnoremap ,fr :Rg<CR>
 " Jump to favourite files
 nnoremap ,gg :call FocusBufOrDo('wawe','e /ln/ho/moment/4gist/wawe')<CR>
 nnoremap ,gv :call FocusBufOrDo('init.vim','e $sh/vi/init.vim')<CR>
+nnoremap ,gi :call FocusBufOrDo('init.lua','e $sh/vi/init.lua')<CR>
+nnoremap ,vr :call FocusBufOrDo('vimrc','e $MYVIMRC')<CR>
 nnoremap ,gt :call FocusBufOrDo('vimrc_themes','e $sh/vi/vimrc_themes')<CR>
 nnoremap ,gb :call FocusBufOrDo('bashrc','e $sh/bashrc')<CR>
 nnoremap ,gx :call FocusBufOrDo('sxhkd','e $sh/conf/sxhkdrc')<CR>
@@ -669,6 +671,7 @@ nnoremap ,vv :source $MYVIMRC <CR>
 nnoremap ,vs :source $RTP/session.vim \| call LoadColor() \| call MySigns()<CR>
 nnoremap ,vw :wa<CR>
 nnoremap ,vq :qa! <CR>
+nnoremap ,l :Startify<CR>
 nnoremap ,zs :SessWriteB<CR><esc>
 nnoremap ,zq :SessWriteB<CR>: wa \| qa<CR>
 nnoremap ,ve :call AddRpcEar()<CR>
@@ -725,7 +728,7 @@ nnoremap ao o<Esc>:put! *<CR>`[v`]:g/^$/d<CR>:nohlsearch<CR>
 " yank inline
 nnoremap yc ^y$"+y$"*y$
 " yank current file full name 
-nnoremap zy :let @" = expand('%:p')
+nnoremap yz :let @" = expand('%:p')
 " replace current word with register contents
 nnoremap cp "_ciw<c-r>"<esc>
 nnoremap co "_ciw<c-r>*<esc>

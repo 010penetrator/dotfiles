@@ -904,16 +904,14 @@ map kitty_mod+delete clear_terminal reset active
 # map kitty_mod+i set_colors /ln/co/kitty/theme.conf
 
 # BEGIN_KITTY_THEME
-# Afterglow
+# Ocean
 include current-theme.conf
-cursor #7e5780
 # END_KITTY_THEME
 
 shell_integration no-cursor
 cursor_shape block
-
 # cursor #cc00dd
-# cursor #e619e5
 # cursor #cc33cc
-cursor #7e5780
+# cursor #7e5780
+include cursor_override.conf
 

@@ -14,3 +14,7 @@ endif
 SSource $lo/vimrc.local
 SSource $HOME/.vimrc_msys
 
+" TODO/Problems :
+"     ft is unset
+"     lsp client exits with 1
+
