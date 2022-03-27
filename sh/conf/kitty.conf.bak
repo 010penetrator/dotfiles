@@ -904,7 +904,7 @@ map kitty_mod+delete clear_terminal reset active
 # map kitty_mod+i set_colors /ln/co/kitty/theme.conf
 
 # BEGIN_KITTY_THEME
-# Ocean
+# Modus Operandi
 include current-theme.conf
 # END_KITTY_THEME
 
@@ -913,5 +913,7 @@ cursor_shape block
 # cursor #cc00dd
 # cursor #cc33cc
 # cursor #7e5780
-include cursor_override.conf
+include /ln/sh/conf/kitty_extra.conf
+
+placement_strategy top-left
 

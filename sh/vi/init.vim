@@ -72,7 +72,7 @@ Plug 'tpope/vim-repeat' "handy
 Plug 'tpope/vim-eunuch' "handy
 Plug 'tpope/vim-ragtag' "ok
 Plug 'tpope/vim-fugitive' "handy
-" Plug 'sheerun/vim-polyglot' "okay HUGE
+Plug 'sheerun/vim-polyglot' "okay HUGE
 Plug 'michaeljsmith/vim-indent-object' "cool
 Plug 'godlygeek/tabular' "okay
 Plug 'jamessan/vim-gnupg' "good
@@ -425,6 +425,8 @@ endif
 """"""""""""""""""""""""
 
 if has("nvim")
+    set laststatus=3
+    highlight WinSeparator guibg=none
 endif
 
 """"""""""""""""""""""""
@@ -635,14 +637,15 @@ nnoremap ,bj :Unite buffer file<CR>
 nnoremap ,bi :Unite buffer file<CR>i
 nnoremap ,bk :Denite buffer -mode=normal -immediately-1<CR>
 nnoremap ,be :BufExplorer <CR>
-nnoremap ,bo :Telescope oldfiles<CR>
 nnoremap ,ff :Files<CR>
 nnoremap ,bb :Buffers<CR>
 nnoremap ,fg :GitFiles<CR>
 nnoremap qf  :FilesProj<CR>
+nnoremap ,to :Telescope oldfiles<CR>
 
 " Search text
 nnoremap ,fr :Rg<CR>
+nnoremap ,tr :Telescope lsp_references<CR>
 " nnoremap ,fa :Ack <C-r><C-w> %:p:h 
 " nnoremap ,ff :AckFile <C-r><C-W> <CR>
 " nnoremap ,fw :AckWindow <C-r><C-w> <CR>
@@ -749,7 +752,9 @@ nnoremap ,vp :put + <bar> exec "normal dfmxIPlug 'A'" <CR>==
 " Evaluate one line as Vimscript
 nnoremap ,vl yy:@"<CR>
 " Evaluate a paragraph as Vimscript
-nnoremap ,,i yap:@"<CR>
+" nnoremap ,,i yap:@"<CR>
+nnoremap ,,i :let lastl=line('.') <bar> exec "normal yap" <bar> @\" <bar> exec lastl<CR>:echo "Evaluated current paragraph."<CR>
+nnoremap q<space> :echo expand ('%') '.@.' getcwd() <CR>
 " Evaluate one line or one paragraph as Vimscript
 nnoremap ,v, :call EvalThis()<CR>
 " Evaluate a paragraph as Vimscript and re-run last command
