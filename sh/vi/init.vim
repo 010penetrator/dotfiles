@@ -25,7 +25,7 @@ let $VIMPLUG = $RTP . "/plugged"
 " %s/\([\[\]]\) [\[\]]/\1\1/g " change '[ [' to '[[' and '] ]' to ']]'
 " exec  "!"  . @"  "exec yank buffer
 " read !ls -la  "paste shell output
-" g/.\{20,\}/ exec "normal gqgq" | nohls " format longer lines
+" g/.\{20,\}/ exec "normal gqgq" | noh " format longer lines
 " autocmd WinNew * set numberwidth=2 winheight=7
 " Check lightline themes here
 " read !ls $VIMPLUG/lightline.vim/autoload/lightline/colorscheme
@@ -294,7 +294,7 @@ set number
 set numberwidth=2
 set signcolumn=number
 set showmode
-set hlsearch | nohlsearch
+set hlsearch | noh
 set incsearch
 set linebreak
 set ignorecase
@@ -454,7 +454,7 @@ imap jj <ESC>
 imap оо <ESC>
 
 " double <esc> will switch off search highlighting
-" nnoremap <silent> <Esc><Esc> <Esc>:nohlsearch<CR><Esc>
+" nnoremap <silent> <Esc><Esc> <Esc>:noh<CR><Esc>
 
 " <x> and <s> will delete to no buffer
 noremap x "_x
@@ -724,7 +724,7 @@ nnoremap aI :put! +<CR>
 " copy Vim copy register to system copy buffers
 nnoremap qy :let @+ = @" <bar> :let @* = @" <CR>
 " put select system buffer as single paragraph
-nnoremap ao o<Esc>:put! *<CR>`[v`]:g/^$/d<CR>:nohlsearch<CR>
+nnoremap ao o<Esc>:put! *<CR>`[v`]:g/^$/d<CR>:noh<CR>
 " yank inline
 nnoremap yc ^y$"+y$"*y$
 " yank current file full name 
@@ -761,7 +761,7 @@ nnoremap aC :vertical terminal ++close bash -c "INVIM=1 vifm %:p:h"<CR>
 nnoremap a; :terminal ++kill=term ++curwin ++close bash -c "INVIM=1 vifm %:p:h"<CR>
 nnoremap a: :tabe \| terminal ++kill=term ++curwin bash -c "INVIM=1 vifm #:p:h"<CR>
 
-" nnoremap a/ :nohlsearch <CR>
+" nnoremap a/ :noh <CR>
 nnoremap a/ :set hlsearch! <CR>
 
 " Split open terminal at current location

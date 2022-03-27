@@ -59,7 +59,7 @@ lsp_installer.on_server_ready(function(server)
     -- (optional) Customize the options passed to the server
     if server.name == "ccls" then
         -- opts.root_dir = function() print("ff") end
-        opts.on_attach = function() print("ffg") end
+        opts.on_attach = function() print("ccls attached here!") end
     end
     -- This setup() function will take the provided server configuration and decorate it with the necessary properties
     -- before passing it onwards to lspconfig.
