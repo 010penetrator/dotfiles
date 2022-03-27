@@ -750,7 +750,7 @@ nnoremap ,,i yap:@"<CR>
 " Evaluate one line or one paragraph as Vimscript
 nnoremap ,v, :call EvalThis()<CR>
 " Evaluate a paragraph as Vimscript and re-run last command
-nnoremap ,v<CR> yap:@"<CR>:<up><CR>
+nnoremap ,v. yap:@"<CR>:<up><CR>
 
 " Open current location with vifm within vim
 nnoremap ac :terminal ++close bash -c "INVIM=1 vifm %:p:h"<CR>
@@ -1293,9 +1293,11 @@ function! SaveColor(...)
         let g:ColorNoxBg = &background
     endif
 endfunction
+
 function! LoadColor(...)
-    if exists("a:1")
+    if exists(a:1)
         let phase = a:1
+        echom "phas is " phase
     elseif filereadable('/tmp/now_is_day')
         let phase = 'day'
     elseif filereadable('/tmp/now_is_night')

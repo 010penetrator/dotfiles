@@ -6,7 +6,7 @@ if [ -z "$1" ] ; then
   exit 1
 fi
 
-. $sh/dmenurc.sh
+source $sh/dmenurc
 # d=$(tac "$1" | dmenu $DMENU_OPTIONS -fn "$DMENU_FN")
 # Remove duplicates and choose line with dmenu
 d=$( cat -n "$1" | sort -uk2 | sort -nr | cut -f2- | dmenu $DMENU_OPTIONS -fn "$DMENU_FN" )

@@ -23,7 +23,7 @@ bold_italic_font auto
 #:     italic_font      Operator Mono Book Italic
 #:     bold_italic_font Operator Mono Medium Italic
 
-font_size 12.6
+font_size 12.2
 
 #: Font size (in pts)
 
@@ -904,14 +904,16 @@ map kitty_mod+delete clear_terminal reset active
 # map kitty_mod+i set_colors /ln/co/kitty/theme.conf
 
 # BEGIN_KITTY_THEME
-# Kaolin Dark
+# Afterglow
 include current-theme.conf
+cursor #7e5780
 # END_KITTY_THEME
+
+shell_integration no-cursor
+cursor_shape block
 
 # cursor #cc00dd
 # cursor #e619e5
 # cursor #cc33cc
-
-shell_integration no-cursor
-cursor_shape block
+cursor #7e5780
 

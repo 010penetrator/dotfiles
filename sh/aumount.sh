@@ -1,7 +1,7 @@
 #!/bin/bash
 # Umount block device with udevil and dmenu.
 
-source $sh/dmenurc.sh
+source $sh/dmenurc
 
 LSBLK="lsblk"
 target=$( $LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT | grep -e ".sd\|.nvme" | grep '/' | dmenu $DMENU_OPTIONS -fn "$DMENU_FN" | cut -f 1 -d " " | tr -cd '[:alnum:]' )

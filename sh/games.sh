@@ -1,7 +1,7 @@
 #!/bin/bash
 # My games launcher!
 
-source $sh/dmenurc.sh
+source $sh/dmenurc
 targ=$( echo -e "Noita\nQuake3\nBrogue" | dmenu $DMENU_OPTIONS -fn "$DMENU_FN" )
 
 # targ="Noita"

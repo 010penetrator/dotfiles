@@ -1,7 +1,7 @@
 #!/bin/bash
 # Choose music album with dmenu and play it properly with mpv
 
-. ~/.sh/dmenurc.sh
+source $sh/dmenurc
 d=$(cat .mus-list | sort -R | dmenu $DMENU_OPTIONS -fn "$DMENU_FN")
 if [ -z "$d" ]; then echo no selection !; exit; fi
 
