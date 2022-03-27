@@ -21,7 +21,7 @@ vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
 require('yode-nvim').setup({})
 
-local k_opts = { silent=true, noremap=false }
+-- local k_opts = { silent=true, noremap=false }
 -- vim.api.nvim_set_keymap("n", "<C-p>", ":lua require('bufjump').backward()<cr>", k_opts)
 -- vim.api.nvim_set_keymap("n", "<C-n>", ":lua require('bufjump').forward()<cr>", k_opts)
 
@@ -40,6 +40,10 @@ local k_opts = { silent=true, noremap=false }
 local lsp_installer = require("nvim-lsp-installer")
 -- Register a handler that will be called for each installed server when it's ready (i.e. when installation is finished
 -- or if the server is already installed).
+-- lsp_installer.joke =  vim.fn.stdpath "config" .. "/lsp_servers"
+lsp_installer.settings({
+        install_root_dir =  vim.fn.stdpath "config" .. "/lsp_servers",
+     })
 
 lsp_installer.on_server_ready(function(server)
     local opts = {}

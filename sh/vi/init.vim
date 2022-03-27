@@ -294,7 +294,8 @@ set number
 set numberwidth=2
 set signcolumn=number
 set showmode
-set hlsearch | noh
+set hls
+" noh
 set incsearch
 set linebreak
 set ignorecase
@@ -593,8 +594,8 @@ nnoremap qj    <C-W>j
 nnoremap qk    <C-W>k
 nnoremap ql    <C-W>l
 nnoremap <C-\> <C-W>w
-nnoremap q,    <C-W>6>
-nnoremap q.    <C-W>6<
+nnoremap q,    <C-W>6<
+nnoremap q.    <C-W>6>
 nnoremap qe    <C-W>4+
 nnoremap qd    <C-W>4-
 nnoremap aq    <C-W>_

@@ -189,8 +189,8 @@ nnoremap gd :cd /ln/dwn<cr>
 nnoremap gb :cd $bakcld<cr>
 nnoremap gB :cd $bakhot<cr>
 nnoremap gk :cd /ln/torrents/red/KKK<cr>:sort<cr>mh
-nnoremap gv :cd /ln/ho/.vim<cr>:goto plugged<cr>
-nnoremap gN :cd /ln/co/nvim<cr>:goto plugged<cr>
+nnoremap gv :cd ~/.vim<cr>:goto plugged<cr>
+nnoremap gN :cd ~/.config/nvim<cr>:goto plugged<cr>
 
 """"""""""""""""""""""""
 ""     Settings:      ""
