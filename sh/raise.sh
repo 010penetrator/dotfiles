@@ -50,6 +50,7 @@ fi
 if [ -z "$target" ] ; then
   if [ -n "$2" ] ; then
     # Exec
+    [[ $DEBUG == '1' ]] && echo Final target is $target
     eval " source $HOME/.bashrc ; $2 " &> /dev/null &
   else
     $wname &> /dev/null &

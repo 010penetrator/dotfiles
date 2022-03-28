@@ -6,24 +6,31 @@
 
 let hostname = substitute(system('hostname'), '\n', '', '')
 if exists("g:colors_name")
-    set nohlsearch
-elseif filereadable('/tmp/now_is_day')
-    colo Tomorrow | LineColor Tomorrow
-    " colo stellarized | set bg=light | LineColor aqua_plasm
-elseif filereadable('/tmp/now_is_night')
-    colo tempus_dusk | LineColor bluewery
-" elseif hostname == "warmPC" || hostname == "rpi4b" || hostname == "machine" || hostname == "debian10pc"
+    " set nohlsearch
 else
-    colo frign | LineColor aqua_plasm
-    " colo PaperColor | set bg=light | LineColor solarized
-    " colo Tomorrow | LineColor Tomorrow
-    " colo Tomorrow-Night | LineColor bluewery
-    " colo bluewery-light | LineColor selenized_light
-    " colo Tomorrow-Night-Eighties | LineColor ayu_mirage
-    " colo edge | set bg=dark | LineColor darcula
-    " colo espresso | LineColor espresso
-    " colo cryslominsa | LineColor cryslominsa
-    " colo stellarized | set bg=light | LineColor atlantis
+    if !exists("g:phase")
+        call SetPhase()
+    endif
+    if &diff
+        colo wasabi256
+    elseif ( g:phase == 'day' )
+        colo Tomorrow | LineColor Tomorrow
+        " colo stellarized | set bg=light | LineColor aqua_plasm
+    elseif ( g:phase == 'nox' )
+        colo tempus_dusk | LineColor bluewery
+    elseif ( g:phase == 'dunno' )
+        colo frign | LineColor aqua_plasm
+        " colo PaperColor | set bg=light | LineColor solarized
+        " colo Tomorrow | LineColor Tomorrow
+        " colo Tomorrow-Night | LineColor bluewery
+        " colo bluewery-light | LineColor selenized_light
+        " colo Tomorrow-Night-Eighties | LineColor ayu_mirage
+        " colo edge | set bg=dark | LineColor darcula
+        " colo espresso | LineColor espresso
+        " colo cryslominsa | LineColor cryslominsa
+        " colo stellarized | set bg=light | LineColor atlantis
+        " elseif hostname == "warmPC" || hostname == "rpi4b" || hostname == "machine"
+    endif
 endif
 
 " List available colors..

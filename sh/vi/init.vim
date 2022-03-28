@@ -136,17 +136,18 @@ endif
 
 " NeoVim specific
 if has("nvim")
-  Plug 'nvim-telescope/telescope.nvim'
-  Plug 'nvim-lua/plenary.nvim'
-  Plug 'nvim-lualine/lualine.nvim'
-  Plug 'hoschi/yode-nvim'
-  " Plug 'kwkarlwang/bufjump.nvim'
-  Plug 'hrsh7th/nvim-cmp'
-  Plug 'hrsh7th/cmp-buffer'
-  Plug 'hrsh7th/cmp-path'
-  Plug 'hrsh7th/cmp-cmdline'
-  Plug 'hrsh7th/cmp-nvim-lsp'
-  Plug 'kyazdani42/nvim-tree.lua'
+    Plug 'nvim-telescope/telescope.nvim'
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-lualine/lualine.nvim'
+    Plug 'hoschi/yode-nvim'
+    " Plug 'kwkarlwang/bufjump.nvim'
+    Plug 'hrsh7th/nvim-cmp'
+    Plug 'hrsh7th/cmp-buffer'
+    Plug 'hrsh7th/cmp-path'
+    Plug 'hrsh7th/cmp-cmdline'
+    Plug 'hrsh7th/cmp-nvim-lsp'
+    Plug 'kyazdani42/nvim-tree.lua'
+    Plug 'lambdalisue/suda.vim'
 endif
 
 """"""""""""""""""""""""
@@ -334,9 +335,6 @@ if has('mouse') | set mouse=a | endif
 if &t_Co > 2 || has("gui_running")
     syntax on
     let c_comment_strings=1
-endif
-if &diff
-    colo wasabi256
 endif
 
 autocmd WinNew * set numberwidth=2
@@ -562,7 +560,7 @@ nnoremap q<space> :echo expand ('%') '.@.' getcwd() <CR>
 nnoremap ,cc :LCDhere <CR>
 nnoremap ,cg :call ClimbToDirWhere(".git/index",1) \| pwd <CR>
 nnoremap ,cm :call ClimbToDirWhere("Makefile",1) \| pwd <CR>
-nnoremap ,c, :call GetProjDir()<cr>
+nnoremap ,c, :call GetProjDir() <bar> exec "cd " . b:proj_dir <bar> pwd<cr>
 nnoremap a<BS> :checktime<cr>
 nnoremap q<BS> :enew<CR>
 nnoremap z<BS> :e!<CR>
@@ -585,8 +583,8 @@ nnoremap qV :vsplit # <cr>
 nnoremap <C-W>S :vsplit<CR>
 nnoremap an :tabe %:p:h <CR>
 nnoremap ,. <C-^>
-nnoremap ,y :call BufYank()<CR>
-nnoremap ,p :call BufPut()<CR>
+nnoremap ,by :call BufYank()<CR>
+nnoremap ,bp :call BufPut()<CR>
 
 " Handle windows
 nnoremap qh    <C-W>h
@@ -645,7 +643,7 @@ nnoremap qf  :FilesProj<CR>
 nnoremap ,to :Telescope oldfiles<CR>
 
 " Search text
-nnoremap ,fr :Rg<CR>
+nnoremap ,fg :Rg<CR>
 nnoremap ,tr :Telescope lsp_references<CR>
 " nnoremap ,fa :Ack <C-r><C-w> %:p:h 
 " nnoremap ,ff :AckFile <C-r><C-W> <CR>
@@ -658,6 +656,7 @@ nnoremap ,gi :call FocusBufOrDo('init.lua','e $sh/vi/init.lua')<CR>
 nnoremap ,vr :call FocusBufOrDo('vimrc','e $MYVIMRC')<CR>
 nnoremap ,gt :call FocusBufOrDo('vimrc_themes','e $sh/vi/vimrc_themes')<CR>
 nnoremap ,gb :call FocusBufOrDo('bashrc','e $sh/bashrc')<CR>
+nnoremap ,g2 :call FocusBufOrDo('bspwm$','e $sh/bspwmrc')<CR>
 nnoremap ,gx :call FocusBufOrDo('sxhkd','e $sh/conf/sxhkdrc')<CR>
 nnoremap ,gk :call FocusBufOrDo('kitty.conf','e $sh/conf/kitty.conf')<CR>
 nnoremap ,gr :call FocusBufOrDo('rc.sh','e $sh/rc.sh')<CR>
@@ -736,6 +735,7 @@ nnoremap yz :let @" = expand('%:p')
 " replace current word with register contents
 nnoremap cp "_ciw<c-r>"<esc>
 nnoremap co "_ciw<c-r>*<esc>
+nnoremap cO "_ciw<c-r>+<esc>
 
 " Commanding Vim
 nnoremap q; :<up>
@@ -753,8 +753,8 @@ nnoremap ,vp :put + <bar> exec "normal dfmxIPlug 'A'" <CR>==
 " Evaluate one line as Vimscript
 nnoremap ,vl yy:@"<CR>
 " Evaluate a paragraph as Vimscript
-" nnoremap ,,i yap:@"<CR>
-nnoremap ,,i :let lastl=line('.') <bar> exec "normal yap" <bar> @\" <bar> exec lastl<CR>:echo "Evaluated current paragraph."<CR>
+" nnoremap ,vx yap:@"<CR>
+nnoremap ,vx :let lastl=line('.') <bar> exec "normal yap" <bar> @\" <bar> exec lastl<CR>:echo "Evaluated current paragraph."<CR>
 nnoremap q<space> :echo expand ('%') '.@.' getcwd() <CR>
 " Evaluate one line or one paragraph as Vimscript
 nnoremap ,v, :call EvalThis()<CR>
@@ -1047,7 +1047,7 @@ function! ClimbToDirWhere(filename,chdir)
   let l:init_dir = getcwd()
   exec "lcd " . expand('%:p:h')
   while 1
-    " Check if the file exist in the current directory
+    " Check if the file exists in the current directory
     if filereadable(a:filename)
       let l:result = getcwd()
       " Change directory if chdir==1
@@ -1276,58 +1276,52 @@ function! SwitchBackground()
 endfunction
 
 function! SaveColor(...)
-    " if !exists("g:ColList")
-    "     let g:ColList = { 'day':'', 'nox':'', 'def':'' }
-    " endif
-    if exists("a:1")
-        let phase = a:1
-    elseif filereadable('/tmp/now_is_day')
-        let phase = 'day'
-    elseif filereadable('/tmp/now_is_night')
-        let phase = 'nox'
-    else
-    " if phase != 'day' && phase != 'nox'
-        echom "Provide me day or nox, please!"
-        " echom "phase is" phase
-        let phase = 'day'
-    endif
     " let g:ColList[phase] = ['a','b','c']
-    if phase == 'day'
+    if g:phase == 'day' || ( g:phase != 'day' && g:phase != 'nox' )
         let g:ColorDayName = g:colors_name
         let g:ColorDayLine = g:lightline.colorscheme
         let g:ColorDayBg = &background
-    elseif phase == 'nox'
+    elseif g:phase == 'nox'
         let g:ColorNoxName = g:colors_name
         let g:ColorNoxLine = g:lightline.colorscheme
         let g:ColorNoxBg = &background
     endif
 endfunction
-
-function! LoadColor(...)
-    if exists(a:1)
-        let phase = a:1
-        echom "phas is " phase
+function! SetPhase(...)
+    " Discover what time of day it is by arg or by file-hint
+    if ( a:0 > 0 )
+        let g:phase = a:1
     elseif filereadable('/tmp/now_is_day')
-        let phase = 'day'
+        let g:phase = 'day'
     elseif filereadable('/tmp/now_is_night')
-        let phase = 'nox'
-    " if phase != 'day' && phase != 'nox'
-    else
-        let phase = 'day'
-        echom "Just assuming phase is day"
+        let g:phase = 'nox'
+    elseif !exists("g:phase")
+        let g:phase = 'dunno'
     endif
-    if phase == 'day'
+    echom 'so phase is ' . g:phase
+endfunction
+function! LoadColor(...)
+    if g:phase == 'dunno'
+        echom "Will load default colors for this time of day."
+        unlet g:colors_name
+        source $sh/vi/vimrc_themes
+    endif
+    if g:phase == 'day'
         if !exists("g:ColorDayName")
-            echom "NO saved colors for this phase of day!"
+            echom "NO saved colors for this phase of day! Loading defaults.."
+            unlet g:colors_name
+            source $sh/vi/vimrc_themes
             return
         else
             exec "colo " .           g:ColorDayName
             exec "LineColor " .      g:ColorDayLine
             exec "set background=" . g:ColorDayBg
         endif
-    elseif phase == 'nox'
+    elseif g:phase == 'nox'
         if !exists("g:ColorNoxName")
-            echom "NO saved colors for this phase of day!"
+            echom "NO saved colors for this phase of day! Loading defaults.."
+            unlet g:colors_name
+            source $sh/vi/vimrc_themes
             return
         else
             exec "colo " .           g:ColorNoxName
@@ -1336,8 +1330,8 @@ function! LoadColor(...)
         endif
     endif
 endfunction
-command! -nargs=? SaveColor call SaveColor('<args>')
-command! -nargs=? LoadColor call LoadColor('<args>')
+command! -nargs=? SaveColor call SetPhase(<f-args>) <bar> call SaveColor(<f-args>)
+command! -nargs=? LoadColor call SetPhase(<f-args>) <bar> call LoadColor(<f-args>)
 
 function! SwitchCE()
   if mapcheck("<C-e>") == ''
@@ -1368,7 +1362,7 @@ function! LightlineReload(arg)
     call lightline#colorscheme()
     call lightline#update()
 endfunction
-command! -nargs=? LineColor call LightlineReload('<args>')
+command! -nargs=1 LineColor call LightlineReload('<args>')
 
 function! DelSpace()
   let cur = line('.')

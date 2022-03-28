@@ -13,7 +13,7 @@ else
 fi
 
 co=0
-while ( [[ $(pgrep "$PROC" | wc -l) > 0 ]] && [[ $co < $TIMES ]] ) ; do
+while ( [[ $(pgrep "$PROC" | wc -l) > 0 ]] && [[ $co -le $TIMES ]] ) ; do
     sleep .1
     pkill -x "$PROC"
     ((co=co+1))

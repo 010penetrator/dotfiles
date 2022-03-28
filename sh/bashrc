@@ -54,13 +54,13 @@ alias chmodre='find . -type f -exec chmod 644 {} \;'
 alias 1l='less ~/.sh/1linux'
 # alias vf='$TERMINAL -e vifm . &'
 # alias trmclient='title transmission-remote-cli; transmission-remote-cli -c localhost:9090 ; title bash'
-if  lsb_release -i | grep -q -ie 'arch\|manjaro' ; then
-    alias as='pacman -Ss'
-    alias ai='sudo pacman -S'
-elif  lsb_release -i | grep -q -ie 'mint\|debian\|buntu' ; then
-    alias as='apt search'
-    alias ai='sudo apt install'
-fi
+# if  lsb_release -i | grep -q -ie 'arch\|manjaro' ; then
+#     alias as='pacman -Ss'
+#     alias ai='sudo pacman -S'
+# elif  lsb_release -i | grep -q -ie 'mint\|debian\|buntu' ; then
+#     alias as='apt search'
+#     alias ai='sudo apt install'
+# fi
 alias l='$LSBLK -f'
 alias lb='$LSBLK -o NAME,LABEL,MOUNTPOINT,SIZE,FSUSE% | grep "sd\|nvme" --color=none'
 alias lm='$LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT'
