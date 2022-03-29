@@ -9,11 +9,13 @@ if exists("g:colors_name")
     " set nohlsearch
 else
     if !exists("g:phase")
-        call SetPhase()
+        if &diff
+            colo wasabi256
+        else
+            call SetPhase()
+        endif
     endif
-    if &diff
-        colo wasabi256
-    elseif ( g:phase == 'day' )
+    if ( g:phase == 'day' )
         colo Tomorrow | LineColor Tomorrow
         " colo stellarized | set bg=light | LineColor aqua_plasm
     elseif ( g:phase == 'nox' )

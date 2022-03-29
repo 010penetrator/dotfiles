@@ -8,8 +8,8 @@ bspc monitor -d 1 2 3 4 5 6 7 8
 # bspc monitor HDMI-3 -d 4 5
 # bspc monitor DVI-D-1 -d 4 5 6 7 8
 
-bspc config border_width          0
-bspc config window_gap            0
+bspc config border_width          3
+bspc config window_gap            3
 bspc config normal_border_color   "#333333"
 bspc config active_border_color   "#505050"
 # bspc config focused_border_color  "#5E8448"
@@ -20,8 +20,8 @@ bspc config presel_feedback       false
 bspc config split_ratio          0.56
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true
-bspc config single_monocle       true
-bspc config honor_size_hints     true
+bspc config single_monocle       false
+bspc config honor_size_hints     false
 # bspc config automatic_schem    spiral
 bspc config automatic_scheme     alternate
 # bspc config directional_focus_tightness low

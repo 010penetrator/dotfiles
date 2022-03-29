@@ -202,7 +202,7 @@ rsync -e ssh -Lav --progress --exclude=".*/" --no-perms --no-times --delete --si
 tar -I 'zstd -11 -T0' -cf somedir.tar.zst --exclude='.git' --exclude='tags' somedir # create tar.zst
 zip -r -1 arc.zip Dir Dir2 #create zip
 
-==GIT
+==GIT{{{}}}
 git stash show -p # see last stash (add stash@{N} for older stash)
 git diff stash@{N} master # compare any stash against master (may add --name-only, or add -- filename)
 git difftool stash^! # diff last stash against its commit

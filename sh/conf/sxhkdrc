@@ -15,8 +15,8 @@ super + { q, Q, D, F, t, v, s, p, r, R, z, g }
   'Thunar\| YouTube \|office.libreoffice' '', zathura listzathura.sh, evince, FBReader, \
   'Telegram\|Pidgin\|TuxGuitar\|hydrogen' '' }
 
-super + { Return, e, d, X, BackSpace }
-  { $TERMINAL, raiseterm.sh, dmouse, bspc node -c, setxkbmap us, 
+super + { Return, e, d, X, semicolon }
+  { $TERMINAL, raiseterm.sh, dmouse, bspc node -c, setxkbmap us }
 
 super + { c, a, A, b, m }
   raise.sh { \
@@ -150,7 +150,7 @@ alt + Tab
   bspc desktop -f last
 super + ctrl + f
   bspc desktop -f last
-super + backslash
+super + BackSpace
   bspc desktop -f last
 
 # focus the older or newer node in the focus history

@@ -18,8 +18,8 @@ KC_LCTL       , KC_Z     , KC_X     , KC_C    , KC_V    , KC_B    , KC_N    , KC
 // 1: Function Layer
 KEYMAP(
 KC_GRV        , KC_F1    , KC_F2   ,  KC_F3   , KC_F4   , KC_F5   , KC_F6   , KC_F7    , KC_F8   , KC_F9    , KC_F10  , KC_DEL  ,
-KC_APP        , KC_WH_U  , KC_PGUP ,  KC_END  , KC_R    , KC_TILD , KC_Y    , KC_U     , KC_INS  , KC_F11   , KC_F12  , KC_PGUP ,
-KC_LALT       , KC_HOME  , KC_S    ,  KC_D    , KC_PGDN , KC_GRV  , KC_LEFT , KC_DOWN  , KC_UP   , KC_RIGHT , KC_QUOT , KC_PGDN ,
+KC_TAB        , KC_WH_U  , KC_PGUP ,  KC_END  , _______ , KC_TILD , _______ , _______  , KC_INS  , KC_F11   , KC_F12  , KC_PGUP ,
+KC_LALT       , KC_HOME  , _______ ,  KC_APP  , KC_PGDN , KC_GRV  , KC_LEFT , KC_DOWN  , KC_UP   , KC_RIGHT , KC_QUOT , KC_PGDN ,
 KC_LCTL       , KC_MINS  , KC_PLUS ,  KC_UNDS , KC_EQL  , KC_WH_D , KC_PIPE , KC_MINS  , KC_PLUS , KC_UNDS  , KC_EQL  , KC_ENT  ,
      MO(1) , LSFT(KC_SPC) , KC_LGUI , KC_CAPS ,                     KC_BSLS , KC_RSFT , KC_LEFT , KC_RIGHT )
 };

@@ -79,7 +79,7 @@ Plug 'jamessan/vim-gnupg' "good
 Plug 'chrisbra/Colorizer' "good
 Plug 'junegunn/goyo.vim' "usable
 Plug 'haya14busa/vim-edgemotion' "good
-Plug 'vim-scripts/CycleColor' "works
+" Plug 'vim-scripts/CycleColor' "works
 Plug 'eiginn/netrw' "basic
 Plug 'Townk/vim-autoclose' "usable
 
@@ -97,7 +97,7 @@ Plug 'zefei/vim-colortuner' "fun
 
 " Try now
 Plug 'kshenoy/vim-signature' "buggy
-Plug 'chrisbra/SaveSigns.vim' "usable
+" Plug 'chrisbra/SaveSigns.vim' "usable
 Plug 'airblade/vim-gitgutter'
 Plug 'mhinz/vim-startify'
 
@@ -273,6 +273,8 @@ endif
 """"""""""""""""""""""""
 
 let g:completion_enable_auto_popup = 0
+let g:goyo_width = "66%"
+let g:goyo_height = "95%"
 
 set encoding=UTF-8
 set fileencodings=ucs-bom,utf-8,default,cp1251,latin1
@@ -551,6 +553,7 @@ nnoremap m<space> :<C-U>call signature#mark#Purge("line")<CR>
 nnoremap aw :w<CR>
 nnoremap qx :q<CR>
 nnoremap ,x :q<CR>
+nnoremap ,tx :tabclose<CR>
 nnoremap ,q :qa <CR>
 nnoremap ,d :bd!<CR>
 nnoremap ,bd :BDnJump<CR>
@@ -604,7 +607,7 @@ nnoremap aj    <C-W>w<C-W>_
 nnoremap ak    <C-W>W<C-W>_
 nnoremap q<tab> <C-w>p
 " swap current and previous window
-nnoremap ,S :call WinSwap()<CR><C-W>p
+silent nnoremap ,S :call WinSwap()<CR><C-W>p
 
 " Handle tabs
 nnoremap at :tabe<CR>
@@ -653,7 +656,7 @@ nnoremap ,tr :Telescope lsp_references<CR>
 nnoremap ,gg :call FocusBufOrDo('wawe','e /ln/ho/moment/4gist/wawe')<CR>
 nnoremap ,gv :call FocusBufOrDo('init.vim','e $sh/vi/init.vim')<CR>
 nnoremap ,gi :call FocusBufOrDo('init.lua','e $sh/vi/init.lua')<CR>
-nnoremap ,vr :call FocusBufOrDo('vimrc','e $MYVIMRC')<CR>
+nnoremap ,g, :call FocusBufOrDo('vimrc','e $MYVIMRC')<CR>
 nnoremap ,gt :call FocusBufOrDo('vimrc_themes','e $sh/vi/vimrc_themes')<CR>
 nnoremap ,gb :call FocusBufOrDo('bashrc','e $sh/bashrc')<CR>
 nnoremap ,g2 :call FocusBufOrDo('bspwm$','e $sh/bspwmrc')<CR>
@@ -666,7 +669,7 @@ nnoremap ,gu :call FocusBufOrDo('ff','e $tt/u*/ff*')<CR>
 nnoremap ,gh :call FocusBufOrDo('sh_history','e $HOME/.bash_history')<CR>G
 nnoremap ,gl :call FocusBufOrDo('1linux','e $sh/rs/1linux')<CR>
 
-nnoremap ,O :Goyo 66%x100%<CR>
+nnoremap ,,o :Goyo<CR>
 
 " Start and quit Vim
 nnoremap ,V :source $MYVIMRC <CR>
@@ -675,8 +678,8 @@ nnoremap ,vs :source $RTP/session.vim \| call LoadColor() \| call MySigns()<CR>
 nnoremap ,vw :wa<CR>
 nnoremap ,vq :qa! <CR>
 nnoremap ,l :Startify<CR>
-nnoremap ,zs :SessWriteB<CR><esc>
-nnoremap ,zq :SessWriteB<CR>: wa \| qa<CR>
+nnoremap ,zs :SessWriteA<CR><Esc>
+nnoremap ,zq :SessWriteA<CR>: wa \| qa<CR>
 nnoremap ,ve :call AddRpcEar()<CR>
 " Open current file at vimserver session via my "vimrpc" shell script
 nnoremap ,va :silent exec '! ( sleep 0 ; vimrpc "%:p" ) & ' \| redraw! \| q <CR>
@@ -687,14 +690,14 @@ nnoremap ,vc :silent exec '! ( sleep 0 ; MODE=current vimrpc "%:p" ) & ' \| redr
 
 " Have mappings in terminal mode
 if v:version >= 801
-  tmap oo <C-w>N:set nonumber<CR>
-  tmap o<C-o>  <C-w>N :e #<CR>
-  tmap <C-x> <C-w>N :BDnJump<CR>
-  tnoremap <C-PageUp> <C-w>:tabprev<CR>
-  tnoremap <C-PageDown> <C-w>:tabnext<CR>
-  tnoremap g<tab> <C-w>:exe "tabn ".g:lasttab<CR>
-  tnoremap q<tab> <C-w>p
-  tmap <C-\> <C-w>w
+    tmap oo <C-w>N:set nonumber<CR>
+    tmap o<C-o>  <C-w>N :e #<CR>
+    tmap <C-x> <C-w>N :BDnJump<CR>
+    tnoremap <C-PageUp> <C-w>:tabprev<CR>
+    tnoremap <C-PageDown> <C-w>:tabnext<CR>
+    tnoremap g<tab> <C-w>:exe "tabn ".g:lasttab<CR>
+    tnoremap q<tab> <C-w>p
+    tmap <C-\> <C-w>w
 endif
 
 " Scroll fraction of the screen
@@ -868,9 +871,9 @@ function! RunSelBash()
     echo system(join(getline(a:firstline,a:lastline), "\n"))
 endfunction
 
-command! SessWriteA call SaveColor() | call TerminalsFuneral() | mksession! $RTP/session.vim | SaveSigns! $RTP/signs.sav
-command! SessWriteB exec 'SessWriteA' | call BufFocusedThenDo('signs.sav','wq')
-" command! QQ exec 'SessWriteB' | wa | qa
+" command! SessWriteA call SaveColor() | call TerminalsFuneral() | mksession! $RTP/session.vim | SaveSigns! $RTP/signs.sav
+" command! SessWriteB exec 'SessWriteA' | call BufFocusedThenDo('signs.sav','wq')
+command! SessWriteA call SaveColor() | call TerminalsFuneral() | mksession! $RTP/session.vim
 
 command! Bash exec 'silent ! bash' | redraw!
 command! NewTerm exec 'silent ! $TERMINAL &' | redraw!
@@ -1298,7 +1301,7 @@ function! SetPhase(...)
     elseif !exists("g:phase")
         let g:phase = 'dunno'
     endif
-    echom 'so phase is ' . g:phase
+    " echom 'so phase is ' . g:phase
 endfunction
 function! LoadColor(...)
     if g:phase == 'dunno'
