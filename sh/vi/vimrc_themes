@@ -6,7 +6,6 @@
 
 let hostname = substitute(system('hostname'), '\n', '', '')
 if exists("g:colors_name")
-    " set nohlsearch
 else
     if !exists("g:phase")
         if &diff

@@ -2,6 +2,7 @@
 debug/*
 build/*
 .ccls-cache/*
+.cache/*
 tags
 ~$*
 

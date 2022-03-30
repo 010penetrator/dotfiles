@@ -1,6 +1,7 @@
 -- require('keybindings')
 -- require('packages')
 -- require('config')
+
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 -- local configs = require'nvim-treesitter.configs'
@@ -18,8 +19,27 @@ require'nvim-treesitter.configs'.setup {
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
 
+require('Comment').setup()
 
-require('yode-nvim').setup({})
+require('yode-nvim').setup()
+
+require('neoscroll').setup({
+    easing_function = "circular" -- Default easing function is 'quadratic'
+})
+local t = {}
+t['<C-u>'] = {'scroll', {'-vim.wo.scroll', 'true', '400', [['cubic']]}}
+t['<C-d>'] = {'scroll', { 'vim.wo.scroll', 'true', '400', [['cubic']]}}
+t['<C-b>'] = {'scroll', {'-vim.api.nvim_win_get_height(0)', 'true', '500', [['circular']]}}
+t['<C-f>'] = {'scroll', { 'vim.api.nvim_win_get_height(0)', 'true', '500', [['circular']]}}
+t['<C-y>'] = {'scroll', { -2, 'false', '130', nil}}
+t['<C-e>'] = {'scroll', {  2, 'false', '130', nil}}
+t['zt']    = {'zt', {'100'}}
+t['zz']    = {'zz', {'100'}}
+t['zb']    = {'zb', {'100'}}
+require('neoscroll.config').set_mappings(t)
+
+
+
 
 -- local k_opts = { silent=true, noremap=false }
 -- vim.api.nvim_set_keymap("n", "<C-p>", ":lua require('bufjump').backward()<cr>", k_opts)
@@ -79,15 +99,15 @@ end)
 
 if vim.fn.has('nvim-0.6') == 1 then
     vim.api.nvim_command('\
-    nnoremap <silent>  K <cmd>lua vim.lsp.buf.hover()<CR>|\
+    nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>|\
     nnoremap <silent> gK K|\
     nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>|\
     nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>|\
-    nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>|\
-    nnoremap <silent> gs <cmd>lua vim.lsp.buf.document_symbol()<CR>|\
+    nnoremap <silent> gS <cmd>lua vim.lsp.buf.document_symbol()<CR>|\
+    nnoremap <silent> gs <cmd>lua vim.lsp.buf.references()<CR>|\
     nnoremap <silent> gw <cmd>lua vim.lsp.buf.workspace_symbol()<CR>|\
-    nnoremap <silent> gR <cmd>lua vim.lsp.buf.references()<CR>|\
     nnoremap <silent> gA <cmd>lua vim.lsp.buf.type_definition()<CR>|\
+    nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>|\
     nnoremap <silent> <F5> k<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>|\
     nnoremap <silent> <F6> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>|\
     nnoremap <silent> <F7> <cmd>lua vim.lsp.buf.signature_help()<CR>|\
@@ -102,8 +122,9 @@ if vim.fn.has('nvim-0.7') == 1 then
     vim.keymap.set("n","gK", "K")
     vim.keymap.set("n","gd", vim.lsp.buf.definition)
     vim.keymap.set("n","gD", vim.lsp.buf.declaration)
-    vim.keymap.set("n","gs", vim.lsp.buf.document_symbol)
-    vim.keymap.set("n","gR", vim.lsp.buf.references)
+    vim.keymap.set("n","gS", vim.lsp.buf.document_symbol)
+    vim.keymap.set("n","gs", vim.lsp.buf.references)
+    vim.keymap.set("n","gw", vim.lsp.buf.workspace_symbol)
     vim.keymap.set("n","gA", vim.lsp.buf.type_definition)
     vim.keymap.set("n","gi", vim.lsp.buf.implementation)
     vim.keymap.set("n","<leader>gn", vim.diagnostic.goto_next)

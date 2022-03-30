@@ -55,16 +55,29 @@ else
 endif
 " if ! empty(execute('filter /plug.vim$/ scriptnames'))
 
+" Oneliner to Plug on condition
+    " Plug 'benekastah/neomake', has('nvim') ? {} : { 'on': [] }
+" Same wrapped into a function , thanks to 
+function! Cond(cond, ...)
+  let opts = get(a:000, 0, {})
+  return a:cond ? opts : extend(opts, { 'on': [], 'for': [] })
+endfunction
+" Looks better
+    " Plug 'benekastah/neomake', Cond(has('nvim'))
+" With other options
+    " Plug 'benekastah/neomake', Cond(has('nvim'), { 'on': 'Neomake' })
+
+
 if (g:vimplug_available)
 " Looks like vim-plug was loaded! Now plug the plugins
 call plug#begin('$VIMPLUG')
 
 " Basic sane stuff
-Plug 'tpope/vim-sensible' "basic
-Plug 'jlanzarotta/bufexplorer' "basic
+Plug 'junegunn/vim-plug'
 Plug 'itchyny/lightline.vim' "cool
-Plug 'justinmk/vim-sneak' "good!
-Plug 'tpope/vim-commentary' "good
+Plug 'jlanzarotta/bufexplorer' "basic
+Plug 'tpope/vim-sensible' "basic
+Plug 'tpope/vim-commentary' , Cond(!has('nvim')) "good
 Plug 'tpope/vim-vinegar' "basic
 Plug 'tpope/vim-surround' "good
 Plug 'tpope/vim-endwise' "okay
@@ -148,6 +161,8 @@ if has("nvim")
     Plug 'hrsh7th/cmp-nvim-lsp'
     Plug 'kyazdani42/nvim-tree.lua'
     Plug 'lambdalisue/suda.vim'
+    Plug 'numToStr/Comment.nvim'
+    Plug 'karb94/neoscroll.nvim'
 endif
 
 """"""""""""""""""""""""
@@ -298,7 +313,7 @@ set numberwidth=2
 set signcolumn=number
 set showmode
 set hls
-" noh
+noh
 set incsearch
 set linebreak
 set ignorecase
@@ -310,7 +325,7 @@ set splitbelow
 set splitright
 set display=lastline
 set hidden
-set fileformat=unix
+" set fileformat=unix
 set title
 
 if !isdirectory($RTP)
@@ -502,9 +517,9 @@ vnoremap <Up>   gk
 inoremap <Down> <C-o>gj
 inoremap <Up>   <C-o>gk
 nmap <C-c> <C-y>
-noremap <C-e> 5<C-e>
-noremap <C-y> 5<C-y>
-nnoremap ze :call SwitchCE()<CR>
+" noremap <C-e> 4<C-e>
+" noremap <C-y> 4<C-y>
+nnoremap ,ze :call SwitchCE()<CR>
 " jump last edit edges
 nnoremap [e `[
 nnoremap ]e `]
@@ -516,6 +531,7 @@ nnoremap ]v `>
 " navigate quickfix list
 nnoremap q<Up>   :cprev<CR>
 nnoremap q<Down> :cnext<CR>
+nnoremap <C-Down> :cnext<CR>
 " navigate in diff mode
 nnoremap <F2> [c
 nnoremap <F3> ]c
@@ -553,7 +569,7 @@ nnoremap m<space> :<C-U>call signature#mark#Purge("line")<CR>
 nnoremap aw :w<CR>
 nnoremap qx :q<CR>
 nnoremap ,x :q<CR>
-nnoremap ,tx :tabclose<CR>
+nnoremap qtx :tabclose<CR>
 nnoremap ,q :qa <CR>
 nnoremap ,d :bd!<CR>
 nnoremap ,bd :BDnJump<CR>
@@ -563,7 +579,7 @@ nnoremap q<space> :echo expand ('%') '.@.' getcwd() <CR>
 nnoremap ,cc :LCDhere <CR>
 nnoremap ,cg :call ClimbToDirWhere(".git/index",1) \| pwd <CR>
 nnoremap ,cm :call ClimbToDirWhere("Makefile",1) \| pwd <CR>
-nnoremap ,c, :call GetProjDir() <bar> exec "cd " . b:proj_dir <bar> pwd<cr>
+nnoremap ,cp :call GetProjDir() <bar> exec "cd " . b:proj_dir <bar> pwd<cr>
 nnoremap a<BS> :checktime<cr>
 nnoremap q<BS> :enew<CR>
 nnoremap z<BS> :e!<CR>
@@ -585,7 +601,8 @@ nnoremap qS :split # <cr>
 nnoremap qV :vsplit # <cr>
 nnoremap <C-W>S :vsplit<CR>
 nnoremap an :tabe %:p:h <CR>
-nnoremap ,. <C-^>
+" nnoremap ,. <C-^>
+nnoremap <silent> ,. :if bufexists(bufnr('#')) <bar> b # <bar> echo expand('%') <bar> else <bar> echo 'No prev buffer.' <bar> endif<CR>
 nnoremap ,by :call BufYank()<CR>
 nnoremap ,bp :call BufPut()<CR>
 
@@ -656,7 +673,7 @@ nnoremap ,tr :Telescope lsp_references<CR>
 nnoremap ,gg :call FocusBufOrDo('wawe','e /ln/ho/moment/4gist/wawe')<CR>
 nnoremap ,gv :call FocusBufOrDo('init.vim','e $sh/vi/init.vim')<CR>
 nnoremap ,gi :call FocusBufOrDo('init.lua','e $sh/vi/init.lua')<CR>
-nnoremap ,g, :call FocusBufOrDo('vimrc','e $MYVIMRC')<CR>
+nnoremap ,g, :call FocusBufOrDo('vimrc$','e $MYVIMRC')<CR>
 nnoremap ,gt :call FocusBufOrDo('vimrc_themes','e $sh/vi/vimrc_themes')<CR>
 nnoremap ,gb :call FocusBufOrDo('bashrc','e $sh/bashrc')<CR>
 nnoremap ,g2 :call FocusBufOrDo('bspwm$','e $sh/bspwmrc')<CR>
@@ -753,6 +770,7 @@ nnoremap ,; :6mes<CR>
 nnoremap yq :@"<CR>
 " Add Plug entry
 nnoremap ,vp :put + <bar> exec "normal dfmxIPlug 'A'" <CR>==
+nnoremap ,vu :source /ln/sh/vi/init.vim <bar> PlugUpdate <CR>
 " Evaluate one line as Vimscript
 nnoremap ,vl yy:@"<CR>
 " Evaluate a paragraph as Vimscript
@@ -770,7 +788,6 @@ nnoremap aC :vertical terminal ++close bash -c "INVIM=1 vifm %:p:h"<CR>
 nnoremap a; :terminal ++kill=term ++curwin ++close bash -c "INVIM=1 vifm %:p:h"<CR>
 nnoremap a: :tabe \| terminal ++kill=term ++curwin bash -c "INVIM=1 vifm #:p:h"<CR>
 
-" nnoremap a/ :noh <CR>
 nnoremap a/ :set hlsearch! <CR>
 
 " Split open terminal at current location
@@ -780,7 +797,7 @@ nnoremap aB : vnew \| if isdirectory(expand('#:p:h')) \| lcd #:p:h \| endif \| t
 nnoremap qb : if isdirectory(expand('%:p:h')) \| lcd %:p:h \| endif \| terminal ++kill=term ++curwin ++norestore <CR>
 
 " Go to shell
-nnoremap qt :Bash <CR>
+nnoremap ,,b :Bash <CR>
 " Spawn a terminal outside vim
 nnoremap ,,t :NewTermHere<CR>
 " Spawn vifm in terminal outside vim
@@ -837,8 +854,8 @@ nnoremap ,zx :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make clean
 nnoremap ,zr :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make run") <bar> redraw! <bar> cwindow <CR>
 
 " Folding
-vnoremap ,f :<C-U>call FoldSelection()<CR>
-nnoremap ,f :set opfunc=FoldMotion<cr>g@
+vnoremap ,cf :<C-U>call FoldSelection()<CR>
+nnoremap ,cf :set opfunc=FoldMotion<cr>g@
 
 " Save last insert as Macro at "l"
 command! -nargs=1 LastToMacro exec "let @" . <q-args> . " = \"i\" . @. . \"<Esc>\""
@@ -1268,7 +1285,6 @@ function! WinSwap()
 endfunction
 
 function! SwitchBackground()
-  " echo '121243234'
   if (&background == "light")
     exec "set background=dark"
   else
@@ -1338,8 +1354,8 @@ command! -nargs=? LoadColor call SetPhase(<f-args>) <bar> call LoadColor(<f-args
 
 function! SwitchCE()
   if mapcheck("<C-e>") == ''
-    noremap <C-e> 5<C-e>
-    noremap <C-y> 5<C-y>
+    noremap <C-e> 4<C-e>
+    noremap <C-y> 4<C-y>
   else
     unmap <C-e>
     try
@@ -1443,17 +1459,15 @@ command! -nargs=+ -complete=command ExPut call ExPut(<q-args>)
 
 " Delete buffer and load previous buffer, or just any other
 function! BDnJump()
-    " if ( ( expand('#') == '' ) || ( expand('#') =~ '!/bin/bash' ) )
-    " if ( expand('%') =~ '!/bin/bash' ) && ( expand('%') == expand('#') )
-    "   " Current and prev buffers are terminals
-    if ( expand('#') == '' ) " Previous buffer is unset
-        " Jump to any other buffer
-        bnext
-        bd! #
+    "" if ( ( expand('#') == '' ) || ( expand('#') =~ '!/bin/bash' ) ) "" if ( expand('%') =~ '!/bin/bash' ) && ( expand('%') == expand('#') ) """ Current and prev buffers are terminals
+    if ( bufexists(bufnr('#')) ) " Previous buffer is unset
+        let l:cbn = bufnr('%')
+        bnext " Jump to any other buffer
+        exec  'bd!' . l:cbn
     else
-        " Jump to the previous buffer
-        b #
-        bd! #
+        let l:cbn = bufnr('%')
+        b # " Jump to the previous buffer
+        exec  'bd!' . l:cbn
     endif
 endfunction
 command! BDnJump call BDnJump()

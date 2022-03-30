@@ -1,7 +1,7 @@
 #!/bin/bash
 # Choose from pdf and djvu files with dmenu. And open it with zathura
 
-source $sh/dmenurc.sh
+source $sh/dmenurc
 dirlist="/ln/hh /ln/ff/use /ln/ho/use /ln/dwn $HOME/.cache/luakit/viewpdf/ /ln/wo"
 targ=$(
 ( find -L /ln/ho -maxdepth 1 -type f \( -iname "*.pdf" -or -iname "*.djvu" \); \

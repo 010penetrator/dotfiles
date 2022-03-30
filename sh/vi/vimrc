@@ -18,4 +18,5 @@ SSource $HOME/.vimrc_msys
 "     ft is unset
 "     lsp client exits with 1
 "     :noh no effect
+"     cppman for help
 

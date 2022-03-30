@@ -20,7 +20,7 @@ bspc config presel_feedback       false
 bspc config split_ratio          0.56
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true
-bspc config single_monocle       false
+bspc config single_monocle       true
 bspc config honor_size_hints     false
 # bspc config automatic_schem    spiral
 bspc config automatic_scheme     alternate
