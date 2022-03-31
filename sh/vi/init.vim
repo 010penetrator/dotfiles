@@ -1,5 +1,5 @@
 " vim: ts=4 sw=4 ft=vim
-" vi: noswapfile bufhidden=wipe
+" vi: noswapfile
 
 ""  Initial preparations  ""
 set nocompatible
@@ -67,12 +67,11 @@ endfunction
 " With other options
     " Plug 'benekastah/neomake', Cond(has('nvim'), { 'on': 'Neomake' })
 
-
 if (g:vimplug_available)
 " Looks like vim-plug was loaded! Now plug the plugins
 call plug#begin('$VIMPLUG')
 
-" Basic sane stuff
+" Good and sane
 Plug 'junegunn/vim-plug'
 Plug 'itchyny/lightline.vim' "cool
 Plug 'jlanzarotta/bufexplorer' "basic
@@ -85,36 +84,35 @@ Plug 'tpope/vim-repeat' "handy
 Plug 'tpope/vim-eunuch' "handy
 Plug 'tpope/vim-ragtag' "ok
 Plug 'tpope/vim-fugitive' "handy
+Plug 'mhinz/vim-startify'
 Plug 'sheerun/vim-polyglot' "okay HUGE
+Plug 'airblade/vim-gitgutter'
 Plug 'michaeljsmith/vim-indent-object' "cool
 Plug 'godlygeek/tabular' "okay
 Plug 'jamessan/vim-gnupg' "good
 Plug 'chrisbra/Colorizer' "good
 Plug 'junegunn/goyo.vim' "usable
 Plug 'haya14busa/vim-edgemotion' "good
-" Plug 'vim-scripts/CycleColor' "works
 Plug 'eiginn/netrw' "basic
-Plug 'Townk/vim-autoclose' "usable
+Plug 'junegunn/fzf.vim' | Plug 'junegunn/fzf' "cool
 
-" Navigate/Search
-Plug 'Shougo/unite.vim' "bloated
-Plug 'Shougo/vimproc' "for unite
-" Plug 'mileszs/ack.vim' "usable
-Plug 'majutsushi/tagbar' "okay
+" good for Vim
+Plug 'Shougo/unite.vim' | Plug 'Shougo/vimproc'
+if !has("nvim")
+    Plug 'Shougo/deoplete.nvim' | Plug 'Shougo/neoinclude.vim'
+    Plug 'majutsushi/tagbar' "okay
+endif
+
+" Try out now
 Plug 'sandeepcr529/Buffet.vim' "good
-Plug 'junegunn/fzf.vim'
-Plug 'junegunn/fzf'
-
-" Fun
 Plug 'zefei/vim-colortuner' "fun
-
-" Try now
-Plug 'kshenoy/vim-signature' "buggy
+Plug 'Townk/vim-autoclose' "usable
+Plug 'MattesGroeger/vim-bookmarks'
+" Plug 'kshenoy/vim-signature' "buggy
 " Plug 'chrisbra/SaveSigns.vim' "usable
-Plug 'airblade/vim-gitgutter'
-Plug 'mhinz/vim-startify'
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
-" Try later
+" Try out later
 " Plug 'tpope/vim-unimpaired'
 " Plug 'ZeroKnight/vim-signjump' "buggy
 " Plug 'kien/rainbow_parentheses.vim'
@@ -129,50 +127,44 @@ Plug 'mhinz/vim-startify'
 
 " Archive
 " Plug 'wesleyche/SrcExpl' "mediocre
-" Plug 'Shougo/denite.nvim'
-Plug 'roxma/nvim-yarp' "for denite
-Plug 'roxma/vim-hug-neovim-rpc' "for denite
-
-" Language processing
-if !has("nvim")
-    Plug 'Shougo/deoplete.nvim'
-    Plug 'Shougo/neoinclude.vim' "for deoplete
-    " Plug 'dense-analysis/ale'
-endif
-if has("nvim")
-    Plug 'neovim/nvim-lspconfig'
-    Plug 'williamboman/nvim-lsp-installer'
-    Plug 'nvim-treesitter/nvim-treesitter', {'do':':TSUpdate'}
-    Plug 'nvim-lua/completion-nvim'
-    Plug 'glepnir/lspsaga.nvim'
-endif
+" Plug 'Shougo/denite.nvim' | Plug 'roxma/nvim-yarp' | Plug 'roxma/vim-hug-neovim-rpc'
+" Plug 'vim-scripts/CycleColor' "works
+" Plug 'dense-analysis/ale' "works
 
 " NeoVim specific
 if has("nvim")
     Plug 'nvim-telescope/telescope.nvim'
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-lualine/lualine.nvim'
-    Plug 'hoschi/yode-nvim'
-    " Plug 'kwkarlwang/bufjump.nvim'
+    Plug 'neovim/nvim-lspconfig'
+    Plug 'williamboman/nvim-lsp-installer'
+    Plug 'nvim-treesitter/nvim-treesitter', {'do':':TSUpdate'}
+    Plug 'nvim-lua/completion-nvim'
+    Plug 'glepnir/lspsaga.nvim'
     Plug 'hrsh7th/nvim-cmp'
     Plug 'hrsh7th/cmp-buffer'
     Plug 'hrsh7th/cmp-path'
     Plug 'hrsh7th/cmp-cmdline'
     Plug 'hrsh7th/cmp-nvim-lsp'
+    Plug 'hoschi/yode-nvim'
+    " Plug 'norcalli/nvim-colorizer.lua'
+    " Plug 'kwkarlwang/bufjump.nvim'
     Plug 'kyazdani42/nvim-tree.lua'
+    Plug 'kyazdani42/nvim-web-devicons'
     Plug 'lambdalisue/suda.vim'
     Plug 'numToStr/Comment.nvim'
     Plug 'karb94/neoscroll.nvim'
     Plug 'voldikss/vim-floaterm'
     Plug 'akinsho/toggleterm.nvim'
-    Plug 'nvim-lualine/lualine.nvim'
+    Plug 'windwp/nvim-autopairs'
+    Plug 'chentau/marks.nvim'
 endif
 
 """"""""""""""""""""""""
 ""    Plug Colors:    ""
 """"""""""""""""""{{{}}}
 
-" gui themes need termguicolors setting
+" gui themes need termguicolors set
 Plug 'morhetz/gruvbox' "best
 Plug 'ajmwagar/vim-dues' "soft coffee 'deus
 Plug 'jpo/vim-railscasts-theme' "normal
@@ -366,7 +358,8 @@ autocmd FileType c setlocal colorcolumn=80
 " autocmd CursorHold * normal! m'
 
 " Taming netrw
-autocmd FileType netrw setl bufhidden=delete
+autocmd FileType netrw setl bufhidden=wipe
+" autocmd FileType netrw setl bufhidden=delete
 augroup my_netrw_mapping
     autocmd!
     autocmd filetype netrw call MyNetrwMapping()
@@ -384,12 +377,10 @@ let g:netrw_winsize = 25
 let g:sneak#map_netrw = 0
 
 if executable('rg')
-    let g:ackprg = 'rg --vimgrep'
     set grepprg=rg\ --smart-case\ --vimgrep\ --follow
     " Output of :grep should go to cwindow
     autocmd QuickFixCmdPost *grep* cwindow
 elseif executable('ag')
-    let g:ackprg = 'ag --vimgrep'
 endif
 
 " Remember last tab to use it later!
@@ -520,8 +511,8 @@ vnoremap <Up>   gk
 inoremap <Down> <C-o>gj
 inoremap <Up>   <C-o>gk
 nmap <C-c> <C-y>
-" noremap <C-e> 4<C-e>
-" noremap <C-y> 4<C-y>
+noremap <C-e> 2<C-e>
+noremap <C-y> 2<C-y>
 nnoremap ,ze :call SwitchCE()<CR>
 " jump last edit edges
 nnoremap [e `[
@@ -534,6 +525,7 @@ nnoremap ]v `>
 " navigate quickfix list
 nnoremap q<Up>   :cprev<CR>
 nnoremap q<Down> :cnext<CR>
+nnoremap <C-Up> :cprev<CR>
 nnoremap <C-Down> :cnext<CR>
 " navigate in diff mode
 nnoremap <F2> [c
@@ -560,13 +552,14 @@ nnoremap <silent> gy :call search('^\(.\\|\(\s\)*\)$','bW') <CR>
 onoremap <silent> gn :call search('^\(.\\|\(\s\)*\)$','W') <CR>
 onoremap <silent> gp :call search('^\(.\\|\(\s\)*\)$','bW') <CR>
 onoremap <silent> gy :call search('^\(.\\|\(\s\)*\)$','bW') <CR>
-" for vim-signature
+
+" For vim-signature
 " nmap [a ['
 " nmap ]a ]'
-nmap ]s ]-
-nmap [s [-
-nnoremap m-       :<C-U>call signature#mark#Purge("all")<CR>
-nnoremap m<space> :<C-U>call signature#mark#Purge("line")<CR>
+" nmap ]s ]-
+" nmap [s [-
+" nnoremap m-       :<C-U>call signature#mark#Purge("all")<CR>
+" nnoremap m<space> :<C-U>call signature#mark#Purge("line")<CR>
 
 " Open and close files (buffers)
 nnoremap aw :w<CR>
@@ -662,15 +655,13 @@ nnoremap ,be :BufExplorer <CR>
 nnoremap ,ff :Files<CR>
 nnoremap ,bb :Buffers<CR>
 nnoremap ,fg :GitFiles<CR>
+nnoremap ,fl :Lines<CR>
 nnoremap qf  :FilesProj<CR>
 nnoremap ,to :Telescope oldfiles<CR>
 
 " Search text
 nnoremap ,fg :Rg<CR>
 nnoremap ,tr :Telescope lsp_references<CR>
-" nnoremap ,fa :Ack <C-r><C-w> %:p:h 
-" nnoremap ,ff :AckFile <C-r><C-W> <CR>
-" nnoremap ,fw :AckWindow <C-r><C-w> <CR>
 
 " Jump to favourite files
 nnoremap ,gg :call FocusBufOrDo('wawe','e /ln/ho/moment/4gist/wawe')<CR>
@@ -694,7 +685,7 @@ nnoremap ,,o :Goyo<CR>
 " Start and quit Vim
 nnoremap ,V :source $MYVIMRC <CR>
 nnoremap ,vv :source $MYVIMRC <CR>
-nnoremap ,vs :source $RTP/session.vim \| call LoadColor() \| call MySigns()<CR>
+nnoremap ,vs :source $RTP/session.vim \| call LoadColor()<CR>
 nnoremap ,vw :wa<CR>
 nnoremap ,vq :qa! <CR>
 nnoremap ,l :Startify<CR>
@@ -1355,13 +1346,15 @@ command! -nargs=? LoadColor call SetPhase(<f-args>) <bar> call LoadColor(<f-args
 
 function! SwitchCE()
   if mapcheck("<C-e>") == ''
-    noremap <C-e> 4<C-e>
-    noremap <C-y> 4<C-y>
+    noremap <C-e> 2<C-e>
+    noremap <C-y> 2<C-y>
+    echo "Now scrolling is faster."
   else
     unmap <C-e>
     try
       unmap <C-y>
     endtry
+    echo "Now scrolling step is one line."
   endif
 endfunc
 
@@ -1479,20 +1472,20 @@ function! SortParagraphs() range
   put!
 endfunction
 
-" Highlight lines via signs functionality
-function! MySigns()
-  highlight myboo ctermbg=3 ctermfg=0
-  highlight mywar ctermbg=1 ctermfg=0
-  sign define mybookmark text=>> linehl=myboo texthl=myboo
-  sign define mywarning  text=!> linehl=mywar texthl=mywar
-  nnoremap <F8> :exe ":sign place 777 line=" . line(".") ." name=mywarning file=" . expand("%:p")<CR>
-  nnoremap <F9> :exe ":sign place 666 line=" . line(".") ." name=mybookmark file=" . expand("%:p")<CR>
-  nnoremap <F10> :sign unplace<CR>
-  if filereadable("$RTP/signs.sav")
-    source $RTP/signs.sav
-  endif
-endfunc
-call MySigns()
+" " Highlight lines via signs functionality
+" function! MySigns()
+"   highlight myboo ctermbg=3 ctermfg=0
+"   highlight mywar ctermbg=1 ctermfg=0
+"   sign define mybookmark text=>> linehl=myboo texthl=myboo
+"   sign define mywarning  text=!> linehl=mywar texthl=mywar
+"   nnoremap <F8> :exe ":sign place 777 line=" . line(".") ." name=mywarning file=" . expand("%:p")<CR>
+"   nnoremap <F9> :exe ":sign place 666 line=" . line(".") ." name=mybookmark file=" . expand("%:p")<CR>
+"   nnoremap <F10> :sign unplace<CR>
+"   if filereadable("$RTP/signs.sav")
+"     source $RTP/signs.sav
+"   endif
+" endfunc
+" call MySigns()
 
 function! FoldMotion(type)
   if a:type == 'line'

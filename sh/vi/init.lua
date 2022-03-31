@@ -24,21 +24,20 @@ require('Comment').setup()
 require('yode-nvim').setup()
 
 require('neoscroll').setup({
-    easing_function = "circular" -- Default easing function is 'quadratic'
+    easing_function = "circular",
+    mappings = {'<C-u>', '<C-d>', '<C-b>', '<C-f>', 'zt', 'zz', 'zb'}
 })
 local t = {}
 t['<C-u>'] = {'scroll', {'-vim.wo.scroll', 'true', '400', [['cubic']]}}
 t['<C-d>'] = {'scroll', { 'vim.wo.scroll', 'true', '400', [['cubic']]}}
 t['<C-b>'] = {'scroll', {'-vim.api.nvim_win_get_height(0)', 'true', '600', [['circular']]}}
 t['<C-f>'] = {'scroll', { 'vim.api.nvim_win_get_height(0)', 'true', '600', [['circular']]}}
-t['<C-y>'] = {'scroll', { -2, 'false', '130', nil}}
-t['<C-e>'] = {'scroll', {  2, 'false', '130', nil}}
+-- t['<C-y>'] = {'scroll', { -4, 'false', '250', "quadratic"}}
+-- t['<C-e>'] = {'scroll', {  4, 'false', '250', "quadratic"}}
 t['zt']    = {'zt', {'100'}}
 t['zz']    = {'zz', {'100'}}
 t['zb']    = {'zb', {'100'}}
 require('neoscroll.config').set_mappings(t)
-
-
 
 
 -- local k_opts = { silent=true, noremap=false }
@@ -67,7 +66,7 @@ lsp_installer.settings({
 
 lsp_installer.on_server_ready(function(server)
     local opts = {}
-opts.capabilities = capabilities
+    opts.capabilities = capabilities
     if server.name == "sumneko_lua" then
         -- vim.api.nvim_command('echom 88')
         opts = {
@@ -108,6 +107,7 @@ if vim.fn.has('nvim-0.6') == 1 then
     nnoremap <silent> gw <cmd>lua vim.lsp.buf.workspace_symbol()<CR>|\
     nnoremap <silent> gA <cmd>lua vim.lsp.buf.type_definition()<CR>|\
     nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>|\
+    nnoremap <silent> gh <cmd>ClangdSwitchSourceHeader<CR>|\
     nnoremap <silent> <F5> k<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>|\
     nnoremap <silent> <F6> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>|\
     nnoremap <silent> <F7> <cmd>lua vim.lsp.buf.signature_help()<CR>|\
