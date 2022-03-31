@@ -163,6 +163,9 @@ if has("nvim")
     Plug 'lambdalisue/suda.vim'
     Plug 'numToStr/Comment.nvim'
     Plug 'karb94/neoscroll.nvim'
+    Plug 'voldikss/vim-floaterm'
+    Plug 'akinsho/toggleterm.nvim'
+    Plug 'nvim-lualine/lualine.nvim'
 endif
 
 """"""""""""""""""""""""
@@ -731,8 +734,6 @@ nnoremap <silent> H :<C-u>execute "keepjumps norm! " . v:count1 . "H"<CR>
 nnoremap <silent> M :<C-u>execute "keepjumps norm! " . v:count1 . "M"<CR>
 nnoremap <silent> L :<C-u>execute "keepjumps norm! " . v:count1 . "L"<CR>
 nnoremap <silent> * :<C-u>execute "keepjumps norm! " . v:count1 . "*"<CR>
-" nnoremap <silent> - :<C-u>execute "keepjumps norm! " . v:count1 . "H014k"<CR>
-" nnoremap <silent> = :<C-u>execute "keepjumps norm! " . v:count1 . "L014j"<CR>
 nnoremap <silent> { :<C-u>execute "keepjumps norm! " . v:count1 . "{zz"<CR>
 nnoremap <silent> } :<C-u>execute "keepjumps norm! " . v:count1 . "}zz"<CR>
 nnoremap <silent> n :<C-u>execute "keepjumps norm! " . v:count1 . "nzz"<CR>

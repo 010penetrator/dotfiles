@@ -129,7 +129,7 @@ nnoremap ,d :! vim -d %c %D/%c <cr>
 " endif
 
 " Play music with mpv "
-nnoremap b :! PAUSE=0 ASK=1 mpv-album %c VIFM; echo -ne "\033]0;VIFM\007" <cr>
+nnoremap b :! PAUSE=0 INVIFM=1 ASK=1 mpv-album %c VIFM; echo -ne "\033]0;VIFM\007" <cr>
 nnoremap B :! %i cd %c; [[ $TERMINAL=="kitty "* ]] && TERMINAL="$TERMINAL -o initial_window_height=$(expr 450 + $HIDPI \* 100) -o initial_window_width=$(expr 650 + $HIDPI \* 130)"; $TERMINAL -e /bin/bash -c "ASK=1 mpv-album ." &>/dev/null & <cr>
 nnoremap qb :! kitty @ new-window --new-tab /bin/bash -c "cd %d/ ; ASK=0 mpv-album %c VIFM ; vifm --select %c" <cr>
 
