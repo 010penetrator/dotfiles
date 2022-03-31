@@ -575,7 +575,7 @@ nnoremap q<space> :echo expand ('%') '.@.' getcwd() <CR>
 nnoremap ,cc :LCDhere <CR>
 nnoremap ,cg :call ClimbToDirWhere(".git/index",1) \| pwd <CR>
 nnoremap ,cm :call ClimbToDirWhere("Makefile",1) \| pwd <CR>
-nnoremap ,cp :call GetProjDir() <bar> exec "cd " . b:proj_dir <bar> pwd<cr>
+nnoremap <silent> ,cp :call GetProjDir() <bar> exec "cd " . b:proj_dir <bar> echo 'lcd @' getcwd() <cr>
 nnoremap a<BS> :checktime<cr>
 nnoremap q<BS> :enew<CR>
 nnoremap z<BS> :e!<CR>
