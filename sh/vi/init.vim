@@ -74,6 +74,7 @@ call plug#begin('$VIMPLUG')
 " Good and sane
 Plug 'junegunn/vim-plug'
 Plug 'itchyny/lightline.vim' "cool
+Plug 'justinmk/vim-sneak' "good!
 Plug 'jlanzarotta/bufexplorer' "basic
 Plug 'tpope/vim-sensible' "basic
 Plug 'tpope/vim-commentary' , Cond(!has('nvim')) "good
@@ -108,8 +109,6 @@ Plug 'sandeepcr529/Buffet.vim' "good
 Plug 'zefei/vim-colortuner' "fun
 Plug 'Townk/vim-autoclose' "usable
 Plug 'MattesGroeger/vim-bookmarks'
-" Plug 'kshenoy/vim-signature' "buggy
-" Plug 'chrisbra/SaveSigns.vim' "usable
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
 " Try out later
@@ -130,6 +129,8 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 " Plug 'Shougo/denite.nvim' | Plug 'roxma/nvim-yarp' | Plug 'roxma/vim-hug-neovim-rpc'
 " Plug 'vim-scripts/CycleColor' "works
 " Plug 'dense-analysis/ale' "works
+" Plug 'kshenoy/vim-signature' "semi-usable
+" Plug 'chrisbra/SaveSigns.vim' "usable
 
 " NeoVim specific
 if has("nvim")
@@ -554,8 +555,6 @@ onoremap <silent> gp :call search('^\(.\\|\(\s\)*\)$','bW') <CR>
 onoremap <silent> gy :call search('^\(.\\|\(\s\)*\)$','bW') <CR>
 
 " For vim-signature
-" nmap [a ['
-" nmap ]a ]'
 " nmap ]s ]-
 " nmap [s [-
 " nnoremap m-       :<C-U>call signature#mark#Purge("all")<CR>
@@ -664,7 +663,7 @@ nnoremap ,fg :Rg<CR>
 nnoremap ,tr :Telescope lsp_references<CR>
 
 " Jump to favourite files
-nnoremap ,gg :call FocusBufOrDo('wawe','e /ln/ho/moment/4gist/wawe')<CR>
+" nnoremap ,gg :call FocusBufOrDo('99.txt','')<CR>
 nnoremap ,gv :call FocusBufOrDo('init.vim','e $sh/vi/init.vim')<CR>
 nnoremap ,gi :call FocusBufOrDo('init.lua','e $sh/vi/init.lua')<CR>
 nnoremap ,g, :call FocusBufOrDo('vimrc$','e $MYVIMRC')<CR>
@@ -740,6 +739,7 @@ nnoremap aI :put! +<CR>
 nnoremap qy :let @+ = @" <bar> :let @* = @" <CR>
 " put select system buffer as single paragraph
 nnoremap ao o<Esc>:put! *<CR>`[v`]:g/^$/d<CR>:noh<CR>
+nnoremap aO o<Esc>:put! +<CR>`[v`]:g/^$/d<CR>:noh<CR>
 " yank inline
 nnoremap yc ^y$"+y$"*y$
 " yank current file full name 
@@ -810,9 +810,9 @@ vnoremap ,b :call RunSelBash()<CR>
 " system open current file
 nnoremap ,C :Silent xdg-open %:p:h & <CR>
 " system open current line (usable for http links)
-nnoremap ,m ^y$:call system('xdg-open ' . "'" . @" . "' &")<CR>
+nnoremap ,,o ^y$:call system('xdg-open ' . "'" . @" . "' &")<CR>
 " system open selected lines
-vnoremap ,m :<C-U>call SystemOpenEveryLine()<CR>
+vnoremap ,,o :<C-U>call SystemOpenEveryLine()<CR>
 " open current line with firefox
 nnoremap ,M ^y$:call system('firefox ' . "'" . @" . "' &")<CR>
 " google current line
@@ -1604,4 +1604,11 @@ endfunction
 " augroup mysettings
 " au FileType tex set wrap shiftwidth=2 softtabstop=2 expandtab
 " augroup END
+
+let g:bookmark_no_default_key_mappings = 0
+nmap mm <Plug>BookmarkToggle
+nmap m<Space> <Plug>BookmarkAnnotate
+nmap m<bar> <Plug>BookmarkShowAll
+nmap mn <Plug>BookmarkNext
+nmap mp <Plug>BookmarkPrev
 

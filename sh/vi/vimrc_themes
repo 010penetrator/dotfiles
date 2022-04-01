@@ -18,20 +18,20 @@ else
         colo Tomorrow | LineColor Tomorrow
         " colo stellarized | set bg=light | LineColor aqua_plasm
     elseif ( g:phase == 'nox' )
-        colo tempus_dusk | LineColor bluewery
-        " colo Tomorrow-Night | LineColor bluewery
+        " colo tempus_dusk | LineColor bluewery
+        colo Tomorrow-Night-Eighties | LineColor snow_dark
     elseif ( g:phase == 'dunno' )
         colo frign | LineColor aqua_plasm
         " colo PaperColor | set bg=light | LineColor solarized
         " colo Tomorrow | LineColor Tomorrow
         " colo Tomorrow-Night | LineColor bluewery
         " colo bluewery-light | LineColor selenized_light
-        " colo Tomorrow-Night-Eighties | LineColor ayu_mirage
+        " colo Tomorrow-Night-Eighties | LineColor snow_dark
         " colo edge | set bg=dark | LineColor darcula
         " colo espresso | LineColor espresso
         " colo cryslominsa | LineColor cryslominsa
         " colo stellarized | set bg=light | LineColor atlantis
-        " elseif hostname == "warmPC" || hostname == "rpi4b" || hostname == "machine"
+    " elseif hostname == "warmPC" || hostname == "rpi4b" || hostname == "machine"
     endif
 endif
 
@@ -55,8 +55,8 @@ endif
 " colo knicks-away | LineColor bluewery
 " colo cryslominsa | LineColor cryslominsa
 " colo everforest | LineColor cryslominsa
-" colo tempus_dusk | LineColor solarized
 " colo espresso | LineColor espresso
+" colo tempus_dusk | LineColor solarized
 " let ayucolor="mirage" | colo ayu | LineColor ayu_mirage
 " colo corvine | LineColor bluewery
 " colo OceanicNext | LineColor bluewery
