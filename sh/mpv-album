@@ -8,7 +8,7 @@ file="$HOME/.mpv-history"
 [ "$1" == '..' ] && set -- "." "${2}"
 
 # Save target. Because if it is not a directory, we are unable to track it via PWD
-export TARG="$PWD/$1"
+export TARG="$1"
 
 clear
 
@@ -19,7 +19,7 @@ if [ -n "$1" ] ; then
         echo . $PWD
     else
         echo mpv-album says !No such directory!
-        exit
+        # exit
     fi
 fi
 echo
@@ -58,10 +58,9 @@ if [[ $(ls | grep -ic '\.ape$\|\.flac$\|\.wv$') == $(ls | grep -ic '\.cue$') && 
                         $(ls | grep -ic '\.cue$') > 0 ]] ; then
     echo ==play cue with mpv==
     mpv $PAUSE --no-video *.cue
-    [[ "$ASK" == 1 ]] && ask_album.sh
 else
     echo ==play audio files==
     mpv $PAUSE --no-video *.{flac,mp3,ogg,ape,wv}
-    [[ "$ASK" == 1 ]] && ask_album.sh
 fi
+[[ "$ASK" == 1 ]] && ask_album.sh
 

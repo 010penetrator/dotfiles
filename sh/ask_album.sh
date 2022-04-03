@@ -46,7 +46,6 @@ echo
     echo "n - play an album from Playlist"
 echo "L - play an album from Library"
 echo "F - play an album from Favourites"
-echo "p - play again"
 echo "<Space> or <CR> - play again"
 echo
 

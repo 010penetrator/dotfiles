@@ -16,23 +16,24 @@ kitty*)
     ;;
 esac
 
-PLAYBACK_CMD="ASK=1 mpv-album"
+PLAYER_CMD="ASK=1 mpv-album"
 
 case $(echo "$d" | wc -l) in
 0)
     echo noth
     ;;
 1)
-    cd "$d"
-    echo will play $(pwd)
-    $NEW_TERMINAL "$PLAYBACK_CMD"
+    # cd "$d"
+    # echo will play $(pwd)
+    # $NEW_TERMINAL "$PLAYER_CMD"
+    BASH_CMD="$PLAYER_CMD \"$d\""
+    $NEW_TERMINAL "$BASH_CMD"
     ;;
 *)
     echo "$d" | \
         while read l ; do 
-            cd "$l"
-            echo will play $(pwd)
-            $NEW_TERMINAL "$PLAYBACK_CMD" &
+            BASH_CMD="$PLAYER_CMD \"$l\""
+            $NEW_TERMINAL "$BASH_CMD" &
         done
     ;;
 esac
