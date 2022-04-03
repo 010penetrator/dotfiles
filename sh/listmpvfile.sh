@@ -15,7 +15,8 @@ echo . $d
 cd "$d"
 # notify-send "$d"
 
-PLAYBACK_CMD="mpv-album . ; ask_album.sh"
+export LIST="$1"
+PLAYBACK_CMD="ASK=1 mpv-album"
 
 case $TERMINAL in
     kitty*)

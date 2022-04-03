@@ -99,7 +99,7 @@ su - user1 -c uname # run command as user1
 sudo -H -u user2 echo $HOME # check his home dir
 who -r # show run-level
 systemctl get-default 
-BINDIR="$(dirname "$(readlink -fn "$0")")" # where are binaries?
+BINDIR=$(dirname "$(readlink -fn "$0")") # where are binaries?
 ps aux | grep mydaemon # is mydaemon running?
 gpg --no-default-keyring --keyring /usr/share/keyrings/debian-role-keys.gpg --verify MD5SUMS.sign.txt MD5SUMS.txt 
 cat passlist | while read line ; do gpg -q --batch --passphrase "$line" -d wtf.gpg ; done # dictionary brute force gpg

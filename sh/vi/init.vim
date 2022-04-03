@@ -135,6 +135,7 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 " NeoVim specific
 if has("nvim")
     Plug 'nvim-telescope/telescope.nvim'
+    Plug 'nvim-telescope/telescope-fzf-native.nvim', {'do':'make'}
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-lualine/lualine.nvim'
     Plug 'neovim/nvim-lspconfig'
@@ -147,9 +148,10 @@ if has("nvim")
     Plug 'hrsh7th/cmp-path'
     Plug 'hrsh7th/cmp-cmdline'
     Plug 'hrsh7th/cmp-nvim-lsp'
-    Plug 'hoschi/yode-nvim'
+    Plug 'chentau/marks.nvim' " okay
     " Plug 'norcalli/nvim-colorizer.lua'
     " Plug 'kwkarlwang/bufjump.nvim'
+    Plug 'hoschi/yode-nvim'
     Plug 'kyazdani42/nvim-tree.lua'
     Plug 'kyazdani42/nvim-web-devicons'
     Plug 'lambdalisue/suda.vim'
@@ -158,7 +160,6 @@ if has("nvim")
     Plug 'voldikss/vim-floaterm'
     Plug 'akinsho/toggleterm.nvim'
     Plug 'windwp/nvim-autopairs'
-    Plug 'chentau/marks.nvim'
 endif
 
 """"""""""""""""""""""""
@@ -283,7 +284,7 @@ endif
 ""     Settings:      ""
 """"""""""""""""""""""""
 
-let g:completion_enable_auto_popup = 0
+let g:completion_enable_auto_popup = 1
 let g:goyo_width = "66%"
 let g:goyo_height = "95%"
 
@@ -679,7 +680,7 @@ nnoremap ,gu :call FocusBufOrDo('ff','e $tt/u*/ff*')<CR>
 nnoremap ,gh :call FocusBufOrDo('sh_history','e $HOME/.bash_history')<CR>G
 nnoremap ,gl :call FocusBufOrDo('1linux','e $sh/rs/1linux')<CR>
 
-nnoremap ,,o :Goyo<CR>
+nnoremap ,vo :Goyo<CR>
 
 " Start and quit Vim
 nnoremap ,V :source $MYVIMRC <CR>
@@ -828,6 +829,7 @@ nnoremap ,zz :let &scrolloff=28-&scrolloff<CR>
 nnoremap ,zc :let &colorcolumn=80-&colorcolumn<CR>
 nnoremap ,zn :set number!<CR>
 nnoremap ,vf :set filetype=sh<CR>
+nnoremap ,N :set filetype=<CR>
 nnoremap ,vb :call SwitchBackground() <CR>:echo "background=" &background <cr>
 nnoremap ,vg :set termguicolors! <cr>:set termguicolors? <cr>
 

@@ -5,8 +5,8 @@ mkdir -p "$bakhot"
 ! [[ -d $bakhot ]] && echo Error! Hot backup dir not available! && exit
 echo bak.stage1
 
-DAY="$(date +%Y-%m-%d)"
-MON="$(date +%Y-%m)"
+DAY=$(date +%Y-%m-%d)
+MON=$(date +%Y-%m)
 [[ -d $bakhot/$DAY ]] && rm -rf "$bakhot/$DAY"
 mkdir "$bakhot/$DAY"
 

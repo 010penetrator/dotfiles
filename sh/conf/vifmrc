@@ -147,7 +147,7 @@ nnoremap am ggVG<cr>:move<cr>
 nnoremap del :! sudo rm -r %c <cr>
 nnoremap qU ggVG: !mv --backup=numbered %f ../<cr>
 nnoremap qu :! mv --backup=numbered %f ../<cr>
-nnoremap tok :tok<cr>
+nnoremap ctok :tok<cr>
 nnoremap ch :chmod<cr>
 nnoremap cj :chmod 644 <cr>j
 nnoremap cb :copy | ! notify-send COPY Done!<cr>
@@ -179,7 +179,7 @@ nnoremap gz :cd /ln/hh<cr>
 nnoremap ge :cd /ln/mo<cr>
 nnoremap gq :cd /ln/ho/qq<cr>:sort<cr>N
 nnoremap g/ :cd /ln<cr>
-nnoremap gm :cd /ln/mus<cr>
+nnoremap gm :cd /ln/mus/
 nnoremap go :cd /ln/ho/moment<cr>
 nnoremap gx :trashes<cr>
 nnoremap gc :cd $HOME/.config<cr>

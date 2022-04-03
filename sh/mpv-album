@@ -5,61 +5,63 @@
 
 file="$HOME/.mpv-history"
 # ignore '..' target 
-if [ "$1" == '..' ]; then set -- "." "${2}" ; fi
+[ "$1" == '..' ] && set -- "." "${2}"
+
+# Save target. Because if it is not a directory, we are unable to track it via PWD
+export TARG="$PWD/$1"
 
 clear
 
-# cd to $1
-if [ -n "$1" ]
-then
-  if [ -e "$1" ]
-  then
-    [ -d "$1" ] && cd "$1"
-    echo . $PWD
-    echo
-    if ! [ -f "$file" ] ; then touch "$file" ; fi
-    recent=$(tail $file -n 14)
-    fresh=$(echo "$recent" | grep -xF "$PWD" >/dev/null; echo $?)
-    case $fresh in
-      0)
+# Conditionally change dir to $1
+if [ -n "$1" ] ; then
+    if [ -e "$1" ] ; then
+        [ -d "$1" ] && cd "$1"
+        echo . $PWD
+    else
+        echo mpv-album says !No such directory!
+        exit
+    fi
+fi
+echo
+
+# Conditionally update history list
+if ! [ -f "$file" ] ; then touch "$file" ; fi
+recent=$(tail $file -n 14)
+fresh=$(echo "$recent" | grep -xF "$PWD" >/dev/null; echo $?)
+case $fresh in
+    0)
         echo This album has been listened to recently..
         ;;
-      1)
+    1)
         echo Updating history file..
-        echo "$PWD" >> "$file"
+        realpath . >> "$file"
         ;;
-    esac
-  else
-    echo mpv-album says !No such directory!
-    exit
-  fi
-fi
+esac
 
 # set terminal title
-if [ -n "$2" ]
-then 
-  echo -ne "\033]0;MPV @ $PWD @ $2\007"
+if [ -n "$2" ] ; then 
+    echo -ne "\033]0;MPV @ $PWD @ $2\007"
 else
-  echo -ne "\033]0;MPV @ $PWD\007"
+    echo -ne "\033]0;MPV @ $PWD\007"
 fi
 
 if [[ "$PAUSE" == 0 ]] ; then
-  PAUSE=''
+    PAUSE=''
 else
-  PAUSE='--pause'
+    PAUSE='--pause'
 fi
 
 shopt -s nullglob
 shopt -s nocaseglob
 
-if [[ $(ls | grep -ic '\.ape$\|\.flac$\|\.wv$') == $(ls | grep -ic '\.cue$') && $(ls | grep -ic '\.cue$') > 0 ]]
-  then
-  echo ==play cue with mpv==
-  mpv $PAUSE --no-video *.cue
-  [[ "$ASK" == 1 ]] && ask_album.sh
+if [[ $(ls | grep -ic '\.ape$\|\.flac$\|\.wv$') == $(ls | grep -ic '\.cue$') && \
+                        $(ls | grep -ic '\.cue$') > 0 ]] ; then
+    echo ==play cue with mpv==
+    mpv $PAUSE --no-video *.cue
+    [[ "$ASK" == 1 ]] && ask_album.sh
 else
-  echo ==play audio files==
-  mpv $PAUSE --no-video *.{flac,mp3,ogg,ape,wv}
-  [[ "$ASK" == 1 ]] && ask_album.sh
+    echo ==play audio files==
+    mpv $PAUSE --no-video *.{flac,mp3,ogg,ape,wv}
+    [[ "$ASK" == 1 ]] && ask_album.sh
 fi
 

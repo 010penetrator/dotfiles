@@ -52,6 +52,7 @@ alias chmodre='find . -type f -exec chmod 644 {} \;'
 # alias terfont='setfont ter-218b'
 # alias dmenu='dmenu $DMENU_OPTIONS -fn "$DMENU_FN"'
 alias 1l='less ~/.sh/1linux'
+alias ml='listmpvfile.sh $HOME/.mpv-playlist'
 # alias vf='$TERMINAL -e vifm . &'
 # alias trmclient='title transmission-remote-cli; transmission-remote-cli -c localhost:9090 ; title bash'
 # if  lsb_release -i | grep -q -ie 'arch\|manjaro' ; then
