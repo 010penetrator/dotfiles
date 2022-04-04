@@ -1,27 +1,35 @@
--- require('keybindings')
--- require('packages')
--- require('config')
 
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-
--- local configs = require'nvim-treesitter.configs'
-require'nvim-treesitter.configs'.setup {
-  -- ensure_installed = "mantained",
-  highlight = {
-    enable = true,
-  },
-  indent = {
-    enable = true,
-  }
-}
-
--- vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-
--- {{{}}}
 require('nvim-autopairs').setup{}
 require('Comment').setup()
 require('yode-nvim').setup()
+
+require('telescope').setup{
+    defaults = {
+        prompt_prefix = "$ "
+    }
+}
+require('telescope').load_extension('fzf')
+
+-- local configs = require'nvim-treesitter.configs'
+require'nvim-treesitter.configs'.setup {
+    -- ensure_installed = "mantained",
+    highlight = {
+        enable = true,
+    },
+    indent = {
+        enable = true,
+    }
+}
+-- vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+
+-- vim.opt.list = true
+-- vim.opt.listchars:append("eol:↴")
+require("indent_blankline").setup {
+    -- show_end_of_line = true,
+    show_current_context = true,
+    show_current_context_start = true,
+}
 
 require'marks'.setup {
   -- whether to map keybinds or not. default true
@@ -99,6 +107,8 @@ local lsp_installer = require("nvim-lsp-installer")
 lsp_installer.settings({
         install_root_dir =  vim.fn.stdpath "config" .. "/lsp_servers",
      })
+
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 lsp_installer.on_server_ready(function(server)
     local opts = {}

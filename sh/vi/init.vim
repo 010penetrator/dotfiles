@@ -160,6 +160,8 @@ if has("nvim")
     Plug 'voldikss/vim-floaterm'
     Plug 'akinsho/toggleterm.nvim'
     Plug 'windwp/nvim-autopairs'
+    Plug 'lukas-reineke/onedark.nvim'
+    Plug 'lukas-reineke/indent-blankline.nvim'
 endif
 
 """"""""""""""""""""""""
@@ -1474,21 +1476,6 @@ function! SortParagraphs() range
   put!
 endfunction
 
-" " Highlight lines via signs functionality
-" function! MySigns()
-"   highlight myboo ctermbg=3 ctermfg=0
-"   highlight mywar ctermbg=1 ctermfg=0
-"   sign define mybookmark text=>> linehl=myboo texthl=myboo
-"   sign define mywarning  text=!> linehl=mywar texthl=mywar
-"   nnoremap <F8> :exe ":sign place 777 line=" . line(".") ." name=mywarning file=" . expand("%:p")<CR>
-"   nnoremap <F9> :exe ":sign place 666 line=" . line(".") ." name=mybookmark file=" . expand("%:p")<CR>
-"   nnoremap <F10> :sign unplace<CR>
-"   if filereadable("$RTP/signs.sav")
-"     source $RTP/signs.sav
-"   endif
-" endfunc
-" call MySigns()
-
 function! FoldMotion(type)
   if a:type == 'line'
     let l:line=&commentstring[0] . "------------------------------"
@@ -1586,6 +1573,25 @@ function! s:format_buffer(b)
   return substitute(printf("[%s] %s\t%s\t%s", a:b, l:flag, l:name, l:extra), '^\s*\|\s*$', '', 'g')
 endfunction
 
+""""""""""""""""""""""""
+""       WTF...       ""
+""""""""""""""""""""""""
+
+" " Highlight lines via signs functionality
+" function! MySigns()
+"   highlight myboo ctermbg=3 ctermfg=0
+"   highlight mywar ctermbg=1 ctermfg=0
+"   sign define mybookmark text=>> linehl=myboo texthl=myboo
+"   sign define mywarning  text=!> linehl=mywar texthl=mywar
+"   nnoremap <F8> :exe ":sign place 777 line=" . line(".") ." name=mywarning file=" . expand("%:p")<CR>
+"   nnoremap <F9> :exe ":sign place 666 line=" . line(".") ." name=mybookmark file=" . expand("%:p")<CR>
+"   nnoremap <F10> :sign unplace<CR>
+"   if filereadable("$RTP/signs.sav")
+"     source $RTP/signs.sav
+"   endif
+" endfunc
+" call MySigns()
+
 " Remember folds ??
 " au BufWinLeave * mkview
 " au BufWinEnter * silent loadview
@@ -1613,4 +1619,9 @@ nmap m<Space> <Plug>BookmarkAnnotate
 nmap m<bar> <Plug>BookmarkShowAll
 nmap mn <Plug>BookmarkNext
 nmap mp <Plug>BookmarkPrev
+
+let g:floaterm_keymap_new    = '<F7>'
+let g:floaterm_keymap_prev   = '<F8>'
+let g:floaterm_keymap_next   = '<F9>'
+let g:floaterm_keymap_toggle = '<F12>'
 
