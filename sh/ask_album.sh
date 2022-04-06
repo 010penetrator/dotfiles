@@ -61,7 +61,7 @@ elif [[ $INLIST == 1 && $prompt == "d" ]] ; then
     echo deleting "$TARG"
     grep -vF "$TARG" $HOME/.mpv-playlist > /tmp/tmplist && mv /tmp/tmplist $HOME/.mpv-playlist
     INLIST=2
-elif [[ $INFAVS == 1 && $prompt == "f" ]] ; then
+elif [[ $INFAVS == 0 && $prompt == "f" ]] ; then
     echo "$TARG" >> $HOME/.mpv-favourites
 elif [[ $prompt == "c" && $INVIFM != 1 ]] ; then
     vifm . -c "wincmd o"

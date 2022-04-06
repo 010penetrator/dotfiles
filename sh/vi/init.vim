@@ -6,7 +6,8 @@ set nocompatible
 set termguicolors
 compiler gcc
 " set makeprg=make\ 
-set makeprg=gcc\ %:p\ -o\ %:p:h/bin
+" set makeprg=gcc\ %:p\ -o\ %:p:h/bin
+set makeprg=sh\ my_make.sh
 set path=.,**
 " set wildignore=*.swp
 let $RTP=split(&runtimepath, ',')[0]
@@ -663,10 +664,11 @@ nnoremap ,to :Telescope oldfiles<CR>
 
 " Search text
 nnoremap ,fg :Rg<CR>
+nnoremap ,tg :Telescope live_grep<CR>
 nnoremap ,tr :Telescope lsp_references<CR>
 
 " Jump to favourite files
-" nnoremap ,gg :call FocusBufOrDo('99.txt','')<CR>
+" nnoremap ,ga :call FocusBufOrDo('99.txt','')<CR>
 nnoremap ,gv :call FocusBufOrDo('init.vim','e $sh/vi/init.vim')<CR>
 nnoremap ,gi :call FocusBufOrDo('init.lua','e $sh/vi/init.lua')<CR>
 nnoremap ,g, :call FocusBufOrDo('vimrc$','e $MYVIMRC')<CR>
@@ -687,6 +689,7 @@ nnoremap ,vo :Goyo<CR>
 " Start and quit Vim
 nnoremap ,V :source $MYVIMRC <CR>
 nnoremap ,vv :source $MYVIMRC <CR>
+nnoremap ,cs :LoadColor<CR>
 nnoremap ,vs :source $RTP/session.vim \| call LoadColor()<CR>
 nnoremap ,vw :wa<CR>
 nnoremap ,vq :qa! <CR>
@@ -783,8 +786,6 @@ nnoremap aC :vertical terminal ++close bash -c "INVIM=1 vifm %:p:h"<CR>
 nnoremap a; :terminal ++kill=term ++curwin ++close bash -c "INVIM=1 vifm %:p:h"<CR>
 nnoremap a: :tabe \| terminal ++kill=term ++curwin bash -c "INVIM=1 vifm #:p:h"<CR>
 
-nnoremap a/ :set hlsearch! <CR>
-
 " Split open terminal at current location
 nnoremap ab : new \| if isdirectory(expand('#:p:h')) \| lcd #:p:h \| endif \| terminal ++kill=term ++curwin ++norestore <CR>
 nnoremap aB : vnew \| if isdirectory(expand('#:p:h')) \| lcd #:p:h \| endif \| terminal ++kill=term ++curwin ++norestore <CR>
@@ -834,6 +835,8 @@ nnoremap ,vf :set filetype=sh<CR>
 nnoremap ,N :set filetype=<CR>
 nnoremap ,vb :call SwitchBackground() <CR>:echo "background=" &background <cr>
 nnoremap ,vg :set termguicolors! <cr>:set termguicolors? <cr>
+nnoremap a/ :set hlsearch! <CR>
+nnoremap ,gg :GitGutterToggle<CR>
 
 " Tags
 nnoremap ,vt :TagbarOpen fj <CR>
@@ -844,10 +847,10 @@ nnoremap ,vt :TagbarOpen fj <CR>
 
 " Make and run project
 nnoremap ,zo :make <bar> copen <CR>
-nnoremap ,zm :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make") <bar> redraw! <bar> cwindow <CR>
+nnoremap ,zm :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","sh my_make.sh") <bar> redraw! <bar> cwindow <CR>
 nnoremap ,zt :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make tags") <bar> redraw! <bar> cwindow <CR>
-nnoremap ,zx :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make clean") <bar> redraw! <bar> cwindow<CR>
-nnoremap ,zr :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make run") <bar> redraw! <bar> cwindow <CR>
+nnoremap ,zx :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","sh my_make.sh clean") <bar> redraw! <bar> cwindow<CR>
+nnoremap ,zr :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","sh my_make.sh run") <bar> redraw! <bar> cwindow <CR>
 
 " Folding
 vnoremap ,cf :<C-U>call FoldSelection()<CR>
@@ -1031,32 +1034,32 @@ endfunction
 " endfunction
 
 function! BuildProjectUni(Makefile,Makecommand)
-  " exec "!echo " . a:Makecommand . ":"
-  " memorize stuff
-  let l:makeprg_bak = &makeprg
-  let &makeprg = a:Makecommand
-  let l:starting_directory = getcwd()
-  let l:curr_directory = expand('%:p:h')
-  " change directory
-  exec "lcd " . l:curr_directory
-  let l:proj_dir = ClimbToDirWhere(a:Makefile,1)
-  " " !!! ignore cmake-generated Makefile
-  while filereadable("vim_make_ignore")
-    cd ../
+    " exec "!echo " . a:Makecommand . ":"
+    " memorize stuff
+    let l:makeprg_bak = &makeprg
+    let &makeprg = a:Makecommand
+    let l:starting_directory = getcwd()
+    let l:curr_directory = expand('%:p:h')
+    " change directory
+    exec "lcd " . l:curr_directory
     let l:proj_dir = ClimbToDirWhere(a:Makefile,1)
-  endwhile
-  if ( l:proj_dir != "-1" )
-    exec "!echo " . a:Makecommand . " @ " . l:proj_dir . ":"
-    exec "!echo ------------------------------------------------"
-    make
-    " exec '! ' . a:Makecommand
-  else 
-    exec '! echo Makefile not found'
-  endif
-  Silent read -n 1 -s -r -p "//hit.anykey" ; echo -ne "\n\n"
-  " reset stuff
-  exec "lcd " . l:starting_directory
-  let &makeprg = l:makeprg_bak
+    " " !!! ignore cmake-generated Makefile
+    while filereadable("vim_make_ignore")
+        cd ../
+        let l:proj_dir = ClimbToDirWhere(a:Makefile,1)
+    endwhile
+    if ( l:proj_dir != "-1" )
+        exec "!echo " . a:Makecommand . " @ " . l:proj_dir . ":"
+        exec "!echo ------------------------------------------------"
+        make
+        " exec '! ' . a:Makecommand
+    else 
+        exec '! echo Makefile not found'
+    endif
+    Silent read -n 1 -s -r -p "//hit.anykey" ; echo -ne "\n\n"
+    " reset stuff
+    exec "lcd " . l:starting_directory
+    let &makeprg = l:makeprg_bak
 endfunction
 
 function! ClimbToDirWhere(filename,chdir)
@@ -1324,7 +1327,7 @@ function! LoadColor(...)
     if g:phase == 'day'
         if !exists("g:ColorDayName")
             echom "NO saved colors for this phase of day! Loading defaults.."
-            unlet g:colors_name
+            if exists("g:colors_name") | unlet g:colors_name | endif
             source $sh/vi/vimrc_themes
             return
         else
@@ -1335,7 +1338,7 @@ function! LoadColor(...)
     elseif g:phase == 'nox'
         if !exists("g:ColorNoxName")
             echom "NO saved colors for this phase of day! Loading defaults.."
-            unlet g:colors_name
+            if exists("g:colors_name") | unlet g:colors_name | endif
             source $sh/vi/vimrc_themes
             return
         else
@@ -1613,12 +1616,13 @@ endfunction
 " au FileType tex set wrap shiftwidth=2 softtabstop=2 expandtab
 " augroup END
 
+" for vim-bookmarks
 let g:bookmark_no_default_key_mappings = 0
 nmap mm <Plug>BookmarkToggle
 nmap m<Space> <Plug>BookmarkAnnotate
 nmap m<bar> <Plug>BookmarkShowAll
-nmap mn <Plug>BookmarkNext
-nmap mp <Plug>BookmarkPrev
+nmap m<Down> <Plug>BookmarkNext
+nmap m<Up> <Plug>BookmarkPrev
 
 let g:floaterm_keymap_new    = '<F7>'
 let g:floaterm_keymap_prev   = '<F8>'

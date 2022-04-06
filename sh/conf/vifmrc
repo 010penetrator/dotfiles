@@ -91,6 +91,7 @@ nnoremap yC :! echo -n %f:p | xclip ; echo -n %f:p | xclip -selection clipboard 
 
 " Open current file "
 nnoremap qc :! ./%c <cr>
+nnoremap a. :!vim %c<CR>
 nnoremap qm :! nomacs %c &>/dev/null &<cr>
 nnoremap qf :! if [ %c == ".." ] ; then feha . ; else if [ -d %c ] ; then cd %c; feha . ; else if [ -f %c ] ; then feha %c; fi ; fi ; fi <cr>
 nnoremap qF :! fehf . <cr>
@@ -111,6 +112,7 @@ nnoremap ,v :! $TERMINAL $EDITOR %c <cr>
 
 " Calc space "
 nnoremap zc :! bash -c 'echo; ls -dla %c ; du -sb %c | cut -f1 '' ; du -sh %c | cut -f1 '' ; df -BGB . | tail -1 ; read -rsn1'<cr>
+nnoremap zC :! watch -n .4 ls -la --block-size=M %f
 nnoremap z. :! bash -c 'echo -ne \\n  ls dir :\\n ; ls -la --color=auto . ; read -rsn1'<cr>
 nnoremap aa :! clear -x; $LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT ; read -rsn1 <cr>
 nnoremap zs :! clear -x; df -BMB ; read -rsn1 <cr>

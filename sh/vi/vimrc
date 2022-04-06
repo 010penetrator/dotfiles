@@ -4,6 +4,7 @@
 command! -nargs=1 SSource if filereadable(expand('<args>')) | source <args> | endif
 
 SSource $sh/vi/init.vim
+" silent LoadColor
 SSource $sh/vi/vimrc_themes
 
 if has('nvim')

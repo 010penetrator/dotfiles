@@ -27,7 +27,7 @@ vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 -- vim.opt.listchars:append("eol:↴")
 require("indent_blankline").setup {
     -- show_end_of_line = true,
-    show_current_context = true,
+    show_current_context = false,
     show_current_context_start = true,
 }
 
@@ -49,7 +49,7 @@ require'marks'.setup {
   -- can be either a table with all/none of the keys, or a single number, in which case
   -- the priority applies to all marks.
   -- default 10.
-  sign_priority = { lower=10, upper=15, builtin=8, bookmark=20 },
+  sign_priority = { lower=12, upper=18, builtin=8, bookmark=25 },
   -- disables mark tracking for specific filetypes. default {}
   excluded_filetypes = {},
   -- marks.nvim allows you to configure up to 10 bookmark groups, each with its own
@@ -63,7 +63,9 @@ require'marks'.setup {
   mappings = {
         toggle = "m.",
         delete_line = "m-",
-        delete_bookmark = "m="
+        delete_bookmark = "m=",
+        next_bookmark = "f<Down>",
+        prev_bookmark = "f<Up>",
     }
 }
 
@@ -154,9 +156,9 @@ if vim.fn.has('nvim-0.6') == 1 then
     nnoremap <silent> gA <cmd>lua vim.lsp.buf.type_definition()<CR>|\
     nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>|\
     nnoremap <silent> gh <cmd>ClangdSwitchSourceHeader<CR>|\
-    nnoremap <silent> <F5> k<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>|\
-    nnoremap <silent> <F6> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>|\
-    nnoremap <silent> <F7> <cmd>lua vim.lsp.buf.signature_help()<CR>|\
+    nnoremap <silent> z<Up> k<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>|\
+    nnoremap <silent> z<Down> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>|\
+    nnoremap <silent> ,S <cmd>lua vim.lsp.buf.signature_help()<CR>|\
     autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 100)|\
 ')
 end
