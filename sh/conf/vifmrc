@@ -14,8 +14,8 @@ elseif (system('[ -f /tmp/now_is_night ] && echo 1') == "1" )
 else
     " colo reicheltd-light
     " colo iceberg
-    " colo dracula
-    colorscheme Default
+    colo dracula
+    " colorscheme Default
 endif
 
 !echo -ne "\033]0;VIFM\007"

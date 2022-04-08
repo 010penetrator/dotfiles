@@ -16,7 +16,7 @@ SSource $lo/vimrc.local
 SSource $HOME/.vimrc_msys
 
 " TODO/Problems :
-"     ft detection is lazy
+"     ft detection is lazy/wrong
 "     lsp client exits with 1
 "     :noh no effect -- RESOLVED
 "     cppman for help

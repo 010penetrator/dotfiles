@@ -142,7 +142,6 @@ if has("nvim")
     Plug 'neovim/nvim-lspconfig'
     Plug 'williamboman/nvim-lsp-installer'
     Plug 'nvim-treesitter/nvim-treesitter', {'do':':TSUpdate'}
-    Plug 'nvim-lua/completion-nvim'
     Plug 'glepnir/lspsaga.nvim'
     Plug 'hrsh7th/nvim-cmp'
     Plug 'hrsh7th/cmp-buffer'
@@ -291,6 +290,16 @@ let g:completion_enable_auto_popup = 1
 let g:goyo_width = "66%"
 let g:goyo_height = "95%"
 
+let g:startify_bookmarks = [ {'s': '~/.sh'}, '/ln/lo/cur/' ]
+let g:startify_files_number = 8
+let g:startify_lists = [
+            \ { 'type': 'files',     'header': ['   MRU']            },
+            \ { 'type': 'sessions',  'header': ['   Sessions']       },
+            \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+            \ { 'type': 'commands',  'header': ['   Commands']       },
+            \ ]
+            " \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+
 set encoding=UTF-8
 set fileencodings=ucs-bom,utf-8,default,cp1251,latin1
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
@@ -354,6 +363,8 @@ if &t_Co > 2 || has("gui_running")
     let c_comment_strings=1
 endif
 
+autocmd SessionLoadPost * LoadColor
+" autocmd SessionLoadPost * echom 198672458967
 autocmd WinNew * set numberwidth=2
 autocmd FileType c setlocal commentstring=//%s
 autocmd FileType cpp setlocal commentstring=//%s
@@ -656,7 +667,8 @@ nnoremap ,bi :Unite buffer file<CR>i
 nnoremap ,bk :Denite buffer -mode=normal -immediately-1<CR>
 nnoremap ,be :BufExplorer <CR>
 nnoremap ,ff :Files<CR>
-nnoremap ,bb :Buffers<CR>
+" nnoremap ,bb :Buffers<CR>
+nnoremap ,bb :Telescope buffers theme=ivy<CR>
 nnoremap ,fg :GitFiles<CR>
 nnoremap ,fl :Lines<CR>
 nnoremap qf  :FilesProj<CR>
@@ -665,7 +677,11 @@ nnoremap ,to :Telescope oldfiles<CR>
 " Search text
 nnoremap ,fg :Rg<CR>
 nnoremap ,tg :Telescope live_grep<CR>
+nnoremap ,tf :Telescope find_files theme=ivy<CR>
 nnoremap ,tr :Telescope lsp_references<CR>
+" nnoremap ,tt :Telescope current_buffer_fuzzy_find sorting_strategy=ascending layout_config={"prompt_position":"top"}<CR>
+" nnoremap ,tt <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find({sorting_strategy="ascending", theme="ivy"})<CR>
+nnoremap ,tt <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_ivy{})<CR>
 
 " Jump to favourite files
 " nnoremap ,ga :call FocusBufOrDo('99.txt','')<CR>
@@ -832,7 +848,7 @@ nnoremap ,zz :let &scrolloff=28-&scrolloff<CR>
 nnoremap ,zc :let &colorcolumn=80-&colorcolumn<CR>
 nnoremap ,zn :set number!<CR>
 nnoremap ,vf :set filetype=sh<CR>
-nnoremap ,N :set filetype=<CR>
+nnoremap ,N :set filetype=text<CR>
 nnoremap ,vb :call SwitchBackground() <CR>:echo "background=" &background <cr>
 nnoremap ,vg :set termguicolors! <cr>:set termguicolors? <cr>
 nnoremap a/ :set hlsearch! <CR>
@@ -896,6 +912,7 @@ command! NewTerm exec 'silent ! $TERMINAL &' | redraw!
 command! NewTermHere exec 'silent ! cd "%:p:h" && $TERMINAL &' | redraw!
 command! NewVifmHere exec 'silent ! $TERMINAL -e vifm --select %:p & ' | redraw!
 command! LCDhere lcd %:p:h | pwd
+command! LCDrealpath let b:cwd = expand("%:p:h") | let b:rcwd = system("realpath " . b:cwd) | exec "lcd " . b:rcwd
 
 command! FollowSymLink let b:symlink = expand("%:p") | execute "file " . resolve(expand("%")) | edit
 command! UnFollowSymLink exec 'file ' . b:symlink | edit
