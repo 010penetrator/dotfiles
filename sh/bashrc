@@ -73,6 +73,7 @@ title() { echo -ne "\033]0;$*\007"; }
 alias leto='date +%Y-%m-%d'
 alias p='ps aux | grep -v grep | grep'
 alias dropcs='sync && echo 3 | sudo tee /proc/sys/vm/drop_caches'
+alias vs='nvim -S /ln/co/nvim/session/comon'
 
 # Functions #
 zz() { du -csh $*; local IFS="_"; filename=$(echo "$*" | tr / _); tar -I 'zstd -10 -T0' -cf "$filename".tar.zst --exclude='.git' --exclude='tags' $*; du -sh "$filename".tar.zst; }

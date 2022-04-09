@@ -14,8 +14,8 @@ elseif (system('[ -f /tmp/now_is_night ] && echo 1') == "1" )
 else
     " colo reicheltd-light
     " colo iceberg
-    colo dracula
-    " colorscheme Default
+    " colo dracula
+    colorscheme Default
 endif
 
 !echo -ne "\033]0;VIFM\007"
@@ -115,7 +115,7 @@ nnoremap zc :! bash -c 'echo; ls -dla %c ; du -sb %c | cut -f1 '' ; du -sh %c | 
 nnoremap zC :! watch -n .4 ls -la --block-size=M %f
 nnoremap z. :! bash -c 'echo -ne \\n  ls dir :\\n ; ls -la --color=auto . ; read -rsn1'<cr>
 nnoremap aa :! clear -x; $LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT ; read -rsn1 <cr>
-nnoremap zs :! clear -x; df -BMB ; read -rsn1 <cr>
+nnoremap as :! clear -x; df -BMB ; read -rsn1 <cr>
 nnoremap ,, :! echo; date ; echo Sync... ; sync ; echo "Done!" ; read -rsn1 <cr>
 
 " Send to vim server "
@@ -170,8 +170,8 @@ nnoremap zp :! 7z a -mx=6 -xr!tags %c.7z %f <cr>
 nnoremap z0 :! 7z a -mx=1 -xr!tags %c.7z %f
 nnoremap zP :! 7z a -mx=6 -xr!tags %D/%c.7z %f <cr>
 let $TAR_IGNOR="--exclude='.git' --exclude='tags' --exclude='debug/*' --exclude='build/*' --exclude='~$*'"
-nnoremap as :! tar -I 'zstd -10v -T0' -X /ln/sh/zip_exclu -cf    %c.tar.zst %f
-nnoremap aS :! tar -I 'zstd -10v -T0' -X /ln/sh/zip_exclu -cf %D/%c.tar.zst %f 
+nnoremap zs :! tar -I 'zstd -10v -T0' -X /ln/sh/zip_exclu -cf    %c.tar.zst %f
+nnoremap zS :! tar -I 'zstd -10v -T0' -X /ln/sh/zip_exclu -cf %D/%c.tar.zst %f 
 nnoremap ze :! upk.sh %c <cr>
 nnoremap zE :! cd %D; upk.sh %d/%c <cr>
 

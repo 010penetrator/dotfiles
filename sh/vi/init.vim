@@ -299,6 +299,7 @@ let g:startify_lists = [
             \ { 'type': 'commands',  'header': ['   Commands']       },
             \ ]
             " \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+let g:startify_session_dir = $RTP . "/session"
 
 set encoding=UTF-8
 set fileencodings=ucs-bom,utf-8,default,cp1251,latin1
