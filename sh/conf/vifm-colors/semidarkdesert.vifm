@@ -21,4 +21,3 @@ highlight WildMenu cterm=underline,reverse ctermfg=white ctermbg=black
 highlight CmdLine cterm=none ctermfg=217 ctermbg=black
 highlight ErrorMsg cterm=none ctermfg=7 ctermbg=1
 highlight Border cterm=none ctermfg=black ctermbg=240
-

@@ -684,4 +684,5 @@ nnoremap <f8> :delete<cr>
 "! i3-msg "split v"
 
 source $lo/vifmrc.local
+source /ln/sh/conf/favicons.vifm
 

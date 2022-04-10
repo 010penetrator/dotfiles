@@ -37,7 +37,7 @@ go_through ()
       [[ $key == 'q' ]] && echo --Reverting to $(readlink /ln/co/kitty/current-theme.conf) && kitty @ set-colors -a ~/.config/kitty/current-theme.conf && exit
       [[ $key == 'i' ]] && break
       [[ $key == 'b' ]] && break
-      [[ $key == 'a' ]] && ln -srf "$t" ~/.config/kitty/current-theme.conf && echo --Applied!
+      [[ $key == 'a' ]] && ln -snrf "$t" ~/.config/kitty/current-theme.conf && echo --Applied!
     done 
     echo
   done
