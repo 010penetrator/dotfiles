@@ -144,8 +144,8 @@ nnoremap rS :! echo -ne "\n========== dry-run\n" ; rsync -rtKn --progress --dele
 nnoremap ai : amou <cr>
 nnoremap ao : aumo <cr>
 nnoremap au :! echo Sync... ; sync %f && udevil umount %f<cr>
-nnoremap ab ggVG<cr>:copy<cr>
-nnoremap am ggVG<cr>:move<cr>
+nnoremap am ggVG<cr>:copy<cr>
+nnoremap aM ggVG<cr>:move<cr>
 nnoremap del :! sudo rm -r %c <cr>
 nnoremap qU ggVG: !mv --backup=numbered %f ../<cr>
 nnoremap qu :! mv --backup=numbered %f ../<cr>

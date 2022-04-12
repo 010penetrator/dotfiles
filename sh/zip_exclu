@@ -1,6 +1,7 @@
 .git/*
 debug/*
 build/*
+release/*
 .ccls-cache/*
 .cache/*
 tags

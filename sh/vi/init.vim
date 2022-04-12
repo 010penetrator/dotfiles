@@ -365,7 +365,7 @@ if &t_Co > 2 || has("gui_running")
 endif
 
 autocmd SessionLoadPost * LoadColor
-" autocmd SessionLoadPost * echom 198672458967
+" autocmd SessionLoadPost * echom "Welcome back"
 autocmd WinNew * set numberwidth=2
 autocmd FileType c setlocal commentstring=//%s
 autocmd FileType cpp setlocal commentstring=//%s
@@ -1338,7 +1338,7 @@ function! SetPhase(...)
 endfunction
 function! LoadColor(...)
     if g:phase == 'dunno'
-        echom "Will load default colors for this time of day."
+        echom "Will load default colors."
         unlet g:colors_name
         source $sh/vi/vimrc_themes
     endif
