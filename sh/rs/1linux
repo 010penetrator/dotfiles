@@ -214,6 +214,8 @@ git show <commithash>:main.cpp > another.cpp # restore file under new name
 git config --global credential.helper 'cache --timeout=36000' # remember git passwd
 git config credential.helper cache 6h
 git config --local credential.helper store # store git passwd
+git config --global diff.tool vimdiff # use vim as difftool
+git config --global difftool.prompt false
 git log --follow somefile 
 git checkout INDEX~1 somefile # restore somefile just before INDEX commit
 git reset --hard origin/master ; git pull origin master # discard all local changes/commits and pull from upstream

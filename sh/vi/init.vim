@@ -123,7 +123,11 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 " Plug 'honza/vim-snippets'
 " Plug 'vim-scripts/QuickBuf'
 " Plug 'Yggdroot/LeaderF'
-" Plug 'ryanoasis/vim-devicons' "not working
+" Plug 'ryanoasis/vim-devicons'
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'liuchengxu/vista.vim'
+" Plug 'derekwyatt/vim-fswitch'
+" Plug 'RRethy/vim-illuminate'
 
 " Archive
 " Plug 'wesleyche/SrcExpl' "mediocre
@@ -162,6 +166,7 @@ if has("nvim")
     Plug 'windwp/nvim-autopairs'
     Plug 'lukas-reineke/onedark.nvim'
     Plug 'lukas-reineke/indent-blankline.nvim'
+    Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 endif
 
 """"""""""""""""""""""""
@@ -715,11 +720,11 @@ nnoremap ,zs :SessWriteA<CR><Esc>
 nnoremap ,zq :SessWriteA<CR>: wa \| qa<CR>
 nnoremap ,ve :call AddRpcEar()<CR>
 " Open current file at vimserver session via my "vimrpc" shell script
-nnoremap ,va :silent exec '! ( sleep 0 ; vimrpc "%:p" ) & ' \| redraw! \| q <CR>
+nnoremap ,va :silent exec '! ( virpc "%:p" ) & ' \| redraw! \| q <CR>
 " Open current file at vimserver session at new tab via my "vimrpc" shell script
-nnoremap ,vn :silent exec '! ( sleep 0 ; MODE=newtab vimrpc "%:p" ) & ' \| redraw! \| q <CR>
+nnoremap ,vn :silent exec '! ( MODE=newtab virpc "%:p" ) & ' \| redraw! \| q <CR>
 " Open current file at vimserver session at active window via my "vimrpc" shell script
-nnoremap ,vc :silent exec '! ( sleep 0 ; MODE=current vimrpc "%:p" ) & ' \| redraw! \| q <CR>
+nnoremap ,vc :silent exec '! ( MODE=cur virpc "%:p" ) & ' \| redraw! \| q <CR>
 
 " Have mappings in terminal mode
 if v:version >= 801
@@ -1646,4 +1651,22 @@ let g:floaterm_keymap_new    = '<F7>'
 let g:floaterm_keymap_prev   = '<F8>'
 let g:floaterm_keymap_next   = '<F9>'
 let g:floaterm_keymap_toggle = '<F12>'
+
+" Highlight all ExtraWhitespaces
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+au BufWinEnter * match ExtraWhitespace /\s\+$/
+au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+au InsertLeave * match ExtraWhitespace /\s\+$/
+au BufWinLeave * call clearmatches()
+
+function! s:JbzCppMan()
+    let old_isk = &iskeyword
+    setl iskeyword+=:
+    let str = expand("<cword>")
+    let &l:iskeyword = old_isk
+    execute 'Man ' . str
+endfunction
+command! JbzCppMan :call s:JbzCppMan()
+au FileType cpp nnoremap <buffer>K :JbzCppMan<CR>
 
