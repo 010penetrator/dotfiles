@@ -47,7 +47,7 @@ bspc rule -a VirtualBox state=floating
 bspc rule -a Zathura state=floating
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
-bspc rule -a koi_to_sis state=floating desktop='^3'
+# bspc rule -a koi_to_sis state=floating desktop='^3'
 
 # wmctrl -m | grep "Name:" | awk '{print $2}'
 #   ( sleep .4 ; gsettings set org.gnome.mutter overlay-key '' )  # free Win key in Gnome 3

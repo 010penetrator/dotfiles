@@ -318,7 +318,7 @@ LO_T	sh/conf/qmk_planckR4keymap.c	/^#define LO_T(/;"	d	file:
 LO_T	sh/conf/qmk_planckR6keymap.c	/^#define LO_T(/;"	d	file:
 LastToMacro	sh/vi/init.vim	/^command! -nargs=1 LastToMacro exec "let @" . <q-args> . " = \\"i\\" . @. . \\"<Esc>\\""$/;"	c
 LightlineReload	sh/vi/init.vim	/^function! LightlineReload(arg)$/;"	f
-LineColor	sh/vi/init.vim	/^command! -nargs=1 LineColor call LightlineReload('<args>')$/;"	c
+LineColor	sh/vi/init.vim	/^command! -nargs=? LineColor call LightlineReload('<args>')$/;"	c
 LoadColor	sh/vi/init.vim	/^command! -nargs=? LoadColor call SetPhase(<f-args>) <bar> call LoadColor(<f-args>)$/;"	c
 LoadColor	sh/vi/init.vim	/^function! LoadColor(...)$/;"	f
 LoadSelected	sh/conf/nomacs.Image Lounge.conf	/^LoadSelected=false$/;"	k	section:DkExplorer
