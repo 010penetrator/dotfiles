@@ -6,3 +6,19 @@ rm /tmp/now_is_* &> /dev/null
 
 touch /tmp/now_is_"$1"
 
+{
+    cd /ln/co/kitty/
+    DT="day_theme.conf"
+    NT="nox_theme.conf"
+    CT="current-theme.conf"
+    # Backup current theme if it is different from day theme and night theme
+    if [[ -f $CT ]] && ! cmp -s $CT $DT && ! cmp -s $CT $NT ; then
+        cp -f $CT prev_theme.conf
+    fi
+    if [[ $1 == 'night' || $1 == 'nox' ]] ; then
+        [[ -f $NT ]] && cp -f $NT $CT
+    elif [[ -f $DT ]] ; then
+        [[ -f $DT ]] && cp -f $DT $CT
+    fi
+}
+

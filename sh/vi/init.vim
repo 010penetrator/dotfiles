@@ -21,7 +21,7 @@ let $VIMPLUG = $RTP . "/plugged"
 " currfile=%\ mainbin
 " let $BROWSER = 'luakit'
 " .w !bash  "exec current line with bash
-" %s/^\(\s\)\+$//g | "clean space lines 
+" %s/^\(\s\)\+$//g | "clean space lines
 " s/\(|\|\\\)/\\\1/g "screen backslashes for saving vim command
 " %s/\([\[\]]\) [\[\]]/\1\1/g " change '[ [' to '[[' and '] ]' to ']]'
 " exec  "!"  . @"  "exec yank buffer
@@ -58,7 +58,7 @@ endif
 
 " Oneliner to Plug on condition
     " Plug 'benekastah/neomake', has('nvim') ? {} : { 'on': [] }
-" Same wrapped into a function , thanks to 
+" Same wrapped into a function
 function! Cond(cond, ...)
   let opts = get(a:000, 0, {})
   return a:cond ? opts : extend(opts, { 'on': [], 'for': [] })
@@ -184,7 +184,7 @@ Plug 'jedverity/feral-vim' "Nice
 Plug 'mhartington/oceanic-next' "soft nice
 Plug 'w0ng/vim-hybrid' "beautiful
 Plug 'kristijanhusak/vim-hybrid-material' "nice Sane dark
-Plug 'vim-scripts/strange' "darker 
+Plug 'vim-scripts/strange' "darker
 Plug 'severij/vadelma' "white good-con
 Plug 'jacoborus/tender.vim' "sane soft dark
 Plug 'cocopon/iceberg.vim' "soft cold dark
@@ -245,12 +245,12 @@ Plug 'Jimeno0/vim-chito' "consbroken
 Plug 'HenryNewcomer/vim-theme-underflow' "consbroken
 Plug 'beigebrucewayne/min_solo' "consbroken 'subtle
 Plug 'therubymug/vim-pyte' "light gui
-Plug 'vim-scripts/proton' "light ok 
+Plug 'vim-scripts/proton' "light ok
 Plug 'junegunn/seoul256.vim' "beautiful
-Plug 'arzg/vim-mayanfog' "light 
+Plug 'arzg/vim-mayanfog' "light
 Plug 'arzg/vim-plan9' "trueeeee
 Plug 'lithammer/vim-eighties' "trueeeee
-Plug 'sainnhe/gruvbox-material' "improved 
+Plug 'sainnhe/gruvbox-material' "improved
 Plug 'arzg/vim-substrata' "cold neon
 Plug 'sainnhe/edge' "good soft
 Plug 'sainnhe/everforest' "cream lowcon
@@ -316,7 +316,7 @@ set winheight=7
 " set iminsert=0
 " set imsearch=0
 " set nofoldenable    " disable folding
-set tabstop=2 softtabstop=2 expandtab shiftwidth=4 smarttab 
+set tabstop=2 softtabstop=2 expandtab shiftwidth=4 smarttab
 set textwidth=0 wrapmargin=0
 set smartindent
 set invlinebreak
@@ -399,7 +399,7 @@ let g:netrw_winsize = 25
 let g:sneak#map_netrw = 0
 
 if executable('rg')
-    set grepprg=rg\ --smart-case\ --vimgrep\ --follow
+    set grepprg=rg\ --smart-case\ --vimgrep\ --follow\ --no-ignore\ -g\ '!tags'
     " Output of :grep should go to cwindow
     autocmd QuickFixCmdPost *grep* cwindow
 elseif executable('ag')
@@ -421,7 +421,7 @@ let xterm16_brightness = '#aac8c2' | let xterm16_colormap='soft'
 let g:seoul256_background = 234
 let g:deoplete#enable_at_startup = 1
 
-" let g:SrcExpl_pluginList = [ "__Tag_List__" ] 
+" let g:SrcExpl_pluginList = [ "__Tag_List__" ]
 " let g:ScrExpl_refreshTime=200
 " let g:SrcExpl_winHeight = 13
 
@@ -429,11 +429,11 @@ if has("cscope")
     " set cscopetag
     set csto=0
     if filereadable("cscope.out")
-        cs add cscope.out  
+        cs add cscope.out
     elseif $CSCOPE_DB != ''
         cs add $CSCOPE_DB
     endif
-    set cscopeverbose  
+    set cscopeverbose
     nmap <C-@>s :cs find s <C-R>=expand("<cword>")<CR><CR>
     nmap <C-@>g :cs find g <C-R>=expand("<cword>")<CR><CR>
     nmap <C-@>c :cs find c <C-R>=expand("<cword>")<CR><CR>
@@ -770,7 +770,7 @@ nnoremap ao o<Esc>:put! *<CR>`[v`]:g/^$/d<CR>:noh<CR>
 nnoremap aO o<Esc>:put! +<CR>`[v`]:g/^$/d<CR>:noh<CR>
 " yank inline
 nnoremap yc ^y$"+y$"*y$
-" yank current file full name 
+" yank current file full name
 nnoremap yz :let @" = expand('%:p')
 " replace current word with register contents
 nnoremap cp "_ciw<c-r>"<esc>
@@ -1045,7 +1045,7 @@ function! BuildProject1()
     let l:curr_directory = expand('%:p:h')
     exec "cd " . l:curr_directory
     exec '!echo -e "\n"============ $(date) ============"\n"@ $PWD'
-    make 
+    make
     exec '!echo -e "==Done build==\n"'
     exec "cd " . l:starting_directory
 endfunction
@@ -1076,7 +1076,7 @@ function! BuildProjectUni(Makefile,Makecommand)
         exec "!echo ------------------------------------------------"
         make
         " exec '! ' . a:Makecommand
-    else 
+    else
         exec '! echo Makefile not found'
     endif
     Silent read -n 1 -s -r -p "//hit.anykey" ; echo -ne "\n\n"
@@ -1134,7 +1134,7 @@ function! FocusBufOrDo(name,cmd)
   elseif !empty(a:cmd)
     " echo 'No such buffer'
     exec a:cmd
-  endif 
+  endif
 endfunction
 
 function! BufFocusedThenDo(name,cmd)
@@ -1322,7 +1322,7 @@ function! SetPhase(...)
         let g:phase = a:1
     elseif filereadable('/tmp/now_is_day')
         let g:phase = 'day'
-    elseif filereadable('/tmp/now_is_night')
+    elseif filereadable('/tmp/now_is_nox')
         let g:phase = 'nox'
     elseif !exists("g:phase")
         let g:phase = 'dunno'
@@ -1464,7 +1464,7 @@ function! EvalThis()
     exec "normal! yap:@\"\<CR>"
     " echom "whole par"
   else
-    " Eval current line 
+    " Eval current line
     " echom "one line"
     if getline(line('.')) =~ '^\%[\s]*["].*'
       " Ignore the comment sign <"> if it was detected
