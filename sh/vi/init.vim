@@ -1316,18 +1316,6 @@ function! SwitchBackground()
   " echo &background
 endfunction
 
-function! SaveColor(...)
-    " let g:ColList[phase] = ['a','b','c']
-    if g:phase == 'day' || ( g:phase != 'day' && g:phase != 'nox' )
-        let g:ColorDayName = g:colors_name
-        let g:ColorDayLine = g:lightline.colorscheme
-        let g:ColorDayBg = &background
-    elseif g:phase == 'nox'
-        let g:ColorNoxName = g:colors_name
-        let g:ColorNoxLine = g:lightline.colorscheme
-        let g:ColorNoxBg = &background
-    endif
-endfunction
 function! SetPhase(...)
     " Discover what time of day it is by arg or by file-hint
     if ( a:0 > 0 )
@@ -1340,6 +1328,26 @@ function! SetPhase(...)
         let g:phase = 'dunno'
     endif
     " echom 'so phase is ' . g:phase
+endfunction
+function! SaveColor(...)
+    if ( a:0 > 0 )
+        let arg = a:1
+    else
+        let arg = g:phase
+    endif
+    if arg == 'day' || arg == 'dunno'
+        echom "Saving colors for 'day'"
+        let g:ColorDayName = g:colors_name
+        let g:ColorDayLine = g:lightline.colorscheme
+        let g:ColorDayBg = &background
+    elseif arg == 'nox'
+        echom "Saving colors for 'nox'"
+        let g:ColorNoxName = g:colors_name
+        let g:ColorNoxLine = g:lightline.colorscheme
+        let g:ColorNoxBg = &background
+    else
+        echom "Please provide 'day' or 'nox'"
+    endif
 endfunction
 function! LoadColor(...)
     if g:phase == 'dunno'
@@ -1369,6 +1377,8 @@ function! LoadColor(...)
             exec "LineColor " .      g:ColorNoxLine
             exec "set background=" . g:ColorNoxBg
         endif
+    else
+        echom "Unknown phase of day!"
     endif
 endfunction
 command! -nargs=? SaveColor call SetPhase(<f-args>) <bar> call SaveColor(<f-args>)
@@ -1405,7 +1415,7 @@ function! LightlineReload(arg)
     call lightline#colorscheme()
     call lightline#update()
 endfunction
-command! -nargs=1 LineColor call LightlineReload('<args>')
+command! -nargs=? LineColor call LightlineReload('<args>')
 
 function! DelSpace()
   let cur = line('.')

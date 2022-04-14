@@ -18,8 +18,12 @@ else
         colo Tomorrow | LineColor Tomorrow
         " colo stellarized | set bg=light | LineColor aqua_plasm
     elseif ( g:phase == 'nox' )
-        " colo tempus_dusk | LineColor bluewery
-        colo Tomorrow-Night-Eighties | LineColor snow_dark
+        if has('nvim')
+            colo tokyonight | LineColor Atelier_Lakeside
+        else
+            " colo tempus_dusk | LineColor bluewery
+            colo Tomorrow-Night-Eighties | LineColor snow_dark
+        endif
     elseif ( g:phase == 'dunno' )
         colo frign | LineColor aqua_plasm
         " colo PaperColor | set bg=light | LineColor solarized
