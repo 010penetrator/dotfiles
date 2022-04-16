@@ -1,13 +1,14 @@
 #!/bin/bash
+# Extract archive of any common type
 # Распаковать архив не указывая тип распаковщика
 
 if [ -z "$1" ]; then
-    # display usage if no parameters given
-    echo "Использование: upk <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
+    # Display usage if no parameters given
+    echo "Usage: upk <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
 else
     if [ -f "$1" ] ; then
         NAME=${1%.*}
-        #mkdir $NAME && cd $NAME
+        # mkdir $NAME && cd $NAME
         case "$1" in
           *.tar.bz2)      tar xvjf "$1"    ;;
           *.tar.gz)       tar xvzf "$1"    ;;

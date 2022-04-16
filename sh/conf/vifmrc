@@ -8,7 +8,7 @@
 
 if (system('[ -f /tmp/now_is_day ] && echo 1') == "1" )
     colo reicheltd-light
-elseif (system('[ -f /tmp/now_is_night ] && echo 1') == "1" )
+elseif (system('[ -f /tmp/now_is_nox ] && echo 1') == "1" )
     colo crown_24bit
     " colo dracula
     " colo iceberg
@@ -175,6 +175,8 @@ nnoremap zs :! tar -I 'zstd -10v -T0' -X /ln/sh/zip_exclu -cf    %c.tar.zst %f
 nnoremap zS :! tar -I 'zstd -10v -T0' -X /ln/sh/zip_exclu -cf %D/%c.tar.zst %f 
 nnoremap ze :! upk.sh %c <cr>
 nnoremap zE :! cd %D; upk.sh %d/%c <cr>
+nnoremap z"e :! upk.sh %r" <cr>
+nnoremap z"E :! upk2dir.sh %r" %d <cr>
 
 " Jump to places "
 nnoremap gh :cd $HOME<cr>
@@ -700,8 +702,8 @@ command! FZFlocate : set noquickview
                   \| if $FZF_PICK != ''
                   \|     execute system('[ -f "$FZF_PICK" ] && echo goto || echo cd') fnameescape($FZF_PICK)
                   \| endif
-nnoremap <c-g> :FZFlocate<cr>
-nnoremap <c-f> :FZFfind<cr>
+" nnoremap <C-j> :FZFlocate<cr>
+nnoremap <C-j> :FZFfind<cr>
 
 source $lo/vifmrc.local
 source /ln/sh/conf/favicons.vifm

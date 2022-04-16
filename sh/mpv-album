@@ -4,7 +4,7 @@
 # Usage: mpv /dir/or/file DESIRED-TERMINAL-TITLE
 
 file="$HOME/.mpv-history"
-# ignore '..' target 
+# ignore '..' target
 [ "$1" == '..' ] && set -- "." "${2}"
 
 # Save target. Because if it is not a directory, we are unable to track it via PWD
@@ -19,7 +19,8 @@ if [ -n "$1" ] ; then
         echo . $PWD
     else
         echo mpv-album says !No such directory!
-        # exit
+        read -rs -n1 -p "hit any key.."
+        [[ "$ASK" == 1 ]] && ask_album.sh ; exit
     fi
 fi
 echo
@@ -39,7 +40,7 @@ case $fresh in
 esac
 
 # set terminal title
-if [ -n "$2" ] ; then 
+if [ -n "$2" ] ; then
     echo -ne "\033]0;MPV @ $PWD @ $2\007"
 else
     echo -ne "\033]0;MPV @ $PWD\007"

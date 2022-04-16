@@ -208,6 +208,7 @@ git stash show -p # see last stash (add stash@{N} for older stash)
 git diff stash@{N} master # compare any stash against master (may add --name-only, or add -- filename)
 git difftool stash^! # diff last stash against its commit
 git difftool stash HEAD # diff last stash against current commit
+git diff mybranch master -- way/somefile.c # diff against other branch
 git log --stat
 git log -p 
 git show <commithash>:main.cpp > another.cpp # restore file under new name

@@ -5,9 +5,9 @@
 set nocompatible
 set termguicolors
 compiler gcc
-" set makeprg=make\ 
+set makeprg=make
 " set makeprg=gcc\ %:p\ -o\ %:p:h/bin
-set makeprg=sh\ my_make.sh
+" set makeprg=sh\ my_make.sh
 set path=.,**
 " set wildignore=*.swp
 let $RTP=split(&runtimepath, ',')[0]
@@ -487,6 +487,9 @@ nnoremap aa a
 imap jj <ESC>
 imap оо <ESC>
 
+" go to end-of-line
+imap <C-e> <C-o>A
+
 " double <esc> will switch off search highlighting
 " nnoremap <silent> <Esc><Esc> <Esc>:noh<CR><Esc>
 
@@ -550,8 +553,8 @@ nnoremap q<Down> :cnext<CR>
 nnoremap <C-Up> :cprev<CR>
 nnoremap <C-Down> :cnext<CR>
 " navigate in diff mode
-nnoremap <F2> [c
-nnoremap <F3> ]c
+nnoremap <F2> [czz
+nnoremap <F3> ]czz
 nnoremap ]l :lnext<cr>
 nnoremap [l :lprev<cr>
 " nmap s <Plug>Sneak_s
@@ -869,10 +872,11 @@ nnoremap ,vt :TagbarOpen fj <CR>
 
 " Make and run project
 nnoremap ,zo :make <bar> copen <CR>
-nnoremap ,zm :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","sh my_make.sh") <bar> redraw! <bar> cwindow <CR>
-nnoremap ,zt :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make tags") <bar> redraw! <bar> cwindow <CR>
-nnoremap ,zx :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","sh my_make.sh clean") <bar> redraw! <bar> cwindow<CR>
-nnoremap ,zr :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","sh my_make.sh run") <bar> redraw! <bar> cwindow <CR>
+nnoremap ,zm :lcd %:p:h <bar> call BuildProjectUni("Makefile","make -f my_Makefile") <bar> redraw! <bar> copen <CR>
+" nnoremap ,zt :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make tags") <bar> redraw! <bar> cwindow <CR>
+nnoremap ,zc :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make -f my_Makefile clean") <bar> redraw! <CR>
+nnoremap ,zx :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make -f my_Makefile run") <bar> redraw! <bar> cwindow <CR>
+nnoremap ,zb :lcd %:p:h <bar> call BuildProjectUni("Makefile","make -f my_Makefile bear") <bar> redraw! <bar> cwindow <CR>
 
 " Folding
 vnoremap ,cf :<C-U>call FoldSelection()<CR>

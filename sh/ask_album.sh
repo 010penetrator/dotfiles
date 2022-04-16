@@ -39,7 +39,7 @@ echo
     echo "c - inspect directory with vifm"
 [[ $INLIST == 1 ]] && \
     echo "d - delete from playlist" || \
-    echo "a - add to playlist and quit" 
+    echo "a - add to playlist and quit"
 [[ $INFAVS == 0 ]] && \
     echo "f - add to favourites and quit"
 [[ -f $LIST ]] && \
@@ -72,13 +72,13 @@ elif [[ -f $LIST ]] && [[ $prompt == "n" ]] ; then
     # source $sh/dmenurc
     # SELECT=$( tac $LIST | dmenu $DMENU_OPTIONS -fn "$DMENU_FN" )
     SELECT=$( cat -n "$LIST" | sort -uk2 | sort -nr | cut -f2- | dmenu $DMENU_OPTIONS -fn "$DMENU_FN" )
-    ASK=1 PAUSE=0 mpv-album "$SELECT"
+    ASK=1 PAUSE=1 mpv-album "$SELECT"
 elif [[ -f $LIST ]] && [[ $prompt == "F" ]] ; then
     SELECT=$( cat -n "$HOME/.mpv-favourites" | sort -uk2 | sort -nr | cut -f2- | dmenu $DMENU_OPTIONS -fn "$DMENU_FN" )
-    ASK=1 PAUSE=0 mpv-album "$SELECT"
+    ASK=1 PAUSE=1 mpv-album "$SELECT"
 elif [[ -f $LIST ]] && [[ $prompt == "L" ]] ; then
     SELECT=$(cat $HOME/.mus-list | sort -R | dmenu $DMENU_OPTIONS -fn "$DMENU_FN")
-    ASK=1 PAUSE=0 mpv-album "$SELECT"
+    ASK=1 PAUSE=1 mpv-album "$SELECT"
 else
     clear
     echo pwd is $(pwd)

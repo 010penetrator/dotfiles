@@ -18,6 +18,6 @@ SSource $HOME/.vimrc_msys
 " TODO/Problems :
 "     ft detection is lazy/wrong
 "     lsp client exits with 1
-"     :noh no effect -- RESOLVED
-"     cppman for help
+"     need terminal in buffer
+"     less completion
 

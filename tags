@@ -94,17 +94,17 @@ $VIMPLUG	sh/vi/init.vim	/^let $VIMPLUG = $RTP . "\/plugged"$/;"	v
 ,vw	sh/vi/init.vim	/^nnoremap ,vw :wa<CR>$/;"	m
 ,vx	sh/vi/init.vim	/^nnoremap ,vx :let lastl=line('.') <bar> exec "normal yap" <bar> @\\" <bar> exec lastl<CR>:echo "/;"	m
 ,x	sh/vi/init.vim	/^nnoremap ,x :q<CR>$/;"	m
+,zb	sh/vi/init.vim	/^nnoremap ,zb :lcd %:p:h <bar> call BuildProjectUni("Makefile","make -f my_Makefile bear") <bar> /;"	m
+,zc	sh/vi/init.vim	/^nnoremap ,zc :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make -f my_Makefile clean"/;"	m
 ,zc	sh/vi/init.vim	/^nnoremap ,zc :let &colorcolumn=80-&colorcolumn<CR>$/;"	m
 ,ze	sh/vi/init.vim	/^nnoremap ,ze :call SwitchCE()<CR>$/;"	m
 ,zl	sh/vi/init.vim	/^nnoremap ,zl : silent exec '! echo -e "\\n$(pwd):"; ls -la . ; echo \\. ; ls -la %:p ; read -n 1/;"	m
-,zm	sh/vi/init.vim	/^nnoremap ,zm :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","sh my_make.sh") <bar> redr/;"	m
+,zm	sh/vi/init.vim	/^nnoremap ,zm :lcd %:p:h <bar> call BuildProjectUni("Makefile","make -f my_Makefile") <bar> redra/;"	m
 ,zn	sh/vi/init.vim	/^nnoremap ,zn :set number!<CR>$/;"	m
 ,zo	sh/vi/init.vim	/^nnoremap ,zo :make <bar> copen <CR>$/;"	m
 ,zq	sh/vi/init.vim	/^nnoremap ,zq :SessWriteA<CR>: wa \\| qa<CR>$/;"	m
-,zr	sh/vi/init.vim	/^nnoremap ,zr :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","sh my_make.sh run") <bar> /;"	m
 ,zs	sh/vi/init.vim	/^nnoremap ,zs :SessWriteA<CR><Esc>$/;"	m
-,zt	sh/vi/init.vim	/^nnoremap ,zt :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make tags") <bar> redraw! /;"	m
-,zx	sh/vi/init.vim	/^nnoremap ,zx :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","sh my_make.sh clean") <bar/;"	m
+,zx	sh/vi/init.vim	/^nnoremap ,zx :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make -f my_Makefile run") /;"	m
 ,zz	sh/vi/init.vim	/^nnoremap ,zz :let &scrolloff=28-&scrolloff<CR>$/;"	m
 0	sh/conf/polybar.ini	/^animation-charging-0 = $/;"	k	section:module/battery
 0	sh/conf/polybar.ini	/^bar-used-foreground-0 = ${colors.pablue}$/;"	k	section:module/memory
@@ -217,6 +217,7 @@ $VIMPLUG	sh/vi/init.vim	/^let $VIMPLUG = $RTP . "\/plugged"$/;"	v
 <C-b>	sh/vi/init.vim	/^cnoremap <C-b> <C-Left>$/;"	m
 <C-c>	sh/vi/init.vim	/^nmap <C-c> <C-y>$/;"	m
 <C-e>	sh/vi/init.vim	/^    noremap <C-e> 2<C-e>$/;"	m
+<C-e>	sh/vi/init.vim	/^imap <C-e> <C-o>A$/;"	m
 <C-e>	sh/vi/init.vim	/^noremap <C-e> 2<C-e>$/;"	m
 <C-t>	sh/vi/init.vim	/^cnoremap <C-t> <C-Right>$/;"	m
 <C-y>	sh/vi/init.vim	/^    noremap <C-y> 2<C-y>$/;"	m
@@ -224,8 +225,8 @@ $VIMPLUG	sh/vi/init.vim	/^let $VIMPLUG = $RTP . "\/plugged"$/;"	v
 <Down>	sh/vi/init.vim	/^inoremap <Down> <C-o>gj$/;"	m
 <Down>	sh/vi/init.vim	/^nnoremap <Down> gj$/;"	m
 <Down>	sh/vi/init.vim	/^vnoremap <Down> gj$/;"	m
-<F2>	sh/vi/init.vim	/^nnoremap <F2> [c$/;"	m
-<F3>	sh/vi/init.vim	/^nnoremap <F3> ]c$/;"	m
+<F2>	sh/vi/init.vim	/^nnoremap <F2> [czz$/;"	m
+<F3>	sh/vi/init.vim	/^nnoremap <F3> ]czz$/;"	m
 <Space>	sh/vi/init.vim	/^nnoremap <silent> <Space> :exec 'normal! '.float2nr(round(winheight(0)*(exists("b:scrollpart") ?/;"	m
 <Up>	sh/vi/init.vim	/^inoremap <Up>   <C-o>gk$/;"	m
 <Up>	sh/vi/init.vim	/^nnoremap <Up>   gk$/;"	m
