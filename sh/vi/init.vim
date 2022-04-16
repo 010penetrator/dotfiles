@@ -887,11 +887,12 @@ nnoremap ,vt :TagbarOpen fj <CR>
 
 " Make and run project
 nnoremap ,zo :make <bar> copen <CR>
-nnoremap ,zm :lcd %:p:h <bar> call BuildProjectUni("Makefile","make -f my_Makefile") <bar> redraw!
-" nnoremap ,zt :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make tags") <bar> redraw! <bar> cwindow <CR>
-nnoremap ,zc :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make -f my_Makefile clean") <bar> redraw! <CR>
-nnoremap ,zx :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make -f my_Makefile run") <bar> redraw! <bar> cwindow <CR>
-nnoremap ,zb :lcd %:p:h <bar> call BuildProjectUni("Makefile","make -f my_Makefile bear") <bar> redraw! <bar> cwindow <CR>
+nnoremap ,zm :call BuildProjectUni("my_Makefile","make -f my_Makefile")<CR>
+nnoremap ,zc :call BuildProjectUni("Makefile","make -f my_Makefile clean")<CR>
+nnoremap ,zx :call BuildProjectUni("Makefile","make -f my_Makefile run")<CR>
+nnoremap ,zb :call BuildProjectUni("Makefile","make -f my_Makefile bear")<CR>
+nnoremap ,zt :call BuildProjectUni("Makefile","make tags") <bar> cwindow <CR>
+" nnoremap ,zm :lcd %:p:h <bar> call BuildProjectUni("Makefile","make -f my_Makefile") <bar> redraw! <bar> copen <CR>
 
 " Folding
 vnoremap ,cf :<C-U>call FoldSelection()<CR>
@@ -1091,17 +1092,28 @@ function! BuildProjectUni(Makefile,Makecommand)
         let l:proj_dir = ClimbToDirWhere(a:Makefile,1)
     endwhile
     if ( l:proj_dir != "-1" )
-        exec "!echo " . a:Makecommand . " @ " . l:proj_dir . ":"
-        exec "!echo ------------------------------------------------"
-        make
+        if has('nvim')
+            echo system("echo -e \"\\n\\n\"--" . a:Makecommand . " @ " . l:proj_dir . ":")
+            echo system("echo ------------------------------------------------")
+            make
+        else
+            silent exec "!echo -e \"\\n\\n\"--" . a:Makecommand . " @ " . l:proj_dir . ":"
+            silent exec "!echo ------------------------------------------------"
+            silent make
+        endif
         " exec '! ' . a:Makecommand
     else
-        exec '! echo Makefile not found'
+        exec '! echo Makefile not found!'
+        echo "Makefile not found!"
     endif
-    " Silent read -n 1 -s -r -p "//hit.anykey" ; echo -ne "\n\n"
     " reset stuff
-    exec "lcd " . l:starting_directory
+    silent exec "lcd " . l:starting_directory
     let &makeprg = l:makeprg_bak
+    " exit with rituals
+    if !has('nvim')
+        Silent read -n 1 -s -r -p "//hit.anykey" ; echo -ne "\n\n"
+        redraw!
+    endif
 endfunction
 
 function! ClimbToDirWhere(filename,chdir)

@@ -93,17 +93,18 @@ $VIMPLUG	sh/vi/init.vim	/^let $VIMPLUG = $RTP . "\/plugged"$/;"	v
 ,vw	sh/vi/init.vim	/^nnoremap ,vw :wa<CR>$/;"	m
 ,vx	sh/vi/init.vim	/^nnoremap ,vx :let lastl=line('.') <bar> exec "normal yap" <bar> @\\" <bar> exec lastl<CR>:echo "/;"	m
 ,x	sh/vi/init.vim	/^nnoremap ,x :q<CR>$/;"	m
-,zb	sh/vi/init.vim	/^nnoremap ,zb :lcd %:p:h <bar> call BuildProjectUni("Makefile","make -f my_Makefile bear") <bar> /;"	m
-,zc	sh/vi/init.vim	/^nnoremap ,zc :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make -f my_Makefile clean"/;"	m
+,zb	sh/vi/init.vim	/^nnoremap ,zb :call BuildProjectUni("Makefile","make -f my_Makefile bear")<CR>$/;"	m
+,zc	sh/vi/init.vim	/^nnoremap ,zc :call BuildProjectUni("Makefile","make -f my_Makefile clean")<CR>$/;"	m
 ,zc	sh/vi/init.vim	/^nnoremap ,zc :let &colorcolumn=80-&colorcolumn<CR>$/;"	m
 ,ze	sh/vi/init.vim	/^nnoremap ,ze :call SwitchCE()<CR>$/;"	m
 ,zl	sh/vi/init.vim	/^nnoremap ,zl : silent exec '! echo -e "\\n$(pwd):"; ls -la . ; echo \\. ; ls -la %:p ; read -n 1/;"	m
-,zm	sh/vi/init.vim	/^nnoremap ,zm :lcd %:p:h <bar> call BuildProjectUni("Makefile","make -f my_Makefile") <bar> redra/;"	m
+,zm	sh/vi/init.vim	/^nnoremap ,zm :call BuildProjectUni("my_Makefile","make -f my_Makefile")<CR>$/;"	m
 ,zn	sh/vi/init.vim	/^nnoremap ,zn :set number!<CR>$/;"	m
 ,zo	sh/vi/init.vim	/^nnoremap ,zo :make <bar> copen <CR>$/;"	m
 ,zq	sh/vi/init.vim	/^nnoremap ,zq :SessWriteA<CR>: wa \\| qa<CR>$/;"	m
 ,zs	sh/vi/init.vim	/^nnoremap ,zs :SessWriteA<CR><Esc>$/;"	m
-,zx	sh/vi/init.vim	/^nnoremap ,zx :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make -f my_Makefile run") /;"	m
+,zt	sh/vi/init.vim	/^nnoremap ,zt :call BuildProjectUni("Makefile","make tags") <bar> cwindow <CR>$/;"	m
+,zx	sh/vi/init.vim	/^nnoremap ,zx :call BuildProjectUni("Makefile","make -f my_Makefile run")<CR>$/;"	m
 ,zz	sh/vi/init.vim	/^nnoremap ,zz :let &scrolloff=28-&scrolloff<CR>$/;"	m
 0	sh/conf/polybar.ini	/^animation-charging-0 = $/;"	k	section:module/battery
 0	sh/conf/polybar.ini	/^bar-used-foreground-0 = ${colors.pablue}$/;"	k	section:module/memory
