@@ -13,7 +13,6 @@ $FZF_DEFAULT_OPTS	sh/vi/init.vim	/^let $FZF_DEFAULT_OPTS='--exact --layout=rever
 $RTP	sh/vi/init.vim	/^let $RTP=split(&runtimepath, ',')[0]$/;"	v
 $VIMPLUG	sh/vi/init.vim	/^let $VIMPLUG = $RTP . "\/plugged"$/;"	v
 *	sh/vi/init.vim	/^nnoremap <silent> * :<C-u>execute "keepjumps norm! " . v:count1 . "*"<CR>$/;"	m
-,,b	sh/vi/init.vim	/^nnoremap ,,b :Bash <CR>$/;"	m
 ,,c	sh/vi/init.vim	/^nnoremap ,,c :NewVifmHere<CR>$/;"	m
 ,,o	sh/vi/init.vim	/^nnoremap ,,o ^y$:call system('xdg-open ' . "'" . @" . "' &")<CR>$/;"	m
 ,,o	sh/vi/init.vim	/^vnoremap ,,o :<C-U>call SystemOpenEveryLine()<CR>$/;"	m
@@ -189,6 +188,14 @@ $VIMPLUG	sh/vi/init.vim	/^let $VIMPLUG = $RTP . "\/plugged"$/;"	v
 7	sh/conf/polybar.ini	/^ramp-coreload-7 = %{F#ff5c57}█%{F-}$/;"	k	section:module/cpu
 8	sh/conf/polybar.ini	/^bar-volume-foreground-8 = #5a5$/;"	k	section:module/volume
 9	sh/conf/polybar.ini	/^bar-volume-foreground-9 = #49D673$/;"	k	section:module/volume
+<A-h>	sh/vi/init.vim	/^    inoremap <A-h> <C-\\><C-N><C-w>h$/;"	m
+<A-h>	sh/vi/init.vim	/^    nnoremap <A-h> <C-w>h$/;"	m
+<A-j>	sh/vi/init.vim	/^    inoremap <A-j> <C-\\><C-N><C-w>j$/;"	m
+<A-j>	sh/vi/init.vim	/^    nnoremap <A-j> <C-w>j$/;"	m
+<A-k>	sh/vi/init.vim	/^    inoremap <A-k> <C-\\><C-N><C-w>k$/;"	m
+<A-k>	sh/vi/init.vim	/^    nnoremap <A-k> <C-w>k$/;"	m
+<A-l>	sh/vi/init.vim	/^    inoremap <A-l> <C-\\><C-N><C-w>l$/;"	m
+<A-l>	sh/vi/init.vim	/^    nnoremap <A-l> <C-w>l$/;"	m
 <BS>	sh/vi/init.vim	/^nnoremap <silent> <BS>    :exec 'normal! '.float2nr(round(winheight(0)*(exists("b:scrollpart") ?/;"	m
 <C-@>C	sh/vi/init.vim	/^    nmap <C-@>C :scs find c <C-R>=expand("<cword>")<CR><CR>$/;"	m
 <C-@>D	sh/vi/init.vim	/^    nmap <C-@>D :scs find d <C-R>=expand("<cword>")<CR><CR>$/;"	m

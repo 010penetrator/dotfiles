@@ -740,6 +740,23 @@ if v:version >= 801
     tnoremap q<tab> <C-w>p
     tmap <C-\> <C-w>w
 endif
+if has('nvim')
+    tnoremap oo <C-\><C-n>
+    tnoremap o<C-o> <C-\><C-n> :e #<CR>
+    tnoremap <C-x> <C-\><C-n> :BDnJump<CR>
+    tnoremap <A-h> <C-\><C-N><C-w>h
+    tnoremap <A-j> <C-\><C-N><C-w>j
+    tnoremap <A-k> <C-\><C-N><C-w>k
+    tnoremap <A-l> <C-\><C-N><C-w>l
+    inoremap <A-h> <C-\><C-N><C-w>h
+    inoremap <A-j> <C-\><C-N><C-w>j
+    inoremap <A-k> <C-\><C-N><C-w>k
+    inoremap <A-l> <C-\><C-N><C-w>l
+    nnoremap <A-h> <C-w>h
+    nnoremap <A-j> <C-w>j
+    nnoremap <A-k> <C-w>k
+    nnoremap <A-l> <C-w>l
+endif
 
 " Scroll fraction of the screen
 let scrollpart=82
@@ -817,8 +834,6 @@ nnoremap aB : vnew \| if isdirectory(expand('#:p:h')) \| lcd #:p:h \| endif \| t
 " Open terminal at current location
 nnoremap qb : if isdirectory(expand('%:p:h')) \| lcd %:p:h \| endif \| terminal ++kill=term ++curwin ++norestore <CR>
 
-" Go to shell
-nnoremap ,,b :Bash <CR>
 " Spawn a terminal outside vim
 nnoremap ,,t :NewTermHere<CR>
 " Spawn vifm in terminal outside vim
@@ -872,7 +887,7 @@ nnoremap ,vt :TagbarOpen fj <CR>
 
 " Make and run project
 nnoremap ,zo :make <bar> copen <CR>
-nnoremap ,zm :lcd %:p:h <bar> call BuildProjectUni("Makefile","make -f my_Makefile") <bar> redraw! <bar> copen <CR>
+nnoremap ,zm :lcd %:p:h <bar> call BuildProjectUni("Makefile","make -f my_Makefile") <bar> redraw!
 " nnoremap ,zt :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make tags") <bar> redraw! <bar> cwindow <CR>
 nnoremap ,zc :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make -f my_Makefile clean") <bar> redraw! <CR>
 nnoremap ,zx :lcd %:p:h <bar> silent call BuildProjectUni("Makefile","make -f my_Makefile run") <bar> redraw! <bar> cwindow <CR>
@@ -1083,7 +1098,7 @@ function! BuildProjectUni(Makefile,Makecommand)
     else
         exec '! echo Makefile not found'
     endif
-    Silent read -n 1 -s -r -p "//hit.anykey" ; echo -ne "\n\n"
+    " Silent read -n 1 -s -r -p "//hit.anykey" ; echo -ne "\n\n"
     " reset stuff
     exec "lcd " . l:starting_directory
     let &makeprg = l:makeprg_bak

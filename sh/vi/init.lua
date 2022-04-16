@@ -180,10 +180,10 @@ if vim.fn.has('nvim-0.7') == 1 then
     vim.keymap.set("n","gw", vim.lsp.buf.workspace_symbol)
     vim.keymap.set("n","gA", vim.lsp.buf.type_definition)
     vim.keymap.set("n","gi", vim.lsp.buf.implementation)
-    vim.keymap.set("n","<leader>gn", vim.diagnostic.goto_next)
-    vim.keymap.set("n","<leader>gp", vim.diagnostic.goto_prev)
-    vim.keymap.set("n","<leader>R", vim.lsp.buf.rename)
-    vim.keymap.set("n","<leader>A", vim.lsp.buf.code_action)
+    vim.keymap.set("n",",gn", vim.diagnostic.goto_next)
+    vim.keymap.set("n",",gp", vim.diagnostic.goto_prev)
+    vim.keymap.set("n",",R", vim.lsp.buf.rename)
+    vim.keymap.set("n",",,a", vim.lsp.buf.code_action)
 end
 
 local keymap = vim.api.nvim_set_keymap
