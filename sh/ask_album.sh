@@ -3,15 +3,15 @@
 
 clear
 echo What would you like to do next?
-echo .
+echo
 
 # If TARG not provided, use PWD
 [[ -n $TARG ]] || TARG=$(pwd)
 
 if ! [[ -d $TARG ]] ; then
-    echo "(non-existent)" "$TARG"
+    echo "(non-existent)" $TARG @ $(realpath .)
 else
-    echo $TARG
+    echo $TARG @ $(realpath .)
 fi
 
 if [[ "$TARG" =~ "torrents/red/" ]] ; then

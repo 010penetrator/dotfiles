@@ -1714,7 +1714,7 @@ au FileType cpp nnoremap <buffer>K :JbzCppMan<CR>
 
 if has('nvim')
     set wildoptions=pum
-    set pumblend=20
+    set pumblend=15
     set winblend=10
 endif
 
