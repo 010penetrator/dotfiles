@@ -468,7 +468,7 @@ endif
 set timeoutlen=500
 let g:AutoClosePumvisible = {"ENTER": '', "ESC": ''}
 let mapleader = ","
-" nnoremap q\ 
+" nnoremap q\
 " nnoremap z' `
 
 " Free <q> key
@@ -681,6 +681,9 @@ nnoremap ,bb :Telescope buffers theme=ivy<CR>
 nnoremap ,fg :GitFiles<CR>
 nnoremap ,fl :Lines<CR>
 nnoremap qf  :FilesProj<CR>
+nnoremap ,zs :Files $sh<CR>
+nnoremap ,zt :Files $tt<CR>
+nnoremap ,zj :Files $jo<CR>
 nnoremap ,to :Telescope oldfiles<CR>
 
 " Search text
@@ -703,7 +706,6 @@ nnoremap ,g2 :call FocusBufOrDo('bspwm$','e $sh/bspwmrc')<CR>
 nnoremap ,gx :call FocusBufOrDo('sxhkd','e $sh/conf/sxhkdrc')<CR>
 nnoremap ,gk :call FocusBufOrDo('kitty.conf','e $sh/conf/kitty.conf')<CR>
 nnoremap ,gr :call FocusBufOrDo('rc.sh','e $sh/rc.sh')<CR>
-nnoremap ,gm :call FocusBufOrDo('material','e $tt/material')<CR>
 nnoremap ,gz :call FocusBufOrDo('zzzz','e $tt/zzzzzz')<CR>
 nnoremap ,gu :call FocusBufOrDo('ff','e $tt/u*/ff*')<CR>
 nnoremap ,gh :call FocusBufOrDo('sh_history','e $HOME/.bash_history')<CR>G
@@ -716,10 +718,9 @@ nnoremap ,V :source $MYVIMRC <CR>
 nnoremap ,vv :source $MYVIMRC <CR>
 nnoremap ,cs :LoadColor<CR>
 nnoremap ,vs :source $RTP/session.vim \| call LoadColor()<CR>
-nnoremap ,vw :wa<CR>
 nnoremap ,vq :qa! <CR>
 nnoremap ,l :Startify<CR>
-nnoremap ,zs :SessWriteA<CR><Esc>
+nnoremap ,vw :SessWriteA<CR><Esc>
 nnoremap ,zq :SessWriteA<CR>: wa \| qa<CR>
 nnoremap ,ve :call AddRpcEar()<CR>
 " Open current file at vimserver session via my "vimrpc" shell script
@@ -891,7 +892,7 @@ nnoremap ,zm :call BuildProjectUni("my_Makefile","make -f my_Makefile")<CR>
 nnoremap ,zc :call BuildProjectUni("Makefile","make -f my_Makefile clean")<CR>
 nnoremap ,zx :call BuildProjectUni("Makefile","make -f my_Makefile run")<CR>
 nnoremap ,zb :call BuildProjectUni("Makefile","make -f my_Makefile bear")<CR>
-nnoremap ,zt :call BuildProjectUni("Makefile","make tags") <bar> cwindow <CR>
+" nnoremap ,zt :call BuildProjectUni("Makefile","make tags") <bar> cwindow <CR>
 " nnoremap ,zm :lcd %:p:h <bar> call BuildProjectUni("Makefile","make -f my_Makefile") <bar> redraw! <bar> copen <CR>
 
 " Folding
@@ -1710,4 +1711,14 @@ function! s:JbzCppMan()
 endfunction
 command! JbzCppMan :call s:JbzCppMan()
 au FileType cpp nnoremap <buffer>K :JbzCppMan<CR>
+
+if has('nvim')
+    set wildoptions=pum
+    set pumblend=20
+    set winblend=10
+endif
+
+
+" Watch log with Vim " For Neovim use :terminal
+" call job_start("tail -f /ln/ho/iLog", {'out_io':'buffer','out_name':'dummy'})
 

@@ -41,11 +41,12 @@ echo
     echo "d - delete from playlist" || \
     echo "a - add to playlist and quit"
 [[ $INFAVS == 0 ]] && \
-    echo "f - add to favourites and quit"
+    echo "f - add to favourites"
 [[ -f $LIST ]] && \
-    echo "n - play an album from Playlist"
-echo "L - play an album from Library"
+    echo "p - play an album from Playlist"
 echo "F - play an album from Favourites"
+echo "I - play an album from History"
+echo "L - play an album from Library"
 echo "<Space> or <CR> - play again"
 echo
 
@@ -60,24 +61,28 @@ elif [[ $INLIST != 1 && $prompt == "a" ]] ; then
 elif [[ $INLIST == 1 && $prompt == "d" ]] ; then
     echo deleting "$TARG"
     grep -vF "$TARG" $HOME/.mpv-playlist > /tmp/tmplist && mv /tmp/tmplist $HOME/.mpv-playlist
-    INLIST=2
+    RUNAGAIN=1
 elif [[ $INFAVS == 0 && $prompt == "f" ]] ; then
     echo "$TARG" >> $HOME/.mpv-favourites
+    RUNAGAIN=1
 elif [[ $prompt == "c" && $INVIFM != 1 ]] ; then
     vifm . -c "wincmd o"
 elif [[ $prompt == "" ]] ; then
     PAUSE=0 mpv-album .
     # ask_album.sh
-elif [[ -f $LIST ]] && [[ $prompt == "n" ]] ; then
+elif [[ -f $LIST ]] && [[ $prompt == "p" ]] ; then
     # source $sh/dmenurc
     # SELECT=$( tac $LIST | dmenu $DMENU_OPTIONS -fn "$DMENU_FN" )
-    SELECT=$( cat -n "$LIST" | sort -uk2 | sort -nr | cut -f2- | dmenu $DMENU_OPTIONS -fn "$DMENU_FN" )
+    SELECT=$( cat -n "$LIST" | sort -nr | sort -uk2 | sort -n | cut -f2- | dmenu $DMENU_OPTIONS -fn "$DMENU_FN" )
     ASK=1 PAUSE=1 mpv-album "$SELECT"
 elif [[ -f $LIST ]] && [[ $prompt == "F" ]] ; then
-    SELECT=$( cat -n "$HOME/.mpv-favourites" | sort -uk2 | sort -nr | cut -f2- | dmenu $DMENU_OPTIONS -fn "$DMENU_FN" )
+    SELECT=$( cat -n "$HOME/.mpv-favourites" | sort -nr | sort -uk2 | sort -n | cut -f2- | dmenu $DMENU_OPTIONS -fn "$DMENU_FN" )
     ASK=1 PAUSE=1 mpv-album "$SELECT"
-elif [[ -f $LIST ]] && [[ $prompt == "L" ]] ; then
-    SELECT=$(cat $HOME/.mus-list | sort -R | dmenu $DMENU_OPTIONS -fn "$DMENU_FN")
+elif [[ -f $HOME/.mus-list ]] && [[ $prompt == "L" ]] ; then
+    SELECT=$( cat $HOME/.mus-list | sort -R | dmenu $DMENU_OPTIONS -fn "$DMENU_FN" )
+    ASK=1 PAUSE=1 mpv-album "$SELECT"
+elif [[ -f $HOME/.mpv-history ]] && [[ $prompt == "I" ]] ; then
+    SELECT=$( cat -n $HOME/.mpv-history | sort -nr | sort -uk2 | sort -nr | cut -f2- | dmenu $DMENU_OPTIONS -fn "$DMENU_FN" )
     ASK=1 PAUSE=1 mpv-album "$SELECT"
 else
     clear
@@ -88,5 +93,5 @@ else
     exit
 fi
 
-[[ $INLIST == 2 ]] && ask_album.sh
+[[ $RUNAGAIN == 1 ]] && ask_album.sh
 

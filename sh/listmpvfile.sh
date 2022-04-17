@@ -9,7 +9,7 @@ fi
 source $sh/dmenurc
 # d=$(tac "$1" | dmenu $DMENU_OPTIONS -fn "$DMENU_FN")
 # Remove duplicates and choose line with dmenu
-d=$( cat -n "$1" | sort -uk2 | sort -nr | cut -f2- | dmenu $DMENU_OPTIONS -fn "$DMENU_FN" )
+d=$( cat -n "$1" | sort -nr | sort -uk2 | sort -nr | cut -f2- | dmenu $DMENU_OPTIONS -fn "$DMENU_FN" )
 if [ -z "$d" ]; then echo no selection !; exit; fi
 echo . $d
 # notify-send "$d"

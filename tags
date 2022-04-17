@@ -55,7 +55,6 @@ $VIMPLUG	sh/vi/init.vim	/^let $VIMPLUG = $RTP . "\/plugged"$/;"	v
 ,gi	sh/vi/init.vim	/^nnoremap ,gi :call FocusBufOrDo('init.lua','e $sh\/vi\/init.lua')<CR>$/;"	m
 ,gk	sh/vi/init.vim	/^nnoremap ,gk :call FocusBufOrDo('kitty.conf','e $sh\/conf\/kitty.conf')<CR>$/;"	m
 ,gl	sh/vi/init.vim	/^nnoremap ,gl :call FocusBufOrDo('1linux','e $sh\/rs\/1linux')<CR>$/;"	m
-,gm	sh/vi/init.vim	/^nnoremap ,gm :call FocusBufOrDo('material','e $tt\/material')<CR>$/;"	m
 ,go	sh/vi/init.vim	/^nnoremap ,go ^y$:call system('google.sh ' . "'" . @" . "'")<CR>$/;"	m
 ,gr	sh/vi/init.vim	/^nnoremap ,gr :call FocusBufOrDo('rc.sh','e $sh\/rc.sh')<CR>$/;"	m
 ,gt	sh/vi/init.vim	/^nnoremap ,gt :call FocusBufOrDo('vimrc_themes','e $sh\/vi\/vimrc_themes')<CR>$/;"	m
@@ -90,7 +89,7 @@ $VIMPLUG	sh/vi/init.vim	/^let $VIMPLUG = $RTP . "\/plugged"$/;"	v
 ,vt	sh/vi/init.vim	/^nnoremap ,vt :TagbarOpen fj <CR>$/;"	m
 ,vu	sh/vi/init.vim	/^nnoremap ,vu :source \/ln\/sh\/vi\/init.vim <bar> PlugUpdate <CR>$/;"	m
 ,vv	sh/vi/init.vim	/^nnoremap ,vv :source $MYVIMRC <CR>$/;"	m
-,vw	sh/vi/init.vim	/^nnoremap ,vw :wa<CR>$/;"	m
+,vw	sh/vi/init.vim	/^nnoremap ,vw :SessWriteA<CR><Esc>$/;"	m
 ,vx	sh/vi/init.vim	/^nnoremap ,vx :let lastl=line('.') <bar> exec "normal yap" <bar> @\\" <bar> exec lastl<CR>:echo "/;"	m
 ,x	sh/vi/init.vim	/^nnoremap ,x :q<CR>$/;"	m
 ,zb	sh/vi/init.vim	/^nnoremap ,zb :call BuildProjectUni("Makefile","make -f my_Makefile bear")<CR>$/;"	m
@@ -102,8 +101,8 @@ $VIMPLUG	sh/vi/init.vim	/^let $VIMPLUG = $RTP . "\/plugged"$/;"	v
 ,zn	sh/vi/init.vim	/^nnoremap ,zn :set number!<CR>$/;"	m
 ,zo	sh/vi/init.vim	/^nnoremap ,zo :make <bar> copen <CR>$/;"	m
 ,zq	sh/vi/init.vim	/^nnoremap ,zq :SessWriteA<CR>: wa \\| qa<CR>$/;"	m
-,zs	sh/vi/init.vim	/^nnoremap ,zs :SessWriteA<CR><Esc>$/;"	m
-,zt	sh/vi/init.vim	/^nnoremap ,zt :call BuildProjectUni("Makefile","make tags") <bar> cwindow <CR>$/;"	m
+,zs	sh/vi/init.vim	/^nnoremap ,zs :Files $sh<CR>$/;"	m
+,zt	sh/vi/init.vim	/^nnoremap ,zt :Files $tt<CR>$/;"	m
 ,zx	sh/vi/init.vim	/^nnoremap ,zx :call BuildProjectUni("Makefile","make -f my_Makefile run")<CR>$/;"	m
 ,zz	sh/vi/init.vim	/^nnoremap ,zz :let &scrolloff=28-&scrolloff<CR>$/;"	m
 0	sh/conf/polybar.ini	/^animation-charging-0 = $/;"	k	section:module/battery

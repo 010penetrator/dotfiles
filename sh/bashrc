@@ -19,6 +19,7 @@ export PAGER=less
 export BROWSER=firefox
 export sh=/ln/sh
 export lo=/ln/lo/cur
+export jo=$HOME/gitjob
 export bakhot=$HOME/bak
 export baksam=/ln/mo/SAMV/bak
 export MANWIDTH=80

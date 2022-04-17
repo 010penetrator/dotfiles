@@ -22,3 +22,9 @@ touch /tmp/now_is_"$1"
     fi
 }
 
+if [[ $1 == 'nox' ]] ; then
+    sed -i 's/=Pop$/=Pop-dark/' /ln/co/gtk-3.0/settings.ini 
+elif [[ $1 == 'day' ]] ; then
+    sed -i 's/=Pop-dark$/=Pop/' /ln/co/gtk-3.0/settings.ini 
+fi
+
