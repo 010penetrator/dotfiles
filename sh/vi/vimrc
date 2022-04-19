@@ -18,6 +18,5 @@ SSource $HOME/.vimrc_msys
 " TODO/Problems :
 "     ft detection is lazy/wrong
 "     lsp client exits with 1
-"     need terminal in buffer
 "     less completion
 

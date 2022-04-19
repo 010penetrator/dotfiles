@@ -74,6 +74,12 @@ require'marks'.setup {
     }
 }
 
+require("toggleterm").setup{
+    -- direction = 'vertical' | 'horizontal' | 'window' | 'float',
+    direction = 'horizontal',
+    size = 25,
+}
+
 require('neoscroll').setup({
     easing_function = "circular",
     mappings = {'<C-u>', '<C-d>', '<C-b>', '<C-f>', 'zt', 'zz', 'zb'}

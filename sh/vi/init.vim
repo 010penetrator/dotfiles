@@ -536,8 +536,8 @@ vnoremap <Up>   gk
 inoremap <Down> <C-o>gj
 inoremap <Up>   <C-o>gk
 nmap <C-c> <C-y>
-noremap <C-e> 2<C-e>
-noremap <C-y> 2<C-y>
+noremap <C-e> 3<C-e>
+noremap <C-y> 3<C-y>
 nnoremap ,ze :call SwitchCE()<CR>
 " jump last edit edges
 nnoremap [e `[
@@ -588,7 +588,7 @@ onoremap <silent> gy :call search('^\(.\\|\(\s\)*\)$','bW') <CR>
 nnoremap aw :w<CR>
 nnoremap qx :q<CR>
 nnoremap ,x :q<CR>
-nnoremap qtx :tabclose<CR>
+nnoremap qg :tabclose<CR>
 nnoremap ,q :qa <CR>
 nnoremap ,d :bd!<CR>
 nnoremap ,bd :BDnJump<CR>
@@ -717,11 +717,10 @@ nnoremap ,vo :Goyo<CR>
 nnoremap ,V :source $MYVIMRC <CR>
 nnoremap ,vv :source $MYVIMRC <CR>
 nnoremap ,cs :LoadColor<CR>
-nnoremap ,vs :source $RTP/session.vim \| call LoadColor()<CR>
+nnoremap ,vs :source $RTP/session.vim <bar> call AddRpcEar() <bar> call LoadColor()<CR>
 nnoremap ,vq :qa! <CR>
 nnoremap ,l :Startify<CR>
-nnoremap ,vw :SessWriteA<CR><Esc>
-nnoremap ,zq :SessWriteA<CR>: wa \| qa<CR>
+nnoremap ,zq :wa <bar> qa<CR>
 nnoremap ,ve :call AddRpcEar()<CR>
 " Open current file at vimserver session via my "vimrpc" shell script
 nnoremap ,va :silent exec '! ( virpc "%:p" ) & ' \| redraw! \| q <CR>
@@ -845,7 +844,7 @@ nnoremap ,,t :NewTermHere<CR>
 nnoremap ,,c :NewVifmHere<CR>
 
 " Jump to terminal window
-nnoremap qg :call GotoTerm(0)<CR>
+nnoremap qt :call GotoTerm(0)<CR>
 " Jump to netrw window
 nnoremap ,n :call RaiseNetRW()<CR>
 
@@ -856,8 +855,10 @@ nnoremap ,B yap: exec "!" . @" <CR>
 vnoremap ,b :call RunSelBash()<CR>
 
 " Call system
+" system open current path
+nnoremap ,C :Silent xdg-open %:p:h &<CR>
 " system open current file
-nnoremap ,C :Silent xdg-open %:p:h & <CR>
+nnoremap ,O :Silent xdg-open %:p &<CR>
 " system open current line (usable for http links)
 nnoremap ,,o ^y$:call system('xdg-open ' . "'" . @" . "' &")<CR>
 " system open selected lines
@@ -936,7 +937,6 @@ endfunction
 
 " command! SessWriteA call SaveColor() | call TerminalsFuneral() | mksession! $RTP/session.vim | SaveSigns! $RTP/signs.sav
 " command! SessWriteB exec 'SessWriteA' | call BufFocusedThenDo('signs.sav','wq')
-command! SessWriteA call SaveColor() | call TerminalsFuneral() | mksession! $RTP/session.vim
 
 command! Bash exec 'silent ! bash' | redraw!
 command! NewTerm exec 'silent ! $TERMINAL &' | redraw!
@@ -1422,8 +1422,8 @@ command! -nargs=? LoadColor call SetPhase(<f-args>) <bar> call LoadColor(<f-args
 
 function! SwitchCE()
   if mapcheck("<C-e>") == ''
-    noremap <C-e> 2<C-e>
-    noremap <C-y> 2<C-y>
+    noremap <C-e> 3<C-e>
+    noremap <C-y> 3<C-y>
     echo "Now scrolling is faster."
   else
     unmap <C-e>
@@ -1726,4 +1726,6 @@ endif
 " Watch log with Vim " For Neovim use :terminal
 " call job_start("tail -f /ln/ho/iLog", {'out_io':'buffer','out_name':'dummy'})
 
+nnoremap <silent><A-t> <Cmd>exe v:count1 . "ToggleTerm"<CR>
+tnoremap <silent><A-t> <C-\><C-n>:ToggleTermToggleAll<CR>
 
