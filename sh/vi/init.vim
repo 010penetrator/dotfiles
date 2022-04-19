@@ -733,7 +733,7 @@ nnoremap ,vc :silent exec '! ( MODE=cur virpc "%:p" ) & ' \| redraw! \| q <CR>
 " Have mappings in terminal mode
 if v:version >= 801
     tmap oo <C-w>N:set nonumber<CR>
-    tmap o<C-o>  <C-w>N :e #<CR>
+    tmap o<C-o> <C-w>N :e #<CR>
     tmap <C-x> <C-w>N :BDnJump<CR>
     tnoremap <C-PageUp> <C-w>:tabprev<CR>
     tnoremap <C-PageDown> <C-w>:tabnext<CR>
@@ -743,8 +743,12 @@ if v:version >= 801
 endif
 if has('nvim')
     tnoremap oo <C-\><C-n>
-    tnoremap o<C-o> <C-\><C-n> :e #<CR>
-    tnoremap <C-x> <C-\><C-n> :BDnJump<CR>
+    tnoremap o<C-o> <C-\><C-n>:e #<CR>
+    tnoremap <C-x> <C-\><C-n>:BDnJump<CR>
+    tnoremap <C-PageUp> <C-\><C-n>:tabprev<CR>
+    tnoremap <C-PageDown> <C-\><C-n>:tabnext<CR>
+    tnoremap g<tab> <C-\><C-n>:exe "tabn ".g:lasttab<CR>
+    tnoremap q<tab> <C-\><C-n>:wincmd p<CR>
     tnoremap <A-h> <C-\><C-N><C-w>h
     tnoremap <A-j> <C-\><C-N><C-w>j
     tnoremap <A-k> <C-\><C-N><C-w>k
@@ -1716,9 +1720,10 @@ if has('nvim')
     set wildoptions=pum
     set pumblend=15
     set winblend=10
+    autocmd TermOpen * setlocal scrollback=-1
 endif
-
 
 " Watch log with Vim " For Neovim use :terminal
 " call job_start("tail -f /ln/ho/iLog", {'out_io':'buffer','out_name':'dummy'})
+
 

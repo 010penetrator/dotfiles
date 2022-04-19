@@ -75,10 +75,12 @@ alias leto='date +%Y-%m-%d'
 alias p='ps aux | grep -v grep | grep'
 alias dropcs='sync && echo 3 | sudo tee /proc/sys/vm/drop_caches'
 alias vs='nvim -S /ln/co/nvim/session/comon'
+alias vl='MODE=last nvimrpc'
+alias mm='make -f my_Makefile'
 
 # Functions #
 zz() { du -csh $*; local IFS="_"; filename=$(echo "$*" | tr / _); tar -I 'zstd -10 -T0' -cf "$filename".tar.zst --exclude='.git' --exclude='tags' $*; du -sh "$filename".tar.zst; }
-x() { xdg-open "$*" &> /dev/null & disown ; } 
+x() { xdg-open "$*" &> /dev/null & disown ; }
 get_space_used() { df -BMB "$1" --output=used | tail -1 | grep -o '[0-9]*' ; }
 hddsum() { d1=$(get_space_used /ln/mo/blink) ; d2=$(get_space_used /ln/mo/metal) ; echo Σ= "$(( d1 + d2 ))" Mb ; }
 fkill() {  ps -ef | sed 1d | fzf -e -m | awk '{print $2}' | xargs kill -${1:-9} ; }

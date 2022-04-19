@@ -198,7 +198,7 @@ rsync -e ssh -rln -vK --progress --delete --checksum --stats --no-perms --no-tim
 rsync -e 'ssh -i .ssh/key0 -p 2222' -av --progress --no-perms --no-times --delete --size-only myphone@192.168.1.88:/storage/emulated/0/Download/prags-andro/ /ln/pr/prags-andro/ # sync with andro-phone
 rsync -e ssh -av --progress --no-perms --no-times --delete --size-only pi@192.168.1.78:/ln/red/Form*1995* /ln/torrents/red/ # reverse transfer
 rsync -e ssh -Lav --progress --exclude=".*/" --no-perms --no-times --delete --size-only pi@192.168.1.78:/ln/red/ /ln/torrents/red/ # reverse transfer
-7z a dir.7z Dir -p -mhe=on #create encrypted 7z 
+7z a dir.7z Dir -p -mhe=on #create encrypted 7z
 7z a -mx=3 -xr!.git -xr!tags out.7z Projekt # create quick 7z
 tar -I 'zstd -11 -T0' -cf somedir.tar.zst --exclude='.git' --exclude='tags' somedir # create tar.zst
 zip -r -1 arc.zip Dir Dir2 #create zip
@@ -209,15 +209,16 @@ git diff stash@{N} master # compare any stash against master (may add --name-onl
 git difftool stash^! # diff last stash against its commit
 git difftool stash HEAD # diff last stash against current commit
 git diff mybranch master -- way/somefile.c # diff against other branch
+git diff --cached # show the changes that have been staged (i.e. changes in the cache/index)
 git log --stat
-git log -p 
+git log -p
 git show <commithash>:main.cpp > another.cpp # restore file under new name
 git config --global credential.helper 'cache --timeout=36000' # remember git passwd
 git config credential.helper cache 6h
 git config --local credential.helper store # store git passwd
 git config --global diff.tool vimdiff # use vim as difftool
 git config --global difftool.prompt false
-git log --follow somefile 
+git log --follow somefile
 git checkout INDEX~1 somefile # restore somefile just before INDEX commit
 git reset --hard origin/master ; git pull origin master # discard all local changes/commits and pull from upstream
 git --follow file.c # show file history tracking renames
@@ -247,16 +248,16 @@ curl https://wtfismyip.com/text # check ip
 curl ifconfig.me
 curl -s --head http://opennet.ru # check network and date
 wget http://ya.ru --spider # check network
-proxychains sudo wget -O - http://ya.ru 
+proxychains sudo wget -O - http://ya.ru
 sudo nmap -sP 192.168.1-3.0/24
 nmap -p 80 example.com # "ping" by port
 iptables -t nat -A OUTPUT -p tcp -m tcp --dport 80 -d 195.82.146.120/30 -j DNAT --to-destination 163.172.167.207:3128 ##route rutracker torrenting
 nmblookup -S WORKGROUP # find samba places
-date +%T -s "11:14:00" # set date 
+date +%T -s "11:14:00" # set date
 date -s "$(curl -s --head http://opennet.ru | grep ^Date: | sed 's/Date: //g')" # set date from a website
 hwclock --systohc # sync hardware clock to system time
 # torify stuff: edit /etc/tor/torrc,/etc/tor/torsocks.conf ; /etc/init.d/tor restart ==> use torsocks
-torify curl http://wtfismyip.com/text 
+torify curl http://wtfismyip.com/text
 torsocks curl -s --head http://flibustahezeous3.onion/ # check tor
 ??? curl --proxy socks5h://localhost:1234 ifconfig.me # check socks5 proxy
 curl --socks5 localhost:1234 ifconfig.me # check socks5 proxy
@@ -289,8 +290,8 @@ hwinfo --gfxcard
 inxi -v7 # system info
 
 ==MCU
-avrdude -c avrisp -p atmega32u4 -U flash:w:planck_rev4_plasmik.hex:i 
-sleep 3 && sudo dfu-programmer atmega32u4 erase && sudo dfu-programmer atmega32u4 flash /ln/mo/GLIM/planck_rev4_plasmik.hex 
+avrdude -c avrisp -p atmega32u4 -U flash:w:planck_rev4_plasmik.hex:i
+sleep 3 && sudo dfu-programmer atmega32u4 erase && sudo dfu-programmer atmega32u4 flash /ln/mo/GLIM/planck_rev4_plasmik.hex
 sudo make xd60/rev3:plasmik:dfu
 make planck/rev6:plasmik:dfu-util
 cd qmk_firmware/ && make atreis:default && sudo bash flash.sh atreis_default.hex
@@ -320,14 +321,14 @@ makepkg -si
 ==ALSO
 cp -a /source/. /target # add source/ contents to target/
 cp -aT  /source /target # add source/ contents to target/
-for f in * ; do d=${f%.*} ; 7z x -o./"$d" "$f" ; done # unpack all files with 7z 
-for f in *.ext ; do g=$f ; mv -v -- "$g" "${g:20}" ; done # shorten file names 
+for f in * ; do d=${f%.*} ; 7z x -o./"$d" "$f" ; done # unpack all files with 7z
+for f in *.ext ; do g=$f ; mv -v -- "$g" "${g:20}" ; done # shorten file names
 mkdir res ; for f in *; do convert "$f" -resize 50% -sampling-factor 4:2:0  -quality 95%  res/"$f" ; done # recompress pictures
 mkdir res ; for f in *.png; do d=${f%.*} ; convert "$f" -quality 95%  jpg:res/"$d"".jpg" ; done # png to jpg
 cp $sh/transmission-cli.desktop $HOME/.local/share/applications/ # add your .desktop files here
 xdg-mime default transmission-cli.desktop x-scheme-handler/magnet # set default magnet URL handler
-kitty -T transmission-remote_tranloc_ -e tremc -c localhost:9090 
-kitty -T transmission-remote_tranpi_ -e tremc -c 192.168.1.160:9090 
+kitty -T transmission-remote_tranloc_ -e tremc -c localhost:9090
+kitty -T transmission-remote_tranpi_ -e tremc -c 192.168.1.160:9090
 noti transmission-remote localhost:9090 -st #locstats
 noti transmission-remote 192.168.1.160:9090 -st #pistats
 xdg-mime default vim.desktop $(xdg-mime query filetype textfile.ext)
@@ -346,10 +347,10 @@ exo-open ......../app.desktop # run app .desktop file
 /connect ip.ip.ip.ip/port
 steam steam://rungameid/999 # run steam game
 lpstat -p -d # show cups queue
-lpr -P HP_LaserJet_1020 /usr/share/cups/data/testprint 
+lpr -P HP_LaserJet_1020 /usr/share/cups/data/testprint
 sleep 300; notify-send "Сгорит нафик" "беги на кухню" -i important # set notification
-echo firstt $(($(date +%s%N)/1000000)) && sleep 1 && echo second $(($(date +%s%N)/1000000)) >> /tmp/p1.log | cat ; echo ' - cat' ; tail -1 rc1.log ; echo ' - log' # some pipe example 
-du -a . | awk '{print $2}' | fzf | xargs -r $EDITOR # search and edit multiple files 
+echo firstt $(($(date +%s%N)/1000000)) && sleep 1 && echo second $(($(date +%s%N)/1000000)) >> /tmp/p1.log | cat ; echo ' - cat' ; tail -1 rc1.log ; echo ' - log' # some pipe example
+du -a . | awk '{print $2}' | fzf | xargs -r $EDITOR # search and edit multiple files
 # jdownloader outputs blank screen under bspwm? ==> $ wmname LG3D; java -jar path/JDownloader.jar
 
 ==SOUND
@@ -357,7 +358,7 @@ amixer -c 0 # list ALSA controls for card 0
 amixer -c USB controls
 aplay -l # list devices
 cat /proc/asound/modules # list cards
-/etc/modprobe.d/modprobe.conf,alsa.conf # blacklist and order sound cards 
+/etc/modprobe.d/modprobe.conf,alsa.conf # blacklist and order sound cards
 cat /dev/urandom | aplay -f S32_LE -c 2 # listen to random
 speaker-test -c 2
 sox -b 32 -n test.wav rate 44100 channels 4 synth 1 sine 440 # record some synth
@@ -369,9 +370,9 @@ pactl list sinks # pulseaudio cli control
 fluidsynth --server -a jack --connect-jack-outputs /usr/share/soundfonts/FluidR3_GM2-2.sf2
 fluidsynth --server -a alsa -o audio.alsa.device=plughw:2 /usr/share/soundfonts/FluidR3_GM2-2.sf2
 play -b 16 -n output.wav rate 44100 synth 3 sine 300-2180 fade 0 0:3 0:0.1 # sox play sound
-play -n synth 7 brownnoise sine 300-3300 
+play -n synth 7 brownnoise sine 300-3300
 play -n synth 7 brownnoise sine 300-3300 remix 2 1 # swap channels
-aplaymidi -p 129:0 sample.mid 
+aplaymidi -p 129:0 sample.mid
 sox song.mp3 -n remix 2 spectrogram -o- -p2 | feh -B black - & # generate spectrogram with sox, view with feh
 drn=${PWD##*/} ; for f in *.flac; do oggenc -b 320 -n "$drn/$f.ogg" "$f"; done #or "%a - %d - %l/$f.ogg" # flac to ogg
 for f in *.m4a ; do ffmpeg -i "$f" -map_metadata -1 -acodec flac "${f%.*}"".flac"; done
