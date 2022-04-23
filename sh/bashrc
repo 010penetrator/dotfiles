@@ -24,7 +24,7 @@ export bakhot=$HOME/bak
 export baksam=/ln/mo/SAMV/bak
 export MANWIDTH=80
 export LSBLK=lsblk
-export OVMF=/usr/share/edk2-ovmf/x64/OVMF_CODE.fd 
+export OVMF=/usr/share/edk2-ovmf/x64/OVMF_CODE.fd
 
 export TERMINAL=xterm
 command -v kitty &>/dev/null && export TERMINAL=kitty
@@ -126,7 +126,7 @@ gsync() {
 export FZF_DEFAULT_OPTS="--exact --layout=reverse --height 55%"
 export FZF_CTRL_R_OPTS="--no-sort --exact"
 # Restore default <C-r> search
-# bind -X "\C-r: reverse-search-history" 
+# bind -X "\C-r: reverse-search-history"
 function fzfpacadd { pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S ; }
 function fzfpacrem { pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns ; }
 

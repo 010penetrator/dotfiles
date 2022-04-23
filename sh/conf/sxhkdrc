@@ -11,7 +11,7 @@ super + { q, Q, D, F, t, v, s, p, r, R, z, g }
   raise.sh { \
   '' scroff, '' 'sus 1', windowswitcher.sh, '' 'rofi -show window', \
   'xterm\|urxvt\|kitty', \
-  ' - VIMSERV\|VIM$\| - NVIM$\|nvim $\|QtCreator' 'vinew', 'chromium\|Firefox\|Remmina' '', \
+  ' - VIMSERV\|VIM$\| - NVIM$\|nvim $\|QtCreator' 'vinew', 'chromium\|Firefox\|Remmina' 'firefox', \
   'Thunar\| YouTube \|office.libreoffice' '', zathura listzathura.sh, evince, FBReader, \
   'Telegram\|Pidgin\|gitg\|TuxGuitar\|hydrogen' '' }
 
@@ -33,7 +33,7 @@ super + f ; v
   xdotool mousemove_relative 0 1600
 super + x ; x
   addlayout.sh ; xinputupd.sh ; sxd.sh ; notify-send "$( LC_ALL=ru_RU.UTF-8 date; uptime -p )"
-super + x ; R
+super + x ; BackSpace
   notify-send "$(transmission-remote 192.168.1.78:9090 -st)"
 super + space
   raise.sh 'deadbeef\|MPV \|mpv$' 'noti echo no player instance found'

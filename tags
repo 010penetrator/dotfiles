@@ -21,10 +21,11 @@ $VIMPLUG	sh/vi/init.vim	/^let $VIMPLUG = $RTP . "\/plugged"$/;"	v
 ,;	sh/vi/init.vim	/^nnoremap ,; :6mes<CR>$/;"	m
 ,<tab>	sh/vi/init.vim	/^map ,<tab> :emenu tagi.<tab>$/;"	m
 ,B	sh/vi/init.vim	/^nnoremap ,B yap: exec "!" . @" <CR>$/;"	m
-,C	sh/vi/init.vim	/^nnoremap ,C :Silent xdg-open %:p:h & <CR>$/;"	m
+,C	sh/vi/init.vim	/^nnoremap ,C :Silent xdg-open %:p:h &<CR>$/;"	m
 ,I	sh/vi/init.vim	/^nnoremap ,I :diffoff  \\| wincmd w<CR>$/;"	m
 ,M	sh/vi/init.vim	/^nnoremap ,M ^y$:call system('firefox ' . "'" . @" . "' &")<CR>$/;"	m
 ,N	sh/vi/init.vim	/^nnoremap ,N :set filetype=text<CR>$/;"	m
+,O	sh/vi/init.vim	/^nnoremap ,O :Silent xdg-open %:p &<CR>$/;"	m
 ,V	sh/vi/init.vim	/^nnoremap ,V :source $MYVIMRC <CR>$/;"	m
 ,b	sh/vi/init.vim	/^vnoremap ,b :call RunSelBash()<CR>$/;"	m
 ,bb	sh/vi/init.vim	/^nnoremap ,bb :Telescope buffers theme=ivy<CR>$/;"	m
@@ -77,7 +78,6 @@ $VIMPLUG	sh/vi/init.vim	/^let $VIMPLUG = $RTP . "\/plugged"$/;"	v
 ,va	sh/vi/init.vim	/^nnoremap ,va :silent exec '! ( virpc "%:p" ) & ' \\| redraw! \\| q <CR>$/;"	m
 ,vb	sh/vi/init.vim	/^nnoremap ,vb :call SwitchBackground() <CR>:echo "background=" &background <cr>$/;"	m
 ,vc	sh/vi/init.vim	/^nnoremap ,vc :silent exec '! ( MODE=cur virpc "%:p" ) & ' \\| redraw! \\| q <CR>$/;"	m
-,ve	sh/vi/init.vim	/^nnoremap ,ve :call AddRpcEar()<CR>$/;"	m
 ,vf	sh/vi/init.vim	/^nnoremap ,vf :set filetype=sh<CR>$/;"	m
 ,vg	sh/vi/init.vim	/^nnoremap ,vg :set termguicolors! <cr>:set termguicolors? <cr>$/;"	m
 ,vl	sh/vi/init.vim	/^nnoremap ,vl yy:@"<CR>$/;"	m
@@ -85,22 +85,23 @@ $VIMPLUG	sh/vi/init.vim	/^let $VIMPLUG = $RTP . "\/plugged"$/;"	v
 ,vo	sh/vi/init.vim	/^nnoremap ,vo :Goyo<CR>$/;"	m
 ,vp	sh/vi/init.vim	/^nnoremap ,vp :put + <bar> exec "normal dfmxIPlug 'A'" <CR>==$/;"	m
 ,vq	sh/vi/init.vim	/^nnoremap ,vq :qa! <CR>$/;"	m
-,vs	sh/vi/init.vim	/^nnoremap ,vs :source $RTP\/session.vim \\| call LoadColor()<CR>$/;"	m
+,vr	sh/vi/init.vim	/^nnoremap ,vr :call AddRpcEar()<CR>$/;"	m
+,vs	sh/vi/init.vim	/^nnoremap ,vs :source $RTP\/session.vim <bar> call AddRpcEar() <bar> call LoadColor()<CR>$/;"	m
 ,vt	sh/vi/init.vim	/^nnoremap ,vt :TagbarOpen fj <CR>$/;"	m
 ,vu	sh/vi/init.vim	/^nnoremap ,vu :source \/ln\/sh\/vi\/init.vim <bar> PlugUpdate <CR>$/;"	m
 ,vv	sh/vi/init.vim	/^nnoremap ,vv :source $MYVIMRC <CR>$/;"	m
-,vw	sh/vi/init.vim	/^nnoremap ,vw :SessWriteA<CR><Esc>$/;"	m
 ,vx	sh/vi/init.vim	/^nnoremap ,vx :let lastl=line('.') <bar> exec "normal yap" <bar> @\\" <bar> exec lastl<CR>:echo "/;"	m
 ,x	sh/vi/init.vim	/^nnoremap ,x :q<CR>$/;"	m
 ,zb	sh/vi/init.vim	/^nnoremap ,zb :call BuildProjectUni("Makefile","make -f my_Makefile bear")<CR>$/;"	m
 ,zc	sh/vi/init.vim	/^nnoremap ,zc :call BuildProjectUni("Makefile","make -f my_Makefile clean")<CR>$/;"	m
 ,zc	sh/vi/init.vim	/^nnoremap ,zc :let &colorcolumn=80-&colorcolumn<CR>$/;"	m
 ,ze	sh/vi/init.vim	/^nnoremap ,ze :call SwitchCE()<CR>$/;"	m
+,zj	sh/vi/init.vim	/^nnoremap ,zj :Files $jo<CR>$/;"	m
 ,zl	sh/vi/init.vim	/^nnoremap ,zl : silent exec '! echo -e "\\n$(pwd):"; ls -la . ; echo \\. ; ls -la %:p ; read -n 1/;"	m
 ,zm	sh/vi/init.vim	/^nnoremap ,zm :call BuildProjectUni("my_Makefile","make -f my_Makefile")<CR>$/;"	m
 ,zn	sh/vi/init.vim	/^nnoremap ,zn :set number!<CR>$/;"	m
 ,zo	sh/vi/init.vim	/^nnoremap ,zo :make <bar> copen <CR>$/;"	m
-,zq	sh/vi/init.vim	/^nnoremap ,zq :SessWriteA<CR>: wa \\| qa<CR>$/;"	m
+,zq	sh/vi/init.vim	/^nnoremap ,zq :wa <bar> qa<CR>$/;"	m
 ,zs	sh/vi/init.vim	/^nnoremap ,zs :Files $sh<CR>$/;"	m
 ,zt	sh/vi/init.vim	/^nnoremap ,zt :Files $tt<CR>$/;"	m
 ,zx	sh/vi/init.vim	/^nnoremap ,zx :call BuildProjectUni("Makefile","make -f my_Makefile run")<CR>$/;"	m
@@ -196,6 +197,7 @@ $VIMPLUG	sh/vi/init.vim	/^let $VIMPLUG = $RTP . "\/plugged"$/;"	v
 <A-k>	sh/vi/init.vim	/^    nnoremap <A-k> <C-w>k$/;"	m
 <A-l>	sh/vi/init.vim	/^    inoremap <A-l> <C-\\><C-N><C-w>l$/;"	m
 <A-l>	sh/vi/init.vim	/^    nnoremap <A-l> <C-w>l$/;"	m
+<A-t>	sh/vi/init.vim	/^nnoremap <silent><A-t> <Cmd>exe v:count1 . "ToggleTerm"<CR>$/;"	m
 <BS>	sh/vi/init.vim	/^nnoremap <silent> <BS>    :exec 'normal! '.float2nr(round(winheight(0)*(exists("b:scrollpart") ?/;"	m
 <C-@>C	sh/vi/init.vim	/^    nmap <C-@>C :scs find c <C-R>=expand("<cword>")<CR><CR>$/;"	m
 <C-@>D	sh/vi/init.vim	/^    nmap <C-@>D :scs find d <C-R>=expand("<cword>")<CR><CR>$/;"	m
@@ -223,12 +225,12 @@ $VIMPLUG	sh/vi/init.vim	/^let $VIMPLUG = $RTP . "\/plugged"$/;"	v
 <C-a>	sh/vi/init.vim	/^cnoremap <C-a> <Home>$/;"	m
 <C-b>	sh/vi/init.vim	/^cnoremap <C-b> <C-Left>$/;"	m
 <C-c>	sh/vi/init.vim	/^nmap <C-c> <C-y>$/;"	m
-<C-e>	sh/vi/init.vim	/^    noremap <C-e> 2<C-e>$/;"	m
+<C-e>	sh/vi/init.vim	/^    noremap <C-e> 3<C-e>$/;"	m
 <C-e>	sh/vi/init.vim	/^imap <C-e> <C-o>A$/;"	m
-<C-e>	sh/vi/init.vim	/^noremap <C-e> 2<C-e>$/;"	m
+<C-e>	sh/vi/init.vim	/^noremap <C-e> 3<C-e>$/;"	m
 <C-t>	sh/vi/init.vim	/^cnoremap <C-t> <C-Right>$/;"	m
-<C-y>	sh/vi/init.vim	/^    noremap <C-y> 2<C-y>$/;"	m
-<C-y>	sh/vi/init.vim	/^noremap <C-y> 2<C-y>$/;"	m
+<C-y>	sh/vi/init.vim	/^    noremap <C-y> 3<C-y>$/;"	m
+<C-y>	sh/vi/init.vim	/^noremap <C-y> 3<C-y>$/;"	m
 <Down>	sh/vi/init.vim	/^inoremap <Down> <C-o>gj$/;"	m
 <Down>	sh/vi/init.vim	/^nnoremap <Down> gj$/;"	m
 <Down>	sh/vi/init.vim	/^vnoremap <Down> gj$/;"	m
@@ -374,7 +376,6 @@ RunSelBash	sh/vi/init.vim	/^function! RunSelBash()$/;"	f
 SSource	sh/vi/vimrc	/^command! -nargs=1 SSource if filereadable(expand('<args>')) | source <args> | endif$/;"	c
 SaveColor	sh/vi/init.vim	/^command! -nargs=? SaveColor call SetPhase(<f-args>) <bar> call SaveColor(<f-args>)$/;"	c
 SaveColor	sh/vi/init.vim	/^function! SaveColor(...)$/;"	f
-SessWriteA	sh/vi/init.vim	/^command! SessWriteA call SaveColor() | call TerminalsFuneral() | mksession! $RTP\/session.vim$/;"	c
 Set a theme	sh/conf/vifm-colors/README.md	/^## Set a theme$/;"	s	chapter:vifm-colors
 SetPhase	sh/vi/init.vim	/^function! SetPhase(...)$/;"	f
 Silent	sh/vi/init.vim	/^command! -nargs=1 Silent exec 'silent !' . <q-args> | exec 'redraw!'$/;"	c
@@ -1105,7 +1106,7 @@ qb	sh/vi/init.vim	/^nnoremap qb : if isdirectory(expand('%:p:h')) \\| lcd %:p:h 
 qd	sh/vi/init.vim	/^nnoremap qd    <C-W>4-$/;"	m
 qe	sh/vi/init.vim	/^nnoremap qe    <C-W>4+$/;"	m
 qf	sh/vi/init.vim	/^nnoremap qf  :FilesProj<CR>$/;"	m
-qg	sh/vi/init.vim	/^nnoremap qg :call GotoTerm(0)<CR>$/;"	m
+qg	sh/vi/init.vim	/^nnoremap qg :tabclose<CR>$/;"	m
 qh	sh/vi/init.vim	/^nnoremap qh    <C-W>h$/;"	m
 qi	sh/vi/init.vim	/^nnoremap qi O<Esc>$/;"	m
 qj	sh/vi/init.vim	/^nnoremap qj    <C-W>j$/;"	m
@@ -1116,7 +1117,7 @@ qo	sh/vi/init.vim	/^nnoremap qo o<Esc>$/;"	m
 qq	sh/vi/init.vim	/^nnoremap qq :$/;"	m
 qr	sh/vi/init.vim	/^nnoremap qr @@$/;"	m
 qs	sh/vi/init.vim	/^nnoremap qs :new  \\| lcd #:p:h \\| echo expand ('%') '.@.' getcwd() <CR>$/;"	m
-qtx	sh/vi/init.vim	/^nnoremap qtx :tabclose<CR>$/;"	m
+qt	sh/vi/init.vim	/^nnoremap qt :call GotoTerm(0)<CR>$/;"	m
 qu	sh/vi/init.vim	/^nnoremap qu ~$/;"	m
 qv	sh/vi/init.vim	/^nnoremap qv :vnew \\| lcd #:p:h \\| echo expand ('%') '.@.' getcwd() <CR>$/;"	m
 qx	sh/vi/init.vim	/^nnoremap qx :q<CR>$/;"	m

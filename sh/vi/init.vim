@@ -721,7 +721,7 @@ nnoremap ,vs :source $RTP/session.vim <bar> call AddRpcEar() <bar> call LoadColo
 nnoremap ,vq :qa! <CR>
 nnoremap ,l :Startify<CR>
 nnoremap ,zq :wa <bar> qa<CR>
-nnoremap ,ve :call AddRpcEar()<CR>
+nnoremap ,vr :call AddRpcEar()<CR>
 " Open current file at vimserver session via my "vimrpc" shell script
 nnoremap ,va :silent exec '! ( virpc "%:p" ) & ' \| redraw! \| q <CR>
 " Open current file at vimserver session at new tab via my "vimrpc" shell script
