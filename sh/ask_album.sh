@@ -54,6 +54,7 @@ read -rs -n1 -p "hit some key.." prompt
 # read -rsp $'hit some key\n' -n1 prompt
 echo
 
+source $sh/dmenurc
 if [[ $prompt == "q" ]] ; then
     exit
 elif [[ $INLIST != 1 && $prompt == "a" ]] ; then
@@ -71,8 +72,6 @@ elif [[ $prompt == "" ]] ; then
     PAUSE=0 mpv-album .
     # ask_album.sh
 elif [[ -f $LIST ]] && [[ $prompt == "p" ]] ; then
-    # source $sh/dmenurc
-    # SELECT=$( tac $LIST | dmenu $DMENU_OPTIONS -fn "$DMENU_FN" )
     SELECT=$( cat -n "$LIST" | sort -nr | sort -uk2 | sort -n | cut -f2- | dmenu $DMENU_OPTIONS -fn "$DMENU_FN" )
     ASK=1 PAUSE=1 mpv-album "$SELECT"
 elif [[ -f $LIST ]] && [[ $prompt == "F" ]] ; then
@@ -82,6 +81,8 @@ elif [[ -f $HOME/.mus-list ]] && [[ $prompt == "L" ]] ; then
     SELECT=$( cat $HOME/.mus-list | sort -R | dmenu $DMENU_OPTIONS -fn "$DMENU_FN" )
     ASK=1 PAUSE=1 mpv-album "$SELECT"
 elif [[ -f $HOME/.mpv-history ]] && [[ $prompt == "I" ]] ; then
+    echo 12341234
+    echo $DMENU_OPTIONS
     SELECT=$( cat -n $HOME/.mpv-history | sort -nr | sort -uk2 | sort -nr | cut -f2- | dmenu $DMENU_OPTIONS -fn "$DMENU_FN" )
     ASK=1 PAUSE=1 mpv-album "$SELECT"
 else
