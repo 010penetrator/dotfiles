@@ -13,7 +13,7 @@ super + { q, Q, D, F, t, v, s, p, r, R, z, g }
   'xterm\|urxvt\|kitty', \
   ' - VIMSERV\|VIM$\| - NVIM$\|nvim $\|QtCreator' 'vinew', 'chromium\|Firefox\|Remmina' 'firefox', \
   'Thunar\| YouTube \|office.libreoffice' '', zathura listzathura.sh, evince, FBReader, \
-  'Telegram\|Pidgin\|gitg\|TuxGuitar\|hydrogen' '' }
+  'Telegram\|Pidgin\|Git\|TuxGuitar\|hydrogen' '' }
 
 super + { Return, e, d, X, semicolon }
   { $TERMINAL, raiseterm.sh, dmouse, bspc node -c, setxkbmap us }

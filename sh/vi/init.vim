@@ -643,7 +643,8 @@ nnoremap aj    <C-W>w<C-W>_
 nnoremap ak    <C-W>W<C-W>_
 nnoremap q<tab> <C-w>p
 " swap current and previous window
-silent nnoremap ,S :call WinSwap()<CR><C-W>p
+" silent nnoremap a<tab> :call WinSwap()<CR><C-W>p
+silent nnoremap a<tab> :call WinSwap() <bar> wincmd p<CR><Esc>
 
 " Handle tabs
 nnoremap at :tabe<CR>
@@ -1726,6 +1727,6 @@ endif
 " Watch log with Vim " For Neovim use :terminal
 " call job_start("tail -f /ln/ho/iLog", {'out_io':'buffer','out_name':'dummy'})
 
-nnoremap <silent><A-t> <Cmd>exe v:count1 . "ToggleTerm"<CR>
-tnoremap <silent><A-t> <C-\><C-n>:ToggleTermToggleAll<CR>
+nnoremap <silent><A-;> <Cmd>exe v:count1 . "ToggleTerm"<CR>
+tnoremap <silent><A-;> <C-\><C-n>:ToggleTermToggleAll<CR>
 

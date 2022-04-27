@@ -189,6 +189,7 @@ $VIMPLUG	sh/vi/init.vim	/^let $VIMPLUG = $RTP . "\/plugged"$/;"	v
 7	sh/conf/polybar.ini	/^ramp-coreload-7 = %{F#ff5c57}█%{F-}$/;"	k	section:module/cpu
 8	sh/conf/polybar.ini	/^bar-volume-foreground-8 = #5a5$/;"	k	section:module/volume
 9	sh/conf/polybar.ini	/^bar-volume-foreground-9 = #49D673$/;"	k	section:module/volume
+<A-;>	sh/vi/init.vim	/^nnoremap <silent><A-;> <Cmd>exe v:count1 . "ToggleTerm"<CR>$/;"	m
 <A-h>	sh/vi/init.vim	/^    inoremap <A-h> <C-\\><C-N><C-w>h$/;"	m
 <A-h>	sh/vi/init.vim	/^    nnoremap <A-h> <C-w>h$/;"	m
 <A-j>	sh/vi/init.vim	/^    inoremap <A-j> <C-\\><C-N><C-w>j$/;"	m
@@ -197,7 +198,6 @@ $VIMPLUG	sh/vi/init.vim	/^let $VIMPLUG = $RTP . "\/plugged"$/;"	v
 <A-k>	sh/vi/init.vim	/^    nnoremap <A-k> <C-w>k$/;"	m
 <A-l>	sh/vi/init.vim	/^    inoremap <A-l> <C-\\><C-N><C-w>l$/;"	m
 <A-l>	sh/vi/init.vim	/^    nnoremap <A-l> <C-w>l$/;"	m
-<A-t>	sh/vi/init.vim	/^nnoremap <silent><A-t> <Cmd>exe v:count1 . "ToggleTerm"<CR>$/;"	m
 <BS>	sh/vi/init.vim	/^nnoremap <silent> <BS>    :exec 'normal! '.float2nr(round(winheight(0)*(exists("b:scrollpart") ?/;"	m
 <C-@>C	sh/vi/init.vim	/^    nmap <C-@>C :scs find c <C-R>=expand("<cword>")<CR><CR>$/;"	m
 <C-@>D	sh/vi/init.vim	/^    nmap <C-@>D :scs find d <C-R>=expand("<cword>")<CR><CR>$/;"	m
