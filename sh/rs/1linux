@@ -35,19 +35,19 @@ Chrome: uBlock Vimium CVim Surfingkeys MidnightLizard SingleFile Stylus Rescroll
 Firefox: Vimium TabStash DarkReader VerticalTabsReloaded NoPlaylistAutoplayForYouTube HLSdownloader HumbleNewTabPage TabSuspender tablist_slymax hide-scrollbars *DefaultZoom FixedZoom
 Fonts: Cantarell Liberation DejaVu Noto Arimo Tinos Caslon EB-Garamond Euclid-Circular-A
 Fonts Mono: xos4Terminus LiberationMono Noto Input Fira FiraCode Hack DejaVuSansMono SourceCodePro Tamzen OhSnap industry
-gtk: lounge mediterraneandarkest adapta mint-y flattastic libra-dark mona-3.0 carbonico arc-dark vertex menda-dark adwaita-maia green-submarine high-contrast-inverse 
+gtk: lounge mediterraneandarkest adapta mint-y flattastic libra-dark mona-3.0 carbonico arc-dark vertex menda-dark adwaita-maia green-submarine high-contrast-inverse
 Xcursor.theme: Menda-Cursor Simple-and-Soft moblin breeze pTux
 Icons: Moka Breeze ultraflat maia ardis papirus
 Gnome3: Arc-menu,
 gnome-shell-extension-top-icons-plus
 gnome-shell-extension-dashtodock
 gnome-shell-extension-dash-to-panel
-gsettings set org.gnome.mutter overlay-key '' # free Win key in Gnome 3 
+gsettings set org.gnome.mutter overlay-key '' # free Win key in Gnome 3
 gsettings set org.gnome.desktop.sound event-sounds false # mute that Gnome prick
 gsettings set org.gnome.settings-daemon.plugins.orientation active false # disable gyro screen
 Gnome dconf-editor : org/gnome/desktop/media-handling : uncheck automount and automount-open
-openbox: Syscrash AmbianceGraphite Natura carbonico Arc 
-Cinnamon: Moka dark-glass2 
+openbox: Syscrash AmbianceGraphite Natura carbonico Arc
+Cinnamon: Moka dark-glass2
 https://github.com/bhilburn/powerlevel9k
 https://github.com/powerline/fonts/tree/master/LiberationMono
 
@@ -56,8 +56,8 @@ https://github.com/powerline/fonts/tree/master/LiberationMono
 showconsolefont ; ls /usr/share/kbd/consolefonts/ ; setfont ter-218b # set tty font
 usermod -a -G vboxusers user1 # add user to group
 groupadd gods # create group
-%gods	ALL=(ALL) NOPASSWD:ALL # gods will not be asked sudo password 
-username hostname=(ALL) NOPASSWD:/bin/lsblk # sudo command without password for user 
+%gods	ALL=(ALL) NOPASSWD:ALL # gods will not be asked sudo password
+username hostname=(ALL) NOPASSWD:/bin/lsblk # sudo command without password for user
 # sudo takes long time? ==> add $HOSTNAME to /etc/hosts
 %sudo 	ALL=(ALL) ALL, NOPASSWD:/usr/bin/lsblk # combo!
 ncal -b3M
@@ -80,7 +80,7 @@ find . -type f \( -name  "*mp3" -or -name "*.flac" -or -name "*.ogg" -or -name "
 find . \( -name "Makefile" -or -name "CMakeCache.txt" -or -name "CMakeFiles" -or -name "cmake_install.cmake" \) -exec rm -rf {} \; # clean cmake
 ls -lath ~/Downloads/ | head -6 # show recent downloads
 fc -ln -1 # show last command
-fc -ln -1 | cut -c 3- | xclip # yank last command 
+fc -ln -1 | cut -c 3- | xclip # yank last command
 convert -size 200x -background transparent -fill black -font Liberation-Mono  label:the\ text result.png # make text pic
 cat > foo.txt ; Hello world! ; press CTRL+D to save file
 mount -o remount,size=1G,noatime /tmp # setup fixed /tmp
@@ -91,17 +91,17 @@ echo "" > ~/.local/share/recently-used.xbel # clean recent history
 history --help # useful
 if [[ -z `pgrep transmission-d` ]] ; then transmission-daemon ; fi # start daemon if it is off
 grep ^[^#] /etc/locale.gen # show uncommented locales
-true; false; echo $? # show last command exit status 
-true && echo 1 || echo 0 # check true's exit status 
-LC_ALL=C man # run command in C locale 
+true; false; echo $? # show last command exit status
+true && echo 1 || echo 0 # check true's exit status
+LC_ALL=C man # run command in C locale
 export LD_LIBRARY_PATH=/usr/lib32
 su - user1 -c uname # run command as user1
 sudo -H -u user2 echo $HOME # check his home dir
 who -r # show run-level
-systemctl get-default 
+systemctl get-default
 BINDIR=$(dirname "$(readlink -fn "$0")") # where are binaries?
 ps aux | grep mydaemon # is mydaemon running?
-gpg --no-default-keyring --keyring /usr/share/keyrings/debian-role-keys.gpg --verify MD5SUMS.sign.txt MD5SUMS.txt 
+gpg --no-default-keyring --keyring /usr/share/keyrings/debian-role-keys.gpg --verify MD5SUMS.sign.txt MD5SUMS.txt
 cat passlist | while read line ; do gpg -q --batch --passphrase "$line" -d wtf.gpg ; done # dictionary brute force gpg
 free -m # any free ram?
 smem -tw # ram info
@@ -120,16 +120,16 @@ cat ~/.ssh/zz_rsa.pub | ssh user@192.168.1.78 "mkdir -p ~/.ssh && cat >> ~/.ssh/
 ==GRUB
 --restore Grub2:
 mount -t ext4 /dev/sdXN /mnt
-mount -t proc /proc /mnt/proc ; mount --bind /dev /mnt/dev ; mount --bind /sys /mnt/sys 
+mount -t proc /proc /mnt/proc ; mount --bind /dev /mnt/dev ; mount --bind /sys /mnt/sys
 chroot /mnt #OR# arch-chroot /mnt
 grub-mkconfig -o /boot/grub/grub.cfg ; grub-install /dev/sdX
 --GRUB EFI install:
-grub-install --target=x86_64-efi --efi-directory=EfiSystemPart --boot-directory=/boot --bootloader-id=NewName 
+grub-install --target=x86_64-efi --efi-directory=EfiSystemPart --boot-directory=/boot --bootloader-id=NewName
 --GRUB EFI install to removable media:
 grub-install --target=x86_64-efi --efi-directory=/media/GLIM --removable --boot-directory=/media/GLIM/boot /dev/sdc
 --manual grub boot:
 grub2> set root=(hd0,2) ; linux /boot/vmlinuz-linux root=/dev/sdX2 ; initrd /boot/initrd.img ; boot
---grub rescue to normal mode 
+--grub rescue to normal mode
 ls; set root=(hd0,msdos1); set prefix=/boot/grub; insmod ext2; insmod normal; normal
 .
 qemu-system-x86_64 -hda /dev/sdc # check bootloader
@@ -137,7 +137,7 @@ grub2> echo $grub_platform # check efi/bios in grub manual
 ls /sys/firmware/efi # check efi mode
 bootlace.com /dev/sdb
 sync && echo 3 | sudo tee /proc/sys/vm/drop_caches ; sudo qemu-system-x86_64 -m 1024 -enable-kvm -hda /dev/sdc # going nuts
-sudo qemu-system-x86_64 -m 1024 -enable-kvm -boot d -cdrom new_distro.iso 
+sudo qemu-system-x86_64 -m 1024 -enable-kvm -boot d -cdrom new_distro.iso
 refind-install --usedefault  /dev/esp
 .
 --grub.cfg option general look:
@@ -167,7 +167,7 @@ xdpyinfo | grep dots # show DPI
 sudo rm /etc/fonts/conf.d/70-no-bitmaps.conf; sudo fc-cache -f -v  # enable .pcf font on ubuntu
 mv 'SomeFont.otf' ~/.local/share/fonts/ ; fc-cache -vf ~/.local/share/fonts/ # install otf font # ttf as well
 for C in {0..255}; do tput setab $C; echo -n "$C "; done # show colors
-xmodmap -pke; xmodmap -pm # keycodes 
+xmodmap -pke; xmodmap -pm # keycodes
 xrandr --size 1366x768 --output DVI-1 --scale 1x1
 xrandr --output DVI-I-1 --mode 1920x1200 --panning 1920x1200
 xwininfo # get window info
@@ -177,7 +177,7 @@ echo 444 > /sys/class/backlight/intel_backlight/brightness # control screen lamp
 xrandr --output eDP1 --brightness 1.0 # software dim screen brightness
 ps -u $(id -u) -o pid= | while read pid; do
         cat /proc/$pid/environ 2>/dev/null | tr '\0' '\n' | grep '^DISPLAY=:'
-    done | grep -o ':[0-9]*' | sort -u # return current display id 
+    done | grep -o ':[0-9]*' | sort -u # return current display id
 
 ==FS
 mkfs.vfat -F32 /dev/sdx1
@@ -190,7 +190,7 @@ zstdcat root.zst >/dev/nvme0n1p6 # restore zst archived image
 e2label /dev/sdXN mint95 # set ext2+ fs label
 dosfslabel # set ntfs label
 UUID=x-x /path ext4 defaults,rw,nofail,nosuid,nodev,relatime,data=ordered 0 0 #fstab stub
-systemctl daemon-reload # reload fstab 
+systemctl daemon-reload # reload fstab
 sudo udevadm control --reload-rules && sudo udevadm trigger # reload udev rules
 rsync -rt --progress --delete /media/src/abba/ /media/dest/abba # mirror copy
 rsync -e ssh -av --progress --no-perms --no-times --delete --size-only /path/dir/ user@192.168.1.180:/path/dir/ # mirror copy over ssh

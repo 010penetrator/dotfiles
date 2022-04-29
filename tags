@@ -36,12 +36,12 @@ $VIMPLUG	sh/vi/init.vim	/^let $VIMPLUG = $RTP . "\/plugged"$/;"	v
 ,bk	sh/vi/init.vim	/^nnoremap ,bk :Denite buffer -mode=normal -immediately-1<CR>$/;"	m
 ,bp	sh/vi/init.vim	/^nnoremap ,bp :call BufPut()<CR>$/;"	m
 ,by	sh/vi/init.vim	/^nnoremap ,by :call BufYank()<CR>$/;"	m
+,c<space>	sh/vi/init.vim	/^nnoremap <silent> ,c<space> :call GetProjDir() <bar> exec "cd " . b:proj_dir <bar> echo 'lcd @' /;"	m
 ,cc	sh/vi/init.vim	/^nnoremap ,cc :LCDhere <CR>$/;"	m
 ,cf	sh/vi/init.vim	/^nnoremap ,cf :set opfunc=FoldMotion<cr>g@$/;"	m
 ,cf	sh/vi/init.vim	/^vnoremap ,cf :<C-U>call FoldSelection()<CR>$/;"	m
 ,cg	sh/vi/init.vim	/^nnoremap ,cg :call ClimbToDirWhere(".git\/index",1) \\| pwd <CR>$/;"	m
 ,cm	sh/vi/init.vim	/^nnoremap ,cm :call ClimbToDirWhere("Makefile",1) \\| pwd <CR>$/;"	m
-,cp	sh/vi/init.vim	/^nnoremap <silent> ,cp :call GetProjDir() <bar> exec "cd " . b:proj_dir <bar> echo 'lcd @' getcwd/;"	m
 ,cs	sh/vi/init.vim	/^nnoremap ,cs :LoadColor<CR>$/;"	m
 ,d	sh/vi/init.vim	/^nnoremap ,d :bd!<CR>$/;"	m
 ,ff	sh/vi/init.vim	/^nnoremap ,ff :Files<CR>$/;"	m
