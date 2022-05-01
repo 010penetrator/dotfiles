@@ -3,6 +3,7 @@
 
 command! -nargs=1 SSource if filereadable(expand('<args>')) | source <args> | endif
 
+SSource $HOME/.vimrc_msys
 SSource $sh/vi/init.vim
 " silent LoadColor
 SSource $sh/vi/vimrc_themes
@@ -13,7 +14,6 @@ if has('nvim')
 endif
 
 SSource $lo/vimrc.local
-SSource $HOME/.vimrc_msys
 
 " TODO/Problems :
 "     ft detection is lazy/wrong

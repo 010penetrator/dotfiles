@@ -71,8 +71,25 @@ require'marks'.setup {
         delete_bookmark = "m=",
         next_bookmark = "f<Down>",
         prev_bookmark = "f<Up>",
+        next = "a<Down>",
+        prev = "a<Up>",
+        next_bookmark1 = "1<Down>",
+        prev_bookmark1 = "1<Up>",
+        next_bookmark2 = "2<Down>",
+        prev_bookmark2 = "2<Up>",
+        next_bookmark3 = "3<Down>",
+        prev_bookmark3 = "3<Up>",
+        next_bookmark4 = "4<Down>",
+        prev_bookmark4 = "4<Up>",
     }
 }
+
+
+
+
+
+-- n  m]          * <Cmd>lua require'marks'.next()<CR>
+-- n  f<Up>       * <Cmd>lua require'marks'.prev_bookmark()<CR>
 
 require("toggleterm").setup{
     -- direction = 'vertical' | 'horizontal' | 'window' | 'float',
@@ -164,7 +181,7 @@ if vim.fn.has('nvim-0.6') == 1 then
     nnoremap <silent> gS <cmd>lua vim.lsp.buf.document_symbol()<CR>|\
     nnoremap <silent> gs <cmd>lua vim.lsp.buf.references()<CR>|\
     nnoremap <silent> gw <cmd>lua vim.lsp.buf.workspace_symbol()<CR>|\
-    nnoremap <silent> gA <cmd>lua vim.lsp.buf.type_definition()<CR>|\
+    nnoremap <silent> gy <cmd>lua vim.lsp.buf.type_definition()<CR>|\
     nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>|\
     nnoremap <silent> gh <cmd>ClangdSwitchSourceHeader<CR>|\
     nnoremap <silent> z<Up> k<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>|\
@@ -184,12 +201,12 @@ if vim.fn.has('nvim-0.7') == 1 then
     vim.keymap.set("n","gS", vim.lsp.buf.document_symbol)
     vim.keymap.set("n","gs", vim.lsp.buf.references)
     vim.keymap.set("n","gw", vim.lsp.buf.workspace_symbol)
-    vim.keymap.set("n","gA", vim.lsp.buf.type_definition)
+    vim.keymap.set("n","gy", vim.lsp.buf.type_definition)
     vim.keymap.set("n","gi", vim.lsp.buf.implementation)
     vim.keymap.set("n",",gn", vim.diagnostic.goto_next)
     vim.keymap.set("n",",gp", vim.diagnostic.goto_prev)
     vim.keymap.set("n",",R", vim.lsp.buf.rename)
-    vim.keymap.set("n",",,a", vim.lsp.buf.code_action)
+    vim.keymap.set("n",",A", vim.lsp.buf.code_action)
 end
 
 local keymap = vim.api.nvim_set_keymap

@@ -12,7 +12,7 @@ set path=.,**
 " set wildignore=*.swp
 let $RTP=split(&runtimepath, ',')[0]
 " let $RTP = expand('$HOME') . '/.vim'
-let $VIMPLUG = $RTP . "/plugged"
+if empty($VIMPLUG) | let $VIMPLUG = $RTP . "/plugged" | endif
 " let vstatus = 300
 
 ""  Useful memories  ""
@@ -490,6 +490,8 @@ imap оо <ESC>
 " go to end-of-line
 imap <C-e> <C-o>A
 
+imap <C-l> <Right>
+
 " double <esc> will switch off search highlighting
 " nnoremap <silent> <Esc><Esc> <Esc>:noh<CR><Esc>
 
@@ -573,10 +575,8 @@ nnoremap am /\s*\/\/.*\/\/$<CR>
 " jump to blank or one-char lines
 nnoremap <silent> gn :call search('^\(.\\|\(\s\)*\)$','W') <CR>
 nnoremap <silent> gp :call search('^\(.\\|\(\s\)*\)$','bW') <CR>
-nnoremap <silent> gy :call search('^\(.\\|\(\s\)*\)$','bW') <CR>
 onoremap <silent> gn :call search('^\(.\\|\(\s\)*\)$','W') <CR>
 onoremap <silent> gp :call search('^\(.\\|\(\s\)*\)$','bW') <CR>
-onoremap <silent> gy :call search('^\(.\\|\(\s\)*\)$','bW') <CR>
 
 " For vim-signature
 " nmap ]s ]-
@@ -718,7 +718,8 @@ nnoremap ,vo :Goyo<CR>
 nnoremap ,V :source $MYVIMRC <CR>
 nnoremap ,vv :source $MYVIMRC <CR>
 nnoremap ,cs :LoadColor<CR>
-nnoremap ,vs :source $RTP/session.vim <bar> call AddRpcEar() <bar> call LoadColor()<CR>
+nnoremap ,vs :source $RTP/session/comon <bar> call AddRpcEar() <bar> call LoadColor()<CR>
+nnoremap ,Q :SSave! comon <bar> qa<CR>
 nnoremap ,vq :qa! <CR>
 nnoremap ,l :Startify<CR>
 nnoremap ,zq :wa <bar> qa<CR>
@@ -900,6 +901,7 @@ nnoremap ,zx :call BuildProjectUni("Makefile","make -f my_Makefile run")<CR>
 nnoremap ,zb :call BuildProjectUni("Makefile","make -f my_Makefile bear")<CR>
 " nnoremap ,zt :call BuildProjectUni("Makefile","make tags") <bar> cwindow <CR>
 " nnoremap ,zm :lcd %:p:h <bar> call BuildProjectUni("Makefile","make -f my_Makefile") <bar> redraw! <bar> copen <CR>
+nnoremap ,z/ :copen<CR>/error<CR>
 
 " Folding
 vnoremap ,cf :<C-U>call FoldSelection()<CR>

@@ -106,9 +106,9 @@ nnoremap qG :! spek %c &>/dev/null &<cr>
 nnoremap qg :! specgram.sh %c <cr>
 nnoremap qd :! deadbeef --queue %c &>/dev/null & <cr>
 nnoremap qe :! $EDITOR %c <cr>
-nnoremap qo :! xdg-open %c &>/dev/null & <cr>
+nnoremap ,o :! xdg-open %c &>/dev/null & <cr>
 nnoremap q<cr> :file &<cr>l
-nnoremap ,o :! google.sh %c &>/dev/null & <cr>
+nnoremap ,g :! google.sh %c &>/dev/null & <cr>
 nnoremap ,v :! $TERMINAL $EDITOR %c <cr>
 
 " Calc space "

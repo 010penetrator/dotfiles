@@ -92,6 +92,7 @@ $VIMPLUG	sh/vi/init.vim	/^let $VIMPLUG = $RTP . "\/plugged"$/;"	v
 ,vv	sh/vi/init.vim	/^nnoremap ,vv :source $MYVIMRC <CR>$/;"	m
 ,vx	sh/vi/init.vim	/^nnoremap ,vx :let lastl=line('.') <bar> exec "normal yap" <bar> @\\" <bar> exec lastl<CR>:echo "/;"	m
 ,x	sh/vi/init.vim	/^nnoremap ,x :q<CR>$/;"	m
+,z/	sh/vi/init.vim	/^nnoremap ,z\/ :copen<CR>\/error<CR>$/;"	m
 ,zb	sh/vi/init.vim	/^nnoremap ,zb :call BuildProjectUni("Makefile","make -f my_Makefile bear")<CR>$/;"	m
 ,zc	sh/vi/init.vim	/^nnoremap ,zc :call BuildProjectUni("Makefile","make -f my_Makefile clean")<CR>$/;"	m
 ,zc	sh/vi/init.vim	/^nnoremap ,zc :let &colorcolumn=80-&colorcolumn<CR>$/;"	m
@@ -228,6 +229,7 @@ $VIMPLUG	sh/vi/init.vim	/^let $VIMPLUG = $RTP . "\/plugged"$/;"	v
 <C-e>	sh/vi/init.vim	/^    noremap <C-e> 3<C-e>$/;"	m
 <C-e>	sh/vi/init.vim	/^imap <C-e> <C-o>A$/;"	m
 <C-e>	sh/vi/init.vim	/^noremap <C-e> 3<C-e>$/;"	m
+<C-l>	sh/vi/init.vim	/^imap <C-l> <Right>$/;"	m
 <C-t>	sh/vi/init.vim	/^cnoremap <C-t> <C-Right>$/;"	m
 <C-y>	sh/vi/init.vim	/^    noremap <C-y> 3<C-y>$/;"	m
 <C-y>	sh/vi/init.vim	/^noremap <C-y> 3<C-y>$/;"	m
