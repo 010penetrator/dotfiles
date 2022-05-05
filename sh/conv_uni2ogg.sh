@@ -9,7 +9,7 @@ if [ -z "$2" ] ; then set -- "${1}" "." ; fi
 f=$(ls | grep -c '\.flac$');
 c=$(ls | grep -c '\.cue$');
 if [ $c -eq 0 ] || [ $f -gt $c ];
-	then conv_flac2ogg.sh "$1" "$2";
-	else conv_cue2ogg.sh "$1" "$2";
+    then conv_flac2ogg.sh "$1" "$2";
+    else conv_cue2ogg.sh "$1" "$2";
 fi
 

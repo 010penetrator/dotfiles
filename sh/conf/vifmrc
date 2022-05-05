@@ -22,7 +22,7 @@ endif
 !echo -ne "\033]0;VIFM\007"
 " wincmd o
 
-command! CC :! mv /ln/dwn/cover.* . 
+command! CC :! mv /ln/dwn/cover.* .
 command! ogg :! cd %c && conv_uni2ogg.sh . %D &>/dev/null ; notify-send "%c converted" &
 command! flac :! cd %c && conv_uni2flac.sh . %D &>/dev/null ; notify-send "%c converted" &
 command! mpiii :! ffmpeg -i %c -qscale:a 2 %D/%c.mp3 &>/dev/null &
@@ -30,10 +30,10 @@ command! mpiii :! ffmpeg -i %c -qscale:a 2 %D/%c.mp3 &>/dev/null &
 command! respic :! echo $PWD ; respic.sh %a
 command! rescol :! convert %c -quality 95%%  -sampling-factor '2x2,1x1,1x1' %c.jpg
 command! respng :! mkdir res ; for f in *.png; do d=${f%%%%.*} ; convert "$f" -quality 95%%%% -sampling-factor 4:4:4  jpg:res/"$d"".jpg" ; done # png to jpg
-map re :! for f in %f; do d=${f%%.*} ; convert "$f" -resize 50%% -sampling-factor 4:4:4 -quality 95%% jpg:"$d"".R.jpg" ; done 
-command! resmusAll :! mkdir resampled orig ; for flac in *.flac; do sox -S "${flac}" -G -b 16 ./resampled/"${flac}" rate -v -L 44100 dither ; mv "${flac}" orig/ ; done 
+map re :! for f in %f; do d=${f%%.*} ; convert "$f" -resize 50%% -sampling-factor 4:4:4 -quality 95%% jpg:"$d"".R.jpg" ; done
+command! resmusAll :! mkdir resampled orig ; for flac in *.flac; do sox -S "${flac}" -G -b 16 ./resampled/"${flac}" rate -v -L 44100 dither ; mv "${flac}" orig/ ; done
 " sox input.flac -G -b 16 output.flac rate -v -L 44100 dither
-command! resmusBit :! mkdir resampled orig ; for flac in *.flac; do sox -S "${flac}" -b 16 ./resampled/"${flac}"; mv "${flac}" orig/ ; done 
+command! resmusBit :! mkdir resampled orig ; for flac in *.flac; do sox -S "${flac}" -b 16 ./resampled/"${flac}"; mv "${flac}" orig/ ; done
 " command! ff :!fehf . &>/dev/null &
 " command! tok :!touch %c "--date=@$(expr $(stat -c %%%%Y KKK) - 100)" ; touch KKK "--date=@$(expr $(stat -c %%%%Y KKK))"
 command! tok :! touch %c "--date=$(date -R -r KKK) - 10 minute" ; touch KKK "--date=$(date -R -r KKK) + 3 minute"
@@ -48,8 +48,9 @@ command! own  :! sudo chown 1000:100 .
 """"""""""""""""""""""""
 
 " fly vifm "
-nnoremap ,x :quit <CR>
-nnoremap qx :quit <CR>
+" nnoremap ,x :quit <CR>
+" nnoremap qx :quit <CR>
+nnoremap ,x :exec '! echo -ne "\033]0;\007"' | quit <CR>
 nnoremap ,q :exec '! echo -ne "\033]0;\007"' | qa <CR>
 nnoremap ,i :pushd . <CR>
 nnoremap ,l :dirs <CR>
@@ -84,7 +85,7 @@ nnoremap q[ :tabprev<CR>
 nnoremap q] :tabnext<CR>
 nnoremap q{ :tabmove-<CR>
 nnoremap q} :tabmove+<CR>
-nnoremap gl gf 
+nnoremap gl gf
 nnoremap yc :! echo -n %f | xclip ; echo -n %f | xclip -selection clipboard %i <CR>:echo "filename in X buffer"<CR>
 nnoremap yC :! echo -n %f:p | xclip ; echo -n %f:p | xclip -selection clipboard %i <CR>:echo "full filepath in X buffer"<CR>
 " nnoremap - <C-b>
@@ -172,7 +173,7 @@ nnoremap z0 :! 7z a -mx=1 -xr!tags %c.7z %f
 nnoremap zP :! 7z a -mx=6 -xr!tags %D/%c.7z %f <cr>
 let $TAR_IGNOR="--exclude='.git' --exclude='tags' --exclude='debug/*' --exclude='build/*' --exclude='~$*'"
 nnoremap zs :! tar -I 'zstd -10v -T0' -X /ln/sh/zip_exclu -cf    %c.tar.zst %f
-nnoremap zS :! tar -I 'zstd -10v -T0' -X /ln/sh/zip_exclu -cf %D/%c.tar.zst %f 
+nnoremap zS :! tar -I 'zstd -10v -T0' -X /ln/sh/zip_exclu -cf %D/%c.tar.zst %f
 nnoremap ze :! upk.sh %c <cr>
 nnoremap zE :! cd %D; upk.sh %d/%c <cr>
 nnoremap z"e :! upk.sh %r" <cr>
@@ -507,7 +508,7 @@ fileviewer *.tar.txz,*.txz xz --list %c
 fileviewer *.tar,*.tar.zst tar -tf %c
 
 " filetype *.tar.zst
-"       \ tar -tf %c | less 
+"       \ tar -tf %c | less
 
 " Rar2FsMount and rar archives
 filetype *.rar

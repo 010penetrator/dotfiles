@@ -11,7 +11,6 @@
 !_TAG_PROGRAM_VERSION	5.9.0	/p5.9.20210905.0/
 $FZF_DEFAULT_OPTS	sh/vi/init.vim	/^let $FZF_DEFAULT_OPTS='--exact --layout=reverse'$/;"	v
 $RTP	sh/vi/init.vim	/^let $RTP=split(&runtimepath, ',')[0]$/;"	v
-$VIMPLUG	sh/vi/init.vim	/^let $VIMPLUG = $RTP . "\/plugged"$/;"	v
 *	sh/vi/init.vim	/^nnoremap <silent> * :<C-u>execute "keepjumps norm! " . v:count1 . "*"<CR>$/;"	m
 ,,c	sh/vi/init.vim	/^nnoremap ,,c :NewVifmHere<CR>$/;"	m
 ,,o	sh/vi/init.vim	/^nnoremap ,,o ^y$:call system('xdg-open ' . "'" . @" . "' &")<CR>$/;"	m
@@ -26,6 +25,7 @@ $VIMPLUG	sh/vi/init.vim	/^let $VIMPLUG = $RTP . "\/plugged"$/;"	v
 ,M	sh/vi/init.vim	/^nnoremap ,M ^y$:call system('firefox ' . "'" . @" . "' &")<CR>$/;"	m
 ,N	sh/vi/init.vim	/^nnoremap ,N :set filetype=text<CR>$/;"	m
 ,O	sh/vi/init.vim	/^nnoremap ,O :Silent xdg-open %:p &<CR>$/;"	m
+,Q	sh/vi/init.vim	/^nnoremap ,Q :SSave! comon <bar> qa<CR>$/;"	m
 ,V	sh/vi/init.vim	/^nnoremap ,V :source $MYVIMRC <CR>$/;"	m
 ,b	sh/vi/init.vim	/^vnoremap ,b :call RunSelBash()<CR>$/;"	m
 ,bb	sh/vi/init.vim	/^nnoremap ,bb :Telescope buffers theme=ivy<CR>$/;"	m
@@ -86,7 +86,7 @@ $VIMPLUG	sh/vi/init.vim	/^let $VIMPLUG = $RTP . "\/plugged"$/;"	v
 ,vp	sh/vi/init.vim	/^nnoremap ,vp :put + <bar> exec "normal dfmxIPlug 'A'" <CR>==$/;"	m
 ,vq	sh/vi/init.vim	/^nnoremap ,vq :qa! <CR>$/;"	m
 ,vr	sh/vi/init.vim	/^nnoremap ,vr :call AddRpcEar()<CR>$/;"	m
-,vs	sh/vi/init.vim	/^nnoremap ,vs :source $RTP\/session.vim <bar> call AddRpcEar() <bar> call LoadColor()<CR>$/;"	m
+,vs	sh/vi/init.vim	/^nnoremap ,vs :source $RTP\/session\/comon <bar> call AddRpcEar() <bar> call LoadColor()<CR>$/;"	m
 ,vt	sh/vi/init.vim	/^nnoremap ,vt :TagbarOpen fj <CR>$/;"	m
 ,vu	sh/vi/init.vim	/^nnoremap ,vu :source \/ln\/sh\/vi\/init.vim <bar> PlugUpdate <CR>$/;"	m
 ,vv	sh/vi/init.vim	/^nnoremap ,vv :source $MYVIMRC <CR>$/;"	m
@@ -866,8 +866,6 @@ gusdma	sh/conf/dosbox-0.74.conf	/^gusdma=3$/;"	k	section:gus
 gusirq	sh/conf/dosbox-0.74.conf	/^gusirq=5$/;"	k	section:gus
 gusrate	sh/conf/dosbox-0.74.conf	/^gusrate=44100$/;"	k	section:gus
 gx	sh/vi/init.vim	/^nnoremap gx dlp$/;"	m
-gy	sh/vi/init.vim	/^nnoremap <silent> gy :call search('^\\(.\\\\|\\(\\s\\)*\\)$','bW') <CR>$/;"	m
-gy	sh/vi/init.vim	/^onoremap <silent> gy :call search('^\\(.\\\\|\\(\\s\\)*\\)$','bW') <CR>$/;"	m
 gz	sh/vi/init.vim	/^nnoremap gz 1gt$/;"	m
 have_pss	sh/mem.py	/^have_pss = 0$/;"	v
 hdma	sh/conf/dosbox-0.74.conf	/^hdma=5$/;"	k	section:sblaster

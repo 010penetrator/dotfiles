@@ -20,24 +20,26 @@ exclude="-E VIM$|nvim.$|VIMSERV|VIFM$|htop$|btop$|MPV|transmission-remote|tremc|
 
 #If window of that name is active, there are others of that name, current is not last in list
 if
-	[[ $(wmctrl -l -x | grep -v $exclude | grep "$wname" | grep $activeid) ]] && 
-	[[ $(wmctrl -l -x | grep -v -e "^...........-" | grep -v $exclude | grep "$wname" | wc -l) > 1 ]] &&
-	[[ $(wmctrl -l -x | grep -v $exclude | grep "$wname" | grep -A1 $activeid | wc -l) > 1 ]]
+    [[ $(wmctrl -l -x | grep -v $exclude | grep "$wname" | grep $activeid) ]] && 
+    [[ $(wmctrl -l -x | grep -v -e "^...........-" | grep -v $exclude | grep "$wname" | wc -l) > 1 ]] &&
+    [[ $(wmctrl -l -x | grep -v $exclude | grep "$wname" | grep -A1 $activeid | wc -l) > 1 ]]
 then
-	#Need to choose next terminal of same name
-	echo "choosing next"
-	str=$(wmctrl -l -x | grep -v -e "^...........-" | grep -v $exclude | grep "$wname" | grep -A1 $activeid | tail -1 | cut -c -10)
+    #Need to choose next terminal of same name
+    echo "choosing next"
+    str=$(wmctrl -l -x | grep -v -e "^...........-" | grep -v $exclude | grep "$wname" | grep -A1 $activeid | tail -1 | cut -c -10)
 else
-	str=$(wmctrl -l -x | grep -v -e "^...........-" | grep -v $exclude | grep -m 1 "$wname" | cut -c -10)
+    str=$(wmctrl -l -x | grep -v -e "^...........-" | grep -v $exclude | grep -m 1 "$wname" | cut -c -10)
 fi
 
 echo Final aim $str
 if [ -z "$str" ]
-	then
-			# Run
-			$TERMINAL &> /dev/null &
-      notify-send new_TERMINAL
-    # Raise
-	else wmctrl -i -a $str
+    then
+        # Run
+        # $TERMINAL &> /dev/null &
+        # notify-send new_TERMINAL
+        notify-send "Terminal windows not found"
+    else
+        # Raise
+        wmctrl -i -a $str
 fi
 

@@ -719,7 +719,7 @@ nnoremap ,V :source $MYVIMRC <CR>
 nnoremap ,vv :source $MYVIMRC <CR>
 nnoremap ,cs :LoadColor<CR>
 nnoremap ,vs :source $RTP/session/comon <bar> call AddRpcEar() <bar> call LoadColor()<CR>
-nnoremap ,Q :SSave! comon <bar> qa<CR>
+nnoremap ,,q :SSave! comon <bar> qa<CR>
 nnoremap ,vq :qa! <CR>
 nnoremap ,l :Startify<CR>
 nnoremap ,zq :wa <bar> qa<CR>
@@ -790,7 +790,8 @@ nnoremap ai :put! *<CR>
 nnoremap aP :put  +<CR>
 nnoremap aI :put! +<CR>
 " copy Vim copy register to system copy buffers
-nnoremap qy :let @+ = @" <bar> :let @* = @" <CR>
+" nnoremap qy :let @+ = @" <bar> :let @* = @" <CR>
+nnoremap ,, :let @+ = @" <bar> :let @* = @" <CR>
 " put select system buffer as single paragraph
 nnoremap ao o<Esc>:put! *<CR>`[v`]:g/^$/d<CR>:noh<CR>
 nnoremap aO o<Esc>:put! +<CR>`[v`]:g/^$/d<CR>:noh<CR>
@@ -879,8 +880,8 @@ nnoremap z; :set wrap!<CR>
 nnoremap ,zz :let &scrolloff=28-&scrolloff<CR>
 nnoremap ,zc :let &colorcolumn=80-&colorcolumn<CR>
 nnoremap ,zn :set number!<CR>
-nnoremap ,vf :set filetype=sh<CR>
-nnoremap ,N :set filetype=text<CR>
+nnoremap ,zf :set filetype=sh<CR>
+nnoremap ,zt :set filetype=text<CR>
 nnoremap ,vb :call SwitchBackground() <CR>:echo "background=" &background <cr>
 nnoremap ,vg :set termguicolors! <cr>:set termguicolors? <cr>
 nnoremap a/ :set hlsearch! <CR>
@@ -899,7 +900,7 @@ nnoremap ,zm :call BuildProjectUni("my_Makefile","make -f my_Makefile")<CR>
 nnoremap ,zc :call BuildProjectUni("Makefile","make -f my_Makefile clean")<CR>
 nnoremap ,zx :call BuildProjectUni("Makefile","make -f my_Makefile run")<CR>
 nnoremap ,zb :call BuildProjectUni("Makefile","make -f my_Makefile bear")<CR>
-" nnoremap ,zt :call BuildProjectUni("Makefile","make tags") <bar> cwindow <CR>
+" nnoremap ,XX :call BuildProjectUni("Makefile","make tags") <bar> cwindow <CR>
 " nnoremap ,zm :lcd %:p:h <bar> call BuildProjectUni("Makefile","make -f my_Makefile") <bar> redraw! <bar> copen <CR>
 nnoremap ,z/ :copen<CR>/error<CR>
 
