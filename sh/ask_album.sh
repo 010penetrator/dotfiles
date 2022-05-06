@@ -8,6 +8,10 @@ echo
 # If TARG not provided, use PWD
 [[ -n $TARG ]] || TARG=$(pwd)
 
+[[ -n $LIST ]] || LIST=$HOME/.mus-playlist
+[[ -n $LIBRARY ]] || LIBRARY=$HOME/.mus-library
+[[ -n $FAVS ]] || FAVS=$HOME/.mus-library
+
 if ! [[ -d $TARG ]] ; then
     echo "(non-existent)" $TARG @ $(realpath .)
 else
@@ -18,13 +22,13 @@ if [[ "$TARG" =~ "torrents/red/" ]] ; then
     [[ . -nt /ln/torrents/red/KKK ]] && echo --it is a new torrent
     [[ . -ot /ln/torrents/red/KKK ]] && echo --it is an archive torrent
 fi
-if [[ $(grep -F -c "$TARG" $HOME/.mpv-favourites) -gt 0 ]] ; then
+if [[ $( grep -F -c "$TARG" "$FAVS" ) -gt 0 ]] ; then
     echo --it is in favourites list
     INFAVS=1
 else
     INFAVS=0
 fi
-if [[ $(grep -F -c "$TARG" $HOME/.mpv-playlist) -gt 0 ]] ; then
+if [[ $( grep -F -c "$TARG" "$LIST" ) -gt 0 ]] ; then
     echo --it is in play list
     INLIST=1
 else
@@ -58,13 +62,13 @@ source $sh/dmenurc
 if [[ $prompt == "q" ]] ; then
     exit
 elif [[ $INLIST != 1 && $prompt == "a" ]] ; then
-    realpath . >> $HOME/.mpv-playlist
+    realpath . >> "$LIST"
 elif [[ $INLIST == 1 && $prompt == "d" ]] ; then
     echo deleting "$TARG"
-    grep -vF "$TARG" $HOME/.mpv-playlist > /tmp/tmplist && mv /tmp/tmplist $HOME/.mpv-playlist
+    grep -vF "$TARG" "$LIST" > /tmp/tmplist && mv /tmp/tmplist "$LIST"
     RUNAGAIN=1
 elif [[ $INFAVS == 0 && $prompt == "f" ]] ; then
-    echo "$TARG" >> $HOME/.mpv-favourites
+    echo "$TARG" >> "$FAVS"
     RUNAGAIN=1
 elif [[ $prompt == "c" && $INVIFM != 1 ]] ; then
     vifm . -c "wincmd o"
@@ -75,22 +79,22 @@ elif [[ -f $LIST ]] && [[ $prompt == "p" ]] ; then
     SELECT=$( cat -n "$LIST" | sort -nr | sort -uk2 | sort -n | cut -f2- | dmenu $DMENU_OPTIONS -fn "$DMENU_FN" )
     ASK=1 PAUSE=1 mpv-album "$SELECT"
 elif [[ -f $LIST ]] && [[ $prompt == "F" ]] ; then
-    SELECT=$( cat -n "$HOME/.mpv-favourites" | sort -nr | sort -uk2 | sort -n | cut -f2- | dmenu $DMENU_OPTIONS -fn "$DMENU_FN" )
+    SELECT=$( cat -n "$FAVS" | sort -nr | sort -uk2 | sort -n | cut -f2- | dmenu $DMENU_OPTIONS -fn "$DMENU_FN" )
     ASK=1 PAUSE=1 mpv-album "$SELECT"
-elif [[ -f $HOME/.mus-list ]] && [[ $prompt == "L" ]] ; then
-    SELECT=$( cat $HOME/.mus-list | sort -R | dmenu $DMENU_OPTIONS -fn "$DMENU_FN" )
+elif [[ -f $LIBRARY ]] && [[ $prompt == "L" ]] ; then
+    SELECT=$( cat $LIBRARY | sort -R | dmenu $DMENU_OPTIONS -fn "$DMENU_FN" )
     ASK=1 PAUSE=1 mpv-album "$SELECT"
-elif [[ -f $HOME/.mpv-history ]] && [[ $prompt == "I" ]] ; then
+elif [[ -f $HOME/.mus-history ]] && [[ $prompt == "I" ]] ; then
     echo 12341234
     echo $DMENU_OPTIONS
-    SELECT=$( cat -n $HOME/.mpv-history | sort -nr | sort -uk2 | sort -nr | cut -f2- | dmenu $DMENU_OPTIONS -fn "$DMENU_FN" )
+    SELECT=$( cat -n $HOME/.mus-history | sort -nr | sort -uk2 | sort -nr | cut -f2- | dmenu $DMENU_OPTIONS -fn "$DMENU_FN" )
     ASK=1 PAUSE=1 mpv-album "$SELECT"
 else
     clear
     echo pwd is $(pwd)
     echo
     echo Will exit in a second..
-    sleep 1.8
+    sleep 0.8
     exit
 fi
 

@@ -19,4 +19,5 @@ SSource $lo/vimrc.local
 "     ft detection is lazy/wrong
 "     lsp client exits with 1
 "     less completion
+"     use :colder
 

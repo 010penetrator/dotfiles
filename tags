@@ -12,9 +12,11 @@
 $FZF_DEFAULT_OPTS	sh/vi/init.vim	/^let $FZF_DEFAULT_OPTS='--exact --layout=reverse'$/;"	v
 $RTP	sh/vi/init.vim	/^let $RTP=split(&runtimepath, ',')[0]$/;"	v
 *	sh/vi/init.vim	/^nnoremap <silent> * :<C-u>execute "keepjumps norm! " . v:count1 . "*"<CR>$/;"	m
+,,	sh/vi/init.vim	/^nnoremap ,, :let @+ = @" <bar> :let @* = @" <CR>$/;"	m
 ,,c	sh/vi/init.vim	/^nnoremap ,,c :NewVifmHere<CR>$/;"	m
 ,,o	sh/vi/init.vim	/^nnoremap ,,o ^y$:call system('xdg-open ' . "'" . @" . "' &")<CR>$/;"	m
 ,,o	sh/vi/init.vim	/^vnoremap ,,o :<C-U>call SystemOpenEveryLine()<CR>$/;"	m
+,,q	sh/vi/init.vim	/^nnoremap ,,q :SSave! comon <bar> qa<CR>$/;"	m
 ,,t	sh/vi/init.vim	/^nnoremap ,,t :NewTermHere<CR>$/;"	m
 ,.	sh/vi/init.vim	/^nnoremap <silent> ,. :if bufexists(bufnr('#')) <bar> b # <bar> echo expand('%') <bar> else <bar>/;"	m
 ,;	sh/vi/init.vim	/^nnoremap ,; :6mes<CR>$/;"	m
@@ -23,9 +25,7 @@ $RTP	sh/vi/init.vim	/^let $RTP=split(&runtimepath, ',')[0]$/;"	v
 ,C	sh/vi/init.vim	/^nnoremap ,C :Silent xdg-open %:p:h &<CR>$/;"	m
 ,I	sh/vi/init.vim	/^nnoremap ,I :diffoff  \\| wincmd w<CR>$/;"	m
 ,M	sh/vi/init.vim	/^nnoremap ,M ^y$:call system('firefox ' . "'" . @" . "' &")<CR>$/;"	m
-,N	sh/vi/init.vim	/^nnoremap ,N :set filetype=text<CR>$/;"	m
 ,O	sh/vi/init.vim	/^nnoremap ,O :Silent xdg-open %:p &<CR>$/;"	m
-,Q	sh/vi/init.vim	/^nnoremap ,Q :SSave! comon <bar> qa<CR>$/;"	m
 ,V	sh/vi/init.vim	/^nnoremap ,V :source $MYVIMRC <CR>$/;"	m
 ,b	sh/vi/init.vim	/^vnoremap ,b :call RunSelBash()<CR>$/;"	m
 ,bb	sh/vi/init.vim	/^nnoremap ,bb :Telescope buffers theme=ivy<CR>$/;"	m
@@ -78,7 +78,6 @@ $RTP	sh/vi/init.vim	/^let $RTP=split(&runtimepath, ',')[0]$/;"	v
 ,va	sh/vi/init.vim	/^nnoremap ,va :silent exec '! ( virpc "%:p" ) & ' \\| redraw! \\| q <CR>$/;"	m
 ,vb	sh/vi/init.vim	/^nnoremap ,vb :call SwitchBackground() <CR>:echo "background=" &background <cr>$/;"	m
 ,vc	sh/vi/init.vim	/^nnoremap ,vc :silent exec '! ( MODE=cur virpc "%:p" ) & ' \\| redraw! \\| q <CR>$/;"	m
-,vf	sh/vi/init.vim	/^nnoremap ,vf :set filetype=sh<CR>$/;"	m
 ,vg	sh/vi/init.vim	/^nnoremap ,vg :set termguicolors! <cr>:set termguicolors? <cr>$/;"	m
 ,vl	sh/vi/init.vim	/^nnoremap ,vl yy:@"<CR>$/;"	m
 ,vn	sh/vi/init.vim	/^nnoremap ,vn :silent exec '! ( MODE=newtab virpc "%:p" ) & ' \\| redraw! \\| q <CR>$/;"	m
@@ -97,6 +96,7 @@ $RTP	sh/vi/init.vim	/^let $RTP=split(&runtimepath, ',')[0]$/;"	v
 ,zc	sh/vi/init.vim	/^nnoremap ,zc :call BuildProjectUni("Makefile","make -f my_Makefile clean")<CR>$/;"	m
 ,zc	sh/vi/init.vim	/^nnoremap ,zc :let &colorcolumn=80-&colorcolumn<CR>$/;"	m
 ,ze	sh/vi/init.vim	/^nnoremap ,ze :call SwitchCE()<CR>$/;"	m
+,zf	sh/vi/init.vim	/^nnoremap ,zf :set filetype=sh<CR>$/;"	m
 ,zj	sh/vi/init.vim	/^nnoremap ,zj :Files $jo<CR>$/;"	m
 ,zl	sh/vi/init.vim	/^nnoremap ,zl : silent exec '! echo -e "\\n$(pwd):"; ls -la . ; echo \\. ; ls -la %:p ; read -n 1/;"	m
 ,zm	sh/vi/init.vim	/^nnoremap ,zm :call BuildProjectUni("my_Makefile","make -f my_Makefile")<CR>$/;"	m
@@ -105,6 +105,7 @@ $RTP	sh/vi/init.vim	/^let $RTP=split(&runtimepath, ',')[0]$/;"	v
 ,zq	sh/vi/init.vim	/^nnoremap ,zq :wa <bar> qa<CR>$/;"	m
 ,zs	sh/vi/init.vim	/^nnoremap ,zs :Files $sh<CR>$/;"	m
 ,zt	sh/vi/init.vim	/^nnoremap ,zt :Files $tt<CR>$/;"	m
+,zt	sh/vi/init.vim	/^nnoremap ,zt :set filetype=text<CR>$/;"	m
 ,zx	sh/vi/init.vim	/^nnoremap ,zx :call BuildProjectUni("Makefile","make -f my_Makefile run")<CR>$/;"	m
 ,zz	sh/vi/init.vim	/^nnoremap ,zz :let &scrolloff=28-&scrolloff<CR>$/;"	m
 0	sh/conf/polybar.ini	/^animation-charging-0 = $/;"	k	section:module/battery
@@ -1121,7 +1122,6 @@ qt	sh/vi/init.vim	/^nnoremap qt :call GotoTerm(0)<CR>$/;"	m
 qu	sh/vi/init.vim	/^nnoremap qu ~$/;"	m
 qv	sh/vi/init.vim	/^nnoremap qv :vnew \\| lcd #:p:h \\| echo expand ('%') '.@.' getcwd() <CR>$/;"	m
 qx	sh/vi/init.vim	/^nnoremap qx :q<CR>$/;"	m
-qy	sh/vi/init.vim	/^nnoremap qy :let @+ = @" <bar> :let @* = @" <CR>$/;"	m
 qz	sh/vi/init.vim	/^nnoremap qz    <C-W>=$/;"	m
 q{	sh/vi/init.vim	/^nnoremap q{ :tabmove -1 <CR>$/;"	m
 q}	sh/vi/init.vim	/^nnoremap q} :tabmove +1 <CR>$/;"	m

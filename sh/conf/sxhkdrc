@@ -2,7 +2,7 @@ super + x ; { m, s, e, h, n, o, a, g }
   raise.sh { '' notimem, speedcrunch, 'WeeChat\|weechat' 'urxvt -e weechat', htop '$TERMINAL -e htop', nautilus, VirtualBox '', pavucontrol, games.sh }
 
 super + x ; { z, i, f, p, q, l, c, d, space }
-  { xdotool mousemove_relative 0 1600, listmpvfile.sh /ln/ho/.mpv-history, listmpvfile.sh /ln/ho/.mpv-favourites, listmpvfile.sh /ln/ho/.mpv-playlist, bspc node -c, listdwn.sh, listmpvall.sh /ln/ho/.mus-list, deadbeef, listdeadbeef.sh }
+  { xdotool mousemove_relative 0 1600, listmpvfile.sh /ln/ho/.mus-history, listmpvfile.sh /ln/ho/.mpv-favourites, listmpvfile.sh /ln/ho/.mus-playlist, bspc node -c, listdwn.sh, listmpvall.sh /ln/ho/.mus-library, deadbeef, listdeadbeef.sh }
 
 super + n ; { n, M, p, c, v, r, o, a }
   { $TERMINAL, momkitty.sh, thunar, $TERMINAL -e vifm, vinew, listzathura.sh, $TERMINAL -e rtorrent, $TERMINAL -e tremc -c localhost:9090 }
@@ -11,8 +11,8 @@ super + { q, Q, D, F, t, v, s, p, r, R, z, g }
   raise.sh { \
   '' scroff, '' 'sus 1', windowswitcher.sh, '' 'rofi -show window', \
   'xterm\|urxvt\|kitty', \
-  ' - VIMSERV\|VIM$\| - NVIM$\|nvim $\|QtCreator' 'vinew', 'chromium\|Firefox\|Remmina' 'firefox', \
-  'Thunar\| YouTube \|office.libreoffice' '', zathura listzathura.sh, evince, FBReader, \
+  ' - VIMSERV\|VIM$\|VIM @ \| - NVIM$\|nvim $\|QtCreator' 'vinew', 'chromium\|Firefox\|Remmina' 'firefox', \
+  'Thunar\|pcmanfm\| YouTube \|office.libreoffice' '', zathura listzathura.sh, evince, FBReader, \
   'Telegram\|Pidgin\|Git\|TuxGuitar\|hydrogen' '' }
 
 super + { Return, e, d, X, semicolon }
@@ -171,7 +171,7 @@ super + alt + bracket{left,right}
 #
 
 # preselect the direction
-super + ctrl + {h,j,k,l}
+super + f ; {h,j,k,l}
   bspc node -p {west,south,north,east}
 
 # preselect the ratio

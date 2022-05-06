@@ -3,7 +3,7 @@
 
 # Usage: mpv /dir/or/file DESIRED-TERMINAL-TITLE
 
-hist="$HOME/.mpv-history"
+hist="$HOME/.mus-history"
 # ignore '..' target
 [ "$1" == '..' ] && set -- "." "${2}"
 

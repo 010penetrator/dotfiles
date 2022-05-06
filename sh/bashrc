@@ -54,7 +54,6 @@ alias chmodre='find . -type f -exec chmod 644 {} \;'
 # alias terfont='setfont ter-218b'
 # alias dmenu='dmenu $DMENU_OPTIONS -fn "$DMENU_FN"'
 alias 1l='less ~/.sh/1linux'
-alias ml='listmpvfile.sh $HOME/.mpv-playlist'
 # alias vf='$TERMINAL -e vifm . &'
 # alias trmclient='title transmission-remote-cli; transmission-remote-cli -c localhost:9090 ; title bash'
 # if  lsb_release -i | grep -q -ie 'arch\|manjaro' ; then
@@ -64,9 +63,10 @@ alias ml='listmpvfile.sh $HOME/.mpv-playlist'
 #     alias as='apt search'
 #     alias ai='sudo apt install'
 # fi
-alias l='$LSBLK -f'
-alias lb='$LSBLK -o NAME,LABEL,MOUNTPOINT,SIZE,FSUSE% | grep "sd\|nvme" --color=none'
+# alias l='$LSBLK -f'
+alias l='$LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT'
 alias lm='$LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT'
+alias lb='$LSBLK -o NAME,LABEL,MOUNTPOINT,SIZE,FSUSE% | grep "sd\|nvme" --color=none'
 alias m='df -BMB'
 amou() { target=$( $LSBLK -f | grep -e ".sd\|.nvme" | fzf -e | cut -f 1 -d " " | tr -cd '[:alnum:]' ); [ ! -z "${target}" ] && udevil mount /dev/"$target" && echo "/dev/$target mounted" || echo 'No target.' ; }
 aumo() { target=$( $LSBLK -f | grep -e ".sd\|.nvme" | grep '/' | cut -c 7- | fzf -e |  cut -f 1 -d ' ' ); mopoi=$( mount | grep "${target}" | cut -f 3 -d ' ' ); [ ! -z "${target}" ] && sync "$mopoi" && udevil umount "/dev/$target" && echo "/dev/$target unmounted from $mopoi" || echo 'No target.' ; }

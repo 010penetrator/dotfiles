@@ -11,7 +11,7 @@ kitty*)
     NEW_TERMINAL="$TERMINAL -o initial_window_height=$(expr 450 + $HIDPI \* 140) -o initial_window_width=$(expr 650 + $HIDPI \* 150) /bin/bash -c"
     ;;
 *)
-    NEW_TERMINAL="xterm -xrm 'XTerm.vt100.allowTitleOps:true' -geometry 60x24+400+250 -e" 
+    NEW_TERMINAL="xterm -xrm 'XTerm.vt100.allowTitleOps:true' -geometry 60x24+400+250 -e"
     # xterm -xrm 'XTerm.vt100.allowTitleOps: false' -T "$l - MPV" -geometry 60x24+400+250 -e mpv --pause --no-video . &> /dev/null &
     ;;
 esac
@@ -31,7 +31,7 @@ case $(echo "$d" | wc -l) in
     ;;
 *)
     echo "$d" | \
-        while read l ; do 
+        while read l ; do
             BASH_CMD="$PLAYER_CMD \"$l\""
             $NEW_TERMINAL "$BASH_CMD" &
         done

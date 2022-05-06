@@ -41,7 +41,7 @@ command! tik :!touch --date="$(date -R -r %c) + 10 minute" KKK
 " command! tik :!touch --date="$(date -R -r %c) + 1 day" %c
 command! amou :! bash -ic ' source /ln/ho/.bashrc ; amou '
 command! aumo :! bash -ic ' source /ln/ho/.bashrc ; aumo '
-command! own  :! sudo chown 1000:100 .
+command! own  :! sudo chown 1000:100 %f
 
 """"""""""""""""""""""""
 ""     Mappings:      ""
@@ -116,8 +116,8 @@ nnoremap ,v :! $TERMINAL $EDITOR %c <cr>
 nnoremap zc :! echo; ls -dla %c ; du -sb %c | cut -f1 ; du -sh %c | cut -f1 ; df -BGB . | tail -1 ; read -rsn1 <cr>
 nnoremap zC :! watch -n .4 ls -la --block-size=M %f
 nnoremap zl :! echo -ne \\n  ls dir :\\n ; ls -la --color=auto . ; read -rsn1 <cr>
-nnoremap aa :! clear -x; $LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT ; read -rsn1 <cr>
-nnoremap as :! clear -x; df -BMB ; read -rsn1 <cr>
+nnoremap ,a :! clear -x; $LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT ; read -rsn1 <cr>
+nnoremap ,s :! clear -x; df -BMB ; read -rsn1 <cr>
 nnoremap ,, :! echo; date ; echo Sync... ; sync ; echo "Done!" ; read -rsn1 <cr>
 
 " Send to vim server "

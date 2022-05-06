@@ -89,7 +89,7 @@ Plug 'tpope/vim-fugitive' "handy
 Plug 'mhinz/vim-startify'
 Plug 'sheerun/vim-polyglot' "okay HUGE
 Plug 'airblade/vim-gitgutter'
-Plug 'michaeljsmith/vim-indent-object' "cool
+" Plug 'michaeljsmith/vim-indent-object' "cool
 Plug 'godlygeek/tabular' "okay
 Plug 'jamessan/vim-gnupg' "good
 Plug 'chrisbra/Colorizer' "good
@@ -459,6 +459,7 @@ endif
 if has("nvim")
     set laststatus=3
     highlight WinSeparator guibg=none
+    highlight WinSeparator guifg=#5a5a5a
 endif
 
 """"""""""""""""""""""""
