@@ -20,6 +20,7 @@ else
     elseif ( g:phase == 'nox' )
         if has('nvim')
             colo tokyonight | LineColor Atelier_Lakeside
+            " colo onehalfdark | LineColor one
         else
             " colo tempus_dusk | set bg=dark | LineColor bluewery
             colo Tomorrow-Night-Eighties | LineColor snow_dark
