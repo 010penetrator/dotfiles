@@ -316,7 +316,7 @@ set winheight=7
 " set iminsert=0
 " set imsearch=0
 " set nofoldenable    " disable folding
-set tabstop=2 softtabstop=2 expandtab shiftwidth=4 smarttab
+set tabstop=4 softtabstop=4 expandtab shiftwidth=4 smarttab
 set textwidth=0 wrapmargin=0
 set smartindent
 set invlinebreak
