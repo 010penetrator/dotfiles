@@ -89,7 +89,7 @@ Plug 'tpope/vim-fugitive' "handy
 Plug 'mhinz/vim-startify'
 Plug 'sheerun/vim-polyglot' "okay HUGE
 Plug 'airblade/vim-gitgutter'
-" Plug 'michaeljsmith/vim-indent-object' "cool
+Plug 'michaeljsmith/vim-indent-object' "cool
 Plug 'godlygeek/tabular' "okay
 Plug 'jamessan/vim-gnupg' "good
 Plug 'chrisbra/Colorizer' "good
@@ -316,7 +316,7 @@ set winheight=7
 " set iminsert=0
 " set imsearch=0
 " set nofoldenable    " disable folding
-set tabstop=4 softtabstop=4 expandtab shiftwidth=4 smarttab
+set tabstop=2 softtabstop=2 expandtab shiftwidth=4 smarttab
 set textwidth=0 wrapmargin=0
 set smartindent
 set invlinebreak

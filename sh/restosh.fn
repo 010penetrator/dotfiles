@@ -38,6 +38,7 @@ restosh()
     )
     # tar -xf "$arc" -C "$(readlink /ln/sh)" sh --strip-components=1
     # tar -xf "$arc" -C "$(readlink /ln/lo)" lo --strip-components=1
+    [[ -d $HOME/01 ]] && [[ -d "$baksam/../fz" ]] && mkdir -p $HOME/01/new && mv "$baksam/../fz/"* $HOME/01/new/
   fi
   [[ $need_umount == true ]] && echo ==unmounting SAM.. && udevil umount /ln/mo/SAMV
   echo --Done!

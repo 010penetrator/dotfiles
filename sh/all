@@ -1,5 +1,5 @@
 #!/bin/bash
-# vim: ts=2 sw=2 ft=sh
+# vim: ts=4 sw=4 ft=sh
 # Update and tidy my Arch Linux (or Debian Linux as well)
 
 uptime -p ; echo
@@ -12,25 +12,27 @@ du -sh /var/log/journal/
 # Call few commands with a single 'sudo' call
 sudo bash -c "
 (
-  journalctl --vacuum-size=50M --quiet
-  # journalctl --disk-usage ; echo
-  if  lsb_release -i | grep -q -ie 'mint\|debian\|buntu' ; then
+journalctl --vacuum-size=50M --quiet
+# journalctl --disk-usage ; echo
+if  lsb_release -i | grep -q -ie 'mint\|debian\|buntu' ; then
     apt update
     apt upgrade
-  elif  lsb_release -i | grep -q -ie 'arch' ; then
+elif  lsb_release -i | grep -q -ie 'arch' ; then
     pacman -Syu
     find /var/cache/pacman/pkg/ -mtime +7 -exec rm {} \; # Drop older package downloads
     # du -sh /var/cache/pacman/pkg/
-  fi
-  updatedb
+fi
+updatedb
 )"
 
-# Backup vim-session cause I am known to overwrite it by accident
+# Backup vim-session cause I am known for overwriting it by accident
 [ -d $HOME/.vim ] && cp $HOME/.vim/session.vim $HOME/.vim/session.vimBAK
+NVSD="$HOME/.config/nvim/session"
+[ -d $NVSD ] &&
+    tar -czf "$NVSD/../sess.tar.gz" -C "$NVSD/../" session
 
 # Backup something else
-# [ -d "$tt" ]
-bak.sh
+echo; DONTOVERWRITE=1 bak.sh
 
 echo; df -BGB
 # $LSBLK -o NAME,LABEL,MOUNTPOINT,SIZE,FSUSE% | grep "sd\|nvme" --color=none ; echo

@@ -10,7 +10,7 @@ echo
 
 [[ -n $LIST ]] || LIST=$HOME/.mus-playlist
 [[ -n $LIBRARY ]] || LIBRARY=$HOME/.mus-library
-[[ -n $FAVS ]] || FAVS=$HOME/.mus-library
+[[ -n $FAVS ]] || FAVS=$HOME/.mus-favourites
 
 if ! [[ -d $TARG ]] ; then
     echo "(non-existent)" $TARG @ $(realpath .)
