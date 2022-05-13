@@ -23,13 +23,15 @@ tar -czf /ln/lo/cur/linkdir.tar.gz -C / ln
 tar -chzf "$bakhot/$DAY/words.tar.gz" \
         -C /ln/ --exclude=lo/cur sh lo \
         $conditional_line
-        # -C $tt/../ tt
 
 [[ -d /ln/torrents ]] &&
     tar -czf "$bakhot/$DAY/torrents.tar.gz" --ignore-failed-read \
         -C /ln/ho .config/transmission-daemon .rtorrent
-tar -czf "$bakhot/$DAY/conf.tar.gz" --ignore-failed-read \
-        -C / etc/fstab etc/udevil/udevil.conf ln/ho/.ssh ln/ho/.vim ln/co/nvim/plugged ln/co/nvim/lsp_servers
+
+[[ -d /ln/co/nvim ]] && conditional_line="-C /ln/co/ nvim/plugged nvim/lsp_servers"
+    tar -czf "$bakhot/$DAY/conf.tar.gz" --ignore-failed-read \
+        -C / etc/fstab etc/udevil/udevil.conf ln/ho/.ssh ln/ho/.vim \
+        $conditional_line
 
 [[ -d $bakcld ]] &&
     {
