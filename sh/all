@@ -17,7 +17,7 @@ journalctl --vacuum-size=50M --quiet
 if  lsb_release -i | grep -q -ie 'mint\|debian\|buntu' ; then
     apt update
     apt upgrade
-elif  lsb_release -i | grep -q -ie 'arch' ; then
+elif  lsb_release -i | grep -q -ie 'arch\|manjaro' ; then
     pacman -Syu
     find /var/cache/pacman/pkg/ -mtime +7 -exec rm {} \; # Drop older package downloads
     # du -sh /var/cache/pacman/pkg/
