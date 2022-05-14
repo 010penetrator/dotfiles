@@ -8,12 +8,16 @@ rsync -e ssh -avK --progress --stats --no-perms --no-times --delete --size-only 
 cd /ln/ho/.rtorrent/watch/red/
 for f in *.torrent
 do
-  if [ -f "$f" ] ; then
-    echo $f
-    # mkdir -p del
-    transmission-remote 192.168.1.78:9090 -a -w /ln/red/ "$f"
-    # && mv "$f" del/
-  fi
+    if [[ $(find "$f" -mtime -60 -print) ]] ; then 
+        # echo $(date -r "$f" "+%Y-%m-%d")
+        echo $(date -r "$f" "+%Y-%m-%d") "  " $f
+        echo "$f"
+        transmission-remote 192.168.1.78:9090 -a -w /ln/red/ "$f"
+    fi
+    # if [[ -f $f ]] ; then
+    #     echo $f
+    #     transmission-remote 192.168.1.78:9090 -a -w /ln/red/ "$f"
+    # fi
 done
 cd -
 
