@@ -195,7 +195,7 @@ nnoremap gj :cd /ln/ho/gitjob<CR>
 nnoremap gd :cd /ln/dwn<CR>
 nnoremap gb :cd $bakcld<CR>
 nnoremap gB :cd $bakhot<CR>
-nnoremap gS :cd $baksam<CR>
+nnoremap gS :cd $baksam/..<CR>:goto bak<CR>
 nnoremap gk :cd /ln/torrents/red/KKK<CR>:sort<CR>mh
 nnoremap gv :cd ~/.vim<CR>:goto plugged<CR>
 nnoremap gN :cd ~/.config/nvim<CR>:goto plugged<CR>
