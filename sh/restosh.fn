@@ -1,4 +1,54 @@
 #!/bin/bash
+# vim: ts=2 sw=2
+
+bak()
+{
+  # tar -czf $lo/linkdir.tar.gz -C / ln
+  name1="/tmp/bak.tar.gz"
+  name2="$baksam/auto/${space}_bak_$(date +%Y-%m-%d).tar.gz"
+  need_umount=false
+  tar -chzf "$name1" -C /ln/ --exclude=lo/cur sh lo
+  #
+  sambdev=$($LSBLK -l -o NAME,LABEL | grep SAMV | cut -f1 -d ' ')
+  [[ "$sambdev" == '' ]] && echo SAM is nowhere around && return 1
+  if [[ $( mount | grep SAMV | grep $sambdev -c ) == 0 ]] ; then
+    echo ==mounting SAM..
+    udevil mount /dev/$sambdev /ln/mo/SAMV && [[ $1 != '--keep' ]] &&
+      need_umount=true
+  fi
+  if [[ $( mount | grep SAMV | grep $sambdev -c ) != 1 ]] ; then
+    echo --Flash drive unavailable!
+    return 1
+  else
+    cp "$name1" "$name2"
+    ls -lrth "$baksam"/auto/*bak_*tar* | cut -f6- -d ' ' | tail -n 4
+    if [[ $space == "wo" ]] ; then
+      tar -I 'zstd -10 -T0' -X /ln/sh/zip_exclu -cf "$baksam"/gitjob.tar.zst -C /ln/ho/ gitjob
+      (
+      cd $wd1 && make -s -f my_Makefile clean
+      cd $wd2 && make -s clean
+    )
+    rm "$baksam"/gitjob.7z
+    7z a -mx=3 "$baksam"/gitjob.7z /ln/ho/gitjob
+    tx=/ln/ho/fz/99.txt
+    [[ -s $tx ]] &&
+      cat $tx >> /ln/mo/SAMV/fz/99.txt && > $tx
+          TXSZ=$( cat $tx | wc -c )
+          if [ $TXSZ == 0 ] ; then
+            rm $tx
+            [[ $(ls -A /ln/ho/fz/) ]] && ( shopt -s dotglob ; mv -i /ln/ho/fz/* /ln/mo/SAMV/fz/ )
+            sync /ln/mo/SAMV/fz
+            touch $tx
+          else
+            echo --Unable to dump files!
+            return 1
+          fi
+    fi
+  fi
+  sync /ln/mo/SAMV
+  [[ $need_umount == true ]] && echo ==unmounting SAM.. && udevil umount /ln/mo/SAMV
+  echo Done!
+}
 
 restosh()
 {
@@ -8,13 +58,13 @@ restosh()
   if [[ $( mount | grep SAMV | grep $sambdev -c ) == 0 ]] ; then
     echo ==mounting SAM..
     udevil mount /dev/$sambdev /ln/mo/SAMV && [[ $1 != '--keep' ]] &&
-        need_umount=true
+      need_umount=true
   fi
   if [[ $( mount | grep SAMV | grep $sambdev -c ) != 1 ]] ; then
     echo --Flash drive unavailable!
     return 1
   else
-    arc=$(ls -1t $baksam/*bak*tar.gz | head -n1)
+    arc=$(ls -1t $baksam/auto/*bak*tar.gz | head -n1)
     echo -n 'arc is '
     ls -lh "$arc" | cut -f9- -d ' '
     # Now extract and remove files not present in archive
@@ -38,7 +88,7 @@ restosh()
     )
     # tar -xf "$arc" -C "$(readlink /ln/sh)" sh --strip-components=1
     # tar -xf "$arc" -C "$(readlink /ln/lo)" lo --strip-components=1
-    [[ -d $HOME/01 ]] && [[ -d "$baksam/../fz" ]] && mkdir -p $HOME/01/new && mv "$baksam/../fz/"* $HOME/01/new/
+    [[ $space == "ho" ]] && [[ -d $HOME/01 ]] && [[ -d "$baksam/../fz" ]] && mkdir -p $HOME/01/new && mv --backup=numbered "$baksam/../fz/"* $HOME/01/new/
   fi
   [[ $need_umount == true ]] && echo ==unmounting SAM.. && udevil umount /ln/mo/SAMV
   echo --Done!

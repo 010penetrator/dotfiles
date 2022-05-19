@@ -101,7 +101,7 @@ Plug 'junegunn/fzf.vim' | Plug 'junegunn/fzf' "cool
 " good for Vim
 Plug 'Shougo/unite.vim' | Plug 'Shougo/vimproc'
 if !has("nvim")
-    Plug 'Shougo/deoplete.nvim' | Plug 'Shougo/neoinclude.vim'
+    " Plug 'Shougo/deoplete.nvim' | Plug 'Shougo/neoinclude.vim'
     Plug 'majutsushi/tagbar' "okay
 endif
 
@@ -645,7 +645,7 @@ nnoremap ak    <C-W>W<C-W>_
 nnoremap q<tab> <C-w>p
 " swap current and previous window
 " silent nnoremap a<tab> :call WinSwap()<CR><C-W>p
-silent nnoremap a<tab> :call WinSwap() <bar> wincmd p<CR><Esc>
+silent nnoremap ,<tab> :call WinSwap() <bar> wincmd p<CR><Esc>
 
 " Handle tabs
 nnoremap at :tabe<CR>
@@ -881,8 +881,7 @@ nnoremap z; :set wrap!<CR>
 nnoremap ,zz :let &scrolloff=28-&scrolloff<CR>
 nnoremap ,zc :let &colorcolumn=80-&colorcolumn<CR>
 nnoremap ,zn :set number!<CR>
-nnoremap ,zf :set filetype=sh<CR>
-nnoremap ,zt :set filetype=text<CR>
+nnoremap z, :set filetype=text<CR>
 nnoremap ,vb :call SwitchBackground() <CR>:echo "background=" &background <cr>
 nnoremap ,vg :set termguicolors! <cr>:set termguicolors? <cr>
 nnoremap a/ :set hlsearch! <CR>

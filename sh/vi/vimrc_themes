@@ -8,10 +8,10 @@ let hostname = substitute(system('hostname'), '\n', '', '')
 if exists("g:colors_name")
 else
     if !exists("g:phase")
+        call SetPhase()
         if &diff
             colo wasabi256
-        else
-            call SetPhase()
+            let g:phase = 'diffffff'
         endif
     endif
     if ( g:phase == 'day' )
