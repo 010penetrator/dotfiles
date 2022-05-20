@@ -85,7 +85,7 @@ $RTP	sh/vi/init.vim	/^let $RTP=split(&runtimepath, ',')[0]$/;"	v
 ,vp	sh/vi/init.vim	/^nnoremap ,vp :put + <bar> exec "normal dfmxIPlug 'A'" <CR>==$/;"	m
 ,vq	sh/vi/init.vim	/^nnoremap ,vq :qa! <CR>$/;"	m
 ,vr	sh/vi/init.vim	/^nnoremap ,vr :call AddRpcEar()<CR>$/;"	m
-,vs	sh/vi/init.vim	/^nnoremap ,vs :source $RTP\/session\/comon <bar> call AddRpcEar() <bar> call LoadColor()<CR>$/;"	m
+,vs	sh/vi/init.vim	/^nnoremap ,vs :source $RTP\/session\/comon <bar> call AddRpcEar()<CR>$/;"	m
 ,vt	sh/vi/init.vim	/^nnoremap ,vt :TagbarOpen fj <CR>$/;"	m
 ,vu	sh/vi/init.vim	/^nnoremap ,vu :source \/ln\/sh\/vi\/init.vim <bar> PlugUpdate <CR>$/;"	m
 ,vv	sh/vi/init.vim	/^nnoremap ,vv :source $MYVIMRC <CR>$/;"	m
@@ -96,7 +96,6 @@ $RTP	sh/vi/init.vim	/^let $RTP=split(&runtimepath, ',')[0]$/;"	v
 ,zc	sh/vi/init.vim	/^nnoremap ,zc :call BuildProjectUni("Makefile","make -f my_Makefile clean")<CR>$/;"	m
 ,zc	sh/vi/init.vim	/^nnoremap ,zc :let &colorcolumn=80-&colorcolumn<CR>$/;"	m
 ,ze	sh/vi/init.vim	/^nnoremap ,ze :call SwitchCE()<CR>$/;"	m
-,zf	sh/vi/init.vim	/^nnoremap ,zf :set filetype=sh<CR>$/;"	m
 ,zj	sh/vi/init.vim	/^nnoremap ,zj :Files $jo<CR>$/;"	m
 ,zl	sh/vi/init.vim	/^nnoremap ,zl : silent exec '! echo -e "\\n$(pwd):"; ls -la . ; echo \\. ; ls -la %:p ; read -n 1/;"	m
 ,zm	sh/vi/init.vim	/^nnoremap ,zm :call BuildProjectUni("my_Makefile","make -f my_Makefile")<CR>$/;"	m
@@ -105,7 +104,6 @@ $RTP	sh/vi/init.vim	/^let $RTP=split(&runtimepath, ',')[0]$/;"	v
 ,zq	sh/vi/init.vim	/^nnoremap ,zq :wa <bar> qa<CR>$/;"	m
 ,zs	sh/vi/init.vim	/^nnoremap ,zs :Files $sh<CR>$/;"	m
 ,zt	sh/vi/init.vim	/^nnoremap ,zt :Files $tt<CR>$/;"	m
-,zt	sh/vi/init.vim	/^nnoremap ,zt :set filetype=text<CR>$/;"	m
 ,zx	sh/vi/init.vim	/^nnoremap ,zx :call BuildProjectUni("Makefile","make -f my_Makefile run")<CR>$/;"	m
 ,zz	sh/vi/init.vim	/^nnoremap ,zz :let &scrolloff=28-&scrolloff<CR>$/;"	m
 0	sh/conf/polybar.ini	/^animation-charging-0 = $/;"	k	section:module/battery
@@ -379,6 +377,7 @@ RunSelBash	sh/vi/init.vim	/^function! RunSelBash()$/;"	f
 SSource	sh/vi/vimrc	/^command! -nargs=1 SSource if filereadable(expand('<args>')) | source <args> | endif$/;"	c
 SaveColor	sh/vi/init.vim	/^command! -nargs=? SaveColor call SetPhase(<f-args>) <bar> call SaveColor(<f-args>)$/;"	c
 SaveColor	sh/vi/init.vim	/^function! SaveColor(...)$/;"	f
+Sessload	sh/vi/init.vim	/^augroup Sessload$/;"	a
 Set a theme	sh/conf/vifm-colors/README.md	/^## Set a theme$/;"	s	chapter:vifm-colors
 SetPhase	sh/vi/init.vim	/^function! SetPhase(...)$/;"	f
 Silent	sh/vi/init.vim	/^command! -nargs=1 Silent exec 'silent !' . <q-args> | exec 'redraw!'$/;"	c
@@ -1323,6 +1322,7 @@ y	sh/conf/polybar.ini	/^offset-y = 0$/;"	k	section:bar/top
 yc	sh/vi/init.vim	/^nnoremap yc ^y$"+y$"*y\$$/;"	m
 yq	sh/vi/init.vim	/^nnoremap yq :@"<CR>$/;"	m
 yz	sh/vi/init.vim	/^nnoremap yz :let @" = expand('%:p')$/;"	m
+z,	sh/vi/init.vim	/^nnoremap z, :set filetype=text<CR>$/;"	m
 z;	sh/vi/init.vim	/^nnoremap z; :set wrap!<CR>$/;"	m
 z<BS>	sh/vi/init.vim	/^nnoremap z<BS> :e!<CR>$/;"	m
 zone	sh/conf/polybar.ini	/^thermal-zone = 0$/;"	k	section:module/temperature

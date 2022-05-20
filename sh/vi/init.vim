@@ -369,7 +369,9 @@ if &t_Co > 2 || has("gui_running")
     let c_comment_strings=1
 endif
 
-autocmd SessionLoadPost * LoadColor
+augroup Sessload
+    autocmd SessionLoadPost * LoadColor
+augroup END
 " autocmd SessionLoadPost * echom "Welcome back"
 autocmd WinNew * set numberwidth=2
 autocmd FileType c setlocal commentstring=//%s
@@ -719,7 +721,7 @@ nnoremap ,vo :Goyo<CR>
 nnoremap ,V :source $MYVIMRC <CR>
 nnoremap ,vv :source $MYVIMRC <CR>
 nnoremap ,cs :LoadColor<CR>
-nnoremap ,vs :source $RTP/session/comon <bar> call AddRpcEar() <bar> call LoadColor()<CR>
+nnoremap ,vs :source $RTP/session/comon <bar> call AddRpcEar()<CR>
 nnoremap ,,q :SSave! comon <bar> qa<CR>
 nnoremap ,vq :qa! <CR>
 nnoremap ,l :Startify<CR>
@@ -1391,11 +1393,10 @@ function! SaveColor(...)
 endfunction
 function! LoadColor(...)
     if g:phase == 'dunno'
-        echom "Will load default colors."
+        echo "Will load default colors."
         unlet g:colors_name
         source $sh/vi/vimrc_themes
-    endif
-    if g:phase == 'day'
+    elseif g:phase == 'day'
         if !exists("g:ColorDayName")
             echom "NO saved colors for this phase of day! Loading defaults.."
             if exists("g:colors_name") | unlet g:colors_name | endif
@@ -1418,7 +1419,7 @@ function! LoadColor(...)
             exec "set background=" . g:ColorNoxBg
         endif
     else
-        echom "Unknown phase of day!"
+        echo "Unknown phase of day!"
     endif
 endfunction
 command! -nargs=? SaveColor call SetPhase(<f-args>) <bar> call SaveColor(<f-args>)
