@@ -191,7 +191,7 @@ nnoremap gc :cd $HOME/.config<cr>
 nnoremap gs :cd /ln/sh<cr>
 nnoremap gw :cd /ln/wo<cr>
 nnoremap gj :cd /ln/ho/gitjob<CR>
-nnoremap gd :cd /ln/dwn<CR>
+nnoremap gd :cd /ln/dwn<CR>:set sort=-mtime<CR>:16<CR>
 nnoremap gb :cd $bakcld<CR>
 nnoremap gB :cd $bakhot<CR>
 nnoremap gS :cd $baksam/..<CR>:goto bak<CR>
