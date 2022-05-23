@@ -723,6 +723,7 @@ nnoremap ,vv :source $MYVIMRC <CR>
 nnoremap ,cs :LoadColor<CR>
 nnoremap ,vs :source $RTP/session/comon <bar> call AddRpcEar()<CR>
 nnoremap ,,q :SSave! comon <bar> qa<CR>
+nnoremap ,,s :SSave! comon<CR>
 nnoremap ,vq :qa! <CR>
 nnoremap ,l :Startify<CR>
 nnoremap ,zq :wa <bar> qa<CR>
@@ -800,8 +801,8 @@ nnoremap ao o<Esc>:put! *<CR>`[v`]:g/^$/d<CR>:noh<CR>
 nnoremap aO o<Esc>:put! +<CR>`[v`]:g/^$/d<CR>:noh<CR>
 " yank inline
 nnoremap yc ^y$"+y$"*y$
-" yank current file full name
-nnoremap yz :let @" = expand('%:p')
+" yank current file full path/name
+nnoremap y<tab> :let @" = expand('%:p')
 " replace current word with register contents
 nnoremap cp "_ciw<c-r>"<esc>
 nnoremap co "_ciw<c-r>*<esc>
@@ -883,7 +884,7 @@ nnoremap z; :set wrap!<CR>
 nnoremap ,zz :let &scrolloff=28-&scrolloff<CR>
 nnoremap ,zc :let &colorcolumn=80-&colorcolumn<CR>
 nnoremap ,zn :set number!<CR>
-nnoremap z, :set filetype=text<CR>
+nnoremap z<space> :set filetype=text<CR>
 nnoremap ,vb :call SwitchBackground() <CR>:echo "background=" &background <cr>
 nnoremap ,vg :set termguicolors! <cr>:set termguicolors? <cr>
 nnoremap a/ :set hlsearch! <CR>

@@ -28,13 +28,13 @@ require'nvim-treesitter.configs'.setup {
 -- vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
--- -- vim.opt.list = true
--- -- vim.opt.listchars:append("eol:↴")
--- require("indent_blankline").setup {
---     -- show_end_of_line = true,
---     show_current_context = false,
---     show_current_context_start = true,
--- }
+-- vim.opt.list = true
+-- vim.opt.listchars:append("eol:↴")
+require("indent_blankline").setup {
+    show_end_of_line = true,
+    show_current_context = false,
+    show_current_context_start = true,
+}
 
 require'marks'.setup {
   -- whether to map keybinds or not. default true
@@ -197,6 +197,8 @@ if vim.fn.has('nvim-0.7') == 1 then
     vim.keymap.set("n","K", vim.lsp.buf.hover)
     vim.keymap.set("n","gK", "K")
     vim.keymap.set("n","gd", vim.lsp.buf.definition)
+    -- vim.keymap.set("n","gv", function() vim.cmd('new') end )
+    vim.keymap.set("n","gv", "<cmd>vsplit <bar> lua vim.lsp.buf.definition()<CR>" )
     vim.keymap.set("n","gD", vim.lsp.buf.declaration)
     vim.keymap.set("n","gS", vim.lsp.buf.document_symbol)
     vim.keymap.set("n","gs", vim.lsp.buf.references)
