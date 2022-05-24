@@ -36,7 +36,7 @@ bak()
           TXSZ=$( cat $tx | wc -c )
           if [ $TXSZ == 0 ] ; then
             rm $tx
-            [[ $(ls -A /ln/ho/fz/) ]] && ( shopt -s dotglob ; mv -i /ln/ho/fz/* /ln/mo/SAMV/fz/ )
+            [[ $(ls -A /ln/ho/fz/) ]] && ( shopt -s dotglob; touch --date=now; mv -i /ln/ho/fz/* /ln/mo/SAMV/fz/ )
             sync /ln/mo/SAMV/fz
             touch $tx
           else
