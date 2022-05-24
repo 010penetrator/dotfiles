@@ -34,6 +34,6 @@ NVSD="$HOME/.config/nvim/session"
 # Backup something else
 echo; DONTOVERWRITE=1 bak.sh
 
-echo; df -BGB
+echo; df -BGB --output=source,fstype,avail,pcent,target -x tmpfs -x devtmpfs
 # $LSBLK -o NAME,LABEL,MOUNTPOINT,SIZE,FSUSE% | grep "sd\|nvme" --color=none ; echo
 

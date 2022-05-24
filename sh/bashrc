@@ -63,7 +63,7 @@ alias 1l='less ~/.sh/1linux'
 #     alias as='apt search'
 #     alias ai='sudo apt install'
 # fi
-alias lm='df -BGB --output=source,avail,pcent,target'
+alias lm='df -BGB --output=source,fstype,avail,pcent,target -x tmpfs -x devtmpfs'
 alias wlm='watch -n.4 df -BMB --output=source,avail,pcent,target'
 alias lb='$LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT,FSUSE% | grep "sd\|nvme" --color=none'
 alias wlb='watch -n.4 $LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT'
