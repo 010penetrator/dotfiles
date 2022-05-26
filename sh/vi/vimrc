@@ -16,8 +16,8 @@ endif
 SSource $lo/vimrc.local
 
 " TODO/Problems :
-"     ft detection is lazy/wrong
+"     ft detection is lazy
 "     lsp client exits with 1
 "     less completion
-"     use :colder
+"     try :colder
 

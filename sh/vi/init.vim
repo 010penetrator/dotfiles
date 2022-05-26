@@ -111,6 +111,7 @@ Plug 'zefei/vim-colortuner' "fun
 Plug 'Townk/vim-autoclose' "usable
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'will133/vim-dirdiff'
 
 " Try out later
 " Plug 'tpope/vim-unimpaired'
@@ -596,7 +597,7 @@ nnoremap ,q :qa <CR>
 nnoremap ,d :bd!<CR>
 nnoremap ,bd :BDnJump<CR>
 nnoremap ,i :diffthis \| wincmd w<CR>
-nnoremap ,I :diffoff  \| wincmd w<CR>
+nnoremap ,o :diffoff  \| wincmd w<CR>
 nnoremap q<space> :echo expand ('%') '.@.' getcwd() <CR>
 nnoremap ,cc :LCDhere <CR>
 nnoremap ,cg :call ClimbToDirWhere(".git/index",1) \| pwd <CR>

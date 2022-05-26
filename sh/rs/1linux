@@ -31,7 +31,7 @@ dmenu rofi wmctrl xdotool vim-gtk kitty pavucontrol htop vifm fdisk gparted nnn 
 qtcreator qtcreator-doc qtcreator-data build-essential qtbase5-examples qtbase5-dev
 
 ==RICE
-Chrome: uBlock Vimium CVim Surfingkeys MidnightLizard SingleFile Stylus Rescroller Browsec Bookmarks_MakeItSimple RecentBookmarks EmptyNewTabPage CopyTabInfo CopyUrl.rus
+Chrome: uBlock Vimium CVim Surfingkeys MidnightLizard SingleFile Stylus Rescroller Browsec Bookmarkie TidyBookmarks NeaterBookmarks RecentBookmarks EmptyNewTabPage CopyTabInfo CopyUrl.rus
 Firefox: Vimium TabStash DarkReader VerticalTabsReloaded NoPlaylistAutoplayForYouTube HLSdownloader HumbleNewTabPage TabSuspender tablist_slymax hide-scrollbars *DefaultZoom FixedZoom
 Fonts: Cantarell Liberation DejaVu Noto Arimo Tinos Caslon EB-Garamond Euclid-Circular-A
 Fonts Mono: xos4Terminus LiberationMono Noto Input Fira FiraCode Hack DejaVuSansMono SourceCodePro Tamzen OhSnap industry
