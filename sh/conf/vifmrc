@@ -66,8 +66,8 @@ nnoremap qz :wincmd =<CR>
 nnoremap q, 8<c-w><
 nnoremap q. 8<c-w>>
 nnoremap qt :tree!<CR>
-nnoremap gn hjl
-nnoremap gp hkl
+nnoremap g<Down> hjl
+nnoremap g<Up> hkl
 nnoremap cd :cd<space>
 nnoremap qq :
 nnoremap q; :<up>
@@ -158,6 +158,7 @@ nnoremap cB :copy<cr>
 nnoremap cm :move<cr>
 nnoremap C :copy<cr>
 nnoremap E :move<cr>
+nnoremap ak :!touch %f --date=now<cr>
 nnoremap cn :clone<cr>
 nnoremap ah :!ln  $PWD/%c %D/%c <cr>
 nnoremap al :!ln -rs $PWD/%c %D/%c <cr>
@@ -197,7 +198,8 @@ nnoremap gB :cd $bakhot<CR>
 nnoremap gS :cd $baksam/..<CR>:goto bak<CR>
 nnoremap gk :cd /ln/torrents/red/KKK<CR>:sort<CR>mh
 nnoremap gv :cd ~/.vim<CR>:goto plugged<CR>
-nnoremap gN :cd ~/.config/nvim<CR>:goto plugged<CR>
+nnoremap gn :cd ~/.config/nvim<CR>:goto plugged<CR>
+nnoremap gN :cd ~/01/new/<CR>
 
 """"""""""""""""""""""""
 ""     Settings:      ""

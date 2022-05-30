@@ -73,8 +73,9 @@ fi
     ln -srnf .sh/conf/mpv/mpv.conf .config/mpv/
     mkdir -p .local/share/applications/
     cp /ln/sh/transmission*desktop .local/share/applications/
-    # xdg-mime default transmission-cli.desktop x-scheme-handler/magnet
-    # xdg-mime default transmission-cli.desktop application/x-bittorrent 
+    xdg-mime default transmission-cli.desktop x-scheme-handler/magnet
+    xdg-mime default transmission-cli.desktop application/x-bittorrent
+    xdg-mime default FBReader.desktop application/x-mobipocket-ebook
 }
 
 {

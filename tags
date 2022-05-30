@@ -17,13 +17,13 @@ $RTP	sh/vi/init.vim	/^let $RTP=split(&runtimepath, ',')[0]$/;"	v
 ,,o	sh/vi/init.vim	/^nnoremap ,,o ^y$:call system('xdg-open ' . "'" . @" . "' &")<CR>$/;"	m
 ,,o	sh/vi/init.vim	/^vnoremap ,,o :<C-U>call SystemOpenEveryLine()<CR>$/;"	m
 ,,q	sh/vi/init.vim	/^nnoremap ,,q :SSave! comon <bar> qa<CR>$/;"	m
+,,s	sh/vi/init.vim	/^nnoremap ,,s :SSave! comon<CR>$/;"	m
 ,,t	sh/vi/init.vim	/^nnoremap ,,t :NewTermHere<CR>$/;"	m
 ,.	sh/vi/init.vim	/^nnoremap <silent> ,. :if bufexists(bufnr('#')) <bar> b # <bar> echo expand('%') <bar> else <bar>/;"	m
 ,;	sh/vi/init.vim	/^nnoremap ,; :6mes<CR>$/;"	m
 ,<tab>	sh/vi/init.vim	/^map ,<tab> :emenu tagi.<tab>$/;"	m
 ,B	sh/vi/init.vim	/^nnoremap ,B yap: exec "!" . @" <CR>$/;"	m
 ,C	sh/vi/init.vim	/^nnoremap ,C :Silent xdg-open %:p:h &<CR>$/;"	m
-,I	sh/vi/init.vim	/^nnoremap ,I :diffoff  \\| wincmd w<CR>$/;"	m
 ,M	sh/vi/init.vim	/^nnoremap ,M ^y$:call system('firefox ' . "'" . @" . "' &")<CR>$/;"	m
 ,O	sh/vi/init.vim	/^nnoremap ,O :Silent xdg-open %:p &<CR>$/;"	m
 ,V	sh/vi/init.vim	/^nnoremap ,V :source $MYVIMRC <CR>$/;"	m
@@ -67,6 +67,7 @@ $RTP	sh/vi/init.vim	/^let $RTP=split(&runtimepath, ',')[0]$/;"	v
 ,i	sh/vi/init.vim	/^nnoremap ,i :diffthis \\| wincmd w<CR>$/;"	m
 ,l	sh/vi/init.vim	/^nnoremap ,l :Startify<CR>$/;"	m
 ,n	sh/vi/init.vim	/^nnoremap ,n :call RaiseNetRW()<CR>$/;"	m
+,o	sh/vi/init.vim	/^nnoremap ,o :diffoff  \\| wincmd w<CR>$/;"	m
 ,q	sh/vi/init.vim	/^nnoremap ,q :qa <CR>$/;"	m
 ,tf	sh/vi/init.vim	/^nnoremap ,tf :Telescope find_files theme=ivy<CR>$/;"	m
 ,tg	sh/vi/init.vim	/^nnoremap ,tg :Telescope live_grep<CR>$/;"	m
@@ -1319,12 +1320,12 @@ x	sh/vi/init.vim	/^noremap x "_x$/;"	m
 xms	sh/conf/dosbox-0.74.conf	/^xms=true$/;"	k	section:dos
 xterm16_brightness	sh/vi/init.vim	/^let xterm16_brightness = '#aac8c2' | let xterm16_colormap='soft'$/;"	v
 y	sh/conf/polybar.ini	/^offset-y = 0$/;"	k	section:bar/top
+y<tab>	sh/vi/init.vim	/^nnoremap y<tab> :let @" = expand('%:p')$/;"	m
 yc	sh/vi/init.vim	/^nnoremap yc ^y$"+y$"*y\$$/;"	m
 yq	sh/vi/init.vim	/^nnoremap yq :@"<CR>$/;"	m
-yz	sh/vi/init.vim	/^nnoremap yz :let @" = expand('%:p')$/;"	m
-z,	sh/vi/init.vim	/^nnoremap z, :set filetype=text<CR>$/;"	m
 z;	sh/vi/init.vim	/^nnoremap z; :set wrap!<CR>$/;"	m
 z<BS>	sh/vi/init.vim	/^nnoremap z<BS> :e!<CR>$/;"	m
+z<space>	sh/vi/init.vim	/^nnoremap z<space> :set filetype=text<CR>$/;"	m
 zone	sh/conf/polybar.ini	/^thermal-zone = 0$/;"	k	section:module/temperature
 zoomLevels	sh/conf/nomacs.Image Lounge.conf	/^zoomLevels="0.0001,0.001,0.01,0.05,0.1,0.125,0.166,0.25,0.333,0.5,0.66,1,1.5,2,3,4,5,6,7,8,12,16/;"	k	section:zooming
 zooming	sh/conf/nomacs.Image Lounge.conf	/^[zooming]$/;"	s

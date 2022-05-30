@@ -728,7 +728,7 @@ nnoremap ,,s :SSave! comon<CR>
 nnoremap ,vq :qa! <CR>
 nnoremap ,l :Startify<CR>
 nnoremap ,zq :wa <bar> qa<CR>
-nnoremap ,vr :call AddRpcEar()<CR>
+nnoremap ,ve :call AddRpcEar()<CR>
 " Open current file at vimserver session via my "vimrpc" shell script
 nnoremap ,va :silent exec '! ( virpc "%:p" ) & ' \| redraw! \| q <CR>
 " Open current file at vimserver session at new tab via my "vimrpc" shell script
