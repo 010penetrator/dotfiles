@@ -4,7 +4,7 @@
 #conn() { w=$(ip link | grep wlp | cut -f 2 -d ':' | cut -b 2-) ; sudo wpa_supplicant -B -i $w -c /etc/.wc && sudo dhcpcd $w ; }
 tf=/tmp/wpatmp
 rm -rf $tf
-w=$(ip link | grep "wlp\|wlan" | cut -f 2 -d ':' | cut -b 2-)
+w=$(ip link | grep wlp | cut -f 2 -d ':' | cut -b 2-)
 echo interface $w
 echo Enter SSID
 read a

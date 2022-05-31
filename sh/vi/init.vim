@@ -680,9 +680,8 @@ nnoremap ,bj :Unite buffer file<CR>
 nnoremap ,bi :Unite buffer file<CR>i
 nnoremap ,bk :Denite buffer -mode=normal -immediately-1<CR>
 nnoremap ,be :BufExplorer <CR>
-nnoremap ,ff :Files<CR>
-" nnoremap ,bb :Buffers<CR>
-nnoremap ,bb :Telescope buffers theme=ivy<CR>
+nnoremap ,,f :Files<CR>
+nnoremap ,bl :Telescope buffers theme=ivy<CR>
 nnoremap ,fg :GitFiles<CR>
 nnoremap ,fl :Lines<CR>
 nnoremap qf  :FilesProj<CR>
@@ -795,8 +794,7 @@ nnoremap ai :put! *<CR>
 nnoremap aP :put  +<CR>
 nnoremap aI :put! +<CR>
 " copy Vim copy register to system copy buffers
-" nnoremap qy :let @+ = @" <bar> :let @* = @" <CR>
-nnoremap ,, :let @+ = @" <bar> :let @* = @" <CR>
+nnoremap qy :let @+ = @" <bar> :let @* = @" <CR>
 " put select system buffer as single paragraph
 nnoremap ao o<Esc>:put! *<CR>`[v`]:g/^$/d<CR>:noh<CR>
 nnoremap aO o<Esc>:put! +<CR>`[v`]:g/^$/d<CR>:noh<CR>
