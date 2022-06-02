@@ -212,6 +212,7 @@ git diff mybranch master -- way/somefile.c # diff against other branch
 git diff --cached # show the changes that have been staged (i.e. changes in the cache/index)
 git log --stat
 git log -p
+git fetch origin master:master # update master while staying on your branch
 git show <commithash>:main.cpp > another.cpp # restore file under new name
 git config --global credential.helper 'cache --timeout=36000' # remember git passwd
 git config credential.helper cache 6h

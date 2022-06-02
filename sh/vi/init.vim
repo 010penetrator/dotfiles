@@ -371,7 +371,7 @@ if &t_Co > 2 || has("gui_running")
 endif
 
 augroup Sessload
-    autocmd SessionLoadPost * LoadColor
+    autocmd SessionLoadPost * silent LoadColor
 augroup END
 " autocmd SessionLoadPost * echom "Welcome back"
 autocmd WinNew * set numberwidth=2
@@ -648,7 +648,7 @@ nnoremap ak    <C-W>W<C-W>_
 nnoremap q<tab> <C-w>p
 " swap current and previous window
 " silent nnoremap a<tab> :call WinSwap()<CR><C-W>p
-silent nnoremap ,<tab> :call WinSwap() <bar> wincmd p<CR><Esc>
+silent nnoremap c<tab> :call WinSwap() <bar> wincmd p<CR><Esc>
 
 " Handle tabs
 nnoremap at :tabe<CR>
@@ -679,25 +679,26 @@ nnoremap gz 1gt
 nnoremap ,bj :Unite buffer file<CR>
 nnoremap ,bi :Unite buffer file<CR>i
 nnoremap ,bk :Denite buffer -mode=normal -immediately-1<CR>
-nnoremap ,be :BufExplorer <CR>
-nnoremap ,,f :Files<CR>
+nnoremap ,be :BufExplorer<CR>
 nnoremap ,bl :Telescope buffers theme=ivy<CR>
-nnoremap ,fg :GitFiles<CR>
-nnoremap ,fl :Lines<CR>
-nnoremap qf  :FilesProj<CR>
+nnoremap ,to :Telescope oldfiles<CR>
+nnoremap ,zf :Files<CR>
+nnoremap ,zg :GFiles<CR>
+nnoremap ,zl :Lines<CR>
 nnoremap ,zs :Files $sh<CR>
 nnoremap ,zt :Files $tt<CR>
 nnoremap ,zj :Files $jo<CR>
-nnoremap ,to :Telescope oldfiles<CR>
+nnoremap qf  :FilesProj<CR>
+nnoremap ,<space> :Telescope find_files search_dirs=$sh,$tt<CR>
 
 " Search text
-nnoremap ,fg :Rg<CR>
+nnoremap ,zr :Rg<CR>
 nnoremap ,tg :Telescope live_grep<CR>
 nnoremap ,tf :Telescope find_files theme=ivy<CR>
 nnoremap ,tr :Telescope lsp_references<CR>
 " nnoremap ,tt :Telescope current_buffer_fuzzy_find sorting_strategy=ascending layout_config={"prompt_position":"top"}<CR>
 " nnoremap ,tt <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find({sorting_strategy="ascending", theme="ivy"})<CR>
-nnoremap ,tt <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_ivy{})<CR>
+nnoremap ,tb <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_ivy{})<CR>
 
 " Jump to favourite files
 " nnoremap ,ga :call FocusBufOrDo('99.txt','')<CR>

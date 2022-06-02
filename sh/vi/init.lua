@@ -199,6 +199,8 @@ if vim.fn.has('nvim-0.7') == 1 then
     vim.keymap.set("n","gd", vim.lsp.buf.definition)
     -- vim.keymap.set("n","gv", function() vim.cmd('new') end )
     vim.keymap.set("n","gv", "<cmd>vsplit <bar> lua vim.lsp.buf.definition()<CR>" )
+    vim.keymap.set("n","g<space>", "<cmd>let bn=bufnr('%') <bar> let pos=getpos('.') <bar> wincmd p <bar> exec 'b' . bn <bar> call setpos('.',pos) <bar> lua vim.lsp.buf.definition()<CR>" )
+    -- let g:bufnra = bufnr("%")    exec "b" . g:bufnra
     vim.keymap.set("n","gD", vim.lsp.buf.declaration)
     vim.keymap.set("n","gS", vim.lsp.buf.document_symbol)
     vim.keymap.set("n","gs", vim.lsp.buf.references)
