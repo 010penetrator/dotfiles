@@ -371,7 +371,7 @@ if &t_Co > 2 || has("gui_running")
 endif
 
 augroup Sessload
-    autocmd SessionLoadPost * silent LoadColor
+    autocmd SessionLoadPost * LoadColor
 augroup END
 " autocmd SessionLoadPost * echom "Welcome back"
 autocmd WinNew * set numberwidth=2

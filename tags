@@ -18,6 +18,7 @@ $RTP	sh/vi/init.vim	/^let $RTP=split(&runtimepath, ',')[0]$/;"	v
 ,,q	sh/vi/init.vim	/^nnoremap ,,q :SSave! comon <bar> qa<CR>$/;"	m
 ,,s	sh/vi/init.vim	/^nnoremap ,,s :SSave! comon<CR>$/;"	m
 ,,t	sh/vi/init.vim	/^nnoremap ,,t :NewTermHere<CR>$/;"	m
+,,v	sh/vi/init.vim	/^nnoremap ,,v :Goyo<CR>$/;"	m
 ,.	sh/vi/init.vim	/^nnoremap <silent> ,. :if bufexists(bufnr('#')) <bar> b # <bar> echo expand('%') <bar> else <bar>/;"	m
 ,;	sh/vi/init.vim	/^nnoremap ,; :6mes<CR>$/;"	m
 ,<space>	sh/vi/init.vim	/^nnoremap ,<space> :Telescope find_files search_dirs=$sh,$tt<CR>$/;"	m
@@ -79,7 +80,6 @@ $RTP	sh/vi/init.vim	/^let $RTP=split(&runtimepath, ',')[0]$/;"	v
 ,vg	sh/vi/init.vim	/^nnoremap ,vg :set termguicolors! <cr>:set termguicolors? <cr>$/;"	m
 ,vl	sh/vi/init.vim	/^nnoremap ,vl yy:@"<CR>$/;"	m
 ,vn	sh/vi/init.vim	/^nnoremap ,vn :silent exec '! ( MODE=newtab virpc "%:p" ) & ' \\| redraw! \\| q <CR>$/;"	m
-,vo	sh/vi/init.vim	/^nnoremap ,vo :Goyo<CR>$/;"	m
 ,vp	sh/vi/init.vim	/^nnoremap ,vp :put + <bar> exec "normal dfmxIPlug 'A'" <CR>==$/;"	m
 ,vq	sh/vi/init.vim	/^nnoremap ,vq :qa! <CR>$/;"	m
 ,vs	sh/vi/init.vim	/^nnoremap ,vs :source $RTP\/session\/comon <bar> call AddRpcEar()<CR>$/;"	m
