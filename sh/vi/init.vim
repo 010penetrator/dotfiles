@@ -379,7 +379,7 @@ autocmd FileType c setlocal commentstring=//%s
 autocmd FileType cpp setlocal commentstring=//%s
 autocmd FileType text setlocal commentstring=#%s
 autocmd FileType cmake setlocal commentstring=#%s
-autocmd FileType c setlocal colorcolumn=80
+autocmd FileType c setlocal colorcolumn=0
 " autocmd CursorHold * normal! m'
 
 " Taming netrw
