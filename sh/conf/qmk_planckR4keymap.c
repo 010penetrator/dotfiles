@@ -1,4 +1,4 @@
-// Keymap by plasmik for planck keyboard by plasmik
+// Keymap by plasmik for planck keyboard
 
 #include "planck.h"
 #include "action_layer.h"

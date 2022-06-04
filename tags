@@ -653,7 +653,7 @@ date	sh/conf/polybar.ini	/^date =$/;"	k	section:module/date
 dc	sh/vi/init.vim	/^nnoremap dc "_d\$$/;"	m
 default	sh/conf/polybar.ini	/^ws-icon-default = x$/;"	k	section:module/bspwm
 defaultJpgQuality	sh/conf/nomacs.Image Lounge.conf	/^defaultJpgQuality=97$/;"	k	section:AppSettings
-dip_switch_update_user	sh/conf/qmk_planckR6keymap.c	/^void dip_switch_update_user(uint8_t index, bool active) {$/;"	f	typeref:typename:void
+dip_switch_update_user	sh/conf/qmk_planckR6keymap.c	/^bool dip_switch_update_user(uint8_t index, bool active) {$/;"	f	typeref:typename:bool
 dip_update	sh/conf/qmk_planckR4keymap.c	/^void dip_update(uint8_t index, bool active) {$/;"	f	typeref:typename:void
 disableUpdateInteraction	sh/conf/nomacs.Image Lounge.conf	/^disableUpdateInteraction=false$/;"	k	section:SynchronizeSettings
 discharging	sh/conf/polybar.ini	/^format-discharging = <ramp-capacity> <label-discharging>$/;"	k	section:module/battery
@@ -675,7 +675,7 @@ empty	sh/conf/polybar.ini	/^bar-volume-empty = ─$/;"	k	section:module/volume
 empty	sh/conf/polybar.ini	/^label-empty = %index%$/;"	k	section:module/bspwm
 ems	sh/conf/dosbox-0.74.conf	/^ems=true$/;"	k	section:dos
 encoder_update	sh/conf/qmk_planckR4keymap.c	/^void encoder_update(bool clockwise) {$/;"	f	typeref:typename:void
-encoder_update	sh/conf/qmk_planckR6keymap.c	/^void encoder_update(bool clockwise) {$/;"	f	typeref:typename:void
+encoder_update_user	sh/conf/qmk_planckR6keymap.c	/^bool encoder_update_user(uint8_t index, bool clockwise) {$/;"	f	typeref:typename:bool
 exec	sh/conf/polybar.ini	/^menu-0-0-exec = menu-open-1$/;"	k	section:module/powermenu
 exec	sh/conf/polybar.ini	/^menu-0-1-exec = menu-open-2$/;"	k	section:module/powermenu
 exec	sh/conf/polybar.ini	/^menu-0-2-exec = menu-open-3$/;"	k	section:module/powermenu
