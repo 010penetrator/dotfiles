@@ -371,7 +371,7 @@ if &t_Co > 2 || has("gui_running")
 endif
 
 augroup Sessload
-    autocmd SessionLoadPost * LoadColor
+    autocmd SessionLoadPost * silent LoadColor
 augroup END
 " autocmd SessionLoadPost * echom "Welcome back"
 autocmd WinNew * set numberwidth=2
@@ -716,7 +716,7 @@ nnoremap ,gu :call FocusBufOrDo('ff','e $tt/u*/ff*')<CR>
 nnoremap ,gh :call FocusBufOrDo('sh_history','e $HOME/.bash_history')<CR>G
 nnoremap ,gl :call FocusBufOrDo('1linux','e $sh/rs/1linux')<CR>
 
-nnoremap ,vo :Goyo<CR>
+nnoremap ,,v :Goyo<CR>
 
 " Start and quit Vim
 nnoremap ,V :source $MYVIMRC <CR>
