@@ -1050,26 +1050,28 @@ function! UpdCtagsGit()
 endfunction
 
 function! AddRpcEar()
-  echo "Will launch an rpc server with default address for this editor.."
-  if has('nvim')
-    if !empty($NVIMSERV)
-      call serverstart(expand($NVIMSERV))
-    else
-      echom "Rpc address for neoVim not provided"
+    echo "Will launch an rpc server with default address.."
+    if has('nvim')
+        if !empty($NVIMSERV)
+            if !filereadable(expand($NVIMSERV))
+                call serverstart(expand($NVIMSERV))
+            else
+                echom "Sorry, desired RPC address is already taken -- " . expand($NVIMSERV)
+            endif
+        else
+            echom "Rpc address for neoVim not provided"
+        endif
+    elseif v:version >= 800
+        if !empty($VIMSERV)
+            if empty(v:servername)
+                call remote_startserver(expand($VIMSERV))
+            else
+                echom "Sorry, this Vim instance already runs an rpc server"
+            endif
+        else
+            echom "Rpc address for Vim not provided"
+        endif
     endif
-  elseif v:version >= 800
-    if !empty($VIMSERV)
-      " if v:servername == expand("$VIMSERV")
-      " echo "old rpc address was " . expand("%")
-      if empty(v:servername)
-        call remote_startserver(expand($VIMSERV))
-      else
-        echom "Sorry, this Vim instance already runs an rpc server"
-      endif
-    else
-      echom "Rpc address for Vim not provided"
-    endif
-  endif
 endfunction
 
 function! BuildProject1()
