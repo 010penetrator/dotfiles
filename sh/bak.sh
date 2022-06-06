@@ -44,7 +44,7 @@ tar -chzf "$bakhot/$DAY/words.tar.gz" \
 [[ -d $baksam ]] &&
     {
         echo Gonna write to SAM as well..
-        mkdir -p "$baksam/${spc}_$MON"
-        cp -rf "$bakhot/$DAY/"* "$baksam/${spc}_$MON"
+        mkdir -p "$baksam/${space}_$MON"
+        cp -rf "$bakhot/$DAY/"* "$baksam/${space}_$MON"
     }
 
