@@ -715,6 +715,7 @@ nnoremap ,gz :call FocusBufOrDo('zzzz','e $tt/zzzzzz')<CR>
 nnoremap ,gu :call FocusBufOrDo('ff','e $tt/u*/ff*')<CR>
 nnoremap ,gh :call FocusBufOrDo('sh_history','e $HOME/.bash_history')<CR>G
 nnoremap ,gl :call FocusBufOrDo('1linux','e $sh/rs/1linux')<CR>
+nnoremap ,gg :call FocusWindowOrDo('99.txt','1tabn \| wincmd b \| e $buf')<CR>
 
 nnoremap ,,v :Goyo<CR>
 
@@ -723,7 +724,7 @@ nnoremap ,V :source $MYVIMRC <CR>
 nnoremap ,vv :source $MYVIMRC <CR>
 nnoremap ,cs :LoadColor<CR>
 nnoremap ,vs :source $RTP/session/comon <bar> call AddRpcEar()<CR>
-nnoremap ,,q :SSave! comon <bar> qa<CR>
+nnoremap ,,q :call SaveColor() <bar> SSave! comon <bar> qa<CR>
 nnoremap ,,s :SSave! comon<CR>
 nnoremap ,vq :qa! <CR>
 nnoremap ,l :Startify<CR>
@@ -888,7 +889,7 @@ nnoremap z<space> :set filetype=text<CR>
 nnoremap ,vb :call SwitchBackground() <CR>:echo "background=" &background <cr>
 nnoremap ,vg :set termguicolors! <cr>:set termguicolors? <cr>
 nnoremap a/ :set hlsearch! <CR>
-nnoremap ,gg :GitGutterToggle<CR>
+nnoremap ,G :GitGutterToggle<CR>
 
 " Tags
 nnoremap ,vt :TagbarOpen fj <CR>
@@ -1050,28 +1051,26 @@ function! UpdCtagsGit()
 endfunction
 
 function! AddRpcEar()
-    echo "Will launch an rpc server with default address.."
-    if has('nvim')
-        if !empty($NVIMSERV)
-            if !filereadable(expand($NVIMSERV))
-                call serverstart(expand($NVIMSERV))
-            else
-                echom "Sorry, desired RPC address is already taken -- " . expand($NVIMSERV)
-            endif
-        else
-            echom "Rpc address for neoVim not provided"
-        endif
-    elseif v:version >= 800
-        if !empty($VIMSERV)
-            if empty(v:servername)
-                call remote_startserver(expand($VIMSERV))
-            else
-                echom "Sorry, this Vim instance already runs an rpc server"
-            endif
-        else
-            echom "Rpc address for Vim not provided"
-        endif
+  echo "Will launch an rpc server with default address for this editor.."
+  if has('nvim')
+    if !empty($NVIMSERV)
+      call serverstart(expand($NVIMSERV))
+    else
+      echom "Rpc address for neoVim not provided"
     endif
+  elseif v:version >= 800
+    if !empty($VIMSERV)
+      " if v:servername == expand("$VIMSERV")
+      " echo "old rpc address was " . expand("%")
+      if empty(v:servername)
+        call remote_startserver(expand($VIMSERV))
+      else
+        echom "Sorry, this Vim instance already runs an rpc server"
+      endif
+    else
+      echom "Rpc address for Vim not provided"
+    endif
+  endif
 endfunction
 
 function! BuildProject1()
@@ -1171,26 +1170,39 @@ function! GetProjDir()
 endfunction
 
 function! FocusBufOrDo(name,cmd)
-  if buflisted(bufname(a:name))
-    call GotoWindowByName(a:name)
-    if bufname('%') != bufname(a:name)
-      exec 'buffer ' . a:name
+    if buflisted(bufname(a:name))
+        call FocusWindow(a:name)
+        if bufname('%') != bufname(a:name)
+            exec 'buffer ' . a:name
+        endif
+    elseif !empty(a:cmd)
+        " echo 'No such buffer'
+        exec a:cmd
     endif
-  elseif !empty(a:cmd)
-    " echo 'No such buffer'
-    exec a:cmd
-  endif
 endfunction
 
 function! BufFocusedThenDo(name,cmd)
-  if bufname('%') =~ a:name
-    exec a:cmd
-  else
-    echo 'Not current buffer'
-  endif
+    if bufname('%') =~ a:name
+        exec a:cmd
+    else
+        echo 'Not current buffer'
+    endif
 endfunction
 
-function! GotoWindowByName(name)
+function! FocusWindowOrDo(name,cmd)
+    for b in getbufinfo()
+        if b.name =~ a:name && !empty(b.windows)
+            call win_gotoid(b.windows[0])
+            return
+        endif
+    endfor
+    echo 'Window not found'
+    if !empty(a:cmd)
+        exec a:cmd
+    endif
+endfunction
+
+function! FocusWindow(name)
   for b in getbufinfo()
     if b.name =~ a:name && !empty(b.windows)
       call win_gotoid(b.windows[0])
@@ -1592,6 +1604,13 @@ function! SystemOpenEveryLine()
   endfor
   " Restore selection
   exec "normal `>V`<"
+endfunction
+
+function! CleanEmptyBuffers()
+    let buffers = filter(range(1, bufnr('$')), 'buflisted(v:val) && empty(bufname(v:val)) && bufwinnr(v:val)<0 && !getbufvar(v:val, "&mod")')
+    if !empty(buffers)
+        exe 'bw ' . join(buffers, ' ')
+    endif
 endfunction
 
 " FZF

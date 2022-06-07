@@ -1,0 +1,149 @@
+let SessionLoad = 1
+let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-1 siso=-1
+let v:this_session=expand("<sfile>:p")
+let UltiSnipsJumpForwardTrigger = "<c-j>"
+let VM_Extend_hl = "Visual"
+let DirDiffIgnoreFileNameCase =  0 
+let GPGPreferSymmetric =  1 
+let AutoClosePairs_del = ""
+let UltiSnipsRemoveSelectModeMappings =  1 
+let VM_Insert_hl = "Cursor"
+let DirDiffSimpleMap =  0 
+let ColorNoxName = "stellarized"
+let DirDiffAddArgs = ""
+let UltiSnipsExpandTrigger = "<tab>"
+let DirDiffExcludes = ""
+let UltiSnipsDebugPort =  8080 
+let ColorNoxBg = "dark"
+let AutoClosePairs_add = ""
+let DirDiffInteractive =  0 
+let DirDiffTextFiles = "Files "
+let DirDiffSort =  1 
+let DirDiffForceLang = "C"
+let DirDiffLangString = "LANG=C "
+let DirDiffDynamicDiffText =  0 
+let UltiSnipsDebugServerEnable =  0 
+let Lf_StlColorscheme = "one"
+let UltiSnipsEnableSnipMate =  1 
+let VM_Mono_hl = "Cursor"
+let UltiSnipsJumpBackwardTrigger = "<c-k>"
+let DirDiffTextDiffer = " differ"
+let BufExplorer_title = "[Buf List]"
+let ColorNoxLine = "PaperColor_light"
+let DirDiffTextOnlyInCenter = ": "
+let DirDiffIgnoreCase =  0 
+let DirDiffTextOnlyIn = "Only in "
+let DirDiffTextAnd = " and "
+let UltiSnipsDebugHost = "localhost"
+let UltiSnipsListSnippets = "<c-tab>"
+let DirDiffForceShell = ""
+let GPGFilePattern = "*.{gpg,asc,pgp}"
+let DirDiffWindowSize =  14 
+let DirDiffIgnore = ""
+let UltiSnipsPMDebugBlocking =  0 
+let VM_Cursor_hl = "Cursor"
+let UltiSnipsEditSplit = "normal"
+let AutoClosePreserveDotReg =  1 
+let Buffetbufferformatfunction = "s:callback"
+let DirDiffTheme = ""
+silent only
+silent tabonly
+cd ~
+if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
+  let s:wipebuf = bufnr('%')
+endif
+let s:shortmess_save = &shortmess
+set shortmess=aoO
+badd +0 .dotfiles.git/sh/vi/init.vim
+badd +0 .dotfiles.git/sh/vi/vimrc
+badd +0 .dotfiles.git/sh/vi/vimrc_themes
+argglobal
+%argdel
+set stal=2
+tabnew +setlocal\ bufhidden=wipe
+tabnew +setlocal\ bufhidden=wipe
+tabnew +setlocal\ bufhidden=wipe
+tabrewind
+argglobal
+enew
+setlocal fdm=marker
+setlocal fde=nvim_treesitter#foldexpr()
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+tabnext
+edit .dotfiles.git/sh/vi/vimrc
+argglobal
+setlocal fdm=marker
+setlocal fde=nvim_treesitter#foldexpr()
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 1 - ((0 * winheight(0) + 24) / 48)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 1
+normal! 0
+lcd ~/.dotfiles.git/sh/vi
+tabnext
+edit ~/.dotfiles.git/sh/vi/init.vim
+argglobal
+setlocal fdm=marker
+setlocal fde=nvim_treesitter#foldexpr()
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 1 - ((0 * winheight(0) + 24) / 48)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 1
+normal! 0
+lcd ~/.dotfiles.git/sh/vi
+tabnext
+edit ~/.dotfiles.git/sh/vi/vimrc_themes
+argglobal
+balt ~/.dotfiles.git/sh/vi/vimrc_themes
+setlocal fdm=marker
+setlocal fde=nvim_treesitter#foldexpr()
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 61 - ((44 * winheight(0) + 24) / 48)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 61
+normal! 03|
+lcd ~/.dotfiles.git/sh/vi
+tabnext 4
+set stal=1
+if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
+  silent exe 'bwipe ' . s:wipebuf
+endif
+unlet! s:wipebuf
+set winheight=7 winwidth=20
+let &shortmess = s:shortmess_save
+let s:sx = expand("<sfile>:p:r")."x.vim"
+if filereadable(s:sx)
+  exe "source " . fnameescape(s:sx)
+endif
+let &g:so = s:so_save | let &g:siso = s:siso_save
+set hlsearch
+nohlsearch
+doautoall SessionLoadPost
+unlet SessionLoad
+" vim: set ft=vim :

@@ -3,6 +3,8 @@
 """"""""""""""""""""""""
 " vim: set foldmethod=marker
 " vim: ts=4 sw=4 ft=vim
+map <buffer> M j:call EvalThis()<cr>
+map <buffer> H k:call EvalThis()<cr>
 
 let hostname = substitute(system('hostname'), '\n', '', '')
 if exists("g:colors_name")
@@ -75,8 +77,6 @@ endif
 " colo edge
 " colo everforest
 " colo vadelma
-map <buffer> M j:call EvalThis()<cr>
-map <buffer> H k:call EvalThis()<cr>
 
 " " " {{{}}} " " "
 " LineColor ayu_light
@@ -92,8 +92,6 @@ map <buffer> H k:call EvalThis()<cr>
 " LineColor deus
 " LineColor bluewery
 " LineColor darcula
-map <buffer> M j:call EvalThis()<cr>
-map <buffer> H k:call EvalThis()<cr>
 
 " hi! Search ctermbg=222
 " hi! Normal ctermbg=234

@@ -78,6 +78,7 @@ nnoremap ae :winrun , cd %C <CR><Tab>
 nnoremap a= :winrun , cd %D <CR><Tab>
 nnoremap cv cW
 nnoremap t tj
+nnoremap T tk
 nnoremap at :tabnew<CR>
 nnoremap gr :tabprev<CR>
 nnoremap q[ :tabprev<CR>
@@ -85,6 +86,7 @@ nnoremap q] :tabnext<CR>
 nnoremap q{ :tabmove-<CR>
 nnoremap q} :tabmove+<CR>
 nnoremap gl gf
+nnoremap g. :exec 'cd' system('realpath .')<CR>
 nnoremap yc :! echo -n %f | xclip ; echo -n %f | xclip -selection clipboard %i <CR>:echo "filename in X buffer"<CR>
 nnoremap yC :! echo -n %f:p | xclip ; echo -n %f:p | xclip -selection clipboard %i <CR>:echo "full filepath in X buffer"<CR>
 " nnoremap - <C-b>
@@ -118,6 +120,7 @@ nnoremap ,. :! echo -ne \\n  ls dir :\\n ; ls -la --color=auto . ; read -rsn1 <c
 nnoremap ,a :! clear -x; $LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT ; read -rsn1 <cr>
 nnoremap ,s :! clear -x; df -BMB ; read -rsn1 <cr>
 nnoremap ,, :! echo; date ; echo Sync... ; sync ; echo "Done! (press anykey)" ; read -rsn1 <cr>
+nnoremap z<BS> :! echo -ne "-- Try to sync @ $(date '+%%Y-%%m-%%d %%H:%%M') ...... " ; sync ; echo " Complete! Press anykey!" ; read -rsn1 <cr>
 
 " Send to vim server "
 nnoremap av :! MODE="split"  virpc "%c"  <cr>
@@ -147,7 +150,7 @@ nnoremap ao : aumo <cr>
 nnoremap au :! echo Sync... ; sync %f && udevil umount %f<cr>
 nnoremap am ggVG<cr>:copy<cr>
 nnoremap aM ggVG<cr>:move<cr>
-nnoremap del :! sudo rm -r %c <cr>
+nnoremap del :! sudo rm -r %f <cr>
 nnoremap qU ggVG: !mv --backup=numbered %f ../<cr>
 nnoremap qu :! mv --backup=numbered %f ../<cr>
 nnoremap ctok :tok<cr>

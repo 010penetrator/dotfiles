@@ -5,12 +5,11 @@ bak()
 {
   # tar -czf $lo/linkdir.tar.gz -C / ln
   name1="/tmp/bak.tar.gz"
-  name2="$baksam/auto/${space}_bak_$(date +%Y-%m-%d).tar.gz"
   need_umount=false
   tar -chzf "$name1" -C /ln/ --exclude=lo/cur sh lo
   #
   sambdev=$($LSBLK -l -o NAME,LABEL | grep SAMV | cut -f1 -d ' ')
-  [[ "$sambdev" == '' ]] && echo SAM is nowhere around && return 1
+  [[ $sambdev == '' ]] && echo SAM is nowhere around && return 1
   if [[ $( mount | grep SAMV | grep $sambdev -c ) == 0 ]] ; then
     echo ==mounting SAM..
     udevil mount /dev/$sambdev /ln/mo/SAMV && [[ $1 != '--keep' ]] &&
@@ -19,31 +18,37 @@ bak()
   if [[ $( mount | grep SAMV | grep $sambdev -c ) != 1 ]] ; then
     echo --Flash drive unavailable!
     return 1
-  else
-    cp "$name1" "$name2"
-    ls -lrth "$baksam"/auto/*bak_*tar* | cut -f6- -d ' ' | tail -n 4
-    if [[ $space == "wo" ]] ; then
+  fi
+  ! [[ -d $baksam ]] && echo "Panic! baksam is unavailable"
+  name2="$baksam/auto/${space}_bak_$(date +%Y-%m-%d).tar.gz"
+  mkdir -p "$baksam/auto"
+  cp "$name1" "$name2"
+  echo -ne "--latest tars are: "
+  ls -lrth "$baksam"/auto/*bak_*tar* | cut -f6- -d ' ' | tail -n 4
+  if [[ $space == "wo" ]] ; then
+    if [[ $FAST != 1 ]] ; then
+      echo "--Creating gitjob.tar.zst .."
       tar -I 'zstd -10 -T0' -X /ln/sh/zip_exclu -cf "$baksam"/gitjob.tar.zst -C /ln/ho/ gitjob
       cd $wd1 && make -s -f my_Makefile clean
       cd $wd2 && make -s clean
-      tx=/ln/ho/fz/99.txt
-      mkdir -p /ln/mo/SAMV/fz
-      [[ -s $tx ]] &&
-        cat $tx >> /ln/mo/SAMV/fz/99.txt && > $tx
-        TXSZ=$( cat $tx | wc -c )
-        if [ $TXSZ != 0 ] ; then
-          echo --Unable to write to backup place!
-          return 1
-        else
-          rm $tx
-          [[ $(ls -A /ln/ho/fz/) ]] &&
-            ( shopt -s dotglob; touch --date=now /ln/ho/fz/*;
-            mv -i /ln/ho/fz/* /ln/mo/SAMV/fz/ )
-            touch $tx
-        fi
-        rm "$baksam"/gitjob.7z
-        7z a -mx=3 "$baksam"/gitjob.7z /ln/ho/gitjob
+      rm "$baksam"/gitjob.7z
+      7z a -mx=3 "$baksam"/gitjob.7z /ln/ho/gitjob
     fi
+    tx=/ln/ho/fz/99.txt
+    mkdir -p /ln/mo/SAMV/fz
+    [[ -s $tx ]] &&
+      cat $tx >> /ln/mo/SAMV/fz/99.txt && > $tx
+      TXSZ=$( cat $tx | wc -c )
+      if [ $TXSZ != 0 ] ; then
+        echo --Unable to write to backup place!
+        return 1
+      else
+        rm $tx
+        [[ $(ls -A /ln/ho/fz/) ]] &&
+          ( shopt -s dotglob; touch --date=now /ln/ho/fz/*;
+          mv -i /ln/ho/fz/* /ln/mo/SAMV/fz/ )
+          touch $tx
+      fi
   fi
   sync /ln/mo/SAMV
   [[ $need_umount == true ]] && echo ==unmounting SAM.. && udevil umount /ln/mo/SAMV
@@ -53,7 +58,7 @@ bak()
 restosh()
 {
   sambdev=$($LSBLK -l -o NAME,LABEL | grep SAMV | cut -f1 -d ' ')
-  [[ "$sambdev" == '' ]] && echo SAM is nowhere around && return 1
+  [[ $sambdev == '' ]] && echo SAM is nowhere around && return 1
   need_umount=false
   if [[ $( mount | grep SAMV | grep $sambdev -c ) == 0 ]] ; then
     echo ==mounting SAM..

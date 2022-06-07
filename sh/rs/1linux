@@ -16,7 +16,7 @@ IMG: exiftool nomacs gpicview qview ristretto imv vimiv photoqt phototonic gthum
 DRAW: pinta kolourpaint mypaint mtpaint krita blender
 LISTEN: deadbeef qomp nulloy clementine exaile musique yarock qmmp audacious gmusicbrowser cantata tomahawk mocp *ncmpc cmus 
 READ: zathura atril qpdfview mupdf djview fbreader koreader fbless evince okular *calibr 
-HDD: gparted cfdisk testdisk photorec extundelete smartcontrol wipefreespace mondorescue grub-customizer woeusb windows2usb 
+HDD: gparted cfdisk testdisk f3probe photorec extundelete smartcontrol wipefreespace mondorescue grub-customizer woeusb windows2usb 
 DL: transmission tremc youtube-dl *rtorrent *aria2 *rutorrent jdownloader2 
 LEARN: klavaro gtypist solfege brainworkshop stellarium 
 GAMES: ctris urw powermanga pybik caph phlipple knetwalk cgoban liquidwar cultivation neverball typespeed speedpad minuet
@@ -181,6 +181,7 @@ ps -u $(id -u) -o pid= | while read pid; do
 
 ==FS
 mkfs.vfat -F32 /dev/sdx1
+sync .  ; time ( dd if=/dev/zero of=zeroes.file bs=1000M count=8 ; sync . ) ; rm zeroes.file  # test disk write speed
 dd bs=4M if=~/image.img of=/dev/sdb && sync # restore partition from file
 dd if=/dev/zero of=/dev/sdx bs=4k && sync # wipe partition
 sudo dd if=/dev/zero of=zero.file # wipe free space # if you don't use sudo then all but 5% of the will be used (5% is reseved for the root login)
@@ -192,6 +193,7 @@ dosfslabel # set ntfs label
 UUID=x-x /path ext4 defaults,rw,nofail,nosuid,nodev,relatime,data=ordered 0 0 #fstab stub
 systemctl daemon-reload # reload fstab
 sudo udevadm control --reload-rules && sudo udevadm trigger # reload udev rules
+sudo f3probe --destructive --time-ops /dev/sdX # test fake usb disk
 rsync -rt --progress --delete /media/src/abba/ /media/dest/abba # mirror copy
 rsync -e ssh -av --progress --no-perms --no-times --delete --size-only /path/dir/ user@192.168.1.180:/path/dir/ # mirror copy over ssh
 rsync -e ssh -rln -vK --progress --delete --checksum --stats --no-perms --no-times /ln/dir/ servak@192.162.1.99

@@ -17,11 +17,11 @@ activeid=$(xprop -root _NET_ACTIVE_WINDOW | cut -d "#" -f2 | cut -c 4-) &&
 activeid=$(echo $activeid | cut -d ',' -f1)
 # zero pad it
 while [ ${#activeid} -lt 7 ] ; do activeid=0$activeid; done
-[[ $DEBUG == '1' ]] && echo "ror: activeid is $activeid"
+[[ $DEBUG == '1' ]] && echo activeid is $activeid
 # If classname not provided, use current window's class
 if [ "$1" == '0' ] ; then 
   wname=$(wmctrl -l -x | grep -a $activeid | cut -d " " -f4 | cut -d "." -f1)
-  echo "ror: focus another $wname"
+  echo focus another $wname
 else
   wname=$1
   # if [ -z "$1" ] ; then echo "Please, provide argument"; exit 1 ; fi
@@ -37,11 +37,11 @@ if [ -n "$1" ] ; then
     [[ $(wmctrl -l -x | grep -a "$wname" | grep -a -A1 $activeid | wc -l) > 1 ]]
   then
     # Choose next window of same name
-    echo "ror: choosing next"
+    echo "choosing next"
     target=$(wmctrl -l -x | grep -a -v -e "^\{9\}\s" | grep -a "$wname" | grep -a -A1 $activeid | tail -1 | cut -c -10)
   else
     # Just choose window which includes desired name
-    echo "ror: choosing simple"
+    echo "choosing simple"
     target=$(wmctrl -l -x | grep -a -v -e "^\{9\}\s" | grep -a -m 1 "$wname" | cut -c -10)
   fi
 fi
