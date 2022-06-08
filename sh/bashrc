@@ -138,12 +138,12 @@ gsync() {
 [ -f /usr/share/doc/fzf/examples/key-bindings.bash ] && source /usr/share/doc/fzf/examples/key-bindings.bash
 [ -f /usr/share/fzf/key-bindings.bash ] && source /usr/share/fzf/key-bindings.bash
 [ -f "$HOME/moment/fzf/shell/key-bindings.bash" ] && source "$HOME/moment/fzf/shell/key-bindings.bash"
-[[ ! "$PATH" == */moment/fzf/bin* ]] && export PATH="${PATH:+${PATH}:}/$HOME/moment/fzf/bin"
-[[ $- == *i* ]] && source "$HOME/moment/fzf/shell/completion.bash" 2> /dev/null
+[[ -d $HOME/moment/fzf/bin ]] && [[ ! "$PATH" == */moment/fzf/bin* ]] && export PATH="${PATH:+${PATH}:}/$HOME/moment/fzf/bin"
+[[ $- == *i* ]] && [[ -d $HOME/moment/fzf ]] && source "$HOME/moment/fzf/shell/completion.bash" 2> /dev/null
 export FZF_DEFAULT_OPTS="--exact --layout=reverse --height 55%"
 export FZF_CTRL_R_OPTS="--no-sort --exact"
 # Restore default <C-r> search
-# bind -X "\C-r: reverse-search-history"
+    # bind -X "\C-r: reverse-search-history"
 function fzfpacadd { pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S ; }
 function fzfpacrem { pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns ; }
 
