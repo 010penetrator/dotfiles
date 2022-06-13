@@ -108,19 +108,20 @@ nnoremap qG :! spek %c &>/dev/null &<cr>
 nnoremap qg :! specgram.sh %c <cr>
 nnoremap qd :! deadbeef --queue %c &>/dev/null & <cr>
 nnoremap qe :! $EDITOR %c <cr>
-nnoremap qo :! xdg-open %c &>/dev/null & <cr>
+nnoremap ql :! xdg-open %c &>/dev/null & <cr>
+nnoremap aa :! xdg-open %c &>/dev/null & <cr>
 nnoremap q<cr> :file &<cr>l
 nnoremap ,g :! google.sh %c &>/dev/null & <cr>
 nnoremap ,v :! $TERMINAL $EDITOR %c <cr>
 
 " Calc space "
-nnoremap ,f :! echo; echo %c: ; file -b %c ; [[ -d %c ]] && tree -ia | tail -1 ; du -sh %c | cut -f1 ; ls -dla %c ; df -h --output=source,avail,pcent . ; read -rsn1 <cr>
+nnoremap ,f :! echo; echo %c: ; file -b %c ; [[ -d %c ]] && tree -ia %c | tail -1 ; du -sh %c | cut -f1 ; ls -dla %c ; df -h --output=source,avail,pcent %c ; read -rsn1 <cr>
 nnoremap ,F :! watch -n .4 ls -la --block-size=M %f
 nnoremap ,. :! echo -ne \\n  ls dir :\\n ; ls -la --color=auto . ; read -rsn1 <cr>
 nnoremap ,a :! clear -x; $LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT ; read -rsn1 <cr>
 nnoremap ,s :! clear -x; df -BMB ; read -rsn1 <cr>
-nnoremap ,, :! echo; date ; echo Sync... ; sync ; echo "Done! (press anykey)" ; read -rsn1 <cr>
-nnoremap z<BS> :! echo -ne "-- Try to sync @ $(date '+%%Y-%%m-%%d %%H:%%M') ...... " ; sync ; echo " Complete! Press anykey!" ; read -rsn1 <cr>
+nnoremap ,, :! echo; date ; echo Sync... ; echo sync ; echo "Done! (press anykey)" ; read -rsn1 <cr>
+nnoremap z<BS> :! echo -ne "\n-- Try to sync @ $(date '+%%Y-%%m-%%d %%H:%%M:%%S') ...... \n" ; (time sync) 2>&1 | tr '\t' ' ' | tr '\n' '\t' ; echo -ne "\n-- Complete    @ $(date '+%%Y-%%m-%%d %%H:%%M:%%S')\n" <CR>:echo "Sync complete!"<CR>
 
 " Send to vim server "
 nnoremap av :! MODE="split"  virpc "%c"  <cr>
@@ -150,7 +151,7 @@ nnoremap ao : aumo <cr>
 nnoremap au :! echo Sync... ; sync %f && udevil umount %f<cr>
 nnoremap am ggVG<cr>:copy<cr>
 nnoremap aM ggVG<cr>:move<cr>
-nnoremap del :! sudo rm -r %f <cr>
+nnoremap del :! echo You try to delete %f; sudo rm -r %f <cr>
 nnoremap qU ggVG: !mv --backup=numbered %f ../<cr>
 nnoremap qu :! mv --backup=numbered %f ../<cr>
 nnoremap ctok :tok<cr>
@@ -185,7 +186,7 @@ nnoremap z"E :! upk2dir.sh %r" %d <cr>
 " Jump to places "
 nnoremap gh :cd $HOME<cr>
 nnoremap gz :cd /ln/hh<cr>
-nnoremap g; :cd /ln/mo<cr>
+nnoremap g<space> :cd /ln/mo<cr>
 nnoremap gq :cd /ln/ho/qq<cr>:sort<cr>N
 nnoremap g/ :cd /ln<cr>
 nnoremap gm :cd /ln/mus/
@@ -198,6 +199,7 @@ nnoremap gj :cd /ln/ho/gitjob<CR>
 nnoremap gd :cd /ln/dwn<CR>:set sort=-mtime<CR>:16<CR>
 nnoremap gb :cd $bakcld<CR>
 nnoremap gB :cd $bakhot<CR>
+nnoremap gy :cd /ln/mob<CR>
 nnoremap gS :cd $baksam/..<CR>:goto bak<CR>
 nnoremap gk :cd /ln/torrents/red/KKK<CR>:sort<CR>mh
 nnoremap gv :cd ~/.vim<CR>:goto plugged<CR>

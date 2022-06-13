@@ -2,18 +2,15 @@
 " This file should be sourced as $MYVIMRC
 
 command! -nargs=1 SSource if filereadable(expand('<args>')) | source <args> | endif
-
 SSource $HOME/.vimrc_msys
 SSource $sh/vi/init.vim
-" silent LoadColor
 SSource $sh/vi/vimrc_themes
+SSource $lo/vimrc.local
 
 if has('nvim')
     SSource $sh/vi/init.lua
     SSource $sh/vi/nvim-lsp.lua
 endif
-
-SSource $lo/vimrc.local
 
 " TODO/Problems :
 "     ft detection is lazy

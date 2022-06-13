@@ -371,8 +371,14 @@ if &t_Co > 2 || has("gui_running")
 endif
 
 augroup Sessload
+    autocmd!
     autocmd SessionLoadPost * silent LoadColor
 augroup END
+augroup SaveNotepad
+    autocmd!
+    autocmd FocusLost 99.txt update
+augroup END
+
 " autocmd SessionLoadPost * echom "Welcome back"
 autocmd WinNew * set numberwidth=2
 autocmd FileType c setlocal commentstring=//%s
@@ -572,8 +578,8 @@ map <c-k> <Plug>(edgemotion-k)
 " go to text start/finish in file
 nnoremap g<Home>   gg:call search('^.') <CR>k
 nnoremap g<End> G$:call search('^.','b') <CR>0j
-nnoremap gT  gg:call search('^.') <CR>k
-nnoremap gB  G$:call search('^.','b') <CR>0j
+" nnoremap gT  gg:call search('^.') <CR>k
+" nnoremap gB  G$:call search('^.','b') <CR>0j
 " search such //comments//
 nnoremap am /\s*\/\/.*\/\/$<CR>
 " jump to blank or one-char lines
@@ -598,7 +604,7 @@ nnoremap ,d :bd!<CR>
 nnoremap ,bd :BDnJump<CR>
 nnoremap ,i :diffthis \| wincmd w<CR>
 nnoremap ,o :diffoff  \| wincmd w<CR>
-nnoremap q<space> :echo expand ('%') '.@.' getcwd() <CR>
+nnoremap c<space> :echo expand ('%') '.@.' getcwd() <CR>
 nnoremap ,cc :LCDhere <CR>
 nnoremap ,cg :call ClimbToDirWhere(".git/index",1) \| pwd <CR>
 nnoremap ,cm :call ClimbToDirWhere("Makefile",1) \| pwd <CR>
@@ -689,7 +695,7 @@ nnoremap ,zs :Files $sh<CR>
 nnoremap ,zt :Files $tt<CR>
 nnoremap ,zj :Files $jo<CR>
 nnoremap qf  :FilesProj<CR>
-nnoremap ,<space> :Telescope find_files search_dirs=$sh,$tt<CR>
+nnoremap q/ :Telescope find_files search_dirs=$sh,$tt<CR>
 
 " Search text
 nnoremap ,zr :Rg<CR>
@@ -701,12 +707,12 @@ nnoremap ,tr :Telescope lsp_references<CR>
 nnoremap ,tb <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_ivy{})<CR>
 
 " Jump to favourite files
-" nnoremap ,ga :call FocusBufOrDo('99.txt','')<CR>
 nnoremap ,gv :call FocusBufOrDo('init.vim','e $sh/vi/init.vim')<CR>
 nnoremap ,gi :call FocusBufOrDo('init.lua','e $sh/vi/init.lua')<CR>
 nnoremap ,g, :call FocusBufOrDo('vimrc$','e $MYVIMRC')<CR>
 nnoremap ,gt :call FocusBufOrDo('vimrc_themes','e $sh/vi/vimrc_themes')<CR>
 nnoremap ,gb :call FocusBufOrDo('bashrc','e $sh/bashrc')<CR>
+nnoremap ,gB :call FocusBufOrDo('bashrc.local','e $lo/bashrc.local')<CR>
 nnoremap ,g2 :call FocusBufOrDo('bspwm$','e $sh/bspwmrc')<CR>
 nnoremap ,gx :call FocusBufOrDo('sxhkd','e $sh/conf/sxhkdrc')<CR>
 nnoremap ,gk :call FocusBufOrDo('kitty.conf','e $sh/conf/kitty.conf')<CR>
@@ -715,7 +721,7 @@ nnoremap ,gz :call FocusBufOrDo('zzzz','e $tt/zzzzzz')<CR>
 nnoremap ,gu :call FocusBufOrDo('ff','e $tt/u*/ff*')<CR>
 nnoremap ,gh :call FocusBufOrDo('sh_history','e $HOME/.bash_history')<CR>G
 nnoremap ,gl :call FocusBufOrDo('1linux','e $sh/rs/1linux')<CR>
-nnoremap ,gg :call FocusWindowOrDo('99.txt','1tabn \| wincmd b \| e $buf')<CR>
+nnoremap ,] :call FocusWindowOrDo('99.txt','1tabn \| wincmd b \| e $buf')<CR>
 
 nnoremap ,,v :Goyo<CR>
 
@@ -825,14 +831,12 @@ nnoremap ,vp :put + <bar> exec "normal dfmxIPlug 'A'" <CR>==
 nnoremap ,vu :source /ln/sh/vi/init.vim <bar> PlugUpdate <CR>
 " Evaluate one line as Vimscript
 nnoremap ,vl yy:@"<CR>
-" Evaluate a paragraph as Vimscript
-" nnoremap ,vx yap:@"<CR>
-nnoremap ,vx :let lastl=line('.') <bar> exec "normal yap" <bar> @\" <bar> exec lastl<CR>:echo "Evaluated current paragraph."<CR>
-nnoremap q<space> :echo expand ('%') '.@.' getcwd() <CR>
+" Evaluate a paragraph as Vimscript and re-run last command
+nnoremap ,vk yap:@"<CR>:<up><CR>
 " Evaluate one line or one paragraph as Vimscript
 nnoremap ,v, :call EvalThis()<CR>
-" Evaluate a paragraph as Vimscript and re-run last command
-nnoremap ,v. yap:@"<CR>:<up><CR>
+" Evaluate a paragraph as Vimscript
+nnoremap ,v; :let lastl=line('.') <bar> exec "normal yap" <bar> @\" <bar> exec lastl<CR>:echo "Evaluated current paragraph."<CR>
 
 " Open current location with vifm within vim
 nnoremap ac :terminal ++close bash -c "INVIM=1 vifm %:p:h"<CR>

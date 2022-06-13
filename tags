@@ -15,19 +15,20 @@ $RTP	sh/vi/init.vim	/^let $RTP=split(&runtimepath, ',')[0]$/;"	v
 ,,c	sh/vi/init.vim	/^nnoremap ,,c :NewVifmHere<CR>$/;"	m
 ,,o	sh/vi/init.vim	/^nnoremap ,,o ^y$:call system('xdg-open ' . "'" . @" . "' &")<CR>$/;"	m
 ,,o	sh/vi/init.vim	/^vnoremap ,,o :<C-U>call SystemOpenEveryLine()<CR>$/;"	m
-,,q	sh/vi/init.vim	/^nnoremap ,,q :SSave! comon <bar> qa<CR>$/;"	m
+,,q	sh/vi/init.vim	/^nnoremap ,,q :call SaveColor() <bar> SSave! comon <bar> qa<CR>$/;"	m
 ,,s	sh/vi/init.vim	/^nnoremap ,,s :SSave! comon<CR>$/;"	m
 ,,t	sh/vi/init.vim	/^nnoremap ,,t :NewTermHere<CR>$/;"	m
 ,,v	sh/vi/init.vim	/^nnoremap ,,v :Goyo<CR>$/;"	m
 ,.	sh/vi/init.vim	/^nnoremap <silent> ,. :if bufexists(bufnr('#')) <bar> b # <bar> echo expand('%') <bar> else <bar>/;"	m
 ,;	sh/vi/init.vim	/^nnoremap ,; :6mes<CR>$/;"	m
-,<space>	sh/vi/init.vim	/^nnoremap ,<space> :Telescope find_files search_dirs=$sh,$tt<CR>$/;"	m
 ,<tab>	sh/vi/init.vim	/^map ,<tab> :emenu tagi.<tab>$/;"	m
 ,B	sh/vi/init.vim	/^nnoremap ,B yap: exec "!" . @" <CR>$/;"	m
 ,C	sh/vi/init.vim	/^nnoremap ,C :Silent xdg-open %:p:h &<CR>$/;"	m
+,G	sh/vi/init.vim	/^nnoremap ,G :GitGutterToggle<CR>$/;"	m
 ,M	sh/vi/init.vim	/^nnoremap ,M ^y$:call system('firefox ' . "'" . @" . "' &")<CR>$/;"	m
 ,O	sh/vi/init.vim	/^nnoremap ,O :Silent xdg-open %:p &<CR>$/;"	m
 ,V	sh/vi/init.vim	/^nnoremap ,V :source $MYVIMRC <CR>$/;"	m
+,]	sh/vi/init.vim	/^nnoremap ,] :call FocusWindowOrDo('99.txt','1tabn \\| wincmd b \\| e $buf')<CR>$/;"	m
 ,b	sh/vi/init.vim	/^vnoremap ,b :call RunSelBash()<CR>$/;"	m
 ,bd	sh/vi/init.vim	/^nnoremap ,bd :BDnJump<CR>$/;"	m
 ,be	sh/vi/init.vim	/^nnoremap ,be :BufExplorer<CR>$/;"	m
@@ -47,8 +48,8 @@ $RTP	sh/vi/init.vim	/^let $RTP=split(&runtimepath, ',')[0]$/;"	v
 ,d	sh/vi/init.vim	/^nnoremap ,d :bd!<CR>$/;"	m
 ,g,	sh/vi/init.vim	/^nnoremap ,g, :call FocusBufOrDo('vimrc$','e $MYVIMRC')<CR>$/;"	m
 ,g2	sh/vi/init.vim	/^nnoremap ,g2 :call FocusBufOrDo('bspwm$','e $sh\/bspwmrc')<CR>$/;"	m
+,gB	sh/vi/init.vim	/^nnoremap ,gB :call FocusBufOrDo('bashrc.local','e $lo\/bashrc.local')<CR>$/;"	m
 ,gb	sh/vi/init.vim	/^nnoremap ,gb :call FocusBufOrDo('bashrc','e $sh\/bashrc')<CR>$/;"	m
-,gg	sh/vi/init.vim	/^nnoremap ,gg :GitGutterToggle<CR>$/;"	m
 ,gh	sh/vi/init.vim	/^nnoremap ,gh :call FocusBufOrDo('sh_history','e $HOME\/.bash_history')<CR>G$/;"	m
 ,gi	sh/vi/init.vim	/^nnoremap ,gi :call FocusBufOrDo('init.lua','e $sh\/vi\/init.lua')<CR>$/;"	m
 ,gk	sh/vi/init.vim	/^nnoremap ,gk :call FocusBufOrDo('kitty.conf','e $sh\/conf\/kitty.conf')<CR>$/;"	m
@@ -72,12 +73,13 @@ $RTP	sh/vi/init.vim	/^let $RTP=split(&runtimepath, ',')[0]$/;"	v
 ,to	sh/vi/init.vim	/^nnoremap ,to :Telescope oldfiles<CR>$/;"	m
 ,tr	sh/vi/init.vim	/^nnoremap ,tr :Telescope lsp_references<CR>$/;"	m
 ,v,	sh/vi/init.vim	/^nnoremap ,v, :call EvalThis()<CR>$/;"	m
-,v.	sh/vi/init.vim	/^nnoremap ,v. yap:@"<CR>:<up><CR>$/;"	m
+,v;	sh/vi/init.vim	/^nnoremap ,v; :let lastl=line('.') <bar> exec "normal yap" <bar> @\\" <bar> exec lastl<CR>:echo "/;"	m
 ,va	sh/vi/init.vim	/^nnoremap ,va :silent exec '! ( virpc "%:p" ) & ' \\| redraw! \\| q <CR>$/;"	m
 ,vb	sh/vi/init.vim	/^nnoremap ,vb :call SwitchBackground() <CR>:echo "background=" &background <cr>$/;"	m
 ,vc	sh/vi/init.vim	/^nnoremap ,vc :silent exec '! ( MODE=cur virpc "%:p" ) & ' \\| redraw! \\| q <CR>$/;"	m
 ,ve	sh/vi/init.vim	/^nnoremap ,ve :call AddRpcEar()<CR>$/;"	m
 ,vg	sh/vi/init.vim	/^nnoremap ,vg :set termguicolors! <cr>:set termguicolors? <cr>$/;"	m
+,vk	sh/vi/init.vim	/^nnoremap ,vk yap:@"<CR>:<up><CR>$/;"	m
 ,vl	sh/vi/init.vim	/^nnoremap ,vl yy:@"<CR>$/;"	m
 ,vn	sh/vi/init.vim	/^nnoremap ,vn :silent exec '! ( MODE=newtab virpc "%:p" ) & ' \\| redraw! \\| q <CR>$/;"	m
 ,vp	sh/vi/init.vim	/^nnoremap ,vp :put + <bar> exec "normal dfmxIPlug 'A'" <CR>==$/;"	m
@@ -86,7 +88,6 @@ $RTP	sh/vi/init.vim	/^let $RTP=split(&runtimepath, ',')[0]$/;"	v
 ,vt	sh/vi/init.vim	/^nnoremap ,vt :TagbarOpen fj <CR>$/;"	m
 ,vu	sh/vi/init.vim	/^nnoremap ,vu :source \/ln\/sh\/vi\/init.vim <bar> PlugUpdate <CR>$/;"	m
 ,vv	sh/vi/init.vim	/^nnoremap ,vv :source $MYVIMRC <CR>$/;"	m
-,vx	sh/vi/init.vim	/^nnoremap ,vx :let lastl=line('.') <bar> exec "normal yap" <bar> @\\" <bar> exec lastl<CR>:echo "/;"	m
 ,x	sh/vi/init.vim	/^nnoremap ,x :q<CR>$/;"	m
 ,z/	sh/vi/init.vim	/^nnoremap ,z\/ :copen<CR>\/error<CR>$/;"	m
 ,zb	sh/vi/init.vim	/^nnoremap ,zb :call BuildProjectUni("Makefile","make -f my_Makefile bear")<CR>$/;"	m
@@ -266,6 +267,7 @@ COLEMAK	sh/conf/qmk_planckR4keymap.c	/^  COLEMAK,$/;"	e	enum:planck_keycodes	fil
 COLEMAK	sh/conf/qmk_planckR6keymap.c	/^  COLEMAK,$/;"	e	enum:planck_keycodes	file:
 Call	sh/vi/init.vim	/^command! Call %d _ | put!$/;"	c
 Chrome	sh/vi/init.vim	/^  command! Chrome :silent exec '!source \/c\/Users\/user\/.bashrc && chrome "%"' | redraw!$/;"	c
+CleanEmptyBuffers	sh/vi/init.vim	/^function! CleanEmptyBuffers()$/;"	f
 ClimbToDirWhere	sh/vi/init.vim	/^function! ClimbToDirWhere(filename,chdir)$/;"	f
 CompressionCombo0	sh/conf/nomacs.Image Lounge.conf	/^CompressionCombo0=1$/;"	k	section:DkCompressionDialog
 Cond	sh/vi/init.vim	/^function! Cond(cond, ...)$/;"	f
@@ -306,6 +308,8 @@ Fdel	sh/vi/init.vim	/^command! Fdel :silent exec '!rm %' | redraw! | bd$/;"	c
 FilesProj	sh/vi/init.vim	/^command! -bang FilesProj call GetProjDir() <bar> call fzf#vim#files(expand(b:proj_dir), fzf#vim#/;"	c
 Filter	sh/conf/nomacs.Image Lounge.conf	/^Filter=Shift+F$/;"	k	section:CustomShortcuts
 FocusBufOrDo	sh/vi/init.vim	/^function! FocusBufOrDo(name,cmd)$/;"	f
+FocusWindow	sh/vi/init.vim	/^function! FocusWindow(name)$/;"	f
+FocusWindowOrDo	sh/vi/init.vim	/^function! FocusWindowOrDo(name,cmd)$/;"	f
 FoldMotion	sh/vi/init.vim	/^function! FoldMotion(type)$/;"	f
 FoldSelection	sh/vi/init.vim	/^function! FoldSelection()$/;"	f
 FollowSymLink	sh/vi/init.vim	/^command! FollowSymLink let b:symlink = expand("%:p") | execute "file " . resolve(expand("%")) | /;"	c
@@ -313,7 +317,6 @@ Frameless	sh/conf/nomacs.Image Lounge.conf	/^Frameless=A$/;"	k	section:CustomSho
 General	sh/conf/nomacs.Image Lounge.conf	/^[General]$/;"	s
 GetProjDir	sh/vi/init.vim	/^function! GetProjDir()$/;"	f
 GotoTerm	sh/vi/init.vim	/^function! GotoTerm(arg)$/;"	f
-GotoWindowByName	sh/vi/init.vim	/^function! GotoWindowByName(name)$/;"	f
 H	sh/vi/init.vim	/^nnoremap <silent> H :<C-u>execute "keepjumps norm! " . v:count1 . "H"<CR>$/;"	m
 Height	sh/conf/nomacs.Image Lounge.conf	/^Height=0$/;"	k	section:DkResizeDialog
 Histogram	sh/conf/nomacs.Image Lounge.conf	/^Histogram=G$/;"	k	section:CustomShortcuts
@@ -379,6 +382,7 @@ RunSelBash	sh/vi/init.vim	/^function! RunSelBash()$/;"	f
 SSource	sh/vi/vimrc	/^command! -nargs=1 SSource if filereadable(expand('<args>')) | source <args> | endif$/;"	c
 SaveColor	sh/vi/init.vim	/^command! -nargs=? SaveColor call SetPhase(<f-args>) <bar> call SaveColor(<f-args>)$/;"	c
 SaveColor	sh/vi/init.vim	/^function! SaveColor(...)$/;"	f
+SaveNotepad	sh/vi/init.vim	/^augroup SaveNotepad$/;"	a
 Sessload	sh/vi/init.vim	/^augroup Sessload$/;"	a
 Set a theme	sh/conf/vifm-colors/README.md	/^## Set a theme$/;"	s	chapter:vifm-colors
 SetPhase	sh/vi/init.vim	/^function! SetPhase(...)$/;"	f
@@ -607,6 +611,7 @@ bottom	sh/conf/polybar.ini	/^margin-bottom = 5$/;"	k	section:global/wm
 buttonwrap	sh/conf/dosbox-0.74.conf	/^buttonwrap=false$/;"	k	section:joystick
 c	sh/vi/init.vim	/^noremap c "_c$/;"	m
 c<CR>	sh/vi/init.vim	/^nnoremap c<CR> }:if (line(".") == line("$")) \\| exec "normal o" \\| endif<CR>O$/;"	m
+c<space>	sh/vi/init.vim	/^nnoremap c<space> :echo expand ('%') '.@.' getcwd() <CR>$/;"	m
 cO	sh/vi/init.vim	/^nnoremap cO "_ciw<c-r>+<esc>$/;"	m
 c_comment_strings	sh/vi/init.vim	/^    let c_comment_strings=1$/;"	v
 cacheMemory	sh/conf/nomacs.Image Lounge.conf	/^cacheMemory=@Variant(\\0\\0\\0\\x87\\x43\\x96\\0\\0)$/;"	k	section:ResourceSettings
@@ -842,8 +847,6 @@ g:vimplug_available	sh/vi/init.vim	/^let g:vimplug_available=0$/;"	v
 g<End>	sh/vi/init.vim	/^nnoremap g<End> G$:call search('^.','b') <CR>0j$/;"	m
 g<Home>	sh/vi/init.vim	/^nnoremap g<Home>   gg:call search('^.') <CR>k$/;"	m
 g<tab>	sh/vi/init.vim	/^nnoremap g<tab> :exe "tabn ".g:lasttab<CR>$/;"	m
-gB	sh/vi/init.vim	/^nnoremap gB  G$:call search('^.','b') <CR>0j$/;"	m
-gT	sh/vi/init.vim	/^nnoremap gT  gg:call search('^.') <CR>k$/;"	m
 geometry	sh/conf/nomacs.Image Lounge.conf	/^geometry=@ByteArray(\\x1\\xd9\\xd0\\xcb\\0\\x2\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\x4\\xff\\0\\/;"	k	section:General
 geometryNomacs	sh/conf/nomacs.Image Lounge.conf	/^geometryNomacs=@Rect(0 0 1280 1024)$/;"	k	section:General
 getCmdName	sh/mem.py	/^def getCmdName(pid, split_args):$/;"	f
@@ -1079,6 +1082,7 @@ q	sh/vi/init.vim	/^map q <Nop>$/;"	m
 q,	sh/vi/init.vim	/^nnoremap q,    <C-W>6<$/;"	m
 q-	sh/vi/init.vim	/^nnoremap q- 60A-<esc>0<esc>60ld$b$/;"	m
 q.	sh/vi/init.vim	/^nnoremap q.    <C-W>6>$/;"	m
+q/	sh/vi/init.vim	/^nnoremap q\/ :Telescope find_files search_dirs=$sh,$tt<CR>$/;"	m
 q1	sh/vi/init.vim	/^nnoremap q1 1gt$/;"	m
 q2	sh/vi/init.vim	/^nnoremap q2 2gt$/;"	m
 q3	sh/vi/init.vim	/^nnoremap q3 3gt$/;"	m
@@ -1094,7 +1098,6 @@ q<	sh/vi/init.vim	/^nnoremap q< :call MoveToPrevTab()<CR>$/;"	m
 q<BS>	sh/vi/init.vim	/^nnoremap q<BS> :enew<CR>$/;"	m
 q<Down>	sh/vi/init.vim	/^nnoremap q<Down> :cnext<CR>$/;"	m
 q<Up>	sh/vi/init.vim	/^nnoremap q<Up>   :cprev<CR>$/;"	m
-q<space>	sh/vi/init.vim	/^nnoremap q<space> :echo expand ('%') '.@.' getcwd() <CR>$/;"	m
 q<tab>	sh/vi/init.vim	/^nnoremap q<tab> <C-w>p$/;"	m
 q=	sh/vi/init.vim	/^nnoremap q= 60A=<esc>0<esc>60ld$b$/;"	m
 q>	sh/vi/init.vim	/^nnoremap q> :call MoveToNextTab()<CR>$/;"	m

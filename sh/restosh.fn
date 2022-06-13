@@ -4,6 +4,7 @@
 bak()
 {
   # tar -czf $lo/linkdir.tar.gz -C / ln
+  startdir="$(pwd)"
   name1="/tmp/bak.tar.gz"
   need_umount=false
   tar -chzf "$name1" -C /ln/ --exclude=lo/cur sh lo
@@ -53,6 +54,7 @@ bak()
   sync /ln/mo/SAMV
   [[ $need_umount == true ]] && echo ==unmounting SAM.. && udevil umount /ln/mo/SAMV
   echo Done!
+  cd "$startdir"
 }
 
 restosh()
