@@ -108,6 +108,7 @@ rgf() {
     fi
 }
 
+# Ease xdg-mime routine
 xm() {
     if [ -z "$1" ] ; then
         echo Usage: xm path/somefile.ext
