@@ -377,6 +377,7 @@ augroup END
 augroup SaveNotepad
     autocmd!
     autocmd FocusLost 99.txt update
+    autocmd BufLeave  99.txt update
 augroup END
 
 " autocmd SessionLoadPost * echom "Welcome back"
@@ -721,7 +722,7 @@ nnoremap ,gz :call FocusBufOrDo('zzzz','e $tt/zzzzzz')<CR>
 nnoremap ,gu :call FocusBufOrDo('ff','e $tt/u*/ff*')<CR>
 nnoremap ,gh :call FocusBufOrDo('sh_history','e $HOME/.bash_history')<CR>G
 nnoremap ,gl :call FocusBufOrDo('1linux','e $sh/rs/1linux')<CR>
-nnoremap ,] :call FocusWindowOrDo('99.txt','1tabn \| wincmd b \| e $buf')<CR>
+nnoremap ,/ :call FocusWindowOrDo('99.txt','1tabn \| wincmd b \| e $buf')<CR>
 
 nnoremap ,,v :Goyo<CR>
 
@@ -798,8 +799,8 @@ nnoremap <silent> N :<C-u>execute "keepjumps norm! " . v:count1 . "Nzz"<CR>
 " Handle copy registers
 nnoremap ay "+yiW
 nnoremap ap :put  *<CR>
-nnoremap ai :put! *<CR>
-nnoremap aP :put  +<CR>
+nnoremap aP :put! *<CR>
+nnoremap ai :put  +<CR>
 nnoremap aI :put! +<CR>
 " copy Vim copy register to system copy buffers
 nnoremap qy :let @+ = @" <bar> :let @* = @" <CR>

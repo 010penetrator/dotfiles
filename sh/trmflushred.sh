@@ -1,6 +1,8 @@
 # eval `ssh-agent`
 # ssh-add ~/.ssh/ss.k &
 
+[[ -z $NDAYS ]] && NDAYS=60 # (re-) establish .torrents under that age
+
 # rsync -e ssh -avK --bwlimit=300K --progress --stats --no-perms --no-times --delete --size-only /ln/torrents/red/ admin@192.168.1.160:/ln/red/
 rsync -e ssh -avK --progress --stats --no-perms --no-times --delete --size-only /ln/torrents/red/ pi@192.168.1.78:/ln/red/
 
@@ -8,7 +10,8 @@ rsync -e ssh -avK --progress --stats --no-perms --no-times --delete --size-only 
 cd /ln/ho/.rtorrent/watch/red/
 for f in *.torrent
 do
-    if [[ $(find "$f" -mtime -60 -print) ]] ; then 
+    # for torrents not older than NDAYS
+    if [[ $(find "$f" -mtime -"NDAYS" -print) ]] ; then
         # echo $(date -r "$f" "+%Y-%m-%d")
         echo $(date -r "$f" "+%Y-%m-%d") "  " $f
         echo "$f"

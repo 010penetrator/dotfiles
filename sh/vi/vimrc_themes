@@ -61,9 +61,9 @@ endif
 " colo stellarized | set bg=light | LineColor PaperColor_light
 " colo lost-shrine | LineColor nord
 " colo knicks-away | LineColor bluewery
+" colo espresso | LineColor espresso
 " colo cryslominsa | LineColor cryslominsa
 " colo everforest | LineColor cryslominsa
-" colo espresso | LineColor espresso
 " colo tempus_dusk | LineColor solarized
 " let ayucolor="mirage" | colo ayu | LineColor ayu_mirage
 " colo corvine | LineColor bluewery
@@ -75,9 +75,6 @@ endif
 " set notermguicolors | colo plastic | LineColor deus
 " colo vimspectr180-light
 " colo vimspectr150-light
-" colo edge
-" colo everforest
-" colo vadelma
 
 " " " {{{}}} " " "
 " LineColor ayu_light
