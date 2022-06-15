@@ -62,6 +62,7 @@ username hostname=(ALL) NOPASSWD:/bin/lsblk # sudo command without password for 
 %sudo 	ALL=(ALL) ALL, NOPASSWD:/usr/bin/lsblk # combo!
 ncal -b3M
 reset # reset terminal
+compgen -ac | sort -u # list available commands
 read -n 1 -s -r -p "Press any key to continue" # wait for a hit
 xterm -fa xft:Monospace:size=12:style=Regular:antialias=true
 xterm -geometry 96x36+300+250 -e "vim -S $HOME/.vim/session.vim" &> /dev/null & disown

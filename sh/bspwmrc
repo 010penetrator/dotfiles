@@ -69,7 +69,7 @@ else
 fi
 
 ( killall bspc bspc_rules & sleep .4 ; /./ln/sh/bspc_rules ) &
-bash /ln/lo/cur/brc.sh
+bash /ln/lo/cur/beback.sh
 
 notify-send 'Bspwmrc complete'
 

@@ -1,5 +1,5 @@
 super + x ; { m, s, e, h, n, o, a, g }
-  raise.sh { '' notimem, speedcrunch, 'WeeChat\|weechat' 'urxvt -e weechat', htop '$TERMINAL -e htop', nautilus, VirtualBox '', pavucontrol, games.sh }
+  ror.sh { '' notimem, speedcrunch, 'WeeChat\|weechat' 'urxvt -e weechat', htop '$TERMINAL -e htop', nautilus, VirtualBox '', pavucontrol, games.sh }
 
 super + x ; { z, i, f, p, q, l, c, d, space }
   { xdotool mousemove_relative 0 1600, listmpvfile.sh /ln/ho/.mus-history, listmpvfile.sh /ln/ho/.mpv-favourites, listmpvfile.sh /ln/ho/.mus-playlist, bspc node -c, listdwn.sh, listmpvall.sh /ln/ho/.mus-library, deadbeef, listdeadbeef.sh }
@@ -8,7 +8,7 @@ super + n ; { n, M, p, c, v, r, o, a }
   { $TERMINAL, momkitty.sh, thunar, $TERMINAL -e vifm, vinew, listzathura.sh, $TERMINAL -e rtorrent, $TERMINAL -e tremc -c localhost:9090 }
 
 super + { q, Q, D, F, t, v, s, p, r, R, z, g }
-  raise.sh { \
+  ror.sh { \
   '' scroff, '' 'sus 1', windowswitcher.sh, '' 'rofi -show window', \
   'xterm\|urxvt\|kitty', \
   ' - VIMSERV\|VIM$\|VIM @ \| - NVIM$\|nvim $\|QtCreator' 'vinew', 'chromium\|Firefox\|Remmina' 'firefox', \
@@ -19,7 +19,7 @@ super + { Return, e, d, X, semicolon }
   { $TERMINAL, raiseterm.sh, dmouse, bspc node -c, setxkbmap us }
 
 super + { c, a, A, b, m }
-  raise.sh { \
+  ror.sh { \
   'VIFM\|Thunar' 'raiseterm.sh & notify-send "no vifm found"', \
   'transmission-remote\|tremc\|rtorrent\|qbittorrent' '$TERMINAL -e tremc -c localhost:9090', \
   'tremc-pi' '$TERMINAL -T tremc-pi -e tremc -c 192.168.1.78:9090', \
@@ -36,7 +36,7 @@ super + x ; x
 super + x ; BackSpace
   notify-send "$(transmission-remote 192.168.1.78:9090 -st)"
 super + space
-  raise.sh 'deadbeef\|MPV \|mpv$' 'noti echo no player instance found'
+  ror.sh 'deadbeef\|MPV \|mpv$' 'noti echo no player instance found'
 ctrl + space
   (setxkbmap -query | grep -q "layout:\s\+us") && setxkbmap ru || setxkbmap us && notify-send "$( setxkbmap -query | grep layout | tr -s ' ' )" -t 600
 alt + { Prior, Next, BackSpace }
@@ -54,7 +54,7 @@ alt + x
 
 # cycle same class windows
 super + apostrophe
-  raise.sh 0
+  ror.sh 0
 
 # Adjust volume with pulseaudio
   # [ $(amixer sget Master | tail -1 | cut -d [ -f2 | cut -d % -f1) -gt 97 ] && amixer set Master 2%+ && notify-send 'Volume MAX' -t 500 || amixer set Master 2%+

@@ -833,7 +833,7 @@ nnoremap ,vu :source /ln/sh/vi/init.vim <bar> PlugUpdate <CR>
 " Evaluate one line as Vimscript
 nnoremap ,vl yy:@"<CR>
 " Evaluate a paragraph as Vimscript and re-run last command
-nnoremap ,vk yap:@"<CR>:<up><CR>
+nnoremap ,v<CR> yap:@"<CR>:<up><CR>
 " Evaluate one line or one paragraph as Vimscript
 nnoremap ,v, :call EvalThis()<CR>
 " Evaluate a paragraph as Vimscript
@@ -1056,26 +1056,26 @@ function! UpdCtagsGit()
 endfunction
 
 function! AddRpcEar()
-  echo "Will launch an rpc server with default address for this editor.."
-  if has('nvim')
-    if !empty($NVIMSERV)
-      call serverstart(expand($NVIMSERV))
-    else
-      echom "Rpc address for neoVim not provided"
+    echo "Will launch an rpc server with default address for this editor.."
+    if has('nvim')
+        if empty($NVIMSERV)
+            echom "NO way! Rpc address for neoVim not provided"
+        elseif filereadable(expand($NVIMSERV))
+            echom "NO way! Desired RPC address is already taken -- " . expand($NVIMSERV)
+        else
+            call serverstart(expand($NVIMSERV))
+        endif
+    elseif v:version >= 800
+        if !empty($VIMSERV)
+            if empty(v:servername)
+                call remote_startserver(expand($VIMSERV))
+            else
+                echom "Sorry, this Vim instance already runs an rpc server"
+            endif
+        else
+            echom "Rpc address for Vim not provided"
+        endif
     endif
-  elseif v:version >= 800
-    if !empty($VIMSERV)
-      " if v:servername == expand("$VIMSERV")
-      " echo "old rpc address was " . expand("%")
-      if empty(v:servername)
-        call remote_startserver(expand($VIMSERV))
-      else
-        echom "Sorry, this Vim instance already runs an rpc server"
-      endif
-    else
-      echom "Rpc address for Vim not provided"
-    endif
-  endif
 endfunction
 
 function! BuildProject1()
