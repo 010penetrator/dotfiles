@@ -187,8 +187,6 @@ dd bs=4M if=~/image.img of=/dev/sdb && sync # restore partition from file
 dd if=/dev/zero of=/dev/sdx bs=4k && sync # wipe partition
 sudo dd if=/dev/zero of=zero.file # wipe free space # if you don't use sudo then all but 5% of the will be used (5% is reseved for the root login)
 cat /dev/zero > zero.file ; sync ; rm zero.file # wipe free space
-sudo sh -c "zstd -10v -T0 </dev/nvme0n1p6 >$bak/root.zst" # backup partition with zst compression
-zstdcat root.zst >/dev/nvme0n1p6 # restore zst archived image
 e2label /dev/sdXN mint95 # set ext2+ fs label
 dosfslabel # set ntfs label
 UUID=x-x /path ext4 defaults,rw,nofail,nosuid,nodev,relatime,data=ordered 0 0 #fstab stub
@@ -205,7 +203,10 @@ rsync -e ssh -av --progress --no-perms --no-times --delete --size-only pi@192.16
 rsync -e ssh -Lav --progress --exclude=".*/" --no-perms --no-times --delete --size-only pi@192.168.1.78:/ln/red/ /ln/torrents/red/ # reverse transfer
 7z a dir.7z Dir -p -mhe=on #create encrypted 7z
 7z a -mx=3 -xr!.git -xr!tags out.7z Projekt # create quick 7z
-tar -I 'zstd -11 -T0' -cf somedir.tar.zst --exclude='.git' --exclude='tags' somedir # create tar.zst
+tar -I 'zstd -v -11 -T0' -cf somedir.tar.zst --exclude='.git' --exclude='tags' somedir # create tar.zst
+sudo tar -I 'zstd -v -10 -T0' -cf /ln/mo/fast/__root.tar.zst --one-file-system --exclude='/home/*/Downloads' / # backup root filesystem
+sudo sh -c "zstd -v -10 -T0 </dev/nvme0n1p6 >$bak/root.zst" # backup partition with zst compression
+zstdcat root.zst >/dev/nvme0n1p6 # restore zst archived image
 zip -r -1 arc.zip Dir Dir2 #create zip
 
 ==GIT{{{}}}
@@ -325,6 +326,7 @@ pacman -U https://archive.archlinux.org/packages/n/nim/nim-1.0.6-1-x86_64.pkg.ta
 makepkg -si
 
 ==ALSO
+vboxmanage extpack install /Corporalass_VM_VirtualBox_Extension_Pack-6.1.34.vbox-extpack 
 cp -a /source/. /target # add source/ contents to target/
 cp -aT  /source /target # add source/ contents to target/
 for f in * ; do d=${f%.*} ; 7z x -o./"$d" "$f" ; done # unpack all files with 7z

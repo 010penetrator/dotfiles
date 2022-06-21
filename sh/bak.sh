@@ -29,22 +29,22 @@ tar -chzf "$bakhot/$DAY/words.tar.gz" \
         -C /ln/ho .config/transmission-daemon .rtorrent
 
 [[ -d /ln/co/nvim ]] && [[ -d /ln/co/nvim ]] && conditional_line="-C /ln/co/ nvim/plugged nvim/lsp_servers"
-    tar -czf "$bakhot/$DAY/conf.tar.gz" --ignore-failed-read \
+    tar -cf "$bakhot/$DAY/conf.tar.zst" -I "zstd -10 -T0" --ignore-failed-read \
         -C / etc/fstab etc/udevil/udevil.conf ln/ho/.ssh ln/ho/.vim \
         $conditional_line
 
 [[ -d $bakcld ]] &&
     {
         echo --bak.stage2
-        mkdir -p "$bakcld/$MON"
-        cp -rf "$bakhot/$DAY/"* "$bakcld/$MON"
+        mkdir -p "$bakcld/${space}_$MON"
+        cp -rf "$bakhot/$DAY/"*tar* "$bakcld/${space}_$MON"
     } ||
-        { echo Warning! Cold backup dir not available! ;}
+        { echo Warning! Cold backup dir failed! ;}
 
-[[ -d $baksam ]] &&
+[[ -d $bakusbdir ]] &&
     {
-        echo Gonna write to SAM as well..
-        mkdir -p "$baksam/${space}_$MON"
-        cp -rf "$bakhot/$DAY/"* "$baksam/${space}_$MON"
+        echo --Gonna write to SAM as well..
+        mkdir -p "$bakusbdir/${space}_$MON"
+        cp -rf "$bakhot/$DAY/"*tar* "$bakusbdir/${space}_$MON"
     }
 

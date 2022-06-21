@@ -66,23 +66,27 @@ cd
     # ln -sf .sh/Xresources .Xresources
     ln -sf .sh/vi/vimrc .vimrc
     mkdir -p /ln/co/nvim
-    ln -srf .sh/vi/vimrc .config/nvim/init.vim
+    ln -srf .sh/vi/vimrc /ln/co/nvim/init.vim
     mkdir -p /ln/co/kitty
-    ln -srf .sh/conf/kitty.conf .config/kitty/
+    ln -srf .sh/conf/kitty.conf /ln/co/kitty/
     mkdir -p /ln/co/feh
-    ln -srf .sh/conf/feh.keys .config/feh/keys
-    sudo ln -sfv /ln/sh/99-libinput-custom.conf /etc/X11/xorg.conf.d/
+    ln -srf .sh/conf/feh.keys /ln/co/feh/keys
+    mkdir -p /ln/co/zathura
+    ln -srf .sh/conf/zathurarc /ln/co/zathura/
     mkdir -p /ln/co/vifm/colors
-    cp .sh/conf/vifm-colors/*.vifm .config/vifm/colors/
-    ln -srf .sh/conf/vifmrc .config/vifm/vifmrc
+    cp .sh/conf/vifm-colors/*.vifm /ln/co/vifm/colors/
+    ln -srf .sh/conf/vifmrc /ln/co/vifm/vifmrc
     mkdir -p /ln/co/mpv
-    ln -srf .sh/conf/mpv/input.conf .config/mpv/
-    ln -srf .sh/conf/mpv/mpv.conf .config/mpv/
+    ln -srf .sh/conf/mpv/input.conf /ln/co/mpv/
+    ln -srf .sh/conf/mpv/mpv.conf /ln/co/mpv/
     mkdir -p .local/share/applications/
     cp /ln/sh/transmission*desktop .local/share/applications/
+    #
     xdg-mime default transmission-cli.desktop x-scheme-handler/magnet
     xdg-mime default transmission-cli.desktop application/x-bittorrent
     xdg-mime default FBReader.desktop application/x-mobipocket-ebook
+    #
+    sudo ln -sfv /ln/sh/99-libinput-custom.conf /etc/X11/xorg.conf.d/
 }
 
 {

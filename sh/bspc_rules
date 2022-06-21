@@ -1,5 +1,5 @@
 #!/bin/bash
-# Make Desktop #1 all-floating, but ignore sticky or fullscreen windows
+# Make Desktop #num all-floating, but ignore sticky or fullscreen windows
 
 keep_floating () {
   FLOATING_DESKTOP_ID=$(bspc query -D -d "^$num")

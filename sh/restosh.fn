@@ -29,7 +29,7 @@ bak()
   ls -lrth "$bakusbdir"/auto/*bak_*tar* | cut -f6- -d ' ' | tail -n 4
   if [[ $space == "wo" ]] ; then
     if [[ $FAST != 1 ]] ; then
-      echo "--Creating gitjob.tar.zst .."
+      echo "-- Creating gitjob.tar.zst --"
       tar -I 'zstd -10 -T0' -X /ln/sh/zip_exclu -cf "$bakusbdir"/gitjob.tar.zst -C /ln/ho/ gitjob
       cd $wd1 && make -s -f my_Makefile clean
       cd $wd2 && make -s clean
@@ -52,6 +52,7 @@ bak()
           touch $tx
       fi
   fi
+  echo -- Starting sync --
   sync /ln/mo/$devlabel
   [[ $need_umount == true ]] && echo ==unmounting AMV.. && udevil umount /ln/mo/$devlabel
   echo Done!
