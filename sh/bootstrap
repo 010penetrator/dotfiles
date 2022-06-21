@@ -18,59 +18,66 @@ if ($suc) ; then
     echo success
 fi
 
+cd
+
+[[ -d Templates ]] && mkdir -p Trashed && mv Documents Music Pictures Public Templates Videos Trashed
+
 [ -d .dotfiles.git ] ||
 {
     echo -e '\n'--Gonna clone my git repo
     cd
-    # cd && rm -rf .dotfiles.git && mkdir .dotfiles.git && cd .dotfiles.git
+    mkdir -p .dotfiles.git/sh
     git clone https://github.com/010penetrator/dotfiles .dotfiles.git
 }
 
 {
     echo -e '\n'--Gonna create /ln/ and short links there
-    sudo mkdir /ln
+    sudo mkdir -p /ln
     sudo chown $USER:$USER /ln
     cd /ln
-    ln -sn $HOME ho
-    ln -sn /ln/ho/.sh sh
-    ln -sn /ln/ho/.lo lo
-    ln -sn /mnt mo
-    ln -sn /ln/ho/.config co
-    # ln -sn /ln/mo/blink/dwn dwn
-    # ln -sn /ln/ho/Downloads dwn
-    # ln -sn /ln/dwn /ln/ho/Downloads
-    ln -sn /ln/mo/blink bl
-    ln -sn /ln/mo/blink/hh hh
-    ln -sn /ln/bl/torrents torrents
-    ln -sn /ln/mo/metal/MUSIC mus
-    ln -sn /ln/mo/blink/PRAGS pr
-    ln -sn /ln/mo/metal/____ __
+    ln -sfnv $HOME ho
+    ln -sfnv /ln/ho/.sh sh
+    ln -sfnv /ln/ho/.lo lo
+    ln -sfnv /mnt mo
+    ln -sfnv /ln/ho/.config co
+    ln -sfnv /ln/mo/blink bl
+    ln -sfnv /ln/mo/blink/hh hh
+    ln -sfnv /ln/bl/torrents torrents
+    ln -sfnv /ln/mo/metal/MUSIC mus
+    ln -sfnv /ln/mo/blink/PRAGS pr
+    ln -sfnv /ln/mo/metal/____ __
+    # ln -sfn /ln/mo/blink/dwn dwn
+    # ln -sfn /ln/ho/Downloads dwn
+    # ln -sfn /ln/dwn /ln/ho/Downloads
 }
 
 {
     echo -e '\n'--Gonna link config files
     cd
-    ln -sn .dotfiles.git/sh .sh
+    ! [[ -L .sh ]] && ln -sn .dotfiles.git/sh .sh
     ( [[ -f .bashrc ]] && ! [[ -L .bashrc ]] ) &&
         (
         echo --will move current .bashrc to exclusive trash file
         echo -e "\n\n----------$(date)-----.bashrc-------------\n\n" >> .bashrc_trash
         cat .bashrc >> .bashrc_trash
+	rm .bashrc
         )
-    ln -s .sh/bashrc_main .bashrc
+    ln -sf .sh/bashrc_main .bashrc
     # ln -sf .sh/Xresources .Xresources
-    ln -s .sh/vi/vimrc .vimrc
+    ln -sf .sh/vi/vimrc .vimrc
     mkdir -p /ln/co/nvim
-    ln -srfv .sh/vi/vimrc .config/nvim/init.vim
+    ln -srf .sh/vi/vimrc .config/nvim/init.vim
     mkdir -p /ln/co/kitty
-    ln -srfv .sh/conf/kitty.conf .config/kitty/
-    ln -srfv .sh/conf/feh.keys .config/feh/keys
+    ln -srf .sh/conf/kitty.conf .config/kitty/
+    mkdir -p /ln/co/feh
+    ln -srf .sh/conf/feh.keys .config/feh/keys
     sudo ln -sfv /ln/sh/99-libinput-custom.conf /etc/X11/xorg.conf.d/
-    mkdir -p .config/vifm/
+    mkdir -p /ln/co/vifm/colors
     cp .sh/conf/vifm-colors/*.vifm .config/vifm/colors/
-    ln -srfv .sh/conf/vifmrc .config/vifm/vifmrc
-    ln -srnf .sh/conf/mpv/input.conf .config/mpv/
-    ln -srnf .sh/conf/mpv/mpv.conf .config/mpv/
+    ln -srf .sh/conf/vifmrc .config/vifm/vifmrc
+    mkdir -p /ln/co/mpv
+    ln -srf .sh/conf/mpv/input.conf .config/mpv/
+    ln -srf .sh/conf/mpv/mpv.conf .config/mpv/
     mkdir -p .local/share/applications/
     cp /ln/sh/transmission*desktop .local/share/applications/
     xdg-mime default transmission-cli.desktop x-scheme-handler/magnet

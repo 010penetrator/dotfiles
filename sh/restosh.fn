@@ -8,37 +8,38 @@ bak()
   name1="/tmp/bak.tar.gz"
   need_umount=false
   tar -chzf "$name1" -C /ln/ --exclude=lo/cur sh lo
+  devlabel="TRAMV"
+  bakdev=$($LSBLK -l -o NAME,LABEL | grep $devlabel | cut -f1 -d ' ')
   #
-  sambdev=$($LSBLK -l -o NAME,LABEL | grep SAMV | cut -f1 -d ' ')
-  [[ $sambdev == '' ]] && echo SAM is nowhere around && return 1
-  if [[ $( mount | grep SAMV | grep $sambdev -c ) == 0 ]] ; then
-    echo ==mounting SAM..
-    udevil mount /dev/$sambdev /ln/mo/SAMV && [[ $1 != '--keep' ]] &&
+  [[ $bakdev == '' ]] && echo AMV is nowhere around && return 1
+  if [[ $( mount | grep $devlabel | grep $bakdev -c ) == 0 ]] ; then
+    echo ==mounting AMV..
+    udevil mount /dev/$bakdev /ln/mo/$devlabel && [[ $1 != '--keep' ]] &&
       need_umount=true
   fi
-  if [[ $( mount | grep SAMV | grep $sambdev -c ) != 1 ]] ; then
+  if [[ $( mount | grep $devlabel | grep $bakdev -c ) != 1 ]] ; then
     echo --Flash drive unavailable!
     return 1
   fi
-  ! [[ -d $baksam ]] && echo "Panic! baksam is unavailable"
-  name2="$baksam/auto/${space}_bak_$(date +%Y-%m-%d).tar.gz"
-  mkdir -p "$baksam/auto"
+  ! [[ -d $bakusbdir ]] && echo "Panic! bakusbdir is unavailable"
+  name2="$bakusbdir/auto/${space}_bak_$(date +%Y-%m-%d).tar.gz"
+  mkdir -p "$bakusbdir/auto"
   cp "$name1" "$name2"
   echo -ne "--latest tars are: "
-  ls -lrth "$baksam"/auto/*bak_*tar* | cut -f6- -d ' ' | tail -n 4
+  ls -lrth "$bakusbdir"/auto/*bak_*tar* | cut -f6- -d ' ' | tail -n 4
   if [[ $space == "wo" ]] ; then
     if [[ $FAST != 1 ]] ; then
       echo "--Creating gitjob.tar.zst .."
-      tar -I 'zstd -10 -T0' -X /ln/sh/zip_exclu -cf "$baksam"/gitjob.tar.zst -C /ln/ho/ gitjob
+      tar -I 'zstd -10 -T0' -X /ln/sh/zip_exclu -cf "$bakusbdir"/gitjob.tar.zst -C /ln/ho/ gitjob
       cd $wd1 && make -s -f my_Makefile clean
       cd $wd2 && make -s clean
-      rm "$baksam"/gitjob.7z
-      7z a -mx=3 "$baksam"/gitjob.7z /ln/ho/gitjob
+      rm "$bakusbdir"/gitjob.7z
+      7z a -mx=3 "$bakusbdir"/gitjob.7z /ln/ho/gitjob
     fi
     tx=/ln/ho/fz/99.txt
-    mkdir -p /ln/mo/SAMV/fz
+    mkdir -p /ln/mo/$devlabel/fz
     [[ -s $tx ]] &&
-      cat $tx >> /ln/mo/SAMV/fz/99.txt && > $tx
+      cat $tx >> /ln/mo/$devlabel/fz/99.txt && > $tx
       TXSZ=$( cat $tx | wc -c )
       if [ $TXSZ != 0 ] ; then
         echo --Unable to write to backup place!
@@ -47,31 +48,32 @@ bak()
         rm $tx
         [[ $(ls -A /ln/ho/fz/) ]] &&
           ( shopt -s dotglob; touch --date=now /ln/ho/fz/*;
-          mv -i /ln/ho/fz/* /ln/mo/SAMV/fz/ )
+          mv -i /ln/ho/fz/* /ln/mo/$devlabel/fz/ )
           touch $tx
       fi
   fi
-  sync /ln/mo/SAMV
-  [[ $need_umount == true ]] && echo ==unmounting SAM.. && udevil umount /ln/mo/SAMV
+  sync /ln/mo/$devlabel
+  [[ $need_umount == true ]] && echo ==unmounting AMV.. && udevil umount /ln/mo/$devlabel
   echo Done!
   cd "$startdir"
 }
 
 restosh()
 {
-  sambdev=$($LSBLK -l -o NAME,LABEL | grep SAMV | cut -f1 -d ' ')
-  [[ $sambdev == '' ]] && echo SAM is nowhere around && return 1
+  devlabel="TRAMV"
+  bakdev=$($LSBLK -l -o NAME,LABEL | grep $devlabel | cut -f1 -d ' ')
+  [[ $bakdev == '' ]] && echo AMV is nowhere around && return 1
   need_umount=false
-  if [[ $( mount | grep SAMV | grep $sambdev -c ) == 0 ]] ; then
-    echo ==mounting SAM..
-    udevil mount /dev/$sambdev /ln/mo/SAMV && [[ $1 != '--keep' ]] &&
+  if [[ $( mount | grep $devlabel | grep $bakdev -c ) == 0 ]] ; then
+    echo ==mounting AMV..
+    udevil mount /dev/$bakdev /ln/mo/$devlabel && [[ $1 != '--keep' ]] &&
       need_umount=true
   fi
-  if [[ $( mount | grep SAMV | grep $sambdev -c ) != 1 ]] ; then
+  if [[ $( mount | grep $devlabel | grep $bakdev -c ) != 1 ]] ; then
     echo --Flash drive unavailable!
     return 1
   else
-    arc=$(ls -1t $baksam/auto/*bak*tar.gz | head -n1)
+    arc=$(ls -1t $bakusbdir/auto/*bak*tar.gz | head -n1)
     echo -n 'arc is '
     ls -lh "$arc" | cut -f9- -d ' '
     # Now extract and remove files not present in archive
@@ -95,9 +97,9 @@ restosh()
     )
     # tar -xf "$arc" -C "$(readlink /ln/sh)" sh --strip-components=1
     # tar -xf "$arc" -C "$(readlink /ln/lo)" lo --strip-components=1
-    [[ $space == "ho" ]] && [[ -d $HOME/01 ]] && [[ -d "$baksam/../fz" ]] && mkdir -p $HOME/01/new && mv --backup=numbered "$baksam/../fz/"* $HOME/01/new/
+    [[ $space == "ho" ]] && [[ -d $HOME/01 ]] && [[ -d "$bakusbdir/../fz" ]] && mkdir -p $HOME/01/new && mv --backup=numbered "$bakusbdir/../fz/"* $HOME/01/new/
   fi
-  [[ $need_umount == true ]] && echo ==unmounting SAM.. && udevil umount /ln/mo/SAMV
+  [[ $need_umount == true ]] && echo ==unmounting AMV.. && udevil umount /ln/mo/$devlabel
   echo --Done!
 }
 

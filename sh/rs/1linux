@@ -27,7 +27,7 @@ SCIENT: gnuplot kst2 scipy scilab mathmod
 DEB-only: xinput psmisc
 
 --Debian pkgs
-dmenu rofi wmctrl xdotool vim-gtk kitty pavucontrol htop vifm fdisk gparted nnn thunar bash-completion mlocate sxhkd fonts-hack ncdu xclip zathura zathura-djvu gitg mpv remmina xinput feh rsync inxi lshw mediainfo ripgrep silversearcher-ag libnotify-bin imagemagick efibootmgr unrar sox git make cmake curl zstd zip gparted strace speedcrunch ctags 
+dmenu rofi wmctrl xdotool vim-gtk kitty pavucontrol htop vifm fdisk gparted nnn thunar bash-completion mlocate sxhkd fonts-hack ncdu xclip zathura zathura-djvu gitg mpv remmina xinput feh rsync inxi lshw mediainfo ripgrep silversearcher-ag libnotify-bin imagemagick efibootmgr unrar sox git make cmake curl zstd zip gparted strace speedcrunch exuberant-ctags 
 qtcreator qtcreator-doc qtcreator-data build-essential qtbase5-examples qtbase5-dev
 
 ==RICE

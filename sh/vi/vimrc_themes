@@ -87,9 +87,9 @@ endif
 " LineColor nord
 " LineColor atlantis
 " LineColor solarized
-" LineColor deus
 " LineColor bluewery
 " LineColor darcula
+" LineColor deus
 
 " hi! Search ctermbg=222
 " hi! Normal ctermbg=234

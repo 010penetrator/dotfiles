@@ -7,7 +7,7 @@ id=$(echo $entry | sed -e 's/^[^=]*//' | cut -d '=' -f2-)
 [[ $id =~ [^0-9] ]] && echo insane id! exiting! && exit
 
 echo Setting flat accel profile for \ \ \ $entry
-xinput set-prop $id "libinput Accel Profile Enabled" 0, 1 && echo Success! || echo Fail!
+xinput set-prop $id "libinput Accel Profile Enabled" 0, 1 && echo --Success! || echo Fail!
 
 echo Please enter desired velocity
 read velo

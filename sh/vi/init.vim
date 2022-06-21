@@ -732,7 +732,7 @@ nnoremap ,vv :source $MYVIMRC <CR>
 nnoremap ,cs :LoadColor<CR>
 nnoremap ,vs :source $RTP/session/comon <bar> call AddRpcEar()<CR>
 nnoremap ,,q :call SaveColor() <bar> SSave! comon <bar> qa<CR>
-nnoremap ,,s :SSave! comon<CR>
+nnoremap ,,s :call SaveColor() <bar> SSave! comon<CR>
 nnoremap ,vq :qa! <CR>
 nnoremap ,l :Startify<CR>
 nnoremap ,zq :wa <bar> qa<CR>

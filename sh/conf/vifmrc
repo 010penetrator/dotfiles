@@ -108,7 +108,6 @@ nnoremap qG :! spek %c &>/dev/null &<cr>
 nnoremap qg :! specgram.sh %c <cr>
 nnoremap qd :! deadbeef --queue %c &>/dev/null & <cr>
 nnoremap qe :! $EDITOR %c <cr>
-nnoremap ql :! xdg-open %c &>/dev/null & <cr>
 nnoremap .  :! xdg-open %c &>/dev/null & <cr>
 nnoremap q<cr> :file &<cr>l
 nnoremap ,g :! google.sh %c &>/dev/null & <cr>
@@ -202,7 +201,7 @@ nnoremap gd :cd /ln/dwn<CR>:set sort=-mtime<CR>:16<CR>
 nnoremap gb :cd $bakcld<CR>
 nnoremap gB :cd $bakhot<CR>
 nnoremap gy :cd /ln/mob<CR>
-nnoremap gS :cd $baksam/..<CR>:goto bak<CR>
+nnoremap gS :cd $bakusbdir/..<CR>:goto bak<CR>
 nnoremap gk :cd /ln/torrents/red/KKK<CR>:sort<CR>mh
 nnoremap gv :cd ~/.vim<CR>:goto plugged<CR>
 nnoremap gn :cd ~/.config/nvim<CR>:goto plugged<CR>

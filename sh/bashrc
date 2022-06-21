@@ -22,7 +22,7 @@ export sh=/ln/sh
 export lo=/ln/lo/cur
 export jo=$HOME/gitjob
 export bakhot=$HOME/bak
-export baksam=/ln/mo/SAMV/bak
+export bakusbdir=/ln/mo/TRAMV/bak
 export MANWIDTH=80
 export LSBLK=lsblk
 export OVMF=/usr/share/edk2-ovmf/x64/OVMF_CODE.fd
@@ -44,6 +44,7 @@ PS1=$'\[$(tput bold)\]\[$(tput setaf 34)\]\u\[$(tput setaf 78)\] \W \[$(tput set
 
 # Aliases #
 # alias bb='tty | grep -q /dev/tty && (terminusfont ; sudo /./bin/conn & startx /ln/sh/xinitrc bspwm)'
+alias tf='terminusfont'
 alias gs='( [ -f $HOME/.env ] && . $HOME/.env ; gsync )'
 alias yp='fc -ln -1 | cut -c 3- | tr -d "\n" | xclip ; echo yanked prev command'
 alias ram='sudo python $sh/mem.py'
@@ -269,6 +270,6 @@ fi
 if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
 # END_KITTY_SHELL_INTEGRATION
 
-source /ln/ho/z.sh
+source /ln/ho/moment/z.sh
 [ -f $lo/bashrc.local ] && source $lo/bashrc.local
 
