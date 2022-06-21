@@ -87,8 +87,8 @@ nnoremap q{ :tabmove-<CR>
 nnoremap q} :tabmove+<CR>
 nnoremap gl gf
 nnoremap g. :exec 'cd' system('realpath .')<CR>
-nnoremap yc :! echo -n %f | xclip ; echo -n %f | xclip -selection clipboard %i <CR>:echo "filename in X buffer"<CR>
-nnoremap yC :! echo -n %f:p | xclip ; echo -n %f:p | xclip -selection clipboard %i <CR>:echo "full filepath in X buffer"<CR>
+nnoremap yc :! echo -n %f | xclip ; echo -n %f | xclip -selection clipboard <CR>:echo "filename in X buffer"<CR>
+nnoremap yC :! echo -n %f:p | xclip ; echo -n %f:p | xclip -selection clipboard <CR>:echo "full filepath in X buffer"<CR>
 " nnoremap - <C-b>
 " nnoremap = <C-f>
 
@@ -109,13 +109,14 @@ nnoremap qg :! specgram.sh %c <cr>
 nnoremap qd :! deadbeef --queue %c &>/dev/null & <cr>
 nnoremap qe :! $EDITOR %c <cr>
 nnoremap ql :! xdg-open %c &>/dev/null & <cr>
-nnoremap aa :! xdg-open %c &>/dev/null & <cr>
+nnoremap .  :! xdg-open %c &>/dev/null & <cr>
 nnoremap q<cr> :file &<cr>l
 nnoremap ,g :! google.sh %c &>/dev/null & <cr>
 nnoremap ,v :! $TERMINAL $EDITOR %c <cr>
 
 " Calc space "
 nnoremap ,f :! echo; echo %c: ; file -b %c ; [[ -d %c ]] && tree -ia %c | tail -1 ; du -sh %c | cut -f1 ; ls -dla %c ; df -h --output=source,avail,pcent %c ; read -rsn1 <cr>
+nnoremap ,<space> :echo "Available space on " . system("df -h --output=source,avail . | tail -1")<cr>
 nnoremap ,F :! watch -n .4 ls -la --block-size=M %f
 nnoremap ,. :! echo -ne \\n  ls dir :\\n ; ls -la --color=auto . ; read -rsn1 <cr>
 nnoremap ,a :! clear -x; $LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT ; read -rsn1 <cr>
@@ -124,12 +125,13 @@ nnoremap qy :! echo -ne "\n-- Try to sync @ $(date '+%%Y-%%m-%%d %%H:%%M:%%S') .
 nnoremap z<BS> :! echo -ne "\n-- Try to sync @ $(date '+%%Y-%%m-%%d %%H:%%M:%%S') ...... \n" ; (time sync) 2>&1 | tr '\t' ' ' | tr '\n' '\t' ; echo -ne "\n-- Complete    @ $(date '+%%Y-%%m-%%d %%H:%%M:%%S')\n" <CR>:echo "Sync complete!"<CR>
 
 " Send to vim server "
-nnoremap av :! MODE="split"  virpc "%c"  <cr>
-nnoremap aV :! MODE="vert"   virpc "%c" &>/dev/null & <cr>
+nnoremap as :! MODE="split"  virpc "%c"  <cr>
+nnoremap av :! MODE="vert"   virpc "%c" &>/dev/null & <cr>
 nnoremap ac :! MODE="cur"    virpc "%c" &>/dev/null & <cr>
 nnoremap an :! MODE="newtab" virpc "%c" &>/dev/null & <cr>
-nnoremap a<space> :! MODE="last" virpc "%c" &>/dev/null & <cr>
-nnoremap az :! virpc "%c"<cr>:q<cr>
+nnoremap ab :! MODE="last"   virpc "%c" &>/dev/null & <cr>
+nnoremap aa :! MODE="auto"   virpc "%c" &>/dev/null & <cr>
+nnoremap aq :! virpc "%c"<cr>:q<cr>
 nnoremap ,d :! vim -d %c %D/%c <cr>
 " if (system('echo $EDITOR') == "vim")
 "     nnoremap an :! MODE="newtab" vimrpc "%c" &>/dev/null & <cr>
@@ -162,7 +164,7 @@ nnoremap cB :copy<cr>
 nnoremap cm :move<cr>
 nnoremap C :copy<cr>
 nnoremap E :move<cr>
-nnoremap ak :!touch %f --date=now<cr>
+noremap ak :!touch %f --date=now<cr>
 nnoremap cn :clone<cr>
 nnoremap ah :!ln  $PWD/%c %D/%c <cr>
 nnoremap al :!ln -rs $PWD/%c %D/%c <cr>

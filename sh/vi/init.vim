@@ -696,7 +696,7 @@ nnoremap ,zs :Files $sh<CR>
 nnoremap ,zt :Files $tt<CR>
 nnoremap ,zj :Files $jo<CR>
 nnoremap qf  :FilesProj<CR>
-nnoremap q/ :Telescope find_files search_dirs=$sh,$tt<CR>
+nnoremap ,/ :Telescope find_files search_dirs=$sh,$tt<CR>
 
 " Search text
 nnoremap ,zr :Rg<CR>
@@ -722,7 +722,7 @@ nnoremap ,gz :call FocusBufOrDo('zzzz','e $tt/zzzzzz')<CR>
 nnoremap ,gu :call FocusBufOrDo('ff','e $tt/u*/ff*')<CR>
 nnoremap ,gh :call FocusBufOrDo('sh_history','e $HOME/.bash_history')<CR>G
 nnoremap ,gl :call FocusBufOrDo('1linux','e $sh/rs/1linux')<CR>
-nnoremap ,/ :call FocusWindowOrDo('99.txt','1tabn \| wincmd b \| e $buf')<CR>
+nnoremap q/  :call FocusWindowOrDo('99.txt','1tabn \| wincmd b \| e $buf')<CR>
 
 nnoremap ,,v :Goyo<CR>
 
@@ -736,13 +736,13 @@ nnoremap ,,s :SSave! comon<CR>
 nnoremap ,vq :qa! <CR>
 nnoremap ,l :Startify<CR>
 nnoremap ,zq :wa <bar> qa<CR>
-nnoremap ,ve :call AddRpcEar()<CR>
+nnoremap ,ar :call AddRpcEar()<CR>
 " Open current file at vimserver session via my "vimrpc" shell script
-nnoremap ,va :silent exec '! ( virpc "%:p" ) & ' \| redraw! \| q <CR>
-" Open current file at vimserver session at new tab via my "vimrpc" shell script
-nnoremap ,vn :silent exec '! ( MODE=newtab virpc "%:p" ) & ' \| redraw! \| q <CR>
-" Open current file at vimserver session at active window via my "vimrpc" shell script
-nnoremap ,vc :silent exec '! ( MODE=cur virpc "%:p" ) & ' \| redraw! \| q <CR>
+nnoremap ,aa :silent exec '! virpc "%:p"' <CR>
+nnoremap ,a. :exec '! virpc "%:p"' \| q <CR>
+nnoremap ,ac :exec '! MODE=cur    virpc "%:p"' \| q <CR>
+nnoremap ,an :exec '! MODE=newtab virpc "%:p"' \| q <CR>
+nnoremap ,as :exec '! MODE=split  virpc "%:p"' \| q <CR>
 
 " Have mappings in terminal mode
 if v:version >= 801

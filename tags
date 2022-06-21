@@ -20,6 +20,7 @@ $RTP	sh/vi/init.vim	/^let $RTP=split(&runtimepath, ',')[0]$/;"	v
 ,,t	sh/vi/init.vim	/^nnoremap ,,t :NewTermHere<CR>$/;"	m
 ,,v	sh/vi/init.vim	/^nnoremap ,,v :Goyo<CR>$/;"	m
 ,.	sh/vi/init.vim	/^nnoremap <silent> ,. :if bufexists(bufnr('#')) <bar> b # <bar> echo expand('%') <bar> else <bar>/;"	m
+,/	sh/vi/init.vim	/^nnoremap ,\/ :Telescope find_files search_dirs=$sh,$tt<CR>$/;"	m
 ,;	sh/vi/init.vim	/^nnoremap ,; :6mes<CR>$/;"	m
 ,<tab>	sh/vi/init.vim	/^map ,<tab> :emenu tagi.<tab>$/;"	m
 ,B	sh/vi/init.vim	/^nnoremap ,B yap: exec "!" . @" <CR>$/;"	m
@@ -28,7 +29,12 @@ $RTP	sh/vi/init.vim	/^let $RTP=split(&runtimepath, ',')[0]$/;"	v
 ,M	sh/vi/init.vim	/^nnoremap ,M ^y$:call system('firefox ' . "'" . @" . "' &")<CR>$/;"	m
 ,O	sh/vi/init.vim	/^nnoremap ,O :Silent xdg-open %:p &<CR>$/;"	m
 ,V	sh/vi/init.vim	/^nnoremap ,V :source $MYVIMRC <CR>$/;"	m
-,]	sh/vi/init.vim	/^nnoremap ,] :call FocusWindowOrDo('99.txt','1tabn \\| wincmd b \\| e $buf')<CR>$/;"	m
+,a.	sh/vi/init.vim	/^nnoremap ,a. :exec '! virpc "%:p"' \\| q <CR>$/;"	m
+,aa	sh/vi/init.vim	/^nnoremap ,aa :silent exec '! virpc "%:p"' <CR>$/;"	m
+,ac	sh/vi/init.vim	/^nnoremap ,ac :exec '! MODE=cur    virpc "%:p"' \\| q <CR>$/;"	m
+,an	sh/vi/init.vim	/^nnoremap ,an :exec '! MODE=newtab virpc "%:p"' \\| q <CR>$/;"	m
+,ar	sh/vi/init.vim	/^nnoremap ,ar :call AddRpcEar()<CR>$/;"	m
+,as	sh/vi/init.vim	/^nnoremap ,as :exec '! MODE=split  virpc "%:p"' \\| q <CR>$/;"	m
 ,b	sh/vi/init.vim	/^vnoremap ,b :call RunSelBash()<CR>$/;"	m
 ,bd	sh/vi/init.vim	/^nnoremap ,bd :BDnJump<CR>$/;"	m
 ,be	sh/vi/init.vim	/^nnoremap ,be :BufExplorer<CR>$/;"	m
@@ -74,14 +80,10 @@ $RTP	sh/vi/init.vim	/^let $RTP=split(&runtimepath, ',')[0]$/;"	v
 ,tr	sh/vi/init.vim	/^nnoremap ,tr :Telescope lsp_references<CR>$/;"	m
 ,v,	sh/vi/init.vim	/^nnoremap ,v, :call EvalThis()<CR>$/;"	m
 ,v;	sh/vi/init.vim	/^nnoremap ,v; :let lastl=line('.') <bar> exec "normal yap" <bar> @\\" <bar> exec lastl<CR>:echo "/;"	m
-,va	sh/vi/init.vim	/^nnoremap ,va :silent exec '! ( virpc "%:p" ) & ' \\| redraw! \\| q <CR>$/;"	m
+,v<CR>	sh/vi/init.vim	/^nnoremap ,v<CR> yap:@"<CR>:<up><CR>$/;"	m
 ,vb	sh/vi/init.vim	/^nnoremap ,vb :call SwitchBackground() <CR>:echo "background=" &background <cr>$/;"	m
-,vc	sh/vi/init.vim	/^nnoremap ,vc :silent exec '! ( MODE=cur virpc "%:p" ) & ' \\| redraw! \\| q <CR>$/;"	m
-,ve	sh/vi/init.vim	/^nnoremap ,ve :call AddRpcEar()<CR>$/;"	m
 ,vg	sh/vi/init.vim	/^nnoremap ,vg :set termguicolors! <cr>:set termguicolors? <cr>$/;"	m
-,vk	sh/vi/init.vim	/^nnoremap ,vk yap:@"<CR>:<up><CR>$/;"	m
 ,vl	sh/vi/init.vim	/^nnoremap ,vl yy:@"<CR>$/;"	m
-,vn	sh/vi/init.vim	/^nnoremap ,vn :silent exec '! ( MODE=newtab virpc "%:p" ) & ' \\| redraw! \\| q <CR>$/;"	m
 ,vp	sh/vi/init.vim	/^nnoremap ,vp :put + <bar> exec "normal dfmxIPlug 'A'" <CR>==$/;"	m
 ,vq	sh/vi/init.vim	/^nnoremap ,vq :qa! <CR>$/;"	m
 ,vs	sh/vi/init.vim	/^nnoremap ,vs :source $RTP\/session\/comon <bar> call AddRpcEar()<CR>$/;"	m
@@ -545,7 +547,7 @@ aC	sh/vi/init.vim	/^nnoremap aC :vertical terminal ++close bash -c "INVIM=1 vifm
 aE	sh/vi/init.vim	/^nnoremap aE :sp <c-r><c-f> <CR>$/;"	m
 aI	sh/vi/init.vim	/^nnoremap aI :put! +<CR>$/;"	m
 aO	sh/vi/init.vim	/^nnoremap aO o<Esc>:put! +<CR>`[v`]:g\/^$\/d<CR>:noh<CR>$/;"	m
-aP	sh/vi/init.vim	/^nnoremap aP :put  +<CR>$/;"	m
+aP	sh/vi/init.vim	/^nnoremap aP :put! *<CR>$/;"	m
 aT	sh/vi/init.vim	/^nnoremap aT :-tabe<CR>$/;"	m
 a_	sh/vi/init.vim	/^nnoremap a_  :vsplit <bar> exec "normal -" <cr>$/;"	m
 aa	sh/vi/init.vim	/^nnoremap aa a$/;"	m
@@ -556,7 +558,7 @@ adapter	sh/conf/polybar.ini	/^adapter = AC$/;"	k	section:module/battery
 ae	sh/vi/init.vim	/^nnoremap ae :vsp <c-r><c-f> <CR>$/;"	m
 af	sh/vi/init.vim	/^nnoremap af :exec "normal i".nr2char(getchar())."\\e"<CR>$/;"	m
 ag	sh/vi/init.vim	/^nnoremap ag :exec "normal! a".nr2char(getchar())."\\e"<CR>$/;"	m
-ai	sh/vi/init.vim	/^nnoremap ai :put! *<CR>$/;"	m
+ai	sh/vi/init.vim	/^nnoremap ai :put  +<CR>$/;"	m
 aj	sh/vi/init.vim	/^nnoremap aj    <C-W>w<C-W>_$/;"	m
 ak	sh/vi/init.vim	/^nnoremap ak    <C-W>W<C-W>_$/;"	m
 alert	sh/conf/polybar.ini	/^alert = #bd2c40$/;"	k	section:colors
@@ -1082,7 +1084,7 @@ q	sh/vi/init.vim	/^map q <Nop>$/;"	m
 q,	sh/vi/init.vim	/^nnoremap q,    <C-W>6<$/;"	m
 q-	sh/vi/init.vim	/^nnoremap q- 60A-<esc>0<esc>60ld$b$/;"	m
 q.	sh/vi/init.vim	/^nnoremap q.    <C-W>6>$/;"	m
-q/	sh/vi/init.vim	/^nnoremap q\/ :Telescope find_files search_dirs=$sh,$tt<CR>$/;"	m
+q/	sh/vi/init.vim	/^nnoremap q\/  :call FocusWindowOrDo('99.txt','1tabn \\| wincmd b \\| e $buf')<CR>$/;"	m
 q1	sh/vi/init.vim	/^nnoremap q1 1gt$/;"	m
 q2	sh/vi/init.vim	/^nnoremap q2 2gt$/;"	m
 q3	sh/vi/init.vim	/^nnoremap q3 3gt$/;"	m
