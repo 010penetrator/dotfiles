@@ -16,7 +16,7 @@ $RTP	sh/vi/init.vim	/^let $RTP=split(&runtimepath, ',')[0]$/;"	v
 ,,o	sh/vi/init.vim	/^nnoremap ,,o ^y$:call system('xdg-open ' . "'" . @" . "' &")<CR>$/;"	m
 ,,o	sh/vi/init.vim	/^vnoremap ,,o :<C-U>call SystemOpenEveryLine()<CR>$/;"	m
 ,,q	sh/vi/init.vim	/^nnoremap ,,q :call SaveColor() <bar> SSave! comon <bar> qa<CR>$/;"	m
-,,s	sh/vi/init.vim	/^nnoremap ,,s :SSave! comon<CR>$/;"	m
+,,s	sh/vi/init.vim	/^nnoremap ,,s :call SaveColor() <bar> SSave! comon<CR>$/;"	m
 ,,t	sh/vi/init.vim	/^nnoremap ,,t :NewTermHere<CR>$/;"	m
 ,,v	sh/vi/init.vim	/^nnoremap ,,v :Goyo<CR>$/;"	m
 ,.	sh/vi/init.vim	/^nnoremap <silent> ,. :if bufexists(bufnr('#')) <bar> b # <bar> echo expand('%') <bar> else <bar>/;"	m
