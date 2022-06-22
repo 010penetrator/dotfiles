@@ -98,7 +98,7 @@ restosh()
     )
     # tar -xf "$arc" -C "$(readlink /ln/sh)" sh --strip-components=1
     # tar -xf "$arc" -C "$(readlink /ln/lo)" lo --strip-components=1
-    [[ $space == "ho" ]] && [[ -d $HOME/01 ]] && [[ -d "$bakusbdir/../fz" ]] && mkdir -p $HOME/01/new && mv --backup=numbered "$bakusbdir/../fz/"* $HOME/01/new/
+    [[ $space == "ho" ]] && [[ -d $HOME/1 ]] && [[ -d "$bakusbdir/../fz" ]] && mkdir -p $HOME/1/new && mv --backup=numbered "$bakusbdir/../fz/"* $HOME/1/new/
   fi
   [[ $need_umount == true ]] && echo ==unmounting AMV.. && udevil umount /ln/mo/$devlabel
   echo --Done!

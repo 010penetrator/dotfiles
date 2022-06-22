@@ -41,9 +41,9 @@ if [[ "$HOSTNAME" =~ 'killer'[pc,PC] ]]; then
 
 elif [[ "$HOSTNAME" =~ 'machine' ]]; then
   xrdb -merge <(echo "Xft.dpi: 128") &
-  xrandr --output DP-1 --mode 2560x1440 --rate 120 
+  xrandr --output DP-1 --mode 2560x1440 --rate 120
   sleep 1
-  # pgrep transmission-da | grep . || trdwrap.sh & 
+  # pgrep transmission-da | grep . || trdwrap.sh &
   compton.sh &
   # pgrep earlyoom | grep . || earlyoom -m 2 -n &> /dev/null &
 
@@ -52,18 +52,18 @@ elif [[ "$HOSTNAME" =~ ^debian10pc ]]; then
   xrandr --output HDMI-2 --auto --right-of HDMI-1
   compton.sh &
 
-elif [[ "$HOSTNAME" =~ ^white*(.*)ok ]]; then 
-  xset dpms 900 0 0 
+elif [[ "$HOSTNAME" =~ ^white*(.*)ok ]]; then
+  xset dpms 900 0 0
   xinput set-prop "SYN1B7F:01 06CB:2991 Touchpad" "libinput Tapping Enabled" 1
 
 elif [[ "$HOSTNAME" =~ 'warmPC' ]]; then
   # xrdb -merge <(echo "Xft.dpi: 108") &
   sleep 1
-  pgrep transmission-da | grep . || trdwrap.sh & 
+  pgrep transmission-da | grep . || trdwrap.sh &
   pgrep earlyoom | grep . || earlyoom -m 2 -n &> /dev/null &
 
 elif [[ "$HOSTNAME" =~ [pc,PC] ]]; then
-  xrandr --output VGA-2 --off 
+  xrandr --output VGA-2 --off
 fi
 
 killall dunst
@@ -72,12 +72,12 @@ sleep .1
 dunst -conf /ln/sh/conf/dunstrc &
 )
 
-resta xbanish
+# resta xbanish
 compton.sh
 
 # notify-send $HOSTNAME &
 
-# killall osdsh ; osdsh  -p 0 -a 2 -d 1 -f -adobe-helvetica-bold-r-*-*-*-240-*-*-*-*-iso8859-* -c teal 
+# killall osdsh ; osdsh  -p 0 -a 2 -d 1 -f -adobe-helvetica-bold-r-*-*-*-240-*-*-*-*-iso8859-* -c teal
 
 # echo RC done
 notify-send 'RC complete'

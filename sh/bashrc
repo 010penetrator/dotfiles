@@ -54,7 +54,6 @@ alias kr='kitty @ set-colors -a /ln/co/kitty/current-theme.conf /ln/sh/conf/kitt
 alias chmodre='find . -type f -exec chmod 644 {} \;'
 # alias terfont='setfont ter-218b'
 # alias dmenu='dmenu $DMENU_OPTIONS -fn "$DMENU_FN"'
-alias 1l='less ~/.sh/1linux'
 # alias vf='$TERMINAL -e vifm . &'
 # alias trmclient='title transmission-remote-cli; transmission-remote-cli -c localhost:9090 ; title bash'
 # if  lsb_release -i | grep -q -ie 'arch\|manjaro' ; then
@@ -82,6 +81,8 @@ alias mm='make -f my_Makefile'
 # Functions #
 zz() { du -csh $*; local IFS="_"; filename=$(echo "$*" | tr / _); tar -I 'zstd -10 -T0' -cf "$filename".tar.zst --exclude='.git' --exclude='tags' $*; du -sh "$filename".tar.zst; }
 c() { a=wd${1} ; cd ${!a} ; }
+alias fl='cat $sh/rs/1linux | fzf'
+fl() { cat $sh/rs/1linux | fzf ; }
 x() { xdg-open "$*" &> /dev/null & disown ; }
 get_space_used() { df -BMB "$1" --output=used | tail -1 | grep -o '[0-9]*' ; }
 hddsum() { d1=$(get_space_used /ln/mo/blink) ; d2=$(get_space_used /ln/mo/metal) ; echo Σ= "$(( d1 + d2 ))" Mb ; }
@@ -137,17 +138,34 @@ gsync() {
 }
 
 # FZF #
-[ -f /usr/share/doc/fzf/examples/key-bindings.bash ] && source /usr/share/doc/fzf/examples/key-bindings.bash
-[ -f /usr/share/fzf/key-bindings.bash ] && source /usr/share/fzf/key-bindings.bash
-[ -f "$HOME/moment/fzf/shell/key-bindings.bash" ] && source "$HOME/moment/fzf/shell/key-bindings.bash"
-[[ -d $HOME/moment/fzf/bin ]] && [[ ! "$PATH" == */moment/fzf/bin* ]] && export PATH="${PATH:+${PATH}:}/$HOME/moment/fzf/bin"
-[[ $- == *i* ]] && [[ -d $HOME/moment/fzf ]] && source "$HOME/moment/fzf/shell/completion.bash" 2> /dev/null
+# [ -f /usr/share/doc/fzf/examples/key-bindings.bash ] && source /usr/share/doc/fzf/examples/key-bindings.bash
+# [ -f /usr/share/fzf/key-bindings.bash ] && source /usr/share/fzf/key-bindings.bash
+[[ -f "$HOME/compy/fzf/shell/key-bindings.bash" ]] &&
+    source "$HOME/compy/fzf/shell/key-bindings.bash"
+[[ -d $HOME/compy/fzf/bin ]] && [[ ! "$PATH" == */compy/fzf/bin* ]] &&
+    export PATH="${PATH:+${PATH}:}/$HOME/compy/fzf/bin"
+[[ $- == *i* ]] && [[ -f $HOME/compy/fzf/shell/completion.bash ]] &&
+    source "$HOME/compy/fzf/shell/completion.bash" 2> /dev/null
 export FZF_DEFAULT_OPTS="--exact --layout=reverse --height 55%"
 export FZF_CTRL_R_OPTS="--no-sort --exact"
 # Restore default <C-r> search
     # bind -X "\C-r: reverse-search-history"
 function fzfpacadd { pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S ; }
 function fzfpacrem { pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns ; }
+__fzf_1linux__() {
+  local output
+  output=$(
+    cat $sh/rs/1linux | fzf
+    ) || return
+  READLINE_LINE=${output}
+  # READLINE_LINE="more"
+  if [[ -z "$READLINE_POINT" ]]; then
+    echo "$READLINE_LINE"
+  else
+    READLINE_POINT=0x7fffffff
+  fi
+}
+bind -m emacs-standard -x '"\e\C-l": __fzf_1linux__'
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -270,6 +288,6 @@ fi
 if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
 # END_KITTY_SHELL_INTEGRATION
 
-source /ln/ho/moment/z.sh
+source /ln/ho/compy/z.sh
 [ -f $lo/bashrc.local ] && source $lo/bashrc.local
 

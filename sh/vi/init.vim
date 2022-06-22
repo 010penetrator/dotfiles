@@ -153,7 +153,7 @@ if has("nvim")
     Plug 'hrsh7th/cmp-path'
     Plug 'hrsh7th/cmp-cmdline'
     Plug 'hrsh7th/cmp-nvim-lsp'
-    Plug 'chentoast/marks.nvim' " okay
+    Plug 'chentau/marks.nvim' " okay
     " Plug 'norcalli/nvim-colorizer.lua'
     " Plug 'kwkarlwang/bufjump.nvim'
     Plug 'hoschi/yode-nvim'

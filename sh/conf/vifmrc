@@ -191,21 +191,26 @@ nnoremap g; :cd /ln/mo<cr>
 nnoremap gq :cd /ln/ho/qq<cr>:sort<cr>N
 nnoremap g/ :cd /ln<cr>
 nnoremap gm :cd /ln/mus/
-nnoremap go :cd /ln/ho/moment<cr>
+nnoremap go :cd /ln/ho/compy<cr>
 nnoremap gx :trashes<cr>
 nnoremap gc :cd $HOME/.config<cr>
+nnoremap ge :cd $HOME/stek<cr>
+nnoremap g1 :cd $HOME/1<cr>
+nnoremap g2 :cd $HOME/2<cr>
+nnoremap g3 :cd $HOME/3<cr>
+nnoremap g4 :cd $HOME/4<cr>
 nnoremap gs :cd /ln/sh<cr>
 nnoremap gw :cd /ln/wo<cr>
-nnoremap gj :cd /ln/ho/gitjob<CR>
-nnoremap gd :cd /ln/dwn<CR>:set sort=-mtime<CR>:16<CR>
-nnoremap gb :cd $bakcld<CR>
-nnoremap gB :cd $bakhot<CR>
-nnoremap gy :cd /ln/mob<CR>
-nnoremap gS :cd $bakusbdir/..<CR>:goto bak<CR>
-nnoremap gk :cd /ln/torrents/red/KKK<CR>:sort<CR>mh
-nnoremap gv :cd ~/.vim<CR>:goto plugged<CR>
-nnoremap gn :cd ~/.config/nvim<CR>:goto plugged<CR>
-nnoremap gN :cd ~/01/new/<CR>
+nnoremap gj :cd /ln/ho/gitjob<cr>
+nnoremap gd :cd /ln/dwn<cr>:set sort=-mtime<cr>:16<cr>
+nnoremap gb :cd $bakcld<cr>
+nnoremap gB :cd $bakhot<cr>
+nnoremap gy :cd /ln/mob<cr>
+nnoremap gS :cd $bakusbdir/..<cr>:goto bak<cr>
+nnoremap gk :cd /ln/torrents/red/KKK<cr>:sort<cr>mh
+nnoremap gv :cd ~/.vim<cr>:goto plugged<cr>
+nnoremap gn :cd ~/.config/nvim<cr>:goto plugged<cr>
+nnoremap gN :cd ~/01/new/<cr>
 
 """"""""""""""""""""""""
 ""     Settings:      ""
@@ -705,13 +710,19 @@ command! FZFfind : set noquickview
                 \|     execute 'goto' fnameescape($FZF_PICK)
                 \| endif
 " variation that automatically enters directories
-command! FZFlocate : set noquickview
-                  \| let $FZF_PICK = term('locate $HOME | fzf --height 10 2>/dev/tty')
-                  \| if $FZF_PICK != ''
-                  \|     execute system('[ -f "$FZF_PICK" ] && echo goto || echo cd') fnameescape($FZF_PICK)
-                  \| endif
-" nnoremap <C-j> :FZFlocate<cr>
+" command! FZFlocate : set noquickview
+"                   \| let $FZF_PICK = term('locate $HOME | fzf --height 10 2>/dev/tty')
+"                   \| if $FZF_PICK != ''
+"                   \|     execute system('[ -f "$FZF_PICK" ] && echo goto || echo cd') fnameescape($FZF_PICK)
+"                   \| endif
 nnoremap <C-j> :FZFfind<cr>
+" nnoremap <C-j> :FZFlocate<cr>
+
+command! FZFlocate : set noquickview
+                  \| let $FZF_PICK = term('locate %a | fzf --height 10 2>/dev/tty')
+                  \| if $FZF_PICK != ''
+                  \|     execute 'goto' fnameescape($FZF_PICK)
+                  \| endif
 
 source $lo/vifmrc.local
 source /ln/sh/conf/favicons.vifm

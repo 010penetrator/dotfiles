@@ -27,8 +27,8 @@ SCIENT: gnuplot kst2 scipy scilab mathmod
 DEB-only: xinput psmisc
 
 --Debian pkgs
-dmenu rofi wmctrl xdotool vim-gtk kitty pavucontrol htop vifm fdisk gparted nnn thunar bash-completion mlocate sxhkd fonts-hack ncdu xclip zathura zathura-djvu gitg mpv remmina xinput feh rsync inxi lshw mediainfo ripgrep silversearcher-ag libnotify-bin imagemagick efibootmgr unrar sox git make cmake curl zstd zip gparted strace speedcrunch exuberant-ctags 
-qtcreator qtcreator-doc qtcreator-data build-essential qtbase5-examples qtbase5-dev
+dmenu rofi wmctrl xdotool vim-gtk kitty pavucontrol htop vifm fdisk gparted nnn thunar bash-completion mlocate sxhkd fonts-hack ncdu xclip zathura zathura-djvu gitg mpv remmina xinput feh rsync inxi lshw mediainfo ripgrep silversearcher-ag libnotify-bin imagemagick efibootmgr unrar sox git make cmake curl zstd zip gparted strace speedcrunch exuberant-ctags udevil qalc fzf qemu-system fd-find python3-neovim nitrogen lxappearance dunst btop virtualbox fonts-firacode
+qmake6 cpulimit qtcreator qtcreator-doc qtcreator-data build-essential qtbase5-examples qtbase5-dev
 
 ==RICE
 Chrome: uBlock Vimium CVim Surfingkeys MidnightLizard SingleFile Stylus Rescroller Browsec Bookmarkie TidyBookmarks NeaterBookmarks RecentBookmarks EmptyNewTabPage CopyTabInfo CopyUrl.rus
@@ -205,7 +205,8 @@ rsync -e ssh -Lav --progress --exclude=".*/" --no-perms --no-times --delete --si
 7z a -mx=3 -xr!.git -xr!tags out.7z Projekt # create quick 7z
 tar -I 'zstd -v -11 -T0' -cf somedir.tar.zst --exclude='.git' --exclude='tags' somedir # create tar.zst
 sudo tar -I 'zstd -v -10 -T0' -cf /ln/mo/fast/__root.tar.zst --one-file-system --exclude='/home/*/Downloads' / # backup root filesystem
-sudo sh -c "zstd -v -10 -T0 </dev/nvme0n1p6 >$bak/root.zst" # backup partition with zst compression
+tar -I 'zstd -v -10 -T0' -cf $bakcld/home.__.tar.zst -C /home --exclude='Downloads' --exclude='bak' --exclude='.cache' . # backup home dir
+sudo sh -c "zstd -v -10 -T0 </dev/nvmeXX >$bak/part.zst" # backup partition
 zstdcat root.zst >/dev/nvme0n1p6 # restore zst archived image
 zip -r -1 arc.zip Dir Dir2 #create zip
 
