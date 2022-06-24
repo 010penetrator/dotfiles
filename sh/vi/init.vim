@@ -153,7 +153,7 @@ if has("nvim")
     Plug 'hrsh7th/cmp-path'
     Plug 'hrsh7th/cmp-cmdline'
     Plug 'hrsh7th/cmp-nvim-lsp'
-    Plug 'chentau/marks.nvim' " okay
+    Plug 'chentoast/marks.nvim' " okay
     " Plug 'norcalli/nvim-colorizer.lua'
     " Plug 'kwkarlwang/bufjump.nvim'
     Plug 'hoschi/yode-nvim'
@@ -606,10 +606,11 @@ nnoremap ,bd :BDnJump<CR>
 nnoremap ,i :diffthis \| wincmd w<CR>
 nnoremap ,o :diffoff  \| wincmd w<CR>
 nnoremap c<space> :echo expand ('%') '.@.' getcwd() <CR>
-nnoremap ,cc :LCDhere <CR>
+nnoremap ,c. :LCDhere <CR>
 nnoremap ,cg :call ClimbToDirWhere(".git/index",1) \| pwd <CR>
 nnoremap ,cm :call ClimbToDirWhere("Makefile",1) \| pwd <CR>
-nnoremap <silent> ,c<space> :call GetProjDir() <bar> exec "cd " . b:proj_dir <bar> echo 'lcd @' getcwd() <cr>
+" local cd to current kinda project path
+nnoremap <silent> ,c, :call GetProjDir() <bar> exec "lcd " . b:proj_dir <bar> echo 'lcd @' getcwd() <cr>
 nnoremap a<BS> :checktime<cr>
 nnoremap q<BS> :enew<CR>
 nnoremap z<BS> :e!<CR>
@@ -894,7 +895,7 @@ nnoremap z<space> :set filetype=text<CR>
 nnoremap ,vb :call SwitchBackground() <CR>:echo "background=" &background <cr>
 nnoremap ,vg :set termguicolors! <cr>:set termguicolors? <cr>
 nnoremap a/ :set hlsearch! <CR>
-nnoremap ,G :GitGutterToggle<CR>
+nnoremap ,gg :GitGutterToggle<CR>
 
 " Tags
 nnoremap ,vt :TagbarOpen fj <CR>

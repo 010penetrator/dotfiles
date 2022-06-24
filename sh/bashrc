@@ -56,13 +56,17 @@ alias chmodre='find . -type f -exec chmod 644 {} \;'
 # alias dmenu='dmenu $DMENU_OPTIONS -fn "$DMENU_FN"'
 # alias vf='$TERMINAL -e vifm . &'
 # alias trmclient='title transmission-remote-cli; transmission-remote-cli -c localhost:9090 ; title bash'
-# if  lsb_release -i | grep -q -ie 'arch\|manjaro' ; then
-#     alias as='pacman -Ss'
-#     alias ai='sudo pacman -S'
-# elif  lsb_release -i | grep -q -ie 'mint\|debian\|buntu' ; then
-#     alias as='apt search'
-#     alias ai='sudo apt install'
-# fi
+
+type -f ai &>/dev/null ||
+{
+if  type -f pacman &>/dev/null ; then
+    alias as='pacman -Ss'
+    alias ai='sudo pacman -S'
+elif  type -f apt &>/dev/null ; then
+    alias as='apt search'
+    alias ai='sudo apt install'
+fi
+}
 alias lm='df -BGB --output=source,fstype,avail,pcent,target -x tmpfs -x devtmpfs'
 alias wlm='watch -n.4 df -BMB --output=source,avail,pcent,target'
 alias lb='$LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT,FSUSE% | grep "sd\|nvme" --color=none'
@@ -140,12 +144,12 @@ gsync() {
 # FZF #
 # [ -f /usr/share/doc/fzf/examples/key-bindings.bash ] && source /usr/share/doc/fzf/examples/key-bindings.bash
 # [ -f /usr/share/fzf/key-bindings.bash ] && source /usr/share/fzf/key-bindings.bash
-[[ -f "$HOME/compy/fzf/shell/key-bindings.bash" ]] &&
-    source "$HOME/compy/fzf/shell/key-bindings.bash"
-[[ -d $HOME/compy/fzf/bin ]] && [[ ! "$PATH" == */compy/fzf/bin* ]] &&
-    export PATH="${PATH:+${PATH}:}/$HOME/compy/fzf/bin"
-[[ $- == *i* ]] && [[ -f $HOME/compy/fzf/shell/completion.bash ]] &&
-    source "$HOME/compy/fzf/shell/completion.bash" 2> /dev/null
+[[ -f "$HOME/.config/nvim/plugged/fzf/shell/key-bindings.bash" ]] &&
+    source "$HOME/.config/nvim/plugged/fzf/shell/key-bindings.bash"
+[[ -d $HOME/.config/nvim/plugged/fzf/bin ]] && [[ ! "$PATH" == */.config/nvim/plugged/fzf/bin* ]] &&
+    export PATH="${PATH:+${PATH}:}/$HOME/.config/nvim/plugged/fzf/bin"
+[[ $- == *i* ]] && [[ -f $HOME/.config/nvim/plugged/fzf/shell/completion.bash ]] &&
+    source "$HOME/.config/nvim/plugged/fzf/shell/completion.bash" 2> /dev/null
 export FZF_DEFAULT_OPTS="--exact --layout=reverse --height 55%"
 export FZF_CTRL_R_OPTS="--no-sort --exact"
 # Restore default <C-r> search

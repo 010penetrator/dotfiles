@@ -22,13 +22,17 @@ cd
 
 [[ -d Templates ]] && mkdir -p Trashed && mv Documents Music Pictures Public Templates Videos Trashed
 
-[ -d .dotfiles.git ] ||
+if [[ -d $HOME/.dotfiles.git ]] ; then
+{
+    echo -e '\n'--Gonna update my git repo
+    cd "$HOME".dotfiles.git && git pull
+}
+else
 {
     echo -e '\n'--Gonna clone my git repo
-    cd
-    mkdir -p .dotfiles.git/sh
-    git clone https://github.com/010penetrator/dotfiles .dotfiles.git
+    git clone https://github.com/010penetrator/dotfiles "$HOME"/.dotfiles.git
 }
+fi
 
 {
     echo -e '\n'--Gonna create /ln/ and short links there
@@ -43,7 +47,7 @@ cd
     ln -sfnv /ln/mo/blink bl
     ln -sfnv /ln/mo/blink/hh hh
     ln -sfnv /ln/bl/torrents torrents
-    ln -sfnv /ln/mo/metal/MUSIC mus
+    # ln -sfnv /ln/mo/metal/MUSIC mus
     ln -sfnv /ln/mo/blink/PRAGS pr
     ln -sfnv /ln/mo/metal/____ __
     # ln -sfn /ln/mo/blink/dwn dwn
@@ -80,7 +84,7 @@ cd
     ln -srf .sh/conf/mpv/input.conf /ln/co/mpv/
     ln -srf .sh/conf/mpv/mpv.conf /ln/co/mpv/
     mkdir -p .local/share/applications/
-    cp /ln/sh/transmission*desktop .local/share/applications/
+    cp /ln/sh/conf/transmission*desktop .local/share/applications/
     #
     xdg-mime default transmission-cli.desktop x-scheme-handler/magnet
     xdg-mime default transmission-cli.desktop application/x-bittorrent
@@ -89,9 +93,9 @@ cd
     sudo ln -sfv /ln/sh/99-libinput-custom.conf /etc/X11/xorg.conf.d/
 }
 
+[[ -d ~/.config/kitty-themes ]] ||
 {
-    echo -e '\n'--Gonna pull some more config files
-    git clone --depth 1 https://github.com/dexpota/kitty-themes.git ~/.config/kitty-themes
-    ln -sfrv .config/kitty-themes/themes/gruvbox_light.conf .config/kitty/current-theme.conf
+    # echo -e '\n'--Gonna pull some more config files
+    git clone --depth 1 https://github.com/dexpota/kitty-themes.git ~/.config/kitty-themes && ln -sfrv .config/kitty-themes/themes/gruvbox_light.conf .config/kitty/current-theme.conf
 }
 

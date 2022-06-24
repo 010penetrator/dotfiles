@@ -1,0 +1,39 @@
+# чинить генту с флэхи
+mount /dev/sdXN /mnt/gentoo
+cd /mnt/gentoo
+cp -L /etc/resolv.conf /mnt/gentoo/etc
+mount -t proc proc /mnt/gentoo/proc
+mount --rbind /sys /mnt/gentoo/sys
+mount --rbind /dev/mnt/gentoo/dev
+chroot /mnt/gentoo /bin/bash
+env-update
+source /etc/profile
+
+# USE
+/etc/portage/make.conf
+
+# EDRO
+cd /usr/src/linux
+make menuconfig
+make modules_install
+make install
+genkernel --install initrramfs
+
+grub2-mkconfig
+grub2-install /dev/sda
+
+?make modules_prepare
+??emerge --ask @module-rebuild
+
+emerge --update --deep --with-bdeps=y --newuse @world
+emerge -uDN world
+
+rc-status
+shutdown -P now
+
+xrandr
+~/.xinitrc
+~/xorg.conf
+/etc/X11/xorg.conf.d/xorg.conf
+Xorg -configure
+

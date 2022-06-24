@@ -26,11 +26,12 @@ tar -chzf "$bakhot/$DAY/words.tar.gz" \
 
 [[ -d /ln/torrents ]] &&
     tar -czf "$bakhot/$DAY/torrents.tar.gz" --ignore-failed-read \
-        -C /ln/ho .config/transmission-daemon .rtorrent
+        -C $HOME .config/transmission-daemon .rtorrent
 
 [[ -d /ln/co/nvim ]] && [[ -d /ln/co/nvim ]] && conditional_line="-C /ln/co/ nvim/plugged nvim/lsp_servers"
     tar -cf "$bakhot/$DAY/conf.tar.zst" -I "zstd -10 -T0" --ignore-failed-read \
-        -C / etc/fstab etc/udevil/udevil.conf ln/ho/.ssh ln/ho/.vim \
+        -C / etc/fstab etc/udevil/udevil.conf \
+        -C $HOME .ssh .bash_history .git*tials .cache/dmenu-recent .vim \
         $conditional_line
 
 [[ -d $bakcld ]] &&

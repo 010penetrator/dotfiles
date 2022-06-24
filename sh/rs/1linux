@@ -2,9 +2,9 @@
 # some Bash oneliners AND pieces of general Linux wisdom
 
 ==Install
-BASE: base-devel inetutils earlyoom mlocate udevil cylon inxi
+BASE: base-devel inetutils earlyoom kbd plocate mlocate udevil cylon inxi
 ARCHIE: pacli pakku yay baph
-TUI: networkmanager nmtui mc clex lfm ranger vifm nnn fff exa fd lftp fzf ripgrep silversearcher-ag ncdu tree p7zip htop ytop bashtop bpytop glances dmenu keratin screenfetch lolcat tmux bc tty-clock 
+TUI: qalc networkmanager nmtui mc clex lfm ranger vifm nnn fff exa fd lftp fzf ripgrep silversearcher-ag ncdu tree p7zip htop ytop bashtop bpytop glances dmenu keratin screenfetch lolcat tmux bc tty-clock 
 X: xorg-server xorg-xinit xterm urxvt xvkbd xclip redshift xscreensaver nitrogen dunst unclutter-xfixes xbanish gmrun scrot wmctrl xdotool 
 FIRMWARE: bluez-utils
 GTKtune: lxappearance oomox wpgtk
@@ -124,9 +124,10 @@ mount -t ext4 /dev/sdXN /mnt
 mount -t proc /proc /mnt/proc ; mount --bind /dev /mnt/dev ; mount --bind /sys /mnt/sys
 chroot /mnt #OR# arch-chroot /mnt
 grub-mkconfig -o /boot/grub/grub.cfg ; grub-install /dev/sdX
---GRUB EFI install:
+--GRUB install for BIOS
+--GRUB install for EFI:
 grub-install --target=x86_64-efi --efi-directory=EfiSystemPart --boot-directory=/boot --bootloader-id=NewName
---GRUB EFI install to removable media:
+--GRUB install for EFI to removable media:
 grub-install --target=x86_64-efi --efi-directory=/media/GLIM --removable --boot-directory=/media/GLIM/boot /dev/sdc
 --manual grub boot:
 grub2> set root=(hd0,2) ; linux /boot/vmlinuz-linux root=/dev/sdX2 ; initrd /boot/initrd.img ; boot
