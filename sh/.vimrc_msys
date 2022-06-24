@@ -1,2 +1,0 @@
-let $VIMPLUG = "/vim_plugged"
-" let $VIMPLUG = expand('$HOME') . "/../../vim_plugged"

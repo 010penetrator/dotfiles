@@ -43,7 +43,7 @@ command -v kitty &>/dev/null && export TERMINAL=kitty
 PS1=$'\[$(tput bold)\]\[$(tput setaf 34)\]\u\[$(tput setaf 78)\] \W \[$(tput setaf 34)\]\$ \[$(tput sgr0)\]'
 
 # Aliases #
-# alias bb='tty | grep -q /dev/tty && (terminusfont ; sudo /./bin/conn & startx /ln/sh/xinitrc bspwm)'
+alias bb='tty | grep -q /dev/tty && (terminusfont ; sudo /./bin/conn & startx /ln/sh/xinitrc bspwm) || echo This is not tty!'
 alias tf='terminusfont'
 alias gs='( [ -f $HOME/.env ] && . $HOME/.env ; gsync )'
 alias yp='fc -ln -1 | cut -c 3- | tr -d "\n" | xclip ; echo yanked prev command'
@@ -169,7 +169,14 @@ __fzf_1linux__() {
     READLINE_POINT=0x7fffffff
   fi
 }
-bind -m emacs-standard -x '"\e\C-l": __fzf_1linux__'
+bind -m emacs-standard -x '"\e\C-f": __fzf_1linux__'
+fzflocate() {
+  local output
+  output=$(
+    locate $* | fzf
+    ) || return
+  echo "$output"
+}
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return

@@ -41,7 +41,7 @@ if [[ "$HOSTNAME" =~ 'killer'[pc,PC] ]]; then
 
 elif [[ "$HOSTNAME" =~ 'machine' ]]; then
   xrdb -merge <(echo "Xft.dpi: 128") &
-  xrandr --output DP-1 --mode 2560x1440 --rate 120
+  xrandr --output DisplayPort-0 --mode 2560x1440 --rate 100
   sleep 1
   # pgrep transmission-da | grep . || trdwrap.sh &
   compton.sh &

@@ -147,7 +147,7 @@ nnoremap rS :! echo -ne "\n========== dry-run\n" ; rsync -rtKn --progress --dele
 " nnoremap rS :! echo -ne "\n" ; rsync -rt  --progress --delete --stats --size-only %d/ %D ; read -n 1 -s -r -p "========== DONE!" ; echo
 
 " Operate files "
-nnoremap ai : amou <cr>
+nnoremap ai : amou <cr>:cd /ln/mo<cr>
 nnoremap ao : aumo <cr>
 nnoremap au :! echo Sync... ; sync %f && udevil umount %f<cr>
 nnoremap am ggVG<cr>:copy<cr>
@@ -163,7 +163,7 @@ nnoremap cB :copy<cr>
 nnoremap cm :move<cr>
 nnoremap C :copy<cr>
 nnoremap E :move<cr>
-noremap ak :!touch %f --date=now<cr>
+noremap ak :!touch %f --date=now<cr>j
 nnoremap cn :clone<cr>
 nnoremap ah :!ln  $PWD/%c %D/%c <cr>
 nnoremap al :!ln -rs $PWD/%c %D/%c <cr>
