@@ -16,22 +16,32 @@ if [[ -d $bakhot/$DAY ]] ; then
 fi
 mkdir "$bakhot/$DAY"
 
+[[ -d $bakhot/ffbookmarks ]] &&
+{
+cd "$bakhot/ffbookmarks"
+latest=$(ls . -t | head -1 )
+boomname="$(echo $latest | cut  -f -2 -d '_').jsonlz4"
+cp "$latest" "/tmp/$boomname"
+cd -
+}
+
 echo --bak.stage1
 tar -czf /ln/lo/cur/linkdir.tar.gz -C / ln
 
 [[ -d $tt ]] && conditional_line="-C $tt/../ tt"
-tar -chzf "$bakhot/$DAY/words.tar.gz" \
+tar -chzf "$bakhot/$DAY/words.tar.gz" --ignore-failed-read \
         -C /ln/ --exclude=lo/cur sh lo \
+        -C /tmp "$boomname" \
         $conditional_line
 
 [[ -d /ln/torrents ]] &&
     tar -czf "$bakhot/$DAY/torrents.tar.gz" --ignore-failed-read \
         -C $HOME .config/transmission-daemon .rtorrent
 
-[[ -d /ln/co/nvim ]] && [[ -d /ln/co/nvim ]] && conditional_line="-C /ln/co/ nvim/plugged nvim/lsp_servers"
+[[ -d /ln/co/nvim ]] && [[ -d /ln/co/nvim ]] && conditional_line="-C /ln/co/ nvim/plugged"
     tar -cf "$bakhot/$DAY/conf.tar.zst" -I "zstd -10 -T0" --ignore-failed-read \
         -C / etc/fstab etc/udevil/udevil.conf \
-        -C $HOME .ssh .bash_history .git*tials .cache/dmenu-recent .vim \
+        -C $HOME .ssh .bash_history $(ls .git*tials) .cache/dmenu-recent .vim \
         $conditional_line
 
 [[ -d $bakcld ]] &&

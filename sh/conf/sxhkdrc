@@ -4,8 +4,8 @@ super + x ; { m, s, e, h, n, o, a, g }
 super + x ; { z, i, f, p, q, l, c, d, space }
   { xdotool mousemove_relative 0 1600, listmpvfile.sh /ln/ho/.mus-history, listmpvfile.sh /ln/ho/.mpv-favourites, listmpvfile.sh /ln/ho/.mus-playlist, bspc node -c, listdwn.sh, listmpvall.sh /ln/ho/.mus-library, deadbeef, listdeadbeef.sh }
 
-super + n ; { n, M, p, c, v, r, o, a }
-  { $TERMINAL, momkitty.sh, thunar, $TERMINAL -e vifm, vinew, listzathura.sh, $TERMINAL -e rtorrent, $TERMINAL -e tremc -c localhost:9090 }
+super + n ; { n, M, p, c, v, r, o, i }
+  { $TERMINAL, momkitty.sh, thunar, $TERMINAL -e vifm, vinew, listzathura.sh, $TERMINAL_BIGER -e rtorrent, $TERMINAL_BIGER -e tremc -c localhost:9090 }
 
 super + { q, Q, D, F, t, v, s, p, r, R, z, g }
   ror.sh { \
@@ -21,10 +21,10 @@ super + { Return, e, d, X, semicolon }
 super + { c, a, A, b, m }
   ror.sh { \
   'VIFM\|Thunar' 'raiseterm.sh & notify-send "no vifm found"', \
-  'transmission-remote\|tremc\|rtorrent\|qbittorrent' '$TERMINAL -e tremc -c localhost:9090', \
-  'tremc-pi' '$TERMINAL -T tremc-pi -e tremc -c 192.168.1.78:9090', \
+  'transmission-remote\|tremc\|rtorrent\|qbittorrent' '$TERMINAL_BIGER -e tremc -c localhost:9090', \
+  'tremc-pi' '$TERMINAL_BIGER -T tremc-pi -e tremc -c 192.168.1.78:9090', \
   ' Browser' 'noti echo starting TorBro... ; torbrowser-launcher', \
-  'btop\|htop' '$TERMINAL -e btop' }
+  'btop\|htop' '$TERMINAL_BIGER -e btop' }
 
 super + { T, V, C, B }
   raisekitty.sh { bash, VIM, VIFM, MPV }

@@ -53,23 +53,26 @@ bspc rule -a koi_to_sis state=floating
 #   ( sleep .4 ; gsettings set org.gnome.mutter overlay-key '' )  # free Win key in Gnome 3
 
 
-# if this is not unset, export it
-[[ -z ${FLOATING_DESKTOPS+x} ]] || export FLOATING_DESKTOPS
+# # if this is not unset, export it
+# [[ -z ${FLOATING_DESKTOPS+x} ]] || export FLOATING_DESKTOPS
 
 if [[ "$HOSTNAME" =~ ^bigstation ]]; then
-    [[ -z ${FLOATING_DESKTOPS+x} ]] && export FLOATING_DESKTOPS=5
+    [[ -z ${FLOATING_DESKTOPS+x} ]] && FLOATING_DESKTOPS=5
     bspc monitor HDMI-0 -d 4 5 6 7 8
     bspc monitor DVI-D-0 -d 1 2 3
     bspc monitor HDMI-1 -d 1 2 3
     bspc monitor HDMI-2 -d 4 5 6 7 8
 elif [[ "$HOSTNAME" =~ ^debPC ]]; then
-    [[ -z ${FLOATING_DESKTOPS+x} ]] && export FLOATING_DESKTOPS=3
+    [[ -z ${FLOATING_DESKTOPS+x} ]] && FLOATING_DESKTOPS=3
 else
-    [[ -z ${FLOATING_DESKTOPS+x} ]] && export FLOATING_DESKTOPS=4
+    [[ -z ${FLOATING_DESKTOPS+x} ]] && FLOATING_DESKTOPS=4
 fi
 
-( killall bspc bspc_rules & sleep .4 ; /./ln/sh/bspc_rules ) &
-bash /ln/lo/cur/beback.sh
+(
+killall bspc bspc_rules & sleep .4
+export FLOATING_DESKTOPS
+/./ln/sh/bspc_rules
+) &
 
 notify-send 'Bspwmrc complete'
 

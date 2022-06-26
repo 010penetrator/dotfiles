@@ -79,6 +79,9 @@ compton.sh
 
 # killall osdsh ; osdsh  -p 0 -a 2 -d 1 -f -adobe-helvetica-bold-r-*-*-*-240-*-*-*-*-iso8859-* -c teal
 
+# Run cosy apps
+[[ -f /ln/lo/cur/beback.sh ]] && bash /ln/lo/cur/beback.sh
+
 # echo RC done
 notify-send 'RC complete'
 
