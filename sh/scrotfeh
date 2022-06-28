@@ -1,0 +1,6 @@
+#!/bin/bash
+# Call scrot
+
+mkdir -p $HOME/scr && cd $HOME/scr || { echo Cant create dir ; exit; }
+scrot -c -d 1 -u -e 'feh -F $f' -p
+

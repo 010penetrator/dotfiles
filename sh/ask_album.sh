@@ -45,12 +45,12 @@ echo
     echo "d - delete from playlist" || \
     echo "a - add to playlist and quit"
 [[ $INFAVS == 0 ]] && \
-    echo "f - add to favourites"
+    echo "A - add to favourites"
 [[ -f $LIST ]] && \
     echo "p - play an album from Playlist"
-echo "F - play an album from Favourites"
-echo "I - play an album from History"
-echo "L - play an album from Library"
+echo "f - play an album from Favourites"
+echo "i - play an album from History"
+echo "l - play an album from Library"
 echo "<Space> or <CR> - play again"
 echo
 
@@ -67,7 +67,7 @@ elif [[ $INLIST == 1 && $prompt == "d" ]] ; then
     echo deleting "$TARG"
     grep -vF "$TARG" "$LIST" > /tmp/tmplist && mv /tmp/tmplist "$LIST"
     RUNAGAIN=1
-elif [[ $INFAVS == 0 && $prompt == "f" ]] ; then
+elif [[ $INFAVS == 0 && $prompt == "A" ]] ; then
     echo "$TARG" >> "$FAVS"
     RUNAGAIN=1
 elif [[ $prompt == "c" && $INVIFM != 1 ]] ; then
@@ -78,14 +78,13 @@ elif [[ $prompt == "" ]] ; then
 elif [[ -f $LIST ]] && [[ $prompt == "p" ]] ; then
     SELECT=$( cat -n "$LIST" | sort -nr | sort -uk2 | sort -n | cut -f2- | dmenu $DMENU_OPTIONS -fn "$DMENU_FN" )
     ASK=1 PAUSE=1 mpv-album "$SELECT"
-elif [[ -f $LIST ]] && [[ $prompt == "F" ]] ; then
+elif [[ -f $LIST ]] && [[ $prompt == "f" ]] ; then
     SELECT=$( cat -n "$FAVS" | sort -nr | sort -uk2 | sort -n | cut -f2- | dmenu $DMENU_OPTIONS -fn "$DMENU_FN" )
     ASK=1 PAUSE=1 mpv-album "$SELECT"
-elif [[ -f $LIBRARY ]] && [[ $prompt == "L" ]] ; then
+elif [[ -f $LIBRARY ]] && [[ $prompt == "l" ]] ; then
     SELECT=$( cat $LIBRARY | sort -R | dmenu $DMENU_OPTIONS -fn "$DMENU_FN" )
     ASK=1 PAUSE=1 mpv-album "$SELECT"
-elif [[ -f $HOME/.mus-history ]] && [[ $prompt == "I" ]] ; then
-    echo 12341234
+elif [[ -f $HOME/.mus-history ]] && [[ $prompt == "i" ]] ; then
     echo $DMENU_OPTIONS
     SELECT=$( cat -n $HOME/.mus-history | sort -nr | sort -uk2 | sort -nr | cut -f2- | dmenu $DMENU_OPTIONS -fn "$DMENU_FN" )
     ASK=1 PAUSE=1 mpv-album "$SELECT"

@@ -1,0 +1,6 @@
+#!/bin/bash
+# Invoke black window. Useful for a tiling WM
+
+feh -B black -^ DUMMY ~/.sh/rs/8x8b.png
+# feh -B black -^ dummy ~/.sh/rs/8x8b.png
+

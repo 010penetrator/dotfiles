@@ -12,16 +12,24 @@ else
     PROC="$1"
 fi
 
+if [ -z "$2" ] ; then
+    echo You also may provide command to launch via the second arg..
+    COM="$1"
+else
+    COM="$2"
+fi
 co=0
-while ( [[ $(pgrep "$PROC" | wc -l) > 0 ]] && [[ $co -le $TIMES ]] ) ; do
+while ( [[ $(pgrep -x "$PROC" | wc -l) > 0 ]] && [[ $co -le $TIMES ]] ) ; do
     sleep .1
     pkill -x "$PROC"
     ((co=co+1))
 done
 
-if [[ $(pgrep "$PROC" | wc -l) == 0 ]] ; then
-    echo Will start $PROC now..
-    "$PROC" &
+if [[ $(pgrep -x "$PROC" | wc -l) == 0 ]] ; then
+    echo Will start $COM now..
+    sleep .1
+    # exec $COM &
+    bash -c "$COM &"
 else
     echo No success killing $PROC!
 fi

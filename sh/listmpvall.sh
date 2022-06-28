@@ -1,8 +1,10 @@
 #!/bin/bash
 # Choose music album with dmenu and play it with mpv
 
+if [ -z "$1" ] ; then set -- "${1}" ".mus-library" ; fi
+
 source $sh/dmenurc
-d=$(cat .mus-list | sort -R | dmenu $DMENU_OPTIONS -fn "$DMENU_FN")
+d=$(cat $1 | sort -R | dmenu $DMENU_OPTIONS -fn "$DMENU_FN")
 if [ -z "$d" ]; then echo no selection !; exit; fi
 
 # Construct command for to spawn terminal

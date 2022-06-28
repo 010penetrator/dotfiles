@@ -7,7 +7,7 @@ for sysdevpath in $(find /sys/bus/usb/devices/usb*/ -name dev); do
         [[ "$devname" == "bus/"* ]] && continue
         eval "$(udevadm info -q property --export -p $syspath)"
         [[ -z "$ID_SERIAL" ]] && continue
-        echo "/dev/$devname - $ID_SERIAL" , ID "$ID_VENDOR_ID" 
+        echo "/dev/$devname - $ID_SERIAL" , ID "$ID_VENDOR_ID"
         # lsusb | grep "$ID_VENDOR_ID"
     )
 done
@@ -15,7 +15,7 @@ done
 echo '------------------'
 lsusb
 echo '------------------'
-sudo lsblk -f 
+sudo lsblk -f
 echo '------------------'
 df -BMB
 

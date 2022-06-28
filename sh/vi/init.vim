@@ -688,6 +688,7 @@ nnoremap ,bj :Unite buffer file<CR>
 nnoremap ,bi :Unite buffer file<CR>i
 nnoremap ,bk :Denite buffer -mode=normal -immediately-1<CR>
 nnoremap ,be :BufExplorer<CR>
+nnoremap ,,e :BufExplorer<CR>
 nnoremap ,bl :Telescope buffers theme=ivy<CR>
 nnoremap ,to :Telescope oldfiles<CR>
 nnoremap ,zf :Files<CR>

@@ -29,19 +29,19 @@ echo --bak.stage1
 tar -czf /ln/lo/cur/linkdir.tar.gz -C / ln
 
 [[ -d $tt ]] && conditional_line="-C $tt/../ tt"
-tar -chzf "$bakhot/$DAY/words.tar.gz" --ignore-failed-read \
+    tar -chzf "$bakhot/$DAY/words.tar.gz" --ignore-failed-read \
         -C /ln/ --exclude=lo/cur sh lo \
-        -C /tmp "$boomname" \
+        -C /tmp $boomname \
         $conditional_line
 
 [[ -d /ln/torrents ]] &&
     tar -czf "$bakhot/$DAY/torrents.tar.gz" --ignore-failed-read \
-        -C $HOME .config/transmission-daemon .rtorrent
+        -C $HOME .config/transmission-daemon .rtorrent .rtorrent.rc
 
 [[ -d /ln/co/nvim ]] && [[ -d /ln/co/nvim ]] && conditional_line="-C /ln/co/ nvim/plugged"
     tar -cf "$bakhot/$DAY/conf.tar.zst" -I "zstd -10 -T0" --ignore-failed-read \
         -C / etc/fstab etc/udevil/udevil.conf \
-        -C $HOME .ssh .bash_history $(ls .git*tials) .cache/dmenu-recent .vim \
+        -C $HOME .ssh .bash_history $(ls .git*tials 2>/dev/null) .cache/dmenu-recent .vim \
         $conditional_line
 
 [[ -d $bakcld ]] &&
