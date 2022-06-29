@@ -9,6 +9,7 @@ id=$(echo $entry | sed -e 's/^[^=]*//' | cut -d '=' -f2-)
 echo Setting flat accel profile for \ \ \ $entry
 xinput set-prop $id "libinput Accel Profile Enabled" 0, 1 && echo --Success! || echo Fail!
 
+echo Current velocity is $(xinput list-props $id | grep "libinput Accel Speed" | head -1 | cut -d ':' -f2-)
 echo Please enter desired velocity
 read velo
 # [[ $id =~ [^0-9,-,+,.] ]] && echo try range from -0.99 to .99

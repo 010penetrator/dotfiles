@@ -53,7 +53,7 @@ get_type () {
 
 if ! type=$(grep -lx "$match" -R "$config_dir"); then
     type=$(get_type)
-else 
+else
     type=${type##*/}
     if ! [[ $known_types =~ " $type " ]]; then
         rm "$config_dir/$type"
@@ -61,8 +61,10 @@ else
     fi
 fi
 
-[[ "$type" = "background" ]] && exec $cmd
-[[ "$type" = "terminal" ]] && exec $terminal "$cmd"
+[[ "$type" = "background" ]] &&
+    exec $cmd &
+[[ "$type" = "terminal" ]] &&
+    exec $terminal "$cmd" &
 [[ "$type" = "terminal_hold" ]] &&
-    exec $terminal sh -c "$cmd && echo Press Enter to kill me... && read line"
+    exec $terminal sh -c "$cmd && echo Press Enter to kill me... && read line" &
 

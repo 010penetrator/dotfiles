@@ -2,11 +2,9 @@
 # Invoke dmenu launcher!
 
 source $sh/dmenurc
-
 #DMENU_FN="xos4 Terminus"
-#TERMINAL_CMD="xterm"
 #PANEL_HEIGHT="11"
- 
+export TERMINAL_CMD="$TERMINAL"
 
 dmenu_recent -i -l 12
 

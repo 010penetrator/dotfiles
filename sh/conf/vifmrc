@@ -61,7 +61,7 @@ nnoremap o :sort<CR>
 nnoremap O :invert o<CR>
 nnoremap qs :split <CR>
 nnoremap qv :vsplit <CR>
-nnoremap ,b :colo <CR>
+nnoremap ,,c :colo <CR>
 nnoremap qw :wincmd o<CR>
 nnoremap qz :wincmd =<CR>
 nnoremap q, 8<c-w><
@@ -73,7 +73,7 @@ nnoremap cd :cd<space>
 nnoremap qq :
 nnoremap q; :<up>
 nnoremap aj :<up><CR>
-nnoremap ,vv :source $MYVIFMRC <CR>
+nnoremap ,,v :source $MYVIFMRC <CR>
 nnoremap ar ggvGcw
 nnoremap ae :winrun , cd %C <CR><Tab>
 nnoremap a= :winrun , cd %D <CR><Tab>
@@ -112,7 +112,7 @@ nnoremap qe :! $EDITOR %c <cr>
 nnoremap .  :! xdg-open %c &>/dev/null & <cr>
 nnoremap q<cr> :file &<cr>l
 nnoremap ,g :! google.sh %c &>/dev/null & <cr>
-nnoremap ,v :! $TERMINAL $EDITOR %c <cr>
+nnoremap ,e :! $TERMINAL $EDITOR %c <cr>
 
 " Calc space "
 nnoremap ,f :! echo; echo %c: ; file -b %c ; [[ -d %c ]] && tree -ia %c | tail -1 ; du -sh %c | cut -f1 ; ls -dla %c ; df -h --output=source,avail,pcent %c ; read -rsn1 <cr>
