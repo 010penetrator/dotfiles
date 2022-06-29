@@ -698,7 +698,7 @@ nnoremap ,zs :Files $sh<CR>
 nnoremap ,zt :Files $tt<CR>
 nnoremap ,zj :Files $jo<CR>
 nnoremap qf  :FilesProj<CR>
-nnoremap ,/ :Telescope find_files search_dirs=$sh,$tt<CR>
+nnoremap ,/ :Telescope find_files search_dirs=$sh,$tt,$lo<CR>
 
 " Search text
 nnoremap ,zr :Rg<CR>

@@ -8,6 +8,7 @@ $FZF_DEFAULT_OPTS	sh/vi/init.vim	/^let $FZF_DEFAULT_OPTS='--exact --layout=rever
 $RTP	sh/vi/init.vim	/^let $RTP=split(&runtimepath, ',')[0]$/;"	v
 *	sh/vi/init.vim	/^nnoremap <silent> * :<C-u>execute "keepjumps norm! " . v:count1 . "*"<CR>$/;"	m
 ,,c	sh/vi/init.vim	/^nnoremap ,,c :NewVifmHere<CR>$/;"	m
+,,e	sh/vi/init.vim	/^nnoremap ,,e :BufExplorer<CR>$/;"	m
 ,,o	sh/vi/init.vim	/^nnoremap ,,o ^y$:call system('xdg-open ' . "'" . @" . "' &")<CR>$/;"	m
 ,,o	sh/vi/init.vim	/^vnoremap ,,o :<C-U>call SystemOpenEveryLine()<CR>$/;"	m
 ,,q	sh/vi/init.vim	/^nnoremap ,,q :call SaveColor() <bar> SSave! comon <bar> qa<CR>$/;"	m
@@ -15,7 +16,7 @@ $RTP	sh/vi/init.vim	/^let $RTP=split(&runtimepath, ',')[0]$/;"	v
 ,,t	sh/vi/init.vim	/^nnoremap ,,t :NewTermHere<CR>$/;"	m
 ,,v	sh/vi/init.vim	/^nnoremap ,,v :Goyo<CR>$/;"	m
 ,.	sh/vi/init.vim	/^nnoremap <silent> ,. :if bufexists(bufnr('#')) <bar> b # <bar> echo expand('%') <bar> else <bar> echo 'No prev buffer.' <bar> endif<CR>$/;"	m
-,/	sh/vi/init.vim	/^nnoremap ,\/ :Telescope find_files search_dirs=$sh,$tt<CR>$/;"	m
+,/	sh/vi/init.vim	/^nnoremap ,\/ :Telescope find_files search_dirs=$sh,$tt,$lo<CR>$/;"	m
 ,;	sh/vi/init.vim	/^nnoremap ,; :6mes<CR>$/;"	m
 ,<tab>	sh/vi/init.vim	/^map ,<tab> :emenu tagi.<tab>$/;"	m
 ,B	sh/vi/init.vim	/^nnoremap ,B yap: exec "!" . @" <CR>$/;"	m
