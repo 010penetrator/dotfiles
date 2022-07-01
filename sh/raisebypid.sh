@@ -10,5 +10,5 @@ for i in $idlist ; do
   PID=${PID##*= }
   echo $PID
   [[ "$PID" == "$mypid" ]] && xdotool windowactivate $i && break
-done 
+done
 

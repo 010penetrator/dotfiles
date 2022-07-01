@@ -10,7 +10,7 @@ go_through ()
     echo Theme files not found here!
     exit
   fi
-  while (true) ; do 
+  while (true) ; do
     if [[ $key == 'i' ]] ; then
       if [[ -d favs ]] && [[ $( ls -A favs/*.conf 2>/dev/null ) ]] ; then
         cd favs
@@ -38,7 +38,7 @@ go_through ()
       [[ $key == 'i' ]] && break
       [[ $key == 'b' ]] && break
       [[ $key == 'a' ]] && ln -snrf "$t" ~/.config/kitty/current-theme.conf && echo --Applied!
-    done 
+    done
     echo
   done
 }

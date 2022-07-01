@@ -12,10 +12,10 @@
 # pkill -xf "conky -q -c $HOME/.config/conky/BL-Default.conkyrc" &
 ###  Begin Window Settings  #####################
 own_window yes
-own_window_type desktop #normal 
-own_window_transparent no 
+own_window_type desktop #normal
+own_window_transparent no
 own_window_hints undecorated,below,skip_taskbar,skip_pager,sticky
-own_window_colour 000000 
+own_window_colour 000000
 own_window_class Conky
 own_window_title killerConky
 
@@ -23,7 +23,7 @@ own_window_title killerConky
 ### NOTE that a composite manager is required for real transparency.
 ### This option will not work as desired (in most cases) in conjunction with
 ### own_window_type normal
-own_window_argb_visual yes 
+own_window_argb_visual yes
 
 ### When ARGB visuals are enabled, this use this to modify the alpha value
 ### Use: own_window_type normal

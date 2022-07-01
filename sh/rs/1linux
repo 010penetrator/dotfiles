@@ -4,25 +4,25 @@
 ==Install
 BASE: base-devel inetutils earlyoom kbd plocate mlocate udevil cylon inxi
 ARCHIE: pacli pakku yay baph
-TUI: qalc networkmanager nmtui mc clex lfm ranger vifm nnn fff exa fd lftp fzf ripgrep silversearcher-ag ncdu tree p7zip htop ytop bashtop bpytop glances dmenu keratin screenfetch lolcat tmux bc tty-clock 
-X: xorg-server xorg-xinit xterm urxvt xvkbd xclip redshift xscreensaver nitrogen dunst unclutter-xfixes xbanish gmrun scrot wmctrl xdotool 
+TUI: qalc networkmanager nmtui mc clex lfm ranger vifm nnn fff exa fd lftp fzf ripgrep silversearcher-ag ncdu tree p7zip htop ytop bashtop bpytop glances dmenu keratin screenfetch lolcat tmux bc tty-clock
+X: xorg-server xorg-xinit xterm urxvt xvkbd xclip redshift xscreensaver nitrogen dunst unclutter-xfixes xbanish gmrun scrot wmctrl xdotool
 FIRMWARE: bluez-utils
 GTKtune: lxappearance oomox wpgtk
-BRO: luakit links w3m midori jumanji uzbl netsurf *epiphany palemoon 
+BRO: luakit links w3m midori jumanji uzbl netsurf *epiphany palemoon
 TED: vim kakoune cudatext sublime-text geany mousepad scribes gedit xed tea-editor focuswriter QtCreator VScode codeblocks
-GUI: thunar nemo gvfs-mtp gitahead gitg gitfiend ulauncher fsearch file-roller xarchiver speedcrunch keepassx2 Bitwarden hardinfo brasero *xfburn filelight baobab synapse *screengrab *wicd-gtk *ezame xfce4-appfinder whiskermemu gnome-character-map 
-MEDIA: mpv vlc youtube-viewer mediainfo ffmpeg audacity kwave ocenaudio sox mkvtoolnix-gui spek shntool cuetools wavpack mac vorbis-tools *soundkonverter *flacon rubyripper *whipper puddletag easytag picard *kid3 *hrizopea *pitivi *vidiot *kdenlive 
+GUI: thunar nemo gvfs-mtp gitahead gitg gitfiend ulauncher fsearch file-roller xarchiver speedcrunch keepassx2 Bitwarden hardinfo brasero *xfburn filelight baobab synapse *screengrab *wicd-gtk *ezame xfce4-appfinder whiskermemu gnome-character-map
+MEDIA: mpv vlc youtube-viewer mediainfo ffmpeg audacity kwave ocenaudio sox mkvtoolnix-gui spek shntool cuetools wavpack mac vorbis-tools *soundkonverter *flacon rubyripper *whipper puddletag easytag picard *kid3 *hrizopea *pitivi *vidiot *kdenlive
 IMG: exiftool nomacs gpicview qview ristretto imv vimiv photoqt phototonic gthumb eog viewnior imagemagick feh qimgv eom imv sxiv pqiv darktable digikam shotwell gcolor2 gpick findimagedupes
 DRAW: pinta kolourpaint mypaint mtpaint krita blender
-LISTEN: deadbeef qomp nulloy clementine exaile musique yarock qmmp audacious gmusicbrowser cantata tomahawk mocp *ncmpc cmus 
-READ: zathura atril qpdfview mupdf djview fbreader koreader fbless evince okular *calibr 
-HDD: gparted cfdisk testdisk f3probe photorec extundelete smartcontrol wipefreespace mondorescue grub-customizer woeusb windows2usb 
-DL: transmission tremc youtube-dl *rtorrent *aria2 *rutorrent jdownloader2 
-LEARN: klavaro gtypist solfege brainworkshop stellarium 
+LISTEN: deadbeef qomp nulloy clementine exaile musique yarock qmmp audacious gmusicbrowser cantata tomahawk mocp *ncmpc cmus
+READ: zathura atril qpdfview mupdf djview fbreader koreader fbless evince okular *calibr
+HDD: gparted cfdisk testdisk f3probe photorec extundelete smartcontrol wipefreespace mondorescue grub-customizer woeusb windows2usb
+DL: transmission tremc youtube-dl *rtorrent *aria2 *rutorrent jdownloader2
+LEARN: klavaro gtypist solfege brainworkshop stellarium
 GAMES: ctris urw powermanga pybik caph phlipple knetwalk cgoban liquidwar cultivation neverball typespeed speedpad minuet
-STUDIO: avlinux kxstudio ardour lmms calf guitarix rakarrack hydrogen zynaddsubfx amsynth qsynth 
+STUDIO: avlinux kxstudio ardour lmms calf guitarix rakarrack hydrogen zynaddsubfx amsynth qsynth
 STUDIO-BASE: jack2 qjackctl vmpk alsa-utils gtklick gtick fluidsynth soundfont-fluid *timidity pulseeffects pulseaudio-alsa
-CHAT: weechat irssi *jitsi pidgin hexchat ring retroshare sylpheed 
+CHAT: weechat irssi *jitsi pidgin hexchat ring retroshare sylpheed
 SCIENT: gnuplot kst2 scipy scilab mathmod
 DEB-only: xinput psmisc
 
@@ -207,7 +207,7 @@ rsync -e ssh -Lav --progress --exclude=".*/" --no-perms --no-times --delete --si
 7z a -mx=3 -xr!.git -xr!tags out.7z Projekt # create quick 7z
 tar -I 'zstd -v -11 -T0' -cf somedir.tar.zst --exclude='.git' --exclude='tags' somedir # create tar.zst
 sudo tar -I 'zstd -v -10 -T0' -cf /ln/mo/fast/__root.tar.zst --one-file-system --exclude='/home/*/Downloads' / # backup root filesystem
-tar -I 'zstd -v -10 -T0' -cf $bakcld/home.__.tar.zst -C /home --exclude='Downloads' --exclude='bak' --exclude='.cache' . # backup home dir
+tar -I 'zstd -v -10 -T0' -cf $bakcld/home.__.tar.zst -C /home --exclude='Downloads' --exclude='bak' --exclude='.cache' --exclude='*vifm/Trash/*' . # backup home
 sudo sh -c "zstd -v -10 -T0 </dev/nvmeXX >$bak/part.zst" # backup partition
 zstdcat root.zst >/dev/nvme0n1p6 # restore zst archived image
 zip -r -1 arc.zip Dir Dir2 #create zip
@@ -329,7 +329,7 @@ pacman -U https://archive.archlinux.org/packages/n/nim/nim-1.0.6-1-x86_64.pkg.ta
 makepkg -si
 
 ==ALSO
-vboxmanage extpack install /Corporalass_VM_VirtualBox_Extension_Pack-6.1.34.vbox-extpack 
+vboxmanage extpack install /Corporalass_VM_VirtualBox_Extension_Pack-6.1.34.vbox-extpack
 cp -a /source/. /target # add source/ contents to target/
 cp -aT  /source /target # add source/ contents to target/
 for f in * ; do d=${f%.*} ; 7z x -o./"$d" "$f" ; done # unpack all files with 7z

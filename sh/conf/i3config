@@ -9,7 +9,7 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-set $mod Mod4 
+set $mod Mod4
 #mod4=meta, mod1=alt, Control Shift as is
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -32,7 +32,7 @@ font pango:Terminus 10
 # X core fonts rendering does not support right-to-left and this being a bitmap
 # font, it doesn’t scale on retina/hidpi displays.
 
-# Use Mouse+$mod to drag 
+# Use Mouse+$mod to drag
 floating_modifier $mod
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
@@ -132,7 +132,7 @@ mode "resize" {
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 # bar {
-# ##	status_command i3status -c .sh/i3status.conf 
+# ##	status_command i3status -c .sh/i3status.conf
 # #	status_command i3blocks
 # #	status_command echo '{"version":1}[[],'; i3status -s '[{"full_text": "%s"}],'
 # #	status_command i3status-wrapper.sh #new status command
@@ -175,7 +175,7 @@ for_window [class="kitty"] border pixel 2
 for_window [title="luakit"] border none
 for_window [title="floatme"] floating enable
 for_window [class="Steam"] floating enable
-for_window [class="Pavucontrol"] floating enable 
+for_window [class="Pavucontrol"] floating enable
 for_window [class="SpeedCrunch"] floating enable
 for_window [class="Gtick"] floating enable
 for_window [class="qjackctl"] floating enable border normal

@@ -18,9 +18,9 @@ done
 echo address is $USB
 #sleep 1
 
-# stty -F $USB speed 1200 
-# stty -F $USB speed 9600 
-# stty -F $USB speed 115200 
+# stty -F $USB speed 1200
+# stty -F $USB speed 9600
+# stty -F $USB speed 115200
 
 avrdude -p atmega32u4 -c avr109 -P $USB -U flash:w:$TARGET
 # avrdude -p m32U4 -c avr109 -P $USB -U flash:w:$TARGET

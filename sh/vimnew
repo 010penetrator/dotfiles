@@ -16,7 +16,7 @@ i=$(vim --serverlist | grep ^VIMSERV$ | wc -l)
 
 case $TERMINAL in
   kitty*)
-    $TERMINAL --start-as maximized bash -c "source $HOME/.bashrc ; sleep .1 ; vim $RPC_OPTION" 
+    $TERMINAL --start-as maximized bash -c "source $HOME/.bashrc ; sleep .1 ; vim $RPC_OPTION"
     ;;
   *)
     xterm -maximized -e "source $HOME/.bashrc ; sleep .1 ; vim $RPC_OPTION"

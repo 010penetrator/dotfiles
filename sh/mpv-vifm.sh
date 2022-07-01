@@ -1,5 +1,5 @@
 #!/bin/bash
-# Script to launch vifm on current file/directory. I call it via a hotkey from mpv. 
+# Script to launch vifm on current file/directory. I call it via a hotkey from mpv.
 
 echo "$1"
 a="$1"
@@ -12,7 +12,7 @@ a="$1"
 cd "$a"
 case $TERMINAL in
   kitty*)
-    $TERMINAL /bin/bash -c "vifm . -c \:only" & ;; 
+    $TERMINAL /bin/bash -c "vifm . -c \:only" & ;;
   *)
     xterm -e "vifm . -c \:only" &> /dev/null ;;
 esac

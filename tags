@@ -7,6 +7,7 @@
 $FZF_DEFAULT_OPTS	sh/vi/init.vim	/^let $FZF_DEFAULT_OPTS='--exact --layout=reverse'$/;"	v
 $RTP	sh/vi/init.vim	/^let $RTP=split(&runtimepath, ',')[0]$/;"	v
 *	sh/vi/init.vim	/^nnoremap <silent> * :<C-u>execute "keepjumps norm! " . v:count1 . "*"<CR>$/;"	m
+,,b	sh/vi/init.vim	/^nnoremap ,,b :Goyo<CR>$/;"	m
 ,,c	sh/vi/init.vim	/^nnoremap ,,c :NewVifmHere<CR>$/;"	m
 ,,e	sh/vi/init.vim	/^nnoremap ,,e :BufExplorer<CR>$/;"	m
 ,,o	sh/vi/init.vim	/^nnoremap ,,o ^y$:call system('xdg-open ' . "'" . @" . "' &")<CR>$/;"	m
@@ -14,7 +15,7 @@ $RTP	sh/vi/init.vim	/^let $RTP=split(&runtimepath, ',')[0]$/;"	v
 ,,q	sh/vi/init.vim	/^nnoremap ,,q :call SaveColor() <bar> SSave! comon <bar> qa<CR>$/;"	m
 ,,s	sh/vi/init.vim	/^nnoremap ,,s :call SaveColor() <bar> SSave! comon<CR>$/;"	m
 ,,t	sh/vi/init.vim	/^nnoremap ,,t :NewTermHere<CR>$/;"	m
-,,v	sh/vi/init.vim	/^nnoremap ,,v :Goyo<CR>$/;"	m
+,,v	sh/vi/init.vim	/^nnoremap ,,v :source $MYVIMRC <CR>$/;"	m
 ,.	sh/vi/init.vim	/^nnoremap <silent> ,. :if bufexists(bufnr('#')) <bar> b # <bar> echo expand('%') <bar> else <bar> echo 'No prev buffer.' <bar> endif<CR>$/;"	m
 ,/	sh/vi/init.vim	/^nnoremap ,\/ :Telescope find_files search_dirs=$sh,$tt,$lo<CR>$/;"	m
 ,;	sh/vi/init.vim	/^nnoremap ,; :6mes<CR>$/;"	m
@@ -74,6 +75,7 @@ $RTP	sh/vi/init.vim	/^let $RTP=split(&runtimepath, ',')[0]$/;"	v
 ,tg	sh/vi/init.vim	/^nnoremap ,tg :Telescope live_grep<CR>$/;"	m
 ,to	sh/vi/init.vim	/^nnoremap ,to :Telescope oldfiles<CR>$/;"	m
 ,tr	sh/vi/init.vim	/^nnoremap ,tr :Telescope lsp_references<CR>$/;"	m
+,ts	sh/vi/init.vim	/^nnoremap ,ts :Telescope lsp_dynamic_workspace_symbols<CR>$/;"	m
 ,v,	sh/vi/init.vim	/^nnoremap ,v, :call EvalThis()<CR>$/;"	m
 ,v;	sh/vi/init.vim	/^nnoremap ,v; :let lastl=line('.') <bar> exec "normal yap" <bar> @\\" <bar> exec lastl<CR>:echo "Evaluated current paragraph."<CR>$/;"	m
 ,v<CR>	sh/vi/init.vim	/^nnoremap ,v<CR> yap:@"<CR>:<up><CR>$/;"	m
@@ -85,7 +87,6 @@ $RTP	sh/vi/init.vim	/^let $RTP=split(&runtimepath, ',')[0]$/;"	v
 ,vs	sh/vi/init.vim	/^nnoremap ,vs :source $RTP\/session\/comon <bar> call AddRpcEar()<CR>$/;"	m
 ,vt	sh/vi/init.vim	/^nnoremap ,vt :TagbarOpen fj <CR>$/;"	m
 ,vu	sh/vi/init.vim	/^nnoremap ,vu :source \/ln\/sh\/vi\/init.vim <bar> PlugUpdate <CR>$/;"	m
-,vv	sh/vi/init.vim	/^nnoremap ,vv :source $MYVIMRC <CR>$/;"	m
 ,x	sh/vi/init.vim	/^nnoremap ,x :q<CR>$/;"	m
 ,z/	sh/vi/init.vim	/^nnoremap ,z\/ :copen<CR>\/error<CR>$/;"	m
 ,zb	sh/vi/init.vim	/^nnoremap ,zb :call BuildProjectUni("Makefile","make -f my_Makefile bear")<CR>$/;"	m

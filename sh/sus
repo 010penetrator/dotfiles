@@ -2,5 +2,5 @@
 # Wait N seconds and suspend the system
 
 [ -z $1 ] && set -- "1"
-sleep $1 && systemctl suspend & 
+sleep $1 && systemctl suspend &
 

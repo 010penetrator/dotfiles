@@ -2,7 +2,7 @@
 " Author: SaeidSaati
 " I suggest you to use PaperColor colorscheme in vim/nvim, then this theme will match with it
 " SEE THIS WEBSITE: https://www.calmar.ws/vim/256-xterm-24bit-rgb-color-chart.html
-" https://github.com/vifm/vifm-colors 
+" https://github.com/vifm/vifm-colors
 
 " =============================
 " The standard ncurses colors are:
@@ -71,4 +71,4 @@ highlight   WildMenu     cterm=none                ctermfg=255   ctermbg=31
 highlight   CmdLine      cterm=none                ctermfg=255   ctermbg=24
 
 highlight   ErrorMsg     cterm=bold                ctermfg=16    ctermbg=166
-highlight   Border       cterm=none                ctermfg=255   ctermbg=255 
+highlight   Border       cterm=none                ctermfg=255   ctermbg=255

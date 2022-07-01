@@ -90,7 +90,7 @@ modes.add_binds("normal", {
         -- local view = w:new_tab({session_state = tab.session_state})
         if w.view.history.index > 1 then
             urli = w.view.history.items[w.view.history.index - 1].uri
-            -- w:new_tab( { session_state = w.view.session_state , uri = w.view.history.items[w.view.history.index - 1].uri} ) 
+            -- w:new_tab( { session_state = w.view.session_state , uri = w.view.history.items[w.view.history.index - 1].uri} )
             -- w:new_tab(unpack(params))
             local view = w:new_tab({session_state = w.view.session_state}, {order = taborder.after_current}, {uri = urli})
             -- w:notify(urli)
@@ -107,7 +107,7 @@ modes.add_binds("normal", {
             }
             urli = w.view.history.items[w.view.history.index - 1].uri
             -- w:navigate(urli)
-            w:back(1) 
+            w:back(1)
             w:new_tab(unpack(params))
             -- w:notify(urli)
             end
@@ -130,7 +130,7 @@ modes.add_binds("normal", {
 -- end
 -- },
 
-  { "av", "Stop youtube playback", 
+  { "av", "Stop youtube playback",
         function(w)
             w.view:eval_js(
                 "document.querySelector('video').pause()", {
@@ -142,7 +142,7 @@ modes.add_binds("normal", {
             )
         end
     },
-    { "v", "Stop youtube playback and open this page in mpv", 
+    { "v", "Stop youtube playback and open this page in mpv",
         function(w)
             w.view:eval_js(
                 "document.querySelector('video').pause()", {

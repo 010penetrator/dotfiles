@@ -1,5 +1,5 @@
 #!/bin/bash
-# Toggle touchpad 
+# Toggle touchpad
 
 device=12
 state=`xinput list-props "$device" | grep "Device Enabled" | grep -o "[01]$"`

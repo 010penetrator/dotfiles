@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
 Name=Handle torrent with transmission-daemon
-Exec=transmission-remote 9090 -a %U 
+Exec=transmission-remote 9090 -a %U
 MimeType=application/x-bittorrent;x-scheme-handler/magnet;
 

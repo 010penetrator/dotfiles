@@ -3,7 +3,7 @@
 
 locatedir () {
     locate -i "$*" | while read line
-do 
+do
     if [ -d "$line" ] ; then echo $line ; fi
 done
 }

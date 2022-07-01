@@ -10,7 +10,7 @@ curdesk=${curdesk: -1}
 echo curdesk is $curdesk alt $curdesk0
 
 if [ $1 == $curdesk ]
-then 
+then
   curid=$(xprop -root _NET_ACTIVE_WINDOW | cut -d "#" -f2 | cut -c 4-) && while [ ${#curid} -lt 7 ]; do curid=0$curid; done
   echo curid is $curid
   echo "choosing next at this desk"

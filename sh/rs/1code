@@ -14,8 +14,8 @@ clock_gettime(CLOCK_MONOTONIC, &start);
 some_function();
 clock_gettime(CLOCK_MONOTONIC, &end);
 double time_taken;
-time_taken = (end.tv_sec - start.tv_sec) * 1e9; 
-time_taken = (time_taken + (end.tv_nsec - start.tv_nsec)) * 1e-9; 
+time_taken = (end.tv_sec - start.tv_sec) * 1e9;
+time_taken = (time_taken + (end.tv_nsec - start.tv_nsec)) * 1e-9;
 printf("time taken some_function is %f seconds\n", time_taken);
 
 nanosleep((const struct timespec[]){{0, 10000000L}}, NULL);

@@ -1,5 +1,5 @@
 #!/bin/bash
 # Put your monitor(s) to sleep
 
-sleep 1 ; xset dpms force standby 
+sleep 1 ; xset dpms force standby
 

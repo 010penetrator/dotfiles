@@ -38,11 +38,11 @@ tar -czf /ln/lo/cur/linkdir.tar.gz -C / ln
     tar -czf "$bakhot/$DAY/torrents.tar.gz" --ignore-failed-read \
         -C $HOME .config/transmission-daemon .rtorrent .rtorrent.rc
 
-[[ -d /ln/co/nvim ]] && [[ -d /ln/co/nvim ]] && conditional_line="-C /ln/co/ nvim/plugged"
-    tar -cf "$bakhot/$DAY/conf.tar.zst" -I "zstd -10 -T0" --ignore-failed-read \
-        -C / etc/fstab etc/udevil/udevil.conf \
-        -C $HOME .ssh .bash_history $(ls .git*tials 2>/dev/null) .cache/dmenu-recent .vim \
-        $conditional_line
+# [[ -d /ln/co/nvim ]] && [[ -d /ln/co/nvim ]] && conditional_line="-C /ln/co/ nvim/plugged"
+tar -cf "$bakhot/$DAY/conf.tar.zst" -I "zstd -10 -T0" --ignore-failed-read \
+    -C / etc/fstab etc/udevil/udevil.conf \
+    -C $HOME .ssh .bash_history $(ls .git*tials 2>/dev/null) .cache/dmenu-recent .vim \
+    $conditional_line
 
 [[ -d $bakcld ]] &&
     {

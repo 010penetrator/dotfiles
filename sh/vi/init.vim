@@ -727,11 +727,11 @@ nnoremap ,gh :call FocusBufOrDo('sh_history','e $HOME/.bash_history')<CR>G
 nnoremap ,gl :call FocusBufOrDo('1linux','e $sh/rs/1linux')<CR>
 nnoremap q/  :call FocusWindowOrDo('99.txt','1tabn \| wincmd b \| e $buf')<CR>
 
-nnoremap ,,v :Goyo<CR>
+nnoremap ,,b :Goyo<CR>
 
 " Start and quit Vim
 nnoremap ,V :source $MYVIMRC <CR>
-nnoremap ,vv :source $MYVIMRC <CR>
+nnoremap ,,v :source $MYVIMRC <CR>
 nnoremap ,cs :LoadColor<CR>
 nnoremap ,vs :source $RTP/session/comon <bar> call AddRpcEar()<CR>
 nnoremap ,,q :call SaveColor() <bar> SSave! comon <bar> qa<CR>

@@ -3,7 +3,7 @@
 echo upk2dir:
 echo args are $*
 
-if [ -z "$1" ] || [ -n "$3" ] || [ -d "$1" ] || [ -f "$2" ]; then 
+if [ -z "$1" ] || [ -n "$3" ] || [ -d "$1" ] || [ -f "$2" ]; then
     echo Usage: upk2dir.sh archive.file [OUTDIR]
     exit 1
 fi
@@ -13,11 +13,11 @@ curdirname=${PWD##*/}
 arcname=$(basename "$1")
 fullarcname=$(realpath "$1")
 
-if [[ "$2" ]] ; then 
+if [[ "$2" ]] ; then
     dest="$2/$arcname"D
     echo --Will extract to $dest
-    mkdir -p "$dest" || { echo Destination unavailable.; exit 1; } 
-else 
+    mkdir -p "$dest" || { echo Destination unavailable.; exit 1; }
+else
     dest="$arcname"D
     echo --Will extract to $dest
     mkdir -p "$dest"

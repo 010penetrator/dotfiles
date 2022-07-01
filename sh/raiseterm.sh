@@ -20,7 +20,7 @@ exclude="-E VIM$|nvim.$|VIMSERV|VIFM$|htop$|btop$|MPV|transmission-remote|tremc|
 
 #If window of that name is active, there are others of that name, current is not last in list
 if
-    [[ $(wmctrl -l -x | grep -v $exclude | grep "$wname" | grep $activeid) ]] && 
+    [[ $(wmctrl -l -x | grep -v $exclude | grep "$wname" | grep $activeid) ]] &&
     [[ $(wmctrl -l -x | grep -v -e "^...........-" | grep -v $exclude | grep "$wname" | wc -l) > 1 ]] &&
     [[ $(wmctrl -l -x | grep -v $exclude | grep "$wname" | grep -A1 $activeid | wc -l) > 1 ]]
 then

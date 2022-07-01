@@ -1,7 +1,7 @@
 let scrollstep = 141
 set cncpcompletion
 set noautofocus
-unmap E R S D a e d u 
+unmap E R S D a e d u
 map ,  gT
 map .  gt
 map J  gt

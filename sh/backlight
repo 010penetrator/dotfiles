@@ -25,7 +25,7 @@ if [ -z "$new" ] ; then
   new=$1;
 fi
 
-if [ $new -gt $max ] ; then 
+if [ $new -gt $max ] ; then
   echo too much !
   new=$max
 fi

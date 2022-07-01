@@ -11,15 +11,16 @@ source $sh/dmenurc
 # Remove duplicates and choose line with dmenu
 if [[ $SHFL -gt 0 ]] ; then
     # Shuffle
-    SEL=$( cat -n "$1" | sort -nr | sort -uk2 | sort -nr | cut -f2- | dmenu $DMENU_OPTIONS -fn "$DMENU_FN" )
-else
     SEL=$( cat "$1" | sort -R | dmenu $DMENU_OPTIONS -fn "$DMENU_FN" )
+else
+    # Remove Duplicates
+    SEL=$( cat -n "$1" | sort -nr | sort -uk2 | sort -nr | cut -f2- | dmenu $DMENU_OPTIONS -fn "$DMENU_FN" )
 fi
 
 export LIST="$1"
 PLAYER_CMD="ASK=1 mpv-album"
 
-# Construct command to spawn terminal
+# Construct command to call new terminal window
 case $TERMINAL in
 kitty*)
     NEW_TERMINAL="$TERMINAL -o initial_window_height=$(expr 450 + $HIDPI \* 140) -o initial_window_width=$(expr 650 + $HIDPI \* 150) /bin/bash -c"
@@ -30,19 +31,20 @@ kitty*)
     ;;
 esac
 
-case $(echo "$SEL" | wc -l) in
+
+case $(echo "$SEL" | grep -v ^$ | wc -l) in
 0)
     echo Nothing selected!
     ;;
 1)
     BASH_CMD="$PLAYER_CMD \"$SEL\""
-    $NEW_TERMINAL "$BASH_CMD" &
+    exec $NEW_TERMINAL "$BASH_CMD" &
     ;;
 *)
     echo "$SEL" | \
         while read l ; do
             BASH_CMD="$PLAYER_CMD \"$l\""
-            $NEW_TERMINAL "$BASH_CMD" &
+            exec $NEW_TERMINAL "$BASH_CMD" &
         done
     ;;
 esac

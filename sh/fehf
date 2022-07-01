@@ -1,5 +1,5 @@
 #!/bin/bash
-# See and sort images with feh 
+# See and sort images with feh
 
 frsrt() {
   a=$1__*/

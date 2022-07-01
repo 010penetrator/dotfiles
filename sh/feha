@@ -16,7 +16,7 @@ elif [ -f "$1" ]
 then
   dir=$(dirname \./"$1")
   file="${1#$dir}"
-  echo dir file : $dir $file 
+  echo dir file : $dir $file
   # check if $1 was messed by vifm
   if [ "$dir" == "./." ]
   then
