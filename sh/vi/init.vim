@@ -705,6 +705,7 @@ nnoremap ,zr :Rg<CR>
 nnoremap ,tg :Telescope live_grep<CR>
 nnoremap ,tf :Telescope find_files theme=ivy<CR>
 nnoremap ,tr :Telescope lsp_references<CR>
+nnoremap ,ts :Telescope lsp_dynamic_workspace_symbols<CR>
 " nnoremap ,tt :Telescope current_buffer_fuzzy_find sorting_strategy=ascending layout_config={"prompt_position":"top"}<CR>
 " nnoremap ,tt <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find({sorting_strategy="ascending", theme="ivy"})<CR>
 nnoremap ,tb <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_ivy{})<CR>

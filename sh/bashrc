@@ -116,13 +116,13 @@ rgf() {
 }
 
 # Ease xdg-mime routine
-xm() {
+xdef() {
     if [ -z "$1" ] ; then
         echo Usage: xm path/somefile.ext
     else
-        type=$( xdg-mime query filetype "$1"  )
-        echo Mime filetype for \""$1"\" is "$type"
-        echo Available apps for it are $(grep "$type" /usr/share/applications/mimeinfo.cache)
+        type=$( xdg-mime query filetype "$1" )
+        echo Mime filetype for \""$1"\" is \""$type"\"
+        echo -e "Available apps for it are \n$(grep $type /usr/share/applications/mimeinfo.cache | cut -d '=' -f2- | tr ';' '\n')"
         echo Hint: Call \"xdg-mime default ***.desktop $type\" to set the default app
     fi
 }

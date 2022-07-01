@@ -1,6 +1,9 @@
 #!/bin/bash
+# Select and open a file from Downloads/
 
 source $sh/dmenurc
-f=$(ls -t /ln/dwn | dmenu $DMENU_OPTIONS -fn "$DMENU_FN")
-[ -z "$f" ] || xdg-open /ln/dwn/"$f"
+SEL=$(ls -t /ln/dwn | dmenu $DMENU_OPTIONS -fn "$DMENU_FN")
+
+[[ -z "$SEL" ]] && exit
+xdg-open /ln/dwn/"$SEL"
 

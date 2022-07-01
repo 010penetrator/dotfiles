@@ -194,7 +194,7 @@ end
 if vim.fn.has('nvim-0.7') == 1 then
     -- print("Nvim is cutting edge new")
     -- vim.keymap.set("n","K", vim.lsp.buf.hover, {buffer=0})
-    vim.keymap.set("n","K", vim.lsp.buf.hover)
+    vim.keymap.set("n","gH", vim.lsp.buf.hover)
     vim.keymap.set("n","gK", "K")
     vim.keymap.set("n","gd", vim.lsp.buf.definition)
     -- vim.keymap.set("n","gv", function() vim.cmd('new') end )
@@ -207,10 +207,10 @@ if vim.fn.has('nvim-0.7') == 1 then
     vim.keymap.set("n","gw", vim.lsp.buf.workspace_symbol)
     vim.keymap.set("n","gy", vim.lsp.buf.type_definition)
     vim.keymap.set("n","gi", vim.lsp.buf.implementation)
-    vim.keymap.set("n",",gn", vim.diagnostic.goto_next)
-    vim.keymap.set("n",",gp", vim.diagnostic.goto_prev)
-    vim.keymap.set("n",",R", vim.lsp.buf.rename)
-    vim.keymap.set("n",",A", vim.lsp.buf.code_action)
+    vim.keymap.set("n","gN", vim.diagnostic.goto_next)
+    vim.keymap.set("n","gP", vim.diagnostic.goto_prev)
+    vim.keymap.set("n","qR", vim.lsp.buf.rename)
+    vim.keymap.set("n","qA", vim.lsp.buf.code_action)
 end
 
 local keymap = vim.api.nvim_set_keymap
