@@ -14,9 +14,18 @@ go_through ()
     if [[ $key == 'i' ]] ; then
       if [[ -d favs ]] && [[ $( ls -A favs/*.conf 2>/dev/null ) ]] ; then
         cd favs
-        echo --Entering next level of favourites
       else
         echo --Favs not found! Gonna crawl this list again
+        echo
+      fi
+    fi
+    #
+    if [[ $key == 'b' ]] ; then
+      if [[ $( ls -A ../*.conf 2>/dev/null ) ]] ; then
+        cd ..
+      else
+        echo --Themes not found! Gonna crawl this list again
+        echo
       fi
     fi
     #
@@ -32,11 +41,11 @@ go_through ()
       echo $t
       kitty @ set-colors -a "$PWD/$t"
       read -rsn 1 key
-      [[ $key == 'f' ]] && mkdir -p favs && cp "$t" "favs/$t"
-      [[ $key == 'd' ]] && mkdir -p del && mv "$t" "del/$t"
+      [[ $key == 'f' ]] && mkdir -p favs && cp "$t" "favs/$t" && echo --Added to favs.
+      [[ $key == 'd' ]] && mkdir -p del && mv "$t" "del/$t" && echo --Moved to trash.
       [[ $key == 'q' ]] && echo --Reverting to $(readlink /ln/co/kitty/current-theme.conf) && kitty @ set-colors -a ~/.config/kitty/current-theme.conf && exit
-      [[ $key == 'i' ]] && break
-      [[ $key == 'b' ]] && break
+      [[ $key == 'i' ]] && echo && echo --Entering next level of favourites && break
+      [[ $key == 'b' ]] && echo && echo --Entering upper level && break
       [[ $key == 'a' ]] && ln -snrf "$t" ~/.config/kitty/current-theme.conf && echo --Applied!
     done
     echo

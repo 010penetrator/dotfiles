@@ -214,9 +214,9 @@ L	sh/vi/init.vim	/^nnoremap <silent> L :<C-u>execute "keepjumps norm! " . v:coun
 LCDhere	sh/vi/init.vim	/^command! LCDhere lcd %:p:h | pwd$/;"	c
 LCDrealpath	sh/vi/init.vim	/^command! LCDrealpath let b:cwd = expand("%:p:h") | let b:rcwd = system("realpath " . b:cwd) | exec "lcd " . b:rcwd$/;"	c
 LOWER	sh/conf/qmk_planckR4keymap.c	29;"	d	file:
-LOWER	sh/conf/qmk_planckR6keymap.c	43;"	d	file:
+LOWER	sh/conf/qmk_planckR6keymap.c	41;"	d	file:
 LO_T	sh/conf/qmk_planckR4keymap.c	32;"	d	file:
-LO_T	sh/conf/qmk_planckR6keymap.c	46;"	d	file:
+LO_T	sh/conf/qmk_planckR6keymap.c	44;"	d	file:
 LastToMacro	sh/vi/init.vim	/^command! -nargs=1 LastToMacro exec "let @" . <q-args> . " = \\"i\\" . @. . \\"<Esc>\\""$/;"	c
 LightlineReload	sh/vi/init.vim	/^function! LightlineReload(arg)$/;"	f
 LineColor	sh/vi/init.vim	/^command! -nargs=? LineColor call LightlineReload('<args>')$/;"	c
@@ -229,9 +229,9 @@ MoveToPrevTab	sh/vi/init.vim	/^function! MoveToPrevTab()$/;"	f
 MyNetrwMapping	sh/vi/init.vim	/^function! MyNetrwMapping()$/;"	f
 N	sh/vi/init.vim	/^nnoremap <silent> N :<C-u>execute "keepjumps norm! " . v:count1 . "Nzz"<CR>$/;"	m
 NUMER	sh/conf/qmk_planckR4keymap.c	31;"	d	file:
-NUMER	sh/conf/qmk_planckR6keymap.c	45;"	d	file:
+NUMER	sh/conf/qmk_planckR6keymap.c	43;"	d	file:
 NU_T	sh/conf/qmk_planckR4keymap.c	34;"	d	file:
-NU_T	sh/conf/qmk_planckR6keymap.c	48;"	d	file:
+NU_T	sh/conf/qmk_planckR6keymap.c	46;"	d	file:
 NewTerm	sh/vi/init.vim	/^    command! NewTerm exec 'silent ! mintty.exe &' | redraw!$/;"	c
 NewTerm	sh/vi/init.vim	/^command! NewTerm exec 'silent ! $TERMINAL &' | redraw!$/;"	c
 NewTermHere	sh/vi/init.vim	/^command! NewTermHere exec 'silent ! cd "%:p:h" && $TERMINAL &' | redraw!$/;"	c
@@ -246,9 +246,9 @@ Q	sh/vi/init.vim	/^nnoremap Q q$/;"	m
 QWERTY	sh/conf/qmk_planckR4keymap.c	/^  QWERTY = SAFE_RANGE,$/;"	e	enum:planck_keycodes	file:
 QWERTY	sh/conf/qmk_planckR6keymap.c	/^  QWERTY = SAFE_RANGE,$/;"	e	enum:planck_keycodes	file:
 RAISE	sh/conf/qmk_planckR4keymap.c	30;"	d	file:
-RAISE	sh/conf/qmk_planckR6keymap.c	44;"	d	file:
+RAISE	sh/conf/qmk_planckR6keymap.c	42;"	d	file:
 RA_T	sh/conf/qmk_planckR4keymap.c	33;"	d	file:
-RA_T	sh/conf/qmk_planckR6keymap.c	47;"	d	file:
+RA_T	sh/conf/qmk_planckR6keymap.c	45;"	d	file:
 RCbash	sh/vi/init.vim	/^    command! RCbash :exec '!source \/c\/Users\/user\/.bashrc'$/;"	c
 RaiseNetRW	sh/vi/init.vim	/^function! RaiseNetRW()$/;"	f
 RevealWindowOnTab	sh/vi/init.vim	/^function! RevealWindowOnTab(arg)$/;"	f

@@ -20,6 +20,7 @@ export PAGER=less
 export BROWSER=firefox
 export sh=/ln/sh
 export lo=/ln/lo/cur
+export git=/ln/ho/compy
 export jo=$HOME/gitjob
 export bakhot=$HOME/bak
 export bakusbdir=/ln/mo/TRAMV/bak

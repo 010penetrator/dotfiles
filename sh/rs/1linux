@@ -302,9 +302,15 @@ inxi -v7 # system info
 ==MCU
 avrdude -c avrisp -p atmega32u4 -U flash:w:planck_rev4_plasmik.hex:i
 sleep 3 && sudo dfu-programmer atmega32u4 erase && sudo dfu-programmer atmega32u4 flash /ln/mo/GLIM/planck_rev4_plasmik.hex
+
+=QMK
+    cd $git && git clone https://github.com/qmk/qmk_firmware && cd qmk_firmware
+    python -m pip install --user qmk
+    ./util/qmk_install.sh 
+    qmk compile -kb planck/rev6 -km default
+cd $git/qmk_firmware/ && make atreis:default && sudo bash flash.sh atreis_default.hex
 sudo make xd60/rev3:plasmik:dfu
 make planck/rev6:plasmik:dfu-util
-cd qmk_firmware/ && make atreis:default && sudo bash flash.sh atreis_default.hex
 
 ==PKG
 apt-cache policy libgtk2.0-0 libgtk-3-0 # check pkg origin
