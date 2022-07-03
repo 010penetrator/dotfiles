@@ -1,9 +1,3 @@
 #!/bin/bash
 # Needs 'redshift'
-# Dim and warm screen
-
-ga=.9
-redshift -O 4900 -g $ga:$ga:$ga & disown
-
-nowis nox
 

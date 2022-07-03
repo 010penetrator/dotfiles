@@ -1,7 +1,0 @@
-#!/bin/bash
-# Uses 'redshift'
-# Undo nighttime screen attenuation
-
-redshift -x & disown
-nowis day
-
