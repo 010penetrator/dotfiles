@@ -120,16 +120,17 @@ cat /proc/uptime | cut -d ' ' -f1 #get uptime in secs
 cat ~/.ssh/zz_rsa.pub | ssh user@192.168.1.78 "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"  # manually install your public ssh key to remote machine
 
 ==GRUB
---restore Grub2:
-mount -t ext4 /dev/sdXN /mnt
-mount -t proc /proc /mnt/proc ; mount --bind /dev /mnt/dev ; mount --bind /sys /mnt/sys
-chroot /mnt #OR# arch-chroot /mnt
-grub-mkconfig -o /boot/grub/grub.cfg ; grub-install /dev/sdX
 --GRUB install for BIOS
+grub-mkconfig -o /boot/grub/grub.cfg ; grub-install /dev/sdX
 --GRUB install for EFI:
 grub-install --target=x86_64-efi --efi-directory=EfiSystemPart --boot-directory=/boot --bootloader-id=NewName
 --GRUB install for EFI to removable media:
 grub-install --target=x86_64-efi --efi-directory=/media/GLIM --removable --boot-directory=/media/GLIM/boot /dev/sdc
+--restore Grub2:
+    mount -t ext4 /dev/sdXN /mnt
+    mount -t proc /proc /mnt/proc ; mount --bind /dev /mnt/dev ; mount --bind /sys /mnt/sys
+    chroot /mnt #OR# arch-chroot /mnt
+    grub-mkconfig -o /boot/grub/grub.cfg ; grub-install /dev/sdX
 --manual grub boot:
 grub2> set root=(hd0,2) ; linux /boot/vmlinuz-linux root=/dev/sdX2 ; initrd /boot/initrd.img ; boot
 --grub rescue to normal mode
@@ -303,7 +304,8 @@ inxi -v7 # system info
 avrdude -c avrisp -p atmega32u4 -U flash:w:planck_rev4_plasmik.hex:i
 sleep 3 && sudo dfu-programmer atmega32u4 erase && sudo dfu-programmer atmega32u4 flash /ln/mo/GLIM/planck_rev4_plasmik.hex
 
-=QMK
+==QMK
+--install qmk:
     cd $git && git clone https://github.com/qmk/qmk_firmware && cd qmk_firmware
     python -m pip install --user qmk
     ./util/qmk_install.sh 
