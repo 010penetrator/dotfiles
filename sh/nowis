@@ -21,11 +21,11 @@ echo "$1" > /tmp/nowis
 if [[ $1 == 'nox' ]] ; then
     sed -i 's/=Pop$/=Pop-dark/' /ln/co/gtk-3.0/settings.ini
     # Dim and warm screen
-    type redshift &>/dev/null && { ga=.9; redshift -O 4900 -g $ga:$ga:$ga & disown ; }
+    type redshift &>/dev/null && { ga=.92; redshift -o -m randr -O 4980 -g $ga:$ga:$ga & disown ; }
 elif [[ $1 == 'day' ]] ; then
     sed -i 's/=Pop-dark$/=Pop/' /ln/co/gtk-3.0/settings.ini
     # Undo nighttime screen dimming
-    type redshift &>/dev/null && redshift -x
+    type redshift &>/dev/null && redshift -x -m randr
 fi
 
 {

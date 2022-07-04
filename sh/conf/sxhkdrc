@@ -7,7 +7,7 @@ super + x ; { z, i, f, p, q, l, c, d, space }
 super + n ; { n, M, p, c, v, r, o, i, s }
   { $TERMINAL, momkitty.sh, thunar & notify-send 'new Thunar', $TERMINAL -e vifm, vinew, listzathura.sh, $TERMINAL_BIGER -e rtorrent, $TERMINAL_BIGER -e tremc -c localhost:9090, scrotfeh }
 
-super + { q, Q, D, F, t, v, s, p, r, R, z, g, slash }
+super + { q, Q, D, F, t, v, s, y, r, R, z, g, slash }
   ror.sh { \
   '' scroff, '' 'sus 1', windowswitcher.sh, '' 'rofi -show window', \
   'xterm\|urxvt\|kitty', \
@@ -142,6 +142,8 @@ super + {comma,period}
 
 # focus the last node
 super + Escape
+  bspc node -f last.local
+super + p
   bspc node -f last.local
 super + Tab
   bspc node -f last

@@ -145,20 +145,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Numer
  * ,-----------------------------------------------------------------------------------.
- * |      |NUMLCK| PGUP | END  |NUMLCK|      |      |  7   |  8   |  9   |  -   |      |
+ * |      | NLCK | PGUP |  END |      |      |      |  7   |  8   |  9   |  -   |      |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |      | HOME |  M   |      | PGDN |      |  ^   |  4   |  5   |  6   |  +   |      |
+ * |      | HOME |  M   |  MRB | PGDN |      |  ^   |  4   |  5   |  6   |  +   | mwU  |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * | MLB  |  M   |  M   |  M   | MRB  |      |  *   |  1   |  2   |  3   |  /   |      |
+ * |      |  M   |  M   |  M   |      |      |  *   |  1   |  2   |  3   |  /   | mwD  |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |  0   |  .   |  .   |      |      |
+ * |  MLB |      |      |      |      | MENU |      |  0   |  .   |  .   |      |      |
  * `-----------------------------------------------------------------------------------'
  */
 [_NUMER] = LAYOUT_planck_grid(
     _______ , KC_NLCK , KC_PGUP , KC_END  , _______ , _______ , _______ , KC_P7 , KC_P8   , KC_P9  , KC_PMNS , _______ ,
     _______ , KC_HOME , KC_MS_U , KC_BTN2 , KC_PGDN , _______ , KC_CIRC , KC_P4 , KC_P5   , KC_P6  , KC_PPLS , KC_WH_U ,
-    KC_BTN1 , KC_MS_L , KC_MS_D , KC_MS_R , _______ , _______ , KC_PAST , KC_P1 , KC_P2   , KC_P3  , KC_PSLS , KC_WH_D ,
-    _______ , _______ , _______ , _______ , _______ , _______ , _______ , KC_P0 , KC_PDOT , KC_PDOT, _______ , _______
+    _______ , KC_MS_L , KC_MS_D , KC_MS_R , _______ , _______ , KC_PAST , KC_P1 , KC_P2   , KC_P3  , KC_PSLS , KC_WH_D ,
+    KC_BTN1 , _______ , _______ , _______ , _______ , KC_APP  , KC_APP  , KC_P0 , KC_PDOT , KC_PDOT, _______ , _______
 ),
 
 /* Plover layer (http://opensteno.org)
@@ -191,18 +191,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |      |      |      |      |      |             |      |      |      |      |      |
  * `-----------------------------------------------------------------------------------'
  */
-[_ADJUST] = LAYOUT_planck_grid(
+/* [_ADJUST] = LAYOUT_planck_grid(
     _______, QK_BOOT,   DEBUG,   RGB_TOG, RGB_MOD, RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD,  RGB_VAI, RGB_VAD, KC_DEL ,
     _______, _______, MU_MOD,  AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, QWERTY,  COLEMAK,  DVORAK,  PLOVER,  _______,
     _______, MUV_DE,  MUV_IN,  MU_ON,   MU_OFF,  MI_ON,   MI_OFF,  TERM_ON, TERM_OFF, _______, _______, _______,
     _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______, _______, _______
+) */
+/* [_ADJUST] = LAYOUT_planck_grid(
+    _______, RESET,   DEBUG,   RGB_TOG, RGB_MOD, RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD,  RGB_VAI, RGB_VAD, KC_DEL ,
+    _______, _______, MU_MOD,  AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, QWERTY,  COLEMAK,  DVORAK,  PLOVER,  _______,
+    _______, MUV_DE,  MUV_IN,  MU_ON,   MU_OFF,  MI_ON,   MI_OFF,  TERM_ON, TERM_OFF, _______, _______, _______,
+    _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______, _______, _______
+) */
+[_ADJUST] = LAYOUT_planck_grid(
+    _______ , RESET   , DEBUG   , _______ , QWERTY  , COLEMAK , DVORAK  , _______ , _______ , _______ , _______ , _______ ,
+    KC_CAPS , _______ , MU_MOD  , AU_ON   , AU_OFF  , AG_NORM , AG_SWAP , QWERTY  , COLEMAK , DVORAK  , PLOVER  , _______ ,
+    _______ , MUV_DE  , MUV_IN  , MU_ON   , MU_OFF  , MI_ON   , MI_OFF  , _______ , _______ , _______ , _______ , _______ ,
+    _______ , _______ , _______ , _______ , _______ , _______ , _______ , _______ , _______ , _______ , _______ , _______
 )
-// [_ADJUST] = LAYOUT_planck_grid(
-//     _______, RESET,   DEBUG,   RGB_TOG, RGB_MOD, RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD,  RGB_VAI, RGB_VAD, KC_DEL ,
-//     _______, _______, MU_MOD,  AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, QWERTY,  COLEMAK,  DVORAK,  PLOVER,  _______,
-//     _______, MUV_DE,  MUV_IN,  MU_ON,   MU_OFF,  MI_ON,   MI_OFF,  TERM_ON, TERM_OFF, _______, _______, _______,
-//     _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______, _______, _______
-// )
 
 };
 
