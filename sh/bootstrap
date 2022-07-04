@@ -1,5 +1,5 @@
 #!/bin/bash
-# Turn current system into suitable environment for me!
+# Turn current system into handy environment for me!
 
 suc=false
 var='v'
