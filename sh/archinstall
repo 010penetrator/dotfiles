@@ -93,7 +93,7 @@ Now maybe call that:
 bash --rcfile <(echo "PS1='subshell> '") -i
 
 echo Cloning dotfiles..
-git clone https://github.com/010penetrator/dotfiles /home/"$ME"/.dotfiles.git
+git clone https://codeberg.org/plasmik/dotfiles /home/"$ME"/.dotfiles.git
 echo Now reboot or log in as user and call "bash .dotfiles.git/sh/bootstrap"
 }
 

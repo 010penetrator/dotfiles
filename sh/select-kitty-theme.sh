@@ -46,12 +46,13 @@ go_through ()
       [[ $key == 'q' ]] && echo --Reverting to $(readlink /ln/co/kitty/current-theme.conf) && kitty @ set-colors -a ~/.config/kitty/current-theme.conf && exit
       [[ $key == 'i' ]] && echo && echo --Entering next level of favourites && break
       [[ $key == 'b' ]] && echo && echo --Entering upper level && break
-      [[ $key == 'a' ]] && ln -snrf "$t" ~/.config/kitty/current-theme.conf && echo --Applied!
+      [[ $key == 'a' ]] && ln -snrf "$t" ~/.config/kitty/current-theme.conf &&
+                         ln -snrf "$t" ~/.config/kitty/"$(nowis)"-theme.conf && echo --Applied!
     done
     echo
   done
 }
 
-echo key commands are : f d q a i b 
+echo key commands are : f d q a i b
 cd ~/.config/kitty-themes/themes/ && go_through
 

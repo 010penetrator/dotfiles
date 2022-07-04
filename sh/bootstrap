@@ -30,7 +30,7 @@ if [[ -d $HOME/.dotfiles.git ]] ; then
 else
 {
     echo -e '\n'--Gonna clone my git repo
-    git clone https://github.com/010penetrator/dotfiles "$HOME"/.dotfiles.git
+    git clone https://codeberg.org/plasmik/dotfiles "$HOME"/.dotfiles.git
 }
 fi
 
@@ -49,7 +49,7 @@ fi
     ln -sfnv /ln/fast/hh hh
     ln -sfnv /ln/bl/torrents torrents
     # ln -sfnv /ln/mo/metal/MUSIC mus
-    ln -sfnv /ln/mo/blink/PRAGS pr
+    # ln -sfnv /ln/mo/blink/PRAGS pr
     ln -sfnv /ln/mo/metal/____ __
     # ln -sfn /ln/mo/blink/dwn dwn
     # ln -sfn /ln/ho/Downloads dwn
@@ -91,7 +91,7 @@ fi
     xdg-mime default transmission-cli.desktop application/x-bittorrent
     xdg-mime default FBReader.desktop application/x-mobipocket-ebook
     #
-    sudo ln -sfv /ln/sh/conf/99-libinput-custom.conf /etc/X11/xorg.conf.d/
+    sudo ln -sf /ln/sh/conf/99-libinput-custom.conf /etc/X11/xorg.conf.d/
 }
 
 [[ -d ~/.config/kitty-themes ]] ||
