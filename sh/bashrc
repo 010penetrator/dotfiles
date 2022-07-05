@@ -70,6 +70,10 @@ elif  type -f apt &>/dev/null ; then
     alias ai='sudo apt install'
 fi
 }
+
+source $sh/dmenurc
+alias dmenu='dmenu $DMENU_OPTIONS -fn "$DMENU_FN"'
+
 alias ncdu='ncdu --color off'
 # alias ncdu='ncdu --color off --graph-style hash'
 alias lm='df -BGB --output=source,fstype,avail,pcent,target -x tmpfs -x devtmpfs'

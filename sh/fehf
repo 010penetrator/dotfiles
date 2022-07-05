@@ -1,14 +1,10 @@
 #!/bin/bash
 # See and sort images with feh
 
-frsrt() {
-  a=$1__*/
-  [ -d $a ] || mkdir -p $1__
-  mv --backup=numbered "$2" $1__*/
-}
-export -f frsrt
-
-feh -d. --auto-rotate --edit --sort mtime --reverse -B "#333" --font /usr/share/fonts/truetype/liberation2/LiberationSans-Regular.ttf/12 --action1 "frsrt 1 \"%f\"" --action2 "frsrt 2 \"%f\"" --action3 "frsrt 3 \"%f\"" --action4 "frsrt 4 \"%f\"" --action5 "frsrt 5 \"%f\"" --action6 "frsrt 6 \"%f\"" --action7 "frsrt 7 \"%f\"" --action8 "frsrt 8 \"%f\"" --action9 " mv -b \"%f\" $HOME/.del/" "$1"
+feh -d. --auto-rotate --edit --sort mtime --reverse -B "#333" --font /usr/share/fonts/truetype/liberation2/LiberationSans-Regular.ttf/12 \
+    --action  "ask_feh.sh \"%f\"" \
+    --action1 "ask_feh.sh \"%f\"" \
+    --action8 "mkdir -p $HOME/.del; mv -b \"%f\" $HOME/.del/" "$1"
 
 # feh -d. --auto-rotate --sort mtime --reverse -B black --font /usr/share/fonts/TTF/LiberationSans-Regular.ttf/12 --action1 "frsrt 1 \"%f\"" --action2 "frsrt 2 \"%f\"" --action3 "frsrt 3 \"%f\"" --action4 "frsrt 4 \"%f\"" --action5 "frsrt 5 \"%f\"" --action6 "frsrt 6 \"%f\"" --action7 "frsrt 7 \"%f\"" --action8 "frsrt 8 \"%f\"" --action9 " mv -b \"%f\" $HOME/.del/" "$1"
 # feh -d. --auto-rotate --sort mtime --reverse -B black --font /usr/share/fonts/TTF/LiberationSans-Regular.ttf/12 --action1 "mkdir -p 1; mv -b \"%f\" 1/" --action2 "mkdir -p 2; mv -b \"%f\" 2/" --action3 "mkdir -p 3; mv -b \"%f\" 3/" --action4 "mkdir -p 4; mv -b \"%f\" 4/" --action5 "mkdir -p 5; mv -b \"%f\" 5/" --action6 "mkdir -p 6; mv -b \"%f\" 6/" --action7 "mkdir -p 7; mv -b \"%f\" 7/" --action8 "mkdir -p 8; mv -b \"%f\" 8/" --action9 " mv -b \"%f\" $HOME/.del" "$1"

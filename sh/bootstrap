@@ -87,8 +87,10 @@ fi
     mkdir -p .local/share/applications/
     cp /ln/sh/conf/transmission*desktop .local/share/applications/
     #
-    xdg-mime default transmission-cli.desktop x-scheme-handler/magnet
-    xdg-mime default transmission-cli.desktop application/x-bittorrent
+    # xdg-mime default transmission-cli.desktop x-scheme-handler/magnet
+    # xdg-mime default transmission-cli.desktop application/x-bittorrent
+    xdg-mime default org.qbittorrent.qBittorrent.desktop x-scheme-handler/magnet
+    xdg-mime default org.qbittorrent.qBittorrent.desktop application/x-bittorrent
     xdg-mime default FBReader.desktop application/x-mobipocket-ebook
     #
     sudo ln -sf /ln/sh/conf/99-libinput-custom.conf /etc/X11/xorg.conf.d/
