@@ -606,6 +606,7 @@ nnoremap ,bd :BDnJump<CR>
 nnoremap ,i :diffthis \| wincmd w<CR>
 nnoremap ,o :diffoff  \| wincmd w<CR>
 nnoremap c<space> :echo expand ('%') '.@.' getcwd() <CR>
+nnoremap cC       :echo expand ('%') '.@.' getcwd() <CR>
 nnoremap ,c. :LCDhere <CR>
 nnoremap ,cg :call ClimbToDirWhere(".git/index",1) \| pwd <CR>
 nnoremap ,cm :call ClimbToDirWhere("Makefile",1) \| pwd <CR>

@@ -64,6 +64,8 @@ if [[ "$HOSTNAME" =~ ^bigstation ]]; then
     bspc monitor HDMI-2 -d 4 5 6 7 8
 elif [[ "$HOSTNAME" =~ ^debPC ]]; then
     [[ -z ${FLOATING_DESKTOPS+x} ]] && FLOATING_DESKTOPS=3
+elif [[ "$HOSTNAME" == "debmachine" ]]; then
+    [[ -z ${FLOATING_DESKTOPS+x} ]] && FLOATING_DESKTOPS='3 4'
 else
     [[ -z ${FLOATING_DESKTOPS+x} ]] && FLOATING_DESKTOPS=4
 fi

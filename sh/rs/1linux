@@ -97,6 +97,7 @@ true; false; echo $? # show last command exit status
 true && echo 1 || echo 0 # check true's exit status
 LC_ALL=C man # run command in C locale
 export LD_LIBRARY_PATH=/usr/lib32
+exec $SHELL -l # re-login
 su - user1 -c uname # run command as user1
 sudo -H -u user2 echo $HOME # check his home dir
 who -r # show run-level
@@ -308,7 +309,7 @@ sleep 3 && sudo dfu-programmer atmega32u4 erase && sudo dfu-programmer atmega32u
 --install qmk:
     cd $git && git clone https://github.com/qmk/qmk_firmware && cd qmk_firmware
     python -m pip install --user qmk
-    ./util/qmk_install.sh 
+    ./util/qmk_install.sh
     qmk compile -kb planck/rev6 -km default
 cd $git/qmk_firmware/ && make atreis:default && sudo bash flash.sh atreis_default.hex
 sudo make xd60/rev3:plasmik:dfu
