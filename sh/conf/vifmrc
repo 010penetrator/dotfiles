@@ -95,7 +95,7 @@ nnoremap yC :! echo -n %f:p | xclip ; echo -n %f:p | xclip -selection clipboard 
 
 " Open current file "
 nnoremap q<cr> :! ./%c <cr>
-nnoremap a. :!vim %c<CR>
+nnoremap c. :! vim %c<CR>
 nnoremap qm :! nomacs %c &>/dev/null &<cr>
 nnoremap qf :! if [ %c == ".." ] ; then feha . ; else if [ -d %c ] ; then cd %c; feha . ; else if [ -f %c ] ; then feha %c; fi ; fi ; fi <cr>
 nnoremap q1 :! fehf . <cr>
@@ -110,6 +110,8 @@ nnoremap qg :! specgram.sh %c <cr>
 nnoremap qd :! deadbeef --queue %c &>/dev/null & <cr>
 nnoremap qe :! $EDITOR %c <cr>
 nnoremap .  :! xdg-open %c &>/dev/null & <cr>
+nnoremap ,,. :! bash -x xdg-open %c <cr>
+nnoremap ,,/ :! bash -lc "ARG=DMENUSAVE xdgsane %c"
 nnoremap q<cr> :file &<cr>l
 nnoremap ,g :! google.sh %c &>/dev/null & <cr>
 nnoremap ,e :! $TERMINAL $EDITOR %c <cr>

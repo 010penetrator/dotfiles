@@ -1,5 +1,5 @@
 super + x ; { m, s, e, h, n, o, a, g }
-  ror.sh { '' notimem, speedcrunch, 'WeeChat\|weechat' 'urxvt -e weechat', htop '$TERMINAL -e htop', nautilus, VirtualBox '', pavucontrol, listgames.sh }
+  ror.sh { '' notimem, speedcrunch, 'WeeChat\|weechat' 'urxvt -e weechat', htop '$TERMINAL -e htop', nautilus, VirtualBox '', pavucontrol, '' listgames.sh }
 
 super + x ; { z, i, f, p, q, l, c, d, space }
   { xdotool mousemove_relative 0 1600, listalbums.sh /ln/ho/.mus-history, listalbums.sh /ln/ho/.mpv-favourites, listalbums.sh /ln/ho/.mus-playlist, bspc node -c, listdwn.sh, SHFL=1 listalbums.sh /ln/ho/.mus-library, deadbeef, listdeadbeef.sh }
@@ -24,7 +24,7 @@ super + { c, a, A, b, m }
   'VIFM\|Thunar' 'raiseterm.sh & notify-send "no vifm found"', \
   'transmission-remote\|tremc\|rtorrent\|qbittorrent' '$TERMINAL_BIGER -e tremc -c localhost:9090', \
   'tremc-pi' '$TERMINAL_BIGER -T tremc-pi -e tremc -c 192.168.1.78:9090', \
-  ' Browser' 'noti echo starting TorBro... ; torbrowser-launcher', \
+  ' Browser\|Noita' 'noti echo starting TorBro... ; torbrowser-launcher', \
   'btop\|htop' '$TERMINAL_BIGER -e btop' }
 
 super + { T, V, C, B }

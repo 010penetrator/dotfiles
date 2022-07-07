@@ -124,14 +124,20 @@ rgf() {
 }
 
 # Ease xdg-mime routine
-xdef() {
+xdgsane() {
     if [ -z "$1" ] ; then
-        echo Usage: xm path/somefile.ext
+        echo Usage: xdgsane path/somefile.ext
     else
         type=$( xdg-mime query filetype "$1" )
         echo Mime filetype for \""$1"\" is \""$type"\"
         echo -e "Available apps for it are \n$(grep $type /usr/share/applications/mimeinfo.cache | cut -d '=' -f2- | tr ';' '\n')"
         echo Hint: Call \"xdg-mime default ***.desktop $type\" to set the default app
+        if [[ $ARG =~ DMENU ]] ; then
+            # source $sh/dmenurc
+            app=$(grep $type /usr/share/applications/mimeinfo.cache | cut -d '=' -f2- | tr ';' '\n' | tr -s '\n' | dmenu $DMENU_OPTIONS -fn "$DMENU_FN" -p "Choose default app for $type")
+            [[ $ARG =~ SAVE ]] && ! [[ -z $app ]] && xdg-mime default $app $type
+            [[ $ARG =~ RUN ]] && ! [[ -z $app ]] && xdg-open "$1"
+        fi
     fi
 }
 
