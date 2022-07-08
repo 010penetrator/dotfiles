@@ -27,14 +27,13 @@ bspc config automatic_scheme     alternate
 # bspc config directional_focus_tightness low
 
 bspc rule -a Gimp desktop='^8' state=floating follow=on
-# bspc rule -a Chromium desktop='^2'
 bspc rule -a org.remmina.Remmina desktop='^3'
 bspc rule -a feh state=floating
 bspc rule -a feh:*:DUMMY state=tiled
 bspc rule -a Lxappearance state=floating
 bspc rule -a SpeedCrunch state=floating
 bspc rule -a Gpick state=floating
-# bspc rule -a FBReader state=floating
+bspc rule -a FBReader state=floating
 bspc rule -a Pidgin state=floating
 bspc rule -a TelegramDesktop state=floating
 bspc rule -a Nautilus state=floating
@@ -49,12 +48,11 @@ bspc rule -a Zathura state=floating
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
 bspc rule -a koi_to_sis state=floating
+bspc rule -a koi_to_sis:koi_to_sis: state=fullscreen
+# bspc rule -a kitty:kitty:kitty state=fullscreen
 
 # wmctrl -m | grep "Name:" | awk '{print $2}'
 #   ( sleep .4 ; gsettings set org.gnome.mutter overlay-key '' )  # free Win key in Gnome 3
-
-
-# # if this is not unset, export it
 # [[ -z ${FLOATING_DESKTOPS+x} ]] || export FLOATING_DESKTOPS
 
 if [[ "$HOSTNAME" =~ ^bigstation ]]; then

@@ -321,8 +321,10 @@ set tabstop=2 softtabstop=2 expandtab shiftwidth=4 smarttab
 set textwidth=0 wrapmargin=0
 set smartindent
 set invlinebreak
-set sidescroll=12
-set list lcs=tab:\┊\ 
+set sidescroll=24
+" set list lcs=tab:\┆\۰
+	" ls tab sample
+set list lcs=tab:\┆\ 
 set scrolloff=2
 set number
 set numberwidth=2

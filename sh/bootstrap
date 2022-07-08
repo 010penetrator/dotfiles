@@ -65,7 +65,7 @@ fi
         echo --will move current .bashrc to exclusive trash file
         echo -e "\n\n----------$(date)-----.bashrc-------------\n\n" >> .bashrc_trash
         cat .bashrc >> .bashrc_trash
-	rm .bashrc
+        rm .bashrc
         )
     ln -sf .sh/bashrc_main .bashrc
     # ln -sf .sh/Xresources .Xresources
