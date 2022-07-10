@@ -8,27 +8,32 @@ echo
 # If TARG not provided, use PWD
 [[ -n $TARG ]] || TARG=$(pwd)
 
-[[ -n $LIST ]] || LIST=$HOME/.mus-playlist
-[[ -n $LIBRARY ]] || LIBRARY=$HOME/.mus-library
-[[ -n $FAVS ]] || FAVS=$HOME/.mus-favourites
-
 if ! [[ -d $TARG ]] ; then
-    echo "(non-existent)" $TARG @ $(realpath .)
+    echo "(non-existent)" "$TARG" @ $(realpath .)
+    TARGREAL="not found"
 else
-    echo $TARG @ $(realpath .)
+    echo "$TARG" @ $(realpath .)
+    TARGREAL=$(realpath "$TARG")
+    echo "(exact)" "$TARGREAL"
 fi
+
+[[ -z $LIBRARY ]] && LIBRARY=$HOME/.mus-library
+[[ -z $FAVS ]] && FAVS=$HOME/.mus-favourites
+[[ $LIST == $LIBRARY || $LIST == $FAVS || -z $LIST ]] &&
+    LIST=$HOME/.mus-playlist
+HIST=$HOME/.mus-history
 
 if [[ "$TARG" =~ "torrents/red/" ]] ; then
     [[ . -nt /ln/torrents/red/KKK ]] && echo --it is a new torrent
     [[ . -ot /ln/torrents/red/KKK ]] && echo --it is an archive torrent
 fi
-if [[ $( grep -F -c "$TARG" "$FAVS" ) -gt 0 ]] ; then
+if [[ $( grep -F -c "$TARGREAL" "$FAVS" ) -gt 0 ]] ; then
     echo --it is in favourites list
     INFAVS=1
 else
     INFAVS=0
 fi
-if [[ $( grep -F -c "$TARG" "$LIST" ) -gt 0 ]] ; then
+if [[ $( grep -F -c "$TARGREAL" "$LIST" ) -gt 0 ]] ; then
     echo --it is in play list
     INLIST=1
 else
@@ -43,9 +48,9 @@ echo
     echo "c - inspect directory with vifm"
 [[ $INLIST == 1 ]] && \
     echo "d - delete from playlist" || \
-    echo "a - add to playlist and quit"
+    echo "a - add to playlist"
 [[ $INFAVS == 0 ]] && \
-    echo "A - add to favourites"
+    echo "s - save to favourites"
 [[ -f $LIST ]] && \
     echo "p - play an album from Playlist"
 echo "f - play an album from Favourites"
@@ -62,18 +67,19 @@ source $sh/dmenurc
 if [[ $prompt == "q" ]] ; then
     exit
 elif [[ $INLIST != 1 && $prompt == "a" ]] ; then
-    realpath . >> "$LIST"
-elif [[ $INLIST == 1 && $prompt == "d" ]] ; then
-    echo deleting "$TARG"
-    grep -vF "$TARG" "$LIST" > /tmp/tmplist && mv /tmp/tmplist "$LIST"
+    echo "$TARGREAL" >> "$LIST"
     RUNAGAIN=1
-elif [[ $INFAVS == 0 && $prompt == "A" ]] ; then
-    echo "$TARG" >> "$FAVS"
+elif [[ $INLIST == 1 && $prompt == "d" ]] ; then
+    echo deleting "$TARGREAL"
+    grep -vF "$TARGREAL" "$LIST" > /tmp/tmplist && mv /tmp/tmplist "$LIST"
+    RUNAGAIN=1
+elif [[ $INFAVS == 0 && $prompt == "s" ]] ; then
+    echo "$TARGREAL" >> "$FAVS"
     RUNAGAIN=1
 elif [[ $prompt == "c" && $INVIFM != 1 ]] ; then
-    vifm . -c "wincmd o"
+    vifm "$TARGREAL" -c "wincmd o"
 elif [[ $prompt == "" ]] ; then
-    PAUSE=0 mpv-album .
+    PAUSE=0 mpv-album "$TARGREAL"
     # ask_album.sh
 elif [[ -f $LIST ]] && [[ $prompt == "p" ]] ; then
     SELECT=$( cat -n "$LIST" | sort -nr | sort -uk2 | sort -n | cut -f2- | dmenu $DMENU_OPTIONS -fn "$DMENU_FN" )
@@ -82,11 +88,11 @@ elif [[ -f $LIST ]] && [[ $prompt == "f" ]] ; then
     SELECT=$( cat -n "$FAVS" | sort -nr | sort -uk2 | sort -n | cut -f2- | dmenu $DMENU_OPTIONS -fn "$DMENU_FN" )
     ASK=1 PAUSE=1 mpv-album "$SELECT"
 elif [[ -f $LIBRARY ]] && [[ $prompt == "l" ]] ; then
-    SELECT=$( cat $LIBRARY | sort -R | dmenu $DMENU_OPTIONS -fn "$DMENU_FN" )
+    # notify-send "lib is $LIBRARY"
+    SELECT=$( cat "$LIBRARY" | sort -R | dmenu $DMENU_OPTIONS -fn "$DMENU_FN" )
     ASK=1 PAUSE=1 mpv-album "$SELECT"
-elif [[ -f $HOME/.mus-history ]] && [[ $prompt == "i" ]] ; then
-    echo $DMENU_OPTIONS
-    SELECT=$( cat -n $HOME/.mus-history | sort -nr | sort -uk2 | sort -nr | cut -f2- | dmenu $DMENU_OPTIONS -fn "$DMENU_FN" )
+elif [[ -f $HIST ]] && [[ $prompt == "i" ]] ; then
+    SELECT=$( cat -n "$HIST" | sort -nr | sort -uk2 | sort -nr | cut -f2- | dmenu $DMENU_OPTIONS -fn "$DMENU_FN" )
     ASK=1 PAUSE=1 mpv-album "$SELECT"
 else
     clear

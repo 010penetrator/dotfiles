@@ -1,52 +1,52 @@
 #!/bin/bash
 # This is how I listen to music albums with mpv
+# Usage: mpv /path/file DESIRED-TERMINAL-TITLE
 
-# Usage: mpv /dir/or/file DESIRED-TERMINAL-TITLE
-
-hist="$HOME/.mus-history"
-# ignore '..' target
-[ "$1" == '..' ] && set -- "." "${2}"
-
-# Save target. Because if it is not a directory, we are unable to track it via PWD
-export TARG="$1"
-
+HIST="$HOME/.mus-history"
+# Ignore '..' target
+[[ $1 == '..' ]] && set -- "." "${2}"
+# Treat no arg situation
+[[ -z $1 ]]      && set -- "." "${2}"
 clear
 
-# Conditionally change dir to $1
-if [ -n "$1" ] ; then
-    if [ -e "$1" ] ; then
-        [ -d "$1" ] && cd "$1"
-        echo . $PWD
+export TARG="$1"
+# Check if target is readable
+if [[ -n $TARG ]] ; then
+    if [[ -e $TARG ]] ; then
+        [[ -f $TARG ]] && TARG=$(dirname "$TARG")
+        TARGREAL=$(realpath "$TARG")
+        echo "$TARG" @ $(realpath .)
+        export TARG
     else
         echo mpv-album says !No such directory!
         read -rs -n1 -p "hit any key.."
-        [[ "$ASK" == 1 ]] && ask_album.sh ; exit
+        [[ $ASK == 1 ]] && ask_album.sh ; exit
     fi
 fi
 echo
 
 # Conditionally update history list
-if ! [ -f "$hist" ] ; then touch "$hist" ; fi
-recent=$( tail $hist -n100 | cat -n | sort -nr | sort -uk2 | sort -nr | head -n14 | cut -f2- )
-fresh=$( echo "$recent" | grep -xF "$PWD" >/dev/null; echo $? )
+if ! [[ -f $HIST ]] ; then touch "$HIST" ; fi
+recent=$( tail $HIST -n100 | cat -n | sort -nr | sort -uk2 | sort -nr | head -n14 | cut -f2- )
+fresh=$( echo "$recent" | grep -xF "$TARGREAL" >/dev/null; echo $? )
 case $fresh in
     0)
         echo This album has been listened to recently..
         ;;
     1)
         echo Updating history file..
-        realpath . >> "$hist"
+        echo "$TARGREAL" >> "$HIST"
         ;;
 esac
 
 # set terminal title
-if [ -n "$2" ] ; then
+if [[ -n $2 ]] ; then
     echo -ne "\033]0;MPV @ $PWD @ $2\007"
 else
     echo -ne "\033]0;MPV @ $PWD\007"
 fi
 
-if [[ "$PAUSE" == 0 ]] ; then
+if [[ $PAUSE == 0 ]] ; then
     PAUSE=''
 else
     PAUSE='--pause'
@@ -58,10 +58,10 @@ shopt -s nocaseglob
 if [[ $(ls | grep -ic '\.ape$\|\.flac$\|\.wv$') == $(ls | grep -ic '\.cue$') && \
                         $(ls | grep -ic '\.cue$') > 0 ]] ; then
     echo ==play cue with mpv==
-    mpv $PAUSE --no-video *.cue
+    mpv $PAUSE --no-video "$TARG"/*.cue
 else
     echo ==play audio files==
-    mpv $PAUSE --no-video *.{flac,mp3,ogg,ape,wv}
+    mpv $PAUSE --no-video "$TARG"/*.{flac,mp3,ogg,ape,wv}
 fi
-[[ "$ASK" == 1 ]] && ask_album.sh
+[[ $ASK == 1 ]] && ask_album.sh
 

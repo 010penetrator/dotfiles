@@ -188,7 +188,7 @@ bind -m emacs-standard -x '"\e\C-f": __fzf_1linux__'
 fzflocate() {
   local output
   output=$(
-    locate $* | fzf
+    locate -i $* | fzf
     ) || return
   echo "$output"
 }

@@ -17,7 +17,7 @@ else
     SEL=$( cat -n "$1" | sort -nr | sort -uk2 | sort -nr | cut -f2- | dmenu $DMENU_OPTIONS -fn "$DMENU_FN" )
 fi
 
-export LIST="$1"
+# export LIST="$1"
 PLAYER_CMD="ASK=1 mpv-album"
 
 # Construct command to call new terminal window
