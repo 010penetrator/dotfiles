@@ -8,12 +8,14 @@ bak()
   name1="/tmp/bak.tar.gz"
   need_umount=false
   tar -chzf "$name1" -C /ln/ --exclude=lo/cur sh lo
-  devlabel="TRAMV"
-  bakdev=$($LSBLK -l -o NAME,LABEL | grep $devlabel | cut -f1 -d ' ')
   #
-  [[ $bakdev == '' ]] && echo AMV is nowhere around && return 1
+  magic="AMV"
+  devlabel=$($LSBLK -l -o LABEL | grep $magic | sort | head -1)
+  bakdev=$($LSBLK -l -o NAME,LABEL | grep $devlabel | head -1 | cut -f1 -d ' ')
+  #
+  [[ $bakdev == '' ]] && echo $magic is nowhere around && return 1
   if [[ $( mount | grep $devlabel | grep $bakdev -c ) == 0 ]] ; then
-    echo ==mounting AMV..
+    echo ==mounting $devlabel ..
     udevil mount /dev/$bakdev /ln/mo/$devlabel && [[ $1 != '--keep' ]] &&
       need_umount=true
   fi
@@ -21,19 +23,20 @@ bak()
     echo --Flash drive unavailable!
     return 1
   fi
-  ! [[ -d $bakusbdir ]] && echo "Panic! bakusbdir is unavailable"
-  name2="$bakusbdir/auto/${space}_bak_$(date +%Y-%m-%d).tar.gz"
-  mkdir -p "$bakusbdir/auto"
+  bakdir=$(compgen -G /ln/mo/*$magic/bak)
+  ! [[ -d $bakdir ]] && echo "Panic! bakdir is unavailable"
+  name2=$bakdir"/auto/${space}_bak_$(date +%Y-%m-%d).tar.gz"
+  mkdir -p $bakdir/auto
   cp "$name1" "$name2"
   echo "-- latest tars are:"
-  ls -lrth "$bakusbdir"/auto/*bak_*tar* | cut -f6- -d ' ' | tail -n 4
+  ls -lrth $bakdir/auto/*bak_*tar* | cut -f6- -d ' ' | tail -n 4
   if [[ $space == "wo" ]] ; then
     if [[ $FAST != 1 ]] ; then
       echo "-- Creating gitjob.tar.zst --"
-      # tar -I 'zstd -10 -T0' -X /ln/sh/zip_exclu -cf "$bakusbdir"/gitjob.tar.zst -C /ln/ho/ gitjob
+      # tar -I 'zstd -10 -T0' -X /ln/sh/zip_exclu -cf $bakdir/gitjob.tar.zst -C /ln/ho/ gitjob
       cd $wd1 && make -s -f my_Makefile clean
       cd $wd2 && make -s clean
-      tar -I 'zstd -10 -T0' -cf "$bakusbdir"/gitjob.tar.zst -C /ln/ho gitjob
+      tar -I 'zstd -10 -T0' -cf $bakdir/gitjob.tar.zst -C /ln/ho gitjob
     fi
     tx=/ln/ho/fz/99.txt
     mkdir -p /ln/mo/$devlabel/fz
@@ -53,27 +56,30 @@ bak()
   fi
   echo -- Starting sync --
   sync /ln/mo/$devlabel
-  [[ $need_umount == true ]] && echo ==unmounting AMV.. && udevil umount /ln/mo/$devlabel
+  [[ $need_umount == true ]] && echo ==unmounting $devlabel .. && udevil umount /ln/mo/$devlabel
   echo Done!
   cd "$startdir"
 }
 
 restosh()
 {
-  devlabel="TRAMV"
-  bakdev=$($LSBLK -l -o NAME,LABEL | grep $devlabel | cut -f1 -d ' ')
-  [[ $bakdev == '' ]] && echo AMV is nowhere around && return 1
+  magic="AMV"
+  devlabel=$($LSBLK -l -o LABEL | grep $magic | sort | head -1)
+  bakdev=$($LSBLK -l -o NAME,LABEL | grep $devlabel | head -1 | cut -f1 -d ' ')
+  #
+  [[ $bakdev == '' ]] && echo $magic is nowhere around && return 1
   need_umount=false
   if [[ $( mount | grep $devlabel | grep $bakdev -c ) == 0 ]] ; then
-    echo ==mounting AMV..
-    udevil mount /dev/$bakdev /ln/mo/$devlabel && [[ $1 != '--keep' ]] &&
+    echo ==mounting $devlabel ..
+    udevil mount /dev/$bakdev /ln/mo/*$devlabel && [[ $1 != '--keep' ]] &&
       need_umount=true
   fi
   if [[ $( mount | grep $devlabel | grep $bakdev -c ) != 1 ]] ; then
     echo --Flash drive unavailable!
     return 1
   else
-    arc=$(ls -1t $bakusbdir/auto/*bak*tar.gz | head -n1)
+    bakdir=$(compgen -G /ln/mo/*$magic/bak)
+    arc=$(ls -1t $bakdir/auto/*bak*tar.gz | head -n1)
     echo -n 'arc is '
     ls -lh "$arc" | cut -f9- -d ' '
     # Now extract and remove files not present in archive
@@ -97,9 +103,9 @@ restosh()
     )
     # tar -xf "$arc" -C "$(readlink /ln/sh)" sh --strip-components=1
     # tar -xf "$arc" -C "$(readlink /ln/lo)" lo --strip-components=1
-    [[ $space == "ho" ]] && [[ -d $HOME/1 ]] && [[ -d "$bakusbdir/../fz" ]] && mkdir -p $HOME/1/new && mv --backup=numbered "$bakusbdir/../fz/"* $HOME/1/new/
+    [[ $space == "ho" ]] && [[ -d $HOME/1 ]] && [[ -d $bakdir/../fz ]] && mkdir -p $HOME/1/new && mv --backup=numbered $bakdir/../fz/* $HOME/1/new/
   fi
-  [[ $need_umount == true ]] && echo ==unmounting AMV.. && udevil umount /ln/mo/$devlabel
+  [[ $need_umount == true ]] && echo ==unmounting $devlabel .. && udevil umount /ln/mo/*$devlabel
   echo --Done!
 }
 

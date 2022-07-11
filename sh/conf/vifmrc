@@ -29,6 +29,7 @@ command! mpiii :! ffmpeg -i %c -qscale:a 2 %D/%c.mp3 &>/dev/null &
 " command! respic :! echo $PWD && respic.sh 50%%%%
 command! respic :! echo $PWD ; respic.sh %a
 command! rescol :! convert %c -quality 95%%  -sampling-factor '2x2,1x1,1x1' %c.jpg
+command! md5 :! bash -c "md5sum %f; echo hit.any.key; read -rsn1"
 command! respng :! mkdir res ; for f in *.png; do d=${f%%%%.*} ; convert "$f" -quality 95%%%% -sampling-factor 4:4:4  jpg:res/"$d"".jpg" ; done # png to jpg
 map re :! for f in %f; do d=${f%%.*} ; convert "$f" -resize 50%% -sampling-factor 4:4:4 -quality 95%% jpg:"$d"".R.jpg" ; done
 command! resmusAll :! mkdir resampled orig ; for flac in *.flac; do sox -S "${flac}" -G -b 16 ./resampled/"${flac}" rate -v -L 44100 dither ; mv "${flac}" orig/ ; done
@@ -155,7 +156,7 @@ nnoremap ao : aumo <cr>
 nnoremap au :! echo Sync... ; sync %f && udevil umount %f<cr>
 nnoremap am ggVG<cr>:copy<cr>
 nnoremap aM ggVG<cr>:move<cr>
-nnoremap del :! echo You try to delete %f; sudo rm -r %f <cr>
+nnoremap del :! echo You try to delete %f; sudo rm -r %f<cr>
 nnoremap qU ggVG: !mv --backup=numbered %f ../<cr>
 nnoremap qu :! mv --backup=numbered %f ../<cr>
 nnoremap ctok :tok<cr>
@@ -168,28 +169,28 @@ nnoremap C :copy<cr>
 nnoremap E :move<cr>
 noremap aj :!touch %f --date=now<cr>j
 nnoremap cn :clone<cr>
-nnoremap ah :!ln  $PWD/%c %D/%c <cr>
-nnoremap al :!ln -rs $PWD/%c %D/%c <cr>
+nnoremap ah :!ln  $PWD/%c %D/%c<cr>
+nnoremap al :!ln -rs $PWD/%c %D/%c<cr>
 nnoremap ap al
-nnoremap aL :!ln -s $PWD/%c %d/%cL <cr>
+nnoremap aL :!ln -s $PWD/%c %d/%cL<cr>
 
 " Compress files "
-nnoremap zu :! upk2dir.sh %c <cr>
-nnoremap zU :! upk2dir.sh %c %D <cr>
-nnoremap zp :! 7z a -mx=6 -xr!tags %c.7z %f <cr>
+nnoremap zu :! upk2dir.sh %c;echo<cr>
+nnoremap zU :! upk2dir.sh %c %D;echo<cr>
+nnoremap zp :! 7z a -mx=6 -xr!tags %c.7z %f<cr>
 nnoremap z0 :! 7z a -mx=1 -xr!tags %c.7z %f
-nnoremap zP :! 7z a -mx=6 -xr!tags %D/%c.7z %f <cr>
+nnoremap zP :! 7z a -mx=6 -xr!tags %D/%c.7z %f<cr>
 let $TAR_IGNOR="--exclude='.git' --exclude='tags' --exclude='debug/*' --exclude='build/*' --exclude='~$*'"
 nnoremap zs :! tar -I 'zstd -10v -T0' -X /ln/sh/zip_exclu -cf    %c.tar.zst %f
 nnoremap zS :! tar -I 'zstd -10v -T0' -X /ln/sh/zip_exclu -cf %D/%c.tar.zst %f
-nnoremap ze :! upk.sh %c <cr>
-nnoremap zE :! cd %D; upk.sh %d/%c <cr>
-nnoremap z"e :! upk.sh %r" <cr>
-nnoremap z"E :! upk2dir.sh %r" %d <cr>
+nnoremap ze :! upk.sh %c<cr>
+nnoremap zE :! cd %D; upk.sh %d/%c<cr>
+nnoremap z"e :! upk.sh %r<cr>
+nnoremap z"E :! upk2dir.sh %r %d<cr>
 
 " Jump to places "
 nnoremap gh :cd $HOME<cr>
-nnoremap gz :cd /ln/hh<cr>
+nnoremap g8 :cd /ln/hh|exec 'cd' system('realpath .')<cr>
 nnoremap g; :cd /ln/mo<cr>
 nnoremap gq :cd /ln/mo/fast/qq<cr>:sort<cr>N
 nnoremap g/ :cd /ln<cr>
@@ -210,6 +211,7 @@ nnoremap gb :cd $bakcld<cr>
 nnoremap gB :cd $bakhot<cr>
 nnoremap gy :cd /ln/mob<cr>
 nnoremap gS :cd $bakusbdir/..<cr>:goto bak<cr>
+nnoremap gi :cd /ln/mo/BAMV/fli<cr>
 nnoremap gk :cd /ln/torrents/red/KKK<cr>:sort<cr>mh
 nnoremap gv :cd ~/.vim<cr>:goto plugged<cr>
 nnoremap gn :cd ~/.config/nvim<cr>:goto plugged<cr>

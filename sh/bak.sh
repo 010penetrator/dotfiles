@@ -57,6 +57,7 @@ tar -cf "$bakhot/$DAY/conf.tar.zst" -I "zstd -10 -T0" --ignore-failed-read \
     } ||
         { echo Warning! Cold backup dir failed! ;}
 
+bakusbdir=$(compgen -G /ln/mo/*AMV/bak)
 [[ -d $bakusbdir ]] &&
     {
         echo --Gonna write to SAM as well..
