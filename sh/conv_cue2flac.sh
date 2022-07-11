@@ -22,8 +22,12 @@ drn=${PWD##*/}$i
 mkdir -p "$2/$drn"
 shnsplit -q -f "$cuename" -d "$2/$drn" -t "%n %t" -o flac "$name"
 rm "$2/$drn"/*pregap.flac 2>/dev/null
-# Care tagecho 1 && cuetag.sh "$cuename" "$2/$drn"/*.flac ) ||
-( command -v cuetag &> /dev/null && echo 2 && cuetag "$cuename" "$2/$drn"/*.flac )
+
+# Care tags
+( command -v "cuetag.sh" &> /dev/null && CT_CMD="cuetag.sh" ) ||
+( command -v "cuetag"    &> /dev/null && CT_CMD="cuetag" )
+[[ -n $CT_CMD ]] && cuetag.sh "$cuename" "$2/$drn"/*.flac
+
 cp 2>/dev/null *[C,c]over.* "$2/$drn/"
 cp 2>/dev/null [F,f]ront.* "$2/$drn/"
 cp 2>/dev/null [F,f]older.* "$2/$drn/"

@@ -1,6 +1,6 @@
 #!/bin/bash
 # Convert music folder to flac format
-# Usage: conv_uni2flac.sh target_dir
+# Usage: conv_any2flac.sh target_dir
 
 if [ -z "$1" ] ; then set -- "." "${2}" ; fi
 if [ -z "$2" ] ; then set -- "${1}" "." ; fi
