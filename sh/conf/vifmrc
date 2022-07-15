@@ -45,7 +45,7 @@ command! tik :!touch --date="$(date -R -r %c) + 10 minute" KKK
 command! amou :! bash -ic ' source /ln/ho/.bashrc ; amou '
 command! aumo :! bash -ic ' source /ln/ho/.bashrc ; aumo '
 command! own  :! sudo chown 1000:100 %f
-command! chmodre :! find %f -type f -exec chmod 644 {} \;
+command! chmodauto :! find %f -type f -exec chmod 644 {} \;
 
 """"""""""""""""""""""""
 ""     Mappings:      ""
@@ -557,7 +557,8 @@ filetype *.7z,*.rar,*.zip
 fileviewer *.7z 7z l %c
 
 " Office files
-filextype *.odt,*.doc,*.docx,*.xls,*.xlsx,*.odp,*.pptx libreoffice %f &
+filextype *.odt,*.doc,*.docx,*.xls,*.xlsx,*.odp,*.pptx abiword %f &>/dev/null &
+" filextype *.odt,*.doc,*.docx,*.xls,*.xlsx,*.odp,*.pptx libreoffice %f &
 fileviewer *.doc catdoc %c
 fileviewer *.docx, docx2txt.pl %f -
 

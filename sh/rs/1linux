@@ -187,7 +187,7 @@ ps -u $(id -u) -o pid= | while read pid; do
 
 ==FS
 mkfs.vfat -F32 /dev/sdx1
-sync .  ; time ( dd if=/dev/zero of=zeroes.file bs=1000M count=8 ; sync . ) ; rm zeroes.file  # test disk write speed
+sync -f .  ; time ( dd if=/dev/zero of=zeroes.file bs=1000M count=8 ; sync -f . ) ; rm zeroes.file  # test disk write speed
 dd bs=4M if=~/image.img of=/dev/sdb && sync # restore partition from file
 dd if=/dev/zero of=/dev/sdx bs=4k && sync # wipe partition
 sudo dd if=/dev/zero of=zero.file # wipe free space # if you don't use sudo then all but 5% of the will be used (5% is reseved for the root login)
@@ -209,8 +209,8 @@ rsync -e ssh -Lav --progress --exclude=".*/" --no-perms --no-times --delete --si
 7z a dir.7z Dir -p -mhe=on #create encrypted 7z
 7z a -mx=3 -xr!.git -xr!tags out.7z Projekt # create quick 7z
 tar -I 'zstd -v -11 -T0' -cf somedir.tar.zst --exclude='.git' --exclude='tags' somedir # create tar.zst
-sudo tar -I 'zstd -v -10 -T0' -cf /ln/mo/fast/__root.tar.zst --one-file-system --exclude='/home/*/Downloads' / # backup root filesystem
-tar -I 'zstd -v -10 -T0' -cf $bakcld/home.__.tar.zst -C /home --exclude='Downloads' --exclude='bak' --exclude='.cache' --exclude='*vifm/Trash/*' . # backup home
+sudo tar -I 'zstd -v -10 -T0' -cf $bakcld/root.__.tar.zst --one-file-system --exclude='/home/*/Downloads' --exclude '.cache' --exclude='*vifm/Trash/*' / # backup root filesystem
+tar -I 'zstd -v -10 -T0' -cf $bakcld/home.__.tar.zst -C /home --exclude='Downloads' --exclude='bak' --exclude='.cache' --exclude='*vifm/Trash/*' . # backup home dir
 sudo sh -c "zstd -v -10 -T0 </dev/nvmeXX >$bak/part.zst" # backup partition
 zstdcat root.zst >/dev/nvme0n1p6 # restore zst archived image
 zip -r -1 arc.zip Dir Dir2 #create zip

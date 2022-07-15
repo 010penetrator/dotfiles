@@ -6,6 +6,7 @@ source $sh/dmenurc
 data="\
 Zathura:listzathura.sh\n\
 FBReader:listfictionbook.sh\n\
+Abiword:listabiword.sh\n\
 Downloads:listdwn.sh\n\
 mpv Favs:SHFL=1 listalbums.sh /ln/ho/.mpv-favourites\n\
 mpv Playlist:listalbums.sh /ln/ho/.mus-playlist\n\

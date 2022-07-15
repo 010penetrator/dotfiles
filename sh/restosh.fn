@@ -55,7 +55,7 @@ bak()
       fi
   fi
   echo -- Starting sync --
-  sync /ln/mo/$devlabel
+  sync /dev/$bakdev
   [[ $need_umount == true ]] && echo ==unmounting $devlabel .. && udevil umount /ln/mo/$devlabel
   echo Done!
   cd "$startdir"

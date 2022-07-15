@@ -60,9 +60,20 @@ alias chmodre='find . -type f -exec chmod 644 {} \;'
 # alias dmenu='dmenu $DMENU_OPTIONS -fn "$DMENU_FN"'
 # alias vf='$TERMINAL -e vifm . &'
 # alias trmclient='title transmission-remote-cli; transmission-remote-cli -c localhost:9090 ; title bash'
+alias ncdu='ncdu --color off'
+# alias ncdu='ncdu --color off --graph-style hash'
+alias lm='df -BGB --output=source,fstype,avail,pcent,target -x tmpfs -x devtmpfs'
+alias wlm='watch -n.4 df -BMB --output=source,avail,pcent,target'
+alias lb='$LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT,FSUSE% | grep "sd\|nvme" --color=none'
+alias wlb='watch -n.4 $LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT'
+alias leto='date +%Y-%m-%d'
+alias p='ps aux | grep -v grep | grep'
+alias dropcs='sync && echo 3 | sudo tee /proc/sys/vm/drop_caches'
+alias vs='nvim -S /ln/co/nvim/session/comon'
+# alias vl='MODE=last nvimrpc'
+alias mm='make -f my_Makefile'
 
 type -f ai &>/dev/null ||
-{
 if  type -f pacman &>/dev/null ; then
     alias as='pacman -Ss'
     alias ai='sudo pacman -S'
@@ -70,27 +81,14 @@ elif  type -f apt &>/dev/null ; then
     alias as='apt search'
     alias ai='sudo apt install'
 fi
-}
 
 source $sh/dmenurc
 alias dmenu='dmenu $DMENU_OPTIONS -fn "$DMENU_FN"'
 
-alias ncdu='ncdu --color off'
-# alias ncdu='ncdu --color off --graph-style hash'
-alias lm='df -BGB --output=source,fstype,avail,pcent,target -x tmpfs -x devtmpfs'
-alias wlm='watch -n.4 df -BMB --output=source,avail,pcent,target'
-alias lb='$LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT,FSUSE% | grep "sd\|nvme" --color=none'
-alias wlb='watch -n.4 $LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT'
 amou() { target=$( $LSBLK -f | grep -e ".sd\|.nvme" | fzf -e | cut -f 1 -d " " | tr -cd '[:alnum:]' ); [ ! -z "${target}" ] && udevil mount /dev/"$target" && echo "/dev/$target mounted" || echo 'No target.' ; }
-aumo() { target=$( $LSBLK -f | grep -e ".sd\|.nvme" | grep '/' | cut -c 7- | fzf -e |  cut -f 1 -d ' ' ); mopoi=$( mount | grep "${target}" | cut -f 3 -d ' ' ); [ ! -z "${target}" ] && sync "$mopoi" && udevil umount "/dev/$target" && echo "/dev/$target unmounted from $mopoi" || echo 'No target.' ; }
+aumo() { target=$( $LSBLK -f | grep -e ".sd\|.nvme" | grep '/' | cut -c 7- | fzf -e |  cut -f 1 -d ' ' ); [ ! -z "${target}" ] && sync "/dev/$target" && udevil umount "/dev/$target" && echo "/dev/$target unmounted from $mopoint" || echo 'No target.' ; }
 # title() { echo -ne "\e]0;$*\a"; }
 title() { echo -ne "\033]0;$*\007"; }
-alias leto='date +%Y-%m-%d'
-alias p='ps aux | grep -v grep | grep'
-alias dropcs='sync && echo 3 | sudo tee /proc/sys/vm/drop_caches'
-alias vs='nvim -S /ln/co/nvim/session/comon'
-alias vl='MODE=last nvimrpc'
-alias mm='make -f my_Makefile'
 
 # Functions #
 zz() { du -csh $*; local IFS="_"; filename=$(echo "$*" | tr / _); tar -I 'zstd -10 -T0' -cf "$filename".tar.zst --exclude='.git' --exclude='tags' $*; du -sh "$filename".tar.zst; }

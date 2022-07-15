@@ -12,7 +12,7 @@ super + { q, Q, D, F, t, v, s, y, r, R, z, g, slash }
   '' scroff, '' 'sus 1', windowswitcher.sh, '' 'rofi -show window', \
   'xterm\|urxvt\|kitty', \
   ' - VIMSERV\|VIM$\|VIM @ \| - NVIM$\|nvim $\|QtCreator' 'vinew', 'chromium\|Firefox\|Remmina' 'firefox', \
-  'Thunar\|pcmanfm\| YouTube \|office.libreoffice' 'notify-send not\ found', zathura listzathura.sh, evince, FBReader, \
+  'Thunar\|pcmanfm\| YouTube \|office.libreoffice\|Abiword' 'notify-send not\ found', zathura listzathura.sh, evince, FBReader, \
   'Telegram\|Pidgin\|Git\|TuxGuitar\|hydrogen\|VirtualBox' '', \
   '' listmenu.sh }
 
