@@ -47,6 +47,7 @@ PS1=$'\[$(tput bold)\]\[$(tput setaf 34)\]\u\[$(tput setaf 78)\] \W \[$(tput set
 # Aliases #
 alias bb='tty | grep -q /dev/tty && (terminusfont ; sudo /./bin/conn & startx /ln/sh/xinitrc bspwm) || echo This is not tty!'
 alias tf='terminusfont'
+alias v='virpc'
 alias sk='select-kitty-theme.sh'
 alias gs='( [ -f $HOME/.env ] && . $HOME/.env ; gsync )'
 alias yp='fc -ln -1 | cut -c 3- | tr -d "\n" | xclip ; echo yanked prev command'

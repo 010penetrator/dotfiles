@@ -28,13 +28,19 @@ require'nvim-treesitter.configs'.setup {
 -- vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
---[[ vim.opt.list = true
-vim.opt.listchars:append("eol:↴")
+-- vim.opt.list = true
+-- vim.opt.listchars:append("eol:↴")
 require('indent_blankline').setup {
     show_end_of_line = true,
     show_current_context = false,
     show_current_context_start = true,
-} ]]
+    indent_blankline_enabled = false,
+    enabled = false,
+    char = '░',
+    context_char = '│'
+}
+-- vim.g.indent_blankline_enabled = false
+-- let g:indent_blankline_char = '⋮'
 
 require'marks'.setup {
   -- whether to map keybinds or not. default true
@@ -91,7 +97,7 @@ require'marks'.setup {
 -- n  m]          * <Cmd>lua require'marks'.next()<CR>
 -- n  f<Up>       * <Cmd>lua require'marks'.prev_bookmark()<CR>
 
-require('toggleterm').setup{
+require('toggleterm').setup {
     -- direction = 'vertical' | 'horizontal' | 'window' | 'float',
     direction = 'horizontal',
     size = 25,

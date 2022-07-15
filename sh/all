@@ -4,16 +4,12 @@
 
 uptime -p ; echo
 
-du -sh $HOME
-du -sh /var/log/journal/
-[ -d /var/cache/pacman/pkg/ ] && du -sh /var/cache/pacman/pkg/ && echo
-[ -d /var/cache/apt ] && { du -sh /var/cache/apt/ 2>/dev/null ; echo ; }
-
 # Call few commands with a single 'sudo' call
 sudo bash -c "
 (
 journalctl --vacuum-size=50M --quiet
 # journalctl --disk-usage ; echo
+echo -- Updating packages
 if  lsb_release -i | grep -q -ie 'mint\|debian\|buntu' ; then
     apt update
     apt upgrade
@@ -31,9 +27,15 @@ NVSD="$HOME/.config/nvim/session"
 [ -d $NVSD ] &&
     tar -czf "$NVSD/../sess.tar.gz" -C "$NVSD/../" session
 
+echo
+du -sh $HOME
+du -sh /var/log/journal/
+[ -d /var/cache/pacman/pkg/ ] && du -sh /var/cache/pacman/pkg/ && echo
+[ -d /var/cache/apt ] && { du -sh /var/cache/apt/ 2>/dev/null ; echo ; }
+
+df -BGB --output=source,fstype,avail,pcent,target -x tmpfs -x devtmpfs
+# $LSBLK -o NAME,LABEL,MOUNTPOINT,SIZE,FSUSE% | grep "sd\|nvme" --color=none ; echo
+
 # Backup something else
 echo; DONTOVERWRITE=1 bak.sh
-
-echo; df -BGB --output=source,fstype,avail,pcent,target -x tmpfs -x devtmpfs
-# $LSBLK -o NAME,LABEL,MOUNTPOINT,SIZE,FSUSE% | grep "sd\|nvme" --color=none ; echo
 

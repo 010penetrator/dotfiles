@@ -8,7 +8,7 @@ DAY=$(date +%Y-%m-%d)
 MON=$(date +%Y-%m)
 if [[ -d $bakhot/$DAY ]] ; then
     if [[ $DONTOVERWRITE == 1 ]] ; then
-        echo -e "--Backup not wanted!"
+        echo -e "-- Backup not wanted!"
         exit
     else
         rm -rf "$bakhot/$DAY"

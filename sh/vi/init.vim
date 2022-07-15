@@ -579,17 +579,17 @@ noremap <c-p> 12<c-y>
 map <c-j> <Plug>(edgemotion-j)
 map <c-k> <Plug>(edgemotion-k)
 " go to text start/finish in file
-nnoremap g<Home>   gg:call search('^.') <CR>k
-nnoremap g<End> G$:call search('^.','b') <CR>0j
-" nnoremap gT  gg:call search('^.') <CR>k
-" nnoremap gB  G$:call search('^.','b') <CR>0j
+nnoremap g<Home>   gg:call search('^.')<CR>k
+nnoremap g<End> G$:call search('^.','b')<CR>0j
+" nnoremap gT  gg:call search('^.')<CR>k
+" nnoremap gB  G$:call search('^.','b')<CR>0j
 " search such //comments//
 nnoremap am /\s*\/\/.*\/\/$<CR>
 " jump to blank or one-char lines
-nnoremap <silent> gn :call search('^\(.\\|\(\s\)*\)$','W') <CR>
-nnoremap <silent> gp :call search('^\(.\\|\(\s\)*\)$','bW') <CR>
-onoremap <silent> gn :call search('^\(.\\|\(\s\)*\)$','W') <CR>
-onoremap <silent> gp :call search('^\(.\\|\(\s\)*\)$','bW') <CR>
+nnoremap <silent> gn :call search('^\(.\\|\(\s\)*\)$','W')<CR>
+nnoremap <silent> gp :call search('^\(.\\|\(\s\)*\)$','bW')<CR>
+onoremap <silent> gn :call search('^\(.\\|\(\s\)*\)$','W')<CR>
+onoremap <silent> gp :call search('^\(.\\|\(\s\)*\)$','bW')<CR>
 
 " For vim-signature
 " nmap ]s ]-
@@ -602,39 +602,39 @@ nnoremap aw :w<CR>
 nnoremap qx :q<CR>
 nnoremap ,x :q<CR>
 nnoremap qg :tabclose<CR>
-nnoremap ,q :qa <CR>
+nnoremap ,q :qa<CR>
 nnoremap ,d :bd!<CR>
 nnoremap ,bd :BDnJump<CR>
 nnoremap ,i :diffthis \| wincmd w<CR>
 nnoremap ,o :diffoff  \| wincmd w<CR>
-nnoremap c<space> :echo expand ('%') '.@.' getcwd() <CR>
-nnoremap cC       :echo expand ('%') '.@.' getcwd() <CR>
-nnoremap ,c. :LCDhere <CR>
-nnoremap ,cg :call ClimbToDirWhere(".git/index",1) \| pwd <CR>
-nnoremap ,cm :call ClimbToDirWhere("Makefile",1) \| pwd <CR>
+nnoremap c<space> :echo expand ('%') '.@.' getcwd()<CR>
+nnoremap cC       :echo expand ('%') '.@.' getcwd()<CR>
+nnoremap ,c. :LCDhere<CR>
+nnoremap ,cg :call ClimbToDirWhere(".git/index",1) \| pwd<CR>
+nnoremap ,cm :call ClimbToDirWhere("Makefile",1) \| pwd<CR>
 " local cd to current kinda project path
-nnoremap <silent> ,c, :call GetProjDir() <bar> exec "lcd " . b:proj_dir <bar> echo 'lcd @' getcwd() <cr>
+nnoremap <silent> ,c, :call GetProjDir() <bar> exec "lcd " . b:proj_dir <bar> echo 'lcd @' getcwd()<cr>
 nnoremap a<BS> :checktime<cr>
 nnoremap q<BS> :enew<CR>
 nnoremap z<BS> :e!<CR>
 " new split to netrw
-nnoremap a-  : split <bar> exec "normal -" <cr>
-nnoremap a_  :vsplit <bar> exec "normal -" <cr>
-" nnoremap a<CR> :e <c-r><c-f> <CR>
+nnoremap a-  : split <bar> exec "normal -"<CR>
+nnoremap a_  :vsplit <bar> exec "normal -"<CR>
+" nnoremap a<CR> :e <c-r><c-f><CR>
 " split open file under cursor
-nnoremap ae :vsp <c-r><c-f> <CR>
-nnoremap aE :sp <c-r><c-f> <CR>
+nnoremap ae :vsp <c-r><c-f><CR>
+nnoremap aE :sp <c-r><c-f><CR>
 " open file under cursor in previous window
-nnoremap a<tab> :wincmd p \| e <c-r><c-f> <CR>
+nnoremap a<tab> :wincmd p \| e <c-r><c-f><CR>
 " split open current location with netrw
-nnoremap as :wincmd s \| e %:p:h <CR>
-nnoremap av :wincmd v \| e %:p:h <CR>
-nnoremap qs :new  \| lcd #:p:h \| echo expand ('%') '.@.' getcwd() <CR>
-nnoremap qv :vnew \| lcd #:p:h \| echo expand ('%') '.@.' getcwd() <CR>
-nnoremap qS :split # <cr>
-nnoremap qV :vsplit # <cr>
+nnoremap as :wincmd s \| e %:p:h<CR>
+nnoremap av :wincmd v \| e %:p:h<CR>
+nnoremap qs :new  \| lcd #:p:h \| echo expand ('%') '.@.' getcwd()<CR>
+nnoremap qv :vnew \| lcd #:p:h \| echo expand ('%') '.@.' getcwd()<CR>
+nnoremap qS :split #<CR>
+nnoremap qV :vsplit #<CR>
 nnoremap <C-W>S :vsplit<CR>
-nnoremap an :tabe %:p:h <CR>
+nnoremap an :tabe %:p:h<CR>
 " nnoremap ,. <C-^>
 nnoremap <silent> ,. :if bufexists(bufnr('#')) <bar> b # <bar> echo expand('%') <bar> else <bar> echo 'No prev buffer.' <bar> endif<CR>
 nnoremap ,by :call BufYank()<CR>
@@ -669,8 +669,8 @@ nnoremap <C-PageDown> gt
 nnoremap gr gT
 nnoremap q] gt
 nnoremap q[ gT
-nnoremap q{ :tabmove -1 <CR>
-nnoremap q} :tabmove +1 <CR>
+nnoremap q{ :tabmove -1<CR>
+nnoremap q} :tabmove +1<CR>
 nnoremap q< :call MoveToPrevTab()<CR>
 nnoremap q> :call MoveToNextTab()<CR>
 " select previous tab
@@ -730,25 +730,26 @@ nnoremap ,gh :call FocusBufOrDo('sh_history','e $HOME/.bash_history')<CR>G
 nnoremap ,gl :call FocusBufOrDo('1linux','e $sh/rs/1linux')<CR>
 nnoremap q/  :call FocusWindowOrDo('99.txt','1tabn \| wincmd b \| e $buf')<CR>
 
-nnoremap ,,b :Goyo<CR>
+nnoremap ,vv :Goyo<CR>
+nnoremap ,vi :IndentBlanklineToggle<CR>
 
 " Start and quit Vim
-nnoremap ,V :source $MYVIMRC <CR>
-nnoremap ,,v :source $MYVIMRC <CR>
+nnoremap ,V :source $MYVIMRC<CR>
+nnoremap ,,v :source $MYVIMRC<CR>
 nnoremap ,cs :LoadColor<CR>
 nnoremap ,vs :source $RTP/session/comon <bar> call AddRpcEar()<CR>
 nnoremap ,,q :call SaveColor() <bar> SSave! comon <bar> qa<CR>
 nnoremap ,,s :call SaveColor() <bar> SSave! comon<CR>
-nnoremap ,vq :qa! <CR>
+nnoremap ,vq :qa!<CR>
 nnoremap ,l :Startify<CR>
 nnoremap ,zq :wa <bar> qa<CR>
 nnoremap ,ar :call AddRpcEar()<CR>
 " Open current file at vimserver session via my "vimrpc" shell script
-nnoremap ,aa :silent exec '! virpc "%:p"' <CR>
-nnoremap ,a. :exec '! virpc "%:p"' \| q <CR>
-nnoremap ,ac :exec '! MODE=cur    virpc "%:p"' \| q <CR>
-nnoremap ,an :exec '! MODE=newtab virpc "%:p"' \| q <CR>
-nnoremap ,as :exec '! MODE=split  virpc "%:p"' \| q <CR>
+nnoremap ,aa :silent exec '! virpc "%:p"'<CR>
+nnoremap ,a. :exec '! virpc "%:p"' \| q<CR>
+nnoremap ,ac :exec '! MODE=cur    virpc "%:p"' \| q<CR>
+nnoremap ,an :exec '! MODE=newtab virpc "%:p"' \| q<CR>
+nnoremap ,as :exec '! MODE=split  virpc "%:p"' \| q<CR>
 
 " Have mappings in terminal mode
 if v:version >= 801
@@ -789,7 +790,7 @@ let key4=""
 let key15=""
 nnoremap <silent> <Space> :exec 'normal! '.float2nr(round(winheight(0)*(exists("b:scrollpart") ? b:scrollpart : g:scrollpart)*0.01))."<C-d>"<CR>
 nnoremap <silent> <BS>    :exec 'normal! '.float2nr(round(winheight(0)*(exists("b:scrollpart") ? b:scrollpart : g:scrollpart)*0.01)).key15<CR>
-" nnoremap <silent> <CR>    :exec 'normal! '.float2nr(round(winheight(0)*(exists("b:scrollpart") ? b:scrollpart : g:scrollpart)*0.01))."<C-d>"<CR>
+" nnoremap <silent><CR>    :exec 'normal! '.float2nr(round(winheight(0)*(exists("b:scrollpart") ? b:scrollpart : g:scrollpart)*0.01))."<C-d>"<CR>
 " nnoremap <silent> <tab>   :exec 'normal! '.float2nr(round(winheight(0)*(exists("b:scrollpart") ? b:scrollpart : g:scrollpart)*0.01)).key15<CR>
 
 " Preserve jumplist
@@ -809,7 +810,7 @@ nnoremap aP :put! *<CR>
 nnoremap ai :put  +<CR>
 nnoremap aI :put! +<CR>
 " copy Vim copy register to system copy buffers
-nnoremap qy :let @+ = @" <bar> :let @* = @" <CR>
+nnoremap qy :let @+ = @" <bar> :let @* = @"<CR>
 " put select system buffer as single paragraph
 nnoremap ao o<Esc>:put! *<CR>`[v`]:g/^$/d<CR>:noh<CR>
 nnoremap aO o<Esc>:put! +<CR>`[v`]:g/^$/d<CR>:noh<CR>
@@ -834,8 +835,8 @@ nnoremap ,; :6mes<CR>
 " Eval yanked
 nnoremap yq :@"<CR>
 " Add Plug entry
-nnoremap ,vp :put + <bar> exec "normal dfmxIPlug 'A'" <CR>==
-nnoremap ,vu :source /ln/sh/vi/init.vim <bar> PlugUpdate <CR>
+nnoremap ,vp :put + <bar> exec "normal dfmxIPlug 'A'"<CR>==
+nnoremap ,vu :source /ln/sh/vi/init.vim <bar> PlugUpdate<CR>
 " Evaluate one line as Vimscript
 nnoremap ,vl yy:@"<CR>
 " Evaluate a paragraph as Vimscript and re-run last command
@@ -852,10 +853,10 @@ nnoremap a; :terminal ++kill=term ++curwin ++close bash -c "INVIM=1 vifm %:p:h"<
 nnoremap a: :tabe \| terminal ++kill=term ++curwin bash -c "INVIM=1 vifm #:p:h"<CR>
 
 " Split open terminal at current location
-nnoremap ab : new \| if isdirectory(expand('#:p:h')) \| lcd #:p:h \| endif \| terminal ++kill=term ++curwin ++norestore <CR>
-nnoremap aB : vnew \| if isdirectory(expand('#:p:h')) \| lcd #:p:h \| endif \| terminal ++kill=term ++curwin ++norestore <CR>
+nnoremap ab : new \| if isdirectory(expand('#:p:h')) \| lcd #:p:h \| endif \| terminal ++kill=term ++curwin ++norestore<CR>
+nnoremap aB : vnew \| if isdirectory(expand('#:p:h')) \| lcd #:p:h \| endif \| terminal ++kill=term ++curwin ++norestore<CR>
 " Open terminal at current location
-nnoremap qb : if isdirectory(expand('%:p:h')) \| lcd %:p:h \| endif \| terminal ++kill=term ++curwin ++norestore <CR>
+nnoremap qb : if isdirectory(expand('%:p:h')) \| lcd %:p:h \| endif \| terminal ++kill=term ++curwin ++norestore<CR>
 
 " Spawn a terminal outside vim
 nnoremap ,,t :NewTermHere<CR>
@@ -868,7 +869,7 @@ nnoremap qt :call GotoTerm(0)<CR>
 nnoremap ,n :call RaiseNetRW()<CR>
 
 " Exec current paragraph with shell
-nnoremap ,B yap: exec "!" . @" <CR>
+nnoremap ,B yap: exec "!" . @"<CR>
 
 " Exec selection with shell
 vnoremap ,b :call RunSelBash()<CR>
@@ -897,26 +898,26 @@ nnoremap ,zz :let &scrolloff=28-&scrolloff<CR>
 nnoremap ,zc :let &colorcolumn=80-&colorcolumn<CR>
 nnoremap ,zn :set number!<CR>
 nnoremap z<space> :set filetype=text<CR>
-nnoremap ,vb :call SwitchBackground() <CR>:echo "background=" &background <cr>
-nnoremap ,vg :set termguicolors! <cr>:set termguicolors? <cr>
-nnoremap a/ :set hlsearch! <CR>
-nnoremap ,gg :GitGutterToggle<CR>
+nnoremap ,vb :call SwitchBackground()<CR>:echo "background=" &background<CR>
+nnoremap ,vt :set termguicolors!<CR>:set termguicolors?<CR>
+nnoremap a/ :set hlsearch!<CR>
+nnoremap ,vg :GitGutterToggle<CR>
 
 " Tags
-nnoremap ,vt :TagbarOpen fj <CR>
-" nnoremap ,* :silent exec 'UpdCtags' \| redraw! \| echo 'Wrote tags db in' getcwd().'/' <CR>
-" nnoremap ,* :call UpdCtagsHereDeps() <CR>
-" nnoremap ,* :call UpdCtagsGitDeps() <CR>
-" nnoremap ,* :call UpdCtagsGit() <CR>
+nnoremap ,ct :TagbarOpen fj<CR>
+" nnoremap ,* :silent exec 'UpdCtags' \| redraw! \| echo 'Wrote tags db in' getcwd().'/'<CR>
+" nnoremap ,* :call UpdCtagsHereDeps()<CR>
+" nnoremap ,* :call UpdCtagsGitDeps()<CR>
+" nnoremap ,* :call UpdCtagsGit()<CR>
 
 " Make and run project
-nnoremap ,zo :make <bar> copen <CR>
+nnoremap ,zo :make<bar> copen<CR>
 nnoremap ,zm :call BuildProjectUni("my_Makefile","make -f my_Makefile")<CR>
 nnoremap ,zc :call BuildProjectUni("Makefile","make -f my_Makefile clean")<CR>
 nnoremap ,zx :call BuildProjectUni("Makefile","make -f my_Makefile run")<CR>
 nnoremap ,zb :call BuildProjectUni("Makefile","make -f my_Makefile bear")<CR>
-" nnoremap ,XX :call BuildProjectUni("Makefile","make tags") <bar> cwindow <CR>
-" nnoremap ,zm :lcd %:p:h <bar> call BuildProjectUni("Makefile","make -f my_Makefile") <bar> redraw! <bar> copen <CR>
+" nnoremap ,XX :call BuildProjectUni("Makefile","make tags") <bar> cwindow<CR>
+" nnoremap ,zm :lcd %:p:h <bar> call BuildProjectUni("Makefile","make -f my_Makefile") <bar> redraw! <bar> copen<CR>
 nnoremap ,z/ :copen<CR>/error<CR>
 
 " Folding
@@ -928,7 +929,7 @@ command! -nargs=1 LastToMacro exec "let @" . <q-args> . " = \"i\" . @. . \"<Esc>
 nnoremap qL :LastToMacro l<CR>
 
 " Show current dir & current file stats
-nnoremap ,zl : silent exec '! echo -e "\n$(pwd):"; ls -la . ; echo \. ; ls -la %:p ; read -n 1 -s -r -p "//hit.anykey" ; echo -ne "\n" ' \| redraw! <cr>
+nnoremap ,zl : silent exec '! echo -e "\n$(pwd):"; ls -la . ; echo \. ; ls -la %:p ; read -n 1 -s -r -p "//hit.anykey" ; echo -ne "\n" ' \| redraw!<CR>
 
 """"""""""""""""""""""""
 ""     Commands:      ""
@@ -985,7 +986,7 @@ if !empty($WINDIR)
 " If windows
   " set makeprg=\./make.bat
   " set makeprg=\./make.bat\ -j4\ DEBUG=1
-  " nnoremap qp :put + <CR>j
+  " nnoremap qp :put +<CR>j
     command! RCbash :exec '!source /c/Users/user/.bashrc'
     command! NewTerm exec 'silent ! mintty.exe &' | redraw!
     command! UpdCtags !ctags.exe -R --exclude=.git --exclude=log --exclude=wutils --c++-kinds=+p --fields=+iaS --extra=+q *
@@ -1001,11 +1002,11 @@ endif
 set wildmenu
 set wcm=<tab>
 map ,<tab> :emenu tagi.<tab>
-" menu tagi.ru :setlocal spell spelllang=ru <CR>
-menu tagi.basic   :silent exec 'UpdCtags' \| redraw! \| echo 'Wrote tags db in' getcwd().'/' <CR>
-menu tagi.dirDeps :call UpdCtagsDirDeps() <CR>
-menu tagi.gitDeps :call UpdCtagsGitDeps() <CR>
-menu tagi.git     :call UpdCtagsGit() <CR>
+" menu tagi.ru :setlocal spell spelllang=ru<CR>
+menu tagi.basic   :silent exec 'UpdCtags' \| redraw! \| echo 'Wrote tags db in' getcwd().'/'<CR>
+menu tagi.dirDeps :call UpdCtagsDirDeps()<CR>
+menu tagi.gitDeps :call UpdCtagsGitDeps()<CR>
+menu tagi.git     :call UpdCtagsGit()<CR>
 
 """"""""""""""""""""""""
 ""      Macros:       ""
@@ -1727,7 +1728,7 @@ endfunction
 let g:bookmark_no_default_key_mappings = 0
 nmap mm <Plug>BookmarkToggle
 nmap m<Space> <Plug>BookmarkAnnotate
-nmap m<bar> <Plug>BookmarkShowAll
+nmap m/ <Plug>BookmarkShowAll
 nmap m<Down> <Plug>BookmarkNext
 nmap m<Up> <Plug>BookmarkPrev
 

@@ -73,6 +73,7 @@ vimdiff <(xxd foo1.bin) <(xxd foo2.bin)
 find . -exec touch -r {} /ln/mo/messed/{} \; # copy times
 dmesg -L=always | less -r # dmesg-to-less with colors
 dmesg -wH # dmesg realtime output for human
+find . -type d -empty -delete # recursively remove empty dirs
 find . -type f -exec chmod 644 {} \; # chmod current dir recursively
 chown -R 1001:100 /media/some-place/ # change ownership to user:users
 sudo chmod -R +w /media/naughty-flash/ # for stuck external (Caution!)
