@@ -24,9 +24,9 @@ shnsplit -q -f "$cuename" -d "$2/$drn" -t "%n %t" -o flac "$name"
 rm "$2/$drn"/*pregap.flac 2>/dev/null
 
 # Care tags
-( command -v "cuetag.sh" &> /dev/null && CT_CMD="cuetag.sh" ) ||
-( command -v "cuetag"    &> /dev/null && CT_CMD="cuetag" )
-[[ -n $CT_CMD ]] && cuetag.sh "$cuename" "$2/$drn"/*.flac
+command -v "cuetag.sh" &> /dev/null && CT_CMD="cuetag.sh"
+command -v "cuetag"    &> /dev/null && CT_CMD="cuetag"
+[[ -n $CT_CMD ]] && $CT_CMD "$cuename" "$2/$drn"/*.flac
 
 cp 2>/dev/null *[C,c]over.* "$2/$drn/"
 cp 2>/dev/null [F,f]ront.* "$2/$drn/"

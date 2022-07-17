@@ -11,7 +11,7 @@ cd /ln/ho/.rtorrent/watch/red/
 for f in *.torrent
 do
     # for torrents not older than NDAYS
-    if [[ $(find "$f" -mtime -"NDAYS" -print) ]] ; then
+    if [[ $(find "$f" -mtime -"$NDAYS" -print) ]] ; then
         # echo $(date -r "$f" "+%Y-%m-%d")
         echo $(date -r "$f" "+%Y-%m-%d") "  " $f
         echo "$f"

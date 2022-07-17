@@ -498,7 +498,7 @@ nnoremap aa a
 
 " go back to normal mode with <j> double tap
 imap jj <ESC>
-imap оо <ESC>
+" imap оо <ESC>
 
 " go to end-of-line
 imap <C-e> <C-o>A

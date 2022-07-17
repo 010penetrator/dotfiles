@@ -5,7 +5,7 @@
 if [ -z "$1" ] ; then set -- "." "${2}" ; fi
 if [ -z "$2" ] ; then set -- "${1}" "." ; fi
 
-echo $(pwd)
+# echo co any pwd $(pwd)
 src="$1"
 cd "$src"
 targ="$2"

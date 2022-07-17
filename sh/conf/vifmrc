@@ -146,8 +146,8 @@ nnoremap B :! %i cd %c; [[ $TERMINAL=="kitty "* ]] && TERMINAL="$TERMINAL -o ini
 nnoremap qb :! kitty @ new-window --new-tab /bin/bash -c "cd %d/ ; ASK=0 mpv-album %c VIFM ; vifm --select %c" <cr>
 
 " Do rsync "
-nnoremap rs :! echo -ne "\n========== dry-run\n" ; rsync -rtln --progress --delete --stats --size-only %d/ %D ; read -n 1 -s -r -p "Press F or ENTER or SPACE to sync; ESC to cancel" key ; echo -ne "\n\n========== real\n" ; [[ "$key" == 'f' || "$key" == '' ]] && ( rsync -rtl  --progress --delete --stats --size-only %d/ %D ; read -n 1 -s -r -p "========== DONE!" ; echo ) || echo
-nnoremap rS :! echo -ne "\n========== dry-run\n" ; rsync -rtKn --progress --delete --stats --size-only %d/ %D ; read -n 1 -s -r -p "Press F or ENTER or SPACE to sync; ESC to cancel" key ; echo -ne "\n========== real\n" ; [[ "$key" == 'f' || "$key" == '' ]] && ( rsync -rtK  --progress --delete --stats --size-only %d/ %D ; read -n 1 -s -r -p "========== DONE!" ; echo ) || echo
+nnoremap rs :! rsync_bistep.sh  %d %D
+" nnoremap rS :! echo -ne "\n========== dry-run\n" ; rsync -rtKn --progress --delete --stats --size-only %d/ %D ; read -n 1 -s -r -p "Press F or ENTER or SPACE to sync; ESC to cancel" key ; echo -ne "\n========== real\n" ; [[ "$key" == 'f' || "$key" == '' ]] && ( rsync -rtK  --progress --delete --stats --size-only %d/ %D ; read -n 1 -s -r -p "========== DONE!" ; echo ) || echo
 " nnoremap rS :! echo -ne "\n" ; rsync -rt  --progress --delete --stats --size-only %d/ %D ; read -n 1 -s -r -p "========== DONE!" ; echo
 
 " Operate files "
