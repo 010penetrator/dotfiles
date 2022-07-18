@@ -1,7 +1,10 @@
 " vim: ts=4 sw=4 ft=vim
 " vi: noswapfile
 
-""  Initial preparations  ""
+""""""""""""""""""""""""
+""   Initializing:    ""
+""""""""""""""""""""""""
+
 set nocompatible
 set termguicolors
 compiler gcc
@@ -172,7 +175,7 @@ endif
 
 """"""""""""""""""""""""
 ""    Plug Colors:    ""
-""""""""""""""""""{{{}}}
+""""""""""""""""""""""""     {{{}}}
 
 " gui themes need termguicolors set
 Plug 'morhetz/gruvbox' "best
@@ -476,7 +479,7 @@ endif
 
 """"""""""""""""""""""""
 ""     Mappings:      ""
-""""""""""""""""""{{{}}}
+""""""""""""""""""""""""     {{{}}}
 
 set timeoutlen=500
 let g:AutoClosePumvisible = {"ENTER": '', "ESC": ''}
@@ -708,14 +711,14 @@ nnoremap ,zr :Rg<CR>
 nnoremap ,tg :Telescope live_grep<CR>
 nnoremap ,tf :Telescope find_files theme=ivy<CR>
 nnoremap ,tr :Telescope lsp_references<CR>
-nnoremap ,ts :Telescope lsp_dynamic_workspace_symbols<CR>
+nnoremap ,tw :Telescope lsp_dynamic_workspace_symbols<CR>
 " nnoremap ,tt :Telescope current_buffer_fuzzy_find sorting_strategy=ascending layout_config={"prompt_position":"top"}<CR>
 " nnoremap ,tt <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find({sorting_strategy="ascending", theme="ivy"})<CR>
 nnoremap ,tb <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_ivy{})<CR>
 
 " Jump to favourite files
 nnoremap ,gv :call FocusBufOrDo('init.vim','e $sh/vi/init.vim')<CR>
-nnoremap ,gi :call FocusBufOrDo('init.lua','e $sh/vi/init.lua')<CR>
+nnoremap ,gc :call FocusBufOrDo('init.lua','e $sh/vi/init.lua')<CR>
 nnoremap ,g, :call FocusBufOrDo('vimrc$','e $MYVIMRC')<CR>
 nnoremap ,gt :call FocusBufOrDo('vimrc_themes','e $sh/vi/vimrc_themes')<CR>
 nnoremap ,gb :call FocusBufOrDo('bashrc','e $sh/bashrc')<CR>
@@ -1017,7 +1020,7 @@ let @s = "i \<Esc>ll."
 
 """"""""""""""""""""""""
 ""     Functions:     ""
-""""""""""""""""""{{{}}}
+""""""""""""""""""""""""     {{{}}}
 
 function! RunSelBash()
     echo system(join(getline(a:firstline,a:lastline), "\n"))

@@ -99,6 +99,7 @@ fi
 [[ -d ~/.config/kitty-themes ]] ||
 {
     # echo -e '\n'--Gonna pull some more config files
-    git clone --depth 1 https://github.com/dexpota/kitty-themes.git ~/.config/kitty-themes && ln -sfrv .config/kitty-themes/themes/gruvbox_light.conf .config/kitty/current-theme.conf
+    git clone --depth 1 https://github.com/dexpota/kitty-themes.git ~/.config/kitty-themes 2>/dev/null || git -C ~/.config/kitty-themes/ pull
+    ln -sfrv .config/kitty-themes/themes/gruvbox_light.conf .config/kitty/current-theme.conf
 }
 

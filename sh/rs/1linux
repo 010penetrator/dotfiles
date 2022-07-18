@@ -209,9 +209,10 @@ rsync -e ssh -Lav --progress --exclude=".*/" --no-perms --no-times --delete --si
 7z a dir.7z Dir -p -mhe=on #create encrypted 7z
 7z a -mx=3 -xr!.git -xr!tags out.7z Projekt # create quick 7z
 tar -I 'zstd -v -11 -T0' -cf somedir.tar.zst --exclude='.git' --exclude='tags' somedir # create tar.zst
-sudo tar -I 'zstd -v -10 -T0' -cf $bakcld/root.__.tar.zst --one-file-system --exclude='/home/*/Downloads' --exclude '.cache' --exclude='*vifm/Trash/*' / # backup root filesystem
-tar -I 'zstd -v -10 -T0' -cf $bakcld/home.__.tar.zst -C /home --exclude='Downloads' --exclude='bak' --exclude='.cache' --exclude='*vifm/Trash/*' . # backup home dir
-sudo sh -c "zstd -v -10 -T0 </dev/nvmeXX >$bak/part.zst" # backup partition
+sudo tar -I 'zstd -v -10 -T0' -cf $bakcld/sm/root._.tar.zst --one-file-system --exclude='/home/*/Downloads' --exclude '.cache' --exclude='*vifm/Trash/*' / # backup root filesystem
+tar -I 'zstd -v -10 -T0' -cf $bakcld/sm/home._.tar.zst -C /home --exclude='Downloads' --exclude='bak' --exclude='.cache' --exclude='*vifm/Trash/*' . # backup home dir
+sudo sh -c "zstd -v -10 -T0 <$(findmnt / -o SOURCE -n) >$bakcld/sm/rootpart._.zst" # backup root partition
+sudo sh -c "zstd -v -10 -T0 </dev/nvmeXX >/path/bak/part.zst" # backup some partition
 zstdcat root.zst >/dev/nvme0n1p6 # restore zst archived image
 zip -r -1 arc.zip Dir Dir2 #create zip
 
