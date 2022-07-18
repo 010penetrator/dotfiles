@@ -92,10 +92,8 @@ fi
     sudo ln -sf /ln/sh/conf/99-libinput-custom.conf /etc/X11/xorg.conf.d/
 }
 
-[[ -d ~/.config/kitty-themes ]] ||
-{
-    # echo -e '\n'--Gonna pull some more config files
-    git clone --depth 1 https://github.com/dexpota/kitty-themes.git ~/.config/kitty-themes 2>/dev/null || git -C ~/.config/kitty-themes/ pull
-    ln -sfrv .config/kitty-themes/themes/gruvbox_light.conf .config/kitty/current-theme.conf
-}
+# echo -e '\n'--Gonna pull some more config files
+git -C ~/.config/kitty-themes/ pull ||
+    git clone --depth 1 https://github.com/dexpota/kitty-themes.git ~/.config/kitty-themes
+ln -sfrv .config/kitty-themes/themes/gruvbox_light.conf .config/kitty/current-theme.conf
 
