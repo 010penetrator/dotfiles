@@ -42,9 +42,10 @@ command! qemu :! sudo bash -c "sync; echo 3 > /proc/sys/vm/drop_caches; qemu-sys
 command! tok :! touch %c "--date=$(date -R -r KKK) - 10 minute" ; touch KKK "--date=$(date -R -r KKK) + 3 minute"
 command! tik :!touch --date="$(date -R -r %c) + 10 minute" KKK
 " command! tik :!touch --date="$(date -R -r %c) + 1 day" %c
-command! amou :! bash -ic ' source /ln/ho/.bashrc ; amou '
-command! aumo :! bash -ic ' source /ln/ho/.bashrc ; aumo '
-command! own  :! sudo chown 1000:100 %f
+command! amou :exec '!bash -ic "source /ln/ho/.bashrc; amou"' | cd /ln/mo
+
+command! aumo :!bash -ic 'source /ln/ho/.bashrc; aumo'
+command! own  :!sudo chown 1000:100 %f
 command! chmodauto :! find %f -type f -exec chmod 644 {} \;
 
 """"""""""""""""""""""""
@@ -52,8 +53,8 @@ command! chmodauto :! find %f -type f -exec chmod 644 {} \;
 """"""""""""""""""""""""
 
 " fly vifm "
-nnoremap ,x :exec '! echo -ne "\033]0;\007"' | quit <CR>
-nnoremap qx :exec '! echo -ne "\033]0;\007"' | quit <CR>
+nnoremap ,x :exec '!echo -ne "\033]0;\007"' | quit <CR>
+nnoremap qx :exec '!echo -ne "\033]0;\007"' | quit <CR>
 nnoremap ,i :pushd . <CR>
 nnoremap ,m :set millerview!<CR>
 nnoremap ,M :set milleroptions=lsize:1,csize:5,rsize:5
@@ -91,6 +92,7 @@ nnoremap gl gf
 nnoremap g. :exec 'cd' system('realpath .')<CR>
 nnoremap yc :! echo -n %f | xclip ; echo -n %f | xclip -selection clipboard <CR>:echo "filename in X buffer"<CR>
 nnoremap yC :! echo -n %f:p | xclip ; echo -n %f:p | xclip -selection clipboard <CR>:echo "full filepath in X buffer"<CR>
+nnoremap ,j :jobs<cr>
 " nnoremap - <C-b>
 " nnoremap = <C-f>
 
@@ -105,17 +107,17 @@ nnoremap q<space> :! mpv --fs --keep-open=always *.{mp4,MP4,webm,mkv,mov,MOV} &>
 nnoremap qk :! qview %c &>/dev/null &<cr>
 " nnoremap qy :! eom %c &>/dev/null &<cr>
 nnoremap qi :! mediainfo %c | less<cr>
-nnoremap qh :! xxd %c | less <cr>
+nnoremap qh :! xxd %c | less<cr>
 nnoremap qG :! spek %c &>/dev/null &<cr>
-nnoremap qg :! specgram.sh %c <cr>
-nnoremap qd :! deadbeef --queue %c &>/dev/null & <cr>
-nnoremap qe :! $EDITOR %c <cr>
-nnoremap .  :! xdg-open %c &>/dev/null & <cr>
-nnoremap ,,. :! bash -x xdg-open %c <cr>
+nnoremap qg :! specgram.sh %c<cr>
+nnoremap qd :! deadbeef --queue %c &>/dev/null &<cr>
+nnoremap qe :! $EDITOR %c<cr>
+nnoremap .  :! xdg-open %c &>/dev/null &<cr>
+nnoremap ,,. :! bash -x xdg-open %c<cr>
 nnoremap ,,/ :! bash -lc "ARG=DMENUSAVE xdgsane %c"
 nnoremap q<cr> :file &<cr>l
-nnoremap ,g :! google.sh %c &>/dev/null & <cr>
-nnoremap ,e :! $TERMINAL $EDITOR %c <cr>
+nnoremap ,g :! google.sh %c &>/dev/null &<cr>
+nnoremap ,e :! $TERMINAL $EDITOR %c<cr>
 
 " Calc space "
 nnoremap ,f :! echo; echo %c: ; file -b %c ; [[ -d %c ]] && tree -ia %c | tail -1 ; du -sh %c | cut -f1 ; ls -dla %c ; df -h --output=source,avail,pcent %c ; read -rsn1 <cr>
@@ -135,7 +137,7 @@ nnoremap an :! MODE="newtab" virpc "%c" &>/dev/null & <cr>
 nnoremap ab :! MODE="last"   virpc "%c" &>/dev/null & <cr>
 nnoremap aa :! MODE="auto"   virpc "%c" &>/dev/null & <cr>
 nnoremap aq :! virpc "%c"<cr>:q<cr>
-nnoremap ,d :! vim -d %c %D/%c <cr>
+nnoremap ,d :! vim -d %c %D/%c<cr>
 " if (system('echo $EDITOR') == "vim")
 "     nnoremap an :! MODE="newtab" vimrpc "%c" &>/dev/null & <cr>
 " endif
@@ -151,18 +153,19 @@ nnoremap rs :! rsync_bistep.sh  %d %D
 " nnoremap rS :! echo -ne "\n" ; rsync -rt  --progress --delete --stats --size-only %d/ %D ; read -n 1 -s -r -p "========== DONE!" ; echo
 
 " Operate files "
-nnoremap ai : amou <cr>:cd /ln/mo<cr>
+nnoremap ai : amou <cr>:cd /ln/mo<cr>:exec 'cd' system('ls -1tf /ln/mo | head -1')<cr>
 nnoremap ao : aumo <cr>
-nnoremap au :! echo Sync... ; sync %f && udevil umount %f<cr>
+nnoremap au :! echo Sync... ; sync -f %f && udevil umount $(findmnt %f -n -o SOURCE | grep dev)<cr>
 nnoremap am ggVG<cr>:copy<cr>
 nnoremap aM ggVG<cr>:move<cr>
-nnoremap del :! echo You try to delete %f; sudo rm -r %f<cr>
+nnoremap cy : !cp -r %f %D/ &<cr>
+nnoremap del :!echo You try to delete %f; sudo rm -r %f<cr>
 nnoremap qU ggVG: !mv --backup=numbered %f ../<cr>
-nnoremap qu :! mv --backup=numbered %f ../<cr>
+nnoremap qu :!mv --backup=numbered %f ../<cr>
 nnoremap ctok :tok<cr>
 nnoremap ch :chmod<cr>
 nnoremap cj :chmod 644 <cr>j
-nnoremap cb :copy | ! notify-send COPY Done!<cr>
+nnoremap cb :copy | !notify-send COPY Done!<cr>
 nnoremap cB :copy<cr>
 nnoremap cm :move<cr>
 nnoremap C :copy<cr>
@@ -189,6 +192,7 @@ nnoremap z"e :! upk.sh %r<cr>
 nnoremap z"E :! upk2dir.sh %r %d<cr>
 
 " Jump to places "
+nnoremap ,h :history<cr>
 nnoremap gh :cd $HOME<cr>
 nnoremap g8 :cd /ln/hh|exec 'cd' system('realpath .')<cr>
 nnoremap g; :cd /ln/mo<cr>
@@ -237,9 +241,7 @@ set vimhelp
 set vicmd=$EDITOR
 
 if (system('echo $INVIM') == "1")
-    set vicmd='source $HOME/.bashrc; MODE="cur" vimrpc'
-else
-    set vicmd='source $HOME/.bashrc; vim --cmd "set titlestring=VIM\ @\ VIFM"'
+    set vicmd='source $HOME/.bashrc; MODE="cur" virpc'
 endif
 
 " Trash Directory

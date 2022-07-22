@@ -14,3 +14,8 @@ DMENU_OPTIONS="-nb $DMENU_NB -nf $DMENU_NF -sf $DMENU_SF -sb $DMENU_SB -i -l 15"
 # export DMENU_FN DMENU_NB DMENU_NF DMENU_SF DMENU_SB DMENU_OPTIONS PANEL_HEIGHT
 export DMENU_FN DMENU_OPTIONS
 
+alias dmenu='dmenu $DMENU_OPTIONS -fn "$DMENU_FN"'
+
+dmenuy() { dmenu $DMENU_OPTIONS -fn "$DMENU_FN"; }
+export -f dmenuy
+

@@ -48,6 +48,7 @@ PS1=$'\[$(tput bold)\]\[$(tput setaf 34)\]\u\[$(tput setaf 78)\] \W \[$(tput set
 alias bb='tty | grep -q /dev/tty && (terminusfont ; sudo /./bin/conn & startx /ln/sh/xinitrc bspwm) || echo This is not tty!'
 alias tf='terminusfont'
 alias v='virpc'
+# alias vl='MODE=last nvimrpc'
 alias sk='select-kitty-theme.sh'
 alias gs='( [ -f $HOME/.env ] && . $HOME/.env ; gsync )'
 alias yp='fc -ln -1 | cut -c 3- | tr -d "\n" | xclip ; echo yanked prev command'
@@ -56,10 +57,6 @@ alias sb='source $HOME/.bashrc'
 alias kt='kitty +kitten themes ; kitty @ set-colors -a /ln/co/kitty/current-theme.conf'
 alias kr='kitty @ set-colors -a /ln/co/kitty/current-theme.conf /ln/sh/conf/kitty_extra.conf'
 alias chmodre='find . -type f -exec chmod 644 {} \;'
-# alias terfont='setfont ter-218b'
-# alias dmenu='dmenu $DMENU_OPTIONS -fn "$DMENU_FN"'
-# alias vf='$TERMINAL -e vifm . &'
-# alias trmclient='title transmission-remote-cli; transmission-remote-cli -c localhost:9090 ; title bash'
 alias ncdu='ncdu --color off'
 # alias ncdu='ncdu --color off --graph-style hash'
 alias lm='df -BGB --output=source,fstype,avail,pcent,target -x tmpfs -x devtmpfs'
@@ -70,8 +67,8 @@ alias leto='date +%Y-%m-%d'
 alias p='ps aux | grep -v grep | grep'
 alias dropcs='sync && echo 3 | sudo tee /proc/sys/vm/drop_caches'
 alias vs='nvim -S /ln/co/nvim/session/comon'
-# alias vl='MODE=last nvimrpc'
 alias mm='make -f my_Makefile'
+alias demu='sync && echo 3 | sudo tee /proc/sys/vm/drop_caches; sudo qemu-system-x86_64 -m 2000 -enable-kvm -cpu host -smp 4 -boot menu=on'
 
 type -f ai &>/dev/null ||
 if  type -f pacman &>/dev/null ; then
@@ -83,9 +80,8 @@ elif  type -f apt &>/dev/null ; then
 fi
 
 source $sh/dmenurc
-alias dmenu='dmenu $DMENU_OPTIONS -fn "$DMENU_FN"'
 
-amou() { target=$( $LSBLK -f | grep -e ".sd\|.nvme" | fzf -e | cut -f 1 -d " " | tr -cd '[:alnum:]' ); [ ! -z "${target}" ] && udevil mount /dev/"$target" && echo "/dev/$target mounted" || echo 'No target.' ; }
+amou() { target=$( $LSBLK -f | grep -e ".sd\|.nvme" | fzf -e | cut -f 1 -d " " | tr -cd '[:alnum:]' ); [ ! -z "${target}" ] && udevil mount /dev/"$target" && echo "/dev/$target mounted" && mopoint=$(findmnt /dev/${target} -o TARGET -n) && touch -c "$mopoint" && return 0 || echo 'No target.' ; }
 aumo() { target=$( $LSBLK -f | grep -e ".sd\|.nvme" | grep '/' | cut -c 7- | fzf -e |  cut -f 1 -d ' ' ); [ ! -z "${target}" ] && sync "/dev/$target" && udevil umount "/dev/$target" && echo "/dev/$target unmounted from $mopoint" || echo 'No target.' ; }
 # title() { echo -ne "\e]0;$*\a"; }
 title() { echo -ne "\033]0;$*\007"; }
@@ -132,8 +128,8 @@ xdgsane() {
         echo -e "Available apps for it are \n$(grep $type /usr/share/applications/mimeinfo.cache | cut -d '=' -f2- | tr ';' '\n')"
         echo Hint: Call \"xdg-mime default ***.desktop $type\" to set the default app
         if [[ $ARG =~ DMENU ]] ; then
-            # source $sh/dmenurc
-            app=$(grep $type /usr/share/applications/mimeinfo.cache | cut -d '=' -f2- | tr ';' '\n' | tr -s '\n' | dmenu $DMENU_OPTIONS -fn "$DMENU_FN" -p "Choose default app for $type")
+            source $sh/dmenurc
+            app=$(grep $type /usr/share/applications/mimeinfo.cache | cut -d '=' -f2- | tr ';' '\n' | tr -s '\n' | dmenuy -p "Choose default app for $type")
             [[ $ARG =~ SAVE ]] && ! [[ -z $app ]] && xdg-mime default $app $type
             [[ $ARG =~ RUN ]] && ! [[ -z $app ]] && xdg-open "$1"
         fi

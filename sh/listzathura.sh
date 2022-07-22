@@ -6,7 +6,7 @@ dirlist="/ln/hh /ln/mob/use /ln/dwn $HOME/.cache/luakit/viewpdf/ /ln/wo"
 targ=$(
 ( find -L /ln/ho -maxdepth 1 -type f \( -iname "*.pdf" -or -iname "*.djvu" \)
 find -L $dirlist -type f \( -iname "*.pdf" -or -iname "*.djvu" \) ) | \
-    dmenu $DMENU_OPTIONS -fn "$DMENU_FN"
+    dmenuy
 )
 
 if [ -n "$targ" ] ; then

@@ -753,6 +753,7 @@ nnoremap ,a. :exec '! virpc "%:p"' \| q<CR>
 nnoremap ,ac :exec '! MODE=cur    virpc "%:p"' \| q<CR>
 nnoremap ,an :exec '! MODE=newtab virpc "%:p"' \| q<CR>
 nnoremap ,as :exec '! MODE=split  virpc "%:p"' \| q<CR>
+nnoremap ,av :exec '! MODE=vert   virpc "%:p"' \| q<CR>
 
 " Have mappings in terminal mode
 if v:version >= 801

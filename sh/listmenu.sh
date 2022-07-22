@@ -20,7 +20,7 @@ echo -ne "$data" | while read line ; do
     NAME=$(echo $line | cut -d ':' -f1)
     echo $NAME
 done |
-dmenu $DMENU_OPTIONS -fn "$DMENU_FN" |
+dmenuy |
 { read SEL
     if [[ -z $SEL ]] ; then exit ; fi
     CMD=$(echo -ne "$data" | grep "$SEL" | cut -d ':' -f2)
