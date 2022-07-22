@@ -81,8 +81,8 @@ fi
 
 source $sh/dmenurc
 
-amou() { target=$( $LSBLK -f | grep -e ".sd\|.nvme" | fzf -e | cut -f 1 -d " " | tr -cd '[:alnum:]' ); [ ! -z "${target}" ] && udevil mount /dev/"$target" && echo "/dev/$target mounted" && mopoint=$(findmnt /dev/${target} -o TARGET -n) && touch -c "$mopoint" && return 0 || echo 'No target.' ; }
-aumo() { target=$( $LSBLK -f | grep -e ".sd\|.nvme" | grep '/' | cut -c 7- | fzf -e |  cut -f 1 -d ' ' ); [ ! -z "${target}" ] && sync "/dev/$target" && udevil umount "/dev/$target" && echo "/dev/$target unmounted from $mopoint" || echo 'No target.' ; }
+amou() { SELECTOR="fzf -e" amount.sh; }
+aumo() { SELECTOR="fzf -e" aumount.sh; }
 # title() { echo -ne "\e]0;$*\a"; }
 title() { echo -ne "\033]0;$*\007"; }
 
