@@ -186,7 +186,7 @@ ps -u $(id -u) -o pid= | while read pid; do
     done | grep -o ':[0-9]*' | sort -u # return current display id
 
 ==FS
-mkfs.vfat -F32 /dev/sdx1
+mkfs.vfat -F32 /dev/sdxN # create FAT32 fs
 sync -f .  ; time ( dd if=/dev/zero of=zeroes.file bs=1000M count=8 ; sync -f . ) ; rm zeroes.file  # test disk write speed
 dd bs=4M if=~/image.img of=/dev/sdb && sync # restore partition from file
 dd if=/dev/zero of=/dev/sdx bs=4k && sync # wipe partition

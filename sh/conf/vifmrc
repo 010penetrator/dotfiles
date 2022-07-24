@@ -120,7 +120,7 @@ nnoremap ,g :! google.sh %c &>/dev/null &<cr>
 nnoremap ,e :! $TERMINAL $EDITOR %c<cr>
 
 " Calc space "
-nnoremap ,f :! echo; echo %c: ; file -b %c ; [[ -d %c ]] && tree -ia %c | tail -1 ; du -sh %c | cut -f1 ; ls -dla %c ; df -h --output=source,avail,pcent %c ; read -rsn1 <cr>
+nnoremap ,f :! echo; echo %c: ; file -b %c ; [[ -d %c ]] && tree -ia %c | tail -1 ; du -sh %c | cut -f1 ; ls -dla %c ; df -h --output=source,fstype,avail,pcent %c ; read -rsn1 <cr>
 nnoremap ,<space> :echo "Available space on " . system("df -h --output=source,avail . | tail -1")<cr>
 nnoremap ,F :! watch -n .4 ls -la --block-size=M %f
 nnoremap ,. :! echo -ne \\n  ls dir :\\n ; ls -la --color=auto . ; read -rsn1 <cr>
@@ -153,7 +153,7 @@ nnoremap rs :! rsync_bistep.sh  %d %D
 " nnoremap rS :! echo -ne "\n" ; rsync -rt  --progress --delete --stats --size-only %d/ %D ; read -n 1 -s -r -p "========== DONE!" ; echo
 
 " Operate files "
-nnoremap ai : amou <cr>:cd /ln/mo<cr>:exec 'cd' system('ls -1tf /ln/mo | head -1')<cr>
+nnoremap ai : amou <cr>:cd /ln/mo<cr>:exec 'cd' system('sleep .1; ls -1tf /ln/mo | head -1')<cr>
 nnoremap ao : aumo <cr>
 nnoremap au :! echo Sync... ; sync -f %f && udevil umount $(findmnt %f -n -o SOURCE | grep dev)<cr>
 nnoremap am ggVG<cr>:copy<cr>
@@ -197,7 +197,7 @@ nnoremap gh :cd $HOME<cr>
 nnoremap g8 :cd /ln/hh|exec 'cd' system('realpath .')<cr>
 nnoremap g; :cd /ln/mo<cr>
 nnoremap gq :cd /ln/mo/fast/qq<cr>:sort<cr>N
-nnoremap g/ :cd /ln<cr>
+nnoremap g<space> :cd /ln<cr>
 nnoremap gm :cd /ln/mus/
 nnoremap go :cd /ln/ho/compy<cr>
 nnoremap gx :trashes<cr>
@@ -704,33 +704,34 @@ nnoremap <f8> :delete<cr>
 "
 " nnoremap <left> <nop>
 
-
 "! i3-msg "split v"
 
-command! FZFlocate : set noquickview
-                  \| let $FZF_PICK = term('locate $HOME | fzf --height 10 2>/dev/tty')
-                  \| if $FZF_PICK != ''
-                  \|     execute 'goto' fnameescape($FZF_PICK)
-                  \| endif
-command! FZFfind : set noquickview
+
+command! fzffind : set noquickview
                 \| let $FZF_PICK = term('find | fzf --height 10 2>/dev/tty')
                 \| if $FZF_PICK != ''
                 \|     execute 'goto' fnameescape($FZF_PICK)
                 \| endif
-" variation that automatically enters directories
-" command! FZFlocate : set noquickview
-"                   \| let $FZF_PICK = term('locate $HOME | fzf --height 10 2>/dev/tty')
-"                   \| if $FZF_PICK != ''
-"                   \|     execute system('[ -f "$FZF_PICK" ] && echo goto || echo cd') fnameescape($FZF_PICK)
-"                   \| endif
-nnoremap <C-j> :FZFfind<cr>
-" nnoremap <C-j> :FZFlocate<cr>
 
-command! FZFlocate : set noquickview
+command! fzflocate : set noquickview
                   \| let $FZF_PICK = term('locate %a | fzf --height 10 2>/dev/tty')
                   \| if $FZF_PICK != ''
                   \|     execute 'goto' fnameescape($FZF_PICK)
                   \| endif
+" variation that automatically enters directories
+" command! fzflocate : set noquickview
+"                   \| let $FZF_PICK = term('locate $HOME | fzf --height 10 2>/dev/tty')
+"                   \| if $FZF_PICK != ''
+"                   \|     execute system('[ -f "$FZF_PICK" ] && echo goto || echo cd') fnameescape($FZF_PICK)
+"                   \| endif
+
+command! fzfmushist : set noquickview
+        \| let $FZF_PICK = term('tac $HOME/.mus-history | fzf --height 10 2>/dev/tty')
+        \| if $FZF_PICK != ''
+        \|     exec 'goto' fnameescape($FZF_PICK)
+        \| endif
+
+nnoremap <C-j> :fzffind<cr>
 
 source $lo/vifmrc.local
 source /ln/sh/conf/favicons.vifm

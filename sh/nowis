@@ -1,10 +1,10 @@
 #!/bin/bash
-# Store in a file the current time of day
+# Store in a file the current phase of day
 # Call 'nowis day' or 'nowis nox'
 # Call 'nowis' or 'nowis what' to ask
 
-if [[ -z $* || $1 == 'what' ]] ; then
-    if [[ -f /tmp/nowis && $( cat /tmp/nowis | wc -w ) -gt 0 ]] ; then
+if [[ -z $* || $1 == 'what' ]]; then
+    if [[ -f /tmp/nowis && $( cat /tmp/nowis | wc -w ) -gt 0 ]]; then
         reply=$(cat /tmp/nowis | head -1 | cut -d ' ' -f1)
     else
         reply='dunno'
@@ -18,11 +18,11 @@ rm /tmp/now_is_* &> /dev/null
 touch /tmp/now_is_"$1"
 echo "$1" > /tmp/nowis
 
-if [[ $1 == 'nox' ]] ; then
+if [[ $1 == 'nox' ]]; then
     sed -i 's/=Pop$/=Pop-dark/' /ln/co/gtk-3.0/settings.ini
     # Dim and warm screen
-    type redshift &>/dev/null && { ga=.92; redshift -o -m randr -O 4980 -g $ga:$ga:$ga & disown ; }
-elif [[ $1 == 'day' ]] ; then
+    type redshift &>/dev/null && { ga=.93; redshift -o -m randr -O 5100 -g $ga:$ga:$ga ; }
+elif [[ $1 == 'day' ]]; then
     sed -i 's/=Pop-dark$/=Pop/' /ln/co/gtk-3.0/settings.ini
     # Undo nighttime screen dimming
     type redshift &>/dev/null && redshift -x -m randr
@@ -37,9 +37,9 @@ fi
     if [[ -f $CT ]] && ! cmp -s $CT $DT && ! cmp -s $CT $NT ; then
         cp -f $CT prev_theme.conf
     fi
-    if [[ $1 == 'nox' ]] ; then
+    if [[ $1 == 'nox' ]]; then
         [[ -f $NT ]] && rm $CT && cp -f $NT $CT
-    elif [[ $1 == 'day' ]] ; then
+    elif [[ $1 == 'day' ]]; then
         [[ -f $DT ]] && rm $CT && cp -f $DT $CT
     fi
 }
