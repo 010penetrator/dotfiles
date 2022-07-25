@@ -60,8 +60,9 @@ groupadd gods # create group
 %gods	ALL=(ALL) NOPASSWD:ALL # gods will not be asked sudo password
 username hostname=(ALL) NOPASSWD:/bin/lsblk # sudo command without password for user
 # sudo takes long time? ==> add $HOSTNAME to /etc/hosts
-%sudo 	ALL=(ALL) ALL, NOPASSWD:/usr/bin/lsblk # combo!
+%sudo	ALL=(ALL) ALL, NOPASSWD:/usr/bin/lsblk # combo!
 ncal -b3M
+printf "%x\n" \'"$somevar" # print char as hex
 reset # reset terminal
 compgen -ac | sort -u # list available commands
 read -n 1 -s -r -p "Press any key to continue" # wait for a hit

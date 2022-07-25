@@ -6,7 +6,8 @@
 LSBLK="lsblk"
 target=$( $LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT -l | grep '/' |
     $SELECTOR | cut -f 1 -d " " )
-if [[ ! -z target ]]; then
+
+if [[ ! -z $target ]]; then # target is null or ''
     mopoint=$(findmnt /dev/${target} -o TARGET -n)
     # sync "/dev/$target"
     sync -f "$mopoint"
@@ -21,5 +22,7 @@ if [[ ! -z target ]]; then
         notify-send "$(cat /tmp/vil-umo)"
         notify-send "Not able to sync /dev/$target"
     fi
+else
+    echo "No target!"
 fi
 
