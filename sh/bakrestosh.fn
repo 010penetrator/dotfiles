@@ -71,7 +71,7 @@ restosh()
   need_umount=false
   if [[ $( mount | grep $devlabel | grep $bakdev -c ) == 0 ]] ; then
     echo ==mounting $devlabel ..
-    udevil mount /dev/$bakdev /ln/mo/*$devlabel && [[ $1 != '--keep' ]] &&
+    udevil mount /dev/$bakdev /ln/mo/$devlabel && [[ $1 != '--keep' ]] &&
       need_umount=true
   fi
   if [[ $( mount | grep $devlabel | grep $bakdev -c ) != 1 ]] ; then
