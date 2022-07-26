@@ -19,10 +19,12 @@ touch /tmp/now_is_"$1"
 echo "$1" > /tmp/nowis
 
 if [[ $1 == 'nox' ]]; then
+    nitrogen --set-zoom-fill  $git/wlp/twisted_by_zy0rg_d5sdf8q.png
     sed -i 's/=Pop$/=Pop-dark/' /ln/co/gtk-3.0/settings.ini
     # Dim and warm screen
     type redshift &>/dev/null && { ga=.93; redshift -o -m randr -O 5100 -g $ga:$ga:$ga ; }
 elif [[ $1 == 'day' ]]; then
+    nitrogen --set-zoom-fill  $git/wlp/blues_by_tatasz_d8snwfz.png
     sed -i 's/=Pop-dark$/=Pop/' /ln/co/gtk-3.0/settings.ini
     # Undo nighttime screen dimming
     type redshift &>/dev/null && redshift -x -m randr
