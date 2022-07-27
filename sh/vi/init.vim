@@ -535,7 +535,7 @@ nnoremap dc "_d$
 nnoremap d. "_dd
 nnoremap d<space> :call DelSpace()<Esc>
 " start fat new line
-nnoremap cm o<cr><up>
+nnoremap cm O<Esc>o
 " insert new line after current paragraph
 nnoremap c<CR> }:if (line(".") == line("$")) \| exec "normal o" \| endif<CR>O
 " add horizontal line
@@ -669,7 +669,7 @@ nnoremap at :tabe<CR>
 nnoremap aT :-tabe<CR>
 nnoremap <C-PageUp> gT
 nnoremap <C-PageDown> gt
-nnoremap gr gT
+nnoremap gz gT
 nnoremap q] gt
 nnoremap q[ gT
 nnoremap q{ :tabmove -1<CR>
@@ -678,16 +678,15 @@ nnoremap q< :call MoveToPrevTab()<CR>
 nnoremap q> :call MoveToNextTab()<CR>
 " select previous tab
 nnoremap g<tab> :exe "tabn ".g:lasttab<CR>
-nnoremap q1 1gt
-nnoremap q2 2gt
-nnoremap q3 3gt
-nnoremap q4 4gt
-nnoremap q5 5gt
-nnoremap q6 6gt
-nnoremap q7 7gt
-nnoremap q8 8gt
-nnoremap q9 9gt
-nnoremap gz 1gt
+nnoremap g1 1gt
+nnoremap g2 2gt
+nnoremap g3 3gt
+nnoremap g4 4gt
+nnoremap g5 5gt
+nnoremap g6 6gt
+nnoremap g7 7gt
+nnoremap g8 8gt
+nnoremap g9 9gt
 
 " Navigate buffers/files
 nnoremap ,bj :Unite buffer file<CR>
@@ -739,7 +738,7 @@ nnoremap ,vi :IndentBlanklineToggle<CR>
 " Start and quit Vim
 nnoremap ,V :source $MYVIMRC<CR>
 nnoremap ,,v :source $MYVIMRC<CR>
-nnoremap ,cs :LoadColor<CR>
+nnoremap ,cx :LoadColor<CR>
 nnoremap ,vs :source $RTP/session/comon <bar> call AddRpcEar()<CR>
 nnoremap ,,q :call SaveColor() <bar> SSave! comon <bar> qa<CR>
 nnoremap ,,s :call SaveColor() <bar> SSave! comon<CR>

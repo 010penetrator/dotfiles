@@ -21,13 +21,14 @@ else
         colo Tomorrow | LineColor Tomorrow
         " colo stellarized | set bg=light | LineColor aqua_plasm
     elseif ( g:phase == 'nox' )
-        if has('nvim')
+            " colo stellarized | set bg=dark | LineColor snow_dark
+        " if has('nvim')
             colo tokyonight | LineColor Atelier_Lakeside
             " colo onehalfdark | LineColor one
-        else
+        " else
             " colo tempus_dusk | set bg=dark | LineColor bluewery
             colo Tomorrow-Night-Eighties | LineColor snow_dark
-        endif
+        " endif
     elseif ( g:phase == 'dunno' )
         colo frign | LineColor aqua_plasm
         colo Tomorrow-Night-Blue | LineColor bluewery
@@ -91,6 +92,12 @@ endif
 " LineColor bluewery
 " LineColor darcula
 " LineColor deus
+" LineColor miramare
+" LineColor apprentice
+" LineColor terafox
+" LineColor rusticated
+" LineColor snow_dark
+" LineColor snow_light
 
 " hi! Search ctermbg=222
 " hi! Normal ctermbg=234

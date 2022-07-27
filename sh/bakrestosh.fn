@@ -65,9 +65,8 @@ restosh()
 {
   magic="AMV"
   devlabel=$($LSBLK -l -o LABEL | grep $magic | sort | head -1)
+  [[ $devlabel == '' ]] && echo $magic is nowhere around && return 1
   bakdev=$($LSBLK -l -o NAME,LABEL | grep $devlabel | head -1 | cut -f1 -d ' ')
-  #
-  [[ $bakdev == '' ]] && echo $magic is nowhere around && return 1
   need_umount=false
   if [[ $( mount | grep $devlabel | grep $bakdev -c ) == 0 ]] ; then
     echo ==mounting $devlabel ..
