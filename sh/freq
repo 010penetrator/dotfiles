@@ -1,6 +1,7 @@
 #!/bin/bash
 # Set cpu frequency limit
-echo "Usage: freq <low|norm|game>"
+
+[[ -z $1 ]] && echo "Usage: freq <low|norm|game>" && exit
 
 # alias lowfreq='sudo cpupower frequency-set -u 2400MHz >/dev/null ; cpupower frequency-info | grep policy'
 # alias normfreq='sudo cpupower frequency-set -u 3300MHz >/dev/null ; cpupower frequency-info | grep policy'

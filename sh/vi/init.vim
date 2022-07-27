@@ -535,7 +535,7 @@ nnoremap dc "_d$
 nnoremap d. "_dd
 nnoremap d<space> :call DelSpace()<Esc>
 " start fat new line
-nnoremap cm O<Esc>o
+nnoremap cm o<cr><up>
 " insert new line after current paragraph
 nnoremap c<CR> }:if (line(".") == line("$")) \| exec "normal o" \| endif<CR>O
 " add horizontal line
