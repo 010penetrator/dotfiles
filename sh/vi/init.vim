@@ -471,11 +471,14 @@ endif
 ""      NeoVim:       ""
 """"""""""""""""""""""""
 
-if has("nvim")
-    set laststatus=3
-    highlight WinSeparator guibg=none
-    highlight WinSeparator guifg=#5a5a5a
-endif
+function CrispBorders()
+    if has("nvim")
+        set laststatus=3
+        highlight WinSeparator guibg=none
+        highlight WinSeparator guifg=#5a5a5a
+    endif
+endfunction
+" call CrispBorders()
 
 """"""""""""""""""""""""
 ""     Mappings:      ""
@@ -738,7 +741,7 @@ nnoremap ,vi :IndentBlanklineToggle<CR>
 " Start and quit Vim
 nnoremap ,V :source $MYVIMRC<CR>
 nnoremap ,,v :source $MYVIMRC<CR>
-nnoremap ,cx :LoadColor<CR>
+nnoremap ,cx :call SetPhase() <bar> call LoadColor() <bar> call CrispBorders()<CR>
 nnoremap ,vs :source $RTP/session/comon <bar> call AddRpcEar()<CR>
 nnoremap ,,q :call SaveColor() <bar> SSave! comon <bar> qa<CR>
 nnoremap ,,s :call SaveColor() <bar> SSave! comon<CR>
@@ -1453,7 +1456,7 @@ function! LoadColor(...)
     endif
 endfunction
 command! -nargs=? SaveColor call SetPhase(<f-args>) <bar> call SaveColor(<f-args>)
-command! -nargs=? LoadColor call SetPhase(<f-args>) <bar> call LoadColor(<f-args>)
+command! -nargs=? LoadColor call SetPhase(<f-args>) <bar> call LoadColor(<f-args>) <bar> call CrispBorders()
 
 function! SwitchCE()
   if mapcheck("<C-e>") == ''
