@@ -25,7 +25,7 @@ else
         " colo onehalfdark | LineColor one
         " colo tempus_dusk | set bg=dark | LineColor bluewery
         if has('nvim')
-            colo tokyonight | LineColor Atelier_Lakeside
+            colo tokyonight | LineColor terafox
         else
             colo Tomorrow-Night-Eighties | LineColor snow_dark
         endif

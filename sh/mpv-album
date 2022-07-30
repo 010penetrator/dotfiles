@@ -1,6 +1,6 @@
 #!/bin/bash
 # This is how I listen to music albums with mpv
-# Usage: mpv /path/file DESIRED-TERMINAL-TITLE
+# Usage: mpv /path/dir DESIRED-TERMINAL-TITLE
 
 HIST="$HOME/.mus-history"
 # Ignore '..' target
@@ -10,10 +10,10 @@ HIST="$HOME/.mus-history"
 clear
 
 export TARG="$1"
-# Check if target is readable
+# Check if target (directory) is readable
 if [[ -n $TARG ]] ; then
     if [[ -e $TARG ]] ; then
-        [[ -f $TARG ]] && TARG=$(dirname "$TARG")
+        [[ -f $TARG ]] && TARG=$(dirname "$TARG") # directory is wanted, not file
         TARGREAL=$(realpath "$TARG")
         echo "$TARG" @ $(realpath .)
         export TARG
@@ -55,8 +55,8 @@ fi
 shopt -s nullglob
 shopt -s nocaseglob
 
-if [[ $(ls | grep -ic '\.ape$\|\.flac$\|\.wv$') == $(ls | grep -ic '\.cue$') && \
-                        $(ls | grep -ic '\.cue$') > 0 ]] ; then
+if [[ $(ls "$TARG" | grep -ic '\.ape$\|\.flac$\|\.wv$') == $(ls "$TARG" | grep -ic '\.cue$') && \
+            $(ls "$TARG" | grep -ic '\.cue$') > 0 ]] ; then
     echo ==play cue with mpv==
     mpv $PAUSE --no-video "$TARG"/*.cue
 else
