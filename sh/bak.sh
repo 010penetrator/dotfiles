@@ -43,6 +43,10 @@ tar -czf /ln/lo/cur/linkdir.tar.gz -C / ln
     tar -cf "$bakhot/$DAY/plugged.tar.zst" -I "zstd -10 -T0" --exclude='.git' \
         -C /ln/co/nvim plugged
 
+[[ -d /ln/wo ]] && [[ $space == "wo" ]] &&
+    workrp=$(realpath /ln/wo) && workbn=$(basename $workrp)
+    tar -cf "$bakhot/$DAY/work.tar.zst" -I "zstd -10 -T0" -C $workrp/.. $workbn
+
 tar -cf "$bakhot/$DAY/conf.tar.zst" -I "zstd -10 -T0" --ignore-failed-read \
     -C / etc/fstab etc/udevil/udevil.conf \
     -C $HOME .ssh .bash_history $(ls .git*tials 2>/dev/null) .cache/dmenu-recent .vim \

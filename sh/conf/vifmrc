@@ -214,7 +214,7 @@ nnoremap gd :cd /ln/dwn<cr>:set sort=-mtime<cr>:16<cr>
 nnoremap gb :cd $bakcld<cr>
 nnoremap gB :cd $bakhot<cr>
 nnoremap gy :cd /ln/mob<cr>
-nnoremap gS :cd /ln/mo/*AMV/bak<cr>
+nnoremap gS :exec 'cd' system("compgen -G /ln/mo/*AMV/bak")<cr>
 nnoremap gi :cd /ln/mo/BAMV/fli<cr>
 nnoremap gk :cd /ln/torrents/red/KKK<cr>:sort<cr>mh
 nnoremap gv :cd ~/.vim<cr>:goto plugged<cr>

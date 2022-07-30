@@ -82,17 +82,17 @@ elif [[ $prompt == "" ]] ; then
     PAUSE=0 mpv-album "$TARGREAL"
     # ask_album.sh
 elif [[ -f $LIST ]] && [[ $prompt == "p" ]] ; then
-    SELECT=$( cat -n "$LIST" | sort -nr | sort -uk2 | sort -n | cut -f2- | dmenuy )
+    SELECT=$( cat -n "$LIST" | sort -n | sort -uk2 | sort -nr | cut -f2- | dmenuy )
     ASK=1 PAUSE=1 mpv-album "$SELECT"
 elif [[ -f $LIST ]] && [[ $prompt == "f" ]] ; then
-    SELECT=$( cat -n "$FAVS" | sort -nr | sort -uk2 | sort -n | cut -f2- | dmenuy )
+    SELECT=$( cat -n "$FAVS" | sort -n | sort -uk2 | sort -nr | cut -f2- | dmenuy )
     ASK=1 PAUSE=1 mpv-album "$SELECT"
 elif [[ -f $LIBRARY ]] && [[ $prompt == "l" ]] ; then
     # notify-send "lib is $LIBRARY"
     SELECT=$( cat "$LIBRARY" | sort -R | dmenuy )
     ASK=1 PAUSE=1 mpv-album "$SELECT"
 elif [[ -f $HIST ]] && [[ $prompt == "i" ]] ; then
-    SELECT=$( cat -n "$HIST" | sort -nr | sort -uk2 | sort -nr | cut -f2- | dmenuy )
+    SELECT=$( cat -n "$HIST" | sort -n | sort -uk2 | sort -nr | cut -f2- | dmenuy )
     ASK=1 PAUSE=1 mpv-album "$SELECT"
 else
     clear

@@ -473,7 +473,7 @@ endif
 
 function CrispBorders()
     if has("nvim")
-        set laststatus=3
+        " set laststatus=3
         highlight WinSeparator guibg=none
         highlight WinSeparator guifg=#5a5a5a
     endif
@@ -811,15 +811,15 @@ nnoremap <silent> N :<C-u>execute "keepjumps norm! " . v:count1 . "Nzz"<CR>
 
 " Handle copy registers
 nnoremap ay "+yiW
-nnoremap ap :put  *<CR>
-nnoremap aP :put! *<CR>
-nnoremap ai :put  +<CR>
-nnoremap aI :put! +<CR>
+nnoremap ai :put  *<CR>
+nnoremap aI :put! *<CR>
+nnoremap ao :put  +<CR>
+nnoremap aO :put! +<CR>
 " copy Vim copy register to system copy buffers
 nnoremap qy :let @+ = @" <bar> :let @* = @"<CR>
 " put select system buffer as single paragraph
-nnoremap ao o<Esc>:put! *<CR>`[v`]:g/^$/d<CR>:noh<CR>
-nnoremap aO o<Esc>:put! +<CR>`[v`]:g/^$/d<CR>:noh<CR>
+nnoremap ap o<Esc>:put! *<CR>`[v`]:g/^$/d<CR>:noh<CR>
+nnoremap aP o<Esc>:put! +<CR>`[v`]:g/^$/d<CR>:noh<CR>
 " yank inline
 nnoremap yc ^y$"+y$"*y$
 " yank current file full path/name
