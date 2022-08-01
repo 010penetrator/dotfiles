@@ -44,7 +44,7 @@ tar -czf /ln/lo/cur/linkdir.tar.gz -C / ln
         -C /ln/co/nvim plugged
 
 [[ -d /ln/wo ]] && [[ $space == "wo" ]] &&
-    workrp=$(realpath /ln/wo) && workbn=$(basename $workrp)
+    workrp=$(realpath /ln/wo) && workbn=$(basename $workrp) &&
     tar -cf "$bakhot/$DAY/work.tar.zst" -I "zstd -10 -T0" -C $workrp/.. $workbn
 
 tar -cf "$bakhot/$DAY/conf.tar.zst" -I "zstd -10 -T0" --ignore-failed-read \
