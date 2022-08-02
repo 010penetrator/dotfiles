@@ -60,5 +60,5 @@ else
   echo "No file provided!"
 fi
 
-ror.sh $VIMSERV &> /dev/null
+# ror.sh $VIMSERV &> /dev/null
 
