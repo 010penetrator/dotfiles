@@ -12,7 +12,7 @@ if [[ ! -z $target ]]; then # target is null or ''
     if [ ${PIPESTATUS[0]} -eq "0" ]; then
         echo "/dev/$target mounted"
         mopoint=$(findmnt /dev/${target} -o TARGET -n)
-        [[ -d mopoint ]] && touch -c "$mopoint"
+        [[ -d mopoint ]] && touch "$mopoint"
     fi
     notify-send "$(cat /tmp/vil-mo)"
 else

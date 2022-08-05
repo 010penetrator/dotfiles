@@ -89,7 +89,7 @@ nnoremap q] :tabnext<CR>
 nnoremap q{ :tabmove-<CR>
 nnoremap q} :tabmove+<CR>
 nnoremap gl gf
-nnoremap g. :exec 'cd ' . '"' . system("realpath .") . '"' <CR>
+nnoremap g. :exec 'cd' system('realpath .')<CR>
 nnoremap yc :! echo -n %f | xclip ; echo -n %f | xclip -selection clipboard <CR>:echo "filename in X buffer"<CR>
 nnoremap yC :! echo -n %f:p | xclip ; echo -n %f:p | xclip -selection clipboard <CR>:echo "full filepath in X buffer"<CR>
 nnoremap ,j :jobs<cr>
@@ -153,7 +153,7 @@ nnoremap rs :! rsync_bistep.sh  %d %D
 " nnoremap rS :! echo -ne "\n" ; rsync -rt  --progress --delete --stats --size-only %d/ %D ; read -n 1 -s -r -p "========== DONE!" ; echo
 
 " Operate files "
-nnoremap ai : amou <cr>:cd /ln/mo<cr>:exec 'cd' system('sleep .1; ls -1tf /ln/mo | head -1')<cr>
+nnoremap ai : amou <cr>:cd /ln/mo<cr>:exec 'cd' system('sleep .1; ls -1t /ln/mo | head -1')<cr>
 nnoremap ao : aumo <cr>
 nnoremap au :! echo Sync... ; sync -f %f && udevil umount $(findmnt %f -n -o SOURCE | grep dev)<cr>
 nnoremap am ggVG<cr>:copy<cr>
