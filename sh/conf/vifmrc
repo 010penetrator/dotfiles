@@ -89,7 +89,7 @@ nnoremap q] :tabnext<CR>
 nnoremap q{ :tabmove-<CR>
 nnoremap q} :tabmove+<CR>
 nnoremap gl gf
-nnoremap g. :exec 'cd' system('realpath .')<CR>
+nnoremap g. :exec 'cd ' . '"' . system("realpath .") . '"' <CR>
 nnoremap yc :! echo -n %f | xclip ; echo -n %f | xclip -selection clipboard <CR>:echo "filename in X buffer"<CR>
 nnoremap yC :! echo -n %f:p | xclip ; echo -n %f:p | xclip -selection clipboard <CR>:echo "full filepath in X buffer"<CR>
 nnoremap ,j :jobs<cr>

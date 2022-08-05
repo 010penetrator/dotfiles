@@ -705,8 +705,13 @@ nnoremap ,zl :Lines<CR>
 nnoremap ,zs :Files $sh<CR>
 nnoremap ,zt :Files $tt<CR>
 nnoremap ,zj :Files $jo<CR>
-nnoremap qf  :FilesProj<CR>
+if has('nvim')
+    nnoremap qf :TeleFilesProj<CR>
+else
+    nnoremap qf :FilesProj<CR>
+endif
 nnoremap ,/ :Telescope find_files search_dirs=$sh,$tt,$lo<CR>
+nnoremap ,,/ :Telescope find_files theme=ivy search_dirs=$sh,
 
 " Search text
 nnoremap ,zr :Rg<CR>
@@ -983,6 +988,10 @@ command! Call %d _ | put!
 command! SwapContentPrevWin :call SwapContentPrevWin()
 
 command! -bang FilesProj call GetProjDir() <bar> call fzf#vim#files(expand(b:proj_dir), fzf#vim#with_preview({'options': ['--layout=reverse','--info=inline']}), <bang>0)
+command! -bang TeleFilesProj call GetProjDir() <bar> exec 'Telescope find_files cwd=' . expand(b:proj_dir)
+
+" fzf#vim#files(expand(b:proj_dir),
+nnoremap ,/ :Telescope find_files search_dirs=$sh,$tt,$lo<CR>
 
 """"""""""""""""""""""""
 ""     MS_stuff:      ""
