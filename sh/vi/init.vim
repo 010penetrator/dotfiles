@@ -675,6 +675,8 @@ nnoremap <C-PageDown> gt
 nnoremap gz gT
 nnoremap q] gt
 nnoremap q[ gT
+nnoremap <a-.> gt
+nnoremap <a-,> gT
 nnoremap q{ :tabmove -1<CR>
 nnoremap q} :tabmove +1<CR>
 nnoremap q< :call MoveToPrevTab()<CR>
@@ -799,8 +801,9 @@ endif
 let scrollpart=82
 let key4=""
 let key15=""
-nnoremap <silent> <Space> :exec 'normal! '.float2nr(round(winheight(0)*(exists("b:scrollpart") ? b:scrollpart : g:scrollpart)*0.01))."<C-d>"<CR>
-nnoremap <silent> <BS>    :exec 'normal! '.float2nr(round(winheight(0)*(exists("b:scrollpart") ? b:scrollpart : g:scrollpart)*0.01)).key15<CR>
+nnoremap <silent> <Space>   :exec 'normal! '.float2nr(round(winheight(0)*(exists("b:scrollpart") ? b:scrollpart : g:scrollpart)*0.01))."<C-d>"<CR>
+nnoremap <silent> <BS>      :exec 'normal! '.float2nr(round(winheight(0)*(exists("b:scrollpart") ? b:scrollpart : g:scrollpart)*0.01)).key15<CR>
+nnoremap <silent> <a-space> :exec 'normal! '.float2nr(round(winheight(0)*(exists("b:scrollpart") ? b:scrollpart : g:scrollpart)*0.01)).key15<CR>
 " nnoremap <silent><CR>    :exec 'normal! '.float2nr(round(winheight(0)*(exists("b:scrollpart") ? b:scrollpart : g:scrollpart)*0.01))."<C-d>"<CR>
 " nnoremap <silent> <tab>   :exec 'normal! '.float2nr(round(winheight(0)*(exists("b:scrollpart") ? b:scrollpart : g:scrollpart)*0.01)).key15<CR>
 

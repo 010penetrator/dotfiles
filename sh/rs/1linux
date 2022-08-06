@@ -338,8 +338,8 @@ pacman -Rsn $(pacman -Qdtq) # remove all orphans
 comm -23 <(pacman -Qqt | sort) <(echo "" | tr ' ' '\n' | cat <(pacman -Sqg "base base-devel") - | sort -u) #show all packages that nothing else depends on
 .
 git clone https://aur.archlinux.org/pakku.git
-pacman -U https://archive.archlinux.org/packages/n/nim/nim-1.0.6-1-x86_64.pkg.tar.zst
 makepkg -si
+pacman -U https://archive.archlinux.org/packages/n/nim/nim-1.0.6-1-x86_64.pkg.tar.zst
 
 ==ALSO
 vboxmanage extpack install /Corporalass_VM_VirtualBox_Extension_Pack-6.1.34.vbox-extpack

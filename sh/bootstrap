@@ -4,7 +4,6 @@
 suc=false
 var='v'
 key=''
-
 read_key() {
     echo Press   's' to enter shell , 'q' to exit , 'n' to go to next stage
     read -rsn 1 key
@@ -13,7 +12,6 @@ read_key() {
     [[ $key == 'n' ]] && return
     [[ $key == 's' ]] && bash
 }
-
 if ($suc) ; then
     echo success
 fi
@@ -30,68 +28,69 @@ else
     git clone https://codeberg.org/plasmik/dotfiles "$HOME"/.dotfiles.git
 fi
 
-{
-    echo -e '\n'--Gonna create /ln/ and short links there
-    sudo mkdir -p /ln
-    sudo chown $USER:$USER /ln
-    cd /ln
-    ln -sfn $HOME ho
-    ln -sfn /ln/ho/.sh sh
-    ln -sfn /ln/ho/.lo lo
-    ln -sn  /mnt mo
-    ln -sfn /ln/ho/.config co
-    ln -sfn /ln/mo/blink bl
-    ln -sfn /ln/mo/fast fast
-    ln -sfn /ln/fast/hh hh
-    ln -sfn /ln/bl/torrents torrents
-    # ln -sfn /ln/mo/metal/MUSIC mus
-    # ln -sfn /ln/mo/blink/PRAGS pr
-    ln -sfn /ln/mo/metal/____ __
-    # ln -sfn /ln/mo/blink/dwn dwn
-    # ln -sfn /ln/ho/Downloads dwn
-    # ln -sfn /ln/dwn /ln/ho/Downloads
-}
+(
+echo -e '\n'--Gonna create /ln/ and short links there
+sudo mkdir -p /ln
+sudo chown $USER:$USER /ln
+cd /ln
+ln -sfn $HOME ho
+ln -sfn /ln/ho/.sh sh
+mkdir -p /ln/ho/.lo
+ln -sfn /ln/ho/.lo lo
+ln -sn  /mnt mo
+ln -sfn /ln/ho/.config co
+ln -sfn /ln/mo/blink bl
+ln -sfn /ln/mo/fast fast
+ln -sfn /ln/fast/hh hh
+ln -sfn /ln/bl/torrents torrents
+# ln -sfn /ln/mo/metal/MUSIC mus
+# ln -sfn /ln/mo/blink/PRAGS pr
+ln -sfn /ln/mo/metal/____ __
+# ln -sfn /ln/mo/blink/dwn dwn
+# ln -sfn /ln/ho/Downloads dwn
+# ln -sfn /ln/dwn /ln/ho/Downloads
+)
 
-{
-    echo -e '\n'--Gonna link config files
-    cd
-    ! [[ -L .sh ]] && ln -sn .dotfiles.git/sh .sh
-    ( [[ -f .bashrc ]] && ! [[ -L .bashrc ]] ) &&
-        (
-        echo --will move current .bashrc to exclusive trash file
-        echo -e "\n\n----------$(date)-----.bashrc-------------\n\n" >> .bashrc_trash
-        cat .bashrc >> .bashrc_trash
-        rm .bashrc
-        )
-    ln -sf .sh/bashrc_main .bashrc
-    # ln -sf .sh/Xresources .Xresources
-    ln -sf .sh/vi/vimrc .vimrc
-    mkdir -p /ln/co/nvim
-    ln -srf .sh/vi/vimrc /ln/co/nvim/init.vim
-    mkdir -p /ln/co/kitty
-    ln -srf .sh/conf/kitty.conf /ln/co/kitty/
-    mkdir -p /ln/co/feh
-    ln -srf .sh/conf/feh.keys /ln/co/feh/keys
-    mkdir -p /ln/co/zathura
-    ln -srf .sh/conf/zathurarc /ln/co/zathura/
-    mkdir -p /ln/co/vifm/colors
-    cp .sh/conf/vifm-colors/*.vifm /ln/co/vifm/colors/
-    ln -srf .sh/conf/vifmrc /ln/co/vifm/vifmrc
-    mkdir -p /ln/co/mpv
-    ln -srf .sh/conf/mpv/input.conf /ln/co/mpv/
-    ln -srf .sh/conf/mpv/mpv.conf /ln/co/mpv/
-    mkdir -p .local/share/applications/
-    cp /ln/sh/conf/transmission*desktop .local/share/applications/
-    #
-    # xdg-mime default transmission-cli.desktop x-scheme-handler/magnet
-    # xdg-mime default transmission-cli.desktop application/x-bittorrent
-    xdg-mime default org.qbittorrent.qBittorrent.desktop x-scheme-handler/magnet
-    xdg-mime default org.qbittorrent.qBittorrent.desktop application/x-bittorrent
-    xdg-mime default FBReader.desktop application/x-mobipocket-ebook
-    #
-    # sudo ln -sf /ln/sh/conf/99-libinput-custom.conf /etc/X11/xorg.conf.d/
-    sudo ln -sf /ln/sh/conf/99-libinput-custom.conf /usr/share/X11/xorg.conf.d/
-}
+(
+echo -e '\n'--Gonna link config files
+cd
+! [[ -L .sh ]] && ln -sn .dotfiles.git/sh .sh
+( [[ -f .bashrc ]] && ! [[ -L .bashrc ]] ) &&
+    (
+    echo --will move current .bashrc to exclusive trash file
+    echo -e "\n\n----------$(date)-----.bashrc-------------\n\n" >> .bashrc_trash
+    cat .bashrc >> .bashrc_trash
+    rm .bashrc
+)
+ln -sf .sh/bashrc_main .bashrc
+# ln -sf .sh/Xresources .Xresources
+ln -sf .sh/vi/vimrc .vimrc
+mkdir -p /ln/co/nvim
+ln -srf .sh/vi/vimrc /ln/co/nvim/init.vim
+mkdir -p /ln/co/kitty
+ln -srf .sh/conf/kitty.conf /ln/co/kitty/
+mkdir -p /ln/co/feh
+ln -srf .sh/conf/feh.keys /ln/co/feh/keys
+mkdir -p /ln/co/zathura
+ln -srf .sh/conf/zathurarc /ln/co/zathura/
+mkdir -p /ln/co/vifm/colors
+cp .sh/conf/vifm-colors/*.vifm /ln/co/vifm/colors/
+ln -srf .sh/conf/vifmrc /ln/co/vifm/vifmrc
+mkdir -p /ln/co/mpv
+ln -srf .sh/conf/mpv/input.conf /ln/co/mpv/
+ln -srf .sh/conf/mpv/mpv.conf /ln/co/mpv/
+mkdir -p .local/share/applications/
+cp /ln/sh/conf/transmission*desktop .local/share/applications/
+#
+# xdg-mime default transmission-cli.desktop x-scheme-handler/magnet
+# xdg-mime default transmission-cli.desktop application/x-bittorrent
+xdg-mime default org.qbittorrent.qBittorrent.desktop x-scheme-handler/magnet
+xdg-mime default org.qbittorrent.qBittorrent.desktop application/x-bittorrent
+xdg-mime default FBReader.desktop application/x-mobipocket-ebook
+#
+# sudo ln -sf /ln/sh/conf/99-libinput-custom.conf /etc/X11/xorg.conf.d/
+sudo ln -sf /ln/sh/conf/99-libinput-custom.conf /usr/share/X11/xorg.conf.d/
+)
 
 echo -e '\n'--Gonna pull kitty themes
 if [[ -d ~/.config/kitty-themes ]] ; then

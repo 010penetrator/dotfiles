@@ -10,8 +10,8 @@ bak()
   tar -chzf "$name1" -C /ln/ --exclude=lo/cur sh lo
   #
   magic="AMV"
-  devlabel=$($LSBLK -l -o LABEL | grep $magic | sort | head -1)
-  bakdev=$($LSBLK -l -o NAME,LABEL | grep $devlabel | head -1 | cut -f1 -d ' ')
+  devlabel=$( $LSBLK -l -o LABEL | grep $magic | sort | head -1 )
+  bakdev=$( $LSBLK -l -o NAME,LABEL | grep $devlabel | head -1 | cut -f1 -d ' ' )
   #
   [[ $bakdev == '' ]] && echo $magic is nowhere around && return 1
   if [[ $( mount | grep $devlabel | grep $bakdev -c ) == 0 ]] ; then
@@ -23,7 +23,7 @@ bak()
     echo --Flash drive unavailable!
     return 1
   fi
-  bakdir=$(compgen -G /ln/mo/*$magic/bak)
+  bakdir=$( compgen -G /ln/mo/*$magic/bak )
   ! [[ -d $bakdir ]] && echo "Panic! bakdir is unavailable"
   name2=$bakdir"/auto/${space}_bak_$(date +%Y-%m-%d).tar.gz"
   mkdir -p $bakdir/auto
@@ -77,13 +77,13 @@ restosh()
     echo --Flash drive unavailable!
     return 1
   else
-    bakdir=$(compgen -G /ln/mo/*$magic/bak)
-    arc=$(ls -1t $bakdir/auto/*bak*tar.gz | head -n1)
+    bakdir=$( compgen -G /ln/mo/*$magic/bak )
+    arc=$( ls -1t $bakdir/auto/*bak*tar.gz | head -n1 )
     echo -n 'arc is '
     ls -lh "$arc" | cut -f9- -d ' '
     # Now extract and remove files not present in archive
     (
-    cd "$(readlink /ln/sh)" &&
+    cd "$( readlink /ln/sh )" &&
       touch stmp ; sleep .1
       tar -xf "$arc" sh --strip-components=1 &&
         find . -depth ! -path '.' ! -path './stmp' ! -cnewer stmp -print |
@@ -91,7 +91,7 @@ restosh()
           rm -rfv "$f"
         done
       rm stmp
-    cd "$(readlink /ln/lo)" &&
+    cd "$( readlink /ln/lo )" &&
       touch stmp ; sleep .1
       tar -xf "$arc" lo --strip-components=1 &&
         find . -depth ! -path '.' ! -path './stmp' ! -type l ! -cnewer stmp -print |

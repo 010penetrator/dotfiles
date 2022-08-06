@@ -11,6 +11,7 @@ if [[ ! -z $target ]]; then # target is null or ''
     udevil mount /dev/$target 2>&1 | tee /tmp/vil-mo
     if [ ${PIPESTATUS[0]} -eq "0" ]; then
         echo "/dev/$target mounted"
+        sleep .1
         mopoint=$(findmnt /dev/${target} -o TARGET -n)
         [[ -d mopoint ]] && touch "$mopoint"
     fi
