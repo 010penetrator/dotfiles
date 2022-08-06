@@ -4,7 +4,7 @@
 [[ -z $SELECTOR ]] && SELECTOR="dmenu" && source $sh/dmenurc && SELECTOR="dmenuy"
 
 LSBLK="lsblk"
-target=$( $LSBLK -o TYPE,NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT -l | grep "part" | cut -f 2- -d " " | 
+target=$( $LSBLK -o TYPE,NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT -l | grep "part" | cut -f 2- -d " " |
      $SELECTOR | cut -f 1 -d " " )
 
 if [[ ! -z $target ]]; then # target is null or ''
