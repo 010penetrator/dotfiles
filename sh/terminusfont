@@ -4,10 +4,13 @@
 # setfont ter-218b && echo reserv
 # ( echo reserv; setfont $( ls /usr/share/consolefonts/ | grep -i terminus | grep -i Bold | grep 20 | grep Uni | head -1 | cut -d . -f 1 ) )
 
-candidat1='ter-218b'
-candidat2=$( ls /usr/share/consolefonts/ | grep -i terminus | grep -i bold | grep 20 | grep Uni | head -1 | cut -d . -f 1 )
+[ -d /usr/share/consolefonts ] && CFONTS=/usr/share/consolefonts
+[[ -z $CFONTS && -d /usr/share/kbd/consolefonts ]] && CFONTS=/usr/share/kbd/consolefonts
 
-if [[ $( ls /usr/share/consolefonts | grep -c "$candidat1" ) != 0 ]] ; then
+candidat1='ter-218b'
+candidat2=$( ls $CFONTS | grep -i terminus | grep -i bold | grep 20 | grep Uni | head -1 | cut -d . -f 1 )
+
+if [[ $( ls $CFONTS | grep -c "$candidat1" ) != 0 ]] ; then
     fn="$candidat1"
 elif [[ -n $candidat2 ]] ; then
     fn="$candidat2"

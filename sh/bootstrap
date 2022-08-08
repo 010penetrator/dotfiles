@@ -79,6 +79,8 @@ ln -srf .sh/conf/vifmrc /ln/co/vifm/vifmrc
 mkdir -p /ln/co/mpv
 ln -srf .sh/conf/mpv/input.conf /ln/co/mpv/
 ln -srf .sh/conf/mpv/mpv.conf /ln/co/mpv/
+mkdir -p /ln/co/deadbeef
+cp .sh/conf/deadbeef.config /ln/co/deadbeef/config
 mkdir -p .local/share/applications/
 cp /ln/sh/conf/transmission*desktop .local/share/applications/
 #

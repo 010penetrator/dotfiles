@@ -1,4 +1,5 @@
 map gr previousTab
+map gz previousTab
 map t Vomnibar.activateInNewTab
 map O Vomnibar.activateEditUrlInNewTab
 map go Vomnibar.activateEditUrl

@@ -83,6 +83,8 @@ super + f ; q
 # alternate between the tiled and monocle layout
 super + M
   bspc desktop -l next
+super + f; space
+  bspc desktop -l next
 
 # send the newest marked node to the newest preselected node
 super + f ; p
@@ -101,7 +103,7 @@ super + f ; o
   bspc node -n 'any.leaf.!window' --follow
 
 # set the node flags
-super + f ; {m,t,a,e}
+super + f ; {m,t,a,e}boo
   bspc node -g {marked,locked,sticky,private}
 
 # focus/swap the node in the given direction

@@ -71,9 +71,10 @@ usermod -a -G sudo $ME
 echo Enter password for user
 passwd $ME
 
-export applist1="gvim grub fuse2 dosfstools efibootmgr os-prober sudo xorg-server xorg-xinput xorg-xinit inetutils netctl iw iwd dialog openbox python-pip bspwm dunst thunar pavucontrol gparted speedcrunch firefox xterm kitty curl git earlyoom udevil ncdu htop bashtop lolcat xclip redshift scrot lxappearance hardinfo gitg xarchiver mediainfo audacity sox shntool cuetools wavpack mac vorbis-tools nomacs zathura sxhkd xorg-apps terminus-font ttf-liberation ttf-dejavu noto-fonts ttf-fira-code man fzf pulseaudio ntfs-3g telegram-desktop transmission-cli nmap rsync lsb-release alsa-utils pulseaudio-alsa zathura-djvu zathura-pdf-mupdf unzip p7zip unrar stalonetray qemu virtualbox virtualbox-host-modules-arch smartmontools base-devel mlocate ranger vifm nnn fzf ncdu ripgrep tmux bc wmctrl xdotool nitrogen dmenu nemo mpv vlc ffmpeg feh eog imagemagick gpick fbreader evince testdisk weechat youtube-dl pop-gtk-theme papirus-icon-theme tree "
+export applist1="gvim grub fuse2 dosfstools efibootmgr os-prober sudo xorg-server xorg-xinput xorg-xinit inetutils netctl iw iwd dialog openbox python-pip bspwm dunst thunar pavucontrol gparted speedcrunch firefox xterm kitty curl git earlyoom ncdu htop bashtop lolcat xclip redshift scrot lxappearance gitg xarchiver mediainfo audacity sox cuetools wavpack mac vorbis-tools nomacs zathura sxhkd xorg-apps terminus-font ttf-liberation ttf-dejavu noto-fonts ttf-fira-code man fzf pulseaudio ntfs-3g telegram-desktop transmission-cli nmap rsync lsb-release alsa-utils pulseaudio-alsa zathura-djvu zathura-pdf-mupdf unzip p7zip unrar stalonetray qemu virtualbox virtualbox-host-modules-arch smartmontools base-devel mlocate ranger vifm nnn fzf ncdu ripgrep tmux bc wmctrl xdotool nitrogen dmenu nemo mpv vlc ffmpeg feh eog imagemagick gpick fbreader evince testdisk weechat youtube-dl pop-gtk-theme papirus-icon-theme tree neovim "
 export applist2="ardour blender amsynth hydrogen guitarix fluidsynth soundfont-fluid jack2 qjackctl midori mousepad "
 export applist3="deadbeef inxi pakku woeusb tty-clock jdownloader2 tuxguitar virtualbox-ext-oracle gtick "
+export applistAur="udevil hardinfo shntool "
 
 echo "
 applist1:
