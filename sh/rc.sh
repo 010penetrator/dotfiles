@@ -32,14 +32,14 @@ nitrogen --restore &
 xinput set-prop "RAPOO Rapoo 2.4G Wireless Device" "libinput Accel Speed" -.7
 # xinput set-prop "pointer:Logitech MX Master 3" "libinput Accel Speed" -.5
 
-if [[ "$HOSTNAME" =~ 'killer'[pc,PC] ]]; then
+if [[ "$HOSTNAME" =~ killer[pc,PC] ]]; then
   # xrandr --dpi 110x110
   xrdb -merge <(echo "Xft.dpi: 108") &
   # echo -e 'power on\nquit' | bluetoothctl
   polybar.sh &
   killall unclutter; unclutter &
 
-elif [[ "$HOSTNAME" =~ 'machine' ]]; then
+elif [[ "$HOSTNAME" =~ "machine" ]]; then
   xrdb -merge <(echo "Xft.dpi: 128") &
   xrandr --output DisplayPort-0 --mode 2560x1440 --rate 100
   sleep 1
@@ -54,7 +54,7 @@ elif [[ "$HOSTNAME" =~ ^white*(.*)ok ]]; then
   xset dpms 900 0 0
   xinput set-prop "SYN1B7F:01 06CB:2991 Touchpad" "libinput Tapping Enabled" 1
 
-elif [[ "$HOSTNAME" =~ 'warmPC' ]]; then
+elif [[ "$HOSTNAME" =~ "warmPC" ]]; then
   # xrdb -merge <(echo "Xft.dpi: 108") &
   sleep 1
   pgrep transmission-da | grep . || trdwrap.sh &
@@ -62,6 +62,9 @@ elif [[ "$HOSTNAME" =~ 'warmPC' ]]; then
 
 elif [[ "$HOSTNAME" =~ [pc,PC] ]]; then
   xrandr --output VGA-2 --off
+
+elif [[ "$HOSTNAME" =~ "ufo" ]]; then
+  xset dpms 600 0 0
 fi
 
 killall dunst
