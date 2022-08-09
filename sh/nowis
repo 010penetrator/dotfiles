@@ -3,12 +3,13 @@
 # Call 'nowis day' or 'nowis nox'
 # Call 'nowis' or 'nowis what' to ask
 
+if [[ -f /tmp/nowis && $( cat /tmp/nowis | wc -w ) -gt 0 ]]; then
+    reply=$(cat /tmp/nowis | head -1 | cut -d ' ' -f1)
+else
+    reply='dunno'
+fi
+
 if [[ -z $* || $1 == 'what' ]]; then
-    if [[ -f /tmp/nowis && $( cat /tmp/nowis | wc -w ) -gt 0 ]]; then
-        reply=$(cat /tmp/nowis | head -1 | cut -d ' ' -f1)
-    else
-        reply='dunno'
-    fi
     notify-send -t 800 $reply
     echo $reply
     exit
@@ -32,8 +33,8 @@ fi
 
 {
     cd /ln/co/kitty/
-    DT="day-theme.conf"
-    NT="nox-theme.conf"
+    DT="day_theme.conf"
+    NT="nox_theme.conf"
     CT="current-theme.conf"
     # Backup current theme if it is different from day theme and night theme
     if [[ -f $CT ]] && ! cmp -s $CT $DT && ! cmp -s $CT $NT ; then
