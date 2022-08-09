@@ -25,7 +25,7 @@ xset r rate 250 44 # set keyboard repeat rate
 
 sxd.sh &
 # killall sxhkd; sxhkd -c ~/.sh/sxhkdrc &
-nitrogen --restore &
+[ -f /tmp/nowis ] || nitrogen --restore &
 
 # xinput set-prop "A4TECH USB Device" "libinput Accel Speed" -.5
 # xinput set-prop "LVT ENDGAME GEAR XM1" "libinput Accel Speed" -.5
@@ -65,6 +65,8 @@ elif [[ "$HOSTNAME" =~ [pc,PC] ]]; then
 
 elif [[ "$HOSTNAME" =~ "ufo" ]]; then
   xset dpms 600 0 0
+  xrdb -merge <(echo "Xft.dpi: 120") &
+  nowis
 fi
 
 killall dunst
