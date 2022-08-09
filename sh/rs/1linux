@@ -115,6 +115,7 @@ yes > /dev/null & # fully load one CPU core
 youtube-dl -f "bestvideo[height<=720]+bestaudio" https://... # fetch youtube
 mpv --ytdl-format='bestvideo[height<=480]+bestaudio' https://... # fetch youtube
 ffmpeg -r 30 -f image2 -i /media/Blink/rr/rma.1%05d.png -vf format=yuv420p,lutyuv="y=negval:u=128:v=128" -vcodec libx264 -crf 20 -pix_fmt yuv420p -preset veryslow /media/fast/pol-r60-s_360.mkv # movie from png
+ffmpeg  -i Videos/MVI_4460.AVI  -vcodec libx264 -crf 21 -pix_fmt yuv420p -profile:v main preset medium output.mp4 # video for phone
 chromium --restore-last-session &> /dev/null & disown # browsing makes you silly
 vlc -vvv cdda://dev/sr0 # listen CD
 while read line ; do deadbeef --queue "$line" ; done # use stdin as arg
