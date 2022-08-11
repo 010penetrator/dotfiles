@@ -66,10 +66,12 @@ alias lb='$LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT,FSUSE% | grep "sd\|nvme" -
 alias wlb='watch -n.4 $LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT'
 alias leto='date +%Y-%m-%d'
 alias p='ps aux | grep -v grep | grep'
-alias dropcs='sync && echo 3 | sudo tee /proc/sys/vm/drop_caches'
 alias vs='nvim -S /ln/co/nvim/session/comon'
 alias mm='make -f my_Makefile'
-alias demu='sync && echo 3 | sudo tee /proc/sys/vm/drop_caches; sudo qemu-system-x86_64 -m 2000 -enable-kvm -cpu host -smp 4 -boot menu=on'
+alias dropcs='sync && echo 3 | sudo tee /proc/sys/vm/drop_caches'
+alias nuts='sudo qemu-system-x86_64 -m 1400 -enable-kvm -cpu host -smp 4 -boot menu=on'
+# alias qu='sync && echo 3 | sudo tee /proc/sys/vm/drop_caches ; sudo qemu-system-x86_64 -m 1400  -enable-kvm -cpu host -smp 4 '
+
 
 type -f ai &>/dev/null ||
 if  type -f pacman &>/dev/null ; then
