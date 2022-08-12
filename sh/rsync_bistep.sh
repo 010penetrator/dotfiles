@@ -19,7 +19,8 @@ read -n 1 -s -r -p "Press F or ENTER or SPACE to sync, ESC to cancel" key
     (
     echo -ne "\n\n========== real\n"
     time rsync $RSYNC_OPTS "$SRC/" "$DEST"
-    read -n 1 -s -r -p "========== DONE!"
+    # read -n 1 -s -r -p "========== DONE!"
+    echo "========== DONE!"
     )
 echo
 
