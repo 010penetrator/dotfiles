@@ -50,7 +50,7 @@ tar -czf /ln/lo/cur/linkdir.tar.gz -C / ln
 tar -cf "$bakhot/$DAY/conf.tar.zst" -I "zstd -10 -T0" --ignore-failed-read \
     -C / etc/fstab etc/udevil/udevil.conf \
     -C $HOME .ssh .bash_history $(ls .git*tials 2>/dev/null) .cache/dmenu-recent .vim \
-    -C /ln/co kitty kitty-themes \
+    -C /ln/co kitty kitty-themes deadbeef \
     $conditional_line
 
 [[ -d $bakcld ]] &&
