@@ -47,7 +47,7 @@ command! amou :exec '!bash -ic "source /ln/ho/.bashrc; amou"' | cd /ln/mo
 
 command! aumo :!bash -ic 'source /ln/ho/.bashrc; aumo'
 command! own  :!sudo chown 1000:100 %f
-command! chmodauto :! find %f -type f -exec chmod 644 {} \;
+command! chmodautoSEL :! find %f -type f -exec chmod 644 {} \;
 
 """"""""""""""""""""""""
 ""     Mappings:      ""
