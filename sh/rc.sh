@@ -65,7 +65,7 @@ elif [[ "$HOSTNAME" =~ [pc,PC] ]]; then
 
 elif [[ "$HOSTNAME" =~ "ufo" ]]; then
   xset dpms 600 0 0
-  xrdb -merge <(echo "Xft.dpi: 120") &
+  xrdb -merge <(echo "Xft.dpi: 128") &
   nowis
 fi
 
