@@ -210,6 +210,7 @@ nnoremap g2 :cd $HOME/2<cr>
 nnoremap g3 :cd $HOME/3<cr>
 nnoremap g4 :cd $HOME/4<cr>
 nnoremap gs :cd /ln/sh<cr>
+nnoremap g<BS> :cd /ln/fast/hh<cr>
 nnoremap gw :cd /ln/wo<cr>
 nnoremap gj :cd /ln/ho/gitjob<cr>
 nnoremap gd :cd /ln/dwn<cr>:set sort=-mtime<cr>:16<cr>
