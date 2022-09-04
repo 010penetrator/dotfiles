@@ -7,17 +7,21 @@
 " ------------------------------------------------------------------------------
 
 if (system('[ -f /tmp/now_is_day ] && echo 1') == "1" )
-    colo reicheltd-light
+    let $VIFM_THEME='reicheltd-light'
 elseif (system('[ -f /tmp/now_is_nox ] && echo 1') == "1" )
-    colo crown_24bit
+    let $VIFM_THEME='crown_24bit'
     " colo dracula
     " colo iceberg
 else
     " colo reicheltd-light
-    colo iceberg
+    let $VIFM_THEME='iceberg'
     " colo dracula
     " colorscheme Default
 endif
+nnoremap ,cx        :exec 'colo' system("echo $VIFM_THEME")<CR>
+command! resetcolor :exec 'colo' system("echo $VIFM_THEME")<CR>
+exec 'colo' system("echo $VIFM_THEME")
+" nnoremap gS :exec 'cd' system("compgen -G /ln/mo/*AMV/bak")<cr>
 
 !echo -ne "\033]0;VIFM\007"
 " wincmd o
@@ -64,7 +68,7 @@ nnoremap o :sort<CR>
 nnoremap O :invert o<CR>
 nnoremap qs :split <CR>
 nnoremap qv :vsplit <CR>
-nnoremap ,,c :colo <CR>
+nnoremap ,cv :colo <CR>
 nnoremap qw :wincmd o<CR>
 nnoremap qz :wincmd =<CR>
 nnoremap q, 8<c-w><
