@@ -5,7 +5,7 @@
 BASE: base-devel inetutils earlyoom kbd plocate mlocate udevil cylon inxi
 ARCHIE: pacli pakku yay baph
 TUI: qalc networkmanager nmtui mc clex lfm ranger vifm nnn fff exa fd lftp fzf ripgrep silversearcher-ag ncdu tree p7zip htop ytop bashtop bpytop glances dmenu keratin screenfetch lolcat tmux bc tty-clock
-X: xorg-server xorg-xinit xterm urxvt xvkbd xclip redshift xscreensaver nitrogen dunst unclutter-xfixes xbanish gmrun scrot wmctrl xdotool compton picom wbar
+X: xorg-server xorg-xinit xterm kitty tilda termit urxvt xvkbd xclip redshift xscreensaver nitrogen dunst unclutter-xfixes xbanish gmrun scrot wmctrl xdotool compton picom wbar
 FIRMWARE: bluez-utils
 GTKtune: lxappearance oomox wpgtk pop-gtk-theme
 BRO: luakit links w3m midori jumanji uzbl netsurf *epiphany palemoon
