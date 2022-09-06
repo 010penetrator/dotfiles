@@ -28,7 +28,7 @@ KEYMAP(
 KC_GRV        , KC_F1    , KC_F2   ,  KC_F3   , KC_F4   , KC_F5   , KC_F6   , KC_F7    , KC_F8   , KC_F9    , KC_F10  , KC_DEL  ,
 KC_TILD       , KC_BTN1  , KC_MS_U ,  KC_BTN2 , KC_WH_U , _______ , _______ , _______  , KC_INS  , KC_F11   , KC_F12  , KC_PGUP ,
 KC_LALT       , KC_MS_L  , KC_MS_D ,  KC_MS_R , KC_WH_D , _______ , KC_LEFT , KC_DOWN  , KC_UP   , KC_RIGHT , KC_QUOT , KC_PGDN ,
-KC_LCTL       , KC_MINS  , KC_PLUS ,  KC_UNDS , KC_EQL  , KC_APP  , KC_PIPE , KC_MINS  , KC_PLUS , KC_UNDS  , KC_EQL  , KC_ENT  ,
+KC_LCTL       , KC_MINS  , KC_PLUS ,  KC_UNDS , KC_EQL  , KC_APP  , KC_PIPE , KC_MINS  , KC_PLUS , KC_UNDS  , KC_EQL  , KC_BSLS ,
      MO(1) , LSFT(KC_SPC) , KC_LGUI , KC_CAPS ,                     KC_BSLS , KC_RSFT , KC_LEFT , KC_RIGHT )
 };
 

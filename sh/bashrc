@@ -46,7 +46,7 @@ command -v kitty &>/dev/null && export TERMINAL=kitty && export TERMINAL_BIGER="
 PS1=$'\[$(tput bold)\]\[$(tput setaf 34)\]\u\[$(tput setaf 78)\] \W \[$(tput setaf 34)\]\$ \[$(tput sgr0)\]'
 
 # Aliases #
-alias bb='tty | grep -q /dev/tty && (terminusfont ; sudo /./bin/conn & startx /ln/sh/xinitrc bspwm) || echo This is not tty!'
+alias bb='tty | grep -q /dev/tty && ( terminusfont ; startx /ln/sh/xinitrc bspwm ) || echo This is not tty!'
 alias tf='terminusfont'
 alias v='virpc'
 # alias vl='MODE=last nvimrpc'

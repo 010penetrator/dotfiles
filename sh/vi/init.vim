@@ -656,7 +656,7 @@ nnoremap q,    <C-W>6<
 nnoremap q.    <C-W>6>
 nnoremap qe    <C-W>4+
 nnoremap qd    <C-W>4-
-nnoremap aq    <C-W>_
+nnoremap a0    <C-W>_
 nnoremap az    <C-W>80-
 nnoremap qa    <C-W>_<C-W>\|
 nnoremap qz    <C-W>=
@@ -717,7 +717,7 @@ nnoremap ,,/ :Telescope find_files theme=ivy search_dirs=$sh,
 
 " Search text
 nnoremap ,zr :Rg<CR>
-nnoremap ,tg :Telescope live_grep<CR>
+nnoremap ,tg :Telescope live_grep theme=ivy<CR>
 nnoremap ,tf :Telescope find_files theme=ivy<CR>
 nnoremap ,tr :Telescope lsp_references<CR>
 nnoremap ,tw :Telescope lsp_dynamic_workspace_symbols<CR>
@@ -859,6 +859,7 @@ nnoremap ,v<CR> yap:@"<CR>:<up><CR>
 nnoremap ,v, :call EvalThis()<CR>
 " Evaluate a paragraph as Vimscript
 nnoremap ,v; :let lastl=line('.') <bar> exec "normal yap" <bar> @\" <bar> exec lastl<CR>:echo "Evaluated current paragraph."<CR>
+nnoremap ,vx :let lastl=line('.') <bar> exec "normal yap" <bar> @\" <bar> exec lastl<CR>:echo "Evaluated current paragraph."<CR>
 
 " Open current location with vifm within vim
 nnoremap ac :terminal ++close bash -c "INVIM=1 vifm %:p:h"<CR>
@@ -992,9 +993,6 @@ command! SwapContentPrevWin :call SwapContentPrevWin()
 
 command! -bang FilesProj call GetProjDir() <bar> call fzf#vim#files(expand(b:proj_dir), fzf#vim#with_preview({'options': ['--layout=reverse','--info=inline']}), <bang>0)
 command! -bang TeleFilesProj call GetProjDir() <bar> exec 'Telescope find_files cwd=' . expand(b:proj_dir)
-
-" fzf#vim#files(expand(b:proj_dir),
-nnoremap ,/ :Telescope find_files search_dirs=$sh,$tt,$lo<CR>
 
 """"""""""""""""""""""""
 ""     MS_stuff:      ""

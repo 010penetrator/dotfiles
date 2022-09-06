@@ -25,7 +25,9 @@ else
         " colo onehalfdark | LineColor one
         " colo tempus_dusk | set bg=dark | LineColor bluewery
         if has('nvim')
-            colo tokyonight | LineColor terafox
+            colo stellarized | set bg=dark | LineColor snow_dark
+            " colo tokyonight | LineColor nordfox
+            " colo tokyonight | LineColor tokyonight
         else
             colo Tomorrow-Night-Eighties | LineColor snow_dark
         endif
@@ -84,6 +86,7 @@ endif
 " LineColor material
 " LineColor one
 " LineColor selenized_light
+" LineColor selenized_dark
 " LineColor PaperColor_light
 " LineColor Tomorrow
 " LineColor nord
