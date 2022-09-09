@@ -656,8 +656,9 @@ nnoremap q,    <C-W>6<
 nnoremap q.    <C-W>6>
 nnoremap qe    <C-W>4+
 nnoremap qd    <C-W>4-
-nnoremap a0    <C-W>_
-nnoremap az    <C-W>80-
+nnoremap a<Up>   <C-W>_
+nnoremap a<Down> <C-W>80-
+" nnoremap az    <C-W>80-
 nnoremap qa    <C-W>_<C-W>\|
 nnoremap qz    <C-W>=
 nnoremap aj    <C-W>w<C-W>_
@@ -718,9 +719,10 @@ nnoremap ,,/ :Telescope find_files theme=ivy search_dirs=$sh,
 " Search text
 nnoremap ,zr :Rg<CR>
 nnoremap ,tg :Telescope live_grep theme=ivy<CR>
+nnoremap ,t, :Telescope live_grep theme=ivy search_dirs=%<CR>
 nnoremap ,tf :Telescope find_files theme=ivy<CR>
 nnoremap ,tr :Telescope lsp_references<CR>
-nnoremap ,tw :Telescope lsp_dynamic_workspace_symbols<CR>
+nnoremap ,ts :Telescope lsp_dynamic_workspace_symbols<CR>
 " nnoremap ,tt :Telescope current_buffer_fuzzy_find sorting_strategy=ascending layout_config={"prompt_position":"top"}<CR>
 " nnoremap ,tt <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find({sorting_strategy="ascending", theme="ivy"})<CR>
 nnoremap ,tb <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_ivy{})<CR>
@@ -748,7 +750,7 @@ nnoremap ,vi :IndentBlanklineToggle<CR>
 " Start and quit Vim
 nnoremap ,V :source $MYVIMRC<CR>
 nnoremap ,,v :source $MYVIMRC<CR>
-nnoremap ,cx :call SetPhase() <bar> call LoadColor() <bar> call CrispBorders()<CR>
+nnoremap c<BS> :call SetPhase() <bar> call LoadColor() <bar> call CrispBorders()<CR>
 nnoremap ,vs :source $RTP/session/comon <bar> call AddRpcEar()<CR>
 nnoremap ,,q :call SaveColor() <bar> SSave! comon <bar> qa<CR>
 nnoremap ,,s :call SaveColor() <bar> SSave! comon<CR>
