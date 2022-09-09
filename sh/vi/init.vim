@@ -727,9 +727,9 @@ nnoremap ,tb <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find(req
 
 " Jump to favourite files
 nnoremap ,gv :call FocusBufOrDo('init.vim','e $sh/vi/init.vim')<CR>
+nnoremap ,gt :call FocusBufOrDo('vimrc_themes','e $sh/vi/vimrc_themes')<CR>
 nnoremap ,gc :call FocusBufOrDo('init.lua','e $sh/vi/init.lua')<CR>
 nnoremap ,g, :call FocusBufOrDo('vimrc$','e $MYVIMRC')<CR>
-nnoremap ,gt :call FocusBufOrDo('vimrc_themes','e $sh/vi/vimrc_themes')<CR>
 nnoremap ,gb :call FocusBufOrDo('bashrc','e $sh/bashrc')<CR>
 nnoremap ,gB :call FocusBufOrDo('bashrc.local','e $lo/bashrc.local')<CR>
 nnoremap ,g2 :call FocusBufOrDo('bspwm$','e $sh/bspwmrc')<CR>

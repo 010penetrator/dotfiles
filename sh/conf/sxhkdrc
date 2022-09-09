@@ -200,8 +200,11 @@ super + ctrl + minus
 # expand a window by moving one of its side outward
 super + alt + {h,j,k,l}
   bspc node -z {left -15 0, bottom 0 15, top 0 -15, right 15 0}
-super + alt + {Up,Down}
-  bspc node -z { bottom 0 30, top 0 -30 }
+
+super + alt + Up
+  bspc node -z bottom 0 30; bspc node -z top 0 -30
+super + alt + Down
+  bspc node -z bottom 0 -30; bspc node -z top 0 30
 
 # contract a window by moving one of its side inward
 super + alt + {y,u,i,o}
