@@ -145,12 +145,12 @@ super + {comma,period}
   bspc desktop -f {prev,next}.local
 
 # focus the last node
+super + Tab
+  bspc node -f last
 super + Escape
   bspc node -f last.local
 super + p
   bspc node -f last.local
-super + Tab
-  bspc node -f last
 
 # focus the last desktop
 alt + Tab

@@ -757,7 +757,7 @@ nnoremap ,,s :call SaveColor() <bar> SSave! comon<CR>
 nnoremap ,vq :qa!<CR>
 nnoremap ,l :Startify<CR>
 nnoremap ,zq :wa <bar> qa<CR>
-nnoremap ,ar :call AddRpcEar()<CR>
+nnoremap ,,a :call AddRpcEar()<CR>
 " Open current file at vimserver session via my "vimrpc" shell script
 nnoremap ,aa :silent exec '! virpc "%:p"'<CR>
 nnoremap ,a. :exec '! virpc "%:p"' \| q<CR>
@@ -897,7 +897,7 @@ nnoremap ,C :Silent xdg-open %:p:h &<CR>
 " system open current file
 nnoremap ,O :Silent xdg-open %:p &<CR>
 " system open current line (usable for http links)
-nnoremap ,,o ^y$:call system('xdg-open ' . "'" . @" . "' &")<CR>
+nnoremap ,,o ^y$:call system('xdg-open ' . "'" . @" . "'")<CR>
 " system open selected lines
 vnoremap ,,o :<C-U>call SystemOpenEveryLine()<CR>
 " open current line with firefox

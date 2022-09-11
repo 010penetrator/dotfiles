@@ -50,7 +50,7 @@ command! tik :!touch --date="$(date -R -r %c) + 10 minute" KKK
 command! amou :exec '!bash -ic "source /ln/ho/.bashrc; amou"' | cd /ln/mo
 
 command! aumo :!bash -ic 'source /ln/ho/.bashrc; aumo'
-command! own  :!sudo chown 1000:100 %f
+command! ownSEL :!sudo chown 1000:100 %f
 command! chmodautoSEL :! find %f -type f -exec chmod 644 {} \;
 
 """"""""""""""""""""""""
@@ -122,6 +122,7 @@ nnoremap .  :! xdg-open %c &>/dev/null &<cr>
 nnoremap ,,. :! bash -x xdg-open %c<cr>
 nnoremap ,,/ :! bash -lc "ARG=DMENUSAVE xdgsane %c"
 nnoremap q<cr> :file &<cr>l
+nnoremap qj :file<cr>
 nnoremap ,g :! google.sh %c &>/dev/null &<cr>
 nnoremap ,e :! $TERMINAL $EDITOR %c<cr>
 
@@ -223,10 +224,12 @@ nnoremap gB :cd $bakhot<cr>
 nnoremap gy :cd /ln/mob<cr>
 nnoremap gS :exec 'cd' system("compgen -G /ln/mo/*AMV/bak")<cr>
 nnoremap gi :cd /ln/mo/BAMV/fli<cr>
+nnoremap gf :cd /ln/hh/imgdl1<cr>
 nnoremap gk :cd /ln/torrents/red/KKK<cr>:sort<cr>mh
 nnoremap gv :cd ~/.vim<cr>:goto plugged<cr>
 nnoremap gn :cd ~/.config/nvim<cr>:goto plugged<cr>
 nnoremap gN :cd ~/01/new/<cr>
+nnoremap gp :cd /ln/pr/prwin/<cr>
 
 """"""""""""""""""""""""
 ""     Settings:      ""
