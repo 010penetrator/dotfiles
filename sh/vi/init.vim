@@ -605,6 +605,7 @@ onoremap <silent> gp :call search('^\(.\\|\(\s\)*\)$','bW')<CR>
 
 " Open and close files (buffers)
 nnoremap aw :w<CR>
+nnoremap ,,w :wa<CR>
 nnoremap qx :q<CR>
 nnoremap ,x :q<CR>
 nnoremap qg :tabclose<CR>
@@ -656,13 +657,12 @@ nnoremap q,    <C-W>6<
 nnoremap q.    <C-W>6>
 nnoremap qe    <C-W>4+
 nnoremap qd    <C-W>4-
-nnoremap a<Up>   <C-W>_
-nnoremap a<Down> <C-W>80-
-" nnoremap az    <C-W>80-
 nnoremap qa    <C-W>_<C-W>\|
 nnoremap qz    <C-W>=
 nnoremap aj    <C-W>w<C-W>_
 nnoremap ak    <C-W>W<C-W>_
+nnoremap ,qe   <C-W>_
+nnoremap ,qd   <C-W>80-
 nnoremap q<tab> <C-w>p
 " swap current and previous window
 " silent nnoremap a<tab> :call WinSwap()<CR><C-W>p
@@ -700,7 +700,8 @@ nnoremap ,bi :Unite buffer file<CR>i
 nnoremap ,bk :Denite buffer -mode=normal -immediately-1<CR>
 nnoremap ,be :BufExplorer<CR>
 nnoremap ,,e :BufExplorer<CR>
-nnoremap ,bl :Telescope buffers theme=ivy<CR>
+nnoremap ,bf :Telescope buffers sort_mru=1 theme=ivy<CR>
+nnoremap ,,b :Telescope buffers sort_mru=1 theme=ivy<CR>
 nnoremap ,to :Telescope oldfiles<CR>
 nnoremap ,zf :Files<CR>
 nnoremap ,zg :GFiles<CR>
@@ -751,7 +752,7 @@ nnoremap ,vi :IndentBlanklineToggle<CR>
 nnoremap ,V :source $MYVIMRC<CR>
 nnoremap ,,v :source $MYVIMRC<CR>
 nnoremap c<BS> :call SetPhase() <bar> call LoadColor() <bar> call CrispBorders()<CR>
-nnoremap ,vs :source $RTP/session/comon <bar> call AddRpcEar()<CR>
+nnoremap ,vs :source $RTP/session/comon <bar> silent call AddRpcEar()<CR>
 nnoremap ,,q :call SaveColor() <bar> SSave! comon <bar> qa<CR>
 nnoremap ,,s :call SaveColor() <bar> SSave! comon<CR>
 nnoremap ,vq :qa!<CR>
@@ -821,12 +822,12 @@ nnoremap <silent> N :<C-u>execute "keepjumps norm! " . v:count1 . "Nzz"<CR>
 
 " Handle copy registers
 nnoremap ay "+yiW
+" copy Vim copy register to system copy buffers
+nnoremap qy :let @+ = @" <bar> :let @* = @"<CR>
 nnoremap ai :put  *<CR>
 nnoremap aI :put! *<CR>
 nnoremap ao :put  +<CR>
 nnoremap aO :put! +<CR>
-" copy Vim copy register to system copy buffers
-nnoremap qy :let @+ = @" <bar> :let @* = @"<CR>
 " put select system buffer as single paragraph
 nnoremap ap o<Esc>:put! *<CR>`[v`]:g/^$/d<CR>:noh<CR>
 nnoremap aP o<Esc>:put! +<CR>`[v`]:g/^$/d<CR>:noh<CR>
