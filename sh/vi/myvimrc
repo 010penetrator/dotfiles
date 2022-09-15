@@ -657,12 +657,12 @@ nnoremap q,    <C-W>6<
 nnoremap q.    <C-W>6>
 nnoremap qe    <C-W>4+
 nnoremap qd    <C-W>4-
-nnoremap qa    <C-W>_<C-W>\|
-nnoremap qz    <C-W>=
+nnoremap qw    <C-W>_<C-W>\|
+nnoremap qa    <C-W>=
 nnoremap aj    <C-W>w<C-W>_
 nnoremap ak    <C-W>W<C-W>_
-nnoremap ,qe   <C-W>_
-nnoremap ,qd   <C-W>80-
+nnoremap qE    <C-W>_
+nnoremap qD    <C-W>80-
 nnoremap q<tab> <C-w>p
 " swap current and previous window
 " silent nnoremap a<tab> :call WinSwap()<CR><C-W>p
@@ -729,13 +729,13 @@ nnoremap ,ts :Telescope lsp_dynamic_workspace_symbols<CR>
 nnoremap ,tb <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_ivy{})<CR>
 
 " Jump to favourite files
-nnoremap ,gv :call FocusBufOrDo('init.vim','e $sh/vi/init.vim')<CR>
+nnoremap ,gv :call FocusBufOrDo('myvimrc','e $sh/vi/myvimrc')<CR>
 nnoremap ,gt :call FocusBufOrDo('vimrc_themes','e $sh/vi/vimrc_themes')<CR>
 nnoremap ,gc :call FocusBufOrDo('init.lua','e $sh/vi/init.lua')<CR>
-nnoremap ,g, :call FocusBufOrDo('vimrc$','e $MYVIMRC')<CR>
+nnoremap ,g, :call FocusBufOrDo('init.vim','e $MYVIMRC')<CR>
 nnoremap ,gb :call FocusBufOrDo('bashrc','e $sh/bashrc')<CR>
 nnoremap ,gB :call FocusBufOrDo('bashrc.local','e $lo/bashrc.local')<CR>
-nnoremap ,g2 :call FocusBufOrDo('bspwm$','e $sh/bspwmrc')<CR>
+nnoremap ,g2 :call FocusBufOrDo('bspwmrc','e $sh/bspwmrc')<CR>
 nnoremap ,gx :call FocusBufOrDo('sxhkd','e $sh/conf/sxhkdrc')<CR>
 nnoremap ,gk :call FocusBufOrDo('kitty.conf','e $sh/conf/kitty.conf')<CR>
 nnoremap ,gr :call FocusBufOrDo('rc.sh','e $sh/rc.sh')<CR>
@@ -815,8 +815,8 @@ nnoremap <silent> H :<C-u>execute "keepjumps norm! " . v:count1 . "H"<CR>
 nnoremap <silent> M :<C-u>execute "keepjumps norm! " . v:count1 . "M"<CR>
 nnoremap <silent> L :<C-u>execute "keepjumps norm! " . v:count1 . "L"<CR>
 nnoremap <silent> * :<C-u>execute "keepjumps norm! " . v:count1 . "*"<CR>
-nnoremap <silent> { :<C-u>execute "keepjumps norm! " . v:count1 . "{zz"<CR>
-nnoremap <silent> } :<C-u>execute "keepjumps norm! " . v:count1 . "}zz"<CR>
+nnoremap <silent> { :<C-u>execute "keepjumps norm! " . v:count1 . "{zt"<CR>
+nnoremap <silent> } :<C-u>execute "keepjumps norm! " . v:count1 . "}zt"<CR>
 nnoremap <silent> n :<C-u>execute "keepjumps norm! " . v:count1 . "nzz"<CR>
 nnoremap <silent> N :<C-u>execute "keepjumps norm! " . v:count1 . "Nzz"<CR>
 

@@ -11,7 +11,7 @@ bak()
   #
   magic="AMV"
   devlabel=$( $LSBLK -l -o LABEL | grep $magic | sort | head -1 )
-  bakdev=$( $LSBLK -l -o NAME,LABEL | grep $devlabel | head -1 | cut -f1 -d ' ' )
+  [[ $devlabel != '' ]] && bakdev=$( $LSBLK -l -o NAME,LABEL | grep $devlabel | head -1 | cut -f1 -d ' ' )
   #
   [[ $bakdev == '' ]] && echo $magic is nowhere around && return 1
   if [[ $( mount | grep $devlabel | grep $bakdev -c ) == 0 ]] ; then

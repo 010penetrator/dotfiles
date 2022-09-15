@@ -3,7 +3,7 @@
 
 command! -nargs=1 SSource if filereadable(expand('<args>')) | source <args> | endif
 " SSource $HOME/.vimrc_msys
-SSource $sh/vi/init.vim
+SSource $sh/vi/myvimrc
 SSource $sh/vi/vimrc_themes
 SSource $lo/vimrc.local
 
