@@ -190,8 +190,8 @@ if vim.fn.has('nvim-0.6') == 1 then
     nnoremap <silent> gy <cmd>lua vim.lsp.buf.type_definition()<CR>|\
     nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>|\
     nnoremap <silent> gh <cmd>ClangdSwitchSourceHeader<CR>|\
-    nnoremap <silent> z<Up> k<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>|\
     nnoremap <silent> z<Down> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>|\
+    nnoremap <silent> z<Up> k<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>|\
     nnoremap <silent> ,S <cmd>lua vim.lsp.buf.signature_help()<CR>|\
     autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 100)|\
 ')
@@ -215,8 +215,8 @@ if vim.fn.has('nvim-0.7') == 1 then
     vim.keymap.set("n","gi", vim.lsp.buf.implementation)
     vim.keymap.set("n","z<down>", vim.diagnostic.goto_next)
     vim.keymap.set("n","z<up>", vim.diagnostic.goto_prev)
-    vim.keymap.set("n","qR", vim.lsp.buf.rename)
-    vim.keymap.set("n","qA", vim.lsp.buf.code_action)
+    vim.keymap.set("n",",r", vim.lsp.buf.rename)
+    vim.keymap.set("n","qa", vim.lsp.buf.code_action)
 end
 
 local keymap = vim.api.nvim_set_keymap
