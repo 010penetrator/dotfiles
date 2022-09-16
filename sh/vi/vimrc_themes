@@ -7,6 +7,8 @@
 map <buffer> M j:call EvalThis()<cr>
 map <buffer> H k:call EvalThis()<cr>
 
+" bufdo unmap <buffer> M
+
 let hostname = substitute(system('hostname'), '\n', '', '')
 if exists("g:colors_name")
 else

@@ -608,7 +608,7 @@ nnoremap aw :w<CR>
 nnoremap ,,w :wa<CR>
 nnoremap qx :q<CR>
 nnoremap ,x :q<CR>
-nnoremap qg :tabclose<CR>
+nnoremap ax :tabclose<CR>
 nnoremap ,q :qa<CR>
 nnoremap ,d :bd!<CR>
 nnoremap ,bd :BDnJump<CR>
@@ -619,25 +619,25 @@ nnoremap cC       :echo expand ('%') '.@.' getcwd()<CR>
 nnoremap ,c. :LCDhere<CR>
 nnoremap ,cg :call ClimbToDirWhere(".git/index",1) \| pwd<CR>
 nnoremap ,cm :call ClimbToDirWhere("Makefile",1) \| pwd<CR>
-" local cd to current kinda project path
+" local cd to project path
 nnoremap <silent> ,c, :call GetProjDir() <bar> exec "lcd " . b:proj_dir <bar> echo 'lcd @' getcwd()<cr>
 nnoremap a<BS> :checktime<cr>
 nnoremap q<BS> :enew<CR>
 nnoremap z<BS> :e!<CR>
-" new split to netrw
-nnoremap a-  : split <bar> exec "normal -"<CR>
-nnoremap a_  :vsplit <bar> exec "normal -"<CR>
-" nnoremap a<CR> :e <c-r><c-f><CR>
-" split open file under cursor
+" split open filename under cursor
 nnoremap ae :vsp <c-r><c-f><CR>
 nnoremap aE :sp <c-r><c-f><CR>
 " open file under cursor in previous window
 nnoremap a<tab> :wincmd p \| e <c-r><c-f><CR>
-" split open current location with netrw
-nnoremap as :wincmd s \| e %:p:h<CR>
-nnoremap av :wincmd v \| e %:p:h<CR>
-nnoremap qs :new  \| lcd #:p:h \| echo expand ('%') '.@.' getcwd()<CR>
-nnoremap qv :vnew \| lcd #:p:h \| echo expand ('%') '.@.' getcwd()<CR>
+" split open current file location with netrw
+nnoremap a.s :wincmd s \| e %:p:h<CR>
+nnoremap a.v :wincmd v \| e %:p:h<CR>
+nnoremap as  :new<CR>
+nnoremap av  :vnew<CR>
+" nnoremap as  :new      \| lcd #:p:h \| echo expand ('%') '.@.' getcwd()<CR>
+" nnoremap av  :vnew     \| lcd #:p:h \| echo expand ('%') '.@.' getcwd()<CR>
+" nnoremap a-  : split <bar> exec "normal -"<CR>
+" nnoremap a_  :vsplit <bar> exec "normal -"<CR>
 nnoremap qS :split #<CR>
 nnoremap qV :vsplit #<CR>
 nnoremap <C-W>S :vsplit<CR>
@@ -648,21 +648,21 @@ nnoremap ,by :call BufYank()<CR>
 nnoremap ,bp :call BufPut()<CR>
 
 " Handle windows
-nnoremap qh    <C-W>h
-nnoremap qj    <C-W>j
-nnoremap qk    <C-W>k
-nnoremap ql    <C-W>l
-nnoremap <C-\> <C-W>w
-nnoremap q,    <C-W>6<
-nnoremap q.    <C-W>6>
-nnoremap qe    <C-W>4+
-nnoremap qd    <C-W>4-
-nnoremap qw    <C-W>_<C-W>\|
-nnoremap qq    <C-W>=
-nnoremap aj    <C-W>w<C-W>_
-nnoremap ak    <C-W>W<C-W>_
-nnoremap qE    <C-W>_
-nnoremap qD    <C-W>80-
+nnoremap qh     <C-W>h
+nnoremap qj     <C-W>j
+nnoremap qk     <C-W>k
+nnoremap ql     <C-W>l
+nnoremap <C-\>  <C-W>w
+nnoremap q,     <C-W>6<
+nnoremap q.     <C-W>6>
+nnoremap qe     <C-W>4+
+nnoremap qd     <C-W>4-
+nnoremap qw     <C-W>_<C-W>\|
+nnoremap qq     <C-W>=
+nnoremap aj     <C-W>w<C-W>_
+nnoremap ak     <C-W>W<C-W>_
+nnoremap qE     <C-W>_
+nnoremap qD     <C-W>80-
 nnoremap q<tab> <C-w>p
 " swap current and previous window
 " silent nnoremap a<tab> :call WinSwap()<CR><C-W>p
@@ -700,8 +700,8 @@ nnoremap ,bi :Unite buffer file<CR>i
 nnoremap ,bk :Denite buffer -mode=normal -immediately-1<CR>
 nnoremap ,be :BufExplorer<CR>
 nnoremap ,,e :BufExplorer<CR>
-nnoremap ,bf :Telescope buffers sort_mru=1 theme=ivy<CR>
 nnoremap ,,b :Telescope buffers sort_mru=1 theme=ivy<CR>
+nnoremap qb  :Telescope buffers sort_mru=1 theme=ivy<CR>
 nnoremap ,to :Telescope oldfiles<CR>
 nnoremap ,zf :Files<CR>
 nnoremap ,zg :GFiles<CR>
@@ -721,9 +721,9 @@ nnoremap ,,/ :Telescope find_files theme=ivy search_dirs=$sh,
 nnoremap ,zr :Rg<CR>
 nnoremap ,tg :Telescope live_grep theme=ivy<CR>
 nnoremap ,t, :Telescope live_grep theme=ivy search_dirs=%<CR>
-nnoremap ,tf :Telescope find_files theme=ivy<CR>
+nnoremap  qg :Telescope find_files theme=ivy<CR>
 nnoremap ,tr :Telescope lsp_references<CR>
-nnoremap ,ts :Telescope lsp_dynamic_workspace_symbols<CR>
+nnoremap  qs :Telescope lsp_dynamic_workspace_symbols<CR>
 " nnoremap ,tt :Telescope current_buffer_fuzzy_find sorting_strategy=ascending layout_config={"prompt_position":"top"}<CR>
 " nnoremap ,tt <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find({sorting_strategy="ascending", theme="ivy"})<CR>
 nnoremap ,tb <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_ivy{})<CR>
@@ -874,7 +874,7 @@ nnoremap a: :tabe \| terminal ++kill=term ++curwin bash -c "INVIM=1 vifm #:p:h"<
 nnoremap ab : new \| if isdirectory(expand('#:p:h')) \| lcd #:p:h \| endif \| terminal ++kill=term ++curwin ++norestore<CR>
 nnoremap aB : vnew \| if isdirectory(expand('#:p:h')) \| lcd #:p:h \| endif \| terminal ++kill=term ++curwin ++norestore<CR>
 " Open terminal at current location
-nnoremap qb : if isdirectory(expand('%:p:h')) \| lcd %:p:h \| endif \| terminal ++kill=term ++curwin ++norestore<CR>
+nnoremap qB : if isdirectory(expand('%:p:h')) \| lcd %:p:h \| endif \| terminal ++kill=term ++curwin ++norestore<CR>
 
 " Spawn a terminal outside vim
 nnoremap ,,t :NewTermHere<CR>

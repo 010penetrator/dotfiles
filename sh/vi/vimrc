@@ -13,8 +13,7 @@ if has('nvim')
 endif
 
 " TODO/Problems :
-"     ft detection is lazy
+"     ft detection is sleepy
 "     lsp client exits with 1
 "     less completion
-"     try :colder
 
