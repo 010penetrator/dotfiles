@@ -719,9 +719,9 @@ nnoremap ,,/ :Telescope find_files theme=ivy search_dirs=$sh,
 
 " Search text
 nnoremap ,zr :Rg<CR>
-nnoremap ,tg :Telescope live_grep theme=ivy<CR>
+nnoremap  qg :Telescope live_grep theme=ivy<CR>
 nnoremap ,t, :Telescope live_grep theme=ivy search_dirs=%<CR>
-nnoremap  qg :Telescope find_files theme=ivy<CR>
+nnoremap ,tf :Telescope find_files theme=ivy<CR>
 nnoremap ,tr :Telescope lsp_references<CR>
 nnoremap  qs :Telescope lsp_dynamic_workspace_symbols<CR>
 " nnoremap ,tt :Telescope current_buffer_fuzzy_find sorting_strategy=ascending layout_config={"prompt_position":"top"}<CR>
@@ -930,10 +930,11 @@ nnoremap ,ct :TagbarOpen fj<CR>
 
 " Make and run project
 nnoremap ,zo :make<bar> copen<CR>
+nnoremap ,Z  :call BuildProjectUni("my_Makefile","make -f my_Makefile")
 nnoremap ,zm :call BuildProjectUni("my_Makefile","make -f my_Makefile")<CR>
-nnoremap ,zc :call BuildProjectUni("Makefile","make -f my_Makefile clean")<CR>
+nnoremap ,zc :call BuildProjectUni("my_Makefile","make -f my_Makefile clean")<CR>
 nnoremap ,zx :call BuildProjectUni("Makefile","make -f my_Makefile run")<CR>
-nnoremap ,zb :call BuildProjectUni("Makefile","make -f my_Makefile bear")<CR>
+nnoremap ,zb :call BuildProjectUni("my_Makefile","make -f my_Makefile bear")<CR>
 " nnoremap ,XX :call BuildProjectUni("Makefile","make tags") <bar> cwindow<CR>
 " nnoremap ,zm :lcd %:p:h <bar> call BuildProjectUni("Makefile","make -f my_Makefile") <bar> redraw! <bar> copen<CR>
 nnoremap ,z/ :copen<CR>/error<CR>

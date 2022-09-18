@@ -21,7 +21,7 @@ source ~/.bashrc
 xset dpms 1200 0 0
 xset s 0 0
 xset -b
-xset r rate 250 44 # set keyboard repeat rate
+xset r rate 220 33 # set keyboard repeat rate
 
 sxd.sh &
 # killall sxhkd; sxhkd -c ~/.sh/sxhkdrc &

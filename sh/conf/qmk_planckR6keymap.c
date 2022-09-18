@@ -188,7 +188,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |Voice-|Voice+|Mus on|Musoff|MIDIon|MIDIof|TermOn|TermOf|      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |             |      |      |      |      |      |
+ * |      |      |      |      |      |   CAPSLOCK  |      |      |      |      |      |
  * `-----------------------------------------------------------------------------------'
  */
 /* [_ADJUST] = LAYOUT_planck_grid(
@@ -205,9 +205,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ) */
 [_ADJUST] = LAYOUT_planck_grid(
     _______ , RESET   , DEBUG   , _______ , QWERTY  , COLEMAK , DVORAK  , _______ , _______ , _______ , _______ , _______ ,
-    KC_CAPS , _______ , MU_MOD  , AU_ON   , AU_OFF  , AG_NORM , AG_SWAP , QWERTY  , COLEMAK , DVORAK  , PLOVER  , _______ ,
+    _______ , _______ , MU_MOD  , AU_ON   , AU_OFF  , AG_NORM , AG_SWAP , QWERTY  , COLEMAK , DVORAK  , PLOVER  , _______ ,
     _______ , MUV_DE  , MUV_IN  , MU_ON   , MU_OFF  , MI_ON   , MI_OFF  , _______ , _______ , _______ , _______ , _______ ,
-    _______ , _______ , _______ , _______ , _______ , _______ , _______ , _______ , _______ , _______ , _______ , _______
+    _______ , _______ , _______ , _______ , _______ , KC_CAPS , KC_CAPS , _______ , _______ , _______ , _______ , _______
 )
 
 };
