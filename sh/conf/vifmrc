@@ -42,7 +42,6 @@ command! resmusBit :! mkdir resampled orig ; for flac in *.flac; do sox -S "${fl
 command! qemu :! sudo bash -c "sync; echo 3 > /proc/sys/vm/drop_caches; qemu-system-x86_64 -m 2000 -enable-kvm -cpu host -smp 4  -cdrom %c & disown"
 command! qemuweak :! sudo bash -c "sync; echo 3 > /proc/sys/vm/drop_caches; qemu-system-x86_64 -m 1000  -cdrom %c & disown"
 " command! qemu :! sudo bash -c "sync; echo 3 > /proc/sys/vm/drop_caches; qemu-system-x86_64 -m 2000 -enable-kvm -cpu host -smp 4 -bios $OVMF -drive file=%c & disown"
-" command! ff :!fehf . &>/dev/null &
 " command! tok :!touch %c "--date=@$(expr $(stat -c %%%%Y KKK) - 100)" ; touch KKK "--date=@$(expr $(stat -c %%%%Y KKK))"
 command! tok :! touch %c "--date=$(date -R -r KKK) - 10 minute" ; touch KKK "--date=$(date -R -r KKK) + 3 minute"
 command! tik :!touch --date="$(date -R -r %c) + 10 minute" KKK
@@ -70,14 +69,14 @@ nnoremap qs :split <CR>
 nnoremap qv :vsplit <CR>
 nnoremap ,<BS> :colo <CR>
 nnoremap qw :wincmd o<CR>
-nnoremap qz :wincmd =<CR>
+nnoremap qq :wincmd =<CR>
 nnoremap q, 8<c-w><
 nnoremap q. 8<c-w>>
 nnoremap qt :tree!<CR>
 nnoremap g<Down> hjl
 nnoremap g<Up> hkl
 nnoremap cd :cd<space>
-nnoremap qq :
+nnoremap qc :
 nnoremap q; :<up>
 nnoremap a; :<up><CR>
 nnoremap ,,v :source $MYVIFMRC <CR>
@@ -107,7 +106,8 @@ nnoremap q<cr> :! ./%c <cr>
 nnoremap c. :! vim %c<CR>
 nnoremap qm :! nomacs %c &>/dev/null &<cr>
 nnoremap qf :! if [ %c == ".." ] ; then feha . ; else if [ -d %c ] ; then cd %c; feha . ; else if [ -f %c ] ; then feha %c; fi ; fi ; fi <cr>
-nnoremap q1 :! fehf . <cr>
+nnoremap qF :!fehf . &>/dev/null &<cr>
+" nnoremap q1 :! fehf . <cr>
 nnoremap ,n :! ncdu --color off -x %c<cr>
 nnoremap q<space> :! mpv --fs --keep-open=always *.{mp4,MP4,webm,mkv,mov,MOV} &>/dev/null & <cr>
 nnoremap qk :! qview %c &>/dev/null &<cr>
@@ -223,8 +223,8 @@ nnoremap gb :cd $bakcld<cr>
 nnoremap gB :cd $bakhot<cr>
 nnoremap gy :cd /ln/mob<cr>
 nnoremap gS :exec 'cd' system("compgen -G /ln/mo/*AMV/bak")<cr>
-nnoremap gi :cd /ln/mo/BAMV/fli<cr>
-nnoremap gf :cd /ln/hh/imgdl1<cr>
+nnoremap gf :cd /ln/mo/BAMV/fli<cr>
+nnoremap gi :cd /ln/hh/imgdl1<cr>
 nnoremap gk :cd /ln/torrents/red/KKK<cr>:sort<cr>mh
 nnoremap gv :cd ~/.vim<cr>:goto plugged<cr>
 nnoremap gn :cd ~/.config/nvim<cr>:goto plugged<cr>
