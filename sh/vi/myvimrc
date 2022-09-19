@@ -605,7 +605,7 @@ onoremap <silent> gp :call search('^\(.\\|\(\s\)*\)$','bW')<CR>
 
 " Open and close files (buffers)
 nnoremap aw :w<CR>
-nnoremap ,,w :wa<CR>
+nnoremap ,,w :wa \| echo "Saving all buffers.."<CR>
 nnoremap qx :q<CR>
 nnoremap ,x :q<CR>
 nnoremap ax :tabclose<CR>
@@ -624,6 +624,8 @@ nnoremap <silent> ,c, :call GetProjDir() <bar> exec "lcd " . b:proj_dir <bar> ec
 nnoremap a<BS> :checktime<cr>
 nnoremap q<BS> :enew<CR>
 nnoremap z<BS> :e!<CR>
+" open prev window in current window
+nnoremap qp :exec "buffer " . winbufnr(winnr("#"))<CR>
 " split open filename under cursor
 nnoremap ae :vsp <c-r><c-f><CR>
 nnoremap aE :sp <c-r><c-f><CR>
