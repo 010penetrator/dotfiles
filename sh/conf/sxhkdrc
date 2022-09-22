@@ -19,7 +19,7 @@ super + { q, Q, D, F, t, v, s, y, r, R, z, g, slash }
   '' listmenu.sh }
 
 super + { Return, e, d, X, semicolon }
-  { $TERMINAL, raiseterm.sh, dmouse, bspc node -c, setxkbmap us }
+  { $TERMINAL, raiseterm.sh, dmouse, xlunch --input /etc/xlunch/entries.dsv xlunch -s 72 -V 12 -b 8% -B 10% -f "DejaVuSansMono/11", setxkbmap us }
 
 super + { c, a, A, b, m }
   ror.sh { \
@@ -105,7 +105,7 @@ super + f ; o
   bspc node -n 'any.leaf.!window' --follow
 
 # set the node flags
-super + f ; {m,t,a,e}boo
+super + f ; {m,t,a,e}
   bspc node -g {marked,locked,sticky,private}
 
 # focus/swap the node in the given direction

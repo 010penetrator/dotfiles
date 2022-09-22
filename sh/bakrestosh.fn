@@ -36,7 +36,11 @@ bak()
       # tar -I 'zstd -10 -T0' -X /ln/sh/zip_exclu -cf $bakdir/gitjob.tar.zst -C /ln/ho/ gitjob
       cd $wd1 && make -s -f my_Makefile clean
       cd $wd2 && make -s clean
-      tar -I 'zstd -10 -T0' -cf $bakdir/gitjob.tar.zst -C /ln/ho gitjob
+      # tar -I 'zstd -10 -T0' -cf $bakdir/gitjob.tar.zst -C /ln/ho gitjob
+
+      tar -I 'zstd -10 -T0' -cf $bakdir/$(basename $wd1).tar.zst -C $(dirname $wd1) $(basename $wd1)
+      tar -I 'zstd -10 -T0' -cf $bakdir/$(basename $wd2).tar.zst -C $(dirname $wd2) $(basename $wd2)
+
     fi
     tx=/ln/ho/fz/99.txt
     mkdir -p /ln/mo/$devlabel/fz
