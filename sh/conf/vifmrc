@@ -65,8 +65,8 @@ nnoremap ,M :set milleroptions=lsize:1,csize:5,rsize:5
 nnoremap dd :delete<CR>
 nnoremap o :sort<CR>
 nnoremap O :invert o<CR>
-nnoremap qs :split <CR>
-nnoremap qv :vsplit <CR>
+nnoremap as :split <CR>
+nnoremap av :vsplit <CR>
 nnoremap ,<BS> :colo <CR>
 nnoremap qw :wincmd o<CR>
 nnoremap qq :wincmd =<CR>
