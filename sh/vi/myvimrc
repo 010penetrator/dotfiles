@@ -605,7 +605,7 @@ onoremap <silent> gp :call search('^\(.\\|\(\s\)*\)$','bW')<CR>
 
 " Open and close files (buffers)
 nnoremap aw :w<CR>
-nnoremap ,,w :wa \| echo "Saving all buffers.."<CR>
+nnoremap ,,w :wa<CR>
 nnoremap qx :q<CR>
 nnoremap ,x :q<CR>
 nnoremap ax :tabclose<CR>
@@ -656,7 +656,7 @@ nnoremap qk     <C-W>k
 nnoremap ql     <C-W>l
 nnoremap <C-\>  <C-W>w
 nnoremap a,     <C-W>6<
-nnoremap q.     <C-W>6>
+nnoremap a.     <C-W>6>
 nnoremap ae     <C-W>4+
 nnoremap ad     <C-W>4-
 nnoremap qe     <C-W>_

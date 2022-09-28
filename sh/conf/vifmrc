@@ -70,8 +70,8 @@ nnoremap av :vsplit <CR>
 nnoremap ,<BS> :colo <CR>
 nnoremap qw :wincmd o<CR>
 nnoremap qq :wincmd =<CR>
-nnoremap q, 8<c-w><
-nnoremap q. 8<c-w>>
+nnoremap a, 8<c-w><
+nnoremap a. 8<c-w>>
 nnoremap qt :tree!<CR>
 nnoremap g<Down> hjl
 nnoremap g<Up> hkl
