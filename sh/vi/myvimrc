@@ -494,7 +494,7 @@ let mapleader = ","
 map q <Nop>
 map й q
 nnoremap Q q
-nnoremap qr @@
+nnoremap ,j @@
 nnoremap ,m @
 
 " Free <a> key
