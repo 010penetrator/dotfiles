@@ -235,13 +235,10 @@ Plug 'szorfein/fromthehell.vim' "dark satur earth
 Plug 'duckwork/nirvana' "shafran
 Plug 'franbach/miramare' "earth dark
 Plug 'koirand/tokyo-metro.vim' "pretty dark
-Plug 'nightsense/rusticated' "morning
 Plug 'KKPMW/sacredforest-vim' "lowcont
-Plug 'nightsense/snow' "soft)
 Plug 'logico-dev/typewriter' "good!
 Plug 'wimstefan/vim-artesanal' "good lowcon gray
 Plug 'yuttie/inkstained-vim' "very low con light
-Plug 'nightsense/stellarized' "nice! light+dark
 Plug 'rdavison/Libertine' "applejuice
 Plug 'AlessandroYorba/Sierra' "softgray
 Plug 'AlessandroYorba/Despacio' "softdarkgrey
@@ -262,7 +259,6 @@ Plug 'sainnhe/archived-colors' "atlantis,cryslominsa,desert_night,fairy_garden,g
 Plug 'flrnd/plastic.vim' "juicy
 Plug 'EdenEast/nightfox.nvim'
 Plug 'atelierbram/vim-colors_atelier-schemes' "mindfuck
-Plug 'nightsense/vimspectr' " need gui
 Plug 'colepeters/spacemacs-theme.vim' "cool
 Plug 'stulzer/mitormk-laser' "sharp
 Plug 'relastle/bluewery.vim' "low-con
@@ -285,6 +281,9 @@ Plug '010penetrator/vim-colors-forplasma' "collection
 " Plug 'RussellBradley/vim-knicks' "great blue 404
 " Plug 'aradunovic/perun.vim' "consbroken 404
 " Plug 'the31k/vim-colors-tayra' "Nice gray 404
+" Plug 'nightsense/rusticated' "morning
+" Plug 'nightsense/snow' "soft)
+" Plug 'nightsense/stellarized' "nice! light+dark
 Plug 'ayu-theme/ayu-vim'
 Plug 'wuelnerdotexe/vim-enfocado'
 Plug 'https://gitlab.com/protesilaos/tempus-themes-vim.git'

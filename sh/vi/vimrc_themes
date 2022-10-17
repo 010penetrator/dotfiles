@@ -58,7 +58,6 @@ endif
 " colo snow | set bg=light | LineColor ayu_light
 " colo vadelma | set bg=light | LineColor one
 " colo PaperColor | set bg=light | LineColor one
-" colo vimspectr180-light | LineColor one
 " colo edge | set bg=light | LineColor materia
 " colo Tomorrow | LineColor Tomorrow
 " colo Tomorrow-Night | set bg=light | LineColor bluewery
@@ -79,8 +78,6 @@ endif
 " colo edge | set bg=dark | LineColor darcula
 " colo vadelma | set bg=dark | LineColor deus
 " set notermguicolors | colo plastic | LineColor deus
-" colo vimspectr180-light
-" colo vimspectr150-light
 
 " " " {{{}}} " " "
 " LineColor ayu_light
