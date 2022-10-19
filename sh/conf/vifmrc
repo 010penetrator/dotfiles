@@ -121,7 +121,7 @@ nnoremap qe :! $EDITOR %c<cr>
 nnoremap .  :! xdg-open %c &>/dev/null &<cr>
 nnoremap ,,. :! bash -x xdg-open %c<cr>
 nnoremap ,,/ :! bash -lc "ARG=DMENUSAVE xdgsane %c"
-nnoremap ql :file &<cr>l
+nnoremap q. :file &<cr>l
 nnoremap qj :file<cr>
 nnoremap ,g :! google.sh %c &>/dev/null &<cr>
 nnoremap ,e :! $TERMINAL $EDITOR %c<cr>
