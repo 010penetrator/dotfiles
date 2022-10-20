@@ -160,8 +160,8 @@ if has("nvim")
     " Plug 'norcalli/nvim-colorizer.lua'
     " Plug 'kwkarlwang/bufjump.nvim'
     Plug 'hoschi/yode-nvim'
-    Plug 'kyazdani42/nvim-tree.lua'
-    Plug 'kyazdani42/nvim-web-devicons'
+    Plug 'nvim-tree/nvim-tree.lua'
+    Plug 'nvim-tree/nvim-web-devicons'
     Plug 'lambdalisue/suda.vim'
     Plug 'numToStr/Comment.nvim'
     Plug 'karb94/neoscroll.nvim'
@@ -888,6 +888,7 @@ nnoremap ,,c :NewVifmHere<CR>
 nnoremap qt :call GotoTerm(0)<CR>
 " Jump to netrw window
 nnoremap ,n :call RaiseNetRW()<CR>
+if has('nvim') | nnoremap ,n :NvimTreeToggle<CR>| endif
 
 " Exec current paragraph with shell
 nnoremap ,B yap: exec "!" . @"<CR>

@@ -229,7 +229,8 @@ nnoremap gk :cd /ln/torrents/red/KKK<cr>:sort<cr>mh
 nnoremap gv :cd ~/.vim<cr>:goto plugged<cr>
 nnoremap gn :cd ~/.config/nvim<cr>:goto plugged<cr>
 nnoremap gN :cd ~/01/new/<cr>
-nnoremap gp :cd /ln/pr/prwin/<cr>
+nnoremap gp :cd /mnt/blink/PRAGS/prwin/<cr>
+nnoremap gR :cd /ln/mo/metal/RULEZ/READ/<cr>
 
 """"""""""""""""""""""""
 ""     Settings:      ""
