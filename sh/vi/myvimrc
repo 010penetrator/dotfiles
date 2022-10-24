@@ -556,8 +556,8 @@ vnoremap <Up>   gk
 inoremap <Down> <C-o>gj
 inoremap <Up>   <C-o>gk
 nmap <C-c> <C-y>
-noremap <C-e> 3<C-e>
-noremap <C-y> 3<C-y>
+noremap <C-e> 4<C-e>
+noremap <C-y> 4<C-y>
 nnoremap ,ze :call SwitchCE()<CR>
 " jump last edit edges
 nnoremap [e `[
@@ -703,6 +703,7 @@ nnoremap ,be :BufExplorer<CR>
 nnoremap ,,e :BufExplorer<CR>
 nnoremap ,,b :Telescope buffers sort_mru=1 theme=ivy<CR>
 nnoremap qb  :Telescope buffers sort_mru=1 theme=ivy<CR>
+nnoremap ,<space>  :Telescope buffers sort_mru=1 theme=ivy<CR>
 nnoremap ,to :Telescope oldfiles<CR>
 nnoremap ,zf :Files<CR>
 nnoremap ,zg :GFiles<CR>
