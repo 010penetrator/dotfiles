@@ -4,7 +4,7 @@
 ==Install
 BASE: base-devel inetutils earlyoom kbd plocate mlocate udevil cylon inxi
 ARCHIE: pacli pakku yay baph
-TUI: qalc networkmanager nmtui mc clex lfm ranger vifm nnn fff exa fd lftp fzf ripgrep silversearcher-ag ncdu tree p7zip htop ytop bashtop bpytop glances dmenu keratin screenfetch lolcat tmux bc tty-clock
+TUI: qalc networkmanager nmtui mc clex lfm ranger vifm nnn fff exa fd lftp fzf ripgrep silversearcher-ag ncdu tree p7zip htop btop ytop bashtop bpytop glances dmenu keratin screenfetch lolcat tmux bc tty-clock
 X: xorg-server xorg-xinit xterm kitty tilda termit urxvt rofi xlunch xvkbd xclip redshift xscreensaver nitrogen dunst unclutter-xfixes xbanish gmrun scrot wmctrl xdotool compton picom wbar
 FIRMWARE: bluez-utils
 GTKtune: lxappearance oomox wpgtk pop-gtk-theme
@@ -34,6 +34,7 @@ ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config u
 ==RICE
 Chrome: uBlock Vimium CVim Surfingkeys MidnightLizard SingleFile Stylus Rescroller Browsec Bookmarkie TidyBookmarks NeaterBookmarks RecentBookmarks EmptyNewTabPage CopyTabInfo CopyUrl.rus
 Firefox: Vimium TabStash DarkReader VerticalTabsReloaded NoPlaylistAutoplayForYouTube HLSdownloader HumbleNewTabPage ScrollAnywhere TabSuspender tablist_slymax hide-scrollbars *DefaultZoom FixedZoom
+--see hint on how to copy FF profile at about:support
 Fonts: Cantarell Liberation DejaVu Noto Arimo Tinos Caslon EB-Garamond Euclid-Circular-A
 Fonts Mono: xos4Terminus LiberationMono Noto Input Fira FiraCode Hack DejaVuSansMono SourceCodePro Tamzen OhSnap industry
 gtk: lounge pop mediterraneandarkest adapta mint-y flattastic libra-dark mona-3.0 carbonico arc-dark vertex menda-dark adwaita-maia green-submarine high-contrast-inverse
@@ -343,7 +344,7 @@ comm -23 <(pacman -Qqt | sort) <(echo "" | tr ' ' '\n' | cat <(pacman -Sqg "base
 .
 git clone https://aur.archlinux.org/pakku.git
 makepkg -si
-pacman -U https://archive.archlinux.org/packages/n/nim/nim-1.0.6-1-x86_64.pkg.tar.zst
+sudo pacman -U https://archive.archlinux.org/packages/n/nim/nim-1.0.6-1-x86_64.pkg.tar.zst
 
 ==ALSO
 vboxmanage extpack install /Corporalass_VM_VirtualBox_Extension_Pack-6.1.34.vbox-extpack
