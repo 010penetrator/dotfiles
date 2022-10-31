@@ -30,8 +30,10 @@ Now set up Internet:
 # ip link set dev XX up
 # wpa_passphrase XX > THEPASSWORDFILE
 # wpa_supplicant -B -i XX -c FILE
-# or wifi-menu OR iwctl
-# systemctl start iwd
+# OR wifi-menu
+# OR iwctl
+# e.g. iwctl station wlanNN connect AP_NAME
+# maybe systemctl start iwd
 "
 bash --rcfile <(echo "PS1='subshell> '") -i
 
@@ -64,7 +66,8 @@ echo "$HOSTNAME" >> /etc/hostname
 echo "127.0.0.1	localhost" >> /etc/hosts
 echo "::1		localhost" >> /etc/hosts
 echo "127.0.1.1	$HOSTNAME.localdomain	$HOSTNAME" >> /etc/hosts
-vi /etc/hosts
+# vi /etc/hosts
+echo "ParallelDownloads = 4" >> /etc/pacman.conf
 
 mkinitcpio -P
 
@@ -98,7 +101,7 @@ Now maybe call that:
 bash --rcfile <(echo "PS1='subshell> '") -i
 
 echo Cloning dotfiles..
-runuser -l $ME -c 'git clone https://codeberg.org/plasmik/dotfiles /home/"$ME"/.dotfiles.git'
+runuser -l $ME -c 'git clone https://codeberg.org/plasmik/dotfiles /home/$USER/.dotfiles.git'
 echo Now reboot or log in as user and call "bash .dotfiles.git/sh/bootstrap"
 }
 

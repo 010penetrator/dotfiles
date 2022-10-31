@@ -20,6 +20,8 @@ cd
 
 [[ -d Templates ]] && mkdir -p Trashed && mv Documents Music Pictures Public Templates Videos Trashed
 
+sudo mkdir -p compy
+
 if [[ -d $HOME/.dotfiles.git ]] ; then
     echo -e '\n'--Gonna update my git repo
     git -C "$HOME"/.dotfiles.git/ pull
@@ -37,7 +39,7 @@ ln -sfn $HOME ho
 ln -sfn /ln/ho/.sh sh
 mkdir -p /ln/ho/.lo
 ln -sfn /ln/ho/.lo lo
-ln -sn  /mnt mo
+[ -d mo ] || ln -sn  /mnt mo
 ln -sfn /ln/ho/.config co
 ln -sfn /ln/mo/blink bl
 ln -sfn /ln/mo/fast fast
@@ -100,5 +102,12 @@ if [[ -d ~/.config/kitty-themes ]] ; then
 else
     git clone --depth 1 https://github.com/dexpota/kitty-themes.git ~/.config/kitty-themes
 fi
-ln -sfr .config/kitty-themes/themes/gruvbox_light.conf .config/kitty/current-theme.conf
+mkdir -p .config/kitty
+cd .config/kitty
+ln -sfr ../kitty-themes/themes themes
+# ln -s themes/Material.conf day_theme.conf
+# ln -s themes/nightfox-dusk_kitty.conf nox_theme.conf
+ln -s themes/gruvbox_light.conf day_theme.conf
+ln -s themes/gruvbox_dark.conf  nox_theme.conf
+ln -s themes/gruvbox_dark.conf current-theme.conf
 
