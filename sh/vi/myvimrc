@@ -148,7 +148,8 @@ if has("nvim")
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-lualine/lualine.nvim'
     Plug 'neovim/nvim-lspconfig'
-    Plug 'williamboman/nvim-lsp-installer'
+    " Plug 'williamboman/nvim-lsp-installer'
+    Plug 'williamboman/mason.nvim'
     Plug 'nvim-treesitter/nvim-treesitter', {'do':':TSUpdate'}
     Plug 'glepnir/lspsaga.nvim'
     Plug 'hrsh7th/nvim-cmp'

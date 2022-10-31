@@ -157,16 +157,13 @@ require('neoscroll.config').set_mappings(t)
 
 -- vim.lsp.set_log_level("debug")
 
-local lsp_installer = require("nvim-lsp-installer")
+--[[ local lsp_installer = require("nvim-lsp-installer")
 -- Register a handler that will be called for each installed server when it's ready (i.e. when installation is finished
 -- or if the server is already installed).
 -- lsp_installer.joke =  vim.fn.stdpath "config" .. "/lsp_servers"
 lsp_installer.settings({
         install_root_dir =  vim.fn.stdpath "config" .. "/lsp_servers",
      })
-
-local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
-
 lsp_installer.on_server_ready(function(server)
     local opts = {}
     opts.capabilities = capabilities
@@ -192,7 +189,9 @@ lsp_installer.on_server_ready(function(server)
     -- before passing it onwards to lspconfig.
     -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
     server:setup(opts)
-end)
+end) ]]
+
+local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 -- require('lspconfig').bashls.setup{
 --     on_attach = function() print("lsp client is clangd")

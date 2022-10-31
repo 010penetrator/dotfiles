@@ -23,7 +23,7 @@ super + { Return, e, d, X, semicolon }
 
 super + { c, a, A, b, m }
   ror.sh { \
-  'VIFM\|Thunar' 'raiseterm.sh & notify-send "no vifm found"', \
+  'VIFM\|Thunar\|Nemo\|pcmanfm' 'raiseterm.sh & notify-send "no vifm found"', \
   'transmission-remote\|tremc\|rtorrent\|qbittorrent' '$TERMINAL_BIGER -e tremc -c localhost:9090', \
   'tremc-pi' '$TERMINAL_BIGER -T tremc-pi -e tremc -c 192.168.1.78:9090', \
   ' Browser\|Noita' 'noti echo starting TorBro... ; torbrowser-launcher', \
