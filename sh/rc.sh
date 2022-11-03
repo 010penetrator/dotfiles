@@ -25,7 +25,14 @@ xset r rate 220 33 # set keyboard repeat rate
 
 sxd.sh &
 # killall sxhkd; sxhkd -c ~/.sh/sxhkdrc &
-[ -f /tmp/nowis ] || nitrogen --restore &
+
+if [[ ! -f /tmp/nowis ]]; then # set wallpaper
+    if [[ -f $HOME/.config/nitrogen/bg-saved.cfg ]]; then
+        nitrogen --restore &
+    else
+        nitrogen --set-zoom-fill  /ln/ho/compy/wlp/earth_by_tatasz_d8snwb5.png
+    fi
+fi
 
 # xinput set-prop "A4TECH USB Device" "libinput Accel Speed" -.5
 # xinput set-prop "LVT ENDGAME GEAR XM1" "libinput Accel Speed" -.5
