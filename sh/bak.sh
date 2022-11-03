@@ -32,9 +32,9 @@ echo --bak.stage1
 tar -czf /ln/lo/cur/linkdir.tar.gz -C / ln
 
 [[ -d $tt ]] && conditional_line="-C $tt/../ tt"
+[[ -n $boomname ]] && conditional_line="$conditional_line -C /tmp $boomname"
     tar -chzf "$DEST_HOT/words.tar.gz" --ignore-failed-read \
         -C /ln/ --exclude=lo/cur sh lo \
-        -C /tmp $boomname \
         $conditional_line
 
 [[ -d /ln/torrents ]] &&
