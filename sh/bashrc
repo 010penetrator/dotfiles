@@ -77,10 +77,10 @@ alias nuts='sudo qemu-system-x86_64 -m 1400 -enable-kvm -cpu host -smp 4 -boot m
 
 
 type -f ai &>/dev/null ||
-if  type -f pacman &>/dev/null ; then
+if  type -f pacman &>/dev/null; then
     alias as='pacman -Ss'
     alias ai='sudo pacman -S'
-elif  type -f apt &>/dev/null ; then
+elif type -f apt &>/dev/null; then
     alias as='apt search'
     alias ai='sudo apt install'
 fi

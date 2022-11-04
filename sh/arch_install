@@ -67,7 +67,7 @@ echo "127.0.0.1	localhost" >> /etc/hosts
 echo "::1		localhost" >> /etc/hosts
 echo "127.0.1.1	$HOSTNAME.localdomain	$HOSTNAME" >> /etc/hosts
 # vi /etc/hosts
-echo "ParallelDownloads = 4" >> /etc/pacman.conf
+# echo "ParallelDownloads = 4" >> /etc/pacman.conf
 
 mkinitcpio -P
 

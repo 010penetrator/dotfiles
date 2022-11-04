@@ -20,7 +20,13 @@ cd
 
 [[ -d Templates ]] && mkdir -p Trashed && mv Documents Music Pictures Public Templates Videos Trashed
 
-sudo mkdir -p compy
+mkdir -p compy
+
+if type -f pakku &>/dev/null ; then
+    cd compy
+    git -C compy clone https://aur.archlinux.org/pakku.git
+    makepkg -si
+fi
 
 if [[ -d $HOME/.dotfiles.git ]] ; then
     echo -e '\n'--Gonna update my git repo
