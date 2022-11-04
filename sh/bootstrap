@@ -64,6 +64,7 @@ cd
     cat .bashrc >> .bashrc_trash
     rm .bashrc
 )
+sleep .1
 ln -sf .sh/bashrc_main .bashrc
 # ln -sf .sh/Xresources .Xresources
 ln -sf .sh/vi/vimrc .vimrc
@@ -107,7 +108,7 @@ cd .config/kitty
 ln -sfr ../kitty-themes/themes themes
 # ln -s themes/Material.conf day_theme.conf
 # ln -s themes/nightfox-dusk_kitty.conf nox_theme.conf
-ln -s themes/gruvbox_light.conf day_theme.conf
-ln -s themes/gruvbox_dark.conf  nox_theme.conf
-ln -s themes/gruvbox_dark.conf current-theme.conf
+[[ ! -f day_theme.conf ]] && ln -s themes/gruvbox_light.conf day_theme.conf
+[[ ! -f nox_theme.conf ]] && ln -s themes/gruvbox_dark.conf  nox_theme.conf
+[[ ! -f current-theme.conf ]] && ln -s themes/gruvbox_dark.conf current-theme.conf
 
