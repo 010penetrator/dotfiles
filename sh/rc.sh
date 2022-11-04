@@ -1,4 +1,18 @@
-#!/bin/bash rc script for my desktop environment cd desk_height=$( xdpyinfo | grep dimensions | cut -d ' ' -f 7 | cut -d x -f 2 ) [[ desk_height -gt 1200 ]] && export HIDPI=1 || export HIDPI=0 source ~/.bashrc echo `whoami` "@" $PWD @ `date` >> ~/log.t xrdb merge ~/.sh/Xresources & setxkbmap -layout 'us,ru' -option 'grp:alt_shift_toggle,grp_led:scroll' &
+#!/bin/bash
+# rc script for my desktop environment
+
+cd
+
+desk_height=$( xdpyinfo | grep dimensions | cut -d ' ' -f 7 | cut -d x -f 2 )
+[[ desk_height -gt 1200 ]] && export HIDPI=1 || export HIDPI=0
+
+source ~/.bashrc
+
+# echo `whoami` "@" $PWD @ `date` >> ~/log.t
+
+# xrdb merge ~/.sh/Xresources &
+# setxkbmap -layout 'us,ru' -option 'grp:alt_shift_toggle,grp_led:scroll' &
+
 # xinput --set-prop "SYN1B7F:01 06CB:2991 Touchpad" "Synaptics Two-Finger Scrolling" 1 1
 # xinput --set-prop "SYN1B7F:01 06CB:2991 Touchpad" "Synaptics Finger" 80 100 0
 # xinput --set-prop "SYN1B7F:01 06CB:2991 Touchpad" "Synaptics Edge Scrolling" 1 0 0
