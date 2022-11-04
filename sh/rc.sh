@@ -1,18 +1,4 @@
-#!/bin/bash
-# rc script for my desktop environment
-
-cd
-
-desk_height=$( xdpyinfo | grep dimensions | cut -d ' ' -f 7 | cut -d x -f 2 )
-[[ desk_height -gt 1200 ]] && export HIDPI=1 || export HIDPI=0
-
-source ~/.bashrc
-
-# echo `whoami` "@" $PWD @ `date` >> ~/log.t
-
-# xrdb merge ~/.sh/Xresources &
-# setxkbmap -layout 'us,ru' -option 'grp:alt_shift_toggle,grp_led:scroll' &
-
+#!/bin/bash rc script for my desktop environment cd desk_height=$( xdpyinfo | grep dimensions | cut -d ' ' -f 7 | cut -d x -f 2 ) [[ desk_height -gt 1200 ]] && export HIDPI=1 || export HIDPI=0 source ~/.bashrc echo `whoami` "@" $PWD @ `date` >> ~/log.t xrdb merge ~/.sh/Xresources & setxkbmap -layout 'us,ru' -option 'grp:alt_shift_toggle,grp_led:scroll' &
 # xinput --set-prop "SYN1B7F:01 06CB:2991 Touchpad" "Synaptics Two-Finger Scrolling" 1 1
 # xinput --set-prop "SYN1B7F:01 06CB:2991 Touchpad" "Synaptics Finger" 80 100 0
 # xinput --set-prop "SYN1B7F:01 06CB:2991 Touchpad" "Synaptics Edge Scrolling" 1 0 0
@@ -52,6 +38,11 @@ elif [[ "$HOSTNAME" =~ "machine" ]]; then
   sleep 1
   # pgrep transmission-da | grep . || trdwrap.sh &
   # pgrep earlyoom | grep . || earlyoom -m 2 -n &> /dev/null &
+
+elif [[ "$HOSTNAME" =~ "think" ]]; then
+  xrdb -merge <(echo "Xft.dpi: 120") &
+  # xrandr --output DisplayPort-0 --mode 2560x1440 --rate 100
+  sleep 1
 
 elif [[ "$HOSTNAME" =~ ^debian10pc ]]; then
   xrandr --output DVI-D-0 --auto --left-of HDMI-0
