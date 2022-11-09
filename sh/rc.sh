@@ -100,3 +100,5 @@ picom.sh
 # echo RC done
 notify-send 'RC complete'
 
+( sleep .3; nitrogen --restore & ) # failsafe
+

@@ -48,7 +48,7 @@ PS1=$'\[$(tput bold)\]\[$(tput setaf 34)\]\u\[$(tput setaf 78)\] \W \[$(tput set
 # Aliases #
 alias bb='tty | grep -q /dev/tty && ( terminusfont; sudo /usr/bin/tap; startx $sh/xinitrc bspwm ) || echo This is not tty!'
 alias tf='terminusfont'
-alias v='virpc'
+alias v='vir'
 # alias vl='MODE=last nvimrpc'
 alias s="git status"
 alias gs='( [ -f $HOME/.env ] && . $HOME/.env ; gsync )'
@@ -316,5 +316,5 @@ if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integr
 # END_KITTY_SHELL_INTEGRATION
 
 # source $git/z.sh
-[ -f $lo/bashrc.local ] && source $lo/bashrc.local
+[ -f $loc/bashrc.local ] && source $loc/bashrc.local
 
