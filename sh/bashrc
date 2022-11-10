@@ -144,11 +144,11 @@ xdgsane() {
 
 # This does mirror my dotfiles to remote git, thanks I am the only developer in the project =))
 gsync() {
-    (
-    cd ~/.dotfiles.git/ ; pwd
+(
+    cd "$(realpath $sh)"; pwd
     git add .
     git commit -a -m another | grep '[^[:blank:]]' --color=none
-    git pull ; git push
+    git pull; git push
     # echo
     # cd ~/moment/4gist/ ; pwd
     # git add .
