@@ -13,9 +13,14 @@ set makeprg=make
 " set makeprg=sh\ my_make.sh
 set path=.,**
 " set wildignore=*.swp
-let $RTP=split(&runtimepath, ',')[0]
-" let $RTP = expand('$HOME') . '/.vim'
-if empty($VIMPLUG) | let $VIMPLUG = $RTP . "/plugged" | endif
+let $MYVICONFDIR=split(&runtimepath, ',')[0]
+" let $MYVICONFDIR = expand('$HOME') . "/.vim"
+if empty($MYPLUGDIR) | let $MYPLUGDIR = $HOME . "/compy/plugged" | endif
+if ( has("nvim") )
+    let $MYAUTOLOAD = expand('$VIMRUNTIME') . "/autoload"
+else
+    let $MYAUTOLOAD = expand('$MYVICONFDIR') . "/autoload"
+endif
 " let vstatus = 300
 
 ""  Useful memories  ""
@@ -32,48 +37,40 @@ if empty($VIMPLUG) | let $VIMPLUG = $RTP . "/plugged" | endif
 " g/.\{20,\}/ exec "normal gqgq" | noh " format longer lines
 " autocmd WinNew * set numberwidth=2 winheight=7
 " Check lightline themes here
-" read !ls $VIMPLUG/lightline.vim/autoload/lightline/colorscheme
+" read !ls $MYPLUGDIR/lightline.vim/autoload/lightline/colorscheme
 
 """"""""""""""""""""""""
 ""       Plug:        ""
 """"""""""""""""""""""""
 
-if ( has('nvim')  && !filereadable($HOME."/.local/share/nvim/site/autoload/plug.vim") )
-    echom "Will try to download Plug.vim for NeoVim"
-    silent call system("curl -s --head -m 1 https://github.com 1>/dev/null && curl -fLo ${HOME}/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim && echo success with curl!")
-endif
-if ( !has('nvim') && !filereadable($HOME."/.vim/autoload/plug.vim") )
+if ( !filereadable($MYAUTOLOAD."/plug.vim") )
     echom "Will try to download Plug.vim"
-    silent call system("curl -s --head -m 1 https://github.com 1>/dev/null && curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim")
+    silent call system("curl -s --head -m 1 https://github.com 1>/dev/null && curl -fLo ${MYAUTOLOAD}/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim && echo success with curl!")
 endif
 
 let g:vimplug_available=0
-if has('nvim')
-  if filereadable($HOME."/.local/share/nvim/site/autoload/plug.vim")
+if filereadable($MYAUTOLOAD."/plug.vim")
     let g:vimplug_available=1
-  endif
-elseif filereadable($HOME."/.vim/autoload/plug.vim")
-  let g:vimplug_available=1
 else
-  let g:vimplug_available=0
+    let g:vimplug_available=0
 endif
 " if ! empty(execute('filter /plug.vim$/ scriptnames'))
 
 " Oneliner to Plug on condition
-    " Plug 'benekastah/neomake', has('nvim') ? {} : { 'on': [] }
+    " Plug 'benekastah/neomake', has("nvim") ? {} : { 'on': [] }
 " Same wrapped into a function
 function! Cond(cond, ...)
   let opts = get(a:000, 0, {})
   return a:cond ? opts : extend(opts, { 'on': [], 'for': [] })
 endfunction
 " Looks better
-    " Plug 'benekastah/neomake', Cond(has('nvim'))
+    " Plug 'benekastah/neomake', Cond(has("nvim"))
 " With other options
-    " Plug 'benekastah/neomake', Cond(has('nvim'), { 'on': 'Neomake' })
+    " Plug 'benekastah/neomake', Cond(has("nvim"), { 'on': 'Neomake' })
 
 if (g:vimplug_available)
 " Looks like vim-plug was loaded! Now plug the plugins
-call plug#begin('$VIMPLUG')
+call plug#begin('$MYPLUGDIR')
 
 " Good and sane
 Plug 'junegunn/vim-plug'
@@ -310,7 +307,7 @@ let g:startify_lists = [
             \ { 'type': 'commands',  'header': ['   Commands']       },
             \ ]
             " \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
-let g:startify_session_dir = $RTP . "/session"
+let g:startify_session_dir = $MYVICONFDIR . "/session"
 
 set encoding=UTF-8
 set fileencodings=ucs-bom,utf-8,default,cp1251,latin1
@@ -351,18 +348,14 @@ set hidden
 " set fileformat=unix
 set title
 
-if !isdirectory($RTP)
-  call mkdir($RTP, '', 0770)
-endif
+if !isdirectory($MYVICONFDIR) | call mkdir($MYVICONFDIR, '', 0770) | endif
 " Handle backups
-if !isdirectory($RTP . "/bak")
-  call mkdir($RTP . "/bak", '', 0700)
-endif
-silent ! find $RTP/bak -type f -mtime +30 -delete
-set backupdir=$RTP/bak
-set undodir=$RTP/bak
+if !isdirectory($MYVICONFDIR . "/bak") | call mkdir($MYVICONFDIR . "/bak", '', 0700) | endif
+silent ! find $MYVICONFDIR/bak -type f -mtime +30 -delete
+set backupdir=$MYVICONFDIR/bak
+set undodir=$MYVICONFDIR/bak
 set undofile
-set directory=$RTP/bak
+set directory=$MYVICONFDIR/bak
 set swapfile
 set sessionoptions+=globals
 set history=2500
@@ -759,7 +752,7 @@ nnoremap ,vi :IndentBlanklineToggle<CR>
 nnoremap ,V :source $MYVIMRC<CR>
 nnoremap ,,v :source $MYVIMRC<CR>
 nnoremap c<BS> :call SetPhase() <bar> call LoadColor() <bar> call CrispBorders()<CR>
-nnoremap ,vs :source $RTP/session/comon <bar> silent call AddRpcEar()<CR>
+nnoremap ,vs :source $MYVICONFDIR/session/comon <bar> silent call AddRpcEar()<CR>
 nnoremap ,,q :call SaveColor() <bar> SSave! comon <bar> qa<CR>
 nnoremap ,,s :call SaveColor() <bar> SSave! comon<CR>
 nnoremap ,vq :qa!<CR>
@@ -1014,7 +1007,7 @@ function! RunSelBash()
     echo system(join(getline(a:firstline,a:lastline), "\n"))
 endfunction
 
-" command! SessWriteA call SaveColor() | call TerminalsFuneral() | mksession! $RTP/session.vim | SaveSigns! $RTP/signs.sav
+" command! SessWriteA call SaveColor() | call TerminalsFuneral() | mksession! $MYVICONFDIR/session.vim | SaveSigns! $MYVICONFDIR/signs.sav
 " command! SessWriteB exec 'SessWriteA' | call BufFocusedThenDo('signs.sav','wq')
 
 command! Bash exec 'silent ! bash' | redraw!
@@ -1759,8 +1752,8 @@ endfunction
 "   nnoremap <F8> :exe ":sign place 777 line=" . line(".") ." name=mywarning file=" . expand("%:p")<CR>
 "   nnoremap <F9> :exe ":sign place 666 line=" . line(".") ." name=mybookmark file=" . expand("%:p")<CR>
 "   nnoremap <F10> :sign unplace<CR>
-"   if filereadable("$RTP/signs.sav")
-"     source $RTP/signs.sav
+"   if filereadable("$MYVICONFDIR/signs.sav")
+"     source $MYVICONFDIR/signs.sav
 "   endif
 " endfunc
 " call MySigns()
