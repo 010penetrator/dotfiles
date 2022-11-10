@@ -7,4 +7,3 @@ export BASH_IS_PLASMIFIED=true
 [ -f $HOME/.sh/bashrc ] && source $HOME/.sh/bashrc
 [ -f $sh/bakrestosh.fn ] && source $sh/bakrestosh.fn
 [ -f $lo/bashrc.local ] && source $lo/bashrc.local
-

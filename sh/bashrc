@@ -163,12 +163,12 @@ gsync() {
 # FZF #
 # [ -f /usr/share/doc/fzf/examples/key-bindings.bash ] && source /usr/share/doc/fzf/examples/key-bindings.bash
 # [ -f /usr/share/fzf/key-bindings.bash ] && source /usr/share/fzf/key-bindings.bash
-[[ -f "$HOME/.config/nvim/plugged/fzf/shell/key-bindings.bash" ]] &&
-    source "$HOME/.config/nvim/plugged/fzf/shell/key-bindings.bash"
-[[ -d $HOME/.config/nvim/plugged/fzf/bin ]] && [[ ! "$PATH" == */.config/nvim/plugged/fzf/bin* ]] &&
-    export PATH="${PATH:+${PATH}:}/$HOME/.config/nvim/plugged/fzf/bin"
-[[ $- == *i* ]] && [[ -f $HOME/.config/nvim/plugged/fzf/shell/completion.bash ]] &&
-    source "$HOME/.config/nvim/plugged/fzf/shell/completion.bash" 2> /dev/null
+[[ -f "$git/plugged/fzf/shell/key-bindings.bash" ]] && type -f fzf &>/dev/null &&
+    source "$git/plugged/fzf/shell/key-bindings.bash"
+[[ -d $git/plugged/fzf/bin ]] && [[ ! "$PATH" == */plugged/fzf/bin* ]] &&
+    export PATH="${PATH:+${PATH}:}/$git/plugged/fzf/bin"
+[[ $- == *i* ]] && [[ -f $git/plugged/fzf/shell/completion.bash ]] &&
+    source "$git/plugged/fzf/shell/completion.bash" 2> /dev/null
 export FZF_DEFAULT_OPTS="--exact --layout=reverse --height 55%"
 export FZF_CTRL_R_OPTS="--no-sort --exact"
 # Restore default <C-r> search
