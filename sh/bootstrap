@@ -28,12 +28,12 @@ if type -f pakku &>/dev/null ; then
     makepkg -si
 fi
 
-if [[ -d $HOME/.dotfiles.git ]] ; then
+if [[ -d $HOME/compy/dotfiles.git ]] ; then
     echo -e '\n'--Gonna update my git repo
-    git -C "$HOME"/.dotfiles.git/ pull
+    git -C "$HOME"/compy/dotfiles.git/ pull
 else
     echo -e '\n'--Gonna clone my git repo
-    git clone https://codeberg.org/plasmik/dotfiles "$HOME"/.dotfiles.git
+    git clone https://codeberg.org/plasmik/dotfiles "$HOME"/compy/dotfiles.git
 fi
 
 (
@@ -62,7 +62,7 @@ ln -sfn /ln/mo/metal/____ __
 (
 echo -e '\n'--Gonna link config files
 cd
-! [[ -L .sh ]] && ln -sn .dotfiles.git/sh .sh
+! [[ -L .sh ]] && ln -sn compy/dotfiles.git/sh .sh
 ( [[ -f .bashrc ]] && ! [[ -L .bashrc ]] ) &&
     (
     echo --will move current .bashrc to exclusive trash file
