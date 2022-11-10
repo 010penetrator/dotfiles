@@ -222,7 +222,7 @@ sudo sh -c "zstd -v -10 -T0 </dev/nvmeXX >/path/bak/part.zst" # backup some part
 zstdcat root.zst >/dev/nvme0n1p6 # restore zst archived image
 zip -r -1 arc.zip Dir Dir2 #create zip
 
-==GIT{{{}}}
+==GIT {{{}}}
 git stash show -p # see last stash (add stash@{N} for older stash)
 git diff stash@{N} master # compare any stash against master (may add --name-only, or add -- filename)
 git difftool stash^! # diff last stash against its commit
@@ -408,4 +408,3 @@ drn=${PWD##*/} ; for f in *.flac; do oggenc -b 320 -n "$drn/$f.ogg" "$f"; done #
 for f in *.m4a ; do ffmpeg -i "$f" -map_metadata -1 -acodec flac "${f%.*}"".flac"; done
 a="Motorhead - Loud Album"; mkdir -p "$a"; cd "$a"; shnsplit -f ../"$a".cue -t "%n %t" -o "flac ext=ogg oggenc -q 9 -o %f -" "../$a".flac; cuetag.sh "../$a".cue *.ogg; cd .. # or "flac flac" # cue to tracks
 mkdir resampled; for flac in *.flac; do sox -S "${flac}" -r 44100 -b 16 ./resampled/"${flac}"; done # resample audio
-
