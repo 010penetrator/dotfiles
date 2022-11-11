@@ -17,7 +17,7 @@ let $MYVICONFDIR=split(&runtimepath, ',')[0]
 " let $MYVICONFDIR = expand('$HOME') . "/.vim"
 if empty($MYPLUGDIR) | let $MYPLUGDIR = $HOME . "/compy/plugged" | endif
 if ( has("nvim") )
-    let $MYAUTOLOAD = expand('$VIMRUNTIME') . "/autoload"
+    let $MYAUTOLOAD = expand('$MYVICONFDIR') . "/autoload"
 else
     let $MYAUTOLOAD = expand('$MYVICONFDIR') . "/autoload"
 endif
@@ -756,7 +756,7 @@ nnoremap ,vs :source $MYVICONFDIR/session/comon <bar> silent call AddRpcEar()<CR
 nnoremap ,,q :call SaveColor() <bar> SSave! comon <bar> qa<CR>
 nnoremap ,,s :call SaveColor() <bar> SSave! comon<CR>
 nnoremap ,vq :qa!<CR>
-nnoremap ,l :Startify<CR>
+nnoremap ,<BS> :Startify<CR>
 nnoremap ,zq :wa <bar> qa<CR>
 nnoremap ,,a :call AddRpcEar()<CR>
 " Open current file at vimserver session via my "vimrpc" shell script

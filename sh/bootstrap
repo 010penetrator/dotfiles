@@ -22,7 +22,7 @@ cd
 
 mkdir -p compy
 
-if type -f pakku &>/dev/null ; then
+if ! type -f pakku &>/dev/null ; then
     cd compy
     git -C compy clone https://aur.archlinux.org/pakku.git
     makepkg -si
@@ -38,6 +38,7 @@ fi
 
 (
 echo -e '\n'--Gonna create /ln/ and short links there
+exit
 sudo mkdir -p /ln
 sudo chown $USER:$USER /ln
 cd /ln
@@ -73,9 +74,9 @@ cd
 sleep .1
 ln -sf .sh/bashrc_main .bashrc
 # ln -sf .sh/Xresources .Xresources
-ln -sf .sh/vi/vimrc .vimrc
+ln -sf .sh/vi/vimrc_main .vimrc
 mkdir -p /ln/co/nvim
-ln -srf .sh/vi/vimrc /ln/co/nvim/init.vim
+ln -srf .sh/vi/vimrc_main /ln/co/nvim/init.vim
 mkdir -p /ln/co/kitty
 ln -srf .sh/conf/kitty.conf /ln/co/kitty/
 mkdir -p /ln/co/feh
@@ -100,7 +101,8 @@ xdg-mime default org.qbittorrent.qBittorrent.desktop application/x-bittorrent
 xdg-mime default FBReader.desktop application/x-mobipocket-ebook
 #
 # sudo ln -sf /ln/sh/conf/99-libinput-custom.conf /etc/X11/xorg.conf.d/
-sudo ln -sf /ln/sh/conf/99-libinput-custom.conf /usr/share/X11/xorg.conf.d/
+! [[ -L /usr/share/X11/xorg.conf.d/99-libinput-custom.conf ]] && [[ -d /ln/sh ]] &&
+    sudo ln -sf /ln/sh/conf/99-libinput-custom.conf /usr/share/X11/xorg.conf.d/
 )
 
 echo -e '\n'--Gonna pull kitty themes
@@ -114,7 +116,7 @@ cd .config/kitty
 ln -sfr ../kitty-themes/themes themes
 # ln -s themes/Material.conf day_theme.conf
 # ln -s themes/nightfox-dusk_kitty.conf nox_theme.conf
-[[ ! -f day_theme.conf ]] && ln -s themes/gruvbox_light.conf day_theme.conf
-[[ ! -f nox_theme.conf ]] && ln -s themes/gruvbox_dark.conf  nox_theme.conf
-[[ ! -f current-theme.conf ]] && ln -s themes/gruvbox_dark.conf current-theme.conf
+! [[ -L day_theme.conf ]] && ln -s themes/gruvbox_light.conf day_theme.conf
+! [[ -L nox_theme.conf ]] && ln -s themes/gruvbox_dark.conf  nox_theme.conf
+! [[ -f current-theme.conf ]] && ln -s themes/gruvbox_dark.conf current-theme.conf
 
