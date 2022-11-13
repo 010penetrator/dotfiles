@@ -102,7 +102,9 @@ nnoremap ,u :undolist<cr>
 " nnoremap = <C-f>
 
 " Open current file "
-nnoremap q<cr> :! ./%c &<cr>
+nnoremap q. :! ./%c &<cr>
+nnoremap q<cr> :file &<cr>l
+nnoremap qj :file<cr>
 nnoremap c. :! vim %c<CR>
 nnoremap qm :! nomacs %c &>/dev/null &<cr>
 nnoremap qf :! if [ %c == ".." ] ; then feha . ; else if [ -d %c ] ; then cd %c; feha . ; else if [ -f %c ] ; then feha %c; fi ; fi ; fi <cr>
@@ -121,8 +123,6 @@ nnoremap qe :! $EDITOR %c<cr>
 nnoremap .  :! xdg-open %c &>/dev/null &<cr>
 nnoremap ,,. :! bash -x xdg-open %c<cr>
 nnoremap ,,/ :! bash -lc "ARG=DMENUSAVE xdgsane %c"
-nnoremap q. :file &<cr>l
-nnoremap qj :file<cr>
 nnoremap ,g :! google.sh %c &>/dev/null &<cr>
 nnoremap ,e :! $TERMINAL $EDITOR %c<cr>
 
@@ -201,7 +201,6 @@ nnoremap z"E :! upk2dir.sh %r %d<cr>
 " Jump to places "
 nnoremap ,h :history<cr>
 nnoremap gh :cd $HOME<cr>
-nnoremap g8 :cd /ln/hh|exec 'cd' system('realpath .')<cr>
 nnoremap g; :cd /ln/mo<cr>
 nnoremap gq :cd /ln/mo/fast/qq<cr>:sort<cr>N
 nnoremap g<space> :cd /ln<cr>
@@ -215,7 +214,7 @@ nnoremap g2 :cd $HOME/2<cr>
 nnoremap g3 :cd $HOME/3<cr>
 nnoremap g4 :cd $HOME/4<cr>
 nnoremap gs :cd /ln/sh<cr>
-nnoremap g<BS> :cd /ln/fast/hh<cr>
+nnoremap g<BS> :exec 'cd' system('realpath /ln/fast/hh')<cr>
 nnoremap gw :cd /ln/wo<cr>
 nnoremap gj :cd /ln/ho/gitjob<cr>
 nnoremap gd :cd /ln/dwn<cr>:set sort=-mtime<cr>:16<cr>

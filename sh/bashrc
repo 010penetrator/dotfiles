@@ -96,6 +96,7 @@ title() { echo -ne "\033]0;$*\007"; }
 zz() { du -csh $*; local IFS="_"; filename=$(echo "$*" | tr / _); tar -I 'zstd -10 -T0' -cf "$filename".tar.zst --exclude='.git' --exclude='tags' $*; du -sh "$filename".tar.zst; }
 c() { a=wd${1} ; cd ${!a} ; }
 fl() { cat $sh/rs/1linux | fzf ; }
+rl() { cd $(realpath "$*"); }
 x() { xdg-open "$*" &> /dev/null & disown ; }
 get_space_used() { df -BMB "$1" --output=used | tail -1 | grep -o '[0-9]*' ; }
 hddsum() { d1=$(get_space_used /ln/mo/blink) ; d2=$(get_space_used /ln/mo/metal) ; echo Σ= "$(( d1 + d2 ))" Mb ; }
