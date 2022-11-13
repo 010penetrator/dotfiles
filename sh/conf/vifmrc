@@ -749,6 +749,6 @@ command! fzfmushist : set noquickview
 nnoremap <C-j> :fzffind<cr>
 nnoremap <C-k> :fzfmushist<cr>
 
-source $lo/vifmrc.local
+source $loc/vifmrc.local
 source /ln/sh/conf/favicons.vifm
 

@@ -5,7 +5,7 @@ command! -nargs=1 SSource if filereadable(expand('<args>')) | source <args> | en
 " SSource $HOME/.vimrc_msys
 SSource $sh/vi/myvimrc
 SSource $sh/vi/vimrc_themes
-SSource $lo/vimrc.local
+SSource $loc/vimrc.local
 
 if has('nvim')
     SSource $sh/vi/init.lua

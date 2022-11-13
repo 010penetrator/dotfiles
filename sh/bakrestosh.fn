@@ -3,7 +3,7 @@
 
 bak()
 {
-  # tar -czf $lo/linkdir.tar.gz -C / ln
+  # tar -czf $loc/linkdir.tar.gz -C / ln
   startdir="$(pwd)"
   name1="/tmp/bak.tar.gz"
   need_umount=false
