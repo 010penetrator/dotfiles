@@ -44,7 +44,7 @@ tar -czf /ln/lo/cur/linkdir.tar.gz -C / ln
 # [[ -d /ln/co/joke ]] && conditional_line="-C /ln/co/ nvim/plugged"
 [[ -d /ln/co/nvim ]] && [[ $space == "ho" ]] &&
     tar -cf "$DEST_HOT/plugged.tar.zst" -I "zstd -10 -T0" --exclude='.git' \
-        -C /ln/co/nvim plugged
+        -C $git plugged
 
 [[ -d /ln/wo ]] && [[ $space == "wo" ]] &&
     workrp=$(realpath /ln/wo) && workbn=$(basename $workrp) &&
