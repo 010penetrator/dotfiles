@@ -22,7 +22,7 @@ updatedb
 )"
 
 # Backup vim-session cause I am known for overwriting it by accident
-[ -d $HOME/.vim ] && cp $HOME/.vim/session.vim $HOME/.vim/session.vimBAK
+[ -f $HOME/.vim/session.vim ] && cp $HOME/.vim/session.vim $HOME/.vim/session.vimBAK
 NVSD="$HOME/.config/nvim/session"
 [ -d $NVSD ] &&
     tar -czf "$NVSD/../sess.tar.gz" -C "$NVSD/../" session
