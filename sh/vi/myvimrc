@@ -712,7 +712,7 @@ if has('nvim')
 else
     nnoremap qf :FilesProj<CR>
 endif
-nnoremap ,/ :Telescope find_files search_dirs=$sh,$tt,$lo<CR>
+nnoremap ,/ :Telescope find_files search_dirs=$sh,$tt,$loc<CR>
 nnoremap ,,/ :Telescope find_files theme=ivy search_dirs=$sh,
 
 " Search text
@@ -734,7 +734,7 @@ nnoremap ,gt :call FocusBufOrDo('vimrc_themes','e $sh/vi/vimrc_themes')<CR>
 nnoremap ,gc :call FocusBufOrDo('init.lua','e $sh/vi/init.lua')<CR>
 nnoremap ,g, :call FocusBufOrDo('init.vim','e $MYVIMRC')<CR>
 nnoremap ,gb :call FocusBufOrDo('bashrc','e $sh/bashrc')<CR>
-nnoremap ,gB :call FocusBufOrDo('bashrc.local','e $lo/bashrc.local')<CR>
+nnoremap ,gB :call FocusBufOrDo('bashrc.local','e $loc/bashrc.local')<CR>
 nnoremap ,g2 :call FocusBufOrDo('bspwmrc','e $sh/bspwmrc')<CR>
 nnoremap ,gx :call FocusBufOrDo('sxhkd','e $sh/conf/sxhkdrc')<CR>
 nnoremap ,gk :call FocusBufOrDo('kitty.conf','e $sh/conf/kitty.conf')<CR>
