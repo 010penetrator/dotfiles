@@ -75,9 +75,9 @@ sleep .1
 co=$(realpath /ln/co)
 ln -sf .sh/bashrc_main .bashrc
 # ln -sf .sh/Xresources .Xresources
-ln -sf .sh/vi/vimrc_main .vimrc
+# ln -sf .sh/vi/vimrc_main .vimrc
 mkdir -p "$co"/nvim
-ln -srf .sh/vi/vimrc_main "$co"/nvim/init.vim
+# ln -srf .sh/vi/vimrc_main "$co"/nvim/init.vim
 mkdir -p "$co"/kitty
 ln -srf .sh/conf/kitty.conf "$co"/kitty/
 mkdir -p "$co"/feh
