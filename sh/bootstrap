@@ -72,25 +72,26 @@ cd
     rm .bashrc
 )
 sleep .1
+co=$(realpath /ln/co)
 ln -sf .sh/bashrc_main .bashrc
 # ln -sf .sh/Xresources .Xresources
 ln -sf .sh/vi/vimrc_main .vimrc
-mkdir -p /ln/co/nvim
-ln -srf .sh/vi/vimrc_main /ln/co/nvim/init.vim
-mkdir -p /ln/co/kitty
-ln -srf .sh/conf/kitty.conf /ln/co/kitty/
-mkdir -p /ln/co/feh
-ln -srf .sh/conf/feh.keys /ln/co/feh/keys
-mkdir -p /ln/co/zathura
-ln -srf .sh/conf/zathurarc /ln/co/zathura/
-mkdir -p /ln/co/vifm/colors
-cp .sh/conf/vifm-colors/*.vifm /ln/co/vifm/colors/
-ln -srf .sh/conf/vifmrc /ln/co/vifm/vifmrc
-mkdir -p /ln/co/mpv
-ln -srf .sh/conf/mpv/input.conf /ln/co/mpv/
-ln -srf .sh/conf/mpv/mpv.conf /ln/co/mpv/
-mkdir -p /ln/co/deadbeef
-cp .sh/conf/deadbeef.config /ln/co/deadbeef/config
+mkdir -p "$co"/nvim
+ln -srf .sh/vi/vimrc_main "$co"/nvim/init.vim
+mkdir -p "$co"/kitty
+ln -srf .sh/conf/kitty.conf "$co"/kitty/
+mkdir -p "$co"/feh
+ln -srf .sh/conf/feh.keys "$co"/feh/keys
+mkdir -p "$co"/zathura
+ln -srf .sh/conf/zathurarc "$co"/zathura/
+mkdir -p "$co"/vifm/colors
+cp .sh/conf/vifm-colors/*.vifm "$co"/vifm/colors/
+ln -srf .sh/conf/vifmrc "$co"/vifm/vifmrc
+mkdir -p "$co"/mpv
+ln -srf .sh/conf/mpv/input.conf "$co"/mpv/
+ln -srf .sh/conf/mpv/mpv.conf "$co"/mpv/
+mkdir -p "$co"/deadbeef
+cp .sh/conf/deadbeef.config "$co"/deadbeef/config
 mkdir -p .local/share/applications/
 cp /ln/sh/conf/transmission*desktop .local/share/applications/
 #

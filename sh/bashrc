@@ -17,9 +17,13 @@ export PAGER=less
 export BROWSER=firefox
 export tt=$HOME/tt
 export git=$HOME/compy
-export jo=$HOME/gitjob
+#export jo=$HOME/gitjob
+[[ -n $sh && -d $sh && -f $sh/bashrc ]] || 
+    { [ -d /ln/sh ] && export sh=/ln/sh || export sh=$HOME/.sh; }
+[[ -n $sh && -d $sh && -f $sh/bashrc ]] || 
+    { SELDIR=$(dirname $(realpath "$BASH_SOURCE")); echo rp is $SELDIR ; [[ -d $SELDIR/vi && -f $SELDIR/all ]] && export sh="$SELDIR"; }
+#echo sh is $sh
 [ -d /ln/lo ] && export loc=/ln/lo/cur || export loc=$HOME/.lo/cur
-[ -d /ln/sh ] && export sh=/ln/sh || export sh=$HOME/.sh
 export bakhot=$HOME/bak
 export bakusbdir=$(compgen -G /ln/mo/*AMV/bak)
 export MANWIDTH=80
@@ -53,13 +57,13 @@ alias v='vir'
 alias s="git status"
 alias gs='( [ -f $HOME/.env ] && . $HOME/.env ; gsync )'
 alias yp='fc -ln -1 | cut -c 3- | tr -d "\n" | xclip ; echo yanked prev command'
-alias ram='sudo python $sh/mem.py'
+alias ram='sudo python "$sh"/mem.py'
 alias sb='source $HOME/.bashrc'
 alias xc="echo --Copy X sel to clipboard; xclip -o| xclip -i -selection clipboard"
 alias cx="echo --Copy clipboard to X sel; xclip -o -selection clipboard| xclip -i"
 alias ks='select-kitty-theme.sh'
-alias kt='kitty +kitten themes ; kitty @ set-colors -a /ln/co/kitty/current-theme.conf'
-alias kr='kitty @ set-colors -a /ln/co/kitty/current-theme.conf /ln/sh/conf/kitty_extra.conf'
+alias kt='kitty +kitten themes ; kitty @ set-colors -a $HOME/.config/kitty/current-theme.conf'
+alias kr='kitty @ set-colors -a $HOME/.config/kitty/current-theme.conf "$sh"/conf/kitty_extra.conf'
 alias chmodre='find . -type f -exec chmod 644 {} \;'
 alias ncdu='ncdu --color off'
 # alias ncdu='ncdu --color off --graph-style hash'
@@ -69,7 +73,7 @@ alias lb='$LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT,FSUSE% | grep "sd\|nvme" -
 alias wlb='watch -n.4 $LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT'
 alias leto='date +%Y-%m-%d'
 alias p='ps aux | grep -v grep | grep'
-alias vs='nvim -S /ln/co/nvim/session/comon'
+alias vs='nvim -S $HOME/.config/nvim/session/comon'
 alias mm='make -f my_Makefile'
 alias dropcs='sync && echo 3 | sudo tee /proc/sys/vm/drop_caches'
 alias nuts='sudo qemu-system-x86_64 -m 1400 -enable-kvm -cpu host -smp 4 -boot menu=on'
@@ -85,7 +89,7 @@ elif type -f apt &>/dev/null; then
     alias ai='sudo apt install'
 fi
 
-source $sh/dmenurc
+source "$sh"/dmenurc
 
 amou() { SELECTOR="fzf -e" amount.sh; }
 aumo() { SELECTOR="fzf -e" aumount.sh; }
@@ -97,10 +101,11 @@ zz() { du -csh $*; local IFS="_"; filename=$(echo "$*" | tr / _); tar -I 'zstd -
 c() { a=wd${1} ; cd ${!a} ; }
 fl() { cat $sh/rs/1linux | fzf ; }
 rl() { cd $(realpath "$*"); }
+fl() { cat "$sh"/rs/1linux | fzf ; }
 x() { xdg-open "$*" &> /dev/null & disown ; }
 get_space_used() { df -BMB "$1" --output=used | tail -1 | grep -o '[0-9]*' ; }
 hddsum() { d1=$(get_space_used /ln/mo/blink) ; d2=$(get_space_used /ln/mo/metal) ; echo Σ= "$(( d1 + d2 ))" Mb ; }
-fkill() {  ps -ef | sed 1d | fzf -e -m | awk '{print $2}' | xargs kill -${1:-9} ; }
+fkill() { ps -ef | sed 1d | fzf -e -m | awk '{print $2}' | xargs kill -${1:-9} ; }
 vol() { pactl set-sink-volume 0 "$1"% ; }
 glog() { git for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))' ; }
 gnome_box() { killall gnome-boxes ; killall libvirtd ; virsh -c qemu:///session pool-list --all ; virsh -c qemu:///session pool-destroy gnome-boxes ;  virsh -c qemu:///session pool-undefine gnome-boxes ; rm -rf .local/share/gnome-boxes ; rm -rf .config/libvirt ; }
@@ -113,10 +118,10 @@ function launch { nohup $1 >/dev/null 2>/dev/null & disown; }
 
 # Find files by name with ripgrep
 rgf() {
-    if [ -z "$1" ] ; then
+    if [ -z "$1" ]; then
         echo "Usage: rgf [dir] filename-to-search-for"
     else
-        if [ -z "$2" ] ; then
+        if [ -z "$2" ]; then
             rg --files | rg "$1"
         else
             rg --files "$2" | rg "$1"
@@ -126,15 +131,15 @@ rgf() {
 
 # Ease xdg-mime routine
 xdgsane() {
-    if [ -z "$1" ] ; then
+    if [ -z "$1" ]; then
         echo Usage: xdgsane path/somefile.ext
     else
         type=$( xdg-mime query filetype "$1" )
         echo Mime filetype for \""$1"\" is \""$type"\"
         echo -e "Available apps for it are \n$(grep $type /usr/share/applications/mimeinfo.cache | cut -d '=' -f2- | tr ';' '\n')"
         echo Hint: Call \"xdg-mime default ***.desktop $type\" to set the default app
-        if [[ $ARG =~ DMENU ]] ; then
-            source $sh/dmenurc
+        if [[ $ARG =~ DMENU ]]; then
+            source "$sh"/dmenurc
             app=$(grep $type /usr/share/applications/mimeinfo.cache | cut -d '=' -f2- | tr ';' '\n' | tr -s '\n' | dmenuy -p "Choose default app for $type")
             [[ $ARG =~ SAVE ]] && ! [[ -z $app ]] && xdg-mime default $app $type
             [[ $ARG =~ RUN ]] && ! [[ -z $app ]] && xdg-open "$1"
@@ -145,7 +150,7 @@ xdgsane() {
 # This does mirror my dotfiles to remote git, thanks I am the only developer in the project =))
 gsync() {
 (
-    cd "$(realpath $sh)"; pwd
+    cd $(realpath "$sh"); pwd
     git add .
     git commit -a -m another | grep '[^[:blank:]]' --color=none
     git pull; git push
@@ -178,7 +183,7 @@ function fzfpacrem { pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs
 __fzf_1linux__() {
   local output
   output=$(
-    cat $sh/rs/1linux | fzf
+    cat "$sh"/rs/1linux | fzf
     ) || return
   READLINE_LINE=${output}
   # READLINE_LINE="more"
@@ -316,5 +321,5 @@ if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integr
 # END_KITTY_SHELL_INTEGRATION
 
 # source $git/z.sh
-[ -f $loc/bashrc.local ] && source $loc/bashrc.local
+[ -f "$loc/bashrc.local" ] && source $loc/bashrc.local
 

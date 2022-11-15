@@ -3,7 +3,12 @@
 
 export BASH_IS_PLASMIFIED=true
 
+[[ -n $sh ]] || export sh="$HOME/.sh"
+[[ -n $sh && -d $sh && -f $sh/bashrc ]] || 
+    { BASE=$(dirname $(realpath "$BASH_SOURCE")); export sh="$BASE"; }
+echo sh is $sh
+
 # [ -f $HOME/.bashrc_ORIG ] && source $HOME/.bashrc_ORIG
-[ -f $HOME/.sh/bashrc ] && source $HOME/.sh/bashrc
-[ -f $sh/bakrestosh.fn ] && source $sh/bakrestosh.fn
-[ -f $loc/bashrc.local ] && source $loc/bashrc.local
+[ -f "$sh"/bashrc ] &&        source "$sh"/bashrc
+[ -f "$sh"/bakrestosh.fn ] && source "$sh"/bakrestosh.fn
+[ -f "$loc"/bashrc.local ] && source "$loc"/bashrc.local
