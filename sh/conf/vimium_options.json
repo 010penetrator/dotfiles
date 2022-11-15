@@ -1,5 +1,5 @@
 {
-  "settingsVersion": "1.67.3",
+  "settingsVersion": "1.67.2",
   "exclusionRules": [
     {
       "pattern": "https?://mail.google.com/*",
@@ -13,7 +13,7 @@
   "filterLinkHints": false,
   "waitForEnterForFilteredHints": true,
   "hideHud": false,
-  "keyMappings": "map gr previousTab\nmap t Vomnibar.activateInNewTab\nmap O Vomnibar.activateEditUrlInNewTab\nmap go Vomnibar.activateEditUrl\nmap gb Vomnibar.activateBookmarks\nmap e scrollFullPageUp\nmap d scrollFullPageDown\nmap b scrollFullPageUp\nmap u restoreTab\nmap D scrollFullPageDown\nmap E scrollFullPageUp\nmap s scrollDown\nmap w scrollUp\nmap , previousTab\nmap . nextTab\nmap ga goBack\nmap gf goForward\nmap a enterInsertMode\nmap > moveTabRight\nmap < moveTabLeft\nmap zf LinkHints.activateMode\nmap <backspace> scrollFullPageUp",
+  "keyMappings": "map gr previousTab\nmap q Vomnibar.activateInNewTab\nmap O Vomnibar.activateEditUrlInNewTab\nmap go Vomnibar.activateEditUrl\nmap gb Vomnibar.activateBookmarks\nmap e scrollFullPageUp\nmap d scrollFullPageDown\nmap b scrollFullPageUp\nmap u restoreTab\nmap D scrollFullPageDown\nmap E scrollFullPageUp\nmap s scrollDown\nmap w scrollUp\nmap , previousTab\nmap . nextTab\nmap ga goBack\nmap gf goForward\nmap a enterInsertMode\nmap > moveTabRight\nmap < moveTabLeft\nmap zf LinkHints.activateMode\nmap <backspace> scrollFullPageUp\nmap <c-c> scrollUp\nmap <c-t> Vomnibar.activateInNewTab",
   "linkHintCharacters": "qwertyuiopasdfghjklzxcvbnm,./;",
   "linkHintNumbers": "0123456789",
   "newTabUrl": "about:newtab",
