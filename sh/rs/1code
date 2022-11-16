@@ -27,6 +27,6 @@ read_freq_ts.tv_nsec = (read_freq) * 10000L;
 void some_function(void * some_param)
 ...
 int *tmp = param; int val = *tmp;
-===
+...
 int some_value = *((int *) some_param
 
