@@ -15,6 +15,12 @@ set path=.,**
 " set wildignore=*.swp
 let $MYVICONFDIR=split(&runtimepath, ',')[0]
 " let $MYVICONFDIR = expand('$HOME') . "/.vim"
+let $MYVIMRC = $sh . "/vi/myvimrc"
+if !empty($git)
+    let $MYPLUGDIR = $git . "/plugged"
+else
+    let $MYPLUGDIR = $HOME . "/compy/plugged"
+endif
 if empty($MYPLUGDIR) | let $MYPLUGDIR = $HOME . "/compy/plugged" | endif
 if ( has("nvim") )
     let $MYAUTOLOAD = expand('$MYVICONFDIR') . "/autoload"
@@ -46,11 +52,12 @@ endif
 if ( !filereadable($MYAUTOLOAD."/plug.vim") )
     echom "Will try to download Plug.vim"
     echom "  to " . expand($MYAUTOLOAD)
-    silent call system("curl -s --head -m 1 https://github.com 1>/dev/null && curl -fLo ${MYAUTOLOAD}/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim && echo success with curl!")
+    "silent call system("curl -s --head -m 1 https://github.com 1>/dev/null && OR --output NUL for Windows")
+    silent call system("curl -fLo ${MYAUTOLOAD}/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim && echo success with curl!")
 endif
 
 let g:vimplug_available=0
-if filereadable($MYAUTOLOAD."/plug.vim")
+if filereadable($MYAUTOLOAD . "/plug.vim")
     let g:vimplug_available=1
 else
     let g:vimplug_available=0
