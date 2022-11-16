@@ -14,7 +14,7 @@ if ! [ -n "$sh" ]; then
         fi
     fi
 fi
-    
+
 # [ -f $HOME/.bashrc_ORIG ] && source $HOME/.bashrc_ORIG
 [ -f "$sh"/bashvars ] &&      source "$sh"/bashvars
 [ -f "$sh"/bashrc ] &&        source "$sh"/bashrc

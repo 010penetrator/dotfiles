@@ -15,7 +15,7 @@ set path=.,**
 " set wildignore=*.swp
 let $MYVICONFDIR=split(&runtimepath, ',')[0]
 " let $MYVICONFDIR = expand('$HOME') . "/.vim"
-let $MYVIMRC = $sh . "/vi/myvimrc"
+let $MYVIMRC = $sh . "/vi/myvimrc_main"
 if !empty($git)
     let $MYPLUGDIR = $git . "/plugged"
 else
@@ -740,7 +740,7 @@ nnoremap ,tb <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find(req
 nnoremap ,gv :call FocusBufOrDo('myvimrc','e $sh/vi/myvimrc')<CR>
 nnoremap ,gt :call FocusBufOrDo('vimrc_themes','e $sh/vi/vimrc_themes')<CR>
 nnoremap ,gc :call FocusBufOrDo('init.lua','e $sh/vi/init.lua')<CR>
-nnoremap ,g, :call FocusBufOrDo('init.vim','e $MYVIMRC')<CR>
+nnoremap ,g, :call FocusBufOrDo('vimrc_main','e $sh/vi/vimrc_main')<CR>
 nnoremap ,gb :call FocusBufOrDo('bashrc','e $sh/bashrc')<CR>
 nnoremap ,gB :call FocusBufOrDo('bashrc.local','e $loc/bashrc.local')<CR>
 nnoremap ,g2 :call FocusBufOrDo('bspwmrc','e $sh/bspwmrc')<CR>
@@ -823,8 +823,8 @@ nnoremap <silent> H :<C-u>execute "keepjumps norm! " . v:count1 . "H"<CR>
 nnoremap <silent> M :<C-u>execute "keepjumps norm! " . v:count1 . "M"<CR>
 nnoremap <silent> L :<C-u>execute "keepjumps norm! " . v:count1 . "L"<CR>
 nnoremap <silent> * :<C-u>execute "keepjumps norm! " . v:count1 . "*"<CR>
-nnoremap <silent> { :<C-u>execute "keepjumps norm! " . v:count1 . "{zt"<CR>
-nnoremap <silent> } :<C-u>execute "keepjumps norm! " . v:count1 . "}zt"<CR>
+" nnoremap <silent> { :<C-u>execute "keepjumps norm! " . v:count1 . "{zt"<CR>
+" nnoremap <silent> } :<C-u>execute "keepjumps norm! " . v:count1 . "}zt"<CR>
 nnoremap <silent> n :<C-u>execute "keepjumps norm! " . v:count1 . "nzz"<CR>
 nnoremap <silent> N :<C-u>execute "keepjumps norm! " . v:count1 . "Nzz"<CR>
 

@@ -1,0 +1,23 @@
+# Makefile for my needs
+
+default :
+	make -w -j10
+
+clean :
+	rm -f SIS_sok_bin.koi test*rog sok tags
+	rm -rf debug release .cache
+	qmake
+	make clean
+
+qmake :
+	qmake "DEFINES+=RTR_DEBUG" koi_to_sis.pro -o Makefile
+
+bear : clean qmake
+	bear -- make -j10
+
+run : release/koi_to_sis
+	./release/koi_to_sis &>/tmp/elog & disown
+
+terrun : release/koi_to_sis
+	./release/koi_to_sis
+
