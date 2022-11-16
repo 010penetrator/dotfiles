@@ -3,12 +3,21 @@
 
 export BASH_IS_PLASMIFIED=true
 
-[[ -n $sh ]] || export sh="$HOME/.sh"
-[[ -n $sh && -d $sh && -f $sh/bashrc ]] || 
-    { BASE=$(dirname $(realpath "$BASH_SOURCE")); export sh="$BASE"; }
-echo sh is $sh
-
+if ! [ -n "$sh" ]; then
+    if [ -f "$HOME/.sh/bashrc" ]; then
+      	export sh="$HOME/.sh"
+  	else
+  	  	SELFD=$(dirname $(realpath "$BASH_SOURCE"))
+  	  	echo rp is $SELFD
+  	  	if [ -d "$SELFD/vi" && -f "$SELFD/all" ]; then
+      			export sh="$SELFD"
+        fi
+    fi
+fi
+    
 # [ -f $HOME/.bashrc_ORIG ] && source $HOME/.bashrc_ORIG
+[ -f "$sh"/bashvars ] &&      source "$sh"/bashvars
 [ -f "$sh"/bashrc ] &&        source "$sh"/bashrc
 [ -f "$sh"/bakrestosh.fn ] && source "$sh"/bakrestosh.fn
 [ -f "$loc"/bashrc.local ] && source "$loc"/bashrc.local
+

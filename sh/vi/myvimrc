@@ -118,7 +118,6 @@ Plug 'sandeepcr529/Buffet.vim' "good
 Plug 'zefei/vim-colortuner' "fun
 Plug 'Townk/vim-autoclose' "usable
 Plug 'MattesGroeger/vim-bookmarks'
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'will133/vim-dirdiff'
 
 " Try out later
@@ -128,7 +127,7 @@ Plug 'will133/vim-dirdiff'
 " Plug 'craigemery/vim-autotag' "errors
 " Plug 'vim-scripts/LustyExplorer'
 " Plug 'hari-rangarajan/CCTree'
-" Plug 'SirVer/ultisnips'
+" Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 " Plug 'honza/vim-snippets'
 " Plug 'vim-scripts/QuickBuf'
 " Plug 'Yggdroot/LeaderF'

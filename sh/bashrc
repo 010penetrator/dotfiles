@@ -1,45 +1,7 @@
 #!/bin/bash
-# kind of ~/.bashrc file
 
-# Variables #
-export HISTFILESIZE=
-export HISTSIZE=9000
-[[ $COLORTERM == truecolor ]] && TERM=xterm-256color
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_CONFIG_DIRS=/usr/etc/xdg:/etc/xdg
-export GUI_EDITOR=/usr/bin/xed
-export EDITOR=vi
-command -v  vim &>/dev/null && export EDITOR=vim
-command -v nvim &>/dev/null && export EDITOR=nvim
-export NVIMSERV=/tmp/neovimrpc
-export VIMSERV=VIMSERV
-export PAGER=less
-export BROWSER=firefox
-export tt=$HOME/tt
-#export jo=$HOME/gitjob
-export git=$HOME/compy
-[[ -n $sh && -d $sh && -f $sh/bashrc ]] || 
-    { [ -d /ln/sh ] && export sh=/ln/sh || export sh=$HOME/.sh; }
-[[ -n $sh && -d $sh && -f $sh/bashrc ]] || 
-    { SELDIR=$(dirname $(realpath "$BASH_SOURCE")); echo rp is $SELDIR ; [[ -d $SELDIR/vi && -f $SELDIR/all ]] && export sh="$SELDIR"; }
-[[ -d $git ]] || export git=$(realpath "$sh/../..")
-#echo sh is $sh
-[ -d /ln/lo ] && export loc=/ln/lo/cur || export loc=$HOME/.lo/cur
-export bakhot=$HOME/bak
-export bakusbdir=$(compgen -G /ln/mo/*AMV/bak)
-export MANWIDTH=80
-export LSBLK=lsblk
-export VIMINIT="source $sh/vi/vimrc_main"
-export OVMF=/usr/share/edk2-ovmf/x64/OVMF_CODE.fd
-[[ $PATH == *"$HOME/.sh"* ]] || export PATH=$PATH:$HOME/.sh
-[[ $PATH == *"$HOME/.local/bin"* ]] || export PATH=$PATH:$HOME/.local/bin
-[[ $PATH == *"$loc"* ]] || export PATH=$PATH:$loc
-
-export TERMINAL=xterm
-command -v kitty &>/dev/null && export TERMINAL=kitty && export TERMINAL_BIGER="kitty -o initial_window_width=1330 -o initial_window_height=880"
-# [[ "$TERMINAL" == "kitty" ]] && [[ $HIDPI == "1" ]] && export TERMINAL="kitty -o font_size=14.2 -o initial_window_width=1140 -o initial_window_height=900"
-[[ -z "$TERMINAL_BIGER" ]] && export TERMINAL_BIGER="$TERMINAL"
-#
+[[ -z MSYSTEM_PREFIX ]] &&
+{
 #PS1='[\u@\h \W]\$ '
 #PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w \$\[\033[00m\]'
 #PS1="\[$(tput bold)\]\[$(tput setaf 7)\]┌[\d][\t][\u@\h][\W]\n└\$ \[$(tput sgr0)\]"
@@ -50,6 +12,7 @@ command -v kitty &>/dev/null && export TERMINAL=kitty && export TERMINAL_BIGER="
 #PS1='\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[33m\]\w\[\e[0m\]\n\$'
 #PS1="\[\e]0;\h: \a\]$PS1"
 PS1=$'\[$(tput bold)\]\[$(tput setaf 34)\]\u\[$(tput setaf 78)\] \W \[$(tput setaf 34)\]\$ \[$(tput sgr0)\]'
+}
 
 # Aliases #
 alias bb='tty | grep -q /dev/tty && ( terminusfont; sudo /usr/bin/tap; startx $sh/xinitrc bspwm ) || echo This is not tty!'
@@ -80,7 +43,6 @@ alias mm='make -f my_Makefile'
 alias dropcs='sync && echo 3 | sudo tee /proc/sys/vm/drop_caches'
 alias nuts='sudo qemu-system-x86_64 -m 1400 -enable-kvm -cpu host -smp 4 -boot menu=on'
 # alias qu='sync && echo 3 | sudo tee /proc/sys/vm/drop_caches ; sudo qemu-system-x86_64 -m 1400  -enable-kvm -cpu host -smp 4 '
-
 
 type -f ai &>/dev/null ||
 if  type -f pacman &>/dev/null; then
