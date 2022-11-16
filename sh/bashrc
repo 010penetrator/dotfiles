@@ -1,6 +1,6 @@
 #!/bin/bash
 
-[[ -z MSYSTEM_PREFIX ]] &&
+[[ -z $MSYSTEM_PREFIX ]] &&
 {
 #PS1='[\u@\h \W]\$ '
 #PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w \$\[\033[00m\]'
@@ -8,7 +8,7 @@
 #PS1='\[\033[01;32m\]☿\[\e[38m\]\[\033[00m\] \w\[\e[m\] \[\033[01;34m\]\$\[\033[00m\] '
 #PS1=$'\[$(tput bold)\]\[$(tput setaf 2)\]\xe2\x98\xbf[\W]\$ \[$(tput sgr0)\]'
 #PS1=$'\[$(tput bold)\]\[$(tput setaf 46)\]\u \W \$ \[$(tput sgr0)\]'
-# PS1=$'\[$(tput bold)\]\[$(tput setaf 113)\]\u\[$(tput setaf 2)\] \W \$ \[$(tput sgr0)\]'
+#PS1=$'\[$(tput bold)\]\[$(tput setaf 113)\]\u\[$(tput setaf 2)\] \W \$ \[$(tput sgr0)\]'
 #PS1='\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[33m\]\w\[\e[0m\]\n\$'
 #PS1="\[\e]0;\h: \a\]$PS1"
 PS1=$'\[$(tput bold)\]\[$(tput setaf 34)\]\u\[$(tput setaf 78)\] \W \[$(tput setaf 34)\]\$ \[$(tput sgr0)\]'
@@ -20,7 +20,7 @@ alias tf='terminusfont'
 alias v='vir'
 # alias vl='MODE=last nvimrpc'
 alias s="git status"
-alias gs='( [[ -f "$HOME"/.env ]] && . "$HOME"/.env ; gsync )'
+alias gs='( [[ -f $HOME/.env ]] && . "$HOME"/.env ; gsync )'
 alias yp='fc -ln -1 | cut -c 3- | tr -d "\n" | xclip ; echo yanked prev command'
 alias ram='sudo python "$sh"/mem.py'
 alias sb='source "$HOME"/.bashrc'
@@ -63,7 +63,6 @@ title() { echo -ne "\033]0;$*\007"; }
 # Functions #
 zz() { du -csh $*; local IFS="_"; filename=$(echo "$*" | tr / _); tar -I 'zstd -10 -T0' -cf "$filename".tar.zst --exclude='.git' --exclude='tags' $*; du -sh "$filename".tar.zst; }
 c() { a=wd${1} ; cd ${!a} ; }
-fl() { cat $sh/rs/1linux | fzf ; }
 rl() { cd $(realpath "$*"); }
 fl() { cat "$sh"/rs/1linux | fzf ; }
 x() { xdg-open "$*" &> /dev/null & disown ; }
@@ -135,7 +134,7 @@ gsync() {
 [[ -f "$git/plugged/fzf/shell/key-bindings.bash" ]] && type -f fzf &>/dev/null &&
     source "$git/plugged/fzf/shell/key-bindings.bash"
 [[ -d $git/plugged/fzf/bin ]] && [[ ! "$PATH" == */plugged/fzf/bin* ]] &&
-    export PATH="${PATH:+${PATH}:}/$git/plugged/fzf/bin"
+    export PATH="${PATH:+${PATH}:}$git/plugged/fzf/bin"
 [[ $- == *i* ]] && [[ -f $git/plugged/fzf/shell/completion.bash ]] &&
     source "$git/plugged/fzf/shell/completion.bash" 2> /dev/null
 export FZF_DEFAULT_OPTS="--exact --layout=reverse --height 55%"
@@ -189,7 +188,7 @@ shopt -s histappend
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # # set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in xterm-color|*-256color|xterm-kitty)
+case $TERM in xterm-color|*-256color|xterm-kitty)
     color_prompt=yes;;
 esac
 
@@ -210,7 +209,7 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 # If this is an xterm set the title to user@host:dir
-#case "$TERM" in
+#case $TERM in
 #xterm*|rxvt*)
 #    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
 #    ;;

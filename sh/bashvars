@@ -3,7 +3,7 @@
 # Variables #
 export HISTFILESIZE=
 export HISTSIZE=9000
-[[ $COLORTERM == truecolor ]] && TERM=xterm-256color
+# [[ $COLORTERM == truecolor ]] && TERM=xterm-256color
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CONFIG_DIRS=/usr/etc/xdg:/etc/xdg
 export GUI_EDITOR=/usr/bin/xed
@@ -23,11 +23,19 @@ export git=$HOME/compy
 #[[ -n $sh && -d $sh && -f $sh/bashrc ]] || 
 #    { SELDIR=$(dirname $(realpath "$BASH_SOURCE")); echo rp is $SELDIR ; #[[ -d $SELDIR/vi && -f $SELDIR/all ]] && export sh="$SELDIR"; }
 
-
-
+#if ! [[ -d $sh ]]; then
+#    if [[ -f $HOME/.sh/bashrc ]]; then
+#        export sh="$HOME/.sh"
+#    else
+#        SELFD=$(dirname $(realpath "$BASH_SOURCE"))
+#        echo rp is $SELFD
+#        if [[ -d $SELFD/vi && -f $SELFD/all ]]; then
+#            export sh="$SELFD"
+#        fi
+#    fi
+#fi
 
 [[ -d $git ]] || export git=$(realpath "$sh/../..")
-#echo sh is $sh
 [ -d /ln/lo ] && export loc=/ln/lo/cur || export loc=$HOME/.lo/cur
 export bakhot=$HOME/bak
 export bakusbdir=$(compgen -G /ln/mo/*AMV/bak)
@@ -40,6 +48,6 @@ command -v kitty &>/dev/null && export TERMINAL=kitty && export TERMINAL_BIGER="
 # [[ "$TERMINAL" == "kitty" ]] && [[ $HIDPI == "1" ]] && export TERMINAL="kitty -o font_size=14.2 -o initial_window_width=1140 -o initial_window_height=900"
 [[ -z "$TERMINAL_BIGER" ]] && export TERMINAL_BIGER="$TERMINAL"
 #
-[[ $PATH == *"$HOME/.sh"* ]] || export PATH=$PATH:$HOME/.sh
+[[ $PATH == *"$sh"* ]] || export PATH=$PATH:"$sh"
 [[ $PATH == *"$HOME/.local/bin"* ]] || export PATH=$PATH:$HOME/.local/bin
 [[ $PATH == *"$loc"* ]] || export PATH=$PATH:$loc
