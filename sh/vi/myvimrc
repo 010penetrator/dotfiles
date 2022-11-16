@@ -366,6 +366,7 @@ set directory=$MYVICONFDIR/bak
 set swapfile
 set sessionoptions+=globals
 set history=2500
+set viminfofile=$MYVICONFDIR/viminfo
 
 set t_Co=256
 "  if $TERMINAL == 'xterm' | set term=xterm-256color | endif
