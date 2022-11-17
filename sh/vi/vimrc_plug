@@ -1,0 +1,260 @@
+" vim: ts=4 sw=4 ft=vim
+
+""""""""""""""""""""""""
+""       Plug:        ""
+""""""""""""""""""""""""
+
+if ! filereadable($MYAUTOLOAD . "/plug.vim")
+    echom "Will try to download Plug.vim"
+    echom "  to " . expand($MYAUTOLOAD)
+    if !empty(g:bash_forced)
+        silent call system("curl -fLo \"" . g:my_autoload_nix . "\"/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim && echo success with curl!")
+    else
+        "silent call system("curl -s --head -m 1 https://github.com 1>/dev/null && OR --output NUL for Windows")
+        silent call system("curl -fLo \"$MYAUTOLOAD\"/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim && echo success with curl!")
+    endif
+endif
+
+let g:vimplug_available=0
+if filereadable($MYAUTOLOAD . "/plug.vim")
+    let g:vimplug_available=1
+else
+    let g:vimplug_available=0
+endif
+" if ! empty(execute('filter /plug.vim$/ scriptnames'))
+
+" Oneliner to Plug on condition
+    " Plug 'benekastah/neomake", has("nvim") ? {} : { "on': [] }
+" Same wrapped into a function
+function! Cond(cond, ...)
+    let opts = get(a:000, 0, {})
+    return a:cond ? opts : extend(opts, { 'on': [], 'for': [] })
+endfunction
+" Looks better
+    " Plug 'benekastah/neomake', Cond(has("nvim"))
+" With other options
+    " Plug 'benekastah/neomake', Cond(has("nvim"), { 'on': 'Neomake' })
+
+if (g:vimplug_available)
+    if !empty($PLUGD)
+call plug#begin($PLUGD)
+    else
+call plug#begin()
+    endif
+" Good and sane
+Plug 'junegunn/vim-plug'
+Plug 'itchyny/lightline.vim' "cool
+Plug 'justinmk/vim-sneak' "good!
+Plug 'jlanzarotta/bufexplorer' "basic
+Plug 'tpope/vim-sensible' "basic
+Plug 'tpope/vim-commentary' , Cond(!has('nvim')) "good
+Plug 'tpope/vim-vinegar' "basic
+Plug 'tpope/vim-surround' "good
+Plug 'tpope/vim-endwise' "okay
+Plug 'tpope/vim-repeat' "handy
+Plug 'tpope/vim-eunuch' "handy
+Plug 'tpope/vim-ragtag' "ok
+Plug 'tpope/vim-fugitive' "handy
+Plug 'mhinz/vim-startify'
+Plug 'sheerun/vim-polyglot' "okay HUGE
+Plug 'airblade/vim-gitgutter'
+Plug 'michaeljsmith/vim-indent-object' "cool
+Plug 'godlygeek/tabular' "okay
+Plug 'jamessan/vim-gnupg' "good
+Plug 'chrisbra/Colorizer' "good
+Plug 'junegunn/goyo.vim' "usable
+Plug 'haya14busa/vim-edgemotion' "good
+Plug 'eiginn/netrw' "basic
+Plug 'junegunn/fzf.vim' | Plug 'junegunn/fzf' "cool
+
+" good for Vim
+Plug 'Shougo/unite.vim' | Plug 'Shougo/vimproc'
+if !has("nvim")
+    " Plug 'Shougo/deoplete.nvim' | Plug 'Shougo/neoinclude.vim'
+    Plug 'majutsushi/tagbar' "okay
+endif
+
+" Try out now
+Plug 'sandeepcr529/Buffet.vim' "good
+Plug 'zefei/vim-colortuner' "fun
+Plug 'Townk/vim-autoclose' "usable
+Plug 'MattesGroeger/vim-bookmarks'
+Plug 'will133/vim-dirdiff'
+
+" Try out later
+" Plug 'tpope/vim-unimpaired'
+" Plug 'ZeroKnight/vim-signjump' "buggy
+" Plug 'kien/rainbow_parentheses.vim'
+" Plug 'craigemery/vim-autotag' "errors
+" Plug 'vim-scripts/LustyExplorer'
+" Plug 'hari-rangarajan/CCTree'
+" Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+" Plug 'honza/vim-snippets'
+" Plug 'vim-scripts/QuickBuf'
+" Plug 'Yggdroot/LeaderF'
+" Plug 'ryanoasis/vim-devicons'
+" Plug 'ludovicchabant/vim-gutentags'
+Plug 'liuchengxu/vista.vim'
+" Plug 'derekwyatt/vim-fswitch'
+" Plug 'RRethy/vim-illuminate'
+
+" Archive
+" Plug 'wesleyche/SrcExpl' "mediocre
+" Plug 'Shougo/denite.nvim' | Plug 'roxma/nvim-yarp' | Plug 'roxma/vim-hug-neovim-rpc'
+" Plug 'vim-scripts/CycleColor' "works
+" Plug 'dense-analysis/ale' "works
+" Plug 'kshenoy/vim-signature' "semi-usable
+" Plug 'chrisbra/SaveSigns.vim' "usable
+
+" NeoVim specific
+if has("nvim")
+    Plug 'nvim-telescope/telescope.nvim'
+    Plug 'nvim-telescope/telescope-fzf-native.nvim', {'do':'make'}
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-lualine/lualine.nvim'
+    Plug 'neovim/nvim-lspconfig'
+    " Plug 'williamboman/nvim-lsp-installer'
+    Plug 'williamboman/mason.nvim'
+    Plug 'nvim-treesitter/nvim-treesitter', {'do':':TSUpdate'}
+    Plug 'glepnir/lspsaga.nvim'
+    Plug 'hrsh7th/nvim-cmp'
+    Plug 'hrsh7th/cmp-buffer'
+    Plug 'hrsh7th/cmp-path'
+    Plug 'hrsh7th/cmp-cmdline'
+    Plug 'hrsh7th/cmp-nvim-lsp'
+    Plug 'chentoast/marks.nvim' " okay
+    " Plug 'norcalli/nvim-colorizer.lua'
+    " Plug 'kwkarlwang/bufjump.nvim'
+    Plug 'hoschi/yode-nvim'
+    Plug 'nvim-tree/nvim-tree.lua'
+    Plug 'nvim-tree/nvim-web-devicons'
+    Plug 'lambdalisue/suda.vim'
+    Plug 'numToStr/Comment.nvim'
+    Plug 'karb94/neoscroll.nvim'
+    Plug 'voldikss/vim-floaterm'
+    Plug 'akinsho/toggleterm.nvim'
+    Plug 'windwp/nvim-autopairs'
+    Plug 'lukas-reineke/onedark.nvim'
+    Plug 'lukas-reineke/indent-blankline.nvim'
+    Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+    " Themes
+    Plug 'projekt0n/github-nvim-theme'
+endif
+
+""""""""""""""""""""""""
+""    Plug Colors:    ""
+""""""""""""""""""""""""     {{{}}}
+
+" gui themes need termguicolors set
+Plug 'morhetz/gruvbox' "best
+Plug 'ajmwagar/vim-dues' "soft coffee 'deus
+Plug 'jpo/vim-railscasts-theme' "normal
+Plug 'chriskempson/vim-tomorrow-theme' "Nice dark+light
+Plug 'nanotech/jellybeans.vim' "good4html
+Plug 'zsoltf/vim-maui' "darkOkay
+Plug 'jedverity/feral-vim' "Nice
+Plug 'mhartington/oceanic-next' "soft nice
+Plug 'w0ng/vim-hybrid' "beautiful
+Plug 'kristijanhusak/vim-hybrid-material' "nice Sane dark
+Plug 'vim-scripts/strange' "darker
+Plug 'severij/vadelma' "white good-con
+Plug 'jacoborus/tender.vim' "sane soft dark
+Plug 'cocopon/iceberg.vim' "soft cold dark
+Plug 'vim-scripts/desertEx' "Nice gray
+Plug 'AlessandroYorba/Alduin' "brown lowcon
+Plug 'jnurmine/Zenburn' "tolerable
+Plug 'jonathanfilip/vim-lucius' "day morning
+Plug 'mtglsk/mushroom' "night
+Plug 'CruizeMissile/Revolution.vim' "cool lowcont
+Plug 'romainl/Apprentice' "nostrain
+Plug 'Heorhiy/VisualStudioDark.vim' "mid con
+Plug 'altercation/vim-colors-solarized' "yellow
+Plug 'JarrodCTaylor/spartan' " 'spartan,immortals
+" Plug 'jlund3/colorschemer' "semibroken 'lucid
+Plug 'pbrisbin/vim-colors-off'
+Plug 'jakwings/vim-colors' "'moody,garden,messy
+Plug 'vim-scripts/xterm16.vim' "variable
+Plug 'Drogglbecher/vim-moonscape' "NIGHT
+Plug 'bf4/vim-dark_eyes' "NIGHT
+Plug 'noah/fu' "sane fallback
+Plug 'MPiccinato/wombat256' "good dark
+Plug 'vim-scripts/peaksea' "good trad dark+light
+Plug 'vim-scripts/rdark-terminal' "good darker
+Plug 'juanpabloaj/vim-pixelmuerto' "dark
+Plug 'Lokaltog/vim-distinguished' "dark hicon
+Plug 'arzg/vim-corvine' "good warm light&dark
+Plug 'trevorrjohn/vim-obsidian' "satur
+Plug 'sonph/onehalf', {'rtp': 'vim'} "Nice good tone HUGE
+Plug 'gilsondev/lizard' "green dark
+Plug 'ajh17/Spacegray.vim' "darker misty
+Plug 'sickill/vim-monokai' "dark hicon
+Plug 'beigebrucewayne/Turtles' "funky
+Plug 'thomd/vim-wasabi-colorscheme' "dark normalcont
+Plug 'vim-scripts/sift' "underwater_fantasy
+Plug 'whatyouhide/vim-gotham' "neon/green
+Plug 'bcicen/vim-vice' "joke
+Plug 'vim-scripts/swamplight' "day
+Plug 'vim-scripts/C64.vim' "joke
+Plug 'szorfein/fantasy.vim' "dull
+Plug 'ErichDonGubler/vim-sublime-monokai' "edit red?
+Plug 'KimNorgaard/vim-frign' "borland_style
+Plug 'vim-scripts/Gummybears' "very_dark
+Plug 'szorfein/fromthehell.vim' "dark satur earth
+Plug 'duckwork/nirvana' "shafran
+Plug 'franbach/miramare' "earth dark
+Plug 'koirand/tokyo-metro.vim' "pretty dark
+Plug 'KKPMW/sacredforest-vim' "lowcont
+Plug 'logico-dev/typewriter' "good!
+Plug 'wimstefan/vim-artesanal' "good lowcon gray
+Plug 'yuttie/inkstained-vim' "very low con light
+Plug 'rdavison/Libertine' "applejuice
+Plug 'AlessandroYorba/Sierra' "softgray
+Plug 'AlessandroYorba/Despacio' "softdarkgrey
+Plug 'Jimeno0/vim-chito' "consbroken
+Plug 'HenryNewcomer/vim-theme-underflow' "consbroken
+Plug 'beigebrucewayne/min_solo' "consbroken 'subtle
+Plug 'therubymug/vim-pyte' "light gui
+Plug 'vim-scripts/proton' "light ok
+Plug 'junegunn/seoul256.vim' "beautiful
+Plug 'arzg/vim-mayanfog' "light
+Plug 'arzg/vim-plan9' "trueeeee
+Plug 'lithammer/vim-eighties' "trueeeee
+Plug 'sainnhe/gruvbox-material' "improved
+Plug 'arzg/vim-substrata' "cold neon
+Plug 'sainnhe/edge' "good soft
+Plug 'sainnhe/everforest' "cream lowcon
+Plug 'sainnhe/archived-colors' "atlantis,cryslominsa,desert_night,fairy_garden,grimoire,ice_age,lost_shrine,vanilla_cake
+Plug 'flrnd/plastic.vim' "juicy
+Plug 'EdenEast/nightfox.nvim'
+Plug 'atelierbram/vim-colors_atelier-schemes' "mindfuck
+Plug 'colepeters/spacemacs-theme.vim' "cool
+Plug 'stulzer/mitormk-laser' "sharp
+Plug 'relastle/bluewery.vim' "low-con
+Plug 'gmoe/vim-espresso' "mild
+" Plug 'dfrunza/vim' "borland,muratori,pencil,vc6
+" Plug 'dracula/vim' "funky
+" Plug 'tomasr/molokai' "shitty
+Plug 'NLKNguyen/papercolor-theme' "soft white 'PaperColor
+Plug 'markeganfuller/vim-journeyman' "pale dark
+Plug 'machakann/vim-colorscheme-tatami' "fun green
+" Plug 'srcery-colors/srcery-vim' "fresh-dark consbroken HUGE
+Plug 'victorze/foo' " 'abyss,github-old,hacker,hyper,mr-robot
+Plug 'stillwwater/vim-nebula' "cold dark
+Plug 'sainnhe/sonokai' "great dark gui&nogui
+Plug 'franbach/miramare' "coffee dark
+Plug 'Mizux/vim-colorschemes' "better nogui pencil
+Plug 'zefei/simple-dark'
+Plug 'zefei/cake16' "cool medium
+Plug '010penetrator/vim-colors-forplasma' "collection
+" Plug 'RussellBradley/vim-knicks' "great blue 404
+" Plug 'aradunovic/perun.vim' "consbroken 404
+" Plug 'the31k/vim-colors-tayra' "Nice gray 404
+" Plug 'nightsense/rusticated' "morning
+" Plug 'nightsense/snow' "soft)
+" Plug 'nightsense/stellarized' "nice! light+dark
+Plug 'ayu-theme/ayu-vim'
+Plug 'wuelnerdotexe/vim-enfocado'
+Plug 'https://gitlab.com/protesilaos/tempus-themes-vim.git'
+call plug#end()
+endif
+
