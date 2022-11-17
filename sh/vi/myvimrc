@@ -86,7 +86,7 @@ set splitbelow
 set splitright
 set display=lastline
 set hidden
-set fileformat=unix
+" set fileformat=unix
 set title
 
 if !isdirectory($VICONFD) | call mkdir($VICONFD, '', 0770) | endif
