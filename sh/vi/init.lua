@@ -13,7 +13,7 @@ require('telescope').setup{
         }
     }
 }
-require('telescope').load_extension('fzf')
+-- require('telescope').load_extension('fzf')
 
 -- disable netrw at the very start of your init.lua (strongly advised)
 vim.g.loaded_netrw = 1
