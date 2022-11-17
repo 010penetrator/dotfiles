@@ -13,9 +13,6 @@ endif
 let $VICONFD=split(&runtimepath, ',')[0]
 if !empty($sh)
     let $MYVIMRC = $sh . "/vi/vimrc_main"
-else
-    let $MYVIMRC = expand('%:p')
-    let $sh = expand('%:p:h') . "/.."
 endif
 if !empty($git)
     let $PLUGD = $git . "/plugged"
