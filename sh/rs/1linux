@@ -233,6 +233,7 @@ git log --stat
 git log -p
 git fetch origin master:master # update master while staying on your branch
 git show <commithash>:main.cpp > another.cpp # restore file under new name
+git config --global core.autocrlf false
 git config --global credential.helper 'cache --timeout=36000' # remember git passwd
 git config credential.helper cache 6h
 git config --local credential.helper store # store git passwd

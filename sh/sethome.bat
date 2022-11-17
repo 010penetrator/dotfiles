@@ -9,7 +9,7 @@ SET HOME=%USERPROFILE%
 ::SET TEMP=%HOME%\Local Settings\Temp
 ::SET TMP="%TEMP%"
 SET PATH=%PATH%;C:\exe\nvim-win64\bin
-set GIT=c:\compy
+set git=c:\compy
 set sh=%GIT%\dotfiles\sh
 
 %HOMEDRIVE%
