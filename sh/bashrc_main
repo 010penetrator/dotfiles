@@ -15,7 +15,7 @@ if ! [[ -d $sh ]]; then
     fi
 fi
 
-echo sh is $sh
+# echo sh is $sh
 
 # [ -f $HOME/.bashrc_ORIG ] && source $HOME/.bashrc_ORIG
 [[ -f $sh/bashvars ]] &&      source "$sh"/bashvars
