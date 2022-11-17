@@ -17,15 +17,25 @@ let $MYVICONFDIR=split(&runtimepath, ',')[0]
 " let $MYVICONFDIR = expand('$HOME') . "/.vim"
 let $MYVIMRC = $sh . "/vi/myvimrc_main"
 if !empty($git)
-    let $MYPLUGDIR = $git . "/plugged"
+    let $PLUGD = $git . "/plugged"
 else
-    let $MYPLUGDIR = $HOME . "/compy/plugged"
+    let $PLUGD = $HOME . "/compy/plugged"
 endif
-if empty($MYPLUGDIR) | let $MYPLUGDIR = $HOME . "/compy/plugged" | endif
+if empty($PLUGD)
+    let $PLUGD = $HOME . "/compy/plugged"
+endif
 if ( has("nvim") )
     let $MYAUTOLOAD = expand('$MYVICONFDIR') . "/autoload"
 else
     let $MYAUTOLOAD = expand('$MYVICONFDIR') . "/autoload"
+endif
+if ( !empty($MSYSTEM) && has("nvim") )
+    set shell=\msys64/usr/bin/bash
+    set shellcmdflag=-c
+    set sxq=
+    let $MYAUTOLOAD_NIX = system('cygpath -u "$MYAUTOLOAD" | tr -d "\n"')
+    "let $PLUGD = system('cygpath -u "$PLUGD" | tr -d "\n"')
+    "let $MYVICONFDIR = system('cygpath "$MYVICONFDIR"')
 endif
 " let vstatus = 300
 
@@ -43,17 +53,22 @@ endif
 " g/.\{20,\}/ exec "normal gqgq" | noh " format longer lines
 " autocmd WinNew * set numberwidth=2 winheight=7
 " Check lightline themes here
-" read !ls $MYPLUGDIR/lightline.vim/autoload/lightline/colorscheme
+" read !ls $PLUGD/lightline.vim/autoload/lightline/colorscheme
 
 """"""""""""""""""""""""
 ""       Plug:        ""
 """"""""""""""""""""""""
 
-if ( !filereadable($MYAUTOLOAD."/plug.vim") )
+if ! filereadable($MYAUTOLOAD . "/plug.vim")
     echom "Will try to download Plug.vim"
     echom "  to " . expand($MYAUTOLOAD)
-    "silent call system("curl -s --head -m 1 https://github.com 1>/dev/null && OR --output NUL for Windows")
-    silent call system("curl -fLo ${MYAUTOLOAD}/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim && echo success with curl!")
+    if ! empty($MSYSTEM)
+        "exec '!"curl -fLo \"$MYAUTOLOAD_NIX\"/plugg.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim && echo success with curl!"'
+        call system("curl -fLo \"$MYAUTOLOAD_NIX\"/plugg.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim && echo success with curl!")
+    else
+        "silent call system("curl -s --head -m 1 https://github.com 1>/dev/null && OR --output NUL for Windows")
+        silent call system("curl -fLo ${MYAUTOLOAD}/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim && echo success with curl!")
+    endif
 endif
 
 let g:vimplug_available=0
@@ -68,8 +83,8 @@ endif
     " Plug 'benekastah/neomake', has("nvim") ? {} : { 'on': [] }
 " Same wrapped into a function
 function! Cond(cond, ...)
-  let opts = get(a:000, 0, {})
-  return a:cond ? opts : extend(opts, { 'on': [], 'for': [] })
+    let opts = get(a:000, 0, {})
+    return a:cond ? opts : extend(opts, { 'on': [], 'for': [] })
 endfunction
 " Looks better
     " Plug 'benekastah/neomake', Cond(has("nvim"))
@@ -77,9 +92,7 @@ endfunction
     " Plug 'benekastah/neomake', Cond(has("nvim"), { 'on': 'Neomake' })
 
 if (g:vimplug_available)
-" Looks like vim-plug was loaded! Now plug the plugins
-call plug#begin('$MYPLUGDIR')
-
+call plug#begin('$PLUGD')
 " Good and sane
 Plug 'junegunn/vim-plug'
 Plug 'itchyny/lightline.vim' "cool
