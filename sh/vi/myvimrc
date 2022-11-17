@@ -13,30 +13,6 @@ set makeprg=make
 " set makeprg=sh\ my_make.sh
 set path=.,**
 " set wildignore=*.swp
-let $MYVICONFDIR=split(&runtimepath, ',')[0]
-" let $MYVICONFDIR = expand('$HOME') . "/.vim"
-let $MYVIMRC = $sh . "/vi/myvimrc_main"
-if !empty($git)
-    let $PLUGD = $git . "/plugged"
-else
-    let $PLUGD = $HOME . "/compy/plugged"
-endif
-if empty($PLUGD)
-    let $PLUGD = $HOME . "/compy/plugged"
-endif
-if ( has("nvim") )
-    let $MYAUTOLOAD = expand('$MYVICONFDIR') . "/autoload"
-else
-    let $MYAUTOLOAD = expand('$MYVICONFDIR') . "/autoload"
-endif
-if ( !empty($MSYSTEM) && has("nvim") )
-    set shell=\msys64/usr/bin/bash
-    set shellcmdflag=-c
-    set sxq=
-    let $MYAUTOLOAD_NIX = system('cygpath -u "$MYAUTOLOAD" | tr -d "\n"')
-    "let $PLUGD = system('cygpath -u "$PLUGD" | tr -d "\n"')
-    "let $MYVICONFDIR = system('cygpath "$MYVICONFDIR"')
-endif
 " let vstatus = 300
 
 ""  Useful memories  ""
@@ -62,12 +38,11 @@ endif
 if ! filereadable($MYAUTOLOAD . "/plug.vim")
     echom "Will try to download Plug.vim"
     echom "  to " . expand($MYAUTOLOAD)
-    if ! empty($MSYSTEM)
-        "exec '!"curl -fLo \"$MYAUTOLOAD_NIX\"/plugg.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim && echo success with curl!"'
-        call system("curl -fLo \"$MYAUTOLOAD_NIX\"/plugg.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim && echo success with curl!")
+    if !empty(g:bash_forced)
+        silent call system("curl -fLo \"" . g:my_autoload_nix . "\"/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim && echo success with curl!")
     else
         "silent call system("curl -s --head -m 1 https://github.com 1>/dev/null && OR --output NUL for Windows")
-        silent call system("curl -fLo ${MYAUTOLOAD}/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim && echo success with curl!")
+        silent call system("curl -fLo \"$MYAUTOLOAD\"/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim && echo success with curl!")
     endif
 endif
 
@@ -80,7 +55,7 @@ endif
 " if ! empty(execute('filter /plug.vim$/ scriptnames'))
 
 " Oneliner to Plug on condition
-    " Plug 'benekastah/neomake', has("nvim") ? {} : { 'on': [] }
+    " Plug 'benekastah/neomake", has("nvim") ? {} : { "on': [] }
 " Same wrapped into a function
 function! Cond(cond, ...)
     let opts = get(a:000, 0, {})
@@ -327,7 +302,7 @@ let g:startify_lists = [
             \ { 'type': 'commands',  'header': ['   Commands']       },
             \ ]
             " \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
-let g:startify_session_dir = $MYVICONFDIR . "/session"
+let g:startify_session_dir = $VICONFD . "/session"
 
 set encoding=UTF-8
 set fileencodings=ucs-bom,utf-8,default,cp1251,latin1
@@ -368,18 +343,18 @@ set hidden
 set fileformat=unix
 set title
 
-if !isdirectory($MYVICONFDIR) | call mkdir($MYVICONFDIR, '', 0770) | endif
+if !isdirectory($VICONFD) | call mkdir($VICONFD, '', 0770) | endif
 " Handle backups
-if !isdirectory($MYVICONFDIR . "/bak") | call mkdir($MYVICONFDIR . "/bak", '', 0700) | endif
-silent ! find $MYVICONFDIR/bak -type f -mtime +30 -delete
-set backupdir=$MYVICONFDIR/bak
-set undodir=$MYVICONFDIR/bak
+if !isdirectory($VICONFD . "/bak") | call mkdir($VICONFD . "/bak", '', 0700) | endif
+silent ! find $VICONFD/bak -type f -mtime +30 -delete
+set backupdir=$VICONFD/bak
+set undodir=$VICONFD/bak
 set undofile
-set directory=$MYVICONFDIR/bak
+set directory=$VICONFD/bak
 set swapfile
 set sessionoptions+=globals
 set history=2500
-set viminfofile=$MYVICONFDIR/viminfo
+set viminfofile=$VICONFD/viminfo
 
 set t_Co=256
 "  if $TERMINAL == 'xterm' | set term=xterm-256color | endif
@@ -728,7 +703,7 @@ nnoremap ,zl :Lines<CR>
 nnoremap ,zs :Files $sh<CR>
 nnoremap ,zt :Files $tt<CR>
 nnoremap ,zj :Files $jo<CR>
-if has('nvim')
+if has("nvim")
     nnoremap qf :TeleFilesProj<CR>
 else
     nnoremap qf :FilesProj<CR>
@@ -773,7 +748,7 @@ nnoremap ,vi :IndentBlanklineToggle<CR>
 nnoremap ,V :source $MYVIMRC<CR>
 nnoremap ,,v :source $MYVIMRC<CR>
 nnoremap c<BS> :call SetPhase() <bar> call LoadColor() <bar> call CrispBorders()<CR>
-nnoremap ,vs :source $MYVICONFDIR/session/comon <bar> silent call AddRpcEar()<CR>
+nnoremap ,vs :source $VICONFD/session/comon <bar> silent call AddRpcEar()<CR>
 nnoremap ,,q :call SaveColor() <bar> SSave! comon <bar> qa<CR>
 nnoremap ,,s :call SaveColor() <bar> SSave! comon<CR>
 nnoremap ,vq :qa!<CR>
@@ -799,7 +774,7 @@ if v:version >= 801
     tnoremap q<tab> <C-w>p
     tmap <C-\> <C-w>w
 endif
-if has('nvim')
+if has("nvim")
     tnoremap oo <C-\><C-n>
     tnoremap o<C-o> <C-\><C-n>:e #<CR>
     tnoremap <C-x> <C-\><C-n>:BDnJump<CR>
@@ -906,7 +881,7 @@ nnoremap ,,c :NewVifmHere<CR>
 nnoremap qt :call GotoTerm(0)<CR>
 " Jump to netrw window
 nnoremap ,n :call RaiseNetRW()<CR>
-if has('nvim') | nnoremap ,n :NvimTreeToggle<CR>| endif
+if has("nvim") | nnoremap ,n :NvimTreeToggle<CR>| endif
 
 " Exec current paragraph with shell
 nnoremap ,B yap: exec "!" . @"<CR>
@@ -1028,7 +1003,7 @@ function! RunSelBash()
     echo system(join(getline(a:firstline,a:lastline), "\n"))
 endfunction
 
-" command! SessWriteA call SaveColor() | call TerminalsFuneral() | mksession! $MYVICONFDIR/session.vim | SaveSigns! $MYVICONFDIR/signs.sav
+" command! SessWriteA call SaveColor() | call TerminalsFuneral() | mksession! $VICONFD/session.vim | SaveSigns! $VICONFD/signs.sav
 " command! SessWriteB exec 'SessWriteA' | call BufFocusedThenDo('signs.sav','wq')
 
 command! Bash exec 'silent ! bash' | redraw!
@@ -1138,7 +1113,7 @@ endfunction
 
 function! AddRpcEar()
     echo "Will launch an rpc server with default address for this editor.."
-    if has('nvim')
+    if has("nvim")
         if empty($NVIMSERV)
             echom "NO way! Rpc address for neoVim not provided"
         elseif filereadable(expand($NVIMSERV))
@@ -1191,7 +1166,7 @@ function! BuildProjectUni(Makefile,Makecommand)
         let l:proj_dir = ClimbToDirWhere(a:Makefile,1)
     endwhile
     if ( l:proj_dir != "-1" )
-        if has('nvim')
+        if has("nvim")
             echo system("echo -e \"\\n\\n\"--" . a:Makecommand . " @ " . l:proj_dir . ":")
             echo system("echo ------------------------------------------------")
             make
@@ -1209,7 +1184,7 @@ function! BuildProjectUni(Makefile,Makecommand)
     silent exec "lcd " . l:starting_directory
     let &makeprg = l:makeprg_bak
     " exit with rituals
-    if !has('nvim')
+    if !has("nvim")
         Silent read -n 1 -s -r -p "//hit.anykey" ; echo -ne "\n\n"
         redraw!
     endif
@@ -1773,8 +1748,8 @@ endfunction
 "   nnoremap <F8> :exe ":sign place 777 line=" . line(".") ." name=mywarning file=" . expand("%:p")<CR>
 "   nnoremap <F9> :exe ":sign place 666 line=" . line(".") ." name=mybookmark file=" . expand("%:p")<CR>
 "   nnoremap <F10> :sign unplace<CR>
-"   if filereadable("$MYVICONFDIR/signs.sav")
-"     source $MYVICONFDIR/signs.sav
+"   if filereadable("$VICONFD/signs.sav")
+"     source $VICONFD/signs.sav
 "   endif
 " endfunc
 " call MySigns()
@@ -1831,7 +1806,7 @@ endfunction
 command! JbzCppMan :call s:JbzCppMan()
 au FileType cpp nnoremap <buffer>K :JbzCppMan<CR>
 
-if has('nvim')
+if has("nvim")
     set wildoptions=pum
     set pumblend=15
     set winblend=10

@@ -1,13 +1,43 @@
 " vim: ts=4 sw=4 ft=vim
-" This file should be sourced as $MYVIMRC
+" Kind of header config file for Vim/Neovim
+
+let g:bash_forced=0
+if ( !empty($MSYSTEM) && has("nvim") )
+    echo "Will force Msys shell!"
+    let g:bash_forced=1
+    set shell=\msys64/usr/bin/bash
+    set shellcmdflag=-c
+    set sxq=
+endif
+
+let $VICONFD=split(&runtimepath, ',')[0]
+if !empty($sh)
+    let $MYVIMRC = $sh . "/vi/vimrc_main"
+else
+    let $MYVIMRC = expand('%:p')
+    let $sh = expand('%:p:h') . "/.."
+endif
+if !empty($git)
+    let $PLUGD = $git . "/plugged"
+else
+    " let $PLUGD = $HOME . "/compy/plugged"
+endif
+let $MYAUTOLOAD = expand('$VICONFD') . "/autoload"
+
+if !empty(g:bash_forced)
+    let g:my_autoload_nix = system('cygpath -u "$MYAUTOLOAD" | tr -d "\n"')
+    "let $PLUGD = system('cygpath -u "$PLUGD" | tr -d "\n"')
+    "let $VICONFD = system('cygpath "$VICONFD"')
+endif
 
 command! -nargs=1 SSource if filereadable(expand('<args>')) | source <args> | endif
+
 " SSource $HOME/.vimrc_msys
 SSource $sh/vi/myvimrc
 SSource $sh/vi/vimrc_themes
 SSource $loc/vimrc.local
 
-if has('nvim')
+if has("nvim")
     SSource $sh/vi/init.lua
     SSource $sh/vi/nvim-lsp.lua
 endif
