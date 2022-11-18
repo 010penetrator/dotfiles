@@ -14,7 +14,7 @@ $PSVersionTable
 
 :cmd:@powershell -NoProfile -ExecutionPolicy unrestricted -Command "iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))" && SET PATH=%PATH%;%systemdrive%\chocolatey\bin
 :ps:Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-choco install -y git 7zip ccleaner chocolateygui qbittorrent python3
+choco install -y git 7zip fzf nodejs-lts luarocks curl wget ripgrep cmake make mingw ccleaner chocolateygui qbittorrent python3
 
 python -m pip --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org    install -U  --upgrade pip
 

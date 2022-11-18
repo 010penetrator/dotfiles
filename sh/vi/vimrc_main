@@ -29,15 +29,19 @@ endif
 
 command! -nargs=1 SSource if filereadable(expand('<args>')) | source <args> | endif
 
+if ( !isdirectory($vi) && isdirectory($sh."/vi") )
+    let $vi = $sh .  "/vi"
+endif
+
 " SSource $HOME/.vimrc_msys
-SSource $sh/vi/myvimrc
-SSource $sh/vi/vimrc_plug
-SSource $sh/vi/vimrc_themes
+SSource $vi/myvimrc
+SSource $vi/vimrc_plug
+SSource $vi/vimrc_themes
 SSource $loc/vimrc.local
 
 if has("nvim")
-    SSource $sh/vi/init.lua
-    SSource $sh/vi/nvim-lsp.lua
+    SSource $vi/init.lua
+    SSource $vi/nvim-lsp.lua
 endif
 
 " TODO/Problems :

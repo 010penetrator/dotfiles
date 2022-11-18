@@ -41,7 +41,7 @@ call plug#begin($PLUGD)
     else
 call plug#begin()
     endif
-" Good and sane
+" Basic
 Plug 'junegunn/vim-plug'
 Plug 'itchyny/lightline.vim' "cool
 Plug 'justinmk/vim-sneak' "good!
@@ -65,11 +65,11 @@ Plug 'chrisbra/Colorizer' "good
 Plug 'junegunn/goyo.vim' "usable
 Plug 'haya14busa/vim-edgemotion' "good
 Plug 'eiginn/netrw' "basic
-Plug 'junegunn/fzf.vim' | Plug 'junegunn/fzf' "cool
+Plug 'junegunn/fzf.vim' | Plug 'junegunn/fzf' "fantastic
 
 " good for Vim
-Plug 'Shougo/unite.vim' | Plug 'Shougo/vimproc'
 if !has("nvim")
+    Plug 'Shougo/unite.vim' | Plug 'Shougo/vimproc'
     " Plug 'Shougo/deoplete.nvim' | Plug 'Shougo/neoinclude.vim'
     Plug 'majutsushi/tagbar' "okay
 endif
@@ -94,7 +94,7 @@ Plug 'will133/vim-dirdiff'
 " Plug 'Yggdroot/LeaderF'
 " Plug 'ryanoasis/vim-devicons'
 " Plug 'ludovicchabant/vim-gutentags'
-Plug 'liuchengxu/vista.vim'
+" Plug 'liuchengxu/vista.vim'
 " Plug 'derekwyatt/vim-fswitch'
 " Plug 'RRethy/vim-illuminate'
 
@@ -116,6 +116,9 @@ if has("nvim")
     Plug 'neovim/nvim-lspconfig'
     " Plug 'williamboman/nvim-lsp-installer'
     Plug 'williamboman/mason.nvim'
+    Plug 'williamboman/mason-lspconfig.nvim'
+    Plug 'mfussenegger/nvim-lint'
+    Plug 'mfussenegger/nvim-dap'
     Plug 'nvim-treesitter/nvim-treesitter', {'do':':TSUpdate'}
     Plug 'glepnir/lspsaga.nvim'
     Plug 'hrsh7th/nvim-cmp'

@@ -1,7 +1,17 @@
 
+require("mason").setup()
+require("mason-lspconfig").setup()
+require("mason-lspconfig").setup({
+    ensure_installed = { "sumneko_lua", "bashls" }
+})
+print('ok')
+require('lspconfig').bashls.setup{ on_attach = function() print("lsp client is bashls") end, }
+require('lspconfig').clangd.setup{ on_attach = function() print("lsp client is clangd") end, }
+-- require('lspconfig').pyright.setup{ on_attach = function() print("lsp client is pyright") end, }
+
 require('nvim-autopairs').setup{}
 require('Comment').setup()
-require('yode-nvim').setup()
+-- require('yode-nvim').setup()
 
 require('telescope').setup{
     defaults = {
@@ -193,11 +203,6 @@ end) ]]
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
--- require('lspconfig').bashls.setup{
---     on_attach = function() print("lsp client is clangd")
---     end,
--- }
-
 if vim.fn.has('nvim-0.6') == 1 then
     vim.api.nvim_command('\
     nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>|\
@@ -309,12 +314,6 @@ cmp.setup.filetype('gitcommit', {
 --         { name = 'cmdline' }
 --         })
 -- })
-
--- -- Setup lspconfig.
--- -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
--- require('lspconfig')['<YOUR_LSP_SERVER>'].setup {
---     capabilities = capabilities
--- }
 
 local hotfun = {}
 hotfun.teles_ff = function()
