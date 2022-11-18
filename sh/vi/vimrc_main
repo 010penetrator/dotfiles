@@ -20,7 +20,9 @@ endif
 if !empty($git)
     let $PLUGD = $git . "/plugged"
 else
-    " let $PLUGD = $HOME . "/compy/plugged"
+    if isdirectory($sh . "/../../plugged")
+        let $PLUGD = $sh . "/../../plugged"
+    endif
 endif
 let $MYAUTOLOAD = expand('$VICONFD') . "/autoload"
 
