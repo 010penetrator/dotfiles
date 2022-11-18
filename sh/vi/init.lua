@@ -4,7 +4,6 @@ require("mason-lspconfig").setup()
 require("mason-lspconfig").setup({
     ensure_installed = { "sumneko_lua", "bashls" }
 })
-print('ok')
 require('lspconfig').bashls.setup{ on_attach = function() print("lsp client is bashls") end, }
 require('lspconfig').clangd.setup{ on_attach = function() print("lsp client is clangd") end, }
 -- require('lspconfig').pyright.setup{ on_attach = function() print("lsp client is pyright") end, }
