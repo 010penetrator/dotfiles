@@ -1,8 +1,17 @@
+-- vim: ts=4 sw=4
 
-require("mason").setup()
-require("mason-lspconfig").setup()
+ppath = require("plenary.path")
+-- lua print( ppath )
+-- lua print( vim.env.HOME .. "/mason" ) 
+require("mason").setup({
+    -- install_root_dir = path.concat { vim.fn.stdpath "data", "mason" },
+    -- install_root_dir = vim.env.git .. "/nvim-mason"
+})
+
+-- require("mason-lspconfig").setup()
 require("mason-lspconfig").setup({
-    ensure_installed = { "sumneko_lua", "bashls" }
+    ensure_installed = { "sumneko_lua" }
+    -- ensure_installed = { "sumneko_lua", "bashls" }
 })
 require('lspconfig').bashls.setup{ on_attach = function() print("lsp client is bashls") end, }
 require('lspconfig').clangd.setup{ on_attach = function() print("lsp client is clangd") end, }

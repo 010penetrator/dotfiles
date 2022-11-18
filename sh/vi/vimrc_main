@@ -9,6 +9,9 @@ if ( !empty($MSYSTEM) && has("nvim") )
     set shellcmdflag=-c
     set sxq=
 endif
+if $ComSpec =~ "cmd.exe$"
+    " echo "We have cmd prompt.."
+endif
 
 let $VICONFD=split(&runtimepath, ',')[0]
 if !empty($sh)
