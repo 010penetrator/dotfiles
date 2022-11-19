@@ -1,11 +1,13 @@
 -- vim: ts=4 sw=4
 
 ppath = require("plenary.path")
--- lua print( ppath )
--- lua print( vim.env.HOME .. "/mason" )
+--print( ppath.concat_paths ( vim.fn.stdpath "data", "mason" )  )
+local mp
+if vim.env.git then
+    mp = vim.env.git .. helpy.filop.path_separator .. "nvim-mason"
+end
 require("mason").setup({
-    -- install_root_dir = path.concat { vim.fn.stdpath "data", "mason" },
-    -- install_root_dir = vim.env.git .. "/nvim-mason"
+    install_root_dir = mp ,
 })
 
 -- require("mason-lspconfig").setup()

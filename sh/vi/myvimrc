@@ -494,6 +494,7 @@ nnoremap ,vi :IndentBlanklineToggle<CR>
 " Start and quit Vim
 nnoremap ,V :source $MYVIMRC<CR>
 nnoremap ,,v :source $MYVIMRC<CR>
+nnoremap ,v<space> :source %<CR>
 nnoremap c<BS> :call SetPhase() <bar> call LoadColor() <bar> call CrispBorders()<CR>
 nnoremap ,vs :source $VICONFD/session/comon <bar> silent call AddRpcEar()<CR>
 nnoremap ,,q :call SaveColor() <bar> SSave! comon <bar> qa<CR>
