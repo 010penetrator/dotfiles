@@ -116,7 +116,9 @@ gsync() {
     cd $(realpath "$sh"); pwd
     git add .
     git commit -a -m another | grep '[^[:blank:]]' --color=none
-    git pull; git push
+    git pull
+    git status | grep -q "modified" &&
+        git push
     # echo
     # cd ~/moment/4gist/ ; pwd
     # git add .
