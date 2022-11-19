@@ -118,7 +118,7 @@ gsync() {
     git commit -a -m another | grep '[^[:blank:]]' --color=none
     git pull
     if  git status | grep -q "modified"; then
-        { git push; }
+        git push
     else
         echo "Already up to date"
     fi
