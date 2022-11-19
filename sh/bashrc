@@ -117,7 +117,7 @@ gsync() {
     git add .
     git commit -a -m another | grep '[^[:blank:]]' --color=none
     git pull
-    if  git status | grep -q "modified"; then
+    if  git status | grep -q "publish your local"; then
         git push
     else
         echo "Already up to date"
