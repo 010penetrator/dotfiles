@@ -120,7 +120,7 @@ gsync() {
     if  git status | grep -q "publish your local"; then
         git push
     else
-        echo "Already up to date"
+        # echo "Already up to date"
     fi
     # echo
     # cd ~/moment/4gist/ ; pwd
