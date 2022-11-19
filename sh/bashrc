@@ -118,7 +118,8 @@ gsync() {
     git commit -a -m another | grep '[^[:blank:]]' --color=none
     git pull
     git status | grep -q "modified" &&
-        git push
+        { git push; } ||
+            echo "Already up to date"
     # echo
     # cd ~/moment/4gist/ ; pwd
     # git add .
