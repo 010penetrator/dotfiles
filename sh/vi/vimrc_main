@@ -45,6 +45,7 @@ SSource $vi/vimrc_themes
 SSource $loc/vimrc.local
 
 if has("nvim")
+    SSource $vi/helpy.lua
     SSource $vi/init.lua
     SSource $vi/nvim-lsp.lua
 endif
