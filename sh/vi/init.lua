@@ -3,8 +3,10 @@
 ppath = require("plenary.path")
 --print( ppath.concat_paths ( vim.fn.stdpath "data", "mason" )  )
 local mp
-if vim.env.git then
-    mp = vim.env.git .. helpy.filop.path_separator .. "nvim-mason"
+if vim.env.PLUGD then
+    -- mp = vim.env.PLUGD .. helpy.filop.path_separator .. "nvim-mason"
+    mp = helpy.filop.path_join( vim.env.PLUGD , "..", "nvim-mason" )
+    -- print(mp)
 end
 require("mason").setup({
     install_root_dir = mp ,
@@ -13,7 +15,7 @@ require("mason").setup({
 -- require("mason-lspconfig").setup()
 require("mason-lspconfig").setup({
     ensure_installed = { "sumneko_lua" }
-    -- ensure_installed = { "sumneko_lua", "bashls" }
+    -- ensure_installed = { "sumneko_lua", "bashls", "clangd", "cpptools", "prettier" }
 })
 require('lspconfig').bashls.setup{ on_attach = function() print("lsp client is bashls") end, }
 require('lspconfig').clangd.setup{ on_attach = function() print("lsp client is clangd") end, }

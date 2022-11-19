@@ -22,7 +22,7 @@ if !empty($git)
     let $PLUGD = $git . "/plugged"
 else
     if isdirectory($sh . "/../../plugged")
-        let $PLUGD = $sh . "/../../plugged"
+        let $PLUGD = resolve($sh . "/../../plugged")
     endif
 endif
 let $MYAUTOLOAD = expand('$VICONFD') . "/autoload"
