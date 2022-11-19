@@ -13,6 +13,7 @@ if $ComSpec =~ "cmd.exe$"
     " echo "We have cmd prompt.."
 endif
 
+" if empty($sh) | echom 11 expand('%') | endif
 let $VICONFD=split(&runtimepath, ',')[0]
 if !empty($sh)
     let $MYVIMRC = $sh . "/vi/vimrc_main"
