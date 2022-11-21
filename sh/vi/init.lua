@@ -19,6 +19,7 @@ require("mason-lspconfig").setup({
 })
 require('lspconfig').bashls.setup{ on_attach = function() print("lsp client is bashls") end, }
 require('lspconfig').clangd.setup{ on_attach = function() print("lsp client is clangd") end, }
+require('lspconfig').sumneko_lua.setup{ on_attach = function() print("lsp client is clangd") end, }
 -- require('lspconfig').pyright.setup{ on_attach = function() print("lsp client is pyright") end, }
 
 require('nvim-autopairs').setup{}
