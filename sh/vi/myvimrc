@@ -1541,12 +1541,15 @@ highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 augroup MatchExtraWhitespace
     autocmd!
-    " au BufWinEnter,InsertLeave * match ExtraWhitespace /\s\+$/
     " au BufWinEnter * if &modifiable==1 | match ExtraWhitespace /\s\+$/ | endif
     " au InsertLeave * if &modifiable==1 | match ExtraWhitespace /\s\+$/ | endif
-    " au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
     " au BufWinEnter * if &modifiable==0 | call clearmatches() | endif
-    au BufModifiedSet * if &modifiable==1 | match ExtraWhitespace /\s\+$/ | else | call clearmatches() | endif
+    au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+    if has("nvim")
+        au BufModifiedSet * if &modifiable==1 | match ExtraWhitespace /\s\+$/ | else | call clearmatches() | endif
+    else
+        au BufWinEnter,InsertLeave * match ExtraWhitespace /\s\+$/
+    endif
     au BufWinLeave * call clearmatches()
 augroup END
 
