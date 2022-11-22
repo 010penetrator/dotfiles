@@ -14,8 +14,8 @@ require("mason").setup({
 
 -- require("mason-lspconfig").setup()
 require("mason-lspconfig").setup({
-    -- ensure_installed = { "sumneko_lua" }
-    ensure_installed = { "sumneko_lua", "bashls", "clangd", "pyright", "cmake", "vimls" }
+    ensure_installed = { "sumneko_lua", "clangd" }
+    -- ensure_installed = { "sumneko_lua", "bashls", "clangd", "pyright", "cmake", "vimls" }
 })
 require('lspconfig').bashls.setup{ on_attach = function() print("lsp client is bashls") end, }
 require('lspconfig').clangd.setup{ on_attach = function() print("lsp client is clangd") end, }
