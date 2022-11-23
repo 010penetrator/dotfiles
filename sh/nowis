@@ -3,6 +3,9 @@
 # Call 'nowis day' or 'nowis nox'
 # Call 'nowis' or 'nowis what' to ask
 
+HASG=false
+pgrep -c Xorg &>/dev/null && HASG=true
+
 if [[ -f /tmp/nowis && $( cat /tmp/nowis | wc -w ) -gt 0 ]]; then
     reply=$(cat /tmp/nowis | head -1 | cut -d ' ' -f1)
 else
@@ -10,7 +13,7 @@ else
 fi
 
 if [[ -z $* || $1 == 'what' ]]; then
-    notify-send -t 800 $reply
+    [[ $HASG == true ]] && notify-send -t 800 $reply
     echo $reply
     exit
 fi
@@ -19,6 +22,8 @@ rm /tmp/now_is_* &> /dev/null
 touch /tmp/now_is_"$1"
 echo "$1" > /tmp/nowis
 
+[[ $HASG == true ]] &&
+{
 if [[ $1 == 'nox' ]]; then
     nitrogen --set-zoom-fill  $git/wlp/twisted_by_zy0rg_d5sdf8q.png
     sed -i 's/=Pop$/=Pop-dark/' /ln/co/gtk-3.0/settings.ini
@@ -45,5 +50,6 @@ fi
     elif [[ $1 == 'day' ]]; then
         [[ -f $DT ]] && rm $CT && cp -f $DT $CT
     fi
+}
 }
 
