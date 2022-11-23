@@ -19,6 +19,8 @@ choco install -y git 7zip fzf nodejs-lts luarocks curl wget ripgrep cmake make m
 choco {info,uninstall,list --localonly}
 
 Windows Terminal
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux 
+wsl --update
 wsl --set-default-version 2
 wsl --list --verbose
 scoop
