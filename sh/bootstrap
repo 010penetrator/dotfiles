@@ -38,13 +38,14 @@ fi
 
 (
 echo -e '\n'--Gonna create /ln/ and short links there
-exit
+# exit
 sudo mkdir -p /ln
 sudo chown $USER:$USER /ln
 cd /ln
 ln -sfn $HOME ho
 ln -sfn /ln/ho/.sh sh
 mkdir -p /ln/ho/.lo
+mkdir -p /ln/ho/.lo/cur
 ln -sfn /ln/ho/.lo lo
 [ -d mo ] || ln -sn  /mnt mo
 ln -sfn /ln/ho/.config co

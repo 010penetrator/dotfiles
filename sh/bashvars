@@ -1,6 +1,8 @@
 #!/bin/bash
 
 # Variables #
+[[ -z LANG ]] &&   export LANG=en_US.UTF-8
+[[ -z LC_ALL ]] && export LC_ALL=en_US.UTF-8
 export HISTFILESIZE=
 export HISTSIZE=9000
 # [[ $COLORTERM == truecolor ]] && TERM=xterm-256color
@@ -36,7 +38,7 @@ export git=$HOME/compy
 #fi
 
 [[ -d $git ]] || export git=$(realpath "$sh/../..")
-[ -d /ln/lo ] && export loc=/ln/lo/cur || export loc=$HOME/.lo/cur
+[ -d /ln/lo/cur ] && export loc=/ln/lo/cur || export loc=$HOME/.lo/cur
 export bakhot=$HOME/bak
 export bakusbdir=$(compgen -G /ln/mo/*AMV/bak)
 export MANWIDTH=80
@@ -51,3 +53,4 @@ command -v kitty &>/dev/null && export TERMINAL=kitty && export TERMINAL_BIGER="
 [[ $PATH == *"$sh"* ]] || export PATH=$PATH:"$sh"
 [[ $PATH == *"$HOME/.local/bin"* ]] || export PATH=$PATH:$HOME/.local/bin
 [[ $PATH == *"$loc"* ]] || export PATH=$PATH:$loc
+

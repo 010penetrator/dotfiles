@@ -451,11 +451,13 @@ nnoremap ,zt :Files $tt<CR>
 nnoremap ,zj :Files $jo<CR>
 if has("nvim")
     nnoremap qf :TeleFilesProj<CR>
+    nnoremap ,/ :Telescope find_files search_dirs=$sh,$tt,$loc<CR>
+    nnoremap ,,/ :Telescope find_files theme=ivy search_dirs=$sh,$PWD
 else
     nnoremap qf :FilesProj<CR>
+    nnoremap ,/ :Files $sh,$tt,$loc<CR>
+    nnoremap ,,/ :Files $sh
 endif
-nnoremap ,/ :Telescope find_files search_dirs=$sh,$tt,$loc<CR>
-nnoremap ,,/ :Telescope find_files theme=ivy search_dirs=$sh,
 
 " Search text
 nnoremap ,zr :Rg<CR>

@@ -1,10 +1,6 @@
 " vim: filetype=vim :
-" Sample configuration file for vifm (last updated: 28 June, 2016)
-" You can edit this file by hand.
-" The " character at the beginning of a line comments out the line.
-" Blank lines are ignored.
-" The basic format for each item is shown with an example.
-" ------------------------------------------------------------------------------
+" Configuration file for vifm
+" -----------------------------
 
 if (system('[ -f /tmp/now_is_day ] && echo 1') == "1" )
     let $VIFM_THEME='reicheltd-light'
@@ -749,5 +745,5 @@ nnoremap <C-j> :fzffind<cr>
 nnoremap <C-k> :fzfmushist<cr>
 
 source $loc/vifmrc.local
-source /ln/sh/conf/favicons.vifm
+" source /ln/sh/conf/favicons.vifm
 
