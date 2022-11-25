@@ -118,8 +118,8 @@ if [[ -d ~/.config/kitty-themes ]] ; then
 else
     git clone --depth 1 https://github.com/dexpota/kitty-themes.git ~/.config/kitty-themes
 fi
-mkdir -p .config/kitty
-cd .config/kitty
+mkdir -p $HOME/.config/kitty
+cd $HOME/.config/kitty
 ln -sfr ../kitty-themes/themes themes
 # ln -s themes/Material.conf day_theme.conf
 # ln -s themes/nightfox-dusk_kitty.conf nox_theme.conf
