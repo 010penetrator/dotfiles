@@ -62,8 +62,11 @@ title() { echo -ne "\033]0;$*\007"; }
 
 # Functions #
 zz() { du -csh $*; local IFS="_"; filename=$(echo "$*" | tr / _); tar -I 'zstd -10 -T0' -cf "$filename".tar.zst --exclude='.git' --exclude='tags' $*; du -sh "$filename".tar.zst; }
-c() { a=wd${1} ; cd ${!a} ; }
-rl() { cd $(realpath "$*"); }
+c() { a=wd${1}; cd ${!a}; }
+rl() { rp=$(realpath "$*");
+    { [[ -d $rp ]] && cd "$rp"; } ||
+    { [[ -f $rp ]] && cd $(dirname "$rp"); } ||
+        echo "No such file or dir path!"; }
 fl() { cat "$sh"/rs/1linux | fzf ; }
 x() { xdg-open "$*" &> /dev/null & disown ; }
 get_space_used() { df -BMB "$1" --output=used | tail -1 | grep -o '[0-9]*' ; }

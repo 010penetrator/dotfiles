@@ -1,8 +1,14 @@
 
-helpy = {}
-helpy.filop = {}
-local M = helpy.filop
+H = {}
 
+function tprint (tbl)
+    for k,v in pairs(tbl) do
+        print(k,v)
+    end
+end
+
+
+local M = H
 ---Author: cseickel
 ---The file system path separator for the current platform.
 M.path_separator = "/"

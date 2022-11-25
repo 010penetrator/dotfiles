@@ -2,14 +2,14 @@
 
 local mp
 if vim.env.PLUGD then
-    -- mp = vim.env.PLUGD .. helpy.filop.path_separator .. "nvim-mason"
-    mp = helpy.filop.path_join( vim.env.PLUGD , "..", "nvim-mason" )
+    -- mp = vim.env.PLUGD .. H.path_separator .. "nvim-mason"
+    mp = H.path_join( vim.env.PLUGD , "..", "nvim-mason" )
     mp = vim.fn.resolve(mp)
-    -- mp = helpy.filop.path_join( vim.fn.stdpath "data", "nvim-mason" )
+    -- mp = H.path_join( vim.fn.stdpath "data", "nvim-mason" )
     -- print(mp)
 end
 require("mason").setup({
-    -- install_root_dir = mp ,
+    install_root_dir = mp ,
 })
 
 -- require("mason-lspconfig").setup()
@@ -19,10 +19,15 @@ require("mason-lspconfig").setup({
 })
 require('lspconfig').bashls.setup{ on_attach = function() print("lsp client is bashls") end, }
 require('lspconfig').clangd.setup{ on_attach = function() print("lsp client is clangd") end, }
-require('lspconfig').sumneko_lua.setup{ on_attach = function() print("lsp client is sumneko_lua") end, }
+require('lspconfig').sumneko_lua.setup{
+    on_attach = function() print("lsp client is sumneko_lua") end,
+    settings = { Lua = { diagnostics = { globals = {'vim'}}}},
+    }
 require('lspconfig').pyright.setup{ on_attach = function() print("lsp client is pyright") end, }
 require('lspconfig').cmake.setup{ on_attach = function() print("lsp client is cmake") end, }
 require('lspconfig').vimls.setup{ on_attach = function() print("lsp client is vimls") end, }
+
+blc = require('lspconfig').bashls.cmd
 
 require('nvim-autopairs').setup{}
 require('Comment').setup()

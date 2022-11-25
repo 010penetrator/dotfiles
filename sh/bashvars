@@ -17,12 +17,11 @@ export VIMSERV=VIMSERV
 export PAGER=less
 export BROWSER=firefox
 export tt=$HOME/tt
-#export jo=$HOME/gitjob
 export git=$HOME/compy
 
-#[[ -n $sh && -d $sh && -f $sh/bashrc ]] || 
+#[[ -n $sh && -d $sh && -f $sh/bashrc ]] ||
 #    { [ -d /ln/sh ] && export sh=/ln/sh || export sh=$HOME/.sh; }
-#[[ -n $sh && -d $sh && -f $sh/bashrc ]] || 
+#[[ -n $sh && -d $sh && -f $sh/bashrc ]] ||
 #    { SELDIR=$(dirname $(realpath "$BASH_SOURCE")); echo rp is $SELDIR ; #[[ -d $SELDIR/vi && -f $SELDIR/all ]] && export sh="$SELDIR"; }
 
 #if ! [[ -d $sh ]]; then
