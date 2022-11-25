@@ -18,13 +18,20 @@ $PSVersionTable
 choco install -y git 7zip fzf nodejs-lts luarocks curl wget ripgrep cmake make mingw ccleaner chocolateygui qbittorrent python3
 choco {info,uninstall,list --localonly}
 
-Windows Terminal
-Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux 
+irm get.scoop.sh -outfile 'install.ps1'
+.\install.ps1 -RunAsAdmin
+scoop bucket add extras
+scoop install curl wget git vim windows-terminal wsl-distrod
+
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
 wsl --update
+wsl --list --verbose
+wsl --set-version <Distro> 2
 wsl --set-default-version 2
 wsl --list --verbose
-scoop
-wsl-distrod
+
 curl -o /etc/pacman.d/mirrorlist https://archlinux.org/mirrorlist/all/
 cp CA.{crt,cer}} /etc/ca-certificates/trust-source/anchors; update-ca-trust; pacman -Sy --disable-download-timeout
 

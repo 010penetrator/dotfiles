@@ -1,6 +1,8 @@
 #!/bin/bash
 # Turn current system into handy environment for me!
 
+[[ -z $GIT_DIR ]] && export GIT_DIR=$HOME/compy
+
 suc=false
 var='v'
 key=''
@@ -20,20 +22,21 @@ cd
 
 [[ -d Templates ]] && mkdir -p Trashed && mv Documents Music Pictures Public Templates Videos Trashed
 
-mkdir -p compy
+mkdir -p $GIT_DIR
 
 if ! type -f pakku &>/dev/null ; then
-    cd compy
-    git -C compy clone https://aur.archlinux.org/pakku.git
+    cd $GIT_DIR
+    git clone https://aur.archlinux.org/pakku.git
+    cd pakku
     makepkg -si
 fi
 
-if [[ -d $HOME/compy/dotfiles ]] ; then
+if [[ -d $GIT_DIR/dotfiles ]] ; then
     echo -e '\n'--Gonna update my git repo
-    git -C "$HOME"/compy/dotfiles/ pull
+    git -C $GIT_DIR/dotfiles/ pull
 else
     echo -e '\n'--Gonna clone my git repo
-    git clone https://codeberg.org/plasmik/dotfiles "$HOME"/compy/dotfiles
+    git clone https://codeberg.org/plasmik/dotfiles $GIT_DIR/dotfiles
 fi
 
 (
@@ -64,7 +67,7 @@ ln -sfn /ln/mo/metal/____ __
 (
 echo -e '\n'--Gonna link config files
 cd
-! [[ -L .sh ]] && ln -sn compy/dotfiles/sh .sh
+! [[ -L .sh ]] && ln -sn $GIT_DIR/dotfiles/sh .sh
 ( [[ -f .bashrc ]] && ! [[ -L .bashrc ]] ) &&
     (
     echo --will move current .bashrc to exclusive trash file
@@ -121,4 +124,8 @@ ln -sfr ../kitty-themes/themes themes
 ! [[ -L day_theme.conf ]] && ln -s themes/gruvbox_light.conf day_theme.conf
 ! [[ -L nox_theme.conf ]] && ln -s themes/gruvbox_dark.conf  nox_theme.conf
 ! [[ -f current-theme.conf ]] && ln -s themes/gruvbox_dark.conf current-theme.conf
+
+[[ -z $sh ]] && export sh=$
+
+cd
 
