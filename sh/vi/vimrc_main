@@ -44,7 +44,6 @@ if ( !isdirectory($vi) && isdirectory($sh."/vi") )
     let $vi = $sh .  "/vi"
 endif
 
-" SSource $HOME/.vimrc_msys
 SSource $vi/myvimrc
 SSource $vi/vimrc_plug
 SSource $vi/vimrc_themes
@@ -57,7 +56,6 @@ if has("nvim")
 endif
 
 " TODO/Problems :
-"     ft detection is sleepy
-"     lsp client exits with 1
-"     less completion
+"     filetype detection needs :e!
+"     completion..
 
