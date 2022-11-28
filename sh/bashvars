@@ -51,5 +51,6 @@ command -v kitty &>/dev/null && export TERMINAL=kitty && export TERMINAL_BIGER="
 #
 [[ $PATH == *"$sh"* ]] || export PATH=$PATH:"$sh"
 [[ $PATH == *"$HOME/.local/bin"* ]] || export PATH=$PATH:$HOME/.local/bin
-[[ $PATH == *"$loc"* ]] || export PATH=$PATH:$loc
+[[ -d $loc ]] && [[ $PATH == *"$loc"* ]] || export PATH=$PATH:$loc
+[[ -d $HOME/.local/share/gem/ruby/3.0.0/bin ]] && [[ $PATH == *"gem/ruby"* ]] || export PATH=$PATH:$HOME/.local/share/gem/ruby/3.0.0/bin
 
