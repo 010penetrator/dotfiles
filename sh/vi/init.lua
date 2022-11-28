@@ -1,4 +1,5 @@
 -- vim: ts=4 sw=4
+-- FYI: Use checkhealth to troubleshoot Neovim
 
 local mp
 if vim.env.PLUGD then

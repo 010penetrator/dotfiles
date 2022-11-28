@@ -1,5 +1,10 @@
 " vim: ts=4 sw=4 ft=vim
 " Kind of header config file for Vim/Neovim
+" 1. get plug.vim
+" 2. :PlugUpdate
+" 3. :checkhealth
+" 4. set up Mason
+" 5. check if LSP works well
 
 let g:bash_forced=0
 if ( !empty($MSYSTEM) && has("nvim") )

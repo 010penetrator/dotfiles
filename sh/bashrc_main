@@ -22,5 +22,4 @@ fi
 [[ -f $sh/bashrc ]] &&        source "$sh/bashrc"
 [[ -f $sh/bakrestosh.fn ]] && source "$sh/bakrestosh.fn"
 [[ -f $loc/bashrc_loc ]] &&   source "$loc/bashrc_loc"
-# [[ -f $HOME/.bashrc.local ]] && source "$HOME"/.bashrc.local
 
