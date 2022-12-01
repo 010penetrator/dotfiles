@@ -1,28 +1,36 @@
+$PSVersionTable
+PS c:\> cmd /c single-command-to-cmd
+
 cd %userprofile%
 copy NUL EMptyFile.txt
-
-
-"C:\exe\Everything-1.3\Everything.exe" -s "$(CURRENT_WORD)"
-
 pnputil -i -a *.inf
 chcp 437
 mklink /J name address
 
-dism /online /export-driver /destination:C:\Drivers
-:ps:Export-WindowsDriver —Online —Destination C:\Drivers
+cmd:: dism /online /export-driver /destination:C:\Drivers
+posh::Export-WindowsDriver —Online —Destination C:\Drivers
 
-$PSVersionTable
+"C:\exe\Everything-1.3\Everything.exe" -s "$(CURRENT_WORD)"
 
-:cmd:@powershell -NoProfile -ExecutionPolicy unrestricted -Command "iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))" && SET PATH=%PATH%;%systemdrive%\chocolatey\bin
-:ps:Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+:: cmd install chocolatey
+@powershell -NoProfile -ExecutionPolicy unrestricted -Command "iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))" && SET PATH=%PATH%;%systemdrive%\chocolatey\bin
+:: posh install chocolatey
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+
 choco install -y git 7zip fzf nodejs-lts luarocks curl wget ripgrep cmake make mingw ccleaner chocolateygui qbittorrent python3
 choco {info,uninstall,list --localonly}
 
+:: Set up scoop
 irm get.scoop.sh -outfile 'install.ps1'
 .\install.ps1 -RunAsAdmin
 scoop bucket add extras
 scoop install curl wget git vim windows-terminal wsl-distrod
 
+:: Get cdb.exe 32/64 for QtCreator
+scoop install windbg windbg32
+scoop bucket add wangzq https://github.com/wangzq/scoop-bucket
+
+:: Set up wsl
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
 dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
@@ -31,23 +39,24 @@ wsl --list --verbose
 wsl --set-version <Distro> 2
 wsl --set-default-version 2
 wsl --list --verbose
-
+::
 sudo pacman -Syu --needed neovim ncdu vifm fzf git curl wget base-devel p7zip npm nodejs ruby luarocks python-pip
-
+::
 curl -o /etc/pacman.d/mirrorlist https://archlinux.org/mirrorlist/all/
 cp CA.{crt,cer}} /etc/ca-certificates/trust-source/anchors; update-ca-trust; pacman -Sy --disable-download-timeout
-
+::
 python -m pip --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org    install -U  --upgrade pip
 
 ------------------------------
 
 ::Nice windos fonts
+Cascadia Code
 AnonymousPro
 Arialunicode
 Batang
 Candara
-	Consolas
-	DejaVu Mono
+Consolas
+DejaVu Mono
 Courant-num
 Courier New
 Georgia
