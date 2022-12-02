@@ -30,6 +30,7 @@ set path=.,**
 " autocmd WinNew * set numberwidth=2 winheight=7
 " Check lightline themes here
 " read !ls $PLUGD/lightline.vim/autoload/lightline/colorscheme
+" :%!xxd "re-open as hex
 
 """"""""""""""""""""""""
 ""     Settings:      ""
