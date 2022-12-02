@@ -8,7 +8,7 @@ echo editor is $EDITOR
 echo args are $*
 
 if [ -z "$1" ] ; then
-  echo "Usage: [VIMSERV=name] [MODE=cur,last,newtab,newtabinsert,split,vert] vimz file.c"
+  echo "Usage: [VIMSERV=name] [MODE=cur,last,newtab,newtabinsert,vert,split] vir file.c"
   # exit 1
 fi
 

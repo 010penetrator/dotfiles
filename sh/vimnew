@@ -4,22 +4,34 @@
 RPC_OPTION=''
 if [ -z "$VIMSERV" ]
 then
-    echo "Servername not provided!"
+  echo "Servername not provided!"
 else
-    RPC_OPTION="--servername $VIMSERV"
+  RPC_OPTION="--servername $VIMSERV"
 fi
 
-# How many my vim-servers?
-i=$(vim --serverlist | grep ^VIMSERV$ | wc -l)
-[ $i != 0 ] && VIMSERV="''" && \
-  echo Caution. Vim server already running. i will not make one more && sleep 1
+# Do we even have client-server compiled into Vim?
+if vim --version | grep "-clientserver" -q; then
+  RPC_OPTION=""
+else
+  # How many my vim-servers?
+  i=$(vim --serverlist | grep ^VIMSERV$ | wc -l)
+  [ $i != 0 ] && VIMSERV="''" && \
+    echo Caution. Vim server already running. i will not make one more && sleep 1
+fi
 
-case $TERMINAL in
-  kitty*)
-    $TERMINAL --start-as maximized bash -c "source $HOME/.bashrc ; sleep .1 ; vim $RPC_OPTION"
-    ;;
-  *)
-    xterm -maximized -e "source $HOME/.bashrc ; sleep .1 ; vim $RPC_OPTION"
-    ;;
-esac
+HASG=false
+pgrep -c Xorg &>/dev/null && HASG=true
+
+if [[ $HASG == true ]]; then
+  case $TERMINAL in
+    kitty*)
+      $TERMINAL --start-as maximized bash -c "source $HOME/.bashrc ; sleep .1 ; vim $RPC_OPTION"
+      ;;
+    *)
+      xterm -maximized -e "source $HOME/.bashrc ; sleep .1 ; vim $RPC_OPTION"
+      ;;
+  esac
+else
+  vim $RPC_OPTION
+fi
 

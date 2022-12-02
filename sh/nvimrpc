@@ -58,7 +58,9 @@ print('final address', file)
 print('mode', mode)
 
 # Select/create window for editing the file
-if mode == 'last':
+if mode == 'cur':
+    nvim.command('e ' + file)
+elif mode == 'last':
     nvim.command('wincmd p')
     nvim.command('e ' + file)
 elif mode == 'newtab':

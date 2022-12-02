@@ -2,18 +2,24 @@
 # Spawn new neoVim in a terminal, with RPC feature
 
 RPC_OPTION=''
-if [ -z "$NVIMSERV" ]
-then
-    echo "No RPC address provided!"
+if [ -z "$NVIMSERV" ]; then
+  echo "No RPC address provided!"
 else
-    RPC_OPTION="--listen $NVIMSERV"
+  RPC_OPTION="--listen $NVIMSERV"
 fi
 
-case $TERMINAL in
+HASG=false
+pgrep -c Xorg &>/dev/null && HASG=true
+
+if [[ $HASG == true ]]; then
+  case $TERMINAL in
     kitty*)
-        # echo rpc option is $RPC_OPTION;
-        $TERMINAL --start-as maximized bash -c "source $HOME/.bashrc ; sleep .1 ; nvim $RPC_OPTION" & ;;
+      # echo rpc option is $RPC_OPTION;
+      $TERMINAL --start-as maximized bash -c "source $HOME/.bashrc ; sleep .1 ; nvim $RPC_OPTION" & ;;
     *)
-        xterm -maximized -e "source $HOME/.bashrc ; sleep .1 ; vim $RPC_OPTION" & ;;
-esac
+      xterm -maximized -e "source $HOME/.bashrc ; sleep .1 ; vim $RPC_OPTION" & ;;
+  esac
+else
+  nvim $RPC_OPTION
+fi
 

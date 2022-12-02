@@ -55,6 +55,9 @@ if ! [[ -z "$1" ]] ; then
   elif [[ $MODE == split ]] ; then
     # Edit in new horizontal split in Vim
     vim --servername $VIMSERV --remote-send "<c-w>:new $path<CR>"
+  else
+    # Just edit in current Vim window
+    vim --servername $VIMSERV --remote-send "<c-w>:e $path<CR>"
   fi
 else
   echo "No file provided!"
