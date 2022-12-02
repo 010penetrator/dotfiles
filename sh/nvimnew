@@ -11,15 +11,19 @@ fi
 HASG=false
 pgrep -c Xorg &>/dev/null && HASG=true
 
+NVIM="nvim $RPC_OPTION"
+[[ $VIMINSTASESS == true ]] && NVIM="$NVIM -c SLoad!"
+[[ $VIMINSTASESS == true ]] && echo insta
+
 if [[ $HASG == true ]]; then
   case $TERMINAL in
     kitty*)
       # echo rpc option is $RPC_OPTION;
-      $TERMINAL --start-as maximized bash -c "source $HOME/.bashrc ; sleep .1 ; nvim $RPC_OPTION" & ;;
+      $TERMINAL --start-as maximized bash -c "source $HOME/.bashrc ; sleep .1 ; $NVIM" & ;;
     *)
-      xterm -maximized -e "source $HOME/.bashrc ; sleep .1 ; vim $RPC_OPTION" & ;;
+      xterm -maximized -e "source $HOME/.bashrc ; sleep .1 ; $NVIM" & ;;
   esac
 else
-  nvim $RPC_OPTION
+  $NVIM
 fi
 

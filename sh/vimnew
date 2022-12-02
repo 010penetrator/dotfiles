@@ -22,13 +22,16 @@ fi
 HASG=false
 pgrep -c Xorg &>/dev/null && HASG=true
 
+VIM="vim $RPC_OPTION"
+[[ $VIMINSTASESS == true ]] && VIM="$VIM -c SLoad!"
+
 if [[ $HASG == true ]]; then
   case $TERMINAL in
     kitty*)
-      $TERMINAL --start-as maximized bash -c "source $HOME/.bashrc ; sleep .1 ; vim $RPC_OPTION"
+      $TERMINAL --start-as maximized bash -c "source $HOME/.bashrc ; sleep .1 ; $VIM"
       ;;
     *)
-      xterm -maximized -e "source $HOME/.bashrc ; sleep .1 ; vim $RPC_OPTION"
+      xterm -maximized -e "source $HOME/.bashrc ; sleep .1 ; $VIM"
       ;;
   esac
 else

@@ -3,6 +3,7 @@
 
 export BASH_IS_PLASMIFIED=true
 
+# if no valid $sh, guess it
 if ! [[ -d $sh ]]; then
     if [[ -f $HOME/.sh/bashrc ]]; then
         export sh="$HOME/.sh"
@@ -14,7 +15,6 @@ if ! [[ -d $sh ]]; then
         fi
     fi
 fi
-
 # echo sh is $sh
 
 # [ -f $HOME/.bashrc_ORIG ] && source $HOME/.bashrc_ORIG
