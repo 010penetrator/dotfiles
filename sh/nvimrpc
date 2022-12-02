@@ -34,7 +34,8 @@ def get_cli_input():
     if not os.path.exists((serv)):
         print('RPC address', serv, 'is not present!\nWill launch nVim listening to that address.')
         start_neovim()
-        os.system('sleep .4')
+        sys.exit()
+        # os.system('sleep .4')
     # else:
     #     os.system("ror.sh ' - NVIM$' ''")
 
