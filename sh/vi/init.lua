@@ -143,9 +143,6 @@ require'marks'.setup {
 }
 
 
-
-
-
 -- n  m]          * <Cmd>lua require'marks'.next()<CR>
 -- n  f<Up>       * <Cmd>lua require'marks'.prev_bookmark()<CR>
 

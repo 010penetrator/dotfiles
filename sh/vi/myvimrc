@@ -334,6 +334,7 @@ nnoremap <silent> gn :call search('^\(.\\|\(\s\)*\)$','W')<CR>
 nnoremap <silent> gp :call search('^\(.\\|\(\s\)*\)$','bW')<CR>
 onoremap <silent> gn :call search('^\(.\\|\(\s\)*\)$','W')<CR>
 onoremap <silent> gp :call search('^\(.\\|\(\s\)*\)$','bW')<CR>
+nnoremap gj <C-o>
 
 " For vim-signature
 " nmap ]s ]-
@@ -632,7 +633,7 @@ nnoremap ,,c :NewVifmHere<CR>
 nnoremap qt :call GotoTerm(0)<CR>
 " Jump to netrw window
 nnoremap ,n :call RaiseNetRW()<CR>
-if has("nvim") | nnoremap ,n :NvimTreeToggle<CR>| endif
+if has("nvim") | nnoremap ,n :NvimTreeFocus<CR>| endif
 
 " Exec current paragraph with shell
 nnoremap ,B yap: exec "!" . @"<CR>
