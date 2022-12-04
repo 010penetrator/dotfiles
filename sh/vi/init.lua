@@ -46,6 +46,17 @@ require('telescope').setup{
 }
 require('telescope').load_extension('fzf')
 
+require('eval').setup{
+    -- prefix_char = "> ", -- char displayed before the output content
+    -- a table with each filetype and its respective command to run code
+    filetype = {
+        lua = { cmd = "lua" },
+        sh = { cmd = "bash" },
+        python = { cmd = "python" },
+        javascript = { cmd = "node" },
+    }
+}
+
 -- disable netrw at the very start of your init.lua (strongly advised)
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1

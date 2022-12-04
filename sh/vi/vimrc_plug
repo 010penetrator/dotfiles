@@ -141,6 +141,7 @@ if has("nvim")
     Plug 'lukas-reineke/onedark.nvim'
     Plug 'lukas-reineke/indent-blankline.nvim'
     Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+    Plug 'luissimas/eval.nvim'
     " Themes
     Plug 'projekt0n/github-nvim-theme'
 endif
