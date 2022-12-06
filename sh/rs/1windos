@@ -51,15 +51,18 @@ python -m pip --trusted-host pypi.org --trusted-host pypi.python.org --trusted-h
 
 ::Nice windos fonts
 Cascadia Code
+Consolas
+Corbel
 AnonymousPro
+Candara
 Arialunicode
 Batang
-Candara
-Consolas
 DejaVu Mono
-Courant-num
+Tahoma
+Verdana
 Courier New
 Georgia
+Courant-num
 Inconsolata
 Liberation
 LineDraw
@@ -69,8 +72,6 @@ Mistral
 Open Sans
 Sans Serif
 SegoeUI
-Tahoma
-Verdana
 
 ::Hit <Alt+N> to type these chars
 0171«
