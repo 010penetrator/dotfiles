@@ -248,6 +248,8 @@ imap jj <ESC>
 imap <C-e> <C-o>A
 
 imap <C-l> <Right>
+" add space right from cursor
+imap <C-b> <space><left>
 
 " double <esc> will switch off search highlighting
 " nnoremap <silent> <Esc><Esc> <Esc>:noh<CR><Esc>
