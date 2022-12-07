@@ -745,5 +745,5 @@ nnoremap <C-j> :fzffind<cr>
 nnoremap <C-k> :fzfmushist<cr>
 
 source $loc/vifmrc.local
-" source /ln/sh/conf/favicons.vifm
+source /ln/sh/conf/favicons.vifm
 
