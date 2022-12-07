@@ -518,6 +518,9 @@ nnoremap ,an :exec '! MODE=newtab vir "%:p"' \| q<CR>
 nnoremap ,as :exec '! MODE=split  vir "%:p"' \| q<CR>
 nnoremap ,av :exec '! MODE=vert   vir "%:p"' \| q<CR>
 
+" Silly update git repo
+map ,,g :exec "lcd " . GetProjDir()\|G status\|G add .\|G commit -m "---"\|G push
+
 " Have mappings in terminal mode
 if v:version >= 801
     tmap oo <C-w>N:set nonumber<CR>
@@ -983,6 +986,7 @@ function! GetProjDir()
         let l:proj_dir = expand('%:p:h')
     endif
     let b:proj_dir = l:proj_dir
+    return l:proj_dir
 endfunction
 
 function! FocusBufOrDo(name,cmd)
