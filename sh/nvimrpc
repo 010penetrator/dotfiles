@@ -52,6 +52,7 @@ print('argv..', sys.argv, len(sys.argv) )
 print('file is', file)
 
 from pynvim import attach
+print('attaching to ', serv)
 nvim = attach('socket', path=serv)
 
 file = os.path.join( os.getcwd(), file )

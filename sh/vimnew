@@ -19,8 +19,8 @@ else
     echo Caution. Vim server already running. i will not make one more && sleep 1
 fi
 
-HASG=false
 pgrep -c Xorg &>/dev/null && HASG=true
+HASG=false
 
 VIM="vim $RPC_OPTION"
 [[ $VIMINSTASESS == true ]] && VIM="$VIM -c SLoad!"
