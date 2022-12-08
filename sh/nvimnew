@@ -13,7 +13,7 @@ HASG=false
 
 NVIM="nvim $RPC_OPTION"
 [[ $VIMINSTASESS == true ]] && NVIM="$NVIM -c SLoad!"
-[[ $VIMINSTASESS == true ]] && echo insta session is on
+# [[ $VIMINSTASESS == true ]] && echo insta session is on
 
 if [[ $HASG == true ]]; then
   case $TERMINAL in
