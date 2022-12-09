@@ -119,8 +119,8 @@ augroup Sessload
 augroup END
 augroup SaveNotepad
     autocmd!
-    autocmd FocusLost 99.txt update
-    autocmd BufLeave  99.txt update
+    autocmd FocusLost silly.txt silent update
+    autocmd BufLeave  silly.txt silent update
 augroup END
 
 " autocmd SessionLoadPost * echom "Welcome back"
@@ -493,7 +493,7 @@ nnoremap ,gz :call FocusBufOrDo('zzzz','e $tt/zzzzzz')<CR>
 nnoremap ,gu :call FocusBufOrDo('ff','e $tt/u*/ff*')<CR>
 nnoremap ,gh :call FocusBufOrDo('sh_history','e $HOME/.bash_history')<CR>G
 nnoremap ,gl :call FocusBufOrDo('1linux','e $sh/rs/1linux')<CR>
-nnoremap q/  :call FocusWindowOrDo('99.txt','1tabn \| wincmd b \| e $buf')<CR>
+nnoremap q/  :call FocusWindowOrDo('silly.txt','1tabn \| wincmd b \| e $buf')<CR>
 
 nnoremap ,vv :Goyo<CR>
 nnoremap ,vi :IndentBlanklineToggle<CR>
