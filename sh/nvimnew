@@ -3,27 +3,30 @@
 
 RPC_OPTION=''
 if [ -z "$NVIMSERV" ]; then
-  echo "No RPC address provided!"
+    echo "No RPC address provided!"
 else
-  RPC_OPTION="--listen $NVIMSERV"
+    RPC_OPTION="--listen $NVIMSERV"
 fi
 
-pgrep -c Xorg &>/dev/null && HASG=true
 HASG=false
+pgrep -c Xorg &>/dev/null && HASG=true
+INTERACTIVE=false
+tty -s && INTERACTIVE=true
+# [ -t 0 ] && notify-send 101
 
 NVIM="nvim $RPC_OPTION"
 [[ $VIMINSTASESS == true ]] && NVIM="$NVIM -c SLoad!"
 # [[ $VIMINSTASESS == true ]] && echo insta session is on
 
-if [[ $HASG == true ]]; then
-  case $TERMINAL in
-    kitty*)
-      # echo rpc option is $RPC_OPTION;
-      $TERMINAL --start-as maximized bash -c "source $HOME/.bashrc ; sleep .1 ; $NVIM" & ;;
-    *)
-      xterm -maximized -e "source $HOME/.bashrc ; sleep .1 ; $NVIM" & ;;
-  esac
+if [[ $HASG == true && $INTERACTIVE == false ]]; then
+    case $TERMINAL in
+        kitty*)
+            # echo rpc option is $RPC_OPTION;
+            $TERMINAL --start-as maximized bash -c "source $HOME/.bashrc ; sleep .1 ; $NVIM" & ;;
+        *)
+            xterm -maximized -e "source $HOME/.bashrc ; sleep .1 ; $NVIM" & ;;
+    esac
 else
-  $NVIM
+    $NVIM
 fi
 

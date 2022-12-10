@@ -19,13 +19,16 @@ else
     echo Caution. Vim server already running. i will not make one more && sleep 1
 fi
 
-pgrep -c Xorg &>/dev/null && HASG=true
 HASG=false
+pgrep -c Xorg &>/dev/null && HASG=true
+INTERACTIVE=false
+tty -s && INTERACTIVE=true
+# [ -t 0 ] && notify-send 101
 
 VIM="vim $RPC_OPTION"
 [[ $VIMINSTASESS == true ]] && VIM="$VIM -c SLoad!"
 
-if [[ $HASG == true ]]; then
+if [[ $HASG == true && $INTERACTIVE == false ]]; then
   case $TERMINAL in
     kitty*)
       $TERMINAL --start-as maximized bash -c "source $HOME/.bashrc ; sleep .1 ; $VIM"
