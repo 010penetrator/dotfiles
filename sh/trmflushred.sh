@@ -3,11 +3,13 @@
 
 [[ -z $NDAYS ]] && NDAYS=60 # (re-) establish .torrents under that age
 
+[[ -d /ln/torrents/red ]] || exit
+
 # rsync -e ssh -avK --bwlimit=300K --progress --stats --no-perms --no-times --delete --size-only /ln/torrents/red/ admin@192.168.1.160:/ln/red/
 rsync -e ssh -avK --progress --stats --no-perms --no-times --delete --size-only /ln/torrents/red/ pi@192.168.1.78:/ln/red/
 
 # cd /ln/torrents/red/.torrents-new/
-cd /ln/ho/.rtorrent/watch/red/
+cd /ln/ho/.rtorrent/watch/red/ || exit
 for f in *.torrent
 do
     # for torrents not older than NDAYS

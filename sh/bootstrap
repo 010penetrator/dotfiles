@@ -25,11 +25,13 @@ cd
 
 mkdir -p $MYGITDIR
 
-if ! type -f pakku &>/dev/null ; then
-    cd $MYGITDIR
-    git clone https://aur.archlinux.org/pakku.git
-    cd pakku
-    makepkg -si
+if type -f pacman &>/dev/null; then
+    if ! type -f pakku &>/dev/null ; then
+        cd $MYGITDIR
+        git clone https://aur.archlinux.org/pakku.git
+        cd pakku
+        makepkg -si
+    fi
 fi
 
 if [[ -d $MYGITDIR/dotfiles ]] ; then

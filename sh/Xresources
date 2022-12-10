@@ -1,35 +1,16 @@
-!#if __has_include(".extend.Xresources")
-!#include ".extend.Xresources"
-!#endif
+#if __has_include(".extend.Xresources")
+#include ".extend.Xresources"
+#endif
 
-! URxvt settings
-URxvt.geometry:   80x30
-URxvt.foreground: #dddddd
-URxvt.background: [90]#060606
-URxvt.color10:    #8cbc65
-URxvt.color12:    #0071ff
-URxvt.saveLines: 9000
-URxvt.scrollBar: false
-URxvt.cursorColor: cyan
-!URxvt.scrollBar_right: true
-!URxvt.scrollColor: #59595B
-!URxvt.scrollBar_floating: true
-!URxvt.scrollstyle: plain
-!!URxvt.thickness: 14
-URxvt.perl-ext-common: clipboard,resize-font,keyboard-select,tabbed
-URxvt.keysym.M-Escape: perl:keyboard-select:activate
-URxvt.resize-font.smaller: C-9
-URxvt.resize-font.bigger: C-0
+Xft.dpi: 120
+Xft.antialias:  true
+Xft.hinting:    true
+Xft.rgba:       rgb
+Xft.autohint:   false
+Xft.hintstyle:  hintslight
+Xft.lcdfilter:  lcddefault
 
-
-*background:  #0f0f0f
-*foreground:  #f0f0f0
-
-!URxvt.colorIT: #
-!URxvt.colorUL: #
-!URxvt.colorBD: #
-
-! Gruvbox theme
+/* ! Gruvbox theme
 *color0  : #1d2021
 *color8  : #928374
 *color1  : #cc241d
@@ -45,7 +26,10 @@ URxvt.resize-font.bigger: C-0
 *color6  : #98971a
 *color14 : #b8bb26
 *color7  : #a89984
-*color15 : #ebdbb2
+*color15 : #ebdbb2 */
+
+*background:  #CCCCCC
+*foreground:  #111111
 
 ! ! BLACK
 ! *color0:  #0f0f0f
@@ -72,44 +56,8 @@ URxvt.resize-font.bigger: C-0
 ! *color7:  #f0f0f0
 ! *color15: #ffffff
 
-URxvt.keysym.Control-Up:   \033[1;5A
-URxvt.keysym.Control-Down:    \033[1;5B
-URxvt.keysym.Control-Left:    \033[1;5D
-URxvt.keysym.Control-Right:    \033[1;5C
-! True transparency (works only with a compositor enabled)
-!URxvt.depth: 32
-
-! Fonts
-URxvt*font: xft: Terminus:pixelsize=22:style=bold
-! URxvt*fontk: DejaVu Sans Mono:size=12:style=Book:antialias=true
-! URxvt*font: xft:xos4 Terminus:pixelsize=20:style=bold
-! URxvt*font: xft:EB Garamond:size=14:style=italic:antialias=true
-! URxvt.letterspace: -4
-! URxvt*font: "xft:Hack:size=12:style=Regular:antialias=true"
-!!URxvt*boldfont: xft:xos4 Terminus:pixelsize=20:style=bold
-
-!Xft.dpi: 106
-!def dpi 96
-Xft.antialias:  true
-Xft.hinting:    true
-Xft.rgba:       rgb
-Xft.autohint:   false
-Xft.hintstyle:  hintslight
-Xft.lcdfilter:  lcddefault
-
-! Color of the tab bar
-!URxvt.tabbed.tabbar-fg: 10
-!URxvt.tabbed.tabbar-bg: 0
-!URxvt.tabbed.tab-fg: 10
-!URxvt.tabbed.tab-bg: 0
-! Classic copy/paste by Shift-Ctrl-c|v
-!URxvt.iso14755: False
-!URxvt.keysym.Control-Shift-C: perl:clipboard:copy
-!URxvt.keysym.Control-Shift-V: perl:clipboard:paste
-
-
 ! Xterm settings
-/* xterm*loginShell: true */
+! xterm*loginShell: true
 xterm*utf8: 1
 XTerm*termName: xterm-256color
 XTerm.vt100.locale: true
@@ -122,7 +70,7 @@ XTerm*background: #090909
 XTerm*cursorColor: #aa00aa
 xterm*borderWidth: 0
 !xterm*faceName: Source Code Pro:size=12:antialias=true
-!XTerm*faceName: LiberMono:size=12:style=Regular:antialias=true
+XTerm*faceName: LiberMono:size=12:style=Regular:antialias=true
 !XTerm*faceName: EB Garamond:size=14:style=italic:antialias=true
 !XTerm*faceName: DejaVu Sans Mono:size=12:style=Book:antialias=true
 ! XTerm*faceName: Source Code Variable:size=12:style=Book:antialias=true *
@@ -132,14 +80,60 @@ xterm*borderWidth: 0
 xterm*faceName: Hack:size=13:style=Regular:antialias=true
 !xterm*font: 7x13
 !XTerm*faceSize: 11
-!--XTerm*scrollBar: true
-!--XTerm*rightScrollBar: true
+!XTerm*scrollBar: true
+!XTerm*rightScrollBar: true
 XTerm.vt100.translations: #override \n\
   Ctrl <Key> minus: smaller-vt-font() \n\
   Ctrl <Key> plus: larger-vt-font()
 
+! URxvt settings
+/* URxvt.geometry:   80x30
+URxvt.foreground: #dddddd
+URxvt.background: [90]#060606
+URxvt.color10:    #8cbc65
+URxvt.color12:    #0071ff
+URxvt.saveLines: 9000
+URxvt.scrollBar: false
+URxvt.cursorColor: cyan
+!URxvt.scrollBar_right: true
+!URxvt.scrollColor: #59595B
+!URxvt.scrollBar_floating: true
+!URxvt.scrollstyle: plain
+!!URxvt.thickness: 14
+URxvt.perl-ext-common: clipboard,resize-font,keyboard-select,tabbed
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+URxvt.resize-font.smaller: C-9
+URxvt.resize-font.bigger: C-0
+URxvt.keysym.Control-Up:   \033[1;5A
+URxvt.keysym.Control-Down:    \033[1;5B
+URxvt.keysym.Control-Left:    \033[1;5D
+URxvt.keysym.Control-Right:    \033[1;5C
+! True transparency (works only with a compositor enabled)
+! URxvt.depth: 32
+! Fonts
+URxvt*font: xft: Terminus:pixelsize=22:style=bold
+! URxvt*fontk: DejaVu Sans Mono:size=12:style=Book:antialias=true
+! URxvt*font: xft:xos4 Terminus:pixelsize=20:style=bold
+! URxvt*font: xft:EB Garamond:size=14:style=italic:antialias=true
+! URxvt.letterspace: -4
+! URxvt*font: "xft:Hack:size=12:style=Regular:antialias=true"
+!!URxvt*boldfont: xft:xos4 Terminus:pixelsize=20:style=bold
+!URxvt.colorIT: #
+!URxvt.colorUL: #
+!URxvt.colorBD: #
+! Color of the tab bar
+!URxvt.tabbed.tabbar-fg: 10
+!URxvt.tabbed.tabbar-bg: 0
+!URxvt.tabbed.tab-fg: 10
+!URxvt.tabbed.tab-bg: 0
+! Classic copy/paste by Shift-Ctrl-c|v
+!URxvt.iso14755: False
+!URxvt.keysym.Control-Shift-C: perl:clipboard:copy
+!URxvt.keysym.Control-Shift-V: perl:clipboard:paste
+*/
+
 ! UXTerm settings
-UXTerm*termName: xterm-256color
+/* UXTerm*termName: xterm-256color
 UXTerm*locale: true
 UXTerm*metaSendsEscape: true
 UXTerm*saveLines: 4096
@@ -151,5 +145,5 @@ UXTerm*color12:    #0071ff
 UXTerm*faceName: "xft:xos4 Terminus:pixelsize=18:style=Regular"
 !UXTerm*faceSize: 11
 UXTerm*scrollBar: false
-UXTerm*rightScrollBar: true
+UXTerm*rightScrollBar: true */
 
