@@ -17,6 +17,8 @@ m=$(ls | grep -c '\.mp3$')
 w=$(ls | grep -c '\.wav$')
 # echo f c m w $f $c $m $w
 
+echo "--now @ $src"
+
 if [ $m -gt 0 ] ; then
     echo "--Copy all mp3's"
     mkdir -p "$targ/$drn"
@@ -32,13 +34,13 @@ elif  [ $f -gt $c ] ; then
     done
     cp 2>/dev/null *[C,c]over.* [F,f]ront.* [F,f]older.* [B,b]ack.* "$targ/$drn/"
 elif [ $c -gt 0 ] && [ $w -eq 0 ] ; then
-    echo "--Converting cue to flac"
+    echo "--Convert cue to flac"
     conv_cue2flac.sh . "$targ";
 elif [ $w -gt 0 ] && [ $w -gt $c ] ; then
-    echo "--Converting wav to flac"
+    echo "--Convert wavs to flac"
     mkdir -p "$targ/$drn"
     for f in *.wav; do
-        flac "$f" --output-prefix "$targ/$drn/" &
+        flac "$f" --output-prefix "$targ/$drn/"
     done
     cp 2>/dev/null *[C,c]over.* [F,f]ront.* [F,f]older.* [B,b]ack.* "$targ/$drn/"
 else

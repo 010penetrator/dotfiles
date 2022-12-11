@@ -406,7 +406,8 @@ play -n synth 7 brownnoise sine 300-3300
 play -n synth 7 brownnoise sine 300-3300 remix 2 1 # swap channels
 aplaymidi -p 129:0 sample.mid
 sox song.mp3 -n remix 2 spectrogram -o- -p2 | feh -B black - & # generate spectrogram with sox, view with feh
-drn=${PWD##*/} ; for f in *.flac; do oggenc -b 320 -n "$drn/$f.ogg" "$f"; done #or "%a - %d - %l/$f.ogg" # flac to ogg
+drn=${PWD##*/} ; for f in *.flac; do oggenc -b 320 -o "$drn/$f.ogg" "$f"; done #or "%a - %d - %l/$f.ogg" # flac to ogg
 for f in *.m4a ; do ffmpeg -i "$f" -map_metadata -1 -acodec flac "${f%.*}"".flac"; done
 a="Motorhead - Loud Album"; mkdir -p "$a"; cd "$a"; shnsplit -f ../"$a".cue -t "%n %t" -o "flac ext=ogg oggenc -q 9 -o %f -" "../$a".flac; cuetag.sh "../$a".cue *.ogg; cd .. # or "flac flac" # cue to tracks
 mkdir resampled; for flac in *.flac; do sox -S "${flac}" -r 44100 -b 16 ./resampled/"${flac}"; done # resample audio
+rm -rf /mnt/blink/enc/* ; time ( cat /ln/ho/.mus-favourites | while read f  ; do echo "=== $f" ; ((i=i%6)); ((i++==0)) && wait ; conv_any2flac.sh "$f" /mnt/blink/enc/ & done ) # convert multithreaded

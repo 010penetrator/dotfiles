@@ -9,9 +9,9 @@ if [ -z "$2" ] ; then set -- "${1}" "." ; fi
 cd "$1"
 i='' # CD number
 
-ls "$1" | grep cue$ | while read cuename; do
+ls "$1" | grep "\.cue$" | while read cuename; do
 [[ $i -eq 1 ]] && ((i++))
-name=$(cat "$cuename" | grep 'FILE \"')
+name=$(cat "$cuename" | grep 'FILE ')
 name=${name#*\"}
 name=${name%\"*}
 basename=${cuename%cue}
@@ -28,11 +28,8 @@ command -v "cuetag.sh" &> /dev/null && CT_CMD="cuetag.sh"
 command -v "cuetag"    &> /dev/null && CT_CMD="cuetag"
 [[ -n $CT_CMD ]] && $CT_CMD "$cuename" "$2/$drn"/*.flac
 
-cp 2>/dev/null *[C,c]over.* "$2/$drn/"
-cp 2>/dev/null [F,f]ront.* "$2/$drn/"
-cp 2>/dev/null [F,f]older.* "$2/$drn/"
-cp 2>/dev/null [B,b]ack.* "$2/$drn/"
 cp 2>/dev/null "$basename"{jpg,JPG,jpeg} "$2/$drn/"
+cp 2>/dev/null [C,c]over.* [F,f]ront.* [F,f]older.* [B,b]ack.* "$2/$drn/"
 ((i++))
 done
 
