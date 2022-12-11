@@ -25,7 +25,7 @@ super + { c, a, A, b, m }
   ror.sh { \
   'VIFM\|Thunar\|Nemo\|pcmanfm' 'raiseterm.sh & notify-send "no vifm found"', \
   'transmission-remote\|tremc\|rtorrent\|qbittorrent' '$TERMINAL_BIGER -e tremc -c localhost:9090', \
-  'tremc-pi' '$TERMINAL_BIGER -T tremc-pi -e tremc -c 192.168.1.78:9090', \
+  'tremc-pi' '$TERMINAL_BIGER -T tremc-pi -e tremc -c 192.168.1.79:9090', \
   ' Browser\|Noita' 'noti echo starting TorBro... ; torbrowser-launcher', \
   'btop\|htop' '$TERMINAL_BIGER -e btop' }
 
@@ -37,7 +37,7 @@ super + f ; v
 super + x ; x
   addlayout.sh ; xinputupd.sh ; sxd.sh ; notify-send "$( LC_ALL=ru_RU.UTF-8 date; uptime -p )"
 super + x ; BackSpace
-  notify-send "$(transmission-remote 192.168.1.78:9090 -st)"
+  notify-send "$(transmission-remote 192.168.1.79:9090 -st)"
 super + space
   ror.sh 'deadbeef\|MPV \|mpv$' 'noti echo no player instance found'
 ctrl + space
