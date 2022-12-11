@@ -1,5 +1,5 @@
 #!/bin/bash
-# Convert music folder to ogg format
+# Convert music files in folder to ogg
 
 # $1 is origin path
 # $2 is destination
