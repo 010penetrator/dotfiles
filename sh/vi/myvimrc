@@ -277,6 +277,8 @@ nnoremap dX ^"_D
 nnoremap dc "_d$
 nnoremap d. "_dd
 nnoremap d<space> :call DelSpace()<Esc>
+" add this line to the next line
+nnoremap q<cr> ddpkJ
 " start fat new line
 nnoremap cm O<Esc>o
 " insert new line after current paragraph
