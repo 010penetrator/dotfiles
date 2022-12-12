@@ -7,7 +7,7 @@ if [[ -z $1 ]]; then
 fi
 
 find "$1" -depth | while read FILE; do
-        SUBS=$( echo "$FILE" | tr ':|' '_' | tr -d '\"' | tr '{}?' '()_' )
+        SUBS=$( echo "$FILE" | tr ':|' '_' | tr -d '\"' | tr '\*' '_' | tr '{}?' '()_' )
         if [[ "$FILE" != "$SUBS" ]] ; then
             echo old "$FILE"
             echo new "$SUBS"
