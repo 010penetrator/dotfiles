@@ -60,10 +60,15 @@ require('telescope').load_extension('fzf')
 -- disable netrw at the very start of your init.lua (strongly advised)
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+-- require"nvim-tree".open_replacing_current_buffer()
 require("nvim-tree").setup({
+    disable_netrw = false,
+    hijack_netrw = true,
+    hijack_unnamed_buffer_when_opening = false,
+    ignore_buffer_on_setup = true,
     sort_by = "case_sensitive",
     view = {
-        adaptive_size = true,
+        adaptive_size = false,
         mappings = {
             list = {
                 { key = "u", action = "dir_up" },
@@ -77,6 +82,16 @@ require("nvim-tree").setup({
         dotfiles = true,
     },
 })
+
+function nvtree_toggle_replace()
+    local view = require"nvim-tree.view"
+    local api = require"nvim-tree.api"
+    if view.is_visible() then
+        api.tree.close()
+    else
+        require"nvim-tree".open_replacing_current_buffer()
+    end
+end
 
 -- local configs = require'nvim-treesitter.configs'
 require'nvim-treesitter.configs'.setup {

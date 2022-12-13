@@ -268,8 +268,11 @@ nnoremap qu ~
 nnoremap cx s
 " swap two chars
 nnoremap gx dlp
+" add space to word
+nnoremap z<space> i <Esc>lwi <Esc>
 " add space inside brackets
 nmap a<space> ysib<space><space>
+vnoremap <space> :<C-U>call AddSpaceSelection()<CR>
 " allows to undo accidental CTRL-U in insert mode
 inoremap <C-U> <C-G>u<C-U>
 nnoremap dx 0"_D
@@ -672,7 +675,7 @@ nnoremap z; :set wrap!<CR>
 nnoremap ,zz :let &scrolloff=28-&scrolloff<CR>
 nnoremap ,zc :let &colorcolumn=80-&colorcolumn<CR>
 nnoremap ,zn :set number!<CR>
-nnoremap z<space> :set filetype=text<CR>
+" nnoremap z<space> :set filetype=text<CR>
 nnoremap ,vb :call SwitchBackground()<CR>:echo "background=" &background<CR>
 nnoremap ,vt :set termguicolors!<CR>:set termguicolors?<CR>
 nnoremap a/ :set hlsearch!<CR>
@@ -913,25 +916,25 @@ endfunction
 function! BuildProjectUni(Makefile,Makecommand)
     " exec "!echo " . a:Makecommand . ":"
     " memorize stuff
-    let l:makeprg_bak = &makeprg
+    let makeprg_bak = &makeprg
     let &makeprg = a:Makecommand
-    let l:starting_directory = getcwd()
-    let l:curr_directory = expand('%:p:h')
+    let starting_directory = getcwd()
+    let curr_directory = expand('%:p:h')
     " change directory
-    exec "lcd " . l:curr_directory
-    let l:proj_dir = ClimbToDirWhere(a:Makefile,1)
+    exec "lcd " . curr_directory
+    let proj_dir = ClimbToDirWhere(a:Makefile,1)
     " " !!! ignore cmake-generated Makefile
     while filereadable("vim_make_ignore")
         cd ../
-        let l:proj_dir = ClimbToDirWhere(a:Makefile,1)
+        let proj_dir = ClimbToDirWhere(a:Makefile,1)
     endwhile
-    if ( l:proj_dir != "-1" )
+    if ( proj_dir != "-1" )
         if has("nvim")
-            echo system("echo -e \"\\n\\n\"--" . a:Makecommand . " @ " . l:proj_dir . ":")
+            echo system("echo -e \"\\n\\n\"--" . a:Makecommand . " @ " . proj_dir . ":")
             echo system("echo ------------------------------------------------")
             make
         else
-            silent exec "!echo -e \"\\n\\n\"--" . a:Makecommand . " @ " . l:proj_dir . ":"
+            silent exec "!echo -e \"\\n\\n\"--" . a:Makecommand . " @ " . proj_dir . ":"
             silent exec "!echo ------------------------------------------------"
             silent make
         endif
@@ -941,8 +944,8 @@ function! BuildProjectUni(Makefile,Makecommand)
         echo "Makefile not found!"
     endif
     " reset stuff
-    silent exec "lcd " . l:starting_directory
-    let &makeprg = l:makeprg_bak
+    silent exec "lcd " . starting_directory
+    let &makeprg = makeprg_bak
     " exit with rituals
     if !has("nvim")
         Silent read -n 1 -s -r -p "//hit.anykey" ; echo -ne "\n\n"
@@ -951,44 +954,44 @@ function! BuildProjectUni(Makefile,Makecommand)
 endfunction
 
 function! ClimbToDirWhere(filename,chdir)
-  let l:init_dir = getcwd()
+  let init_dir = getcwd()
   exec "lcd " . expand('%:p:h')
   while 1
     " Check if the file exists in the current directory
     if filereadable(a:filename)
-      let l:result = getcwd()
+      let result = getcwd()
       " Change directory if chdir==1
       if a:chdir !=# 1
-        exec "lcd " . l:init_dir
+        exec "lcd " . init_dir
       endif
-      return l:result
+      return result
     " If we've hit the top level directory, break out
     elseif getcwd() ==# "/" || getcwd() =~# '^[^/]..$'
-      exec "lcd " . l:init_dir
+      exec "lcd " . init_dir
       return -1
     else
       lcd ..
     endif
   endwhile
-  exec "lcd " . l:init_dir
+  exec "lcd " . init_dir
 endfunction
 
 function! GetProjDir()
-    let l:proj_dir = ClimbToDirWhere("_proj_root",0)
-    if ( l:proj_dir == -1 )
-        let l:proj_dir = ClimbToDirWhere(".git/index",0)
+    let proj_dir = ClimbToDirWhere("_proj_root",0)
+    if ( proj_dir == -1 )
+        let proj_dir = ClimbToDirWhere(".git/index",0)
     endif
-    if ( l:proj_dir == -1 )
-        let l:proj_dir = ClimbToDirWhere(".gitignore",0)
+    if ( proj_dir == -1 )
+        let proj_dir = ClimbToDirWhere(".gitignore",0)
     endif
-    if ( l:proj_dir == -1 )
-        let l:proj_dir = ClimbToDirWhere("Makefile",0)
+    if ( proj_dir == -1 )
+        let proj_dir = ClimbToDirWhere("Makefile",0)
     endif
-    if ( l:proj_dir == -1 )
-        let l:proj_dir = expand('%:p:h')
+    if ( proj_dir == -1 )
+        let proj_dir = expand('%:p:h')
     endif
-    let b:proj_dir = l:proj_dir
-    return l:proj_dir
+    let b:proj_dir = proj_dir
+    return proj_dir
 endfunction
 
 function! FocusBufOrDo(name,cmd)
@@ -1113,11 +1116,11 @@ function! MoveToPrevTab()
         return
     endif
     "preparing new window
-    let l:tab_nr = tabpagenr('$')
-    let l:cur_buf = bufnr('%')
+    let tab_nr = tabpagenr('$')
+    let cur_buf = bufnr('%')
     if tabpagenr() != 1
         close!
-        if l:tab_nr == tabpagenr('$')
+        if tab_nr == tabpagenr('$')
             tabprev
         endif
         sp
@@ -1126,7 +1129,7 @@ function! MoveToPrevTab()
         exe "0tabnew"
     endif
     "opening current buffer in new window
-    exe "b".l:cur_buf
+    exe "b".cur_buf
 endfunc
 
 function! MoveToNextTab()
@@ -1135,11 +1138,11 @@ function! MoveToNextTab()
         return
     endif
     "preparing new window
-    let l:tab_nr = tabpagenr('$')
-    let l:cur_buf = bufnr('%')
+    let tab_nr = tabpagenr('$')
+    let cur_buf = bufnr('%')
     if tabpagenr() < tab_nr
         close!
-        if l:tab_nr == tabpagenr('$')
+        if tab_nr == tabpagenr('$')
             tabnext
         endif
         sp
@@ -1148,7 +1151,7 @@ function! MoveToNextTab()
         tabnew
     endif
     "opening current buffer in new window
-    exe "b".l:cur_buf
+    exe "b".cur_buf
 endfunc
 
 " Swap content of 2 windows
@@ -1330,9 +1333,9 @@ function! Parenthise()
 endfunction
 
 function! DoOnKey(keycode,command)
-  let l:key = getchar()
-  " echom l:key
-  if ( l:key == a:keycode )
+  let key = getchar()
+  " echom key
+  if ( key == a:keycode )
     exec a:command
   endif
 endfunction
@@ -1375,56 +1378,69 @@ command! -nargs=+ -complete=command ExPut call ExPut(<q-args>)
 function! BDnJump()
     "" if ( ( expand('#') == '' ) || ( expand('#') =~ '!/bin/bash' ) ) "" if ( expand('%') =~ '!/bin/bash' ) && ( expand('%') == expand('#') ) """ Current and prev buffers are terminals
     if ( bufexists(bufnr('#')) ) " Previous buffer is unset
-        let l:cbn = bufnr('%')
+        let cbn = bufnr('%')
         bnext " Jump to any other buffer
-        exec  'bd!' . l:cbn
+        exec  'bd!' . cbn
     else
-        let l:cbn = bufnr('%')
+        let cbn = bufnr('%')
         b # " Jump to the previous buffer
-        exec  'bd!' . l:cbn
+        exec  'bd!' . cbn
     endif
 endfunction
 command! BDnJump call BDnJump()
 
 function! SortParagraphs() range
-  exec a:firstline . "," . a:lastline . 'd'
-  let @@=join(sort(split(substitute(@@, "\n*$", '', ''), "\n\n")), "\n\n")
-  put!
+    exec a:firstline . "," . a:lastline . 'd'
+    let @@=join(sort(split(substitute(@@, "\n*$", '', ''), "\n\n")), "\n\n")
+    put!
+endfunction
+
+function! AddSpaceSelection()
+    let beg = getpos("'<")
+    let fin = getpos("'>")
+    call setpos('.',fin)
+    silent exec "normal! a\<CR>\<Esc>"
+    let newfin = getpos('.')
+    call setpos('.',beg)
+    silent exec "normal! i\<CR>\<Esc>"
+    let newbeg = getpos('.')
+    " Restore selection
+    exec "normal `>V`<"
 endfunction
 
 function! FoldMotion(type)
-  if a:type == 'line'
-    let l:line=&commentstring[0] . "------------------------------"
-    let l:foldbeg=split(&foldmarker,",")[0]
-    let l:foldend=split(&foldmarker,",")[1]
-    let l:start=getpos("'[")[-3]
-    let l:finish=getpos("']")[-3]
-    exec l:finish
-    put  =l:line . l:foldend
-    exec l:start
-    put! =l:line . l:foldbeg
-  endif
+    if a:type == 'line'
+        let line = &commentstring[0] . "------------------------------"
+        let foldbeg = split(&foldmarker,",")[0]
+        let foldend = split(&foldmarker,",")[1]
+        let start = getpos("'[")[-3]
+        let finish = getpos("']")[-3]
+        exec finish
+        put  = line . foldend
+        exec start
+        put! = line . foldbeg
+    endif
 endfunction
 
 function! FoldSelection()
-let l:line=&commentstring[0] . "------------------------------"
-let l:foldbeg=split(&foldmarker,",")[0]
-let l:foldend=split(&foldmarker,",")[1]
-  silent exec "normal `>"
-  silent put  =l:line . l:foldend
-  silent exec "normal `<"
-  silent put! =l:line . l:foldbeg
+    let line = &commentstring[0] . "------------------------------"
+    let foldbeg = split(&foldmarker,",")[0]
+    let foldend = split(&foldmarker,",")[1]
+    silent exec "normal `>"
+    silent put  = line . foldend
+    silent exec "normal `<"
+    silent put! = line . foldbeg
 endfunction
 
 function! SystemOpenEveryLine()
   silent exec "normal `>"
-  let l:end = line('.')
+  let end = line('.')
   silent exec "normal `<"
-  let l:beg = line('.')
-  for lineno in range(l:beg, l:end)
-    let l:line = getline(lineno)
-    " Open l:line with its xdg program
-    silent call system('xdg-open ' . "'" . l:line . "' &>/dev/null &")
+  let beg = line('.')
+  for lineno in range(beg, end)
+    let line = getline(lineno)
+    " Open line with its xdg program
+    silent call system('xdg-open ' . "'" . line . "' &>/dev/null &")
   endfor
   " Restore selection
   exec "normal `>V`<"
@@ -1453,7 +1469,7 @@ command! BufD call fzf#run(fzf#wrap({
   \ 'options': '--multi --reverse --bind ctrl-a:select-all+accept'
 \ }))
 "
-let $FZF_DEFAULT_OPTS='--exact --layout=reverse'
+let $FZF_DEFAULT_OPTS = '--exact --layout=reverse'
 "
 function! Delete_buffers()
   let l:preview_window = get(g:, 'fzf_preview_window', &columns >= 120 ? 'right': '')
