@@ -377,7 +377,7 @@ nnoremap qp :exec "buffer " . winbufnr(winnr("#"))<CR>
 nnoremap g.v :vsp <c-r><c-f><CR>
 nnoremap g.s :sp <c-r><c-f><CR>
 " open file under cursor in previous window
-nnoremap a<tab> :wincmd p \| e <c-r><c-f><CR>
+nnoremap g.p :wincmd p \| e <c-r><c-f><CR>
 " split open current file location with netrw
 nnoremap a-s :wincmd s \| e %:p:h<CR>
 nnoremap a-v :wincmd v \| e %:p:h<CR>
@@ -413,8 +413,9 @@ nnoremap qq     <C-W>=
 nnoremap aj     <C-W>w<C-W>_
 nnoremap ak     <C-W>W<C-W>_
 nnoremap q<tab> <C-w>p
+" focus prev window
+nnoremap g<space> <C-W>p
 " swap current and previous window
-" silent nnoremap a<tab> :call WinSwap()<CR><C-W>p
 silent nnoremap c<tab> :call WinSwap() <bar> wincmd p<CR><Esc>
 
 " Handle tabs

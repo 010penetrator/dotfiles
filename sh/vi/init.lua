@@ -63,7 +63,7 @@ vim.g.loaded_netrwPlugin = 1
 -- require"nvim-tree".open_replacing_current_buffer()
 require("nvim-tree").setup({
     disable_netrw = false,
-    hijack_netrw = true,
+    hijack_netrw = false,
     hijack_unnamed_buffer_when_opening = false,
     ignore_buffer_on_setup = true,
     sort_by = "case_sensitive",
@@ -87,14 +87,36 @@ function nvtree_toggle_replace()
     local view = require"nvim-tree.view"
     local api = require"nvim-tree.api"
     if view.is_visible() then
-        api.tree.close()
+        api.tree.focus()
+    else
+        api.tree.toggle()
+        -- require"nvim-tree".open_replacing_current_buffer()
+    end
+end
+
+function nvtree_imit_netrw()
+    local curname=vim.api.nvim_buf_get_name(0)
+    print(curname)
+    if curname=="" then
+        print "var1"
+        vim.cmd"e ."
+    --     require"nvim-tree".open_replacing_current_buffer()
+    --     print "var1"
+    -- else
+    --     require"nvim-tree".open_replacing_current_buffer()
+    --     print "var2"
+    end
+    local view = require"nvim-tree.view"
+    local api = require"nvim-tree.api"
+    if view.is_visible() then
+        api.tree.focus()
+        api.tree.find_file(curname)
     else
         require"nvim-tree".open_replacing_current_buffer()
     end
 end
 
--- local configs = require'nvim-treesitter.configs'
-require'nvim-treesitter.configs'.setup {
+require"nvim-treesitter.configs".setup {
     -- ensure_installed = "mantained",
     highlight = {
         enable = true,
@@ -286,6 +308,7 @@ if vim.fn.has('nvim-0.7') == 1 then
     vim.keymap.set("n","z<up>", vim.diagnostic.goto_prev)
     vim.keymap.set("n",",r", vim.lsp.buf.rename)
     vim.keymap.set("n","qa", vim.lsp.buf.code_action)
+    vim.keymap.set("n","-", nvtree_imit_netrw)
 end
 
 local keymap = vim.api.nvim_set_keymap

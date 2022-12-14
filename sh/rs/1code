@@ -1,5 +1,7 @@
 # C code pieces
 
+if (debug) { static int errcnt; if ( errcnt++ % 9 == 0 ) printf("stag#somestep : something=%d\n", val); }
+
 // Measure cpu time taken
 time_t start, end;
 time(&start);
