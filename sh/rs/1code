@@ -23,6 +23,8 @@ printf("time taken some_function is %f seconds\n", time_taken);
 nanosleep((const struct timespec[]){{0, 99000000L}}, NULL); // sleep 99 ms
 usleep(99000); // sleep 99 ms, reqs unistd.h
 
+std::lock_guard<std::mutex> lock(m_plan_busy);
+
 const struct timespec read_freq_ts;
 read_freq_ts.tv_sec = (long) 0;
 read_freq_ts.tv_nsec = (read_freq) * 10000L;

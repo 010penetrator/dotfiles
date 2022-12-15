@@ -412,8 +412,8 @@ nnoremap qw     <C-W>_<C-W>\|
 nnoremap qq     <C-W>=
 nnoremap aj     <C-W>w<C-W>_
 nnoremap ak     <C-W>W<C-W>_
-nnoremap q<tab> <C-w>p
 " focus prev window
+nnoremap q<tab> <C-w>p
 nnoremap g<space> <C-W>p
 " swap current and previous window
 silent nnoremap c<tab> :call WinSwap() <bar> wincmd p<CR><Esc>
