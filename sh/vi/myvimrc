@@ -56,6 +56,7 @@ set fileencodings=ucs-bom,utf-8,default,cp1251,latin1
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
 " set keymap=russian-jcukenwin
 set colorcolumn=
+set cursorline
 set noequalalways
 set winheight=7
 " set iminsert=0
@@ -323,8 +324,8 @@ nnoremap <F2> [czz
 nnoremap <F3> ]czz
 nnoremap ]l :lnext<cr>
 nnoremap [l :lprev<cr>
-" nmap s <Plug>Sneak_s
-" nmap S <Plug>Sneak_S
+nmap s <Plug>Sneak_s
+nmap S <Plug>Sneak_S
 noremap <c-n> 12<c-e>
 noremap <c-p> 12<c-y>
 map <c-j> <Plug>(edgemotion-j)
@@ -561,7 +562,7 @@ if has("nvim")
 endif
 
 " Scroll fraction of the screen
-let scrollpart=82
+let scrollpart=78
 let key4=""
 let key15=""
 nnoremap <silent> <Space>   :exec 'normal! '.float2nr(round(winheight(0)*(exists("b:scrollpart") ? b:scrollpart : g:scrollpart)*0.01))."<C-d>"<CR>
