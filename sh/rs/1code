@@ -22,6 +22,7 @@ printf("time taken some_function is %f seconds\n", time_taken);
 
 nanosleep((const struct timespec[]){{0, 99000000L}}, NULL); // sleep 99 ms
 usleep(99000); // sleep 99 ms, reqs unistd.h
+void sleep_ms(int n) { std::this_thread::sleep_for(std::chrono::milliseconds(n)); } // reqs <chrono>
 
 std::lock_guard<std::mutex> lock(m_plan_busy);
 
