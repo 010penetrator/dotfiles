@@ -6,10 +6,15 @@
 
 if [ -z "$1" ] ; then set -- "." "${2}" ; fi
 if [ -z "$2" ] ; then set -- "${1}" "." ; fi
-cd "$1"
+
+mkdir -p "$2"
+dest=$(realpath "$2")
+src="$1"
+cd "$src"
+
 i='' # CD number
 
-ls "$1" | grep "\.cue$" | while read cuename; do
+ls . | grep "\.cue$" | while read cuename; do
 [[ $i -eq 1 ]] && ((i++))
 name=$(cat "$cuename" | grep 'FILE ')
 name=${name#*\"}
@@ -19,17 +24,17 @@ drn=${PWD##*/}$i
 # echo // $name
 # echo // $drn
 # echo .
-mkdir -p "$2/$drn"
-shnsplit -q -f "$cuename" -d "$2/$drn" -t "%n %t" -o flac "$name"
-rm "$2/$drn"/*pregap.flac 2>/dev/null
+mkdir -p "$dest/$drn"
+shnsplit -q -f "$cuename" -d "$dest/$drn" -t "%n %t" -o flac "$name"
+rm "$dest/$drn"/*pregap.flac 2>/dev/null
 
 # Care tags
 command -v "cuetag.sh" &> /dev/null && CT_CMD="cuetag.sh"
 command -v "cuetag"    &> /dev/null && CT_CMD="cuetag"
-[[ -n $CT_CMD ]] && $CT_CMD "$cuename" "$2/$drn"/*.flac
+[[ -n $CT_CMD ]] && $CT_CMD "$cuename" "$dest/$drn"/*.flac
 
-cp 2>/dev/null "$basename"{jpg,JPG,jpeg} "$2/$drn/"
-cp 2>/dev/null [C,c]over.* [F,f]ront.* [F,f]older.* [B,b]ack.* "$2/$drn/"
+cp 2>/dev/null "$basename"{jpg,JPG,jpeg} "$dest/$drn/"
+cp 2>/dev/null [C,c]over.* [F,f]ront.* [F,f]older.* [B,b]ack.* "$dest/$drn/"
 ((i++))
 done
 

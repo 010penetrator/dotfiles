@@ -108,11 +108,10 @@ cp /ln/sh/conf/transmission*desktop .local/share/applications/
 #
 # xdg-mime default transmission-cli.desktop x-scheme-handler/magnet
 # xdg-mime default transmission-cli.desktop application/x-bittorrent
-type -f xdg-mime &>/dev/null && 
-{
-xdg-mime default org.qbittorrent.qBittorrent.desktop x-scheme-handler/magnet
-xdg-mime default org.qbittorrent.qBittorrent.desktop application/x-bittorrent
-xdg-mime default FBReader.desktop application/x-mobipocket-ebook
+type -f xdg-mime &>/dev/null && {
+    xdg-mime default org.qbittorrent.qBittorrent.desktop x-scheme-handler/magnet
+    xdg-mime default org.qbittorrent.qBittorrent.desktop application/x-bittorrent
+    xdg-mime default FBReader.desktop application/x-mobipocket-ebook
 }
 #
 [[ -d /usr/share/X11.xorg.conf.d ]] && ! [[ -L /usr/share/X11/xorg.conf.d/99-libinput-custom.conf ]] && [[ -d /ln/sh ]] && sudo ln -sf /ln/sh/conf/99-libinput-custom.conf /usr/share/X11/xorg.conf.d/

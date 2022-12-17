@@ -41,9 +41,12 @@ rm $TMPF # remove fifo
 touch "$DEST"/.nomedia
 WETRUN=1 renam.sh "$DEST"
 
-# if [[ -d $DEST_2 ]]; then
-#     echo "Will rsync $DEST to $DEST_2"
-#     RSYNC_OPTS="-rtl --progress --delete --stats --size-only"
-#     rsync $RSYNC_OPTS "$DEST/" "$DEST_2" && rm -rf "$DEST"/*
-# fi
+if [[ -d $DEST_2 ]]; then
+    echo "Will wait 30 sec.."
+    sleep 30
+    echo "Will rsync $DEST to $DEST_2"
+    RSYNC_OPTS="-rtl --progress --delete --stats --size-only"
+    rsync $RSYNC_OPTS --exclude .stfolder "$DEST/" "$DEST_2"
+    # && rm -rf "$DEST"/*
+fi
 
