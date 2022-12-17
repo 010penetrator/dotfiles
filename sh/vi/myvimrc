@@ -526,7 +526,19 @@ nnoremap ,as :exec '! MODE=split  vir "%:p"' \| q<CR>
 nnoremap ,av :exec '! MODE=vert   vir "%:p"' \| q<CR>
 
 " Silly update git repo
-map ,,g :exec "lcd " . GetProjDir()\|G add .\|G commit -m "---"\|G pull\|if system('git status\|grep -c "publish your local"')\|G push\|else\|echo 2\|endif
+map ,,g :call Lgsync()<CR>
+
+function! Lgsync()
+exec "lcd " . GetProjDir()
+G add .
+G commit -m "---"
+G pull
+if system('git status\|grep -c "publish your local"')
+    G push
+else
+    echo 2
+endif
+endfunc
 
 " Have mappings in terminal mode
 if v:version >= 801
