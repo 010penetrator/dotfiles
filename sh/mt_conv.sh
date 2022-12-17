@@ -2,13 +2,19 @@
 # Convert music files. Multithreaded to N threads!
 
 [ -z $Nthr ] && Nthr=8
+[ -z $CODEC ] && CODEC=flac
 TMPF=tmpfifo
 DEST=/ln/fast/enc
+DEST_2=/ln/fast/enc_$CODEC
 
-COMM="conv_any2ogg.sh"
+COMM="conv_any2$CODEC.sh"
+
+type -f &>/dev/null $COMM || { echo "Not familiar codec! Exiting.."; exit; }
 
 rm $TMPF &>/dev/null
 mkfifo $TMPF # creating named pipe
+
+[[ -d $DEST ]] || { echo "Please create $DEST manually"; exit; }
 
 rm -rf "$DEST"/*
 time (
@@ -31,4 +37,13 @@ done
 cat $TMPF > /dev/null # let all the background processes end
 rm $TMPF # remove fifo
 )
+
+touch "$DEST"/.nomedia
+WETRUN=1 renam.sh "$DEST"
+
+# if [[ -d $DEST_2 ]]; then
+#     echo "Will rsync $DEST to $DEST_2"
+#     RSYNC_OPTS="-rtl --progress --delete --stats --size-only"
+#     rsync $RSYNC_OPTS "$DEST/" "$DEST_2" && rm -rf "$DEST"/*
+# fi
 
