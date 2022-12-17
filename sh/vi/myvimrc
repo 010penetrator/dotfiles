@@ -533,6 +533,7 @@ exec "lcd " . GetProjDir()
 G add .
 G commit -m "---"
 G pull
+echo 101
 if system('git status\|grep -c "publish your local"')
     G push
 else
