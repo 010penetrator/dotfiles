@@ -533,13 +533,8 @@ exec "lcd " . GetProjDir()
 G add .
 G commit -m "---"
 G pull
-echo system('pwd')
-echo 101
 if system('git status|grep -c "publish your local"')
     G push
-    echo 1
-else
-    echo 2
 endif
 endfunc
 
