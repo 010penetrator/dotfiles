@@ -398,26 +398,27 @@ nnoremap ,by :call BufYank()<CR>
 nnoremap ,bp :call BufPut()<CR>
 
 " Handle windows
-nnoremap qh     <C-W>h
-nnoremap qj     <C-W>j
-nnoremap qk     <C-W>k
-nnoremap ql     <C-W>l
-nnoremap <C-\>  <C-W>w
-nnoremap a,     <C-W>6<
-nnoremap a.     <C-W>6>
-nnoremap ae     <C-W>4+
-nnoremap ad     <C-W>4-
-nnoremap qe     <C-W>_
-nnoremap qd     <C-W>80-
-nnoremap qw     <C-W>_<C-W>\|
-nnoremap qq     <C-W>=
-nnoremap aj     <C-W>w<C-W>_
-nnoremap ak     <C-W>W<C-W>_
+nnoremap qh     <C-w>h
+nnoremap qj     <C-w>j
+nnoremap qk     <C-w>k
+nnoremap ql     <C-w>l
+nnoremap <C-\>  <C-w>w
+nnoremap a,     <C-w>6<
+nnoremap a.     <C-w>6>
+nnoremap ae     <C-w>4+
+nnoremap ad     <C-w>4-
+nnoremap qe     <C-w>_
+nnoremap qd     <C-w>80-
+nnoremap qw     <C-w>_<C-w>\|
+nnoremap qq     <C-w>=
+nnoremap aj     <C-w>w<C-w>_
+nnoremap ak     <C-w>W<C-w>_
 " focus prev window
 nnoremap q<tab> <C-w>p
 nnoremap g<space> <C-W>p
 " swap current and previous window
 silent nnoremap c<tab> :call WinSwap() <bar> wincmd p<CR><Esc>
+nnoremap \\     <C-w>T
 
 " Handle tabs
 nnoremap at :tabe<CR>
