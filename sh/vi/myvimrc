@@ -528,16 +528,6 @@ nnoremap ,av :exec '! MODE=vert   vir "%:p"' \| q<CR>
 " Silly update git repo
 map ,,g :call Lgsync()<CR>
 
-function! Lgsync()
-exec "lcd " . GetProjDir()
-G add .
-G commit -m "---"
-G pull
-if system('git status|grep -c "publish your local"')
-    G push
-endif
-endfunc
-
 " Have mappings in terminal mode
 if v:version >= 801
     tmap oo <C-w>N:set nonumber<CR>
@@ -842,6 +832,22 @@ let @s = "i \<Esc>ll."
 """"""""""""""""""""""""
 ""     Functions:     ""
 """"""""""""""""""""""""     {{{}}}
+
+function! Lgsync()
+exec "lcd " . GetProjDir()
+if system('ls -d .git/ >/dev/null || echo 1')
+    echom "Can't find .git location!"
+    return -1
+endif
+G add .
+G commit -m "---"
+G pull
+if system('git status|grep -c "publish your local"')
+    G push
+else
+    echo "nothing to push"
+endif
+endfunc
 
 function! RunSelBash()
     echo system(join(getline(a:firstline,a:lastline), "\n"))
