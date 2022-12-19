@@ -36,6 +36,8 @@ set path=.,**
 ""     Settings:      ""
 """"""""""""""""""""""""
 
+let g:lightline.active = { 'left': [ [ 'mode', 'paste' ], [ 'readonly', 'modified', 'gitbranch', 'relativepath' ] ] }
+let g:lightline.component_function =  { 'gitbranch': 'FugitiveHead' }
 let g:completion_enable_auto_popup = 1
 let g:goyo_width = "66%"
 let g:goyo_height = "95%"
@@ -1624,4 +1626,6 @@ endif
 
 nnoremap <silent><A-;> <Cmd>exe v:count1 . "ToggleTerm"<CR>
 tnoremap <silent><A-;> <C-\><C-n>:ToggleTermToggleAll<CR>
+
+
 

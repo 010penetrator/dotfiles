@@ -10,7 +10,7 @@ echo
 
 if ! [[ -d $TARG ]] ; then
     echo "(non-existent)" "$TARG" @ $(realpath .)
-    TARGREAL="not found"
+    # TARGREAL="not found"
 else
     echo "$TARG" @ $(realpath .)
     TARGREAL=$(realpath "$TARG")
@@ -63,6 +63,10 @@ read -rs -n1 -p "hit some key.." prompt
 # read -rsp $'hit some key\n' -n1 prompt
 echo
 
+SELECTOR=dmenuy
+SELECTOR="fzf --exact --layout=reverse --keep-right --height 99%"
+clear
+
 source $sh/dmenurc
 if [[ $prompt == "q" ]] ; then
     exit
@@ -70,8 +74,8 @@ elif [[ $INLIST != 1 && $prompt == "a" ]] ; then
     echo "$TARGREAL" >> "$LIST"
     RUNAGAIN=1
 elif [[ $INLIST == 1 && $prompt == "d" ]] ; then
-    echo deleting "$TARGREAL"
-    grep -vF "$TARGREAL" "$LIST" > /tmp/tmplist && mv /tmp/tmplist "$LIST"
+    echo deleting "$TARG"
+    grep -vF "$TARG" "$LIST" > /tmp/tmplist && mv /tmp/tmplist "$LIST"
     RUNAGAIN=1
 elif [[ $INFAVS == 0 && $prompt == "s" ]] ; then
     echo "$TARGREAL" >> "$FAVS"
@@ -82,17 +86,17 @@ elif [[ $prompt == "" ]] ; then
     PAUSE=0 mpv-album "$TARGREAL"
     # ask_album.sh
 elif [[ -f $LIST ]] && [[ $prompt == "p" ]] ; then
-    SELECT=$( cat -n "$LIST" | sort -n | sort -uk2 | sort -nr | cut -f2- | dmenuy )
+    SELECT=$( cat -n "$LIST" | sort -n | sort -uk2 | sort -nr | cut -f2- | $SELECTOR )
     ASK=1 PAUSE=1 mpv-album "$SELECT"
 elif [[ -f $LIST ]] && [[ $prompt == "f" ]] ; then
-    SELECT=$( cat -n "$FAVS" | sort -n | sort -uk2 | sort -nr | cut -f2- | dmenuy )
+    SELECT=$( cat -n "$FAVS" | sort -n | sort -uk2 | sort -nr | cut -f2- | $SELECTOR )
     ASK=1 PAUSE=1 mpv-album "$SELECT"
 elif [[ -f $LIBRARY ]] && [[ $prompt == "l" ]] ; then
     # notify-send "lib is $LIBRARY"
-    SELECT=$( cat "$LIBRARY" | sort -R | dmenuy )
+    SELECT=$( cat "$LIBRARY" | sort -R | $SELECTOR )
     ASK=1 PAUSE=1 mpv-album "$SELECT"
 elif [[ -f $HIST ]] && [[ $prompt == "i" ]] ; then
-    SELECT=$( cat -n "$HIST" | sort -n | sort -uk2 | sort -nr | cut -f2- | dmenuy )
+    SELECT=$( cat -n "$HIST" | sort -n | sort -uk2 | sort -nr | cut -f2- | $SELECTOR )
     ASK=1 PAUSE=1 mpv-album "$SELECT"
 else
     clear
