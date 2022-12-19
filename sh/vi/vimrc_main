@@ -44,15 +44,16 @@ if ( !isdirectory($vi) && isdirectory($sh."/vi") )
     let $vi = $sh .  "/vi"
 endif
 
+set runtimepath+=$vi
 SSource $vi/myvimrc
 SSource $vi/vimrc_plug
 SSource $vi/vimrc_themes
 SSource $loc/vimrc.local
 
 if has("nvim")
-    SSource $vi/helpy.lua
-    SSource $vi/init.lua
-    SSource $vi/nvim-lsp.lua
+    SSource $vi/lua/helpy.lua
+    SSource $vi/lua/init.lua
+    SSource $vi/lua/nvim-lsp.lua
 endif
 
 " TODO/Problems :
