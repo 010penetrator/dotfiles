@@ -59,6 +59,7 @@ set colorcolumn=
 set cursorline
 set noequalalways
 set winheight=7
+set winminwidth=40
 " set iminsert=0
 " set imsearch=0
 " set nofoldenable    " disable folding
