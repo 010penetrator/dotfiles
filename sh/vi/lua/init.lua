@@ -390,6 +390,6 @@ end
 -- nkeymap('<C-h>', ':lua require("init").teles_ff()<cr>')
 nkeymap('<C-h>', ':lua require("init").teles_ff()<cr>')
 -- :lua package.loaded.init = nil
-print("init.lua loaded once more")
+-- print("init.lua loaded once more")
 return hotfun
 

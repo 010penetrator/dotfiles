@@ -61,7 +61,6 @@ set colorcolumn=
 set cursorline
 set noequalalways
 set winheight=7
-set winminwidth=40
 " set iminsert=0
 " set imsearch=0
 " set nofoldenable    " disable folding
@@ -213,13 +212,15 @@ endif
 ""      NeoVim:       ""
 """"""""""""""""""""""""
 
+if has("nvim")
 function CrispBorders()
-    if has("nvim")
-        " set laststatus=3
-        highlight WinSeparator guibg=none
-        highlight WinSeparator guifg=#5a5a5a
-    endif
+    " set laststatus=3
+    highlight WinSeparator guibg=none
+    highlight WinSeparator guifg=#5a5a5a
 endfunction
+set winwidth=40
+set winminwidth=40
+endif
 " call CrispBorders()
 
 """"""""""""""""""""""""
@@ -472,6 +473,7 @@ if has("nvim")
 else
     nnoremap qf :FilesProj<CR>
     nnoremap ,/ :Files $sh,$tt,$loc<CR>
+    nnoremap ,/ :Files $sh<CR>
     nnoremap ,,/ :Files $sh
 endif
 

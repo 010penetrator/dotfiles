@@ -46,10 +46,13 @@ if [[ "$HOSTNAME" =~ killer[pc,PC] ]]; then
   polybar.sh &
   killall unclutter; unclutter &
 
+elif [[ $HOSTNAME = "virtpc" ]]; then
+  xrdb -merge <(echo "Xft.dpi: 104") &
+
 elif [[ "$HOSTNAME" =~ "machine" ]]; then
   xrdb -merge <(echo "Xft.dpi: 128") &
   xrandr --output DisplayPort-0 --mode 2560x1440 --rate 100
-  sleep 1
+  # sleep 1
   # pgrep transmission-da | grep . || trdwrap.sh &
   # pgrep earlyoom | grep . || earlyoom -m 2 -n &> /dev/null &
 
