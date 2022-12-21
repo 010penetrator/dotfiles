@@ -2,6 +2,8 @@
 
 if (debug) { static int errcnt; if ( errcnt++ % 9 == 0 ) printf("stag#somestep : something=%d\n", val); }
 
+std::function<void(void)> cb = &foo; // more simple callback
+
 // Measure cpu time taken
 time_t start, end;
 time(&start);
