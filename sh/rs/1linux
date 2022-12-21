@@ -232,6 +232,7 @@ zstdcat root.zst >/dev/nvme0n1p6 # restore zst archived image
 zip -r -1 arc.zip Dir Dir2 #create zip
 
 ==GIT {{{}}}
+git switch -c newbranch # checkout new branch
 git stash show -p # see last stash (add stash@{N} for older stash)
 git diff stash@{N} master # compare any stash against master (may add --name-only, or add -- filename)
 git difftool stash^! # diff last stash against its commit
