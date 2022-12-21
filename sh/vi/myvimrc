@@ -840,7 +840,7 @@ let @s = "i \<Esc>ll."
 ""     Functions:     ""
 """"""""""""""""""""""""     {{{}}}
 
-function! LGstamp(arg)
+function! LGstamp(...)
 exec "lcd " . GetProjDir()
 if system('ls -d .git/ >/dev/null || echo 1')
     echom "Can't find .git location!"
@@ -850,13 +850,15 @@ if system('git status|grep -c "nothing to commit"')
     echo "nothing to commit"
 else
     G add .
-    if !empty(a:arg)
-        exec "G commit -m" . a:arg
+    if !empty(a:0)
+        exec "G commit -m" . a:0
     else
         G commit -m "---"
     endif
 endif
 endfunc
+command! -nargs=? LGstamp call LGstamp(<f-args>)
+" command! -nargs=? SaveColor call SetPhase(<f-args>) <bar> call SaveColor(<f-args>)
 
 function! LGsync()
 exec "lcd " . GetProjDir()
