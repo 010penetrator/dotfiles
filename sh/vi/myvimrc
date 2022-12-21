@@ -850,7 +850,11 @@ if system('git status|grep -c "nothing to commit"')
     echo "nothing to commit"
 else
     G add .
-    exec "G commit -m" . a:arg
+    if !empty(a:arg)
+        exec "G commit -m" . a:arg
+    else
+        G commit -m "---"
+    endif
 endif
 endfunc
 
