@@ -53,8 +53,17 @@ Cinnamon: Moka dark-glass2
 https://github.com/bhilburn/powerlevel9k
 https://github.com/powerline/fonts/tree/master/LiberationMono
 
+==CONF
+/etc/default/grub
+/boot/grub/grub.cfg
+/etc/systemd/system.conf
+/etc/udevil/udevil.conf
+Put userfonts @ ~/.local/share/fonts/
+Put themes/ and styles/ @ ~/.config/QtProject/qtcreator/
+
 ==UNIX
-/etc/passwd /etc/group /etc/default/grub /boot/grub/grub.cfg /etc/systemd/system.conf # usable
+/etc/passwd
+/etc/group
 showconsolefont ; ls /usr/share/kbd/consolefonts/ ; setfont ter-218b # set tty font
 usermod -a -G vboxusers user1 # add user to group
 groupadd gods # create group
@@ -235,6 +244,9 @@ git fetch origin master:master # update master while staying on your branch
 git show <commithash>:main.cpp > another.cpp # restore file under new name
 git config --global core.autocrlf false
 git config core.filemode false
+git commit --ammend --reset-author --no-edit
+git config --global user.email "user@mail"
+git config --global user.name USER
 git config credential.helper cache 8h # remember git passwd for 8 hours
 git config --local credential.helper store # store git passwd
 git config --global diff.tool vimdiff # use vim as difftool

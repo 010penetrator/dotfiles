@@ -36,6 +36,7 @@ set path=.,**
 ""     Settings:      ""
 """"""""""""""""""""""""
 
+let g:lightline = { }
 let g:lightline.active = { 'left': [ [ 'mode', 'paste' ], [ 'readonly', 'modified', 'gitbranch', 'relativepath' ] ] }
 let g:lightline.component_function =  { 'gitbranch': 'FugitiveHead' }
 let g:completion_enable_auto_popup = 1
@@ -532,7 +533,7 @@ nnoremap ,as :exec '! MODE=split  vir "%:p"' \| q<CR>
 nnoremap ,av :exec '! MODE=vert   vir "%:p"' \| q<CR>
 
 " Silly update git repo
-map ,,g :call Lgsync()<CR>
+map ,,g :call LGsync()<CR>
 
 " Have mappings in terminal mode
 if v:version >= 801
@@ -839,7 +840,21 @@ let @s = "i \<Esc>ll."
 ""     Functions:     ""
 """"""""""""""""""""""""     {{{}}}
 
-function! Lgsync()
+function! LGstamp(arg)
+exec "lcd " . GetProjDir()
+if system('ls -d .git/ >/dev/null || echo 1')
+    echom "Can't find .git location!"
+    return -1
+endif
+if system('git status|grep -c "nothing to commit"')
+    echo "nothing to commit"
+else
+    G add .
+    exec "G commit -m" . a:arg
+endif
+endfunc
+
+function! LGsync()
 exec "lcd " . GetProjDir()
 if system('ls -d .git/ >/dev/null || echo 1')
     echom "Can't find .git location!"
@@ -1312,8 +1327,8 @@ function! LightlineReload(arg)
         if a:arg == '1'
             source %
         else
-            " let g:lightline = { 'colorscheme': a:arg, }
-            let g:lightline = { 'colorscheme': a:arg }
+            let g:lightline.colorscheme = a:arg
+            " let g:lightline = { 'colorscheme': a:arg }
         endif
     else
         echo g:lightline

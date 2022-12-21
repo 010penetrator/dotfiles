@@ -45,8 +45,9 @@ if ( !isdirectory($vi) && isdirectory($sh."/vi") )
 endif
 
 set runtimepath+=$vi
-SSource $vi/myvimrc
+
 SSource $vi/vimrc_plug
+SSource $vi/myvimrc
 SSource $vi/vimrc_themes
 SSource $loc/vimrc.local
 
