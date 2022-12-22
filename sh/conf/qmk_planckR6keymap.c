@@ -55,7 +55,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * |  \   |   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  | Down |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Ctrl | GUI  | Alt  |Numer |Lower |Space |  '   |Raise |   [  |   ]  | Del  |Shift |
+ * | Ctrl | GUI  |  Alt |Numer |Lower |Space |  '   |Raise |   [  |   ]  |   \  |Shift |
  * `-----------------------------------------------------------------------------------'
 */
 [_QWERTY] = LAYOUT_planck_grid(
@@ -113,17 +113,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * |   ~  |   !  |   @  |   #  |   $  |   %  |   ^  |   &  |   *  |   (  |   )  |      |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      |  -   |  +   |  _   |  =   |   0  |      |   .  |      |   {  |   }  |      |
+ * |      |   -  |   +  |   _  |   =  |   0  |      |   .  |      |   {  |   }  |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |   .  |      |      | Left | Rigth|      |      |
  * `-----------------------------------------------------------------------------------'
  */
 [_LOWER] = LAYOUT_planck_grid(
     KC_GRV  , KC_1    , KC_2    , KC_3    , KC_4    , KC_5    , KC_6    , KC_7    , KC_8    , KC_9    , KC_0    , _______ ,
+
     KC_TILD , KC_EXLM , KC_AT   , KC_HASH , KC_DLR  , KC_PERC , KC_CIRC , KC_AMPR , KC_ASTR , KC_LPRN , KC_RPRN , KC_PGUP ,
     _______ , KC_MINS , KC_PLUS , KC_UNDS , KC_EQL  , KC_0    , _______ , KC_DOT  , _______ , KC_LCBR , KC_RCBR , KC_PGDN ,
     _______ , _______ , _______ , _______ , _______ , KC_DOT  , KC_DOT  , _______ , KC_LEFT , KC_RGHT , _______ , _______
+
 ),
+
 
 /* Raise
  * ,-----------------------------------------------------------------------------------.
@@ -139,26 +142,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_RAISE] = LAYOUT_planck_grid(
     _______ , KC_F1   , KC_F2   , KC_F3   , KC_F4   , _______ , _______ , KC_LBRC , KC_INS  , KC_RBRC , KC_PGUP , KC_DEL  ,
     _______ , KC_F5   , KC_F6   , KC_F7   , KC_F8   , _______ , KC_LEFT , KC_DOWN , KC_UP   , KC_RGHT , _______ , KC_PGUP ,
-    _______ , KC_F9   , KC_F10  , KC_F11  , KC_F12  , KC_DQUO , KC_PGDN , KC_MINS , KC_PLUS , KC_UNDS , KC_EQL  , KC_PGDN ,
-    _______ , _______ , _______ , _______ , _______ , KC_QUOT , KC_QUOT , _______ , KC_LEFT , KC_RGHT , _______ , _______
+    _______ , KC_F9   , KC_F10  , KC_F11  , KC_F12  , _______ , KC_PGDN , KC_MINS , KC_PLUS , KC_UNDS , KC_EQL  , KC_PGDN ,
+    _______ , _______ , _______ , _______ , _______ , KC_QUOT , KC_QUOT , _______ , KC_LEFT , KC_RGHT , _______ , KC_DQUO
 ),
 
 /* Numer
  * ,-----------------------------------------------------------------------------------.
- * |      | NLOC | PGUP |  END |      |      |      |  7   |  8   |  9   |  -   | NLOC |
+ * |      | NLCK | PGUP |  END |      |      |      |  7   |  8   |  9   |  -   |      |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * |      | HOME |  M   |  MRB | PGDN |      |  ^   |  4   |  5   |  6   |  +   | mwU  |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * |      |  M   |  M   |  M   |      |      |  *   |  1   |  2   |  3   |  /   | mwD  |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |  MLB |      |      |      |      | MENU |      |  0   |  .   |  .   |      |      |
+ * |  MLB |      |      |      |      | MENU |      |  0   |  .   |  .   |      | NLCK |
  * `-----------------------------------------------------------------------------------'
  */
 [_NUMER] = LAYOUT_planck_grid(
-    _______ , KC_NLCK , KC_PGUP , KC_END  , _______ , _______ , _______ , KC_P7 , KC_P8   , KC_P9  , KC_PMNS , KC_NLCK ,
+    _______ , KC_NLCK , KC_PGUP , KC_END  , _______ , _______ , _______ , KC_P7 , KC_P8   , KC_P9  , KC_PMNS , _______ ,
     _______ , KC_HOME , KC_MS_U , KC_BTN2 , KC_PGDN , _______ , KC_CIRC , KC_P4 , KC_P5   , KC_P6  , KC_PPLS , KC_WH_U ,
     _______ , KC_MS_L , KC_MS_D , KC_MS_R , _______ , _______ , KC_PAST , KC_P1 , KC_P2   , KC_P3  , KC_PSLS , KC_WH_D ,
-    KC_BTN1 , _______ , _______ , _______ , _______ , KC_APP  , KC_APP  , KC_P0 , KC_PDOT , KC_PDOT, _______ , _______
+    KC_BTN1 , _______ , _______ , _______ , _______ , KC_APP  , KC_APP  , KC_P0 , KC_PDOT , KC_PDOT, _______ , KC_NLCK
 ),
 
 /* Plover layer (http://opensteno.org)

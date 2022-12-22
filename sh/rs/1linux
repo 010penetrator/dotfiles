@@ -339,6 +339,7 @@ sleep 3 && sudo dfu-programmer atmega32u4 erase && sudo dfu-programmer atmega32u
 cd $git/qmk_firmware/ && make atreis:default && sudo bash flash.sh atreis_default.hex
 sudo make xd60/rev3:plasmik:dfu
 make planck/rev6:plasmik:dfu-util
+cd $git/qmk_firmware/ && cp $sh/conf/qmk_planckR6keymap.c $git/qmk_firmware/keyboards/planck/keymaps/plasmik/keymap.c && make planck/rev6_drop:plasmik:dfu-util
 
 ==PKG
 apt-cache policy libgtk2.0-0 libgtk-3-0 # check pkg origin
@@ -425,3 +426,4 @@ for f in *.m4a ; do ffmpeg -i "$f" -map_metadata -1 -acodec flac "${f%.*}"".flac
 a="Motorhead - Loud Album"; mkdir -p "$a"; cd "$a"; shnsplit -f ../"$a".cue -t "%n %t" -o "flac ext=ogg oggenc -q 9 -o %f -" "../$a".flac; cuetag.sh "../$a".cue *.ogg; cd .. # or "flac flac" # cue to tracks
 mkdir resampled; for flac in *.flac; do sox -S "${flac}" -r 44100 -b 16 ./resampled/"${flac}"; done # resample audio
 rm -rf /mnt/blink/enc/* ; time ( cat /ln/ho/.mus-favourites | while read f  ; do echo "=== $f" ; ((i=i%6)); ((i++==0)) && wait ; conv_any2flac.sh "$f" /mnt/blink/enc/ & done ) # convert multithreaded
+
