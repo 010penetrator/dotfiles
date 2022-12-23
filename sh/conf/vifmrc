@@ -84,6 +84,7 @@ nnoremap t tj
 nnoremap T tk
 nnoremap at :tabnew<CR>
 nnoremap gr :tabprev<CR>
+nnoremap gz :tabprev<CR>
 nnoremap q[ :tabprev<CR>
 nnoremap q] :tabnext<CR>
 nnoremap q{ :tabmove-<CR>
