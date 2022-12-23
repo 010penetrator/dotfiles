@@ -400,6 +400,11 @@ echo firstt $(($(date +%s%N)/1000000)) && sleep 1 && echo second $(($(date +%s%N
 du -a . | awk '{print $2}' | fzf | xargs -r $EDITOR # search and edit multiple files
 # jdownloader outputs blank screen under bspwm? ==> $ wmname LG3D; java -jar path/JDownloader.jar
 
+==SSL
+npm config set strict-ssl false # ignore SSL certif
+pip.conf // [global] / trusted-host = pypi.python.org pypi.org files.pythonhosted.org
+git config --global http.sslVerify false # ignore SSL certif (VERY SILLY!)
+
 ==SOUND
 amixer -c 0 # list ALSA controls for card 0
 amixer -c USB controls
