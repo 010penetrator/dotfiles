@@ -340,6 +340,7 @@ cd $git/qmk_firmware/ && make atreis:default && sudo bash flash.sh atreis_defaul
 sudo make xd60/rev3:plasmik:dfu
 make planck/rev6:plasmik:dfu-util
 cd $git/qmk_firmware/ && cp $sh/conf/qmk_planckR6keymap.c $git/qmk_firmware/keyboards/planck/keymaps/plasmik/keymap.c && make planck/rev6_drop:plasmik:dfu-util
+cd $git/qmk_firmware/ && cp $sh/conf/qmk_planckR4keymap.c $git/qmk_firmware/keyboards/planck/keymaps/plasmik/keymap.c && make planck/rev4:plasmik:dfu
 
 ==PKG
 apt-cache policy libgtk2.0-0 libgtk-3-0 # check pkg origin
