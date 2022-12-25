@@ -377,9 +377,8 @@ find /usr/share/applications/ $HOME/.local/share/applications/ -type f -name "*.
 xdg-mime default transmission-cli.desktop x-scheme-handler/magnet # set default magnet URL handler
 kitty -T transmission-remote_tranloc_ -e tremc -c localhost:9090
 kitty -T transmission-remote_tranpi_ -e tremc -c 192.168.1.160:9090
-kitty_theme_selector.sh
-kitty +kitten themes ; kitty @ set-colors -a "$HOME"/.config/kitty/current-theme.conf
-kitty @ set-colors -a "$HOME"/.config/kitty/current-theme.conf "$sh"/conf/kitty_extra.conf
+kitty +kitten themes ; kitty @ set-colors -a "$HOME"/.config/kitty/current-theme.conf # kitty switch theme more modern way
+kitty @ set-colors -a "$HOME"/.config/kitty/current-theme.conf "$sh"/conf/kitty_extra.conf # kitty reload theme
 noti transmission-remote localhost:9090 -st #locstats
 noti transmission-remote 192.168.1.160:9090 -st #pistats
 xdg-mime default vim.desktop $(xdg-mime query filetype textfile.ext)

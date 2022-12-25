@@ -123,7 +123,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     KC_TILD , KC_EXLM , KC_AT   , KC_HASH , KC_DLR  , KC_PERC , KC_CIRC , KC_AMPR , KC_ASTR , KC_LPRN , KC_RPRN , KC_PGUP ,
     _______ , KC_MINS , KC_PLUS , KC_UNDS , KC_EQL  , KC_0    , _______ , KC_DOT  , _______ , KC_LCBR , KC_RCBR , KC_PGDN ,
-    _______ , _______ , _______ , _______ , _______ , KC_DOT  , KC_DOT  , _______ , KC_LEFT , KC_RGHT , _______ , _______
+    _______ , _______ , _______ , _______ , _______ , KC_QUOT , KC_QUOT , _______ , KC_LEFT , KC_RGHT , _______ , KC_DQUO
 
 ),
 
@@ -143,7 +143,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______ , KC_F1   , KC_F2   , KC_F3   , KC_F4   , _______ , _______ , KC_LBRC , KC_INS  , KC_RBRC , KC_PGUP , KC_DEL  ,
     _______ , KC_F5   , KC_F6   , KC_F7   , KC_F8   , _______ , KC_LEFT , KC_DOWN , KC_UP   , KC_RGHT , _______ , KC_PGUP ,
     _______ , KC_F9   , KC_F10  , KC_F11  , KC_F12  , _______ , KC_PGDN , KC_MINS , KC_PLUS , KC_UNDS , KC_EQL  , KC_PGDN ,
-    _______ , _______ , _______ , _______ , _______ , KC_QUOT , KC_QUOT , _______ , KC_LEFT , KC_RGHT , _______ , KC_DQUO
+    _______ , _______ , _______ , _______ , _______ , _______ , _______ , _______ , KC_LEFT , KC_RGHT , _______ , _______
 ),
 
 /* Numer

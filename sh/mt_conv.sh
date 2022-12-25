@@ -3,7 +3,7 @@
 
 [ -z $Nthr ] && Nthr=8
 [ -z $CODEC ] && CODEC=flac
-TMPF=tmpfifo
+TMPF=/ln/ho/tmpfifo
 DEST=/ln/fast/enc
 DEST_2=/ln/fast/enc_$CODEC
 
@@ -39,11 +39,21 @@ rm $TMPF # remove fifo
 )
 
 touch "$DEST"/.nomedia
+co=0
+MAXWAIT=70
+echo "Will wait up to $MAXWAIT sec.."
+SELFPCNT=8
+while ( [[ $SELFPCNT -gt 2 ]] && [[ $co -lt $MAXWAIT ]] ); do
+    sleep 1
+    ((co=co+1))
+    SELFPCNT=$(pgrep -x mt_conv.sh | wc -l)
+    echo self proc cnt is $SELFPCNT
+done
+echo -e "Have been waiting $co seconds\n"
 WETRUN=1 renam.sh "$DEST"
 
 if [[ -d $DEST_2 ]]; then
-    echo "Will wait 30 sec.."
-    sleep 30
+    exit
     echo "Will rsync $DEST to $DEST_2"
     RSYNC_OPTS="-rtl --progress --delete --stats --size-only"
     rsync $RSYNC_OPTS --exclude .stfolder "$DEST/" "$DEST_2"
