@@ -18,8 +18,9 @@ PS1=$'\[$(tput bold)\]\[$(tput setaf 34)\]\u\[$(tput setaf 78)\] \W \[$(tput set
 alias bb='tty | grep -q /dev/tty && ( terminusfont; [[ -f /usr/bin/tap ]] && sudo /usr/bin/tap; startx $sh/xinitrc bspwm ) || echo This is not tty!'
 alias tf='terminusfont'
 alias v='vir'
-# alias vl='MODE=last nvimrpc'
+alias va='MODE=last nvimrpc'
 alias s="git status"
+alias b="git branch -a"
 alias gs='( [[ -f $HOME/.env ]] && . "$HOME"/.env ; gsync )'
 alias yp='fc -ln -1 | cut -c 3- | tr -d "\n" | xclip ; echo yanked prev command'
 alias ram='sudo python "$sh"/mem.py'
@@ -37,7 +38,6 @@ alias lb='$LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT,FSUSE% | grep "sd\|nvme" -
 alias wlb='watch -n.4 $LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT'
 alias leto='date +%Y-%m-%d'
 alias p='ps aux | grep -v grep | grep'
-alias vs='nvim -S "$HOME"/.config/nvim/session/comon'
 alias mm='make -f my_Makefile'
 alias dropcs='sync && echo 3 | sudo tee /proc/sys/vm/drop_caches'
 alias nuts='sudo qemu-system-x86_64 -m 1400 -enable-kvm -cpu host -smp 4 -boot menu=on'
