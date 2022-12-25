@@ -41,7 +41,7 @@ rm $TMPF # remove fifo
 touch "$DEST"/.nomedia
 co=0
 MAXWAIT=70
-echo "Will wait up to $MAXWAIT sec.."
+echo -e "\nWill wait up to $MAXWAIT sec.."
 SELFPCNT=8
 while ( [[ $SELFPCNT -gt 2 ]] && [[ $co -lt $MAXWAIT ]] ); do
     sleep 1
@@ -52,8 +52,9 @@ done
 echo -e "Have been waiting $co seconds\n"
 WETRUN=1 renam.sh "$DEST"
 
+rm $TMPF # remove fifo
+
 if [[ -d $DEST_2 ]]; then
-    exit
     echo "Will rsync $DEST to $DEST_2"
     RSYNC_OPTS="-rtl --progress --delete --stats --size-only"
     rsync $RSYNC_OPTS --exclude .stfolder "$DEST/" "$DEST_2"
