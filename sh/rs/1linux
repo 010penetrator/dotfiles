@@ -263,6 +263,7 @@ git --follow file.c # show file history tracking renames
 git status -vv file.c # diff against last commit
 git remote update ; git show-branch *master # check if remote master has been updated
 git init --bare /path/portable/proj; cd /path/current/proj; git remote add newname1 /path/portable/proj; git push newname1 master # create local remote repo, maybe on portable media
+get remote -v # show remote locations
 
 ==NET
 ip link
