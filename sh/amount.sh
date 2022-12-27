@@ -13,9 +13,11 @@ if [[ ! -z $target ]]; then # target isnot null or ''
         echo "/dev/$target mounted"
         sleep .1
         mopoint=$(findmnt /dev/${target} -o TARGET -n)
-        [[ -d $mopoint ]] && touch "$mopoint"
+        # [[ -d $mopoint ]] && touch "$mopoint"
     fi
     notify-send "$(cat /tmp/vil-mo)"
+    export newmp=$mopoint
+    # echo "$mopoint"
 else
     echo "No target!"
 fi

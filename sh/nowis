@@ -6,15 +6,17 @@
 HASG=false
 pgrep -c Xorg &>/dev/null && HASG=true
 
+cur=''
+
 if [[ -f /tmp/nowis && $( cat /tmp/nowis | wc -w ) -gt 0 ]]; then
-    reply=$(cat /tmp/nowis | head -1 | cut -d ' ' -f1)
+    cur=$(cat /tmp/nowis | head -1 | cut -d ' ' -f1)
 else
-    reply='dunno'
+    cur='dunno'
 fi
 
 if [[ -z $* || $1 == 'what' ]]; then
-    [[ $HASG == true ]] && notify-send -t 800 $reply
-    echo $reply
+    [[ $HASG == true ]] && notify-send -t 800 $cur
+    echo $cur
     exit
 fi
 
@@ -27,8 +29,8 @@ echo "$1" > /tmp/nowis
 if [[ $1 == 'nox' ]]; then
     nitrogen --set-zoom-fill  $git/wlp/twisted_by_zy0rg_d5sdf8q.png
     sed -i 's/=Pop$/=Pop-dark/' /ln/co/gtk-3.0/settings.ini
-    # Dim and warm screen
-    type redshift &>/dev/null && [[ $2 != '-nodim' ]] && { ga=.93; redshift -o -m randr -O 5100 -g $ga:$ga:$ga ; }
+    # Dim and warm screen if already nox and no nodim key
+    type redshift &>/dev/null && [[ $cur == 'nox' && $2 != '-nodim' ]] && { ga=.96; redshift -o -m randr -O 5600 -g $ga:$ga:$ga; }
 elif [[ $1 == 'day' ]]; then
     nitrogen --set-zoom-fill  $git/wlp/blues_by_tatasz_d8snwfz.png
     sed -i 's/=Pop-dark$/=Pop/' /ln/co/gtk-3.0/settings.ini
@@ -42,7 +44,7 @@ fi
     NT="nox_theme.conf"
     CT="current-theme.conf"
     # Backup current theme if it is different from day theme and night theme
-    if [[ -f $CT ]] && ! cmp -s $CT $DT && ! cmp -s $CT $NT ; then
+    if [[ -f $CT ]] && ! cmp -s $CT $DT && ! cmp -s $CT $NT; then
         cp -f $CT prev_theme.conf
     fi
     if [[ $1 == 'nox' ]]; then

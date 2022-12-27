@@ -41,10 +41,9 @@ command! qemuweak :! sudo bash -c "sync; echo 3 > /proc/sys/vm/drop_caches; qemu
 " command! tok :!touch %c "--date=@$(expr $(stat -c %%%%Y KKK) - 100)" ; touch KKK "--date=@$(expr $(stat -c %%%%Y KKK))"
 command! tok :! touch %c "--date=$(date -R -r KKK) - 10 minute" ; touch KKK "--date=$(date -R -r KKK) + 3 minute"
 command! tik :!touch --date="$(date -R -r %c) + 10 minute" KKK
-" command! tik :!touch --date="$(date -R -r %c) + 1 day" %c
-command! amou :exec '!bash -ic "source /ln/ho/.bashrc; amou"' | cd /ln/mo
+command! amou : let $NEW_MP = term('a=$(SELECTOR="fzf -e --height 14" amount.sh 2>/dev/tty | grep "Mounted "); a=${a#*at}; echo $a')
+            \| exec system('[[ -d $NEW_MP ]] && echo cd || echo echo') fnameescape($NEW_MP)
 
-command! aumo :!bash -ic 'source /ln/ho/.bashrc; aumo'
 command! ownSEL :!sudo chown 1000:100 %f
 command! chmodautoSEL :! find %f -type f -exec chmod 644 {} \;
 
@@ -157,7 +156,7 @@ nnoremap rs :! rsync_bistep.sh  %d %D; read -n 1
 " nnoremap rS :! echo -ne "\n" ; rsync -rt  --progress --delete --stats --size-only %d/ %D ; read -n 1 -s -r -p "========== DONE!" ; echo
 
 " Operate files "
-nnoremap ai : amou <cr>:cd /ln/mo<cr>:exec 'cd' system('sleep .1; ls -1t /ln/mo | head -1')<cr>
+nnoremap ai :amou<cr>
 nnoremap ao : aumo <cr>
 nnoremap au :! echo Sync... ; sync -f %f && udevil umount $(findmnt %f -n -o SOURCE | grep dev)<cr>
 nnoremap am ggVG<cr>:copy<cr>
@@ -743,7 +742,7 @@ command! fzfmushist : set noquickview
         \| endif
 
 nnoremap <C-j> :fzffind<cr>
-nnoremap <C-k> :fzfmushist<cr>
+nnoremap zh :fzfmushist<cr>
 
 source $loc/vifmrc.local
 source /ln/sh/conf/favicons.vifm
