@@ -62,8 +62,8 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 -- require"nvim-tree".open_replacing_current_buffer()
 require("nvim-tree").setup({
-    disable_netrw = false,
-    hijack_netrw = false,
+    disable_netrw = true,
+    hijack_netrw = true,
     hijack_unnamed_buffer_when_opening = false,
     ignore_buffer_on_setup = true,
     sort_by = "case_sensitive",
