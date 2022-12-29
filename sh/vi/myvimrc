@@ -653,6 +653,7 @@ nnoremap ,,c :NewVifmHere<CR>
 nnoremap qt :call GotoTerm(0)<CR>
 " Jump to netrw window
 nnoremap ,n :NvimTreeToggle<CR>
+nnoremap ,,n :NvimTreeFindFile!<CR>
 " if has("nvim") | nnoremap ,n :NvimTreeFocus<CR>| endif
 
 " Exec current paragraph with shell
