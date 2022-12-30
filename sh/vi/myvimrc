@@ -873,7 +873,7 @@ G pull
 if system('git status|grep -c "publish your local"')
     G push
 else
-    echo "nothing to push"
+    echo "Nothing to push"
 endif
 endfunc
 
