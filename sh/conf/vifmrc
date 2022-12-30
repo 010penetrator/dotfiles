@@ -173,6 +173,7 @@ nnoremap cB :copy<cr>
 nnoremap cm :move<cr>
 nnoremap C :copy<cr>
 nnoremap E :move<cr>
+nnoremap ci :move /ln/hh/imgdl1/<cr>
 noremap aj :!touch %f --date=now<cr>j
 nnoremap cn :clone<cr>
 nnoremap al :!ln -s $PWD/%c %D/%c<cr>
@@ -218,13 +219,14 @@ nnoremap gb :cd $bakcld<cr>
 nnoremap gB :cd $bakhot<cr>
 nnoremap gy :cd /ln/mob<cr>
 nnoremap gS :exec 'cd' system("compgen -G /ln/mo/*AMV/bak")<cr>
-nnoremap gf :cd /ln/mo/BAMV/fli<cr>
+nnoremap gf 'f
 nnoremap gi :cd /ln/hh/imgdl1<cr>
 nnoremap gk :cd /ln/torrents/red/KKK<cr>:sort<cr>mh
 nnoremap gv :cd ~/.vim<cr>:goto plugged<cr>
 nnoremap gn :cd ~/.config/nvim<cr>:goto plugged<cr>
-nnoremap gN :cd ~/01/new/<cr>
+" nnoremap gN :cd ~/01/new/<cr>
 nnoremap gp :cd /mnt/blink/PRAGS/prwin/<cr>
+nnoremap gK :cd /ln/hh/keebs/<cr>
 nnoremap gR :cd /ln/mo/metal/RULEZ/READ/<cr>
 
 """"""""""""""""""""""""
