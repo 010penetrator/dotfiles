@@ -136,24 +136,24 @@ autocmd FileType cmake setlocal commentstring=#%s
 autocmd FileType c setlocal colorcolumn=0
 " autocmd CursorHold * normal! m'
 
-" Taming netrw
-autocmd FileType netrw setl bufhidden=wipe
-" autocmd FileType netrw setl bufhidden=delete
-augroup my_netrw_mapping
-    autocmd!
-    autocmd filetype netrw call MyNetrwMapping()
-augroup END
-function! MyNetrwMapping()
-    noremap <buffer> x :q<cr>
-    nnoremap <buffer> a <Nop>
-endfunction
-let g:netrw_banner = 0
-let g:netrw_liststyle = 3
-let g:netrw_browse_split = 0
-let g:netrw_altv = 1
-let g:netrw_winsize = 25
-" make vim-sneak respect netrw
-let g:sneak#map_netrw = 0
+" " Taming netrw
+" autocmd FileType netrw setl bufhidden=wipe
+" " autocmd FileType netrw setl bufhidden=delete
+" augroup my_netrw_mapping
+"     autocmd!
+"     autocmd filetype netrw call MyNetrwMapping()
+" augroup END
+" function! MyNetrwMapping()
+"     noremap <buffer> x :q<cr>
+"     nnoremap <buffer> a <Nop>
+" endfunction
+" let g:netrw_banner = 0
+" let g:netrw_liststyle = 3
+" let g:netrw_browse_split = 0
+" let g:netrw_altv = 1
+" let g:netrw_winsize = 25
+" " make vim-sneak respect netrw
+" let g:sneak#map_netrw = 0
 
 if executable('rg')
     set grepprg=rg\ --smart-case\ --vimgrep\ --follow\ --no-ignore\ -g\ '!tags'

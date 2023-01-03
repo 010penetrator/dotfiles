@@ -67,7 +67,8 @@ tar -cf "$DEST_HOT/conf.tar.zst" -I "zstd -10 -T0" --ignore-failed-read \
 bakusbdir=$(compgen -G /ln/mo/*AMV/bak)
 [[ -d $bakusbdir ]] &&
     {
-        echo --Gonna write to SAM as well..
+        devlabel=$(echo $bakusbdir | tr / \\n | grep AMV)
+        echo --Gonna write to $devlabel as well..
         mkdir -p "$bakusbdir/${space}_$MON"
         cp -rf "$DEST_HOT/"*tar* "$bakusbdir/${space}_$MON"
     }
