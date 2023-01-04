@@ -184,7 +184,6 @@ Plug 'vim-scripts/C64.vim' "joke
 Plug 'szorfein/fantasy.vim' "dull
 Plug 'KimNorgaard/vim-frign' "borland_style
 Plug 'vim-scripts/Gummybears' "very_dark
-Plug 'duckwork/nirvana' "shafran
 Plug 'KKPMW/sacredforest-vim' "lowcont
 Plug 'logico-dev/typewriter' "good!
 Plug 'wimstefan/vim-artesanal' "good lowcon gray
@@ -207,14 +206,13 @@ Plug 'colepeters/spacemacs-theme.vim' "cool
 Plug 'relastle/bluewery.vim' "low-con
 Plug 'dracula/vim' "funky
 Plug 'markeganfuller/vim-journeyman' "pale dark
-Plug 'machakann/vim-colorscheme-tatami' "fun green
-Plug 'victorze/foo' " 'abyss,github-old,hacker,hyper,mr-robot
 Plug 'stillwwater/vim-nebula' "cold dark
 Plug 'franbach/miramare' "coffee dark
 " Plug 'jlund3/colorschemer' "semibroken 'lucid
 " Plug 'srcery-colors/srcery-vim' "fresh-dark consbroken HUGE
 " Plug 'dfrunza/vim' "borland,muratori,pencil,vc6
 " Plug 'zefei/cake16' "cool medium
+" Plug 'machakann/vim-colorscheme-tatami' "fun green
 " Plug 'RussellBradley/vim-knicks' "great blue 404
 " Plug 'aradunovic/perun.vim' "consbroken 404
 " Plug 'the31k/vim-colors-tayra' "Nice gray 404

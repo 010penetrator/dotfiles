@@ -1,8 +1,9 @@
 -- vim: ts=2 sw=2
 -- FYI: Use checkhealth to troubleshoot Neovim
 
---require('plasmik.set')
---require('plasmik.remap')
+require('plasmik.set')
+require('plasmik.helpy')
+require('plasmik.remap')
 
 require('nvim-autopairs').setup{}
 require('Comment').setup()
