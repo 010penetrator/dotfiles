@@ -496,7 +496,7 @@ nnoremap ,tb <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find(req
 nnoremap ,gv :call FocusBufOrDo('myvimrc','e $sh/vi/myvimrc')<CR>
 nnoremap ,gp :call FocusBufOrDo('vimrc_plug','e $sh/vi/vimrc_plug')<CR>
 nnoremap ,gt :call FocusBufOrDo('vimrc_themes','e $sh/vi/vimrc_themes')<CR>
-nnoremap ,gc :call FocusBufOrDo('init.lua','e $sh/vi/lua/init.lua')<CR>
+nnoremap ,gc :call FocusBufOrDo('init.lua','e $mylua/init.lua')<CR>
 nnoremap ,g, :call FocusBufOrDo('vimrc_main','e $sh/vi/vimrc_main')<CR>
 nnoremap ,gb :call FocusBufOrDo('bashrc','e $sh/bashrc')<CR>
 nnoremap ,gB :call FocusBufOrDo('bashrc.local','e $loc/bashrc.local')<CR>

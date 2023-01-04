@@ -1,6 +1,9 @@
 -- vim: ts=2 sw=2
 -- FYI: Use checkhealth to troubleshoot Neovim
 
+--require('plasmik.set')
+--require('plasmik.remap')
+
 require('nvim-autopairs').setup{}
 require('Comment').setup()
 -- require('yode-nvim').setup()
@@ -127,7 +130,7 @@ require"nvim-treesitter.configs".setup {
 -- vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
--- vim.opt.list = true
+--[[ -- vim.opt.list = true
 -- vim.opt.listchars:append("eol:↴")
 require('indent_blankline').setup {
   show_end_of_line = true,
@@ -139,7 +142,7 @@ require('indent_blankline').setup {
   context_char = '│'
 }
 -- vim.g.indent_blankline_enabled = false
--- let g:indent_blankline_char = '⋮'
+-- let g:indent_blankline_char = '⋮' ]]
 
 require'marks'.setup {
   -- whether to map keybinds or not. default true
@@ -220,74 +223,6 @@ require('neoscroll.config').set_mappings(t)
 -- vim.api.nvim_set_keymap("n", "<C-n>", ":lua require('bufjump').forward()<cr>", k_opts)
 
 ------------------------
---     Completion:    --
-------------------{{{}}}
-
-vim.opt.completeopt={"menu", "menuone", "noselect"}
-
--- Setup nvim-cmp.
-local cmp = require'cmp'
-
--- nvim-cmp supports additional completion capabilities, so broadcast that to servers
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-
-cmp.setup({
-  snippet = {
-    expand = function(args)
-      -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-      -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-      -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
-      vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
-    end,
-  },
-  mapping = {
-    ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
-    ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-    ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-    ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
-    ['<C-e>'] = cmp.mapping({
-      i = cmp.mapping.abort(),
-      c = cmp.mapping.close(),
-    }),
-    ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-  },
-  sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
-    -- { name = 'vsnip' }, -- For vsnip users.
-    { name = 'luasnip' }, -- For luasnip users.
-    -- { name = 'ultisnips' }, -- For ultisnips users.
-    -- { name = 'snippy' }, -- For snippy users.
-  }, {
-      { name = 'buffer' },
-    })
-})
-
--- Set configuration for specific filetype.
-cmp.setup.filetype('gitcommit', {
-  sources = cmp.config.sources({
-    { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
-  }, {
-      { name = 'buffer' },
-    })
-})
-
--- -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
--- cmp.setup.cmdline('/', {
---     sources = {
---     { name = 'buffer' }
---     }
--- })
--- -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
--- cmp.setup.cmdline(':', {
---     sources = cmp.config.sources({
---     { name = 'path' }
---     }, {
---         { name = 'cmdline' }
---         })
--- })
-
-------------------------
 --       LSP:         --
 ------------------{{{}}}
 
@@ -335,25 +270,34 @@ if vim.env.PLUGD then
   -- mp = H.path_join( vim.fn.stdpath "data", "nvim-mason" )
   -- print(mp)
 end
+
 require("mason").setup({
   install_root_dir = mp ,
 })
--- require("mason-lspconfig").setup()
+
 require("mason-lspconfig").setup({
   -- ensure_installed = { "sumneko_lua", "clangd" }
   ensure_installed = { "sumneko_lua", "bashls", "clangd", "pyright", "cmake", "vimls" }
 })
+
+-- nvim-cmp supports additional completion capabilities, so broadcast that to servers
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+local nc_capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+
 require('lspconfig').bashls.setup{ on_attach = function() print("lsp client is bashls") end, }
 require('lspconfig').clangd.setup{ on_attach = function() print("lsp client is clangd") end, }
 require('lspconfig').sumneko_lua.setup{
   on_attach = function() print("lsp client is sumneko_lua") end,
   settings = { Lua = { diagnostics = { globals = {'vim'}}}},
-  capabilities = capabilities,
 }
-require('lspconfig').pyright.setup{ on_attach = function() print("lsp client is pyright") end, }
-require('lspconfig').cmake.setup{ on_attach = function() print("lsp client is cmake") end, }
-require('lspconfig').vimls.setup{ on_attach = function() print("lsp client is vimls") end, }
-blc = require('lspconfig').bashls.cmd
+require('lspconfig').pyright.setup{ on_attach = function() print("lsp client is pyright") end, capabilities = nc_capabilities }
+require('lspconfig').cmake.setup{ on_attach = function() print("lsp client is cmake") end, capabilities = nc_capabilities }
+require('lspconfig').vimls.setup{ on_attach = function() print("lsp client is vimls") end, capabilities = nc_capabilities }
+
+-- blc = require('lspconfig').bashls.cmd
+
+local lsp = require("lsp-zero")
+lsp.preset("recommended")
 
 if vim.fn.has('nvim-0.6') == 1 then
   vim.api.nvim_command('\
@@ -397,48 +341,27 @@ if vim.fn.has('nvim-0.7') == 1 then
   vim.keymap.set("n","-", nvtree_imit_netrw)
 end
 
--- local keymap = vim.api.nvim_set_keymap
--- local a_opts = { noremap = true }
--- local function nkeymap(a_key, a_map)
---   keymap('n', a_key, a_map, a_opts)
--- end
 H.nkeymap(',R', ':lua vim.lsp.buf.rename()<cr>')
 
 ------------------------
-------------------------
+--     Completion:    --
+------------------{{{}}}
 
--- -- Install packer
--- local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
--- local is_bootstrap = false
--- if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
---   is_bootstrap = true
---   vim.fn.system { 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path }
---   vim.cmd [[packadd packer.nvim]]
--- end
-
--- [[ Highlight on yank ]]
--- See `:help vim.highlight.on_yank()`
-local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
-vim.api.nvim_create_autocmd('TextYankPost', {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-  group = highlight_group,
-  pattern = '*',
-})
-
-
-
-
-
-
+vim.opt.completeopt={"menu", "menuone", "noselect"}
 
 -- Turn on lsp status information
 -- require('fidget').setup()
 
--- nvim-cmp setup
-local cmp = require 'cmp'
--- local luasnip = require 'luasnip'
+local cmp = require('cmp')
+local luasnip = require('luasnip')
+local cmp_select = { behavior = cmp.SelectBehavior.Select }
+local cmp_mappings = lsp.defaults.cmp_mappings({
+  ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
+  ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+  ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+  ["<C-Space>"] = cmp.mapping.complete(),
+
+})
 
 cmp.setup {
   snippet = {
@@ -447,12 +370,12 @@ cmp.setup {
     end,
   },
   mapping = cmp.mapping.preset.insert {
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<CR>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
+      select = false,
     },
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
@@ -478,3 +401,75 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
+
+--[[ cmp.setup({
+  mapping = {
+    ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+    ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+    ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+    ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+    ['<C-e>'] = cmp.mapping({
+      i = cmp.mapping.abort(),
+      c = cmp.mapping.close(),
+    }),
+    ['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+  },
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+    -- { name = 'vsnip' }, -- For vsnip users.
+    { name = 'luasnip' }, -- For luasnip users.
+    -- { name = 'ultisnips' }, -- For ultisnips users.
+    -- { name = 'snippy' }, -- For snippy users.
+  }, {
+      { name = 'buffer' },
+    })
+}) ]]
+
+--[[ -- Set configuration for specific filetype.
+cmp.setup.filetype('gitcommit', {
+  sources = cmp.config.sources({
+    { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
+  }, {
+      { name = 'buffer' },
+    })
+}) ]]
+
+-- -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+-- cmp.setup.cmdline('/', {
+--     sources = {
+--     { name = 'buffer' }
+--     }
+-- })
+-- -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+-- cmp.setup.cmdline(':', {
+--     sources = cmp.config.sources({
+--     { name = 'path' }
+--     }, {
+--         { name = 'cmdline' }
+--         })
+-- })
+
+------------------------
+------------------------
+
+-- -- Install packer
+-- local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
+-- local is_bootstrap = false
+-- if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+--   is_bootstrap = true
+--   vim.fn.system { 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path }
+--   vim.cmd [[packadd packer.nvim]]
+-- end
+
+-- [[ Highlight on yank ]]
+-- See `:help vim.highlight.on_yank()`
+local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
+vim.api.nvim_create_autocmd('TextYankPost', {
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+  group = highlight_group,
+  pattern = '*',
+})
+
+

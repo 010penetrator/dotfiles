@@ -3,13 +3,14 @@
 
 H = {}
 
-function tprint (tbl)
+local M = H
+
+function M.tprint (tbl)
     for k,v in pairs(tbl) do
         print(k,v)
     end
 end
 
-local M = H
 ---Author: cseickel
 ---The file system path separator for the current platform.
 M.path_separator = "/"
@@ -50,7 +51,6 @@ end
 
 local keymap = vim.api.nvim_set_keymap
 local a_opts = { noremap = true }
--- local function nkeymap(a_key, a_map)
 local function nkeymap(a_key, a_map)
   keymap('n', a_key, a_map, a_opts)
 end
@@ -68,3 +68,4 @@ nkeymap('<C-h>', ':lua require("helpy").teles_ff()<cr>')
 -- return hotfun
 
 return M
+

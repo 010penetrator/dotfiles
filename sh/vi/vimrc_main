@@ -43,8 +43,10 @@ command! -nargs=1 SSource if filereadable(expand('<args>')) | source <args> | en
 if ( !isdirectory($vi) && isdirectory($sh."/vi") )
     let $vi = $sh .  "/vi"
 endif
+let $mylua = $sh . "/vi/lua/plasmik"
 
 set runtimepath+=$vi
+"set runtimepath+=/ln/ho/3
 
 SSource $vi/vimrc_plug
 SSource $vi/myvimrc
@@ -52,10 +54,10 @@ SSource $vi/vimrc_themes
 SSource $loc/vimrc.local
 
 if has("nvim")
-    SSource $vi/lua/helpy.lua
-    SSource $vi/lua/init.lua
-    SSource $vi/lua/migrate.lua
-    SSource $vi/lua/nvim-lsp.lua
+    " require( )
+    SSource $mylua/helpy.lua
+    SSource $mylua/init.lua
+    " SSource $mylua/migrate.lua
 endif
 
 " TODO/Problems :
