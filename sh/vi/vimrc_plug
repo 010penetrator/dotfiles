@@ -114,14 +114,13 @@ if has("nvim")
     " Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-lualine/lualine.nvim'
-    Plug 'neovim/nvim-lspconfig'
-    " Plug 'williamboman/nvim-lsp-installer'
-    Plug 'williamboman/mason.nvim'
-    Plug 'williamboman/mason-lspconfig.nvim'
     Plug 'mfussenegger/nvim-lint'
     Plug 'mfussenegger/nvim-dap'
     Plug 'nvim-treesitter/nvim-treesitter', {'do':':TSUpdate'}
-    Plug 'glepnir/lspsaga.nvim'
+    Plug 'neovim/nvim-lspconfig'
+    Plug 'williamboman/mason.nvim'
+    Plug 'williamboman/mason-lspconfig.nvim'
+    " Plug 'glepnir/lspsaga.nvim'
     Plug 'hrsh7th/nvim-cmp'
     Plug 'hrsh7th/cmp-buffer'
     Plug 'hrsh7th/cmp-path'
@@ -173,6 +172,7 @@ Plug 'AlessandroYorba/Alduin' "brown lowcon
 Plug 'jnurmine/Zenburn' "tolerable
 Plug 'jonathanfilip/vim-lucius' "day morning
 Plug 'mtglsk/mushroom' "night
+Plug 'rose-pine/neovim' "fancy dark
 Plug 'CruizeMissile/Revolution.vim' "cool lowcont
 Plug 'romainl/Apprentice' "nostrain
 Plug 'Heorhiy/VisualStudioDark.vim' "mid con
