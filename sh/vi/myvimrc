@@ -76,7 +76,7 @@ set list lcs=tab:\┆\ 
 set scrolloff=2
 set number
 set numberwidth=2
-set signcolumn=number
+set signcolumn=yes
 set showmode
 set hls
 noh
@@ -461,6 +461,7 @@ nnoremap ,,b :Telescope buffers sort_mru=1 theme=ivy<CR>
 nnoremap qb  :Telescope buffers sort_mru=1<CR>
 nnoremap ,<space>  :Telescope buffers sort_mru=1 theme=dropdown height=0.9 winblend=9<CR>
 nnoremap ,to :Telescope oldfiles<CR>
+nnoremap ,td :Telescope diagnostics<CR>
 nnoremap ,zf :Files<CR>
 nnoremap ,zg :GFiles<CR>
 nnoremap ,zl :Lines<CR>
@@ -657,7 +658,7 @@ nnoremap ,,n :NvimTreeFindFile!<CR>
 " if has("nvim") | nnoremap ,n :NvimTreeFocus<CR>| endif
 
 " Exec current paragraph with shell
-nnoremap ,B yap: exec "!" . @"<CR>
+nnoremap ,b; yap: exec "!" . @"<CR>
 
 " Exec selection with shell
 vnoremap ,b :call RunSelBash()<CR>
@@ -1651,5 +1652,7 @@ endif
 nnoremap <silent><A-;> <Cmd>exe v:count1 . "ToggleTerm"<CR>
 tnoremap <silent><A-;> <C-\><C-n>:ToggleTermToggleAll<CR>
 
+" set completeopt=menuone,noselect
+set completeopt=menu,noselect
 
 

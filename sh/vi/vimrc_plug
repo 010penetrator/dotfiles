@@ -80,6 +80,7 @@ Plug 'zefei/vim-colortuner' "fun
 Plug 'Townk/vim-autoclose' "usable
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'will133/vim-dirdiff'
+Plug 'tpope/vim-sleuth'
 
 " Try out later
 " Plug 'tpope/vim-unimpaired'
@@ -126,6 +127,8 @@ if has("nvim")
     Plug 'hrsh7th/cmp-path'
     Plug 'hrsh7th/cmp-cmdline'
     Plug 'hrsh7th/cmp-nvim-lsp'
+    Plug 'L3MON4D3/LuaSnip'
+    Plug 'saadparwaiz1/cmp_luasnip'
     Plug 'chentoast/marks.nvim' " okay
     " Plug 'norcalli/nvim-colorizer.lua'
     " Plug 'kwkarlwang/bufjump.nvim'

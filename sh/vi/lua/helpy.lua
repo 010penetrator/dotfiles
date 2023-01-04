@@ -1,3 +1,5 @@
+-- vim: ts=2 sw=2
+-- H is the door
 
 H = {}
 
@@ -6,7 +8,6 @@ function tprint (tbl)
         print(k,v)
     end
 end
-
 
 local M = H
 ---Author: cseickel
@@ -47,3 +48,23 @@ M.path_join = function(...)
   return table.concat(all_parts, M.path_separator)
 end
 
+local keymap = vim.api.nvim_set_keymap
+local a_opts = { noremap = true }
+-- local function nkeymap(a_key, a_map)
+local function nkeymap(a_key, a_map)
+  keymap('n', a_key, a_map, a_opts)
+end
+M.nkeymap = nkeymap
+
+-- local hotfun = {}
+M.teles_ff = function()
+  local opt = require('telescope.themes').get_ivy({height=10,previewer=false,winblend=16})
+  require('telescope.builtin').current_buffer_fuzzy_find(opt)
+end
+-- nkeymap('<C-h>', ':lua require("init").teles_ff()<cr>')
+nkeymap('<C-h>', ':lua require("helpy").teles_ff()<cr>')
+-- :lua package.loaded.init = nil
+-- print("init.lua loaded once more")
+-- return hotfun
+
+return M

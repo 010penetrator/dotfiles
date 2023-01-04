@@ -54,6 +54,7 @@ SSource $loc/vimrc.local
 if has("nvim")
     SSource $vi/lua/helpy.lua
     SSource $vi/lua/init.lua
+    SSource $vi/lua/migrate.lua
     SSource $vi/lua/nvim-lsp.lua
 endif
 
