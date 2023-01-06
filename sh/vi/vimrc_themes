@@ -42,7 +42,6 @@ else
         " colo bluewery-light | LineColor selenized_light
         " colo Tomorrow-Night-Eighties | LineColor snow_dark
         " colo edge | set bg=dark | LineColor darcula
-        " colo espresso | LineColor snow_dark
         " colo cryslominsa | LineColor cryslominsa
         " colo stellarized | set bg=light | LineColor atlantis
     " elseif hostname == "warmPC" || hostname == "rpi4b" || hostname == "machine"

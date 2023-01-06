@@ -93,10 +93,36 @@ end
 
 require"nvim-treesitter.configs".setup {
   -- ensure_installed = "mantained",
-  ensure_installed = { 'c', 'cpp', 'lua', 'python', 'vim', 'bash' },
+  ensure_installed = { 'c', 'cpp', 'lua', 'python', 'vim', 'bash', 'help' },
+
   highlight = { enable = true },
-  indent = { enable = true },
+  indent = { enable = true, disable = { 'python' } },
+
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = '<c-space>',
+      node_incremental = '<c-space>',
+      scope_incremental = '<c-s>',
+      node_decremental = '<c-backspace>',
+    },
+  },
+
   textobjects = {
+    select = {
+      enable = true,
+      lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
+      keymaps = {
+        -- You can use the capture groups defined in textobjects.scm
+        ['aa'] = '@parameter.outer',
+        ['ia'] = '@parameter.inner',
+        ['af'] = '@function.outer',
+        ['if'] = '@function.inner',
+        ['ac'] = '@class.outer',
+        ['ic'] = '@class.inner',
+      },
+    },
+
     move = {
       enable = true,
       set_jumps = true, -- whether to set jumps in the jumplist
@@ -117,6 +143,7 @@ require"nvim-treesitter.configs".setup {
         ['[]'] = '@class.outer',
       },
     },
+
     swap = {
       enable = true,
       swap_next = {
@@ -128,6 +155,7 @@ require"nvim-treesitter.configs".setup {
     },
   },
 }
+
 -- vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 

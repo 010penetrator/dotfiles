@@ -21,7 +21,12 @@ if filereadable($MYAUTOLOAD . "/plug.vim")
 else
     let g:vimplug_available=0
 endif
-" if ! empty(execute('filter /plug.vim$/ scriptnames'))
+
+if empty(execute('filter /fugitive.vim$/ scriptnames'))
+    echo "Have to install plugins.."
+else
+    echo "Plugins seem to be installed already."
+endif
 
 " Oneliner to Plug on condition
     " Plug 'benekastah/neomake", has("nvim") ? {} : { "on': [] }
