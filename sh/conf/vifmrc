@@ -128,6 +128,7 @@ nnoremap ,<space> :echo "Available space on " . system("df -h --output=source,av
 nnoremap ,F :! watch -n .4 ls -la --block-size=M %f
 nnoremap ,. :! echo -ne \\n  ls dir :\\n ; ls -la --color=auto . ; read -rsn1 <cr>
 nnoremap ,a :! clear -x; $LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT ; read -rsn1 <cr>
+nnoremap ,A :! clear -x; watch -n 1 $LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT<cr>
 nnoremap ,s :! clear -x; df -BMB ; read -rsn1 <cr>
 nnoremap qy :! echo -ne "\n-- Try to sync @ $(date '+%%Y-%%m-%%d %%H:%%M:%%S') ...... \n" ; (time sync) 2>&1 | tr '\t' ' ' | tr '\n' '\t' ; echo -ne "\n-- Complete    @ $(date '+%%Y-%%m-%%d %%H:%%M:%%S')\n" <CR>:echo "Sync complete!"<CR>
 nnoremap z<BS> :! echo -ne "\n-- Try to sync @ $(date '+%%Y-%%m-%%d %%H:%%M:%%S') ...... \n" ; (time sync) 2>&1 | tr '\t' ' ' | tr '\n' '\t' ; echo -ne "\n-- Complete    @ $(date '+%%Y-%%m-%%d %%H:%%M:%%S')\n" <CR>:echo "Sync complete!"<CR>

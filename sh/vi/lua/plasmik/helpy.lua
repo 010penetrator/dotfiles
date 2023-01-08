@@ -62,7 +62,7 @@ M.teles_ff = function()
   require('telescope.builtin').current_buffer_fuzzy_find(opt)
 end
 -- nkeymap('<C-h>', ':lua require("init").teles_ff()<cr>')
-nkeymap('<C-h>', ':lua require("helpy").teles_ff()<cr>')
+nkeymap('<C-h>', ':lua require("plasmik.helpy").teles_ff()<cr>')
 -- :lua package.loaded.init = nil
 -- print("init.lua loaded once more")
 -- return hotfun

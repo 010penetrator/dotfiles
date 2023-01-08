@@ -5,6 +5,8 @@ require('plasmik.set')
 require('plasmik.helpy')
 require('plasmik.remap')
 
+-- print('hello from plasmik')
+
 require('nvim-autopairs').setup{}
 require('Comment').setup()
 -- require('yode-nvim').setup()
@@ -376,7 +378,8 @@ H.nkeymap(',R', ':lua vim.lsp.buf.rename()<cr>')
 --     Completion:    --
 ------------------{{{}}}
 
-vim.opt.completeopt={"menu", "menuone", "noselect"}
+vim.opt.completeopt={"menu", "noselect"}
+-- vim.opt.completeopt={"menu", "menuone", "noselect"}
 
 -- Turn on lsp status information
 -- require('fidget').setup()

@@ -119,6 +119,8 @@ if has("nvim")
     Plug 'nvim-lualine/lualine.nvim'
     Plug 'mfussenegger/nvim-lint'
     Plug 'mfussenegger/nvim-dap'
+    Plug 'rcarriga/nvim-dap-ui'
+    Plug 'nvim-telescope/telescope-dap.nvim'
     Plug 'nvim-treesitter/nvim-treesitter', {'do':':TSUpdate'}
     Plug 'neovim/nvim-lspconfig'
     Plug 'williamboman/mason.nvim'

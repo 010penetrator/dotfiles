@@ -18,6 +18,7 @@ PS1=$'\[$(tput bold)\]\[$(tput setaf 34)\]\u\[$(tput setaf 78)\] \W \[$(tput set
 alias bb='tty | grep -q /dev/tty && ( terminusfont; [[ -f /usr/bin/tap ]] && sudo /usr/bin/tap; startx $sh/xinitrc bspwm ) || echo This is not tty!'
 alias tf='terminusfont'
 alias v='vir'
+alias fm='vifm'
 alias va='MODE=last nvimrpc'
 alias s="git status"
 alias b="git branch -a"
