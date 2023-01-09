@@ -56,6 +56,11 @@ local function nkeymap(a_key, a_map)
 end
 M.nkeymap = nkeymap
 
+local nmap = function(keys, func, desc)
+  vim.keymap.set("n", keys, func, { desc = desc, noremap = true })
+end
+M.nmap = nmap
+
 -- local hotfun = {}
 M.teles_ff = function()
   local opt = require('telescope.themes').get_ivy({height=10,previewer=false,winblend=16})

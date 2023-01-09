@@ -27,9 +27,11 @@ require('telescope').load_extension('fzf')
 -- theme['layout_config']['height'] = vim.opt.lines:get() - 8
 -- theme['sort_mru'] = true
 -- require('telescope.builtin').buffers(theme)
-Tele_ivy = require('telescope.themes').get_ivy{ sort_mru = true, layout_config = { height =  vim.opt.lines:get() - 8 } }
--- require('telescope.builtin').buffers(Tele_ivy)
-Tele_buff_ivy = function() require('telescope.builtin').buffers( Tele_ivy ) end,
+Tele_ivy = require('telescope.themes').get_ivy{ sort_mru = true, layout_config = { height = vim.opt.lines:get() - 8 } }
+Tele_buff_ivy = function() require('telescope.builtin').buffers( Tele_ivy ) end
+Tele_drop = require('telescope.themes').get_dropdown{ sort_mru=true, winblend=9, layout_config = { height=26 } }
+Tele_buff_drop = function() require('telescope.builtin').buffers( Tele_drop ) end
+-- require('telescope.builtin').buffers(Tele_drop)
 
 --[[ require('eval').setup{
     -- prefix_char = "> ", -- char displayed before the output content
@@ -42,9 +44,10 @@ Tele_buff_ivy = function() require('telescope.builtin').buffers( Tele_ivy ) end,
     }
 } ]]
 
---[[ -- disable netrw at the very start of your init.lua (strongly advised)
+-- disable netrw early in user/init.lua
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+--[[
 -- require"nvim-tree".open_replacing_current_buffer()
 require("nvim-tree").setup({
   disable_netrw = true,
@@ -359,8 +362,10 @@ if vim.fn.has('nvim-0.6') == 1 then
 ')
 end
 
-if vim.fn.has('nvim-0.7') == 1 then
-  -- print("Nvim 0.7 level available")
+if vim.fn.has('nvim-0.7')==1 then
+  -- local nmap = function(keys, func, desc)
+  --   vim.keymap.set("n", keys, func, { desc = desc })
+  -- end
   -- vim.keymap.set("n","K", vim.lsp.buf.hover, {buffer=0})
   vim.keymap.set("n","gH", vim.lsp.buf.hover)
   vim.keymap.set("n","gK", "K")
@@ -381,8 +386,9 @@ if vim.fn.has('nvim-0.7') == 1 then
   vim.keymap.set("n","qa", vim.lsp.buf.code_action)
   vim.keymap.set("n","qa", vim.lsp.buf.code_action)
   vim.keymap.set("n","qa", vim.lsp.buf.code_action)
-  vim.keymap.set("n",",,b", Tele_buff_ivy)
-  -- vim.keymap.set("n","-", nvtree_imit_netrw)
+  -- vim.keymap.set("n",",,b", Tele_buff_ivy, {desc = "Telescope buffers ivy-themed"})
+  H.nmap(',,b', Tele_buff_ivy, "Telescope [B]uffers ivy-themed")
+  H.nmap(',<space>', Tele_buff_drop)
 end
 
 H.nkeymap(',R', ':lua vim.lsp.buf.rename()<cr>')

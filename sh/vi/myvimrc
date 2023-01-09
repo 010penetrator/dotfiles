@@ -456,9 +456,7 @@ nnoremap ,bi :Unite buffer file<CR>i
 nnoremap ,bk :Denite buffer -mode=normal -immediately-1<CR>
 nnoremap ,be :BufExplorer<CR>
 nnoremap ,,e :BufExplorer<CR>
-nnoremap ,,b :Telescope buffers sort_mru=1 theme=ivy<CR>
-nnoremap qb  :Telescope buffers sort_mru=1<CR>
-nnoremap ,<space>  :Telescope buffers sort_mru=1 theme=dropdown winblend=9<CR>
+" nnoremap ,<space>  :Telescope buffers sort_mru=1 theme=dropdown winblend=9<CR>
 nnoremap ,to :Telescope oldfiles<CR>
 nnoremap ,td :Telescope diagnostics<CR>
 nnoremap ,zf :Files<CR>

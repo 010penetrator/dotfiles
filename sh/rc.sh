@@ -30,9 +30,10 @@ if [[ ! -f /tmp/nowis ]]; then # set wallpaper
   if [[ -f $HOME/.config/nitrogen/bg-saved.cfg ]]; then
     nitrogen --restore &
   else
-    nitrogen --set-zoom-fill  /ln/ho/compy/wlp/earth_by_tatasz_d8snwb5.png
+    nitrogen --set-zoom-fill  $git/wlp/earth_by_tatasz_d8snwb5.png
   fi
 fi
+# ( sleep .3; nitrogen --restore & ) # failsafe
 
 # xinput set-prop "A4TECH USB Device" "libinput Accel Speed" -.5
 # xinput set-prop "LVT ENDGAME GEAR XM1" "libinput Accel Speed" -.5
@@ -102,6 +103,4 @@ picom.sh
 
 # echo RC done
 notify-send 'RC complete'
-
-( sleep .3; nitrogen --restore & ) # failsafe
 
