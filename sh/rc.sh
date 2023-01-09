@@ -27,11 +27,11 @@ sxd.sh &
 # killall sxhkd; sxhkd -c ~/.sh/sxhkdrc &
 
 if [[ ! -f /tmp/nowis ]]; then # set wallpaper
-    if [[ -f $HOME/.config/nitrogen/bg-saved.cfg ]]; then
-        nitrogen --restore &
-    else
-        nitrogen --set-zoom-fill  /ln/ho/compy/wlp/earth_by_tatasz_d8snwb5.png
-    fi
+  if [[ -f $HOME/.config/nitrogen/bg-saved.cfg ]]; then
+    nitrogen --restore &
+  else
+    nitrogen --set-zoom-fill  /ln/ho/compy/wlp/earth_by_tatasz_d8snwb5.png
+  fi
 fi
 
 # xinput set-prop "A4TECH USB Device" "libinput Accel Speed" -.5
@@ -51,7 +51,7 @@ elif [[ $HOSTNAME = "virtpc" ]]; then
 
 elif [[ "$HOSTNAME" =~ "machine" ]]; then
   xrdb -merge <(echo "Xft.dpi: 128") &
-  xrandr --output DisplayPort-0 --mode 2560x1440 --rate 100
+  xrandr --output DP-1 --mode 2560x1440 --rate 120
   # sleep 1
   # pgrep transmission-da | grep . || trdwrap.sh &
   # pgrep earlyoom | grep . || earlyoom -m 2 -n &> /dev/null &
