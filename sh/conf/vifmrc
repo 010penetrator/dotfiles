@@ -73,7 +73,7 @@ nnoremap g<Up> hkl
 nnoremap cd :cd<space>
 nnoremap qc :
 nnoremap q; :<up>
-nnoremap a; :<up><CR>
+" nnoremap a; :<up><CR>
 nnoremap ,,v :source $MYVIFMRC <CR>
 nnoremap ar ggvGcw
 nnoremap ae :winrun , cd %C <CR><Tab>
@@ -177,10 +177,10 @@ nnoremap E :move<cr>
 nnoremap ci :move /ln/hh/imgdl1/<cr>
 noremap aj :!touch %f --date=now<cr>j
 nnoremap cn :clone<cr>
-nnoremap al :!ln -s $PWD/%c %D/%c<cr>
-nnoremap ah :!ln -sr $PWD/%c %D/%c
+nnoremap al :!ln -s  %d/%c %D/%c<cr>
+nnoremap ah :!ln -sr %d/%c %D/%c
 nnoremap ap al
-nnoremap aL :!ln -s $PWD/%c %d/%cL
+nnoremap aL :!ln -s  %d/%c %d/%cL
 
 " Compress files "
 nnoremap zu :! upk2dir.sh %c;echo<cr>
