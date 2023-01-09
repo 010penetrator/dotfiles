@@ -5,7 +5,7 @@ require('plasmik.set')
 require('plasmik.helpy')
 require('plasmik.remap')
 
--- print('hello from plasmik')
+print('hello from plasmik')
 
 require('nvim-autopairs').setup{}
 require('Comment').setup()
@@ -23,6 +23,14 @@ require('telescope').setup{
 }
 require('telescope').load_extension('fzf')
 
+-- local theme = require('telescope.themes').get_ivy()
+-- theme['layout_config']['height'] = vim.opt.lines:get() - 8
+-- theme['sort_mru'] = true
+-- require('telescope.builtin').buffers(theme)
+Tele_ivy = require('telescope.themes').get_ivy{ sort_mru = true, layout_config = { height =  vim.opt.lines:get() - 8 } }
+-- require('telescope.builtin').buffers(Tele_ivy)
+Tele_buff_ivy = function() require('telescope.builtin').buffers( Tele_ivy ) end,
+
 --[[ require('eval').setup{
     -- prefix_char = "> ", -- char displayed before the output content
     -- a table with each filetype and its respective command to run code
@@ -34,14 +42,18 @@ require('telescope').load_extension('fzf')
     }
 } ]]
 
--- disable netrw at the very start of your init.lua (strongly advised)
+--[[ -- disable netrw at the very start of your init.lua (strongly advised)
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 -- require"nvim-tree".open_replacing_current_buffer()
 require("nvim-tree").setup({
   disable_netrw = true,
   hijack_netrw = true,
-  hijack_unnamed_buffer_when_opening = false,
+  hijack_directories = {
+    enable = true,
+    auto_open = true,
+  },
+  -- hijack_unnamed_buffer_when_opening = false,
   ignore_buffer_on_setup = true,
   sort_by = "case_sensitive",
   view = {
@@ -59,7 +71,6 @@ require("nvim-tree").setup({
     dotfiles = true,
   },
 })
-
 function nvtree_toggle_replace()
   local view = require"nvim-tree.view"
   local api = require"nvim-tree.api"
@@ -70,7 +81,6 @@ function nvtree_toggle_replace()
     -- require"nvim-tree".open_replacing_current_buffer()
   end
 end
-
 function nvtree_imit_netrw()
   local curname=vim.api.nvim_buf_get_name(0)
   print(curname)
@@ -89,9 +99,9 @@ function nvtree_imit_netrw()
     api.tree.focus()
     api.tree.find_file(curname)
   else
-    require"nvim-tree".open_replacing_current_buffer()
+    require('nvim-tree').open_replacing_current_buffer()
   end
-end
+end ]]
 
 require"nvim-treesitter.configs".setup {
   -- ensure_installed = "mantained",
@@ -318,7 +328,7 @@ local nc_capabilities = require('cmp_nvim_lsp').default_capabilities(capabilitie
 require('lspconfig').bashls.setup{ on_attach = function() print("lsp client is bashls") end, }
 require('lspconfig').clangd.setup{ on_attach = function() print("lsp client is clangd") end, }
 require('lspconfig').sumneko_lua.setup{
-  on_attach = function() print("lsp client is sumneko_lua") end,
+  -- on_attach = function() print("lsp client is sumneko_lua") end,
   settings = { Lua = { diagnostics = { globals = {'vim'}}}},
 }
 require('lspconfig').pyright.setup{ on_attach = function() print("lsp client is pyright") end, capabilities = nc_capabilities }
@@ -350,7 +360,7 @@ if vim.fn.has('nvim-0.6') == 1 then
 end
 
 if vim.fn.has('nvim-0.7') == 1 then
-  -- print("Nvim is cutting edge new")
+  -- print("Nvim 0.7 level available")
   -- vim.keymap.set("n","K", vim.lsp.buf.hover, {buffer=0})
   vim.keymap.set("n","gH", vim.lsp.buf.hover)
   vim.keymap.set("n","gK", "K")
@@ -369,7 +379,10 @@ if vim.fn.has('nvim-0.7') == 1 then
   vim.keymap.set("n","z<up>", vim.diagnostic.goto_prev)
   vim.keymap.set("n",",r", vim.lsp.buf.rename)
   vim.keymap.set("n","qa", vim.lsp.buf.code_action)
-  vim.keymap.set("n","-", nvtree_imit_netrw)
+  vim.keymap.set("n","qa", vim.lsp.buf.code_action)
+  vim.keymap.set("n","qa", vim.lsp.buf.code_action)
+  vim.keymap.set("n",",,b", Tele_buff_ivy)
+  -- vim.keymap.set("n","-", nvtree_imit_netrw)
 end
 
 H.nkeymap(',R', ':lua vim.lsp.buf.rename()<cr>')

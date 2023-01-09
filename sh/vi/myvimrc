@@ -1,4 +1,4 @@
-" vim: ts=4 sw=4 ft=vim
+" vim: ts=2 sw=2 ft=vim
 " vi: noswapfile
 
 """"""""""""""""""""""""
@@ -112,18 +112,18 @@ if $TERMINAL =~ 'kitty' | let &t_ut='' | endif
 
 if has('mouse') | set mouse=a | endif
 if &t_Co > 2 || has("gui_running")
-    syntax on
-    let c_comment_strings=1
+  syntax on
+  let c_comment_strings=1
 endif
 
 augroup Sessload
-    autocmd!
-    autocmd SessionLoadPost * silent LoadColor
+  autocmd!
+  autocmd SessionLoadPost * silent LoadColor
 augroup END
 augroup SaveNotepad
-    autocmd!
-    autocmd FocusLost silly.txt silent update
-    autocmd BufLeave  silly.txt silent update
+  autocmd!
+  autocmd FocusLost silly.txt silent update
+  autocmd BufLeave  silly.txt silent update
 augroup END
 
 " autocmd SessionLoadPost * echom "Welcome back"
@@ -155,15 +155,15 @@ autocmd FileType c setlocal colorcolumn=0
 " let g:sneak#map_netrw = 0
 
 if executable('rg')
-    set grepprg=rg\ --smart-case\ --vimgrep\ --follow\ --no-ignore\ -g\ '!tags'
-    " Output of :grep should go to cwindow
-    autocmd QuickFixCmdPost *grep* cwindow
+  set grepprg=rg\ --smart-case\ --vimgrep\ --follow\ --no-ignore\ -g\ '!tags'
+  " Output of :grep should go to cwindow
+  autocmd QuickFixCmdPost *grep* cwindow
 elseif executable('ag')
 endif
 
 " Remember last tab to use it later!
 if !exists("g:lasttab")
-    let g:lasttab = 1
+  let g:lasttab = 1
 endif
 au TabLeave * let g:lasttab = tabpagenr()
 
@@ -182,30 +182,30 @@ let g:deoplete#enable_at_startup = 1
 " let g:SrcExpl_winHeight = 13
 
 if has("cscope")
-    " set cscopetag
-    set csto=0
-    if filereadable("cscope.out")
-        cs add cscope.out
-    elseif $CSCOPE_DB != ''
-        cs add $CSCOPE_DB
-    endif
-    set cscopeverbose
-    nmap <C-@>s :cs find s <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-@>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-@>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-@>t :cs find t <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-@>e :cs find e <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-@>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-    nmap <C-@>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-    nmap <C-@>d :cs find d <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-@>S :scs find s <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-@>G :scs find g <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-@>C :scs find c <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-@>T :scs find t <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-@>E :scs find e <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-@>F :scs find f <C-R>=expand("<cfile>")<CR><CR>
-    nmap <C-@>I :scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-    nmap <C-@>D :scs find d <C-R>=expand("<cword>")<CR><CR>
+  " set cscopetag
+  set csto=0
+  if filereadable("cscope.out")
+    cs add cscope.out
+  elseif $CSCOPE_DB != ''
+    cs add $CSCOPE_DB
+  endif
+  set cscopeverbose
+  nmap <C-@>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+  nmap <C-@>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+  nmap <C-@>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+  nmap <C-@>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+  nmap <C-@>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+  nmap <C-@>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+  nmap <C-@>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+  nmap <C-@>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+  nmap <C-@>S :scs find s <C-R>=expand("<cword>")<CR><CR>
+  nmap <C-@>G :scs find g <C-R>=expand("<cword>")<CR><CR>
+  nmap <C-@>C :scs find c <C-R>=expand("<cword>")<CR><CR>
+  nmap <C-@>T :scs find t <C-R>=expand("<cword>")<CR><CR>
+  nmap <C-@>E :scs find e <C-R>=expand("<cword>")<CR><CR>
+  nmap <C-@>F :scs find f <C-R>=expand("<cfile>")<CR><CR>
+  nmap <C-@>I :scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+  nmap <C-@>D :scs find d <C-R>=expand("<cword>")<CR><CR>
 endif
 
 """"""""""""""""""""""""
@@ -213,13 +213,13 @@ endif
 """"""""""""""""""""""""
 
 if has("nvim")
-function CrispBorders()
+  function CrispBorders()
     " set laststatus=3
     highlight WinSeparator guibg=none
     highlight WinSeparator guifg=#5a5a5a
-endfunction
-set winwidth=40
-set winminwidth=40
+  endfunction
+  set winwidth=40
+  set winminwidth=40
 endif
 " call CrispBorders()
 
@@ -458,7 +458,7 @@ nnoremap ,be :BufExplorer<CR>
 nnoremap ,,e :BufExplorer<CR>
 nnoremap ,,b :Telescope buffers sort_mru=1 theme=ivy<CR>
 nnoremap qb  :Telescope buffers sort_mru=1<CR>
-nnoremap ,<space>  :Telescope buffers sort_mru=1 theme=dropdown height=0.9 winblend=9<CR>
+nnoremap ,<space>  :Telescope buffers sort_mru=1 theme=dropdown winblend=9<CR>
 nnoremap ,to :Telescope oldfiles<CR>
 nnoremap ,td :Telescope diagnostics<CR>
 nnoremap ,zf :Files<CR>
@@ -468,14 +468,14 @@ nnoremap ,zs :Files $sh<CR>
 nnoremap ,zt :Files $tt<CR>
 nnoremap ,zj :Files $jo<CR>
 if has("nvim")
-    nnoremap qf :TeleFilesProj<CR>
-    nnoremap ,/ :Telescope find_files search_dirs=$sh,$tt,$loc<CR>
-    nnoremap ,,/ :Telescope find_files theme=ivy search_dirs=$sh,$PWD
+  nnoremap qf :TeleFilesProj<CR>
+  nnoremap ,/ :Telescope find_files search_dirs=$sh,$tt,$loc<CR>
+  nnoremap ,,/ :Telescope find_files theme=ivy search_dirs=$sh,$PWD
 else
-    nnoremap qf :FilesProj<CR>
-    nnoremap ,/ :Files $sh,$tt,$loc<CR>
-    nnoremap ,/ :Files $sh<CR>
-    nnoremap ,,/ :Files $sh
+  nnoremap qf :FilesProj<CR>
+  nnoremap ,/ :Files $sh,$tt,$loc<CR>
+  nnoremap ,/ :Files $sh<CR>
+  nnoremap ,,/ :Files $sh
 endif
 
 " Search text
@@ -489,7 +489,7 @@ nnoremap ,ts :Telescope lsp_document_symbols<CR>
 nnoremap qs  :Telescope lsp_dynamic_workspace_symbols<CR>
 " nnoremap ,tt :Telescope current_buffer_fuzzy_find sorting_strategy=ascending layout_config={"prompt_position":"top"}<CR>
 " nnoremap ,tt <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find({sorting_strategy="ascending", theme="ivy"})<CR>
-nnoremap ,tb <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_ivy{})<CR>
+nnoremap ,tc <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_ivy{})<CR>
 
 " Jump to favourite files
 nnoremap ,gv :call FocusBufOrDo('myvimrc','e $sh/vi/myvimrc')<CR>
@@ -537,35 +537,35 @@ map ,,g :call LGsync()<CR>
 
 " Have mappings in terminal mode
 if v:version >= 801
-    tmap oo <C-w>N:set nonumber<CR>
-    tmap o<C-o> <C-w>N :e #<CR>
-    tmap <C-x> <C-w>N :BDnJump<CR>
-    tnoremap <C-PageUp> <C-w>:tabprev<CR>
-    tnoremap <C-PageDown> <C-w>:tabnext<CR>
-    tnoremap g<tab> <C-w>:exe "tabn ".g:lasttab<CR>
-    tnoremap q<tab> <C-w>p
-    tmap <C-\> <C-w>w
+  tmap oo <C-w>N:set nonumber<CR>
+  tmap o<C-o> <C-w>N :e #<CR>
+  tmap <C-x> <C-w>N :BDnJump<CR>
+  tnoremap <C-PageUp> <C-w>:tabprev<CR>
+  tnoremap <C-PageDown> <C-w>:tabnext<CR>
+  tnoremap g<tab> <C-w>:exe "tabn ".g:lasttab<CR>
+  tnoremap q<tab> <C-w>p
+  tmap <C-\> <C-w>w
 endif
 if has("nvim")
-    tnoremap oo <C-\><C-n>
-    tnoremap o<C-o> <C-\><C-n>:e #<CR>
-    tnoremap <C-x> <C-\><C-n>:BDnJump<CR>
-    tnoremap <C-PageUp> <C-\><C-n>:tabprev<CR>
-    tnoremap <C-PageDown> <C-\><C-n>:tabnext<CR>
-    tnoremap g<tab> <C-\><C-n>:exe "tabn ".g:lasttab<CR>
-    tnoremap q<tab> <C-\><C-n>:wincmd p<CR>
-    tnoremap <A-h> <C-\><C-N><C-w>h
-    tnoremap <A-j> <C-\><C-N><C-w>j
-    tnoremap <A-k> <C-\><C-N><C-w>k
-    tnoremap <A-l> <C-\><C-N><C-w>l
-    inoremap <A-h> <C-\><C-N><C-w>h
-    inoremap <A-j> <C-\><C-N><C-w>j
-    inoremap <A-k> <C-\><C-N><C-w>k
-    inoremap <A-l> <C-\><C-N><C-w>l
-    nnoremap <A-h> <C-w>h
-    nnoremap <A-j> <C-w>j
-    nnoremap <A-k> <C-w>k
-    nnoremap <A-l> <C-w>l
+  tnoremap oo <C-\><C-n>
+  tnoremap o<C-o> <C-\><C-n>:e #<CR>
+  tnoremap <C-x> <C-\><C-n>:BDnJump<CR>
+  tnoremap <C-PageUp> <C-\><C-n>:tabprev<CR>
+  tnoremap <C-PageDown> <C-\><C-n>:tabnext<CR>
+  tnoremap g<tab> <C-\><C-n>:exe "tabn ".g:lasttab<CR>
+  tnoremap q<tab> <C-\><C-n>:wincmd p<CR>
+  tnoremap <A-h> <C-\><C-N><C-w>h
+  tnoremap <A-j> <C-\><C-N><C-w>j
+  tnoremap <A-k> <C-\><C-N><C-w>k
+  tnoremap <A-l> <C-\><C-N><C-w>l
+  inoremap <A-h> <C-\><C-N><C-w>h
+  inoremap <A-j> <C-\><C-N><C-w>j
+  inoremap <A-k> <C-\><C-N><C-w>k
+  inoremap <A-l> <C-\><C-N><C-w>l
+  nnoremap <A-h> <C-w>h
+  nnoremap <A-j> <C-w>j
+  nnoremap <A-k> <C-w>k
+  nnoremap <A-l> <C-w>l
 endif
 
 " Scroll fraction of the screen
@@ -621,7 +621,6 @@ nnoremap ,; :6mes<CR>
 nnoremap yq :@"<CR>
 " Add Plug entry
 nnoremap ,vp :put + <bar> exec "normal dfmxIPlug 'A'"<CR>==
-nnoremap ,vu :source /ln/sh/vi/init.vim <bar> PlugUpdate<CR>
 " Evaluate one line as Vimscript
 nnoremap ,vl yy:@"<CR>
 " Evaluate a paragraph as Vimscript and re-run last command
@@ -629,8 +628,9 @@ nnoremap ,v<CR> yap:@"<CR>:<up><CR>
 " Evaluate one line or one paragraph as Vimscript
 nnoremap ,v, :call EvalThis()<CR>
 " Evaluate a paragraph as Vimscript
-nnoremap ,v; :let lastl=line('.') <bar> exec "normal yap" <bar> @\" <bar> exec lastl<CR>:echo "Evaluated current paragraph."<CR>
-nnoremap ,vx :let lastl=line('.') <bar> exec "normal yap" <bar> @\" <bar> exec lastl<CR>:echo "Evaluated current paragraph."<CR>
+nnoremap ,v; :let lastpos=line('.') <bar> exec "normal yap" <bar> @\" <bar> exec lastpos<CR>:echo "Evaluated current paragraph."<CR>
+" Evaluate a paragraph as Lua
+nnoremap ,vu :let lastpos=line('.') <bar> exec "normal yap" <bar> exec 'lua ' . expand(@") <bar> exec lastpos<CR>:echo "Evaluated current paragraph."<CR>
 
 " Open current location with vifm within vim
 nnoremap ac :terminal ++close bash -c "INVIM=1 vifm %:p:h"<CR>
@@ -638,11 +638,13 @@ nnoremap aC :vertical terminal ++close bash -c "INVIM=1 vifm %:p:h"<CR>
 nnoremap a; :terminal ++kill=term ++curwin ++close bash -c "INVIM=1 vifm %:p:h"<CR>
 nnoremap a: :tabe \| terminal ++kill=term ++curwin bash -c "INVIM=1 vifm #:p:h"<CR>
 
-" Split open terminal at current location
-nnoremap ab : new \| if isdirectory(expand('#:p:h')) \| lcd #:p:h \| endif \| terminal ++kill=term ++curwin ++norestore<CR>
-nnoremap aB : vnew \| if isdirectory(expand('#:p:h')) \| lcd #:p:h \| endif \| terminal ++kill=term ++curwin ++norestore<CR>
-" Open terminal at current location
-nnoremap qB : if isdirectory(expand('%:p:h')) \| lcd %:p:h \| endif \| terminal ++kill=term ++curwin ++norestore<CR>
+if !has('nvim')
+  " Split open terminal at current location
+  nnoremap ab : new \| if isdirectory(expand('#:p:h')) \| lcd #:p:h \| endif \| terminal ++kill=term ++curwin ++norestore<CR>
+  nnoremap aB : vnew \| if isdirectory(expand('#:p:h')) \| lcd #:p:h \| endif \| terminal ++kill=term ++curwin ++norestore<CR>
+  " Open terminal at current location
+  nnoremap qB : if isdirectory(expand('%:p:h')) \| lcd %:p:h \| endif \| terminal ++kill=term ++curwin ++norestore<CR>
+endif
 
 " Spawn a terminal outside vim
 nnoremap ,,t :NewTermHere<CR>
@@ -651,9 +653,10 @@ nnoremap ,,c :NewVifmHere<CR>
 
 " Jump to terminal window
 nnoremap qt :call GotoTerm(0)<CR>
-" Jump to netrw window
-nnoremap ,n :NvimTreeToggle<CR>
-nnoremap ,,n :NvimTreeFindFile!<CR>
+" Jump to filetree window
+nnoremap ,n :NeoTreeFocusToggle<CR>
+nnoremap ,,n :NeoTreeShowToggle<CR>
+nnoremap - :Neotree current<CR>
 " if has("nvim") | nnoremap ,n :NvimTreeFocus<CR>| endif
 
 " Exec current paragraph with shell
@@ -732,34 +735,34 @@ command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
 
 xnoremap ,s :<C-U> echo GetVisualSelectionSum(visualmode())<Cr>
 function! GetVisualSelectionSum(mode)
-    " call with visualmode() as the argument
-    let [line_start, column_start] = getpos("'<")[1:2]
-    let [line_end, column_end]     = getpos("'>")[1:2]
-    let lines = getline(line_start, line_end)
-    if a:mode ==# 'v'
-        " Must trim the end before the start, the beginning will shift left.
-        let lines[-1] = lines[-1][: column_end - (&selection == 'inclusive' ? 1 : 2)]
-        let lines[0] = lines[0][column_start - 1:]
-    elseif  a:mode ==# 'V'
-        " Line mode no need to trim start or end
-    elseif  a:mode == "\<c-v>"
-        " Block mode, trim every line
-        let new_lines = []
-        let i = 0
-        for line in lines
-            let lines[i] = line[column_start - 1: column_end - (&selection == 'inclusive' ? 1 : 2)]
-            let i = i + 1
-        endfor
-    else
-        return ''
-    endif
-    " for line in lines
-    "     echom line
-    " endfor
-    " return join(lines, "\n")
-    " return join(lines, "+")
-    return eval(substitute(join(lines,"+"),',','.',"g"))
-    " return substitute(join(lines,"+"),',','.',"g")
+  " call with visualmode() as the argument
+  let [line_start, column_start] = getpos("'<")[1:2]
+  let [line_end, column_end]     = getpos("'>")[1:2]
+  let lines = getline(line_start, line_end)
+  if a:mode ==# 'v'
+    " Must trim the end before the start, the beginning will shift left.
+    let lines[-1] = lines[-1][: column_end - (&selection == 'inclusive' ? 1 : 2)]
+    let lines[0] = lines[0][column_start - 1:]
+  elseif  a:mode ==# 'V'
+    " Line mode no need to trim start or end
+  elseif  a:mode == "\<c-v>"
+    " Block mode, trim every line
+    let new_lines = []
+    let i = 0
+    for line in lines
+      let lines[i] = line[column_start - 1: column_end - (&selection == 'inclusive' ? 1 : 2)]
+      let i = i + 1
+    endfor
+  else
+    return ''
+  endif
+  " for line in lines
+  "     echom line
+  " endfor
+  " return join(lines, "\n")
+  " return join(lines, "+")
+  return eval(substitute(join(lines,"+"),',','.',"g"))
+  " return substitute(join(lines,"+"),',','.',"g")
 endfunction
 
 " Sum lines of numbers in range
@@ -773,7 +776,7 @@ command! KIR e ++enc=cp1251 | set fileencoding=utf-8 | set fileformat=unix
 command! F set fileencoding=utf-8 | set fileformat=unix
 
 function! RunSelBash()
-    echo system(join(getline(a:firstline,a:lastline), "\n"))
+  echo system(join(getline(a:firstline,a:lastline), "\n"))
 endfunction
 
 " command! SessWriteA call SaveColor() | call TerminalsFuneral() | mksession! $VICONFD/session.vim | SaveSigns! $VICONFD/signs.sav
@@ -842,115 +845,115 @@ let @s = "i \<Esc>ll."
 """"""""""""""""""""""""     {{{}}}
 
 function! LGstamp(...)
-exec "lcd " . GetProjDir()
-if system('ls -d .git/ >/dev/null || echo 1')
+  exec "lcd " . GetProjDir()
+  if system('ls -d .git/ >/dev/null || echo 1')
     echom "Can't find .git location!"
     return -1
-endif
-if system('git status|grep -c "nothing to commit"')
+  endif
+  if system('git status|grep -c "nothing to commit"')
     echo "nothing to commit"
-else
+  else
     G add .
     if !empty(a:1)
-        exec "G commit -m" . a:1
+      exec "G commit -m" . a:1
     else
-        G commit -m "---"
+      G commit -m "---"
     endif
-endif
+  endif
 endfunc
 command! -nargs=? LGstamp call LGstamp(<f-args>)
 " command! -nargs=? SaveColor call SetPhase(<f-args>) <bar> call SaveColor(<f-args>)
 
 function! LGsync()
-exec "lcd " . GetProjDir()
-if system('ls -d .git/ >/dev/null || echo 1')
+  exec "lcd " . GetProjDir()
+  if system('ls -d .git/ >/dev/null || echo 1')
     echom "Can't find .git location!"
     return -1
-endif
-G add .
-G commit -m "---"
-G pull
-if system('git status|grep -c "publish your local"')
+  endif
+  G add .
+  G commit -m "---"
+  G pull
+  if system('git status|grep -c "publish your local"')
     G push
-else
+  else
     echo "Nothing to push"
-endif
+  endif
 endfunc
 
 function! RunSelBash()
-    echo system(join(getline(a:firstline,a:lastline), "\n"))
+  echo system(join(getline(a:firstline,a:lastline), "\n"))
 endfunction
 
 function! UpdCtagsDirDeps()
-    echom "Trying to update ctags with deps in this directory"
-    silent exec '! echo -e "\n\n"Trying to update ctags with deps in this directory"..."'
-    exec '! $sh/ctags_with_deps.sh $(find . -type f -name \*.[ch])'
+  echom "Trying to update ctags with deps in this directory"
+  silent exec '! echo -e "\n\n"Trying to update ctags with deps in this directory"..."'
+  exec '! $sh/ctags_with_deps.sh $(find . -type f -name \*.[ch])'
 endfunction
 
 function! UpdCtagsGitDeps()
-    echom "Trying to update ctags with deps in this git project"
-    silent exec '! echo -e "\n\n"Trying to update ctags with deps in this git project"..."'
-    let l:starting_directory = getcwd()
-    let l:curr_directory = expand('%:p:h')
-    exec "cd " . l:curr_directory
-    let l:proj_dir = ClimbToDirWhere(".git/index",1)
-    if ( l:proj_dir != "-1" )
-        silent exec '! echo Found .git in $PWD/'
-        " exec '!ctags -R --exclude=.git --exclude=log --exclude=wutils --c++-kinds=+p --fields=+iaS --extra=+q *'
-        exec '! $sh/ctags_with_deps.sh $(find . -type f -name \*.[ch])'
-    else
-        echom "Cant find .git"
-    endif
-    exec "cd " . l:starting_directory
+  echom "Trying to update ctags with deps in this git project"
+  silent exec '! echo -e "\n\n"Trying to update ctags with deps in this git project"..."'
+  let l:starting_directory = getcwd()
+  let l:curr_directory = expand('%:p:h')
+  exec "cd " . l:curr_directory
+  let l:proj_dir = ClimbToDirWhere(".git/index",1)
+  if ( l:proj_dir != "-1" )
+    silent exec '! echo Found .git in $PWD/'
+    " exec '!ctags -R --exclude=.git --exclude=log --exclude=wutils --c++-kinds=+p --fields=+iaS --extra=+q *'
+    exec '! $sh/ctags_with_deps.sh $(find . -type f -name \*.[ch])'
+  else
+    echom "Cant find .git"
+  endif
+  exec "cd " . l:starting_directory
 endfunction
 
 function! UpdCtagsGit()
-    echom "Trying to update ctags in this git project"
-    silent exec '! echo -e "\n\n"Trying to update ctags in this git project"..."'
-    let l:starting_directory = getcwd()
-    let l:curr_directory = expand('%:p:h')
-    exec "cd " . l:curr_directory
-    let l:proj_dir = ClimbToDirWhere(".git/index",1)
-    if ( l:proj_dir != "-1" )
-        silent exec '! echo Found .git in $PWD/'
-        exec '!ctags -R --exclude=.git --exclude=log --exclude=wutils --c++-kinds=+p --fields=+iaS --extra=+q *'
-    else
-        echom "Cant find .git"
-    endif
-    exec "cd " . l:starting_directory
+  echom "Trying to update ctags in this git project"
+  silent exec '! echo -e "\n\n"Trying to update ctags in this git project"..."'
+  let l:starting_directory = getcwd()
+  let l:curr_directory = expand('%:p:h')
+  exec "cd " . l:curr_directory
+  let l:proj_dir = ClimbToDirWhere(".git/index",1)
+  if ( l:proj_dir != "-1" )
+    silent exec '! echo Found .git in $PWD/'
+    exec '!ctags -R --exclude=.git --exclude=log --exclude=wutils --c++-kinds=+p --fields=+iaS --extra=+q *'
+  else
+    echom "Cant find .git"
+  endif
+  exec "cd " . l:starting_directory
 endfunction
 
 function! AddRpcEar()
-    echo "Will launch an rpc server with default address for this editor.."
-    if has("nvim")
-        if empty($NVIMSERV)
-            echom "NO way! Rpc address for neoVim not provided"
-        elseif filereadable(expand($NVIMSERV))
-            echom "NO way! Desired RPC address is already taken -- " . expand($NVIMSERV)
-        else
-            call serverstart(expand($NVIMSERV))
-        endif
-    elseif v:version >= 800
-        if !empty($VIMSERV)
-            if empty(v:servername)
-                call remote_startserver(expand($VIMSERV))
-            else
-                echom "Sorry, this Vim instance already runs an rpc server"
-            endif
-        else
-            echom "Rpc address for Vim not provided"
-        endif
+  echo "Will launch an rpc server with default address for this editor.."
+  if has("nvim")
+    if empty($NVIMSERV)
+      echom "NO way! Rpc address for neoVim not provided"
+    elseif filereadable(expand($NVIMSERV))
+      echom "NO way! Desired RPC address is already taken -- " . expand($NVIMSERV)
+    else
+      call serverstart(expand($NVIMSERV))
     endif
+  elseif v:version >= 800
+    if !empty($VIMSERV)
+      if empty(v:servername)
+        call remote_startserver(expand($VIMSERV))
+      else
+        echom "Sorry, this Vim instance already runs an rpc server"
+      endif
+    else
+      echom "Rpc address for Vim not provided"
+    endif
+  endif
 endfunction
 
 function! BuildProject1()
-    let l:starting_directory = getcwd()
-    let l:curr_directory = expand('%:p:h')
-    exec "cd " . l:curr_directory
-    exec '!echo -e "\n"============ $(date) ============"\n"@ $PWD'
-    make
-    exec '!echo -e "==Done build==\n"'
-    exec "cd " . l:starting_directory
+  let l:starting_directory = getcwd()
+  let l:curr_directory = expand('%:p:h')
+  exec "cd " . l:curr_directory
+  exec '!echo -e "\n"============ $(date) ============"\n"@ $PWD'
+  make
+  exec '!echo -e "==Done build==\n"'
+  exec "cd " . l:starting_directory
 endfunction
 
 " function! MakeClean()
@@ -960,43 +963,43 @@ endfunction
 " endfunction
 
 function! BuildProjectUni(Makefile,Makecommand)
-    " exec "!echo " . a:Makecommand . ":"
-    " memorize stuff
-    let makeprg_bak = &makeprg
-    let &makeprg = a:Makecommand
-    let starting_directory = getcwd()
-    let curr_directory = expand('%:p:h')
-    " change directory
-    exec "lcd " . curr_directory
+  " exec "!echo " . a:Makecommand . ":"
+  " memorize stuff
+  let makeprg_bak = &makeprg
+  let &makeprg = a:Makecommand
+  let starting_directory = getcwd()
+  let curr_directory = expand('%:p:h')
+  " change directory
+  exec "lcd " . curr_directory
+  let proj_dir = ClimbToDirWhere(a:Makefile,1)
+  " " !!! ignore cmake-generated Makefile
+  while filereadable("vim_make_ignore")
+    cd ../
     let proj_dir = ClimbToDirWhere(a:Makefile,1)
-    " " !!! ignore cmake-generated Makefile
-    while filereadable("vim_make_ignore")
-        cd ../
-        let proj_dir = ClimbToDirWhere(a:Makefile,1)
-    endwhile
-    if ( proj_dir != "-1" )
-        if has("nvim")
-            echo system("echo -e \"\\n\\n\"--" . a:Makecommand . " @ " . proj_dir . ":")
-            echo system("echo ------------------------------------------------")
-            make
-        else
-            silent exec "!echo -e \"\\n\\n\"--" . a:Makecommand . " @ " . proj_dir . ":"
-            silent exec "!echo ------------------------------------------------"
-            silent make
-        endif
-        " exec '! ' . a:Makecommand
+  endwhile
+  if ( proj_dir != "-1" )
+    if has("nvim")
+      echo system("echo -e \"\\n\\n\"--" . a:Makecommand . " @ " . proj_dir . ":")
+      echo system("echo ------------------------------------------------")
+      make
     else
-        exec '! echo Makefile not found!'
-        echo "Makefile not found!"
+      silent exec "!echo -e \"\\n\\n\"--" . a:Makecommand . " @ " . proj_dir . ":"
+      silent exec "!echo ------------------------------------------------"
+      silent make
     endif
-    " reset stuff
-    silent exec "lcd " . starting_directory
-    let &makeprg = makeprg_bak
-    " exit with rituals
-    if !has("nvim")
-        Silent read -n 1 -s -r -p "//hit.anykey" ; echo -ne "\n\n"
-        redraw!
-    endif
+    " exec '! ' . a:Makecommand
+  else
+    exec '! echo Makefile not found!'
+    echo "Makefile not found!"
+  endif
+  " reset stuff
+  silent exec "lcd " . starting_directory
+  let &makeprg = makeprg_bak
+  " exit with rituals
+  if !has("nvim")
+    Silent read -n 1 -s -r -p "//hit.anykey" ; echo -ne "\n\n"
+    redraw!
+  endif
 endfunction
 
 function! ClimbToDirWhere(filename,chdir)
@@ -1011,7 +1014,7 @@ function! ClimbToDirWhere(filename,chdir)
         exec "lcd " . init_dir
       endif
       return result
-    " If we've hit the top level directory, break out
+      " If we've hit the top level directory, break out
     elseif getcwd() ==# "/" || getcwd() =~# '^[^/]..$'
       exec "lcd " . init_dir
       return -1
@@ -1023,54 +1026,54 @@ function! ClimbToDirWhere(filename,chdir)
 endfunction
 
 function! GetProjDir()
-    let proj_dir = ClimbToDirWhere("_proj_root",0)
-    if ( proj_dir == -1 )
-        let proj_dir = ClimbToDirWhere(".git/index",0)
-    endif
-    if ( proj_dir == -1 )
-        let proj_dir = ClimbToDirWhere(".gitignore",0)
-    endif
-    if ( proj_dir == -1 )
-        let proj_dir = ClimbToDirWhere("Makefile",0)
-    endif
-    if ( proj_dir == -1 )
-        let proj_dir = expand('%:p:h')
-    endif
-    let b:proj_dir = proj_dir
-    return proj_dir
+  let proj_dir = ClimbToDirWhere("_proj_root",0)
+  if ( proj_dir == -1 )
+    let proj_dir = ClimbToDirWhere(".git/index",0)
+  endif
+  if ( proj_dir == -1 )
+    let proj_dir = ClimbToDirWhere(".gitignore",0)
+  endif
+  if ( proj_dir == -1 )
+    let proj_dir = ClimbToDirWhere("Makefile",0)
+  endif
+  if ( proj_dir == -1 )
+    let proj_dir = expand('%:p:h')
+  endif
+  let b:proj_dir = proj_dir
+  return proj_dir
 endfunction
 
 function! FocusBufOrDo(name,cmd)
-    if buflisted(bufname(a:name))
-        call FocusWindow(a:name)
-        if bufname('%') != bufname(a:name)
-            exec 'buffer ' . a:name
-        endif
-    elseif !empty(a:cmd)
-        " echo 'No such buffer'
-        exec a:cmd
+  if buflisted(bufname(a:name))
+    call FocusWindow(a:name)
+    if bufname('%') != bufname(a:name)
+      exec 'buffer ' . a:name
     endif
+  elseif !empty(a:cmd)
+    " echo 'No such buffer'
+    exec a:cmd
+  endif
 endfunction
 
 function! BufFocusedThenDo(name,cmd)
-    if bufname('%') =~ a:name
-        exec a:cmd
-    else
-        echo 'Not current buffer'
-    endif
+  if bufname('%') =~ a:name
+    exec a:cmd
+  else
+    echo 'Not current buffer'
+  endif
 endfunction
 
 function! FocusWindowOrDo(name,cmd)
-    for b in getbufinfo()
-        if b.name =~ a:name && !empty(b.windows)
-            call win_gotoid(b.windows[0])
-            return
-        endif
-    endfor
-    echo 'Window not found'
-    if !empty(a:cmd)
-        exec a:cmd
+  for b in getbufinfo()
+    if b.name =~ a:name && !empty(b.windows)
+      call win_gotoid(b.windows[0])
+      return
     endif
+  endfor
+  echo 'Window not found'
+  if !empty(a:cmd)
+    exec a:cmd
+  endif
 endfunction
 
 function! FocusWindow(name)
@@ -1109,15 +1112,15 @@ function! GotoTerm(arg)
 endfunction
 
 function! TerminalsFuneral()
-    let bufmap = map(range(1, bufnr('$')), '[getbufvar((v:val), "&buftype"), v:val]')
-    " echo bufmap
-    let targ = filter(bufmap, 'v:val[0] =~ "terminal"')
-    " echo targ
-    for el in targ
-        " echo el[1]
-        " call term_setrestore(el[1],"++kill=term")
-        call term_setkill(el[1],"term")
-    endfor
+  let bufmap = map(range(1, bufnr('$')), '[getbufvar((v:val), "&buftype"), v:val]')
+  " echo bufmap
+  let targ = filter(bufmap, 'v:val[0] =~ "terminal"')
+  " echo targ
+  for el in targ
+    " echo el[1]
+    " call term_setrestore(el[1],"++kill=term")
+    call term_setkill(el[1],"term")
+  endfor
 endfunction
 
 " echo map(range(1, bufnr('$')), '[bufname(v:val), v:val]')
@@ -1150,88 +1153,88 @@ function! RevealWindowOnTab(arg)
 endfunction
 
 function! RaiseNetRW()
-    let r = RevealWindowOnTab("NetRWTreeListing")
-    if r != 1
-        exec "Vexplore"
-    endif
+  let r = RevealWindowOnTab("NetRWTreeListing")
+  if r != 1
+    exec "Vexplore"
+  endif
 endfunction
 
 function! MoveToPrevTab()
-    "there is only one window
-    if tabpagenr('$') == 1 && winnr('$') == 1
-        return
+  "there is only one window
+  if tabpagenr('$') == 1 && winnr('$') == 1
+    return
+  endif
+  "preparing new window
+  let tab_nr = tabpagenr('$')
+  let cur_buf = bufnr('%')
+  if tabpagenr() != 1
+    close!
+    if tab_nr == tabpagenr('$')
+      tabprev
     endif
-    "preparing new window
-    let tab_nr = tabpagenr('$')
-    let cur_buf = bufnr('%')
-    if tabpagenr() != 1
-        close!
-        if tab_nr == tabpagenr('$')
-            tabprev
-        endif
-        sp
-    else
-        close!
-        exe "0tabnew"
-    endif
-    "opening current buffer in new window
-    exe "b".cur_buf
+    sp
+  else
+    close!
+    exe "0tabnew"
+  endif
+  "opening current buffer in new window
+  exe "b".cur_buf
 endfunc
 
 function! MoveToNextTab()
-    "there is only one window
-    if tabpagenr('$') == 1 && winnr('$') == 1
-        return
+  "there is only one window
+  if tabpagenr('$') == 1 && winnr('$') == 1
+    return
+  endif
+  "preparing new window
+  let tab_nr = tabpagenr('$')
+  let cur_buf = bufnr('%')
+  if tabpagenr() < tab_nr
+    close!
+    if tab_nr == tabpagenr('$')
+      tabnext
     endif
-    "preparing new window
-    let tab_nr = tabpagenr('$')
-    let cur_buf = bufnr('%')
-    if tabpagenr() < tab_nr
-        close!
-        if tab_nr == tabpagenr('$')
-            tabnext
-        endif
-        sp
-    else
-        close!
-        tabnew
-    endif
-    "opening current buffer in new window
-    exe "b".cur_buf
+    sp
+  else
+    close!
+    tabnew
+  endif
+  "opening current buffer in new window
+  exe "b".cur_buf
 endfunc
 
 " Swap content of 2 windows
 function! SwapContentPrevWin()
-    let lines1 = getline(1, '$')
-    exe 'wincmd p'
-    let lines2 = getline(1, '$')
-    exe '%d_'
-    $put=lines1
-    normal ggdd
-    exe 'wincmd p'
-    exe '%d_'
-    $put=lines2
-    normal ggdd
+  let lines1 = getline(1, '$')
+  exe 'wincmd p'
+  let lines2 = getline(1, '$')
+  exe '%d_'
+  $put=lines1
+  normal ggdd
+  exe 'wincmd p'
+  exe '%d_'
+  $put=lines2
+  normal ggdd
 endfunction
 
 function! BufYank()
-    let g:bufnra = bufnr("%")
+  let g:bufnra = bufnr("%")
 endfunction
 
 function! BufPut()
-    exec "b" . g:bufnra
+  exec "b" . g:bufnra
 endfunction
 
 function! WinSwap()
-    " Swap current window with last used window
-    let thiswin = winnr()
-    let thisbuf = bufnr("%")
-    let lastwin = winnr("#")
-    let lastbuf = winbufnr(lastwin)
-    exec lastwin . " wincmd w" ."|".
-                \ "buffer ". thisbuf ."|".
-                \ thiswin ." wincmd w" ."|".
-                \ "buffer ". lastbuf
+  " Swap current window with last used window
+  let thiswin = winnr()
+  let thisbuf = bufnr("%")
+  let lastwin = winnr("#")
+  let lastbuf = winbufnr(lastwin)
+  exec lastwin . " wincmd w" ."|".
+        \ "buffer ". thisbuf ."|".
+        \ thiswin ." wincmd w" ."|".
+        \ "buffer ". lastbuf
 endfunction
 
 function! SwitchBackground()
@@ -1245,70 +1248,70 @@ function! SwitchBackground()
 endfunction
 
 function! SetPhase(...)
-    " Discover what time of day it is by arg or by file-hint
-    if ( a:0 > 0 )
-        let g:phase = a:1
-    elseif filereadable('/tmp/now_is_day')
-        let g:phase = 'day'
-    elseif filereadable('/tmp/now_is_nox')
-        let g:phase = 'nox'
-    elseif !exists("g:phase")
-        let g:phase = 'dunno'
-    endif
-    " echom 'so phase is ' . g:phase
+  " Discover what time of day it is by arg or by file-hint
+  if ( a:0 > 0 )
+    let g:phase = a:1
+  elseif filereadable('/tmp/now_is_day')
+    let g:phase = 'day'
+  elseif filereadable('/tmp/now_is_nox')
+    let g:phase = 'nox'
+  elseif !exists("g:phase")
+    let g:phase = 'dunno'
+  endif
+  " echom 'so phase is ' . g:phase
 endfunction
 function! SaveColor(...)
-    if ( a:0 > 0 )
-        let arg = a:1
-    else
-        let arg = g:phase
-    endif
-    if arg == 'day' || arg == 'dunno'
-        echom "Saving colors for 'day'"
-        let g:ColorDayName = g:colors_name
-        let g:ColorDayLine = g:lightline.colorscheme
-        let g:ColorDayBg = &background
-    elseif arg == 'nox'
-        echom "Saving colors for 'nox'"
-        let g:ColorNoxName = g:colors_name
-        let g:ColorNoxLine = g:lightline.colorscheme
-        let g:ColorNoxBg = &background
-    else
-        echom "Please provide 'day' or 'nox'"
-    endif
+  if ( a:0 > 0 )
+    let arg = a:1
+  else
+    let arg = g:phase
+  endif
+  if arg == 'day' || arg == 'dunno'
+    echom "Saving colors for 'day'"
+    let g:ColorDayName = g:colors_name
+    let g:ColorDayLine = g:lightline.colorscheme
+    let g:ColorDayBg = &background
+  elseif arg == 'nox'
+    echom "Saving colors for 'nox'"
+    let g:ColorNoxName = g:colors_name
+    let g:ColorNoxLine = g:lightline.colorscheme
+    let g:ColorNoxBg = &background
+  else
+    echom "Please provide 'day' or 'nox'"
+  endif
 endfunction
 function! LoadColor(...)
-    if g:phase == 'dunno'
-        echo "Will load default colors."
-        unlet g:colors_name
-        source $sh/vi/vimrc_themes
-    elseif g:phase == 'day'
-        if !exists("g:ColorDayName")
-            echom "NO saved colors for this phase of day! Loading defaults.."
-            if exists("g:colors_name") | unlet g:colors_name | endif
-            source $sh/vi/vimrc_themes
-            return
-        else
-            exec "colo " .           g:ColorDayName
-            exec "LineColor " .      g:ColorDayLine
-            exec "set background=" . g:ColorDayBg
-        endif
-        echo "Color is " . g:ColorDayName . " , LineColor is " . g:ColorDayLine
-    elseif g:phase == 'nox'
-        if !exists("g:ColorNoxName")
-            echom "NO saved colors for this phase of day! Loading defaults.."
-            if exists("g:colors_name") | unlet g:colors_name | endif
-            source $sh/vi/vimrc_themes
-            return
-        else
-            exec "colo " .           g:ColorNoxName
-            exec "LineColor " .      g:ColorNoxLine
-            exec "set background=" . g:ColorNoxBg
-        endif
-        echo "phase=" . g:phase . ", color=" . g:ColorNoxName . ", linecolor=" . g:ColorNoxLine
+  if g:phase == 'dunno'
+    echo "Will load default colors."
+    unlet g:colors_name
+    source $sh/vi/vimrc_themes
+  elseif g:phase == 'day'
+    if !exists("g:ColorDayName")
+      echom "NO saved colors for this phase of day! Loading defaults.."
+      if exists("g:colors_name") | unlet g:colors_name | endif
+      source $sh/vi/vimrc_themes
+      return
     else
-        echo "Unknown phase of day!"
+      exec "colo " .           g:ColorDayName
+      exec "LineColor " .      g:ColorDayLine
+      exec "set background=" . g:ColorDayBg
     endif
+    echo "Color is " . g:ColorDayName . " , LineColor is " . g:ColorDayLine
+  elseif g:phase == 'nox'
+    if !exists("g:ColorNoxName")
+      echom "NO saved colors for this phase of day! Loading defaults.."
+      if exists("g:colors_name") | unlet g:colors_name | endif
+      source $sh/vi/vimrc_themes
+      return
+    else
+      exec "colo " .           g:ColorNoxName
+      exec "LineColor " .      g:ColorNoxLine
+      exec "set background=" . g:ColorNoxBg
+    endif
+    echo "phase=" . g:phase . ", color=" . g:ColorNoxName . ", linecolor=" . g:ColorNoxLine
+  else
+    echo "Unknown phase of day!"
+  endif
 endfunction
 command! -nargs=? SaveColor call SetPhase(<f-args>) <bar> call SaveColor(<f-args>)
 command! -nargs=? LoadColor call SetPhase(<f-args>) <bar> call LoadColor(<f-args>) <bar> call CrispBorders()
@@ -1328,21 +1331,21 @@ function! SwitchCE()
 endfunc
 
 function! LightlineReload(arg)
-    " '1' to reload the current theme when you edit its file
-    " '' to print name of current theme
-    if a:arg != ''
-        if a:arg == '1'
-            source %
-        else
-            let g:lightline.colorscheme = a:arg
-            " let g:lightline = { 'colorscheme': a:arg }
-        endif
+  " '1' to reload the current theme when you edit its file
+  " '' to print name of current theme
+  if a:arg != ''
+    if a:arg == '1'
+      source %
     else
-        echo g:lightline
+      let g:lightline.colorscheme = a:arg
+      " let g:lightline = { 'colorscheme': a:arg }
     endif
-    call lightline#init()
-    call lightline#colorscheme()
-    call lightline#update()
+  else
+    echo g:lightline
+  endif
+  call lightline#init()
+  call lightline#colorscheme()
+  call lightline#update()
 endfunction
 command! -nargs=? LineColor call LightlineReload('<args>')
 
@@ -1422,60 +1425,60 @@ command! -nargs=+ -complete=command ExPut call ExPut(<q-args>)
 
 " Delete buffer and load previous buffer, or just any other
 function! BDnJump()
-    "" if ( ( expand('#') == '' ) || ( expand('#') =~ '!/bin/bash' ) ) "" if ( expand('%') =~ '!/bin/bash' ) && ( expand('%') == expand('#') ) """ Current and prev buffers are terminals
-    if ( bufexists(bufnr('#')) ) " Previous buffer is unset
-        let cbn = bufnr('%')
-        bnext " Jump to any other buffer
-        exec  'bd!' . cbn
-    else
-        let cbn = bufnr('%')
-        b # " Jump to the previous buffer
-        exec  'bd!' . cbn
-    endif
+  "" if ( ( expand('#') == '' ) || ( expand('#') =~ '!/bin/bash' ) ) "" if ( expand('%') =~ '!/bin/bash' ) && ( expand('%') == expand('#') ) """ Current and prev buffers are terminals
+  if ( bufexists(bufnr('#')) ) " Previous buffer is unset
+    let cbn = bufnr('%')
+    bnext " Jump to any other buffer
+    exec  'bd!' . cbn
+  else
+    let cbn = bufnr('%')
+    b # " Jump to the previous buffer
+    exec  'bd!' . cbn
+  endif
 endfunction
 command! BDnJump call BDnJump()
 
 function! SortParagraphs() range
-    exec a:firstline . "," . a:lastline . 'd'
-    let @@=join(sort(split(substitute(@@, "\n*$", '', ''), "\n\n")), "\n\n")
-    put!
+  exec a:firstline . "," . a:lastline . 'd'
+  let @@=join(sort(split(substitute(@@, "\n*$", '', ''), "\n\n")), "\n\n")
+  put!
 endfunction
 
 function! AddSpaceSelection()
-    let beg = getpos("'<")
-    let fin = getpos("'>")
-    call setpos('.',fin)
-    silent exec "normal! a\<CR>\<Esc>"
-    let newfin = getpos('.')
-    call setpos('.',beg)
-    silent exec "normal! i\<CR>\<Esc>"
-    let newbeg = getpos('.')
-    " Restore selection
-    exec "normal `>V`<"
+  let beg = getpos("'<")
+  let fin = getpos("'>")
+  call setpos('.',fin)
+  silent exec "normal! a\<CR>\<Esc>"
+  let newfin = getpos('.')
+  call setpos('.',beg)
+  silent exec "normal! i\<CR>\<Esc>"
+  let newbeg = getpos('.')
+  " Restore selection
+  exec "normal `>V`<"
 endfunction
 
 function! FoldMotion(type)
-    if a:type == 'line'
-        let line = &commentstring[0] . "------------------------------"
-        let foldbeg = split(&foldmarker,",")[0]
-        let foldend = split(&foldmarker,",")[1]
-        let start = getpos("'[")[-3]
-        let finish = getpos("']")[-3]
-        exec finish
-        put  = line . foldend
-        exec start
-        put! = line . foldbeg
-    endif
-endfunction
-
-function! FoldSelection()
+  if a:type == 'line'
     let line = &commentstring[0] . "------------------------------"
     let foldbeg = split(&foldmarker,",")[0]
     let foldend = split(&foldmarker,",")[1]
-    silent exec "normal `>"
-    silent put  = line . foldend
-    silent exec "normal `<"
-    silent put! = line . foldbeg
+    let start = getpos("'[")[-3]
+    let finish = getpos("']")[-3]
+    exec finish
+    put  = line . foldend
+    exec start
+    put! = line . foldbeg
+  endif
+endfunction
+
+function! FoldSelection()
+  let line = &commentstring[0] . "------------------------------"
+  let foldbeg = split(&foldmarker,",")[0]
+  let foldend = split(&foldmarker,",")[1]
+  silent exec "normal `>"
+  silent put  = line . foldend
+  silent exec "normal `<"
+  silent put! = line . foldbeg
 endfunction
 
 function! SystemOpenEveryLine()
@@ -1493,10 +1496,10 @@ function! SystemOpenEveryLine()
 endfunction
 
 function! CleanEmptyBuffers()
-    let buffers = filter(range(1, bufnr('$')), 'buflisted(v:val) && empty(bufname(v:val)) && bufwinnr(v:val)<0 && !getbufvar(v:val, "&mod")')
-    if !empty(buffers)
-        exe 'bw ' . join(buffers, ' ')
-    endif
+  let buffers = filter(range(1, bufnr('$')), 'buflisted(v:val) && empty(bufname(v:val)) && bufwinnr(v:val)<0 && !getbufvar(v:val, "&mod")')
+  if !empty(buffers)
+    exe 'bw ' . join(buffers, ' ')
+  endif
 endfunction
 
 " FZF
@@ -1615,34 +1618,34 @@ let g:floaterm_keymap_toggle = '<F12>'
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 augroup MatchExtraWhitespace
-    autocmd!
-    " au BufWinEnter * if &modifiable==1 | match ExtraWhitespace /\s\+$/ | endif
-    " au InsertLeave * if &modifiable==1 | match ExtraWhitespace /\s\+$/ | endif
+  autocmd!
+  " au BufWinEnter * if &modifiable==1 | match ExtraWhitespace /\s\+$/ | endif
+" au InsertLeave * if &modifiable==1 | match ExtraWhitespace /\s\+$/ | endif
     " au BufWinEnter * if &modifiable==0 | call clearmatches() | endif
-    au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-    if has("nvim")
-        au BufModifiedSet * if &modifiable==1 | match ExtraWhitespace /\s\+$/ | else | call clearmatches() | endif
-    else
-        au BufWinEnter,InsertLeave * match ExtraWhitespace /\s\+$/
-    endif
-    au BufWinLeave * call clearmatches()
+  au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+  if has("nvim")
+    au BufModifiedSet * if &modifiable==1 | match ExtraWhitespace /\s\+$/ | else | call clearmatches() | endif
+  else
+    au BufWinEnter,InsertLeave * match ExtraWhitespace /\s\+$/
+  endif
+  au BufWinLeave * call clearmatches()
 augroup END
 
 function! s:JbzCppMan()
-    let old_isk = &iskeyword
-    setl iskeyword+=:
-    let str = expand("<cword>")
-    let &l:iskeyword = old_isk
-    execute 'Man ' . str
+  let old_isk = &iskeyword
+  setl iskeyword+=:
+  let str = expand("<cword>")
+  let &l:iskeyword = old_isk
+  execute 'Man ' . str
 endfunction
 command! JbzCppMan :call s:JbzCppMan()
 au FileType cpp nnoremap <buffer>K :JbzCppMan<CR>
 
 if has("nvim")
-    set wildoptions=pum
-    set pumblend=15
-    set winblend=10
-    autocmd TermOpen * setlocal scrollback=-1
+  set wildoptions=pum
+  set pumblend=15
+  set winblend=10
+  autocmd TermOpen * setlocal scrollback=-1
 endif
 
 " Watch log with Vim " For Neovim use :terminal
