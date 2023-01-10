@@ -31,7 +31,7 @@ require('telescope').load_extension('fzf')
 tele_ivy = require('telescope.themes').get_ivy{ sort_mru = true, layout_config = { height = vim.opt.lines:get() - 10 } }
 function Tele_buff_ivy() require('telescope.builtin').buffers( tele_ivy ) end
 tele_drop = require('telescope.themes').get_dropdown{ sort_mru=true, winblend=9, layout_config = { height=26 } }
-function Tele_buff_drop() require('telescope.builtin').buffers( Tele_drop ) end
+function Tele_buff_drop() require('telescope.builtin').buffers( tele_drop ) end
 -- require('telescope.builtin').buffers(Tele_drop)
 
 --[[ require('eval').setup{
