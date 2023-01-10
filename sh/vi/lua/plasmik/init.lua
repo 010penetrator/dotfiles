@@ -2,7 +2,8 @@
 -- FYI: Use checkhealth to troubleshoot Neovim
 
 require('plasmik.set')
-require('plasmik.helpy')
+package.loaded['plasmik.helpy'] = nil
+H = require('plasmik.helpy')
 require('plasmik.remap')
 
 print('hello from plasmik')
@@ -27,10 +28,10 @@ require('telescope').load_extension('fzf')
 -- theme['layout_config']['height'] = vim.opt.lines:get() - 8
 -- theme['sort_mru'] = true
 -- require('telescope.builtin').buffers(theme)
-Tele_ivy = require('telescope.themes').get_ivy{ sort_mru = true, layout_config = { height = vim.opt.lines:get() - 8 } }
-Tele_buff_ivy = function() require('telescope.builtin').buffers( Tele_ivy ) end
-Tele_drop = require('telescope.themes').get_dropdown{ sort_mru=true, winblend=9, layout_config = { height=26 } }
-Tele_buff_drop = function() require('telescope.builtin').buffers( Tele_drop ) end
+tele_ivy = require('telescope.themes').get_ivy{ sort_mru = true, layout_config = { height = vim.opt.lines:get() - 10 } }
+function Tele_buff_ivy() require('telescope.builtin').buffers( tele_ivy ) end
+tele_drop = require('telescope.themes').get_dropdown{ sort_mru=true, winblend=9, layout_config = { height=26 } }
+function Tele_buff_drop() require('telescope.builtin').buffers( Tele_drop ) end
 -- require('telescope.builtin').buffers(Tele_drop)
 
 --[[ require('eval').setup{
@@ -345,8 +346,7 @@ lsp.preset("recommended")
 
 if vim.fn.has('nvim-0.6') == 1 then
   vim.api.nvim_command('\
-  nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>|\
-  nnoremap <silent> gK K|\
+  " nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>|\
   nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>|\
   nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>|\
   nnoremap <silent> gS <cmd>lua vim.lsp.buf.document_symbol()<CR>|\
@@ -363,34 +363,33 @@ if vim.fn.has('nvim-0.6') == 1 then
 end
 
 if vim.fn.has('nvim-0.7')==1 then
-  -- local nmap = function(keys, func, desc)
-  --   vim.keymap.set("n", keys, func, { desc = desc })
-  -- end
-  -- vim.keymap.set("n","K", vim.lsp.buf.hover, {buffer=0})
-  vim.keymap.set("n","gH", vim.lsp.buf.hover)
-  vim.keymap.set("n","gK", "K")
-  vim.keymap.set("n","gd", vim.lsp.buf.definition)
-  -- vim.keymap.set("n","gv", function() vim.cmd('new') end )
-  vim.keymap.set("n","gv", "<cmd>vsplit <bar> lua vim.lsp.buf.definition()<CR>" )
-  vim.keymap.set("n","gl", "<cmd>let bn=bufnr('%') <bar> let pos=getpos('.') <bar> wincmd p <bar> exec 'b' . bn <bar> call setpos('.',pos) <bar> lua vim.lsp.buf.definition()<CR>" )
-  -- let g:bufnra = bufnr("%")    exec "b" . g:bufnra
-  vim.keymap.set("n","gD", vim.lsp.buf.declaration)
-  vim.keymap.set("n","gs", vim.lsp.buf.document_symbol)
-  vim.keymap.set("n","gr", vim.lsp.buf.references)
-  vim.keymap.set("n","gw", vim.lsp.buf.workspace_symbol)
-  vim.keymap.set("n","gy", vim.lsp.buf.type_definition)
-  vim.keymap.set("n","gi", vim.lsp.buf.implementation)
-  vim.keymap.set("n","z<down>", vim.diagnostic.goto_next)
-  vim.keymap.set("n","z<up>", vim.diagnostic.goto_prev)
-  vim.keymap.set("n",",r", vim.lsp.buf.rename)
-  vim.keymap.set("n","qa", vim.lsp.buf.code_action)
-  vim.keymap.set("n","qa", vim.lsp.buf.code_action)
-  vim.keymap.set("n","qa", vim.lsp.buf.code_action)
+  vim.keymap.set("n","K", vim.lsp.buf.hover, {buffer=0})
+  -- H.nmap("K", vim.lsp.buf.hover, {buffer=0})
+  H.nmap("gH", vim.lsp.buf.hover)
+  H.nmap("gd", vim.lsp.buf.definition)
+  -- H.nmap("gv", function() vim.api. end)
+-- "<cmd>vsplit <bar> lua vim.lsp.buf.definition()<CR>" )
+  -- vim.keymap.set("n","gl", "<cmd>let bn=bufnr('%') <bar> let pos=getpos('.') <bar> wincmd p <bar> exec 'b' . bn <bar> call setpos('.',pos) <bar> lua vim.lsp.buf.definition()<CR>" )
+  H.nmap("gl", function() H.mirror_buf_to_prev_window() vim.lsp.buf.definition() end)
+  H.nmap("gD", vim.lsp.buf.declaration)
+  H.nmap("gs", vim.lsp.buf.document_symbol)
+  H.nmap("gr", vim.lsp.buf.references)
+  H.nmap("gw", vim.lsp.buf.workspace_symbol)
+  H.nmap("gy", vim.lsp.buf.type_definition)
+  H.nmap("gi", vim.lsp.buf.implementation)
+  H.nmap("z<down>", vim.diagnostic.goto_next)
+  H.nmap("z<up>", vim.diagnostic.goto_prev)
+  H.nmap(",r", vim.lsp.buf.rename)
+  H.nmap("qa", vim.lsp.buf.code_action)
+  H.nmap("qa", vim.lsp.buf.code_action)
+  H.nmap("qa", vim.lsp.buf.code_action)
   -- vim.keymap.set("n",",,b", Tele_buff_ivy, {desc = "Telescope buffers ivy-themed"})
-  H.nmap(',,b', Tele_buff_ivy, "Telescope [B]uffers ivy-themed")
+  H.nmap(',fb', Tele_buff_ivy, "Telescope [B]uffers ivy-themed")
   H.nmap(',<space>', Tele_buff_drop)
 end
 
+-- nnoremap ,tt :Telescope current_buffer_fuzzy_find sorting_strategy=ascending layout_config={"prompt_position":"top"}<CR>
+-- nnoremap ,tt <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find({sorting_strategy="ascending", theme="ivy"})<CR>
 H.nkeymap(',R', ':lua vim.lsp.buf.rename()<cr>')
 
 ------------------------
@@ -410,7 +409,8 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
   ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
   ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
   ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-  ["<C-Space>"] = cmp.mapping.complete(),
+  ["<C-t>"] = cmp.mapping.complete(),
+  ["<C-c>"] = cmp.mapping.abort(),
 
 })
 
@@ -420,10 +420,21 @@ cmp.setup {
       luasnip.lsp_expand(args.body)
     end,
   },
+  --[[ mapping = {
+    ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+    ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+    ['<C-e>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+    ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+    ['<C-e>'] = cmp.mapping({
+      i = cmp.mapping.abort(),
+      c = cmp.mapping.close(),
+    }),
+    ['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+  } ]]
   mapping = cmp.mapping.preset.insert {
     ['<C-b>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.complete(),
     ['<CR>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
       select = false,
@@ -449,32 +460,13 @@ cmp.setup {
   },
   sources = {
     { name = 'nvim_lsp' },
-    { name = 'luasnip' },
-  },
-}
-
---[[ cmp.setup({
-  mapping = {
-    ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
-    ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-    ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-    ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
-    ['<C-e>'] = cmp.mapping({
-      i = cmp.mapping.abort(),
-      c = cmp.mapping.close(),
-    }),
-    ['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-  },
-  sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
-    -- { name = 'vsnip' }, -- For vsnip users.
     { name = 'luasnip' }, -- For luasnip users.
+    -- { name = 'vsnip' }, -- For vsnip users.
     -- { name = 'ultisnips' }, -- For ultisnips users.
     -- { name = 'snippy' }, -- For snippy users.
-  }, {
-      { name = 'buffer' },
-    })
-}) ]]
+  },
+  -- sources = cmp.config.sources({ }, { { name = 'buffer' } )
+}
 
 --[[ -- Set configuration for specific filetype.
 cmp.setup.filetype('gitcommit', {

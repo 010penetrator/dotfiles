@@ -1,14 +1,12 @@
 -- vim: ts=2 sw=2
--- H is the door
 
-H = {}
-
-local M = H
+local M = {}
+-- H = M
 
 function M.tprint (tbl)
-    for k,v in pairs(tbl) do
-        print(k,v)
-    end
+  for k,v in pairs(tbl) do
+    print(k,v)
+  end
 end
 
 ---Author: cseickel
@@ -71,6 +69,21 @@ nkeymap('<C-h>', ':lua require("plasmik.helpy").teles_ff()<cr>')
 -- :lua package.loaded.init = nil
 -- print("init.lua loaded once more")
 -- return hotfun
+
+M.mirror_buf_to_prev_window = function()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local pos = vim.fn.getpos('.')
+  if vim.fn.winnr() == vim.fn.winnr('#') then
+    -- only current window is present; add second window
+    -- vim.cmd('vnew')
+    vim.api.nvim_open_win(true,true,{})
+  else
+    -- go to prev window
+    vim.cmd('wincmd p')
+  end
+  vim.api.nvim_set_current_buf(bufnr)
+  vim.fn.setpos('.',pos)
+end
 
 return M
 

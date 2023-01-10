@@ -213,7 +213,7 @@ endif
 """"""""""""""""""""""""
 
 if has("nvim")
-  function CrispBorders()
+  function! CrispBorders()
     " set laststatus=3
     highlight WinSeparator guibg=none
     highlight WinSeparator guifg=#5a5a5a
@@ -252,7 +252,10 @@ imap jj <ESC>
 " go to end-of-line
 imap <C-e> <C-o>A
 
+imap <A-b> <C-o>b
+imap <A-f> <C-o>e
 imap <C-l> <Right>
+
 " add space right from cursor
 imap <C-b> <space><left>
 
@@ -330,8 +333,10 @@ nnoremap ]l :lnext<cr>
 nnoremap [l :lprev<cr>
 nmap s <Plug>Sneak_s
 nmap S <Plug>Sneak_S
-noremap <c-n> 12<c-e>
-noremap <c-p> 12<c-y>
+noremap <A-n> 12<c-e>
+noremap <A-p> 12<c-y>
+noremap <C-n> 10j
+noremap <C-p> 10k
 map <c-j> <Plug>(edgemotion-j)
 map <c-k> <Plug>(edgemotion-k)
 " go to text start/finish in file
@@ -411,14 +416,13 @@ nnoremap a,     <C-w>6<
 nnoremap a.     <C-w>6>
 nnoremap ae     <C-w>4+
 nnoremap ad     <C-w>4-
-nnoremap qe     <C-w>_
-nnoremap qd     <C-w>80-
+nnoremap ar     <C-w>_
+nnoremap ac     <C-w>80-
 nnoremap qw     <C-w>_<C-w>\|
 nnoremap qq     <C-w>=
 nnoremap aj     <C-w>w<C-w>_
 nnoremap ak     <C-w>W<C-w>_
 " focus prev window
-nnoremap q<tab> <C-w>p
 nnoremap g<space> <C-W>p
 " swap current and previous window
 silent nnoremap c<tab> :call WinSwap() <bar> wincmd p<CR><Esc>
@@ -477,17 +481,13 @@ else
 endif
 
 " Search text
-nnoremap ,zr :Rg<CR>
-nnoremap qg  :Telescope live_grep theme=ivy<CR>
-nnoremap ,t, :Telescope live_grep theme=ivy search_dirs=%<CR>
-nnoremap ,tf :Telescope find_files theme=ivy<CR>
-nnoremap ,tr :Telescope lsp_references<CR>
+nnoremap ,fg  :Telescope live_grep theme=ivy<CR>
+nnoremap ,fd :Telescope live_grep theme=ivy search_dirs=%<CR>
+nnoremap ,ff :Telescope find_files theme=ivy<CR>
+nnoremap ,fr :Telescope lsp_references<CR>
 nnoremap qr  :Telescope lsp_references<CR>
-nnoremap ,ts :Telescope lsp_document_symbols<CR>
+nnoremap ,fs :Telescope lsp_document_symbols<CR>
 nnoremap qs  :Telescope lsp_dynamic_workspace_symbols<CR>
-" nnoremap ,tt :Telescope current_buffer_fuzzy_find sorting_strategy=ascending layout_config={"prompt_position":"top"}<CR>
-" nnoremap ,tt <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find({sorting_strategy="ascending", theme="ivy"})<CR>
-nnoremap ,tc <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_ivy{})<CR>
 
 " Jump to favourite files
 nnoremap ,gv :call FocusBufOrDo('myvimrc','e $sh/vi/myvimrc')<CR>
@@ -630,13 +630,12 @@ nnoremap ,v; :let lastpos=line('.') <bar> exec "normal yap" <bar> @\" <bar> exec
 " Evaluate a paragraph as Lua
 nnoremap ,vu :let lastpos=line('.') <bar> exec "normal yap" <bar> exec 'lua ' . expand(@") <bar> exec lastpos<CR>:echo "Evaluated current paragraph."<CR>
 
-" Open current location with vifm within vim
-nnoremap ac :terminal ++close bash -c "INVIM=1 vifm %:p:h"<CR>
-nnoremap aC :vertical terminal ++close bash -c "INVIM=1 vifm %:p:h"<CR>
-nnoremap a; :terminal ++kill=term ++curwin ++close bash -c "INVIM=1 vifm %:p:h"<CR>
-nnoremap a: :tabe \| terminal ++kill=term ++curwin bash -c "INVIM=1 vifm #:p:h"<CR>
-
 if !has('nvim')
+  " Open current location with vifm within vim
+  nnoremap ac :terminal ++close bash -c "INVIM=1 vifm %:p:h"<CR>
+  nnoremap aC :vertical terminal ++close bash -c "INVIM=1 vifm %:p:h"<CR>
+  nnoremap a; :terminal ++kill=term ++curwin ++close bash -c "INVIM=1 vifm %:p:h"<CR>
+  nnoremap a: :tabe \| terminal ++kill=term ++curwin bash -c "INVIM=1 vifm #:p:h"<CR>
   " Split open terminal at current location
   nnoremap ab : new \| if isdirectory(expand('#:p:h')) \| lcd #:p:h \| endif \| terminal ++kill=term ++curwin ++norestore<CR>
   nnoremap aB : vnew \| if isdirectory(expand('#:p:h')) \| lcd #:p:h \| endif \| terminal ++kill=term ++curwin ++norestore<CR>
@@ -650,12 +649,11 @@ nnoremap ,,t :NewTermHere<CR>
 nnoremap ,,c :NewVifmHere<CR>
 
 " Jump to terminal window
-nnoremap qt :call GotoTerm(0)<CR>
+nnoremap <A-b> :call GotoTerm(0)<CR>
 " Jump to filetree window
 nnoremap ,n :NeoTreeFocusToggle<CR>
 nnoremap ,,n :NeoTreeShowToggle<CR>
 nnoremap - :Neotree current<CR>
-" if has("nvim") | nnoremap ,n :NvimTreeFocus<CR>| endif
 
 " Exec current paragraph with shell
 nnoremap ,b; yap: exec "!" . @"<CR>
