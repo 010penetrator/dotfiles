@@ -52,6 +52,7 @@ command! chmodautoSEL :! find %f -type f -exec chmod 644 {} \;
 """"""""""""""""""""""""
 
 " fly vifm "
+unmap ,
 nnoremap ,x :exec '!echo -ne "\033]0;\007"' | quit <CR>
 nnoremap qx :exec '!echo -ne "\033]0;\007"' | quit <CR>
 nnoremap ,i :pushd . <CR>
@@ -90,8 +91,15 @@ nnoremap q{ :tabmove-<CR>
 nnoremap q} :tabmove+<CR>
 nnoremap gl gf
 nnoremap g. :exec 'cd' system('realpath .')<CR>
-nnoremap yc :! echo -n %f | xclip ; echo -n %f | xclip -selection clipboard <CR>:echo "filename in X buffer"<CR>
-nnoremap yC :! echo -n %f:p | xclip ; echo -n %f:p | xclip -selection clipboard <CR>:echo "full filepath in X buffer"<CR>
+nnoremap yc :!echo -n %f | xclip ; echo -n %f | xclip -selection clipboard <CR>:echo "filename in X buffer"<CR>
+nnoremap yC :!echo -n %f:p | xclip ; echo -n %f:p | xclip -selection clipboard <CR>:echo "full filepath in X buffer"<CR>
+" Yank current directory path into the clipboard
+nnoremap yd :!echo %d | xclip %i<cr>
+" Yank current file path into the clipboard
+nnoremap yf :!echo %c:p | xclip %i<cr>
+" Search current filename in google
+nnoremap yg :!google.sh %c &>/dev/null &<cr>
+
 nnoremap ,j :jobs<cr>
 nnoremap ,u :undolist<cr>
 " nnoremap - <C-b>
@@ -99,28 +107,27 @@ nnoremap ,u :undolist<cr>
 
 " Open current file "
 nnoremap q. :! ./%c &<cr>
-nnoremap q<cr> :file &<cr>l
+" Open file in the background using its default program
+nnoremap ql :file &<cr>l
 nnoremap qj :file<cr>
-nnoremap c. :! vim %c<CR>
-nnoremap qm :! nomacs %c &>/dev/null &<cr>
-nnoremap qf :! if [ %c == ".." ] ; then feha . ; else if [ -d %c ] ; then cd %c; feha . ; else if [ -f %c ] ; then feha %c; fi ; fi ; fi <cr>
-nnoremap qF :!fehf . &>/dev/null &<cr>
-" nnoremap q1 :! fehf . <cr>
-nnoremap ,n :! ncdu --color off -x %c<cr>
-nnoremap q<space> :! mpv --fs --keep-open=always *.{mp4,MP4,webm,mkv,mov,MOV} &>/dev/null & <cr>
-nnoremap qk :! qview %c &>/dev/null &<cr>
-" nnoremap qy :! eom %c &>/dev/null &<cr>
 nnoremap qi :! mediainfo %c | less<cr>
 nnoremap qh :! xxd %c | less<cr>
-nnoremap qG :! spek %c &>/dev/null &<cr>
-nnoremap qg :! specgram.sh %c<cr>
-nnoremap qd :! deadbeef --queue %c &>/dev/null &<cr>
-nnoremap qe :! $EDITOR %c<cr>
-nnoremap .  :! xdg-open %c &>/dev/null &<cr>
-nnoremap ,,. :! bash -x xdg-open %c<cr>
-nnoremap ,,/ :! bash -lc "ARG=DMENUSAVE xdgsane %c"
-nnoremap ,g :! google.sh %c &>/dev/null &<cr>
-nnoremap ,e :! $TERMINAL $EDITOR %c<cr>
+nnoremap qfv :! vim %c<CR>
+nnoremap qfa :! if [ %c == ".." ] ; then feha . ; else if [ -d %c ] ; then cd %c; feha . ; else if [ -f %c ] ; then feha %c; fi ; fi ; fi <cr>
+nnoremap qff :!fehf . &>/dev/null &<cr>
+nnoremap qfm :! nomacs %c &>/dev/null &<cr>
+nnoremap qfq :! qview %c &>/dev/null &<cr>
+nnoremap qfe :! eom %c &>/dev/null &<cr>
+nnoremap qfp :! mpv --fs --keep-open=always *.{mp4,MP4,webm,mkv,mov,MOV} &>/dev/null & <cr>
+nnoremap qfG :! spek %c &>/dev/null &<cr>
+nnoremap qfg :! specgram.sh %c<cr>
+nnoremap qfd :! deadbeef --queue %c &>/dev/null &<cr>
+nnoremap qfn :! ncdu --color off -x %c<cr>
+nnoremap qfe :! $EDITOR %c<cr>
+nnoremap qft :! $TERMINAL $EDITOR %c<cr>
+nnoremap qfx :! xdg-open %c &>/dev/null &<cr>
+nnoremap qfb :! bash -x xdg-open %c<cr>
+nnoremap qf/ :! bash -lc "ARG=DMENUSAVE xdgsane %c"
 
 " Calc space "
 nnoremap ,f :! echo; echo %c: ; file -b %c ; [[ -d %c ]] && tree -ia %c | tail -1 ; du -sh %c | cut -f1 ; ls -dla %c ; df -h --output=source,fstype,avail,pcent %c ; read -rsn1 <cr>
@@ -667,15 +674,6 @@ nnoremap S :sort<cr>
 " Toggle visibility of preview window
 nnoremap w :view<cr>
 vnoremap w :view<cr>gv
-
-" Open file in the background using its default program
-" nnoremap gb :file &<cr>l
-
-" Yank current directory path into the clipboard
-nnoremap yd :!echo %d | xclip %i<cr>
-
-" Yank current file path into the clipboard
-nnoremap yf :!echo %c:p | xclip %i<cr>
 
 " Mappings for faster renaming
 nnoremap I cw<c-a>

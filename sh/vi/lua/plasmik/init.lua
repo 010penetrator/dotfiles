@@ -1,12 +1,15 @@
 -- vim: ts=2 sw=2
 -- FYI: Use checkhealth to troubleshoot Neovim
 
+-- vim.opt.more = false
+-- print('hello from plasmik')
+-- vim.api.nvim_command('echom 88')
+-- vim.api.nvim_command('echom 88')
+
 require('plasmik.set')
 package.loaded['plasmik.helpy'] = nil
 H = require('plasmik.helpy')
 require('plasmik.remap')
-
-print('hello from plasmik')
 
 require('nvim-autopairs').setup{}
 require('Comment').setup()
@@ -113,6 +116,15 @@ require"nvim-treesitter.configs".setup {
 
   highlight = { enable = true },
   indent = { enable = true, disable = { 'python' } },
+
+  rainbow = {
+    enable = true,
+    -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
+    extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+    max_file_lines = nil, -- Do not enable for files with more than n lines, int
+    -- colors = {}, -- table of hex strings
+    -- termcolors = {} -- table of colour name strings
+  },
 
   incremental_selection = {
     enable = true,

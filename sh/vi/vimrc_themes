@@ -27,7 +27,7 @@ else
         " colo onehalfdark | LineColor one
         " colo tempus_dusk | set bg=dark | LineColor bluewery
         if has('nvim')
-            colo stellarized | set bg=dark | LineColor snow_dark
+            colo stellarized | set bg=dark | LineColor terafox
             " colo tokyonight | LineColor nordfox
             " colo tokyonight | LineColor tokyonight
         else
