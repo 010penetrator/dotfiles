@@ -1,6 +1,14 @@
 #!/bin/bash
 # Spawn new neoVim in a terminal, with RPC feature
 
+
+NVIM="nvim"
+echo this is experiment
+# $NVIM
+nvim
+exit
+
+
 RPC_OPTION=''
 if [ -z "$NVIMSERV" ]; then
     echo "No RPC address provided!"

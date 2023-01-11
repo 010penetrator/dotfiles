@@ -11,7 +11,7 @@ super + { q, Q, D, F, t, v, s, y, r, R, z, g, slash }
   ror.sh { \
   '' scroff, '' 'sus 1', windowswitcher.sh, '' 'rofi -show window', \
   'xterm\|urxvt\|kitty', \
-  ' - VIMSERV\|VIM$\|VIM @ \| - NVIM$\|nvim $\|QtCreator' 'vinew', \
+  ' - VIMSERV\|VIM$\|VIM @ \| - NVIM$\|nvim $\|QtCreator\| tmux' 'vinew', \
   'chromium\|Firefox\|Remmina' 'firefox', \
   'Thunar\|pcmanfm\| YouTube \|office.libreoffice\|Abiword\|sis.ko' 'notify-send not\ found', \
   zathura listzathura.sh, evince, FBReader, \

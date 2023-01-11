@@ -250,7 +250,7 @@ imap jj <ESC>
 " imap оо <ESC>
 
 " go to end-of-line
-imap <C-e> <C-o>A
+map! <C-e> <C-o>A
 
 imap <A-b> <C-o>b
 imap <A-f> <C-o>e
