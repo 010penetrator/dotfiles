@@ -36,7 +36,7 @@ set path=.,**
 ""     Settings:      ""
 """"""""""""""""""""""""
 
-if empty(g:lightline)
+if !exists("g:lightline")
   let g:lightline = { }
 endif
 let g:lightline.active = { 'left': [ [ 'mode', 'paste' ], [ 'readonly', 'modified', 'gitbranch', 'relativepath' ] ] }
