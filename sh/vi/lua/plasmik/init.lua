@@ -358,30 +358,20 @@ lsp.preset("recommended")
 
 if vim.fn.has('nvim-0.6') == 1 then
   vim.api.nvim_command('\
-  " nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>|\
-  nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>|\
-  nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>|\
-  nnoremap <silent> gS <cmd>lua vim.lsp.buf.document_symbol()<CR>|\
-  nnoremap <silent> gs <cmd>lua vim.lsp.buf.references()<CR>|\
-  nnoremap <silent> gw <cmd>lua vim.lsp.buf.workspace_symbol()<CR>|\
-  nnoremap <silent> gy <cmd>lua vim.lsp.buf.type_definition()<CR>|\
-  nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>|\
   nnoremap <silent> gh <cmd>ClangdSwitchSourceHeader<CR>|\
   nnoremap <silent> z<Down> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>|\
   nnoremap <silent> z<Up> k<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>|\
   nnoremap <silent> ,S <cmd>lua vim.lsp.buf.signature_help()<CR>|\
-  autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 100)|\
 ')
 end
 
 if vim.fn.has('nvim-0.7')==1 then
   vim.keymap.set("n","K", vim.lsp.buf.hover, {buffer=0})
-  -- H.nmap("K", vim.lsp.buf.hover, {buffer=0})
-  H.nmap("gH", vim.lsp.buf.hover)
+  H.nmap("K", vim.lsp.buf.hover, {buffer=0})
   H.nmap("gd", vim.lsp.buf.definition)
-  -- H.nmap("gv", function() vim.api. end)
--- "<cmd>vsplit <bar> lua vim.lsp.buf.definition()<CR>" )
-  -- vim.keymap.set("n","gl", "<cmd>let bn=bufnr('%') <bar> let pos=getpos('.') <bar> wincmd p <bar> exec 'b' . bn <bar> call setpos('.',pos) <bar> lua vim.lsp.buf.definition()<CR>" )
+  H.nmap("gv", function() vim.cmd('vsplit') vim.lsp.buf.definition() end)
+  -- H.nmap("gv", function() vim.api.nvim_open_win(true,true,{}) vim.lsp.buf.definition() end)
+  -- vim.keymap.set("n", "gl", "<cmd>let bn=bufnr('%') <bar> let pos=getpos('.') <bar> wincmd p <bar> exec 'b' . bn <bar> call setpos('.',pos) <bar> lua vim.lsp.buf.definition()<CR>" )
   H.nmap("gl", function() H.mirror_buf_to_prev_window() vim.lsp.buf.definition() end)
   H.nmap("gD", vim.lsp.buf.declaration)
   H.nmap("gs", vim.lsp.buf.document_symbol)

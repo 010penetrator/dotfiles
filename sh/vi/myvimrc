@@ -128,6 +128,7 @@ augroup SaveNotepad
   autocmd BufLeave  silly.txt silent update
 augroup END
 
+" autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 100)|\
 " autocmd SessionLoadPost * echom "Welcome back"
 autocmd WinNew * set numberwidth=2
 autocmd FileType c setlocal commentstring=//%s
@@ -366,7 +367,8 @@ nnoremap aw :w<CR>
 nnoremap <C-s> :w<CR>
 nnoremap ,,w :wa<CR>
 nnoremap ax :q<CR>
-nnoremap ,x :tabclose<CR>
+nnoremap ,x :q<CR>
+nnoremap ,<del> :tabclose<CR>
 nnoremap ,q :qa<CR>
 nnoremap ,d :bd!<CR>
 nnoremap ,bd :BDnJump<CR>
@@ -702,9 +704,8 @@ nnoremap ,ct :TagbarOpen fj<CR>
 
 " Make and run project
 nnoremap ,zo :make<bar> copen<CR>
-nnoremap ,Z  :call BuildProjectUni("my_Makefile","make -f my_Makefile")
+nnoremap ,zi :call BuildProjectUni("my_Makefile","make -f my_Makefile distclean")
 nnoremap ,zm :call BuildProjectUni("my_Makefile","make -f my_Makefile")<CR>
-nnoremap ,zc :call BuildProjectUni("my_Makefile","make -f my_Makefile distclean")<CR>
 nnoremap ,zx :call BuildProjectUni("Makefile","make -f my_Makefile run")<CR>
 nnoremap ,zb :call BuildProjectUni("my_Makefile","make -f my_Makefile bear")<CR>
 " nnoremap ,XX :call BuildProjectUni("Makefile","make tags") <bar> cwindow<CR>

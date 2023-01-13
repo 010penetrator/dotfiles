@@ -16,7 +16,7 @@ else
 endif
 nnoremap c<BS>     :exec 'colo' system("echo $VIFM_THEME")<CR>
 command! resetcolor :exec 'colo' system("echo $VIFM_THEME")<CR>
-exec 'colo' system("echo $VIFM_THEME")
+" exec 'colo' system("echo $VIFM_THEME")
 " nnoremap gS :exec 'cd' system("compgen -G /ln/mo/*AMV/bak")<cr>
 
 !echo -ne "\033]0;VIFM\007"

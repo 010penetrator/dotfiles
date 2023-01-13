@@ -54,10 +54,10 @@ local function nkeymap(a_key, a_map)
 end
 M.nkeymap = nkeymap
 
-local nmap = function(keys, func, desc)
+M.nmap = function(keys, func, desc)
   vim.keymap.set("n", keys, func, { desc = desc, noremap = true })
 end
-M.nmap = nmap
+-- M.nmap = nmap
 
 -- local hotfun = {}
 M.teles_ff = function()
@@ -75,8 +75,8 @@ M.mirror_buf_to_prev_window = function()
   local pos = vim.fn.getpos('.')
   if vim.fn.winnr() == vim.fn.winnr('#') then
     -- only current window is present; add second window
-    -- vim.cmd('vnew')
-    vim.api.nvim_open_win(true,true,{})
+    vim.cmd('vnew')
+    -- vim.api.nvim_open_win(true,true,{})
   else
     -- go to prev window
     vim.cmd('wincmd p')
