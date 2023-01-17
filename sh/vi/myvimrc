@@ -439,8 +439,8 @@ nnoremap <C-PageDown> gt
 nnoremap gz gT
 nnoremap q] gt
 nnoremap q[ gT
-nnoremap <a-.> gt
-nnoremap <a-,> gT
+nnoremap <A-.> gt
+nnoremap <A-,> gT
 nnoremap q{ :tabmove -1<CR>
 nnoremap q} :tabmove +1<CR>
 nnoremap q< :call MoveToPrevTab()<CR>
@@ -556,18 +556,18 @@ if has("nvim")
   tnoremap <C-PageDown> <C-\><C-n>:tabnext<CR>
   tnoremap g<tab> <C-\><C-n>:exe "tabn ".g:lasttab<CR>
   tnoremap q<tab> <C-\><C-n>:wincmd p<CR>
-  tnoremap <A-h> <C-\><C-N><C-w>h
-  tnoremap <A-j> <C-\><C-N><C-w>j
-  tnoremap <A-k> <C-\><C-N><C-w>k
-  tnoremap <A-l> <C-\><C-N><C-w>l
-  inoremap <A-h> <C-\><C-N><C-w>h
-  inoremap <A-j> <C-\><C-N><C-w>j
-  inoremap <A-k> <C-\><C-N><C-w>k
-  inoremap <A-l> <C-\><C-N><C-w>l
-  nnoremap <A-h> <C-w>h
-  nnoremap <A-j> <C-w>j
-  nnoremap <A-k> <C-w>k
-  nnoremap <A-l> <C-w>l
+  tnoremap <A-Left> <C-\><C-N><C-w>h
+  tnoremap <A-Down> <C-\><C-N><C-w>j
+  tnoremap <A-Up> <C-\><C-N><C-w>k
+  tnoremap <A-Right> <C-\><C-N><C-w>l
+  inoremap <A-Left> <C-\><C-N><C-w>h
+  inoremap <A-Down> <C-\><C-N><C-w>j
+  inoremap <A-Up> <C-\><C-N><C-w>k
+  inoremap <A-Right> <C-\><C-N><C-w>l
+  nnoremap <A-Left> <C-w>h
+  nnoremap <A-Down> <C-w>j
+  nnoremap <A-Up> <C-w>k
+  nnoremap <A-Right> <C-w>l
 endif
 
 " Scroll fraction of the screen
@@ -601,6 +601,8 @@ nnoremap aO :put! +<CR>
 " put select system buffer as single paragraph
 nnoremap ap o<Esc>:put! *<CR>`[v`]:g/^$/d<CR>:noh<CR>
 nnoremap aP o<Esc>:put! +<CR>`[v`]:g/^$/d<CR>:noh<CR>
+" shrink selection into single paragraph
+vnoremap <C-l> :g/^$/d<CR>:noh<CR>
 " yank inline
 nnoremap yc ^y$"+y$"*y$
 " yank current file full path/name
@@ -632,7 +634,7 @@ nnoremap ,v, :call EvalThis()<CR>
 " Evaluate a paragraph as Vimscript
 nnoremap ,v; :let lastpos=line('.') <bar> exec "normal yap" <bar> @\" <bar> exec lastpos<CR>:echo "Evaluated current paragraph."<CR>
 " Evaluate a paragraph as Lua
-nnoremap ,vu :let lastpos=line('.') <bar> exec "normal yap" <bar> exec 'lua ' . expand(@") <bar> exec lastpos<CR>:echo "Evaluated current paragraph."<CR>
+nnoremap ,vu :let lastpos=line('.') <bar> exec "normal yap" <bar> exec 'lua ' . expand(@") <bar> exec lastpos<CR>:echo "Evaluated current paragraph as Lua."<CR>
 
 if !has('nvim')
   " Open current location with vifm within vim
@@ -1349,6 +1351,7 @@ function! LightlineReload(arg)
 endfunction
 command! -nargs=? LineColor call LightlineReload('<args>')
 
+" Delete bunches of blank lines
 function! DelSpace()
   let cur = line('.')
   " Search end of previous paragraph

@@ -54,10 +54,15 @@ local function nkeymap(a_key, a_map)
 end
 M.nkeymap = nkeymap
 
-M.nmap = function(keys, func, desc)
-  vim.keymap.set("n", keys, func, { desc = desc, noremap = true })
+M.nmap = function(keys, func, desc, silent)
+  vim.keymap.set('n', keys, func, { desc = desc, noremap = true })
 end
--- M.nmap = nmap
+M.snmap = function(keys, func, desc)
+  vim.keymap.set('n', keys, func, { desc = desc, noremap = true, silent = true })
+end
+
+-- local k_opts = { silent=true, noremap=false }
+-- vim.api.nvim_set_keymap("n", "<C-p>", ":lua require('bufjump').backward()<cr>", k_opts)
 
 -- local hotfun = {}
 M.teles_ff = function()

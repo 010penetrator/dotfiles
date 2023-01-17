@@ -11,6 +11,60 @@ package.loaded['plasmik.helpy'] = nil
 H = require('plasmik.helpy')
 require('plasmik.remap')
 
+-- disable netrw early in user/init.lua
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- [[ Highlight on yank ]]
+-- See `:help vim.highlight.on_yank()`
+local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
+vim.api.nvim_create_autocmd('TextYankPost', {
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+  group = highlight_group,
+  pattern = '*',
+})
+
+------------------------
+--  Configure Plugs   --
+------------------{{{}}}
+
+
+require("syntax-tree-surfer")
+-- Syntax Tree Surfer
+local opts = {noremap = true, silent = false}
+-- Normal Mode Swapping:
+-- Swap The Master Node relative to the cursor with it's siblings, Dot Repeatable
+vim.keymap.set("n", "vU", function()
+  vim.opt.opfunc = "v:lua.STSSwapUpNormal_Dot"
+  return "g@l"
+end, { silent = true, expr = true })
+vim.keymap.set("n", "vD", function()
+  vim.opt.opfunc = "v:lua.STSSwapDownNormal_Dot"
+  return "g@l"
+end, { silent = true, expr = true })
+-- Swap Current Node at the Cursor with it's siblings, Dot Repeatable
+vim.keymap.set("n", "vd", function()
+  vim.opt.opfunc = "v:lua.STSSwapCurrentNodeNextNormal_Dot"
+  return "g@l"
+end, { silent = true, expr = true })
+vim.keymap.set("n", "vu", function()
+  vim.opt.opfunc = "v:lua.STSSwapCurrentNodePrevNormal_Dot"
+  return "g@l"
+end, { silent = true, expr = true })
+-- Visual Selection from Normal Mode
+vim.keymap.set("n", "vx", '<cmd>STSSelectMasterNode<cr>', opts)
+vim.keymap.set("n", "vn", '<cmd>STSSelectCurrentNode<cr>', opts)
+-- Select Nodes in Visual Mode
+vim.keymap.set("x", "J", '<cmd>STSSelectNextSiblingNode<cr>', opts)
+vim.keymap.set("x", "K", '<cmd>STSSelectPrevSiblingNode<cr>', opts)
+vim.keymap.set("x", "H", '<cmd>STSSelectParentNode<cr>', opts)
+vim.keymap.set("x", "L", '<cmd>STSSelectChildNode<cr>', opts)
+-- Swapping Nodes in Visual Mode
+vim.keymap.set("x", "<A-j>", '<cmd>STSSwapNextVisual<cr>', opts)
+vim.keymap.set("x", "<A-k>", '<cmd>STSSwapPrevVisual<cr>', opts)
+
 require('nvim-autopairs').setup{}
 require('Comment').setup()
 -- require('yode-nvim').setup()
@@ -26,7 +80,6 @@ require('telescope').setup{
   }
 }
 require('telescope').load_extension('fzf')
-
 -- local theme = require('telescope.themes').get_ivy()
 -- theme['layout_config']['height'] = vim.opt.lines:get() - 8
 -- theme['sort_mru'] = true
@@ -48,75 +101,10 @@ function Tele_buff_drop() require('telescope.builtin').buffers( tele_drop ) end
     }
 } ]]
 
--- disable netrw early in user/init.lua
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
---[[
--- require"nvim-tree".open_replacing_current_buffer()
-require("nvim-tree").setup({
-  disable_netrw = true,
-  hijack_netrw = true,
-  hijack_directories = {
-    enable = true,
-    auto_open = true,
-  },
-  -- hijack_unnamed_buffer_when_opening = false,
-  ignore_buffer_on_setup = true,
-  sort_by = "case_sensitive",
-  view = {
-    adaptive_size = false,
-    mappings = {
-      list = {
-        { key = "u", action = "dir_up" },
-      },
-    },
-  },
-  renderer = {
-    group_empty = true,
-  },
-  filters = {
-    dotfiles = true,
-  },
-})
-function nvtree_toggle_replace()
-  local view = require"nvim-tree.view"
-  local api = require"nvim-tree.api"
-  if view.is_visible() then
-    api.tree.focus()
-  else
-    api.tree.toggle()
-    -- require"nvim-tree".open_replacing_current_buffer()
-  end
-end
-function nvtree_imit_netrw()
-  local curname=vim.api.nvim_buf_get_name(0)
-  print(curname)
-  if curname=="" then
-    print "var1"
-    vim.cmd"e ."
-    --     require"nvim-tree".open_replacing_current_buffer()
-    --     print "var1"
-    -- else
-    --     require"nvim-tree".open_replacing_current_buffer()
-    --     print "var2"
-  end
-  local view = require"nvim-tree.view"
-  local api = require"nvim-tree.api"
-  if view.is_visible() then
-    api.tree.focus()
-    api.tree.find_file(curname)
-  else
-    require('nvim-tree').open_replacing_current_buffer()
-  end
-end ]]
-
-require"nvim-treesitter.configs".setup {
-  -- ensure_installed = "mantained",
+require'nvim-treesitter.configs'.setup {
   ensure_installed = { 'c', 'cpp', 'lua', 'python', 'vim', 'bash', 'help' },
-
   highlight = { enable = true },
   indent = { enable = true, disable = { 'python' } },
-
   rainbow = {
     enable = true,
     -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
@@ -125,7 +113,6 @@ require"nvim-treesitter.configs".setup {
     -- colors = {}, -- table of hex strings
     -- termcolors = {} -- table of colour name strings
   },
-
   incremental_selection = {
     enable = true,
     keymaps = {
@@ -135,7 +122,6 @@ require"nvim-treesitter.configs".setup {
       node_decremental = '<c-backspace>',
     },
   },
-
   textobjects = {
     select = {
       enable = true,
@@ -150,7 +136,6 @@ require"nvim-treesitter.configs".setup {
         ['ic'] = '@class.inner',
       },
     },
-
     move = {
       enable = true,
       set_jumps = true, -- whether to set jumps in the jumplist
@@ -171,7 +156,6 @@ require"nvim-treesitter.configs".setup {
         ['[]'] = '@class.outer',
       },
     },
-
     swap = {
       enable = true,
       swap_next = {
@@ -183,7 +167,6 @@ require"nvim-treesitter.configs".setup {
     },
   },
 }
-
 -- vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
@@ -249,7 +232,6 @@ require'marks'.setup {
   }
 }
 
-
 -- n  m]          * <Cmd>lua require'marks'.next()<CR>
 -- n  f<Up>       * <Cmd>lua require'marks'.prev_bookmark()<CR>
 
@@ -275,9 +257,16 @@ t['zz']    = {'zz', {'100'}}
 t['zb']    = {'zb', {'100'}}
 require('neoscroll.config').set_mappings(t)
 
--- local k_opts = { silent=true, noremap=false }
--- vim.api.nvim_set_keymap("n", "<C-p>", ":lua require('bufjump').backward()<cr>", k_opts)
--- vim.api.nvim_set_keymap("n", "<C-n>", ":lua require('bufjump').forward()<cr>", k_opts)
+require('gomove').setup {
+  -- whether or not to map default key bindings, (true/false)
+  map_defaults = true,
+  -- whether or not to reindent lines moved vertically (true/false)
+  reindent = true,
+  -- whether or not to undojoin same direction moves (true/false)
+  undojoin = true,
+  -- whether to not to move past end column when moving blocks horizontally, (true/false)
+  move_past_end_col = false,
+}
 
 ------------------------
 --       LSP:         --
@@ -356,6 +345,10 @@ require('lspconfig').vimls.setup{ on_attach = function() print("lsp client is vi
 local lsp = require("lsp-zero")
 lsp.preset("recommended")
 
+------------------------
+--      Keymaps:      --
+------------------{{{}}}
+
 if vim.fn.has('nvim-0.6') == 1 then
   vim.api.nvim_command('\
   nnoremap <silent> gh <cmd>ClangdSwitchSourceHeader<CR>|\
@@ -388,6 +381,7 @@ if vim.fn.has('nvim-0.7')==1 then
   -- vim.keymap.set("n",",,b", Tele_buff_ivy, {desc = "Telescope buffers ivy-themed"})
   H.nmap(',fb', Tele_buff_ivy, "Telescope [B]uffers ivy-themed")
   H.nmap(',<space>', Tele_buff_drop)
+  -- H.snmap('<C-n>', require('bufjump').forward)
 end
 
 -- nnoremap ,tt :Telescope current_buffer_fuzzy_find sorting_strategy=ascending layout_config={"prompt_position":"top"}<CR>
@@ -496,6 +490,7 @@ cmp.setup.filetype('gitcommit', {
 
 ------------------------
 ------------------------
+------------------{{{}}}
 
 -- -- Install packer
 -- local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
@@ -505,16 +500,4 @@ cmp.setup.filetype('gitcommit', {
 --   vim.fn.system { 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path }
 --   vim.cmd [[packadd packer.nvim]]
 -- end
-
--- [[ Highlight on yank ]]
--- See `:help vim.highlight.on_yank()`
-local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
-vim.api.nvim_create_autocmd('TextYankPost', {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-  group = highlight_group,
-  pattern = '*',
-})
-
 

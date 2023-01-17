@@ -117,6 +117,7 @@ if has("nvim")
     Plug 'nvim-telescope/telescope-dap.nvim'
     Plug 'nvim-treesitter/nvim-treesitter', {'do':':TSUpdate'}
     Plug 'mrjones2014/nvim-ts-rainbow'
+    Plug 'ziontee113/syntax-tree-surfer'
     Plug 'neovim/nvim-lspconfig'
     Plug 'williamboman/mason.nvim'
     Plug 'williamboman/mason-lspconfig.nvim'
@@ -133,10 +134,9 @@ if has("nvim")
     " Plug 'norcalli/nvim-colorizer.lua'
     " Plug 'kwkarlwang/bufjump.nvim'
     Plug 'hoschi/yode-nvim'
-    " Plug 'nvim-tree/nvim-tree.lua'
     Plug 'nvim-neo-tree/neo-tree.nvim'
-    Plug 'MunifTanjim/nui.nvim'
     Plug 'nvim-tree/nvim-web-devicons'
+    Plug 'MunifTanjim/nui.nvim'
     Plug 'lambdalisue/suda.vim'
     Plug 'numToStr/Comment.nvim'
     Plug 'karb94/neoscroll.nvim'
@@ -144,6 +144,7 @@ if has("nvim")
     Plug 'windwp/nvim-autopairs'
     " Plug 'lukas-reineke/indent-blankline.nvim'
     " Plug 'luissimas/eval.nvim'
+    Plug 'booperlv/nvim-gomove'
     " Themes
     Plug 'lukas-reineke/onedark.nvim'
     Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
