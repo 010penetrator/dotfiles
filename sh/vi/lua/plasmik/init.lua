@@ -9,8 +9,8 @@
 require('plasmik.set')
 package.loaded['plasmik.helpy'] = nil
 H = require('plasmik.helpy')
-require('plasmik.bootstrap')
 require('plasmik.remap')
+require('plasmik.bootstrap')
 
 -- disable netrw early in user/init.lua
 vim.g.loaded_netrw = 1
