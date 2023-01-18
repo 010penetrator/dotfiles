@@ -14,7 +14,7 @@ super + { q, Q, D, F, t, v, s, y, r, R, z, g, slash }
   ' - VIMSERV\|VIM$\|VIM @ \| - NVIM$\|nvim $\|QtCreator\| tmux' 'vinew', \
   'chromium\|Firefox\|Remmina' 'firefox', \
   'Thunar\|pcmanfm\| YouTube \|office.libreoffice\|Abiword\|sis.ko' 'notify-send not\ found', \
-  zathura listzathura.sh, evince, FBReader, \
+  'sioyek\|zathura' listzathura.sh, evince, FBReader, \
   'Telegram\|Pidgin\|Git\|TuxGuitar\|hydrogen\|VirtualBox' '', \
   '' listmenu.sh }
 

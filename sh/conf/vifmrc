@@ -108,7 +108,7 @@ nnoremap ,u :undolist<cr>
 " Open current file "
 nnoremap q. :! ./%c &<cr>
 " Open file in the background using its default program
-nnoremap ql :file &<cr>l
+nnoremap qk :file &<cr>
 nnoremap qj :file<cr>
 nnoremap qi :! mediainfo %c | less<cr>
 nnoremap qh :! xxd %c | less<cr>
@@ -219,7 +219,9 @@ nnoremap g2 :cd $HOME/2<cr>
 nnoremap g3 :cd $HOME/3<cr>
 nnoremap g4 :cd $HOME/4<cr>
 nnoremap gs :cd /ln/sh<cr>
-nnoremap g<BS> :exec 'cd' system('realpath /ln/fast/hh')<cr>
+" nnoremap g<BS> :exec 'cd' system('realpath /ln/fast/hh')<cr>
+" nnoremap gn :cd ~/.config/nvim<cr>:goto plugged<cr>
+nnoremap gn :cd /ln/fast/hh<cr>
 nnoremap gw :cd /ln/wo<cr>
 nnoremap gj :cd /ln/ho/gitjob<cr>
 nnoremap gd :cd /ln/dwn<cr>:set sort=-mtime<cr>:16<cr>
@@ -231,7 +233,6 @@ nnoremap gf 'f
 nnoremap gi :cd /ln/hh/imgdl1<cr>
 nnoremap gk :cd /ln/torrents/red/KKK<cr>:sort<cr>mh
 nnoremap gv :cd ~/.vim<cr>:goto plugged<cr>
-nnoremap gn :cd ~/.config/nvim<cr>:goto plugged<cr>
 " nnoremap gN :cd ~/01/new/<cr>
 nnoremap gp :cd /mnt/blink/PRAGS/prwin/<cr>
 nnoremap gK :cd /ln/hh/keebs/<cr>
