@@ -40,6 +40,7 @@ call plug#begin($PLUGD)
     else
 call plug#begin()
     endif
+
 " Basic
 Plug 'junegunn/vim-plug'
 Plug 'itchyny/lightline.vim' "cool
@@ -74,7 +75,6 @@ if !has("nvim")
 endif
 
 " Try out now
-" Plug 'sandeepcr529/Buffet.vim' "good
 " Plug 'zefei/vim-colortuner' "fun
 " Plug 'Townk/vim-autoclose' "usable
 Plug 'MattesGroeger/vim-bookmarks'
@@ -98,6 +98,7 @@ Plug 'tpope/vim-sleuth'
 " Plug 'RRethy/vim-illuminate'
 
 " Archive
+" Plug 'sandeepcr529/Buffet.vim' "good
 " Plug 'wesleyche/SrcExpl' "mediocre
 " Plug 'vim-scripts/CycleColor' "works
 " Plug 'dense-analysis/ale' "works
@@ -149,11 +150,13 @@ if has("nvim")
     Plug 'lukas-reineke/onedark.nvim'
     Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
     Plug 'projekt0n/github-nvim-theme'
+    Plug 'savq/melange-nvim'
+
 endif
 
 """"""""""""""""""""""""
 ""    Plug Colors:    ""
-""""""""""""""""""""""""     {{{}}}
+""""""""""""""""""{{{}}}
 
 " gui themes need termguicolors set
 Plug 'morhetz/gruvbox' "best
@@ -233,11 +236,12 @@ Plug 'franbach/miramare' "coffee dark
 " Plug 'atelierbram/vim-colors_atelier-schemes' "mindfuck
 " Plug 'bcicen/vim-vice' "joke
 " Plug 'vim-scripts/swamplight' "day
+
 call plug#end()
 endif
 
 if empty(execute('filter /fugitive.vim$/ scriptnames'))
-    echo "Have to install plugins.."
+    echo "Yet have to install plugins.."
 else
     echo "Plugins seem to be installed already."
 endif

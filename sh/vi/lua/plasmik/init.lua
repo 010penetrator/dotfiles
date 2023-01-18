@@ -9,6 +9,7 @@
 require('plasmik.set')
 package.loaded['plasmik.helpy'] = nil
 H = require('plasmik.helpy')
+require('plasmik.bootstrap')
 require('plasmik.remap')
 
 -- disable netrw early in user/init.lua
@@ -25,6 +26,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = highlight_group,
   pattern = '*',
 })
+
 
 ------------------------
 --  Configure Plugs   --
@@ -308,17 +310,15 @@ lsp_installer.on_server_ready(function(server)
     server:setup(opts)
 end) ]]
 
-local mp
+local loadpath
 if vim.env.PLUGD then
-  -- mp = vim.env.PLUGD .. H.path_separator .. "nvim-mason"
-  mp = H.path_join( vim.env.PLUGD , "..", "nvim-mason" )
-  mp = vim.fn.resolve(mp)
-  -- mp = H.path_join( vim.fn.stdpath "data", "nvim-mason" )
-  -- print(mp)
+  loadpath = H.path_join( vim.env.PLUGD , "..", "nvim-mason" )
+  -- loadpath = H.path_join( vim.fn.stdpath"data", "nvim-mason" )
+  loadpath = vim.fn.resolve(loadpath)
 end
 
 require("mason").setup({
-  install_root_dir = mp ,
+  install_root_dir = loadpath ,
 })
 
 require("mason-lspconfig").setup({
@@ -344,6 +344,10 @@ require('lspconfig').vimls.setup{ on_attach = function() print("lsp client is vi
 
 local lsp = require("lsp-zero")
 lsp.preset("recommended")
+
+require("lsp_lines").setup()
+-- Disable virtual_text since it's redundant due to lsp_lines.
+vim.diagnostic.config({ virtual_text = false, })
 
 ------------------------
 --      Keymaps:      --
@@ -491,13 +495,4 @@ cmp.setup.filetype('gitcommit', {
 ------------------------
 ------------------------
 ------------------{{{}}}
-
--- -- Install packer
--- local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
--- local is_bootstrap = false
--- if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
---   is_bootstrap = true
---   vim.fn.system { 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path }
---   vim.cmd [[packadd packer.nvim]]
--- end
 

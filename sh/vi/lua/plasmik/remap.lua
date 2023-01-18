@@ -13,3 +13,6 @@ vim.keymap.set("n", ",p", "\"yp")
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
+-- H.nmap(',gp', vim.api.nvim_command('colo'))
+H.nkeymap(',gp', ":call FocusBufOrDo('bootstrap.lua','e $mylua/bootstrap.lua')<CR>")
+

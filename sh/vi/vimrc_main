@@ -48,7 +48,12 @@ let $mylua = $sh . "/vi/lua/plasmik"
 set runtimepath+=$vi
 " set runtimepath+=$mylua
 
-SSource $vi/vimrc_plug
+if has("nvim")
+    lua require('plasmik.bootstrap')
+else
+    SSource $vi/vimrc_plug
+endif
+
 SSource $vi/myvimrc
 SSource $vi/vimrc_themes
 SSource $loc/vimrc.local
@@ -57,7 +62,7 @@ if has("nvim")
     lua require('plasmik')
     " SSource $mylua/helpy.lua
     " SSource $mylua/init.lua
-    " SSource $mylua/migrate.lua
+    SSource $mylua/remap.lua
 endif
 
 " TODO/Problems :
