@@ -49,7 +49,7 @@ set runtimepath+=$vi
 " set runtimepath+=$mylua
 
 if has("nvim")
-    lua require('plasmik.bootstrap')
+    lua require('plasmik')
 else
     SSource $vi/vimrc_plug
 endif
@@ -58,12 +58,11 @@ SSource $vi/myvimrc
 SSource $vi/vimrc_themes
 SSource $loc/vimrc.local
 
-if has("nvim")
-    lua require('plasmik')
+" if has("nvim")
     " SSource $mylua/helpy.lua
     " SSource $mylua/init.lua
-    SSource $mylua/remap.lua
-endif
+    " SSource $mylua/remap.lua
+" endif
 
 " TODO/Problems :
 "     filetype detection needs :e!

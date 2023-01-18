@@ -15,7 +15,7 @@ else
     if !exists("g:phase")
         call SetPhase()
         if &diff
-            colo wasabi256
+            colo stellarized
             let g:phase = 'diffffff'
         endif
     endif

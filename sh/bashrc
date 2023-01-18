@@ -147,7 +147,7 @@ gsync() {
     export PATH="${PATH:+${PATH}:}$git/plugged/fzf/bin"
 [[ $- == *i* ]] && [[ -f $git/plugged/fzf/shell/completion.bash ]] &&
     source "$git/plugged/fzf/shell/completion.bash" 2> /dev/null
-export FZF_DEFAULT_OPTS="--exact --layout=reverse --height 55%"
+export FZF_DEFAULT_OPTS="--exact --layout=reverse --height 45%"
 export FZF_CTRL_R_OPTS="--no-sort --exact"
 # Restore default <C-r> search
     # bind -X "\C-r: reverse-search-history"

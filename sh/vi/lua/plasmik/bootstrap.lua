@@ -73,7 +73,6 @@ require("lazy").setup({
   'nvim-telescope/telescope.nvim',
   { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
   'nvim-lua/plenary.nvim',
-  'nvim-lualine/lualine.nvim',
   'mfussenegger/nvim-lint',
   'mfussenegger/nvim-dap',
   'rcarriga/nvim-dap-ui',
@@ -156,8 +155,7 @@ config = function() require('leap').add_default_mappings(true) end, },
   'wimstefan/vim-artesanal', --good lowcon gray
   -- 'AlessandroYorba/Sierra', --softgray
   -- 'AlessandroYorba/Despacio', --softdarkgrey
-  'Jimeno0/vim-chito', --low con
-  'HenryNewcomer/vim-theme-underflow', --consbroken
+  -- 'HenryNewcomer/vim-theme-underflow', --consbroken
   'beigebrucewayne/min_solo', --grey bg subtle__
   'junegunn/seoul256.vim', --okay
   'arzg/vim-mayanfog', --light
