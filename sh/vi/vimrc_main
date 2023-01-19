@@ -58,11 +58,12 @@ SSource $vi/myvimrc
 SSource $vi/vimrc_themes
 SSource $loc/vimrc.local
 
-" if has("nvim")
+if has("nvim")
     " SSource $mylua/helpy.lua
     " SSource $mylua/init.lua
-    " SSource $mylua/remap.lua
-" endif
+    SSource $mylua/remap.lua
+    let dummy=0
+endif
 
 " TODO/Problems :
 "     filetype detection needs :e!

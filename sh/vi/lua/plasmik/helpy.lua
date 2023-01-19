@@ -1,12 +1,22 @@
 -- vim: ts=2 sw=2
 
 local M = {}
--- H = M
+H = M
+print('hello from plasmik.helpy lua')
 
 function M.tprint (tbl)
   for k,v in pairs(tbl) do
     print(k,v)
   end
+end
+
+function M.unload (p)
+  package.loaded[p] = nil
+end
+
+function M.reload (p)
+  package.loaded[p] = nil
+  require(p)
 end
 
 ---Author: cseickel
@@ -41,20 +51,19 @@ M.path_join = function(...)
     all_parts[1] = ""
   end
   for _, arg in ipairs(args) do
-    arg_parts = M.split(arg, M.path_separator)
+    local arg_parts = M.split(arg, M.path_separator)
     vim.list_extend(all_parts, arg_parts)
   end
   return table.concat(all_parts, M.path_separator)
 end
 
-local keymap = vim.api.nvim_set_keymap
 local a_opts = { noremap = true }
-local function nkeymap(a_key, a_map)
-  keymap('n', a_key, a_map, a_opts)
+local function oldvim_nkeymap(a_key, a_map)
+  vim.api.nvim_set_keymap('n', a_key, a_map, a_opts)
 end
-M.nkeymap = nkeymap
+M.bram_nmap = oldvim_nkeymap
 
-M.nmap = function(keys, func, desc, silent)
+M.nmap = function(keys, func, desc )
   vim.keymap.set('n', keys, func, { desc = desc, noremap = true })
 end
 M.snmap = function(keys, func, desc)
@@ -69,8 +78,7 @@ M.teles_ff = function()
   local opt = require('telescope.themes').get_ivy({height=10,previewer=false,winblend=16})
   require('telescope.builtin').current_buffer_fuzzy_find(opt)
 end
--- nkeymap('<C-h>', ':lua require("init").teles_ff()<cr>')
-nkeymap('<C-h>', ':lua require("plasmik.helpy").teles_ff()<cr>')
+M.bram_nmap('<C-h>', ':lua require("plasmik.helpy").teles_ff()<cr>')
 -- :lua package.loaded.init = nil
 -- print("init.lua loaded once more")
 -- return hotfun

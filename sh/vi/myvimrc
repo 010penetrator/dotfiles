@@ -217,7 +217,7 @@ endif
 
 if has("nvim")
   function! CrispBorders()
-    " set laststatus=3
+    set laststatus=3
     highlight WinSeparator guibg=none
     highlight WinSeparator guifg=#5a5a5a
   endfunction

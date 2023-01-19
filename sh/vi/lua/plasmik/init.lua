@@ -1,14 +1,14 @@
 -- vim: ts=2 sw=2
 -- FYI: Use checkhealth to troubleshoot Neovim
 
--- vim.opt.more = false
 -- print('hello from plasmik')
+-- vim.opt.more = false
 -- vim.api.nvim_command('echom 88')
 -- vim.api.nvim_command('echom 88')
 
 require('plasmik.set')
 package.loaded['plasmik.helpy'] = nil
-H = require('plasmik.helpy')
+require('plasmik.helpy')
 require('plasmik.remap')
 require('plasmik.bootstrap')
 
@@ -33,7 +33,19 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 ------------------{{{}}}
 
 
-require("syntax-tree-surfer")
+
+require('bufferline').setup()
+--[[ require('bufferline').setup{
+    options = {
+        hover = {
+            enabled = true,
+            delay = 200,
+            reveal = {'close'}
+        }
+    }
+} ]]
+
+require('syntax-tree-surfer')
 -- Syntax Tree Surfer
 local opts = {noremap = true, silent = false}
 -- Normal Mode Swapping:
@@ -86,9 +98,9 @@ require('telescope').load_extension('fzf')
 -- theme['layout_config']['height'] = vim.opt.lines:get() - 8
 -- theme['sort_mru'] = true
 -- require('telescope.builtin').buffers(theme)
-tele_ivy = require('telescope.themes').get_ivy{ sort_mru = true, layout_config = { height = vim.opt.lines:get() - 10 } }
+local tele_ivy = require('telescope.themes').get_ivy{ sort_mru = true, layout_config = { height = vim.opt.lines:get() - 10 } }
 function Tele_buff_ivy() require('telescope.builtin').buffers( tele_ivy ) end
-tele_drop = require('telescope.themes').get_dropdown{ sort_mru=true, winblend=9, layout_config = { height=26 } }
+local tele_drop = require('telescope.themes').get_dropdown{ sort_mru=true, winblend=9, layout_config = { height=26 } }
 function Tele_buff_drop() require('telescope.builtin').buffers( tele_drop ) end
 -- require('telescope.builtin').buffers(Tele_drop)
 
@@ -334,7 +346,12 @@ require('lspconfig').bashls.setup{ on_attach = function() print("lsp client is b
 require('lspconfig').clangd.setup{ on_attach = function() print("lsp client is clangd") end, }
 require('lspconfig').sumneko_lua.setup{
   -- on_attach = function() print("lsp client is sumneko_lua") end,
-  settings = { Lua = { diagnostics = { globals = {'vim'}}}},
+  settings = {
+    Lua = {
+      diagnostics = { globals = { "vim" } },
+      workspace = { library = { os.getenv("VIMRUNTIME") } },
+    }
+  },
 }
 require('lspconfig').pyright.setup{ on_attach = function() print("lsp client is pyright") end, capabilities = nc_capabilities }
 require('lspconfig').cmake.setup{ on_attach = function() print("lsp client is cmake") end, capabilities = nc_capabilities }
@@ -390,7 +407,6 @@ end
 
 -- nnoremap ,tt :Telescope current_buffer_fuzzy_find sorting_strategy=ascending layout_config={"prompt_position":"top"}<CR>
 -- nnoremap ,tt <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find({sorting_strategy="ascending", theme="ivy"})<CR>
-H.nkeymap(',R', ':lua vim.lsp.buf.rename()<cr>')
 
 ------------------------
 --     Completion:    --

@@ -1,4 +1,5 @@
 -- vim: ts=2 sw=2
+-- Install plugins manager and install plugins
 
 -- Install lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -20,7 +21,6 @@ local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nv
 local is_bootstrap = false
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   is_bootstrap = true
-  0
   vim.fn.system { 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path }
   vim.cmd "packadd packer.nvim"
 end ]]
@@ -108,7 +108,9 @@ require("lazy").setup({
   'booperlv/nvim-gomove',
   'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
   { 'https://github.com/ggandor/leap.nvim',
-config = function() require('leap').add_default_mappings(true) end, },
+config = function() require('leap').add_default_mappings() end, },
+  'powerman/vim-plugin-ruscmd',
+  { 'akinsho/bufferline.nvim', version='v3.*', requires='nvim-tree/nvim-web-devicons' },
 
 ------------------------
 --      Themes:       --
@@ -181,7 +183,7 @@ config = function() require('leap').add_default_mappings(true) end, },
   -- 'nightsense/stellarized', --nice! light+dark
   -- 'arzg/vim-mayanfog', --light bone
   -- 'arzg/vim-plan9', --trueeeee
-  ---- Pretty but not comfortable :
+  ---- Pretty but not useful ----
   -- 'sainnhe/sonokai', --dark gui&nogui
   -- 'szorfein/fromthehell.vim', --dark satur earth
   -- 'whatyouhide/vim-gotham', --neon/green
