@@ -32,7 +32,9 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 --  Configure Plugs   --
 ------------------{{{}}}
 
-
+require('lualine').setup({
+  -- options = { theme = 'nord' }
+})
 
 require('bufferline').setup()
 --[[ require('bufferline').setup{
@@ -47,7 +49,7 @@ require('bufferline').setup()
 
 require('syntax-tree-surfer')
 -- Syntax Tree Surfer
-local opts = {noremap = true, silent = false}
+local opts = { noremap = true, silent = false }
 -- Normal Mode Swapping:
 -- Swap The Master Node relative to the cursor with it's siblings, Dot Repeatable
 vim.keymap.set("n", "vU", function()

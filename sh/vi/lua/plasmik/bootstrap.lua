@@ -28,8 +28,9 @@ end ]]
 require("lazy").setup({
 
   -- Basic
-  'itchyny/lightline.vim', --cool
-  'justinmk/vim-sneak', --good!
+  -- 'itchyny/lightline.vim', --cool
+  {'nvim-lualine/lualine.nvim', dependencies = 'kyazdani42/nvim-web-devicons'},
+  -- 'justinmk/vim-sneak', --good!
   'jlanzarotta/bufexplorer', --basic
   -- 'tpope/vim-sensible', --basic
   -- 'tpope/vim-commentary',
@@ -110,7 +111,7 @@ require("lazy").setup({
   { 'https://github.com/ggandor/leap.nvim',
 config = function() require('leap').add_default_mappings() end, },
   'powerman/vim-plugin-ruscmd',
-  { 'akinsho/bufferline.nvim', version='v3.*', requires='nvim-tree/nvim-web-devicons' },
+  { 'akinsho/bufferline.nvim', version='v3.*', dependencies='nvim-tree/nvim-web-devicons' },
 
 ------------------------
 --      Themes:       --

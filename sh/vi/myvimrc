@@ -36,11 +36,14 @@ set path=.,**
 ""     Settings:      ""
 """"""""""""""""""""""""
 
-if !exists("g:lightline")
-  let g:lightline = { }
+if exists("g:loaded_lightline")
+  if !exists("g:lightline")
+    let g:lightline = { }
+  endif
+  let g:lightline.active = { 'left': [ [ 'mode', 'paste' ], [ 'readonly', 'modified', 'gitbranch', 'relativepath' ] ] }
+  let g:lightline.component_function =  { 'gitbranch': 'FugitiveHead' }
 endif
-let g:lightline.active = { 'left': [ [ 'mode', 'paste' ], [ 'readonly', 'modified', 'gitbranch', 'relativepath' ] ] }
-let g:lightline.component_function =  { 'gitbranch': 'FugitiveHead' }
+
 let g:completion_enable_auto_popup = 1
 let g:goyo_width = "66%"
 let g:goyo_height = "95%"
@@ -1275,12 +1278,16 @@ function! SaveColor(...)
   if arg == 'day' || arg == 'dunno'
     echom "Saving colors for 'day'"
     let g:ColorDayName = g:colors_name
-    let g:ColorDayLine = g:lightline.colorscheme
+    if exists("g:loaded_lightline")
+      let g:ColorDayLine = g:lightline.colorscheme
+    endif
     let g:ColorDayBg = &background
   elseif arg == 'nox'
     echom "Saving colors for 'nox'"
     let g:ColorNoxName = g:colors_name
-    let g:ColorNoxLine = g:lightline.colorscheme
+    if exists("g:loaded_lightline")
+      let g:ColorNoxLine = g:lightline.colorscheme
+    endif
     let g:ColorNoxBg = &background
   else
     echom "Please provide 'day' or 'nox'"
@@ -1299,7 +1306,9 @@ function! LoadColor(...)
       return
     else
       exec "colo " .           g:ColorDayName
-      exec "LineColor " .      g:ColorDayLine
+      if exists("g:loaded_lightline")
+        exec "LineColor " .      g:ColorDayLine
+      endif
       exec "set background=" . g:ColorDayBg
     endif
     echo "Color is " . g:ColorDayName . " , LineColor is " . g:ColorDayLine
@@ -1311,7 +1320,9 @@ function! LoadColor(...)
       return
     else
       exec "colo " .           g:ColorNoxName
-      exec "LineColor " .      g:ColorNoxLine
+      if exists("g:loaded_lightline")
+        exec "LineColor " .      g:ColorNoxLine
+      endif
       exec "set background=" . g:ColorNoxBg
     endif
     echo "phase=" . g:phase . ", color=" . g:ColorNoxName . ", linecolor=" . g:ColorNoxLine
@@ -1337,6 +1348,10 @@ function! SwitchCE()
 endfunc
 
 function! LightlineReload(arg)
+  if !exists("g:loaded_lightline")
+    echo "Please load lightline before this. Escaping.."
+    return
+  endif
   " '1' to reload the current theme when you edit its file
   " '' to print name of current theme
   if a:arg != ''

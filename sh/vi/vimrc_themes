@@ -20,19 +20,18 @@ else
         endif
     endif
     if ( g:phase == 'day' )
-        colo Tomorrow | LineColor rusticated
+        colo rusticated
+        " colo Tomorrow | LineColor rusticated
         " colo stellarized | set bg=light | LineColor aqua_plasm
     elseif ( g:phase == 'nox' )
+        colo terafox
         " colo stellarized | set bg=dark | LineColor snow_dark
         " colo onehalfdark | LineColor one
         " colo tempus_dusk | set bg=dark | LineColor bluewery
-        if has('nvim')
-            colo stellarized | set bg=dark | LineColor terafox
-            " colo tokyonight | LineColor nordfox
-            " colo tokyonight | LineColor tokyonight
-        else
-            colo Tomorrow-Night-Eighties | LineColor snow_dark
-        endif
+        " colo stellarized | set bg=dark | LineColor terafox
+        " colo tokyonight | LineColor nordfox
+        " colo tokyonight | LineColor tokyonight
+        " colo Tomorrow-Night-Eighties | LineColor snow_dark
     elseif ( g:phase == 'dunno' )
         colo frign | LineColor aqua_plasm
         colo Tomorrow-Night-Blue | LineColor bluewery
@@ -45,6 +44,7 @@ else
         " colo cryslominsa | LineColor cryslominsa
         " colo stellarized | set bg=light | LineColor atlantis
     " elseif hostname == "warmPC" || hostname == "rpi4b" || hostname == "machine"
+        " something else
     endif
 endif
 
