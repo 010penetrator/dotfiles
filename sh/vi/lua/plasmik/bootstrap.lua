@@ -2,6 +2,7 @@
 
 -- Install lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+-- local lazypath = vim.env.PLUGD .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
     "git",
@@ -122,15 +123,11 @@ config = function() require('leap').add_default_mappings(true) end, },
   -- 'morhetz/gruvbox', --best
   'sainnhe/gruvbox-material', --improved
   '010penetrator/vim-colors-forplasma', --collection
-  'ajmwagar/vim-dues', --soft coffee 'deus
   'chriskempson/vim-tomorrow-theme', --Nice dark+light
-  'nanotech/jellybeans.vim', --good4html
-  'mhartington/oceanic-next', --soft nice
   'w0ng/vim-hybrid', --beautiful
   'kristijanhusak/vim-hybrid-material', --nice Sane dark
   'severij/vadelma', --white good-con
   'https://gitlab.com/protesilaos/tempus-themes-vim.git',
-  -- 'jacoborus/tender.vim', --sane soft dark
   'cocopon/iceberg.vim', --soft cold dark
   'AlessandroYorba/Alduin', --brown lowcon
   'jonathanfilip/vim-lucius', --day morning
@@ -141,25 +138,15 @@ config = function() require('leap').add_default_mappings(true) end, },
   'pbrisbin/vim-colors-off',
   'jakwings/vim-colors', --'moody,garden,messy
   'bf4/vim-dark_eyes', --NIGHT
-  'MPiccinato/wombat256', --good dark
   { 'sonph/onehalf', config = function(plugin) vim.opt.rtp:append(plugin.dir .. "/vim") end }, --Nice good tone HUGE
-  'ajh17/Spacegray.vim', --darker misty
   'beigebrucewayne/Turtles', --funky
-  'vim-scripts/sift', --underwater_fantasy
   'vim-scripts/C64.vim', --joke
   'szorfein/fantasy.vim', --dull
   'KimNorgaard/vim-frign', --borland_style
-  'vim-scripts/Gummybears', --very_dark
   'KKPMW/sacredforest-vim', --lowcont
   'logico-dev/typewriter', --good!
   'wimstefan/vim-artesanal', --good lowcon gray
-  -- 'AlessandroYorba/Sierra', --softgray
-  -- 'AlessandroYorba/Despacio', --softdarkgrey
-  -- 'HenryNewcomer/vim-theme-underflow', --consbroken
   'beigebrucewayne/min_solo', --grey bg subtle__
-  'junegunn/seoul256.vim', --okay
-  'arzg/vim-mayanfog', --light
-  'arzg/vim-plan9', --trueeeee
   'lithammer/vim-eighties', --trueeeee
   'arzg/vim-substrata', --cold neon
   'sainnhe/edge', --good soft
@@ -169,10 +156,16 @@ config = function() require('leap').add_default_mappings(true) end, },
   'EdenEast/nightfox.nvim', --fashy dark
   'colepeters/spacemacs-theme.vim', --cool
   'relastle/bluewery.vim', --low-con
-  'markeganfuller/vim-journeyman', --pale dark
   'stillwwater/vim-nebula', --cold dark
   'franbach/miramare', --coffee dark
+  'mhartington/oceanic-next', --soft nice
+  -- 'nanotech/jellybeans.vim', --good4html
+  -- 'HenryNewcomer/vim-theme-underflow', --consbroken
+  -- 'jacoborus/tender.vim', --sane soft dark
+  -- 'AlessandroYorba/Sierra', --softgray
+  -- 'AlessandroYorba/Despacio', --softdarkgrey
   -- 'dracula/vim', --funky
+  -- 'ajh17/Spacegray.vim', --darker fruity
   -- 'jlund3/colorschemer', --semibroken 'lucid
   -- 'srcery-colors/srcery-vim', --fresh-dark consbroken HUGE
   -- 'dfrunza/vim', --borland,muratori,pencil,vc6
@@ -183,8 +176,11 @@ config = function() require('leap').add_default_mappings(true) end, },
   -- 'the31k/vim-colors-tayra', --Nice gray 404
   -- 'koirand/tokyo-metro.vim', --pretty dark
   -- 'nightsense/rusticated', --morning
+  -- 'ajmwagar/vim-dues', --soft coffee 'deus
   -- 'nightsense/snow', --soft)
   -- 'nightsense/stellarized', --nice! light+dark
+  -- 'arzg/vim-mayanfog', --light bone
+  -- 'arzg/vim-plan9', --trueeeee
   ---- Pretty but not comfortable :
   -- 'sainnhe/sonokai', --dark gui&nogui
   -- 'szorfein/fromthehell.vim', --dark satur earth
@@ -194,5 +190,9 @@ config = function() require('leap').add_default_mappings(true) end, },
   -- 'atelierbram/vim-colors_atelier-schemes', --mindfuck
   -- 'bcicen/vim-vice', --joke
   -- 'vim-scripts/swamplight', --day
-})
+},
+{
+  root = vim.env.PLUGD,
+}
+)
 

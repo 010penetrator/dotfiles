@@ -34,7 +34,8 @@ endfunction
 " With other options
     " Plug 'benekastah/neomake', Cond(has("nvim"), { 'on': 'Neomake' })
 
-if (g:vimplug_available)
+"if exists("g:loaded_plug")
+if exists("g:vimplug_available")
     if !empty($PLUGD)
 call plug#begin($PLUGD)
     else

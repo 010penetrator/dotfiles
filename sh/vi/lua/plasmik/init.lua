@@ -310,15 +310,15 @@ lsp_installer.on_server_ready(function(server)
     server:setup(opts)
 end) ]]
 
-local loadpath
+local masonpath
 if vim.env.PLUGD then
-  loadpath = H.path_join( vim.env.PLUGD , "..", "nvim-mason" )
-  -- loadpath = H.path_join( vim.fn.stdpath"data", "nvim-mason" )
-  loadpath = vim.fn.resolve(loadpath)
+  masonpath = H.path_join( vim.env.PLUGD , "..", "nvim-mason" )
+  -- masonpath = H.path_join( vim.fn.stdpath"data", "nvim-mason" )
+  masonpath = vim.fn.resolve(masonpath)
 end
 
 require("mason").setup({
-  install_root_dir = loadpath ,
+  install_root_dir = masonpath ,
 })
 
 require("mason-lspconfig").setup({

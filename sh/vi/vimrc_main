@@ -24,10 +24,10 @@ if !empty($sh)
     let $MYVIMRC = $sh . "/vi/vimrc_main"
 endif
 if !empty($git)
-    let $PLUGD = $git . "/plugged"
+    let $PLUGD = $git . "/nvpl"
 else
-    if isdirectory($sh . "/../../plugged")
-        let $PLUGD = resolve($sh . "/../../plugged")
+    if isdirectory($sh . "/../../nvpl")
+        let $PLUGD = resolve($sh . "/../../nvpl")
     endif
 endif
 let $MYAUTOLOAD = expand('$VICONFD') . "/autoload"
