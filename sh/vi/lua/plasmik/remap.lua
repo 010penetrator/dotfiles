@@ -16,6 +16,6 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 -- H.nmap(',gp', vim.api.nvim_command('colo'))
 H.nmap(',gp', ":call FocusBufOrDo('bootstrap.lua','e $mylua/bootstrap.lua')<CR>")
 
-H.bram_nmap('<C-PageUp>',   ":BufferLineCyclePrev<CR>")
-H.bram_nmap('<C-PageDown>', ":BufferLineCycleNext<CR>")
+H.bram_nmap('<C-PageUp>',   ":BufferLineCyclePrev<CR>", { silent = true })
+H.bram_nmap('<C-PageDown>', ":BufferLineCycleNext<CR>", { silent = true })
 

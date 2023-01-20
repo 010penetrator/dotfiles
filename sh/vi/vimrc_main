@@ -67,5 +67,8 @@ endif
 
 " TODO/Problems :
 "     filetype detection needs :e!
-"     completion..
+"     tame completion
+"     tame tests
+"     tame debug
+"     try emmet
 

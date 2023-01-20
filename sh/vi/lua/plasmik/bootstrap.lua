@@ -36,7 +36,7 @@ require("lazy").setup({
   -- 'tpope/vim-commentary',
   -- 'tpope/vim-vinegar', --basic
   'tpope/vim-surround', --good
-  'tpope/vim-endwise', --okay
+  -- 'tpope/vim-endwise', --okay
   'tpope/vim-repeat', --handy
   'tpope/vim-eunuch', --handy
   -- 'tpope/vim-ragtag', --ok

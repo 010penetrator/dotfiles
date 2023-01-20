@@ -57,13 +57,23 @@ M.path_join = function(...)
   return table.concat(all_parts, M.path_separator)
 end
 
-local a_opts = { noremap = true }
-local function oldvim_nkeymap(a_key, a_map)
+M.tableMerge = function(t1,t2)
+  for k,v in pairs(t2) do
+    t1[k] = v
+  end
+end
+
+M.bram_nmap = function (a_key, a_map, a_opts )
+  if type(a_opts or false) == "table" then
+    M.tableMerge(a_opts or {}, {})
+    -- M.tableMerge(a_opts or {}, {noremap=true})
+  else
+    a_opts = { noremap = true }
+  end
   vim.api.nvim_set_keymap('n', a_key, a_map, a_opts)
 end
-M.bram_nmap = oldvim_nkeymap
 
-M.nmap = function(keys, func, desc )
+M.nmap = function(keys, func, desc)
   vim.keymap.set('n', keys, func, { desc = desc, noremap = true })
 end
 M.snmap = function(keys, func, desc)
