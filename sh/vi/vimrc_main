@@ -67,6 +67,7 @@ endif
 
 " TODO/Problems :
 "     filetype detection needs :e!
+"     sessionLoadPost no effect
 "     tame completion
 "     tame tests
 "     tame debug

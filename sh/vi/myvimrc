@@ -529,6 +529,7 @@ nnoremap c<BS> :call SetPhase() <bar> call LoadColor() <bar> call CrispBorders()
 nnoremap ,vs :source $VICONFD/session/comon <bar> silent call AddRpcEar()<CR>
 nnoremap ,,q :call SaveColor() <bar> SSave! comon <bar> qa<CR>
 nnoremap ,,s :call SaveColor() <bar> SSave! comon<CR>
+" nnoremap ,,s :call SaveColor() <bar> mksession! $VICONFD/session/comon<CR>
 nnoremap ,vq :qa!<CR>
 nnoremap ,<BS> :Startify<CR>
 nnoremap ,zq :wa <bar> qa<CR>
@@ -1311,7 +1312,8 @@ function! LoadColor(...)
       endif
       exec "set background=" . g:ColorDayBg
     endif
-    echo "Color is " . g:ColorDayName . " , LineColor is " . g:ColorDayLine
+    let l:llcol = exists("g:ColorDayLine") ? g:ColorDayLine : 'none'
+    echo "phase=" . g:phase . ", color=" . g:ColorDayName . ", linecolor=" . l:llcol
   elseif g:phase == 'nox'
     if !exists("g:ColorNoxName")
       echom "NO saved colors for this phase of day! Loading defaults.."
@@ -1325,7 +1327,8 @@ function! LoadColor(...)
       endif
       exec "set background=" . g:ColorNoxBg
     endif
-    echo "phase=" . g:phase . ", color=" . g:ColorNoxName . ", linecolor=" . g:ColorNoxLine
+    let l:llcol = exists("g:ColorNoxLine") ? g:ColorNoxLine : 'none'
+    echo "phase=" . g:phase . ", color=" . g:ColorNoxName . ", linecolor=" . l:llcol
   else
     echo "Unknown phase of day!"
   endif

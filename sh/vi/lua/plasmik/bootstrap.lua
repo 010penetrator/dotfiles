@@ -98,7 +98,6 @@ require("lazy").setup({
   'norcalli/nvim-colorizer.lua',
   -- 'kwkarlwang/bufjump.nvim',
   'nvim-neo-tree/neo-tree.nvim',
-  'nvim-tree/nvim-web-devicons',
   'MunifTanjim/nui.nvim',
   'lambdalisue/suda.vim',
   'numToStr/Comment.nvim',
@@ -111,7 +110,8 @@ require("lazy").setup({
   { 'https://github.com/ggandor/leap.nvim',
 config = function() require('leap').add_default_mappings() end, },
   'powerman/vim-plugin-ruscmd',
-  { 'akinsho/bufferline.nvim', version='v3.*', dependencies='nvim-tree/nvim-web-devicons' },
+  { 'akinsho/bufferline.nvim', version='v3.*', dependencies='kyazdani42/nvim-web-devicons' },
+  -- 'kyazdani42/nvim-web-devicons',
 
 ------------------------
 --      Themes:       --
