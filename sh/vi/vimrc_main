@@ -49,27 +49,26 @@ set runtimepath+=$vi
 " set runtimepath+=$mylua
 
 if has("nvim")
+    SSource $vi/myvimrc
     lua require('plasmik')
-else
-    SSource $vi/vimrc_plug
-endif
-
-SSource $vi/myvimrc
-SSource $vi/vimrc_themes
-SSource $loc/vimrc.local
-
-if has("nvim")
+    SSource $vi/vimrc_themes
     " SSource $mylua/helpy.lua
     " SSource $mylua/init.lua
-    SSource $mylua/remap.lua
-    let dummy=0
+    " SSource $mylua/remap.lua
+else
+    SSource $vi/vimrc_plug
+    SSource $vi/myvimrc
+    SSource $vi/vimrc_themes
+    SSource $loc/vimrc.local
 endif
+
 
 " TODO/Problems :
 "     filetype detection needs :e!
 "     sessionLoadPost no effect
 "     tame completion
-"     tame tests
+"     tame tests like nvim-neotest
 "     tame debug
+"     try lspsaga
 "     try emmet
 

@@ -224,8 +224,8 @@ if has("nvim")
     highlight WinSeparator guibg=none
     highlight WinSeparator guifg=#5a5a5a
   endfunction
-  set winwidth=40
-  set winminwidth=40
+  set winwidth=32
+  set winminwidth=32
 endif
 " call CrispBorders()
 
@@ -241,14 +241,14 @@ let mapleader = ","
 
 " Free <q> key
 map q <Nop>
-map й q
+" map й q
 nnoremap Q q
 nnoremap ,j @@
 nnoremap ,m @
 
 " Free <a> key
 nnoremap a <Nop>
-map ф a
+" map ф a
 nnoremap aa a
 
 " go back to normal mode with <j> double tap

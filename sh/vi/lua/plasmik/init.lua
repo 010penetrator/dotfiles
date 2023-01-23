@@ -32,6 +32,80 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 --  Configure Plugs   --
 ------------------{{{}}}
 
+
+
+
+
+H.unload('cinnamon')
+require('cinnamon').setup({
+    -- KEYMAPS:
+    default_keymaps = false,   -- Create default keymaps.
+    extra_keymaps = false,    -- Create extra keymaps.
+    extended_keymaps = false, -- Create extended keymaps.
+    override_keymaps = false, -- The plugin keymaps will override any existing keymaps.
+    -- OPTIONS:
+    always_scroll = true,    -- Scroll the cursor even when the window hasn't scrolled.
+    centered = true,          -- Keep cursor centered in window when using window scrolling.
+    disabled = false,         -- Disables the plugin.
+    default_delay = 5,        -- The default delay (in ms) between each line when scrolling.
+    hide_cursor = false,      -- Hide the cursor while scrolling. Requires enabling termguicolors!
+    horizontal_scroll = true, -- Enable smooth horizontal scrolling when view shifts left or right.
+    max_length = 80,          -- Maximum length (in ms) of a command. The line delay will be
+    -- re-calculated. Setting to -1 will disable this option.
+    scroll_limit = 150,       -- Max number of lines moved before scrolling is skipped. Setting
+    -- to -1 will disable this option.
+})
+-- Half-window movements:
+vim.keymap.set({ 'n', 'x' }, '<C-u>', "<Cmd>lua Scroll('<C-u>', 1, 1)<CR>")
+vim.keymap.set({ 'n', 'x' }, '<C-d>', "<Cmd>lua Scroll('<C-d>', 1, 1)<CR>")
+-- Page movements:
+vim.keymap.set({ 'n', 'x' }, '<C-b>', "<Cmd>lua Scroll('<C-b>', 1, 1)<CR>")
+vim.keymap.set({ 'n', 'x' }, '<C-f>', "<Cmd>lua Scroll('<C-f>', 1, 1)<CR>")
+-- EXTRA_KEYMAPS:
+-- Start/end of file and line number movements:
+vim.keymap.set({ 'n', 'x' }, 'gg', "<Cmd>lua Scroll('gg')<CR>")
+vim.keymap.set({ 'n', 'x' }, 'G', "<Cmd>lua Scroll('G', 0, 1)<CR>")
+-- Paragraph movements:
+vim.keymap.set({ 'n', 'x' }, '{', "<Cmd>lua Scroll('{')<CR>")
+vim.keymap.set({ 'n', 'x' }, '}', "<Cmd>lua Scroll('}')<CR>")
+-- Previous/next search result:
+vim.keymap.set('n', 'n', "<Cmd>lua Scroll('n', 1)<CR>")
+vim.keymap.set('n', 'N', "<Cmd>lua Scroll('N', 1)<CR>")
+vim.keymap.set('n', '*', "<Cmd>lua Scroll('*', 1)<CR>")
+vim.keymap.set('n', '#', "<Cmd>lua Scroll('#', 1)<CR>")
+-- vim.keymap.set('n', 'g*', "<Cmd>lua Scroll('g*', 1)<CR>")
+-- vim.keymap.set('n', 'g#', "<Cmd>lua Scroll('g#', 1)<CR>")
+-- Previous/next cursor location:
+vim.keymap.set('n', '<C-o>', "<Cmd>lua Scroll('<C-o>', 1)<CR>")
+vim.keymap.set('n', '<C-i>', "<Cmd>lua Scroll('1<C-i>', 1)<CR>")
+-- Screen scrolling:
+vim.keymap.set('n', 'zz', "<Cmd>lua Scroll('zz', 0, 1)<CR>")
+vim.keymap.set('n', 'zt', "<Cmd>lua Scroll('zt', 0, 1)<CR>")
+vim.keymap.set('n', 'zb', "<Cmd>lua Scroll('zb', 0, 1)<CR>")
+vim.keymap.set('n', 'z.', "<Cmd>lua Scroll('z.', 0, 1)<CR>")
+vim.keymap.set('n', 'z<CR>', "<Cmd>lua Scroll('zt^', 0, 1)<CR>")
+-- vim.keymap.set('n', '<C-y>', "<Cmd>lua Scroll('<C-y>', 0, 1)<CR>")
+-- vim.keymap.set('n', '<C-e>', "<Cmd>lua Scroll('<C-e>', 0, 1)<CR>")
+-- Horizontal screen scrolling:
+vim.keymap.set('n', 'zH', "<Cmd>lua Scroll('zH')<CR>")
+vim.keymap.set('n', 'zL', "<Cmd>lua Scroll('zL')<CR>")
+vim.keymap.set('n', 'zs', "<Cmd>lua Scroll('zs')<CR>")
+vim.keymap.set('n', 'ze', "<Cmd>lua Scroll('ze')<CR>")
+vim.keymap.set('n', 'zh', "<Cmd>lua Scroll('zh', 0, 1)<CR>")
+vim.keymap.set('n', 'zl', "<Cmd>lua Scroll('zl', 0, 1)<CR>")
+-- EXTENDED_KEYMAPS:
+-- Left/right movements:
+-- vim.keymap.set({ 'n', 'x' }, 'h', "<Cmd>lua Scroll('h', 0, 1)<CR>")
+-- vim.keymap.set({ 'n', 'x' }, 'l', "<Cmd>lua Scroll('l', 0, 1)<CR>")
+-- SCROLL_WHEEL_KEYMAPS:
+vim.keymap.set({ 'n', 'x' }, '<ScrollWheelUp>', "<Cmd>lua Scroll('<ScrollWheelUp>')<CR>")
+vim.keymap.set({ 'n', 'x' }, '<ScrollWheelDown>', "<Cmd>lua Scroll('<ScrollWheelDown>')<CR>")
+-- LSP_KEYMAPS:
+vim.keymap.set('n', 'gd', "<Cmd>lua Scroll('definition')<CR>")
+vim.keymap.set('n', 'gD', "<Cmd>lua Scroll('declaration')<CR>")
+
+require("nvim-surround").setup()
+
 require('lualine').setup({
   -- options = { theme = 'nord' }
 })
@@ -81,7 +155,6 @@ vim.keymap.set("x", "L", '<cmd>STSSelectChildNode<cr>', opts)
 vim.keymap.set("x", "<A-j>", '<cmd>STSSwapNextVisual<cr>', opts)
 vim.keymap.set("x", "<A-k>", '<cmd>STSSwapPrevVisual<cr>', opts)
 
-require('nvim-autopairs').setup{}
 require('Comment').setup()
 -- require('yode-nvim').setup()
 
@@ -257,21 +330,21 @@ require('toggleterm').setup {
   size = 25,
 }
 
-require('neoscroll').setup({
-  easing_function = "circular",
-  mappings = {'<C-u>', '<C-d>', '<C-b>', '<C-f>', 'zt', 'zz', 'zb'}
-})
-local t = {}
-t['<C-u>'] = {'scroll', {'-vim.wo.scroll', 'true', '400', [['cubic']]}}
-t['<C-d>'] = {'scroll', { 'vim.wo.scroll', 'true', '400', [['cubic']]}}
-t['<C-b>'] = {'scroll', {'-vim.api.nvim_win_get_height(0)', 'true', '600', [['circular']]}}
-t['<C-f>'] = {'scroll', { 'vim.api.nvim_win_get_height(0)', 'true', '600', [['circular']]}}
--- t['<C-y>'] = {'scroll', { -4, 'false', '250', "quadratic"}}
--- t['<C-e>'] = {'scroll', {  4, 'false', '250', "quadratic"}}
-t['zt']    = {'zt', {'100'}}
-t['zz']    = {'zz', {'100'}}
-t['zb']    = {'zb', {'100'}}
-require('neoscroll.config').set_mappings(t)
+-- require('neoscroll').setup({
+--   easing_function = "circular",
+--   mappings = {'<C-u>', '<C-d>', '<C-b>', '<C-f>', 'zt', 'zz', 'zb'}
+-- })
+-- local t = {}
+-- t['<C-u>'] = {'scroll', {'-vim.wo.scroll', 'true', '400', [['cubic']]}}
+-- t['<C-d>'] = {'scroll', { 'vim.wo.scroll', 'true', '400', [['cubic']]}}
+-- t['<C-b>'] = {'scroll', {'-vim.api.nvim_win_get_height(0)', 'true', '600', [['circular']]}}
+-- t['<C-f>'] = {'scroll', { 'vim.api.nvim_win_get_height(0)', 'true', '600', [['circular']]}}
+-- -- t['<C-y>'] = {'scroll', { -4, 'false', '250', "quadratic"}}
+-- -- t['<C-e>'] = {'scroll', {  4, 'false', '250', "quadratic"}}
+-- t['zt']    = {'zt', {'100'}}
+-- t['zz']    = {'zz', {'100'}}
+-- t['zb']    = {'zb', {'100'}}
+-- require('neoscroll.config').set_mappings(t)
 
 require('gomove').setup {
   -- whether or not to map default key bindings, (true/false)
@@ -384,12 +457,12 @@ end
 if vim.fn.has('nvim-0.7')==1 then
   vim.keymap.set("n","K", vim.lsp.buf.hover, {buffer=0})
   H.nmap("K", vim.lsp.buf.hover, {buffer=0})
-  H.nmap("gd", vim.lsp.buf.definition)
   H.nmap("gv", function() vim.cmd('vsplit') vim.lsp.buf.definition() end)
   -- H.nmap("gv", function() vim.api.nvim_open_win(true,true,{}) vim.lsp.buf.definition() end)
   -- vim.keymap.set("n", "gl", "<cmd>let bn=bufnr('%') <bar> let pos=getpos('.') <bar> wincmd p <bar> exec 'b' . bn <bar> call setpos('.',pos) <bar> lua vim.lsp.buf.definition()<CR>" )
   H.nmap("gl", function() H.mirror_buf_to_prev_window() vim.lsp.buf.definition() end)
-  H.nmap("gD", vim.lsp.buf.declaration)
+  -- H.nmap("gd", vim.lsp.buf.definition)
+  -- H.nmap("gD", vim.lsp.buf.declaration)
   H.nmap("gs", vim.lsp.buf.document_symbol)
   H.nmap("gr", vim.lsp.buf.references)
   H.nmap("gw", vim.lsp.buf.workspace_symbol)

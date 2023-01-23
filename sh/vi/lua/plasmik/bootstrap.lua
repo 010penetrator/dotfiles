@@ -35,7 +35,8 @@ require("lazy").setup({
   -- 'tpope/vim-sensible', --basic
   -- 'tpope/vim-commentary',
   -- 'tpope/vim-vinegar', --basic
-  'tpope/vim-surround', --good
+  -- 'tpope/vim-surround', --good
+   'kylechui/nvim-surround',
   -- 'tpope/vim-endwise', --okay
   'tpope/vim-repeat', --handy
   'tpope/vim-eunuch', --handy
@@ -45,10 +46,12 @@ require("lazy").setup({
   -- 'sheerun/vim-polyglot', --okay HUGE
   'airblade/vim-gitgutter',
   -- 'michaeljsmith/vim-indent-object', --cool
-  'godlygeek/tabular', --okay
+  -- 'godlygeek/tabular', --okay
+  'junegunn/vim-easy-align',
   'jamessan/vim-gnupg', --good
   -- 'chrisbra/Colorizer', --good
-  'junegunn/goyo.vim', --usable
+  -- 'junegunn/goyo.vim', --usable
+  -- 'Pocco81/true-zen.nvim',
   'haya14busa/vim-edgemotion', --good
   { 'junegunn/fzf.vim', dependencies = { 'junegunn/fzf' } }, --fantastic
 
@@ -101,21 +104,26 @@ require("lazy").setup({
   'MunifTanjim/nui.nvim',
   'lambdalisue/suda.vim',
   'numToStr/Comment.nvim',
-  'karb94/neoscroll.nvim',
+  -- 'karb94/neoscroll.nvim',
   'akinsho/toggleterm.nvim',
-  'windwp/nvim-autopairs',
+  -- { 'windwp/nvim-autopairs', config = function() require('nvim-autopairs').setup() end, },
   -- 'lukas-reineke/indent-blankline.nvim',
   'booperlv/nvim-gomove',
   'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
   { 'https://github.com/ggandor/leap.nvim',
-config = function() require('leap').add_default_mappings() end, },
+config = function() require('leap').add_default_mappings() end },
   'powerman/vim-plugin-ruscmd',
   { 'akinsho/bufferline.nvim', version='v3.*', dependencies='kyazdani42/nvim-web-devicons' },
   -- 'kyazdani42/nvim-web-devicons',
+  -- 'echasnovski/mini.nvim',
+  'declancm/cinnamon.nvim',
 
 ------------------------
 --      Themes:       --
 ------------------{{{}}}
+
+
+  'Tsuzat/NeoSolarized.nvim',
 
   'lukas-reineke/onedark.nvim',
   { 'folke/tokyonight.nvim', branch = 'main' },

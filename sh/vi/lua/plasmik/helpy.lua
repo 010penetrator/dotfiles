@@ -1,8 +1,9 @@
 -- vim: ts=2 sw=2
 
+-- print('hello from plasmik.helpy lua')
+
 local M = {}
 H = M
-print('hello from plasmik.helpy lua')
 
 function M.tprint (tbl)
   for k,v in pairs(tbl) do
@@ -78,6 +79,9 @@ M.nmap = function(keys, func, desc)
 end
 M.snmap = function(keys, func, desc)
   vim.keymap.set('n', keys, func, { desc = desc, noremap = true, silent = true })
+end
+M.xnmap = function(keys, func, desc)
+  vim.keymap.set({'n','x'}, keys, func, { desc = desc, noremap = true })
 end
 
 -- local k_opts = { silent=true, noremap=false }
