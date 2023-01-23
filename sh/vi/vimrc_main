@@ -68,7 +68,7 @@ endif
 "     sessionLoadPost no effect
 "     tame completion
 "     tame tests like nvim-neotest
-"     tame debug
+"     tame debug like nvim-dap
 "     try lspsaga
 "     try emmet
 

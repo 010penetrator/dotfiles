@@ -864,7 +864,7 @@ function! LGstamp(...)
     echo "nothing to commit"
   else
     G add .
-    if !empty(a:1)
+    if ( a:0 > 0 )
       exec "G commit -m" . a:1
     else
       G commit -m "---"
@@ -872,7 +872,6 @@ function! LGstamp(...)
   endif
 endfunc
 command! -nargs=? LGstamp call LGstamp(<f-args>)
-" command! -nargs=? SaveColor call SetPhase(<f-args>) <bar> call SaveColor(<f-args>)
 
 function! LGsync()
   exec "lcd " . GetProjDir()

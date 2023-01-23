@@ -35,26 +35,26 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 
 
+require('debugprint').setup()
 
-H.unload('cinnamon')
-require('cinnamon').setup({
-    -- KEYMAPS:
-    default_keymaps = false,   -- Create default keymaps.
-    extra_keymaps = false,    -- Create extra keymaps.
-    extended_keymaps = false, -- Create extended keymaps.
-    override_keymaps = false, -- The plugin keymaps will override any existing keymaps.
-    -- OPTIONS:
-    always_scroll = true,    -- Scroll the cursor even when the window hasn't scrolled.
-    centered = true,          -- Keep cursor centered in window when using window scrolling.
-    disabled = false,         -- Disables the plugin.
-    default_delay = 5,        -- The default delay (in ms) between each line when scrolling.
-    hide_cursor = false,      -- Hide the cursor while scrolling. Requires enabling termguicolors!
-    horizontal_scroll = true, -- Enable smooth horizontal scrolling when view shifts left or right.
-    max_length = 80,          -- Maximum length (in ms) of a command. The line delay will be
-    -- re-calculated. Setting to -1 will disable this option.
-    scroll_limit = 150,       -- Max number of lines moved before scrolling is skipped. Setting
-    -- to -1 will disable this option.
+-- H.unload('cinnamon')
+require('cinnamon').setup( {
+  -- KEYMAPS:
+  default_keymaps = false,   -- Create default keymaps.
+  extra_keymaps = false,    -- Create extra keymaps.
+  extended_keymaps = false, -- Create extended keymaps.
+  override_keymaps = false, -- The plugin keymaps will override any existing keymaps.
+  -- OPTIONS:
+  always_scroll = true,    -- Scroll the cursor even when the window hasn't scrolled.
+  centered = true,          -- Keep cursor centered in window when using window scrolling.
+  disabled = false,         -- Disables the plugin.
+  default_delay = 5,        -- The default delay (in ms) between each line when scrolling.
+  hide_cursor = false,      -- Hide the cursor while scrolling. Requires enabling termguicolors!
+  horizontal_scroll = true, -- Enable smooth horizontal scrolling when view shifts left or right.
+  max_length = 70,          -- Maximum length (in ms) of a command. The line delay will be re-calculated. Setting to -1 will disable this option.
+  scroll_limit = 150,       -- Max number of lines moved before scrolling is skipped. Setting to -1 will disable this option.
 })
+
 -- Half-window movements:
 vim.keymap.set({ 'n', 'x' }, '<C-u>', "<Cmd>lua Scroll('<C-u>', 1, 1)<CR>")
 vim.keymap.set({ 'n', 'x' }, '<C-d>', "<Cmd>lua Scroll('<C-d>', 1, 1)<CR>")
@@ -106,12 +106,12 @@ vim.keymap.set('n', 'gD', "<Cmd>lua Scroll('declaration')<CR>")
 
 require("nvim-surround").setup()
 
-require('lualine').setup({
+require('lualine').setup( {
   -- options = { theme = 'nord' }
 })
 
 require('bufferline').setup()
---[[ require('bufferline').setup{
+--[[ require('bufferline').setup {
     options = {
         hover = {
             enabled = true,
@@ -158,7 +158,7 @@ vim.keymap.set("x", "<A-k>", '<cmd>STSSwapPrevVisual<cr>', opts)
 require('Comment').setup()
 -- require('yode-nvim').setup()
 
-require('telescope').setup{
+require('telescope').setup {
   defaults = {
     prompt_prefix = "$ ",
     mappings = {
@@ -179,7 +179,7 @@ local tele_drop = require('telescope.themes').get_dropdown{ sort_mru=true, winbl
 function Tele_buff_drop() require('telescope.builtin').buffers( tele_drop ) end
 -- require('telescope.builtin').buffers(Tele_drop)
 
---[[ require('eval').setup{
+--[[ require('eval').setup {
     -- prefix_char = "> ", -- char displayed before the output content
     -- a table with each filetype and its respective command to run code
     filetype = {
@@ -259,19 +259,24 @@ require'nvim-treesitter.configs'.setup {
 -- vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
---[[ -- vim.opt.list = true
+-- vim.opt.list = true
 -- vim.opt.listchars:append("eol:↴")
 require('indent_blankline').setup {
-  show_end_of_line = true,
-  show_current_context = false,
+  filetype_exclude = {'lspinfo', 'checkhealth', 'help', 'man', '', 'startify'},
+  enabled = true,
+  show_end_of_line = false,
+  show_current_context = true,
   show_current_context_start = true,
-  indent_blankline_enabled = false,
-  enabled = false,
+  show_trailing_blankline_indent = false,
   char = '░',
-  context_char = '│'
+  char_blankline = "",
+  context_char_blankline = "⋅",
+  space_char_blankline = ' ',
+  context_char = '│',
+  -- ⋮ ⋅ ░ ∷
 }
--- vim.g.indent_blankline_enabled = false
--- let g:indent_blankline_char = '⋮' ]]
+-- let g:indent_blankline_buftype_exclude = ['terminal', 'nofile', 'quickfix', 'prompt', 'startify']
+-- vim.g.indent_blankline_filetype_exclude = {'terminal', 'nofile', 'quickfix', 'prompt', 'help', 'startify'}
 
 require'marks'.setup {
   -- whether to map keybinds or not. default true
@@ -330,10 +335,10 @@ require('toggleterm').setup {
   size = 25,
 }
 
--- require('neoscroll').setup({
+-- require('neoscroll').setup {
 --   easing_function = "circular",
 --   mappings = {'<C-u>', '<C-d>', '<C-b>', '<C-f>', 'zt', 'zz', 'zb'}
--- })
+-- }
 -- local t = {}
 -- t['<C-u>'] = {'scroll', {'-vim.wo.scroll', 'true', '400', [['cubic']]}}
 -- t['<C-d>'] = {'scroll', { 'vim.wo.scroll', 'true', '400', [['cubic']]}}
@@ -404,14 +409,14 @@ if vim.env.PLUGD then
   masonpath = vim.fn.resolve(masonpath)
 end
 
-require("mason").setup({
-  install_root_dir = masonpath ,
-})
+require("mason").setup {
+  install_root_dir = masonpath,
+}
 
-require("mason-lspconfig").setup({
+require("mason-lspconfig").setup {
   -- ensure_installed = { "sumneko_lua", "clangd" }
   ensure_installed = { "sumneko_lua", "bashls", "clangd", "pyright", "cmake", "vimls" }
-})
+}
 
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -419,7 +424,7 @@ local nc_capabilities = require('cmp_nvim_lsp').default_capabilities(capabilitie
 
 require('lspconfig').bashls.setup{ on_attach = function() print("lsp client is bashls") end, }
 require('lspconfig').clangd.setup{ on_attach = function() print("lsp client is clangd") end, }
-require('lspconfig').sumneko_lua.setup{
+require('lspconfig').sumneko_lua.setup {
   -- on_attach = function() print("lsp client is sumneko_lua") end,
   settings = {
     Lua = {
@@ -428,9 +433,9 @@ require('lspconfig').sumneko_lua.setup{
     }
   },
 }
-require('lspconfig').pyright.setup{ on_attach = function() print("lsp client is pyright") end, capabilities = nc_capabilities }
-require('lspconfig').cmake.setup{ on_attach = function() print("lsp client is cmake") end, capabilities = nc_capabilities }
-require('lspconfig').vimls.setup{ on_attach = function() print("lsp client is vimls") end, capabilities = nc_capabilities }
+require('lspconfig').pyright.setup { on_attach = function() print("lsp client is pyright") end, capabilities = nc_capabilities }
+require('lspconfig').cmake.setup { on_attach = function() print("lsp client is cmake") end, capabilities = nc_capabilities }
+require('lspconfig').vimls.setup { on_attach = function() print("lsp client is vimls") end, capabilities = nc_capabilities }
 
 -- blc = require('lspconfig').bashls.cmd
 

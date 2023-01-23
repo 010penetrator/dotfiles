@@ -10,7 +10,8 @@ map <buffer> H k:call EvalThis()<cr>
 " bufdo unmap <buffer> M
 
 let hostname = substitute(system('hostname'), '\n', '', '')
-if exists("g:colors_name")
+if exists("g:colors_name") && g:colors_name != 'habamax'
+    " do nothing
 else
     if !exists("g:phase")
         call SetPhase()
@@ -24,7 +25,7 @@ else
         " colo Tomorrow | LineColor rusticated
         " colo stellarized | set bg=light | LineColor aqua_plasm
     elseif ( g:phase == 'nox' )
-        colo terafox
+        colo melange | set bg=dark
         " colo stellarized | set bg=dark | LineColor snow_dark
         " colo onehalfdark | LineColor one
         " colo tempus_dusk | set bg=dark | LineColor bluewery

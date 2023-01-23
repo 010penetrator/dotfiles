@@ -106,8 +106,8 @@ require("lazy").setup({
   'numToStr/Comment.nvim',
   -- 'karb94/neoscroll.nvim',
   'akinsho/toggleterm.nvim',
-  -- { 'windwp/nvim-autopairs', config = function() require('nvim-autopairs').setup() end, },
-  -- 'lukas-reineke/indent-blankline.nvim',
+  { 'windwp/nvim-autopairs', config = function() require('nvim-autopairs').setup() end, },
+  'lukas-reineke/indent-blankline.nvim',
   'booperlv/nvim-gomove',
   'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
   { 'https://github.com/ggandor/leap.nvim',
@@ -117,6 +117,8 @@ config = function() require('leap').add_default_mappings() end },
   -- 'kyazdani42/nvim-web-devicons',
   -- 'echasnovski/mini.nvim',
   'declancm/cinnamon.nvim',
+  'mizlan/iswap.nvim',
+  'andrewferrier/debugprint.nvim',
 
 ------------------------
 --      Themes:       --
