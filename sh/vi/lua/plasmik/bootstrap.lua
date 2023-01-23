@@ -82,7 +82,7 @@ require("lazy").setup({
   'mfussenegger/nvim-dap',
   'rcarriga/nvim-dap-ui',
   'nvim-telescope/telescope-dap.nvim',
-  { 'nvim-treesitter/nvim-treesitter', config = function() vim.cmd("TSUpdate") end, },
+  { 'nvim-treesitter/nvim-treesitter', config = function() vim.cmd("silent TSUpdate") end, },
   'mrjones2014/nvim-ts-rainbow',
   'ziontee113/syntax-tree-surfer',
   'neovim/nvim-lspconfig',

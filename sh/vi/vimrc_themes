@@ -34,7 +34,7 @@ else
         " colo tokyonight | LineColor tokyonight
         " colo Tomorrow-Night-Eighties | LineColor snow_dark
     elseif ( g:phase == 'dunno' )
-        colo frign | LineColor aqua_plasm
+        " colo frign | LineColor aqua_plasm
         colo Tomorrow-Night-Blue | LineColor bluewery
         " colo PaperColor | set bg=light | LineColor solarized
         " colo Tomorrow | LineColor Tomorrow

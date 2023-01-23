@@ -1,26 +1,27 @@
 " vim: filetype=vim :
 " Configuration file for vifm
-" -----------------------------
-
-if (system('[ -f /tmp/now_is_day ] && echo 1') == "1" )
-    let $VIFM_THEME='reicheltd-light'
-elseif (system('[ -f /tmp/now_is_nox ] && echo 1') == "1" )
-    let $VIFM_THEME='crown_24bit'
-    " colo dracula
-    " colo iceberg
-else
-    " colo reicheltd-light
-    let $VIFM_THEME='iceberg'
-    " colo dracula
-    " colorscheme Default
-endif
-nnoremap c<BS>     :exec 'colo' system("echo $VIFM_THEME")<CR>
-command! resetcolor :exec 'colo' system("echo $VIFM_THEME")<CR>
-" exec 'colo' system("echo $VIFM_THEME")
-" nnoremap gS :exec 'cd' system("compgen -G /ln/mo/*AMV/bak")<cr>
+" ----------------------------------------------------------
 
 !echo -ne "\033]0;VIFM\007"
 " wincmd o
+
+command! ResetColor  :execute 'colo '.$VIFM_THEME
+if ($VIFM_THEME == '')
+    if (system('[ -f /tmp/now_is_day ] && echo 1') == "1" )
+        let $VIFM_THEME='reicheltd-light'
+    elseif (system('[ -f /tmp/now_is_nox ] && echo 1') == "1" )
+        let $VIFM_THEME='crown_24bit'
+        " colo dracula
+        " colo iceberg
+    else
+        " colo reicheltd-light
+        let $VIFM_THEME='iceberg'
+        " colo dracula
+        " colorscheme Default
+    endif
+    ResetColor
+endif
+nnoremap c<BS>  :exec 'colo' $VIFM_THEME<CR>
 
 command! CC :! mv /ln/dwn/cover.* .
 command! ogg :! cd %c && conv_any2ogg.sh . %D &>/dev/null ; notify-send "%c converted" &
@@ -52,7 +53,6 @@ command! chmodautoSEL :! find %f -type f -exec chmod 644 {} \;
 """"""""""""""""""""""""
 
 " fly vifm "
-unmap ,
 nnoremap ,x :exec '!echo -ne "\033]0;\007"' | quit <CR>
 nnoremap qx :exec '!echo -ne "\033]0;\007"' | quit <CR>
 nnoremap ,i :pushd . <CR>
@@ -72,7 +72,7 @@ nnoremap qt :tree!<CR>
 nnoremap g<Down> hjl
 nnoremap g<Up> hkl
 nnoremap cd :cd<space>
-nnoremap qc :
+nnoremap qe :
 nnoremap q; :<up>
 " nnoremap a; :<up><CR>
 nnoremap ,,v :source $MYVIFMRC <CR>

@@ -1351,8 +1351,13 @@ endfunc
 
 function! LightlineReload(arg)
   if !exists("g:loaded_lightline")
-    echo "Please load lightline before this. Escaping.."
-    return
+    if has("nvim")
+      "just escape
+      return
+    else
+      echom "Please load lightline before this. Escaping.."
+      return
+    endif
   endif
   " '1' to reload the current theme when you edit its file
   " '' to print name of current theme

@@ -179,19 +179,8 @@ local tele_drop = require('telescope.themes').get_dropdown{ sort_mru=true, winbl
 function Tele_buff_drop() require('telescope.builtin').buffers( tele_drop ) end
 -- require('telescope.builtin').buffers(Tele_drop)
 
---[[ require('eval').setup {
-    -- prefix_char = "> ", -- char displayed before the output content
-    -- a table with each filetype and its respective command to run code
-    filetype = {
-        lua = { cmd = "lua" },
-        sh = { cmd = "bash" },
-        python = { cmd = "python" },
-        javascript = { cmd = "node" },
-    }
-} ]]
-
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = { 'c', 'cpp', 'lua', 'python', 'vim', 'bash', 'help' },
+require('nvim-treesitter.configs').setup {
+  -- ensure_installed = { 'c', 'cpp', 'lua', 'python', 'vim', 'bash', 'help' },
   highlight = { enable = true },
   indent = { enable = true, disable = { 'python' } },
   rainbow = {
