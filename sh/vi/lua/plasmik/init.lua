@@ -263,6 +263,7 @@ require('indent_blankline').setup {
   space_char_blankline = ' ',
   context_char = '│',
   -- ⋮ ⋅ ░ ∷
+  -- ┊
 }
 -- let g:indent_blankline_buftype_exclude = ['terminal', 'nofile', 'quickfix', 'prompt', 'startify']
 -- vim.g.indent_blankline_filetype_exclude = {'terminal', 'nofile', 'quickfix', 'prompt', 'help', 'startify'}
