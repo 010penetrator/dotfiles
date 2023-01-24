@@ -44,7 +44,8 @@ require("lazy").setup({
   'tpope/vim-fugitive', --handy
   'mhinz/vim-startify',
   -- 'sheerun/vim-polyglot', --okay HUGE
-  'airblade/vim-gitgutter',
+  -- 'airblade/vim-gitgutter',
+  'lewis6991/gitsigns.nvim',
   -- 'michaeljsmith/vim-indent-object', --cool
   -- 'godlygeek/tabular', --okay
   'junegunn/vim-easy-align',
@@ -55,25 +56,31 @@ require("lazy").setup({
   'haya14busa/vim-edgemotion', --good
   { 'junegunn/fzf.vim', dependencies = { 'junegunn/fzf' } }, --fantastic
 
-  -- Try out now
+  -- Try now
   -- 'zefei/vim-colortuner', --fun
   -- 'Townk/vim-autoclose', --usable
   'MattesGroeger/vim-bookmarks',
   'will133/vim-dirdiff',
   -- 'tpope/vim-sleuth',
 
-  -- Try out later
   -- 'tpope/vim-unimpaired',
+  { 'windwp/nvim-autopairs', config = function() require('nvim-autopairs').setup() end, },
+  -- 'gaoDean/autolist.nvim',
+  'dkarter/bullets.vim',
+
+  -- 'RRethy/vim-illuminate', -- no effect
+
+  'nvim-neo-tree/neo-tree.nvim',
+  'simrat39/symbols-outline.nvim',
+
   -- 'ZeroKnight/vim-signjump', --buggy
-  -- 'kien/rainbow_parentheses.vim',
-  -- 'craigemery/vim-autotag', --errors
-  -- 'hari-rangarajan/CCTree',
-  -- 'honza/vim-snippets',
   -- 'vim-scripts/QuickBuf',
-  -- 'ludovicchabant/vim-gutentags',
   -- 'liuchengxu/vista.vim',
   -- 'derekwyatt/vim-fswitch',
-  -- 'RRethy/vim-illuminate'
+
+  -- 'honza/vim-snippets',
+  'L3MON4D3/LuaSnip',
+  'saadparwaiz1/cmp_luasnip',
 
   'nvim-telescope/telescope.nvim',
   { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
@@ -84,7 +91,6 @@ require("lazy").setup({
   'nvim-telescope/telescope-dap.nvim',
   { 'nvim-treesitter/nvim-treesitter', config = function() vim.cmd("silent TSUpdate") end, },
   'mrjones2014/nvim-ts-rainbow',
-  'ziontee113/syntax-tree-surfer',
   'neovim/nvim-lspconfig',
   'williamboman/mason.nvim',
   'williamboman/mason-lspconfig.nvim',
@@ -95,36 +101,39 @@ require("lazy").setup({
   'hrsh7th/cmp-path',
   'hrsh7th/cmp-cmdline',
   'hrsh7th/cmp-nvim-lsp',
-  'L3MON4D3/LuaSnip',
-  'saadparwaiz1/cmp_luasnip',
   'chentoast/marks.nvim', -- okay
   'norcalli/nvim-colorizer.lua',
   -- 'kwkarlwang/bufjump.nvim',
-  'nvim-neo-tree/neo-tree.nvim',
   'MunifTanjim/nui.nvim',
   'lambdalisue/suda.vim',
   'numToStr/Comment.nvim',
-  -- 'karb94/neoscroll.nvim',
   'akinsho/toggleterm.nvim',
-  { 'windwp/nvim-autopairs', config = function() require('nvim-autopairs').setup() end, },
   'lukas-reineke/indent-blankline.nvim',
   'booperlv/nvim-gomove',
   'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
-  { 'https://github.com/ggandor/leap.nvim',
-config = function() require('leap').add_default_mappings() end },
   'powerman/vim-plugin-ruscmd',
   { 'akinsho/bufferline.nvim', version='v3.*', dependencies='kyazdani42/nvim-web-devicons' },
+  'sindrets/diffview.nvim',
   -- 'kyazdani42/nvim-web-devicons',
   -- 'echasnovski/mini.nvim',
+
   'declancm/cinnamon.nvim',
+  -- 'karb94/neoscroll.nvim',
   'mizlan/iswap.nvim',
   'andrewferrier/debugprint.nvim',
+  { 'https://github.com/ggandor/leap.nvim', config = function() require('leap').add_default_mappings() end },
+    'ziontee113/syntax-tree-surfer',
+
+  'levouh/tint.nvim',
+
+
 
 ------------------------
 --      Themes:       --
 ------------------{{{}}}
 
-
+  'sam4llis/nvim-tundra', -- needs lua require()
+  'katawful/kat.nvim',
   'Tsuzat/NeoSolarized.nvim',
 
   'lukas-reineke/onedark.nvim',

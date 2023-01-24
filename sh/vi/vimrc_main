@@ -71,4 +71,5 @@ endif
 "     tame debug like nvim-dap
 "     try lspsaga
 "     try emmet
+"     try snippets
 

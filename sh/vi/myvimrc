@@ -226,6 +226,19 @@ if has("nvim")
   endfunction
   set winwidth=32
   set winminwidth=32
+  function! ReloadStyle()
+    set laststatus=1
+    highlight WinSeparator guibg=none
+    highlight WinSeparator guifg=#5a5a5a
+    if exists("g:colors_name") && g:colors_name != 'habamax'
+      exec 'colo '.g:colors_name
+    else
+      call SetPhase()
+      call LoadColor()
+    endif
+    sleep 120m
+    lua H.reset('tint')
+  endfunction
 endif
 " call CrispBorders()
 
@@ -235,7 +248,7 @@ endif
 
 set timeoutlen=500
 let g:AutoClosePumvisible = {"ENTER": '', "ESC": ''}
-let mapleader = ","
+let mapleader = ""
 " nnoremap q\
 " nnoremap z' `
 
@@ -706,7 +719,7 @@ nnoremap a/ :set hlsearch!<CR>
 nnoremap ,vg :GitGutterToggle<CR>
 
 " Tags
-nnoremap ,ct :TagbarOpen fj<CR>
+" nnoremap ,ct :TagbarOpen fj<CR>
 " nnoremap ,* :silent exec 'UpdCtags' \| redraw! \| echo 'Wrote tags db in' getcwd().'/'<CR>
 " nnoremap ,* :call UpdCtagsHereDeps()<CR>
 " nnoremap ,* :call UpdCtagsGitDeps()<CR>

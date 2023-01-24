@@ -19,3 +19,7 @@ H.nmap(',gp', ":call FocusBufOrDo('bootstrap.lua','e $mylua/bootstrap.lua')<CR>"
 H.bram_nmap('<C-PageUp>',   ":BufferLineCyclePrev<CR>", { silent = true })
 H.bram_nmap('<C-PageDown>', ":BufferLineCycleNext<CR>", { silent = true })
 
+H.nmap('c<BS>', ":call ReloadStyle()<CR>")
+
+
+

@@ -20,6 +20,11 @@ function M.reload (p)
   require(p)
 end
 
+function M.reset (p)
+  package.loaded[p] = nil
+  require(p).setup()
+end
+
 ---Author: cseickel
 ---The file system path separator for the current platform.
 M.path_separator = "/"
