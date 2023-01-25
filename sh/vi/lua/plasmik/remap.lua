@@ -21,5 +21,6 @@ H.bram_nmap('<C-PageDown>', ":BufferLineCycleNext<CR>", { silent = true })
 
 H.nmap('c<BS>', ":call ReloadStyle()<CR>")
 
+H.nmap(',vp', function() vim.api.nvim_exec([[:put +| normal dfmxI'A',==]], false) end)
 
 

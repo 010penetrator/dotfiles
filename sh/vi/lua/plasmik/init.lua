@@ -32,7 +32,16 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 --  Configure Plugs   --
 ------------------{{{}}}
 
-
+local leap = require('leap')
+leap.add_default_mappings()
+leap.opts.case_sensitive = true
+leap.opts.special_keys = {
+prev_target = { '<s-enter>', ',' },
+next_target = {'<enter>', ';'},
+-- prev_target = {'<tab>', ','},
+next_phase_one_target = '<enter>',
+repeat_search = '<enter>',
+}
 
 require('gitsigns').setup()
 

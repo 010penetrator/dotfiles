@@ -65,7 +65,7 @@ require("lazy").setup({
 
   -- 'tpope/vim-unimpaired',
   { 'windwp/nvim-autopairs', config = function() require('nvim-autopairs').setup() end, },
-  -- 'gaoDean/autolist.nvim',
+  -- 'gaoDean/autolist.nvim', -- no effect
   'dkarter/bullets.vim',
 
   -- 'RRethy/vim-illuminate', -- no effect
@@ -121,17 +121,25 @@ require("lazy").setup({
   -- 'karb94/neoscroll.nvim',
   'mizlan/iswap.nvim',
   'andrewferrier/debugprint.nvim',
-  { 'https://github.com/ggandor/leap.nvim', config = function() require('leap').add_default_mappings() end },
+  'https://github.com/ggandor/leap.nvim',
     'ziontee113/syntax-tree-surfer',
 
   'levouh/tint.nvim',
 
+
+  'LukasPietzschmann/telescope-tabs',
+  'gorbit99/codewindow.nvim',
+  'haolian9/reveal.nvim',
+  'nagy135/typebreak.nvim',
+  'amarakon/nvim-cmp-buffer-lines',
+  'folke/noice.nvim',
 
 
 ------------------------
 --      Themes:       --
 ------------------{{{}}}
 
+  'kvrohit/mellow.nvim',
   'sam4llis/nvim-tundra', -- needs lua require()
   'katawful/kat.nvim',
   'Tsuzat/NeoSolarized.nvim',
