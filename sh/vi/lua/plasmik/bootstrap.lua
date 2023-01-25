@@ -64,7 +64,7 @@ require("lazy").setup({
   -- 'tpope/vim-sleuth',
 
   -- 'tpope/vim-unimpaired',
-  { 'windwp/nvim-autopairs', config = function() require('nvim-autopairs').setup() end, },
+  'windwp/nvim-autopairs',
   -- 'gaoDean/autolist.nvim', -- no effect
   'dkarter/bullets.vim',
 
@@ -132,8 +132,8 @@ require("lazy").setup({
   'haolian9/reveal.nvim',
   'nagy135/typebreak.nvim',
   'amarakon/nvim-cmp-buffer-lines',
+  -- 'rcarriga/nvim-notify',
   'folke/noice.nvim',
-
 
 ------------------------
 --      Themes:       --

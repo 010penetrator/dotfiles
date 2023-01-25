@@ -32,9 +32,14 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 --  Configure Plugs   --
 ------------------{{{}}}
 
+
+require('nvim-autopairs').setup()
+require('nvim-autopairs').remove_rule("'")
+require('nvim-autopairs').remove_rule('"')
+
 local leap = require('leap')
 leap.add_default_mappings()
-leap.opts.case_sensitive = true
+-- leap.opts.case_sensitive = true
 leap.opts.special_keys = {
 prev_target = { '<s-enter>', ',' },
 next_target = {'<enter>', ';'},
@@ -485,6 +490,7 @@ if vim.fn.has('nvim-0.7')==1 then
   H.nmap(',fb', Tele_buff_ivy, "Telescope [B]uffers ivy-themed")
   H.nmap(',<space>', Tele_buff_drop)
   -- H.snmap('<C-n>', require('bufjump').forward)
+  H.nmap(',l', require('lsp_lines').toggle, { desc = "Toggle lsp_lines" })
 end
 
 -- nnoremap ,tt :Telescope current_buffer_fuzzy_find sorting_strategy=ascending layout_config={"prompt_position":"top"}<CR>
