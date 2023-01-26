@@ -298,7 +298,7 @@ nnoremap gx dlp
 " add space to word
 nnoremap z<space> i <Esc>lwi <Esc>
 " add space inside brackets
-nmap a<space> ysib<space><space>
+nmap a<space> ysib<space>
 vnoremap <space> :<C-U>call AddSpaceSelection()<CR>
 " allows to undo accidental CTRL-U in insert mode
 inoremap <C-U> <C-G>u<C-U>
@@ -310,9 +310,12 @@ nnoremap d<space> :call DelSpace()<Esc>
 " add this line to the next line
 nnoremap q<cr> ddpkJ
 " start fat new line
-nnoremap cm O<Esc>o
+nnoremap cm o<Esc>O
 " insert new line after current paragraph
 nnoremap c<CR> }:if (line(".") == line("$")) \| exec "normal o" \| endif<CR>O
+nnoremap c<Down> :call EditAtEdge('down')<CR>O
+nnoremap c<Up>   :call EditAtEdge('Up')<CR>o
+
 " add horizontal line
 nnoremap q- 60A-<esc>0<esc>60ld$b
 nnoremap q= 60A=<esc>0<esc>60ld$b
@@ -530,6 +533,7 @@ nnoremap ,gu :call FocusBufOrDo('ff','e $tt/u*/ff*')<CR>
 nnoremap ,gh :call FocusBufOrDo('sh_history','e $HOME/.bash_history')<CR>G
 nnoremap ,gl :call FocusBufOrDo('1linux','e $sh/rs/1linux')<CR>
 nnoremap q/  :call FocusWindowOrDo('silly.txt','1tabn \| wincmd b \| e $buf')<CR>
+nnoremap ,gg :call FocusBufOrDo('silly.txt','e $buf')<CR>
 
 nnoremap ,,<space> :Goyo<CR>
 nnoremap ,vi :IndentBlanklineToggle<CR>
@@ -860,12 +864,34 @@ menu tagi.git     :call UpdCtagsGit()<CR>
 ""      Macros:       ""
 """"""""""""""""""""""""
 
-let @g = ",gggg2zjjzzao:call DoOnKey(\"103\",\"b #\")\n"
+" press ,mgg ;)
+let @g = ",ggGzk4k\<C-k>jzzao:call DoOnKey(\"103\",\"b #\")\n"
 let @s = "i \<Esc>ll."
 
 """"""""""""""""""""""""
-""     Functions:     ""
 """"""""""""""""""{{{}}}
+""     Functions:     ""
+
+function! EditAtEdge(dir)
+  " Go to edge of text/blank area and insert new line there
+  let regex_blank = '^.'
+  let regex_nonempty = '^$'
+  if getline(line('.')) =~ "^$"
+    let target_regex = regex_blank
+  else
+    let target_regex = regex_nonempty
+  endif
+  if a:dir == 'up'
+    " echo 1
+    call search(target_regex,'b')
+    normal o
+  elseif a:dir == 'down'
+    " echo 2
+    call search(target_regex)
+    normal O
+  endif
+  " Please hit i/o/O to enter insert mode now
+endfunc
 
 function! LGstamp(...)
   exec "lcd " . GetProjDir()

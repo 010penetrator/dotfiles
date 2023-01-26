@@ -272,7 +272,7 @@ require('indent_blankline').setup {
   enabled = true,
   show_end_of_line = false,
   show_current_context = true,
-  show_current_context_start = true,
+  -- show_current_context_start = true,
   show_trailing_blankline_indent = false,
   char = '░',
   char_blankline = "",
@@ -370,6 +370,15 @@ require('gomove').setup {
 }
 
 ------------------------
+--      Keymaps:      --
+------------------{{{}}}
+
+H.nmap(',fb', Tele_buff_ivy, "Telescope [B]uffers ivy-themed")
+H.nmap(',<space>', Tele_buff_drop)
+  -- H.snmap('<C-n>', require('bufjump').forward)
+H.nmap(',l', require('lsp_lines').toggle, { desc = "Toggle lsp_lines" })
+
+------------------------
 --       LSP:         --
 ------------------{{{}}}
 
@@ -452,49 +461,6 @@ lsp.preset("recommended")
 require("lsp_lines").setup()
 -- Disable virtual_text since it's redundant due to lsp_lines.
 vim.diagnostic.config({ virtual_text = false, })
-
-------------------------
---      Keymaps:      --
-------------------{{{}}}
-
-if vim.fn.has('nvim-0.6') == 1 then
-  vim.api.nvim_command('\
-  nnoremap <silent> gh <cmd>ClangdSwitchSourceHeader<CR>|\
-  nnoremap <silent> z<Down> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>|\
-  nnoremap <silent> z<Up> k<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>|\
-  nnoremap <silent> ,S <cmd>lua vim.lsp.buf.signature_help()<CR>|\
-')
-end
-
-if vim.fn.has('nvim-0.7')==1 then
-  vim.keymap.set("n","K", vim.lsp.buf.hover, {buffer=0})
-  H.nmap("K", vim.lsp.buf.hover, {buffer=0})
-  H.nmap("gv", function() vim.cmd('vsplit') vim.lsp.buf.definition() end)
-  -- H.nmap("gv", function() vim.api.nvim_open_win(true,true,{}) vim.lsp.buf.definition() end)
-  -- vim.keymap.set("n", "gl", "<cmd>let bn=bufnr('%') <bar> let pos=getpos('.') <bar> wincmd p <bar> exec 'b' . bn <bar> call setpos('.',pos) <bar> lua vim.lsp.buf.definition()<CR>" )
-  H.nmap("gl", function() H.mirror_buf_to_prev_window() vim.lsp.buf.definition() end)
-  -- H.nmap("gd", vim.lsp.buf.definition)
-  -- H.nmap("gD", vim.lsp.buf.declaration)
-  H.nmap("gs", vim.lsp.buf.document_symbol)
-  H.nmap("gr", vim.lsp.buf.references)
-  H.nmap("gw", vim.lsp.buf.workspace_symbol)
-  H.nmap("gy", vim.lsp.buf.type_definition)
-  H.nmap("gi", vim.lsp.buf.implementation)
-  H.nmap("z<down>", vim.diagnostic.goto_next)
-  H.nmap("z<up>", vim.diagnostic.goto_prev)
-  H.nmap(",r", vim.lsp.buf.rename)
-  H.nmap("qa", vim.lsp.buf.code_action)
-  H.nmap("qa", vim.lsp.buf.code_action)
-  H.nmap("qa", vim.lsp.buf.code_action)
-  -- vim.keymap.set("n",",,b", Tele_buff_ivy, {desc = "Telescope buffers ivy-themed"})
-  H.nmap(',fb', Tele_buff_ivy, "Telescope [B]uffers ivy-themed")
-  H.nmap(',<space>', Tele_buff_drop)
-  -- H.snmap('<C-n>', require('bufjump').forward)
-  H.nmap(',l', require('lsp_lines').toggle, { desc = "Toggle lsp_lines" })
-end
-
--- nnoremap ,tt :Telescope current_buffer_fuzzy_find sorting_strategy=ascending layout_config={"prompt_position":"top"}<CR>
--- nnoremap ,tt <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find({sorting_strategy="ascending", theme="ivy"})<CR>
 
 ------------------------
 --     Completion:    --
