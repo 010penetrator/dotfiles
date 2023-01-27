@@ -62,16 +62,13 @@ endif
 " colo Tomorrow | LineColor Tomorrow
 " colo Tomorrow-Night | set bg=light | LineColor bluewery
 " colo corvine_light | LineColor selenized_light
-" colo cake16 | LineColor selenized_light
 " colo stellarized | set bg=light | LineColor PaperColor_light
 " colo lost-shrine | LineColor nord
 " colo knicks-away | LineColor bluewery
-" colo espresso | LineColor snow_dark
 " colo cryslominsa | LineColor cryslominsa
 " colo everforest | LineColor cryslominsa
 " colo tempus_dusk | LineColor solarized
 " let ayucolor="mirage" | colo ayu | LineColor ayu_mirage
-" colo corvine | LineColor bluewery
 " colo OceanicNext | LineColor bluewery
 " colo stellarized | set bg=dark | LineColor bluewery
 " colo Tomorrow-Night-Blue | LineColor bluewery

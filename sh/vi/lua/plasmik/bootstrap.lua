@@ -133,7 +133,8 @@ require("lazy").setup({
   'nagy135/typebreak.nvim',
   'amarakon/nvim-cmp-buffer-lines',
   -- 'rcarriga/nvim-notify',
-  'folke/noice.nvim',
+  -- 'folke/noice.nvim',
+  'AckslD/nvim-neoclip.lua',
 
 ------------------------
 --      Themes:       --
