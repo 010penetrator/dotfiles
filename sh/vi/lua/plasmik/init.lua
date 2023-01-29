@@ -10,7 +10,8 @@ require('plasmik.set')
 package.loaded['plasmik.helpy'] = nil
 require('plasmik.helpy')
 
-require('plasmik.remap')
+-- require('plasmik.remap')
+H.reload('plasmik.remap')
 require('plasmik.bootstrap')
 
 -- disable netrw early in user/init.lua

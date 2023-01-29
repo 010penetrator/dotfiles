@@ -113,7 +113,8 @@ exec $SHELL -l # re-login
 su - user1 -c uname # run command as user1
 sudo -H -u user2 echo $HOME # check his home dir
 who -r # show run-level
-systemctl get-default
+systemctl get-default # check default target
+systemctl list-units --type target # list targets
 BINDIR=$(dirname "$(readlink -fn "$0")") # where are binaries?
 ps aux | grep mydaemon # is mydaemon running?
 gpg --no-default-keyring --keyring /usr/share/keyrings/debian-role-keys.gpg --verify MD5SUMS.sign.txt MD5SUMS.txt
@@ -262,9 +263,10 @@ git reset --hard origin/master ; git pull origin master # discard all local chan
 git --follow file.c # show file history tracking renames
 git status -vv file.c # diff against last commit
 git remote update; git show-branch *master # check if remote master has been updated
-git remote -v # show branches url
 git init --bare /path/portable/proj; cd /path/current/proj; git remote add newname1 /path/portable/proj; git push newname1 master # create local remote repo, maybe on portable media
-get remote -v # show remote locations
+get remote -v # display remote url/locations
+git show-branch -a # display graph ??
+git branch -a # display local and remote branches
 
 ==NET
 ip link

@@ -36,7 +36,6 @@ else
     elseif ( g:phase == 'dunno' )
         " colo frign | LineColor aqua_plasm
         colo Tomorrow-Night-Blue | LineColor bluewery
-        " colo PaperColor | set bg=light | LineColor solarized
         " colo Tomorrow | LineColor Tomorrow
         " colo Tomorrow-Night | LineColor bluewery
         " colo bluewery-light | LineColor selenized_light

@@ -4,8 +4,8 @@ super + x ; { m, s, h, n, o, a, g }
 super + x ; { space, z, i, f, p, q, l, c, d, b, Up, Down }
   { xdotool mousemove_relative 0 1600, $TERMINAL -e ask_album.sh, listalbums.sh /ln/ho/.mus-history, listalbums.sh /ln/ho/.mus-favourites, listalbums.sh /ln/ho/.mus-playlist, bspc node -c, listdwn.sh, SHFL=1 listalbums.sh /ln/ho/.mus-library, deadbeef, listdeadbeef.sh, nowis day, nowis nox }
 
-super + n ; { n, M, t, c, v, r, o, i, s }
-  { $TERMINAL, momkitty.sh, thunar & notify-send 'new Thunar', $TERMINAL -e vifm, vinew, listzathura.sh, $TERMINAL_BIGER -c /ln/co/kitty/kitty.conf -c /ln/co/kitty-themes/themes/Ciapre.conf -e rtorrent, $TERMINAL_BIGER -e tremc -c localhost:9090, scrotfeh }
+super + n ; { n, M, t, c, v, r, o, i, s, a }
+  { $TERMINAL, momkitty.sh, thunar & notify-send 'new Thunar', $TERMINAL -e vifm, vinew, listzathura.sh, $TERMINAL_BIGER -c /ln/co/kitty/kitty.conf -c /ln/co/kitty-themes/themes/Ciapre.conf -e rtorrent, $TERMINAL_BIGER -e tremc -c localhost:9090, scrotfeh, $TERMINAL_BIGER -e tremc -c localhost:9090 }
 
 super + { q, Q, D, F, t, v, s, y, r, R, z, g, slash }
   ror.sh { \

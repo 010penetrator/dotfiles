@@ -50,10 +50,9 @@ set runtimepath+=$vi
 
 if has("nvim")
     SSource $vi/myvimrc
-    lua require('plasmik')
     SSource $vi/vimrc_themes
+    SSource $mylua/init.lua
     " SSource $mylua/helpy.lua
-    " SSource $mylua/init.lua
     " SSource $mylua/remap.lua
 else
     SSource $vi/vimrc_plug
