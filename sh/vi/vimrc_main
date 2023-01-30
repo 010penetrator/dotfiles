@@ -50,8 +50,8 @@ set runtimepath+=$vi
 
 if has("nvim")
     SSource $vi/myvimrc
-    SSource $vi/vimrc_themes
     SSource $mylua/init.lua
+    SSource $vi/vimrc_themes
     " SSource $mylua/helpy.lua
     " SSource $mylua/remap.lua
 else
