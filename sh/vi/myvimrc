@@ -289,8 +289,8 @@ noremap C "_C
 " noremap s "_s
 
 " Editing
-nnoremap qo o<C-u><Esc>
-nnoremap qi O<C-u><Esc>
+nnoremap qo o<space><C-u><Esc>
+nnoremap qi O<space><C-u><Esc>
 nnoremap qu ~
 nnoremap cx s
 " swap two chars
