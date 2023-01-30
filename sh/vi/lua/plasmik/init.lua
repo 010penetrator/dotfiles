@@ -125,9 +125,13 @@ vim.keymap.set('n', 'gD', "<Cmd>lua Scroll('declaration')<CR>")
 
 require("nvim-surround").setup()
 
-require('lualine').setup( {
-  -- options = { theme = 'nord' }
-})
+require('lualine').setup {
+  options = {
+    section_separators = '',
+    component_separators = '',
+    theme = 'nord',
+  }
+}
 
 require('bufferline').setup()
 --[[ require('bufferline').setup {
