@@ -227,7 +227,7 @@ Plug 'franbach/miramare' "coffee dark
 " Plug 'koirand/tokyo-metro.vim' "pretty dark
 " Plug 'nightsense/rusticated' "morning
 " Plug 'nightsense/snow' "soft)
-" Plug 'nightsense/stellarized' "nice! light+dark
+Plug 'nightsense/stellarized' "nice! light+dark
 "  Pretty but not comfortable :
 " Plug 'sainnhe/sonokai' "dark gui&nogui
 " Plug 'szorfein/fromthehell.vim' "dark satur earth
