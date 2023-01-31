@@ -260,6 +260,7 @@ git config --global difftool.prompt false
 git log --follow somefile
 git checkout INDEX~1 somefile # restore somefile just before INDEX commit
 git reset --hard origin/master ; git pull origin master # discard all local changes/commits and pull from upstream
+git rm --cached somefilename.ext # remove file from git system
 git --follow file.c # show file history tracking renames
 git status -vv file.c # diff against last commit
 git remote update; git show-branch *master # check if remote master has been updated

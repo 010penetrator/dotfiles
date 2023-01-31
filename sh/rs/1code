@@ -6,6 +6,8 @@
 #define sqr(x)   ((x)*(x))
 #define sign(x)  (((x) > 0) - ((x) < 0))
 
+mas = new int[n]{0}; // new array & init to zeroes
+
 if (debug) { static int errcnt; if ( errcnt++ % 9 == 0 ) printf("stag#somestep : something=%d\n", val); }
 
 std::function<void(void)> cb = &foo; // more simple callback
