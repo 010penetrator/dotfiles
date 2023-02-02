@@ -373,6 +373,7 @@ sudo pacman -U https://archive.archlinux.org/packages/n/nim/nim-1.0.6-1-x86_64.p
 
 ==ALSO
 vboxmanage extpack install /Corporalass_VM_VirtualBox_Extension_Pack-6.1.34.vbox-extpack
+VBoxManage internalcommands sethduuid NewVirtualDisk.vdi 
 cp -a /source/. /target # add source/ contents to target/
 cp -aT  /source /target # add source/ contents to target/
 for f in * ; do d=${f%.*} ; 7z x -o./"$d" "$f" ; done # unpack all files with 7z
