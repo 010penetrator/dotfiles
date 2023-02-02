@@ -25,6 +25,12 @@ function M.reset (p)
   require(p).setup()
 end
 
+function M.prequire(m)
+  local ok, err = pcall(require, m)
+  if not ok then return nil, err end
+  return err
+end
+
 ---Author: cseickel
 ---The file system path separator for the current platform.
 M.path_separator = "/"

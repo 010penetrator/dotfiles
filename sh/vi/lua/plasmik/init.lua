@@ -39,16 +39,18 @@ require('nvim-autopairs').setup()
 require('nvim-autopairs').remove_rule("'")
 require('nvim-autopairs').remove_rule('"')
 
-local leap = require('leap')
-leap.add_default_mappings()
--- leap.opts.case_sensitive = true
-leap.opts.special_keys = {
-prev_target = { '<s-enter>', ',' },
-next_target = {'<enter>', ';'},
--- prev_target = {'<tab>', ','},
-next_phase_one_target = '<enter>',
-repeat_search = '<enter>',
-}
+local leap = H.prequire('leap')
+if leap then
+  leap.add_default_mappings()
+  -- leap.opts.case_sensitive = true
+  leap.opts.special_keys = {
+    prev_target = { '<s-enter>', ',' },
+    next_target = {'<enter>', ';'},
+    -- prev_target = {'<tab>', ','},
+    next_phase_one_target = '<enter>',
+    repeat_search = '<enter>',
+  }
+end
 
 require('gitsigns').setup()
 
@@ -397,6 +399,7 @@ H.nmap(',ff', ":Telescope find_files theme=ivy<CR>")
 H.nmap('qr',  ":Telescope lsp_references<CR>")
 H.nmap(',fs', ":Telescope lsp_document_symbols<CR>")
 H.nmap('qs',  ":Telescope lsp_dynamic_workspace_symbols<CR>")
+H.nmap(',vg', require('gitsigns').toggle_signs, "Show git highlight column")
 
 -- nnoremap ,tt :Telescope current_buffer_fuzzy_find sorting_strategy=ascending layout_config={"prompt_position":"top"}<CR>
 -- nnoremap ,tt <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find({sorting_strategy="ascending", theme="ivy"})<CR>

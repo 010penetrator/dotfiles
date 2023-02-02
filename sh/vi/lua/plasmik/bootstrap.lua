@@ -30,7 +30,7 @@ require("lazy").setup({
   -- Basic
   -- 'itchyny/lightline.vim', --cool
   {'nvim-lualine/lualine.nvim', dependencies = 'kyazdani42/nvim-web-devicons'},
-  -- 'justinmk/vim-sneak', --good!
+  'justinmk/vim-sneak', --good!
   'jlanzarotta/bufexplorer', --basic
   -- 'tpope/vim-sensible', --basic
   -- 'tpope/vim-commentary',
@@ -121,8 +121,8 @@ require("lazy").setup({
   -- 'karb94/neoscroll.nvim',
   'mizlan/iswap.nvim',
   'andrewferrier/debugprint.nvim',
-  'https://github.com/ggandor/leap.nvim',
-    'ziontee113/syntax-tree-surfer',
+  -- 'https://github.com/ggandor/leap.nvim',
+  'ziontee113/syntax-tree-surfer',
 
   'levouh/tint.nvim',
 

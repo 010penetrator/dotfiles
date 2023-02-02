@@ -10,6 +10,7 @@ set termguicolors
 compiler gcc
 set makeprg=make
 " set makeprg=gcc\ %:p\ -o\ %:p:h/bin
+" set makeprg=g++\ %:p\ -o\ %:p:h/bin
 " set makeprg=sh\ my_make.sh
 set path=.,**
 " set wildignore=*.swp
@@ -157,8 +158,8 @@ autocmd FileType c setlocal colorcolumn=0
 " let g:netrw_browse_split = 0
 " let g:netrw_altv = 1
 " let g:netrw_winsize = 25
-" " make vim-sneak respect netrw
-" let g:sneak#map_netrw = 0
+" make vim-sneak respect netrw
+let g:sneak#map_netrw = 0
 
 if executable('rg')
   set grepprg=rg\ --smart-case\ --vimgrep\ --follow\ --no-ignore\ -g\ '!tags'
