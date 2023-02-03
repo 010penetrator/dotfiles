@@ -402,7 +402,7 @@ nnoremap ,c. :LCDhere<CR>
 nnoremap ,cg :call ClimbToDirWhere(".git/index",1) \| pwd<CR>
 nnoremap ,cm :call ClimbToDirWhere("Makefile",1) \| pwd<CR>
 " local cd to project path
-nnoremap <silent> ,c, :call GetProjDir() <bar> exec "lcd " . b:proj_dir <bar> echo 'lcd @' getcwd()<cr>
+nnoremap <silent> ,c, :call GetProjDir() <bar> exec "lcd! " . b:proj_dir <bar> echo 'lcd! @' getcwd()<cr>
 nnoremap a<BS> :checktime<cr>
 nnoremap q<BS> :enew<CR>
 nnoremap z<BS> :e!<CR>
@@ -812,8 +812,8 @@ command! Bash exec 'silent ! bash' | redraw!
 command! NewTerm exec 'silent ! $TERMINAL &' | redraw!
 command! NewTermHere exec 'silent ! cd "%:p:h" && $TERMINAL &' | redraw!
 command! NewVifmHere exec 'silent ! $TERMINAL -e vifm --select %:p & ' | redraw!
-command! LCDhere lcd %:p:h | pwd
-command! LCDrealpath let b:cwd = expand("%:p:h") | let b:rcwd = system("realpath " . b:cwd) | exec "lcd " . b:rcwd
+command! LCDhere lcd! %:p:h | pwd
+command! LCDrealpath let b:cwd = expand("%:p:h") | let b:rcwd = system("realpath " . b:cwd) | exec "lcd! " . b:rcwd
 
 command! FollowSymLink let b:symlink = expand("%:p") | execute "file " . resolve(expand("%")) | edit
 command! UnFollowSymLink exec 'file ' . b:symlink | edit
@@ -893,7 +893,7 @@ function! EditAtEdge(dir)
 endfunc
 
 function! LGstamp(...)
-  exec "lcd " . GetProjDir()
+  exec "lcd! " . GetProjDir()
   if system('ls -d .git/ >/dev/null || echo 1')
     echom "Can't find .git location!"
     return -1
@@ -912,7 +912,7 @@ endfunc
 command! -nargs=? LGstamp call LGstamp(<f-args>)
 
 function! LGsync()
-  exec "lcd " . GetProjDir()
+  exec "lcd! " . GetProjDir()
   if system('ls -d .git/ >/dev/null || echo 1')
     echom "Can't find .git location!"
     return -1
@@ -1017,7 +1017,7 @@ function! BuildProjectUni(Makefile,Makecommand)
   let starting_directory = getcwd()
   let curr_directory = expand('%:p:h')
   " change directory
-  exec "lcd " . curr_directory
+  exec "lcd! " . curr_directory
   let proj_dir = ClimbToDirWhere(a:Makefile,1)
   " " !!! ignore cmake-generated Makefile
   while filereadable("vim_make_ignore")
@@ -1040,7 +1040,7 @@ function! BuildProjectUni(Makefile,Makecommand)
     echo "Makefile not found!"
   endif
   " reset stuff
-  silent exec "lcd " . starting_directory
+  silent exec "lcd! " . starting_directory
   let &makeprg = makeprg_bak
   " exit with rituals
   if !has("nvim")
@@ -1051,25 +1051,25 @@ endfunction
 
 function! ClimbToDirWhere(filename,chdir)
   let init_dir = getcwd()
-  exec "lcd " . expand('%:p:h')
+  exec "lcd! " . expand('%:p:h')
   while 1
     " Check if the file exists in the current directory
     if filereadable(a:filename)
       let result = getcwd()
       " Change directory if chdir==1
       if a:chdir !=# 1
-        exec "lcd " . init_dir
+        exec "lcd! " . init_dir
       endif
       return result
       " If we've hit the top level directory, break out
     elseif getcwd() ==# "/" || getcwd() =~# '^[^/]..$'
-      exec "lcd " . init_dir
+      exec "lcd! " . init_dir
       return -1
     else
-      lcd ..
+      lcd! ..
     endif
   endwhile
-  exec "lcd " . init_dir
+  exec "lcd! " . init_dir
 endfunction
 
 function! GetProjDir()

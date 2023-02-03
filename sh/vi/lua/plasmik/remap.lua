@@ -11,7 +11,7 @@ nnoremap <silent> z<Up> k<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>|\
 nnoremap <silent> ,S <cmd>lua vim.lsp.buf.signature_help()<CR>|\
 ')
 
-vim.keymap.set('n',"K", vim.lsp.buf.hover, {buffer=0})
+vim.keymap.set('n','K', vim.lsp.buf.hover, {buffer=0})
 H.nmap('gv', function() vim.cmd('vsplit') vim.lsp.buf.definition() end)
 -- H.nmap('gv', function() vim.api.nvim_open_win(true,true,{}) vim.lsp.buf.definition() end)
 -- vim.keymap.set('n', "gl", "<cmd>let bn=bufnr('%') <bar> let pos=getpos('.') <bar> wincmd p <bar> exec 'b' . bn <bar> call setpos('.',pos) <bar> lua vim.lsp.buf.definition()<CR>" )
@@ -32,14 +32,14 @@ H.nmap('qt', vim.diagnostic.open_float)
 H.nmap('qb', vim.diagnostic.setloclist)
 
 -- Yank and put incremental
-vim.keymap.set("n", ",y", "\"Yy")
-vim.keymap.set("v", ",y", "\"Yy")
-vim.keymap.set("n", ",p", "\"yp")
-vim.keymap.set("x", ",p", "\"_dP")
+vim.keymap.set('n', ',y', "\"Yy")
+vim.keymap.set('v', ',y', "\"Yy")
+vim.keymap.set('n', ',p', "\"yp")
+vim.keymap.set('x', ',p', "\"_dP")
 
 -- Move selection
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 
 H.bram_nmap('<C-PageUp>',   ":BufferLineCyclePrev<CR>", { silent = true })
 H.bram_nmap('<C-PageDown>', ":BufferLineCycleNext<CR>", { silent = true })
