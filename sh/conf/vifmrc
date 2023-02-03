@@ -122,7 +122,9 @@ nnoremap qfp :! mpv --fs --keep-open=always *.{mp4,MP4,webm,mkv,mov,MOV} &>/dev/
 nnoremap qfG :! spek %c &>/dev/null &<cr>
 nnoremap qfg :! specgram.sh %c<cr>
 nnoremap qfd :! deadbeef --queue %c &>/dev/null &<cr>
-nnoremap qfn :! ncdu --color off -x %c<cr>
+nnoremap qfn :! ncdu --color off -x %c
+nnoremap qf<space> :! ncdu --color off -x %c<cr>
+
 nnoremap qfe :! $EDITOR %c<cr>
 nnoremap qft :! $TERMINAL $EDITOR %c<cr>
 nnoremap qfx :! xdg-open %c &>/dev/null &<cr>
