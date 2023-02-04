@@ -5,23 +5,25 @@
 !echo -ne "\033]0;VIFM\007"
 " wincmd o
 
-command! ResetColor  :execute 'colo '.$VIFM_THEME
-if ($VIFM_THEME == '')
+command! ResetColor  :execute 'colo '.$VIFM_COLO
+if ($VIFM_COLO == '')
     if (system('[ -f /tmp/now_is_day ] && echo 1') == "1" )
-        let $VIFM_THEME='reicheltd-light'
+        let $VIFM_COLO='papercolor-light'
+        echo 'will set day theme'
     elseif (system('[ -f /tmp/now_is_nox ] && echo 1') == "1" )
-        let $VIFM_THEME='crown_24bit'
+        let $VIFM_COLO='crown_24bit'
+        echo 'will set nox theme'
         " colo dracula
         " colo iceberg
     else
         " colo reicheltd-light
-        let $VIFM_THEME='iceberg'
+        let $VIFM_COLO='iceberg'
         " colo dracula
         " colorscheme Default
     endif
     ResetColor
 endif
-nnoremap c<BS>  :exec 'colo' $VIFM_THEME<CR>
+nnoremap c<BS>  :exec 'colo' $VIFM_COLO<CR>
 
 command! CC :! mv /ln/dwn/cover.* .
 command! ogg :! cd %c && conv_any2ogg.sh . %D &>/dev/null ; notify-send "%c converted" &
@@ -157,7 +159,7 @@ nnoremap ,vd :! vim -d %c %D/%c<cr>
 
 " Play music with mpv "
 nnoremap b :! PAUSE=0 INVIFM=1 ASK=1 mpv-album %c VIFM; echo -ne "\033]0;VIFM\007" <cr>
-nnoremap B :! %i cd %c; [[ $TERMINAL=="kitty "* ]] && TERMINAL="$TERMINAL -o initial_window_height=$(expr 450 + $HIDPI \* 100) -o initial_window_width=$(expr 650 + $HIDPI \* 130)"; $TERMINAL -e /bin/bash -c "ASK=1 mpv-album ." &>/dev/null & <cr>
+nnoremap B :! %i cd %c; [[ $TERMINAL=="kitty "* ]] && TERMINAL="$TERMINAL -o initial_window_height=$(expr 450 + $HIDPI \* 200) -o initial_window_width=$(expr 650 + $HIDPI \* 200)"; $TERMINAL -e /bin/bash -c "ASK=1 mpv-album ." &>/dev/null & <cr>
 nnoremap qb :! kitty @ new-window --new-tab /bin/bash -c "cd %d/ ; ASK=0 mpv-album %c VIFM ; vifm --select %c" <cr>
 
 " Do rsync "
@@ -184,7 +186,7 @@ nnoremap cm :move<cr>
 nnoremap C :copy<cr>
 nnoremap E :move<cr>
 nnoremap ci :move /ln/hh/imgdl1/<cr>
-noremap aj :!touch %f --date=now<cr>j
+nnoremap aj :!touch %f --date=now<cr>j
 nnoremap cn :clone<cr>
 nnoremap al :!ln -s  %d/%c %D/%c<cr>
 nnoremap ah :!ln -sr %d/%c %D/%c
@@ -233,6 +235,7 @@ nnoremap gy :cd /ln/mob<cr>
 nnoremap gS :exec 'cd' system("compgen -G /ln/mo/*AMV/bak")<cr>
 nnoremap gf 'f
 nnoremap gi :cd /ln/hh/imgdl1<cr>
+nnoremap gH :cd /ln/hh<cr>
 nnoremap gk :cd /ln/torrents/red/KKK<cr>:sort<cr>mh
 nnoremap gv :cd ~/.vim<cr>:goto plugged<cr>
 " nnoremap gN :cd ~/01/new/<cr>

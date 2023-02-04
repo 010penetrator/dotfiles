@@ -23,7 +23,7 @@ PLAYER_CMD="ASK=1 mpv-album"
 # Construct command to call new terminal window
 case $TERMINAL in
 kitty*)
-    NEW_TERMINAL="$TERMINAL -o initial_window_height=$(expr 450 + $HIDPI \* 140) -o initial_window_width=$(expr 650 + $HIDPI \* 150) /bin/bash -c"
+    NEW_TERMINAL="$TERMINAL -o initial_window_height=$(expr 450 + $HIDPI \* 240) -o initial_window_width=$(expr 650 + $HIDPI \* 250) /bin/bash -c"
     ;;
 *)
     NEW_TERMINAL="xterm -xrm 'XTerm.vt100.allowTitleOps:true' -geometry 60x24+400+250 -e"

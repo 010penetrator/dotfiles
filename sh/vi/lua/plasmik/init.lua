@@ -29,11 +29,9 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
-
 ------------------------
 --  Configure Plugs   --
 ------------------{{{}}}
-
 
 require('nvim-autopairs').setup()
 require('nvim-autopairs').remove_rule("'")
@@ -75,6 +73,8 @@ require('cinnamon').setup( {
   max_length = 70,          -- Maximum length (in ms) of a command. The line delay will be re-calculated. Setting to -1 will disable this option.
   scroll_limit = 150,       -- Max number of lines moved before scrolling is skipped. Setting to -1 will disable this option.
 })
+
+-- nnoremap <silent> n :<C-u>execute "keepjumps norm! " . v:count1 . "nzz"<CR>
 
 -- Half-window movements:
 vim.keymap.set({ 'n', 'x' }, '<C-u>', "<Cmd>lua Scroll('<C-u>', 1, 1)<CR>")

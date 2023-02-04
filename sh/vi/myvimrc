@@ -66,6 +66,7 @@ set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNO
 " set keymap=russian-jcukenwin
 set colorcolumn=
 set cursorline
+set updatetime=6000
 set noequalalways
 set winheight=7
 " set iminsert=0
@@ -130,6 +131,12 @@ augroup SaveNotepad
   autocmd!
   autocmd FocusLost silly.txt silent update
   autocmd BufLeave  silly.txt silent update
+augroup END
+
+augroup myAucmds
+  autocmd!
+  autocmd CursorHold * normal! m'
+  set updatetime=6000
 augroup END
 
 " autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 100)|\
