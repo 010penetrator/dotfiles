@@ -45,18 +45,21 @@ echo
     echo "q" - back to vifm || \
     echo "q - quit"
 [[ $INVIFM != 1 ]] && \
-    echo "c - inspect directory with vifm"
+    echo "c - inspect directory with Vifm"
 [[ $INLIST == 1 ]] && \
-    echo "d - delete from playlist" || \
-    echo "a - add to playlist"
+    echo "d - Delete from playlist" || \
+    echo "a - Add to Playlist"
 [[ $INFAVS == 0 ]] && \
-    echo "s - save to favourites"
-[[ -f $LIST ]] && \
+    echo "s - Save to Favourites"
+[[ -f $LIST && $INVIFM != 1 ]] && \
     echo "p - play an album from Playlist"
+[[ $INVIFM != 1 ]] && \
 echo "f - play an album from Favourites"
+[[ $INVIFM != 1 ]] && \
 echo "i - play an album from History"
+[[ $INVIFM != 1 ]] && \
 echo "l - play an album from Library"
-echo "<Space> or <CR> - play again"
+echo "<Space> or <CR> - PLAY again"
 echo
 
 read -rs -n1 -p "hit some key.." prompt

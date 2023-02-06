@@ -137,6 +137,7 @@ augroup myAucmds
   autocmd!
   autocmd CursorHold * normal! m'
   set updatetime=6000
+  autocmd FocusGained,BufEnter * :silent! checktime
 augroup END
 
 " autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 100)|\

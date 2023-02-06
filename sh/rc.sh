@@ -55,7 +55,7 @@ elif [[ "$HOSTNAME" =~ "machine" ]]; then
   xrandr --output DP-1 --mode 2560x1440 --rate 120
   # sleep 1
   # pgrep transmission-da | grep . || trdwrap.sh &
-  # pgrep earlyoom | grep . || earlyoom -m 2 -n &> /dev/null &
+  pgrep earlyoom | grep . || earlyoom -m 2 -n &> /dev/null &
 
 elif [[ "$HOSTNAME" =~ "think" ]]; then
   xrdb -merge <(echo "Xft.dpi: 120") &
