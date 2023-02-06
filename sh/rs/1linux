@@ -6,7 +6,7 @@ BASE: base-devel inetutils earlyoom kbd plocate mlocate udevil cylon inxi
 ARCHIE: pacli pakku yay baph
 TUI: qalc networkmanager nmtui mc clex lfm ranger vifm nnn fff exa fd lftp fzf ripgrep silversearcher-ag ncdu tree p7zip htop btop ytop bashtop bpytop glances dmenu keratin screenfetch lolcat tmux bc tty-clock
 X: xorg-server xorg-xinit xterm kitty tilda termit urxvt rofi xlunch xvkbd xclip redshift xscreensaver nitrogen dunst unclutter-xfixes xbanish gmrun scrot wmctrl xdotool compton picom wbar
-FIRMWARE: bluez-utils
+FIRMWARE: bluez-utils usbutils
 GTKtune: lxappearance oomox wpgtk pop-gtk-theme
 BRO: luakit links w3m midori jumanji uzbl netsurf *epiphany palemoon
 TED: vim kakoune cudatext sublime-text geany mousepad scribes gedit xed tea-editor focuswriter QtCreator VScode codeblocks
@@ -16,7 +16,7 @@ IMG: exiftool nomacs gpicview qview ristretto imv vimiv photoqt phototonic gthum
 DRAW: pinta kolourpaint mypaint mtpaint krita blender
 LISTEN: deadbeef qomp nulloy clementine exaile musique yarock qmmp audacious gmusicbrowser cantata tomahawk mocp *ncmpc cmus
 READ: zathura atril qpdfview mupdf djview fbreader koreader fbless evince okular *calibr
-HDD: gparted cfdisk testdisk f3probe photorec extundelete smartcontrol wipefreespace mondorescue grub-customizer woeusb windows2usb
+HDD: gparted cfdisk testdisk f3probe photorec extundelete smartcontrol wipefreespace mondorescue grub-customizer woeusb windows2usb hdparam 
 DL: transmission tremc youtube-dl *rtorrent *aria2 *rutorrent jdownloader2
 LEARN: klavaro gtypist solfege brainworkshop stellarium
 GAMES: ctris urw powermanga pybik caph phlipple knetwalk cgoban liquidwar cultivation neverball typespeed speedpad minuet
