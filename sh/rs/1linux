@@ -222,6 +222,7 @@ rsync -e ssh -rln -vK --progress --delete --checksum --stats --no-perms --no-tim
 rsync -e 'ssh -i .ssh/key0 -p 2222' -av --progress --no-perms --no-times --delete --size-only myphone@192.168.1.88:/storage/emulated/0/Download/prags-andro/ /ln/pr/prags-andro/ # sync with andro-phone
 rsync -e ssh -av --progress --no-perms --no-times --delete --size-only pi@192.168.1.78:/ln/red/Form*1995* /ln/torrents/red/ # reverse transfer
 rsync -e ssh -Lav --progress --exclude=".*/" --no-perms --no-times --delete --size-only pi@192.168.1.78:/ln/red/ /ln/torrents/red/ # reverse transfer
+tmux new -s defs # start tmux with named session
 7z a dir.7z Dir -p -mhe=on #create encrypted 7z
 7z a -mx=3 -xr!.git -xr!tags out.7z Projekt # create quick 7z
 tar -I 'zstd -v -11 -T0' -cf somedir.tar.zst --exclude='.git' --exclude='tags' somedir # create tar.zst
