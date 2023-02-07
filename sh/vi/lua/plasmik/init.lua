@@ -273,7 +273,7 @@ vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 -- vim.opt.listchars:append("eol:↴")
 require('indent_blankline').setup {
   filetype_exclude = {'lspinfo', 'checkhealth', 'help', 'man', '', 'startify'},
-  enabled = true,
+  enabled = false,
   show_end_of_line = false,
   show_current_context = true,
   -- show_current_context_start = true,

@@ -44,6 +44,7 @@ vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 H.bram_nmap('<C-PageUp>',   ":BufferLineCyclePrev<CR>", { silent = true })
 H.bram_nmap('<C-PageDown>', ":BufferLineCycleNext<CR>", { silent = true })
 
+H.nmap(',,b', ":IndentBlanklineToggle<CR>")
 H.nmap('c<BS>', ":call ReloadStyle()<CR>")
 H.nmap(',gp', ":call FocusBufOrDo('bootstrap.lua','e $mylua/bootstrap.lua')<CR>")
 H.nmap(',vp', function() vim.api.nvim_exec([[:put +| normal dfmxI'A',==]], false) end)
