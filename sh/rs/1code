@@ -6,6 +6,16 @@
 #define sqr(x)   ((x)*(x))
 #define sign(x)  (((x) > 0) - ((x) < 0))
 
+
+//        for (unsigned char* p = &buf[0]; *p; ++p)
+//            printf("%02x ", *p);
+//        printf("\nadr28 has %02x\n    or dec %d\n", buf[28]);
+        int dec = buf[28]; //works!
+        for (int i=0; i<33; i++) {
+//            printf("%02x ", buf[i]);
+        }
+
+
 mas = new int[n]{0}; // new array & init to zeroes
 
 if (debug) { static int errcnt; if ( errcnt++ % 9 == 0 ) printf("stag#somestep : something=%d\n", val); }

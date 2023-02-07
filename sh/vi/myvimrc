@@ -134,10 +134,12 @@ augroup SaveNotepad
 augroup END
 
 augroup myAucmds
-  autocmd!
-  autocmd CursorHold * normal! m'
+  au!
   set updatetime=6000
-  autocmd FocusGained,BufEnter * :silent! checktime
+  au CursorHold * normal! m'
+  " au FocusGained,BufEnter,CursorHold * :silent! checktime
+  au FocusGained,BufEnter,CursorHold * : checktime
+  " au FileChangedShell * echo "Warning: File changed on disk"
 augroup END
 
 " autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 100)|\
