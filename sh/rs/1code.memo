@@ -14,6 +14,19 @@ typedef std::chrono::seconds Sec;
 using durMs = std::chrono::duration<long, std::milli>;
 using durUs = std::chrono::duration<long, std::micro>;
 
+for (auto & element : vec) 
+{
+    cout << element << " ";
+}
+
+for(iter; iter < vec.end(); iter++)
+{
+    cout << *iter << " ";
+}
+
+
+for (unsigned char* p = &buf[0]; *p; ++p)
+    printf("%02x ", *p);
 
 QByteArray ba1{"\x38\x39\x42\x01\xA8"}; 
 QByteArray ba2 = QByteArrayLiteral("\x38\x39\x42\x01\xA8");
