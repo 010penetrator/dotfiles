@@ -7,6 +7,30 @@
 #define sqr(x)   ((x)*(x))
 #define sign(x)  (((x) > 0) - ((x) < 0))
 
+using Clock = std::chrono::high_resolution_clock;
+typedef std::chrono::milliseconds Msec;
+typedef std::chrono::microseconds Usec;
+typedef std::chrono::seconds Sec;
+using durMs = std::chrono::duration<long, std::milli>;
+using durUs = std::chrono::duration<long, std::micro>;
+
+
+QByteArray ba1{"\x38\x39\x42\x01\xA8"}; 
+QByteArray ba2 = QByteArrayLiteral("\x38\x39\x42\x01\xA8");
+Stuff::ByteArray ba3{0x38,0x39,0x42,0x01,0xA8};
+
+ba1 is constructed from a C-style string literal using QByteArray::QByteArray(const char *data, int size = -1). ba2 is probably the most efficient, see QStringLiteral explained and Qt Weekly #13: QStringLiteral. For ba3 we use a small helper class that extends QByteArray:
+
+namespace Stuff
+{
+    struct ByteArray: public QByteArray
+    {
+        ByteArray(std::initializer_list<unsigned char> lst)
+            : QByteArray(reinterpret_cast<char const *>(lst.begin()), lst.size())
+        {}
+    };
+}
+
 
 //        for (unsigned char* p = &buf[0]; *p; ++p)
 //            printf("%02x ", *p);
