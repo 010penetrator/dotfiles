@@ -11,40 +11,44 @@ map <buffer> H k:call EvalThis()<cr>
 
 let hostname = substitute(system('hostname'), '\n', '', '')
 if exists("g:colors_name") && g:colors_name != 'habamax'
-" do nothing
+    " do nothing
 elseif !has('nvim')
     colo OceanicNext
-elseif !exists("g:phase")
-    call SetPhase()
-    if &diff
-        colo stellarized
-        let g:phase = 'diffffff'
+else
+    if !exists("g:phase")
+        call SetPhase()
+        if &diff
+            colo stellarized
+            let g:phase = 'diffffff'
+        endif
     endif
-elseif ( g:phase == 'day' )
-    colo rusticated
-" colo Tomorrow | LineColor rusticated
-" colo stellarized | set bg=light | LineColor aqua_plasm
-elseif ( g:phase == 'nox' )
-    colo melange | set bg=dark
-" colo stellarized | set bg=dark | LineColor snow_dark
-" colo onehalfdark | LineColor one
-" colo tempus_dusk | set bg=dark | LineColor bluewery
-" colo stellarized | set bg=dark | LineColor terafox
-" colo tokyonight | LineColor nordfox
-" colo tokyonight | LineColor tokyonight
-" colo Tomorrow-Night-Eighties | LineColor snow_dark
-elseif ( g:phase == 'dunno' )
-    " colo frign | LineColor aqua_plasm
-    colo Tomorrow-Night-Blue | LineColor bluewery
-    " colo Tomorrow | LineColor Tomorrow
-    " colo Tomorrow-Night | LineColor bluewery
-    " colo bluewery-light | LineColor selenized_light
-    " colo Tomorrow-Night-Eighties | LineColor snow_dark
-    " colo edge | set bg=dark | LineColor darcula
-    " colo cryslominsa | LineColor cryslominsa
-    " colo stellarized | set bg=light | LineColor atlantis
-    " elseif hostname == "warmPC" || hostname == "rpi4b" || hostname == "machine"
-    " something else
+    if ( g:phase == 'day' )
+        colo rusticated
+        " colo Tomorrow | LineColor rusticated
+        " colo stellarized | set bg=light | LineColor aqua_plasm
+    elseif ( g:phase == 'nox' )
+        colo melange | set bg=dark
+        " colo stellarized | set bg=dark | LineColor snow_dark
+        " colo onehalfdark | LineColor one
+        " colo tempus_dusk | set bg=dark | LineColor bluewery
+        " colo stellarized | set bg=dark | LineColor terafox
+        " colo tokyonight | LineColor nordfox
+        " colo tokyonight | LineColor tokyonight
+        " colo Tomorrow-Night-Eighties | LineColor snow_dark
+        " elseif ( g:phase == 'dunno' )
+    else
+        " colo frign | LineColor aqua_plasm
+        colo Tomorrow-Night-Blue | LineColor bluewery
+        " colo Tomorrow | LineColor Tomorrow
+        " colo Tomorrow-Night | LineColor bluewery
+        " colo bluewery-light | LineColor selenized_light
+        " colo Tomorrow-Night-Eighties | LineColor snow_dark
+        " colo edge | set bg=dark | LineColor darcula
+        " colo cryslominsa | LineColor cryslominsa
+        " colo stellarized | set bg=light | LineColor atlantis
+        " elseif hostname == "warmPC" || hostname == "rpi4b" || hostname == "machine"
+        " something else
+    endif
 endif
 
 "   List available colors..

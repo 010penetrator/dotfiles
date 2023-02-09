@@ -13,8 +13,9 @@ typedef std::chrono::microseconds Usec;
 typedef std::chrono::seconds Sec;
 using durMs = std::chrono::duration<long, std::milli>;
 using durUs = std::chrono::duration<long, std::micro>;
+( std::chrono::duration_cast<Usec>( times[i]-ask_beg ) ).count()
 
-for (auto & element : vec) 
+for (auto & element : vec)
 {
     cout << element << " ";
 }
@@ -28,7 +29,10 @@ for(iter; iter < vec.end(); iter++)
 for (unsigned char* p = &buf[0]; *p; ++p)
     printf("%02x ", *p);
 
-QByteArray ba1{"\x38\x39\x42\x01\xA8"}; 
+fflush(stdin);
+<<std::flush;
+
+ByteArray ba1{"\x38\x39\x42\x01\xA8"};
 QByteArray ba2 = QByteArrayLiteral("\x38\x39\x42\x01\xA8");
 Stuff::ByteArray ba3{0x38,0x39,0x42,0x01,0xA8};
 
