@@ -7,6 +7,15 @@
 #define sqr(x)   ((x)*(x))
 #define sign(x)  (((x) > 0) - ((x) < 0))
 
+template <typename T>
+void echo(const T& arg = nullptr) {
+    if (arg) {
+        std::cout<<arg<<std::endl;
+    } else {
+    std::cout<<std::endl;
+    }
+}
+
 using Clock = std::chrono::high_resolution_clock;
 typedef std::chrono::milliseconds Msec;
 typedef std::chrono::microseconds Usec;
@@ -14,6 +23,7 @@ typedef std::chrono::seconds Sec;
 using durMs = std::chrono::duration<long, std::milli>;
 using durUs = std::chrono::duration<long, std::micro>;
 ( std::chrono::duration_cast<Usec>( times[i]-ask_beg ) ).count()
+auto ducastUs = [](auto x){return std::chrono::duration_cast<std::chrono::microseconds>(x);};
 
 for (auto & element : vec)
 {
