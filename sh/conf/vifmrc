@@ -226,7 +226,6 @@ nnoremap g4 :cd $HOME/4<cr>
 nnoremap gs :cd /ln/sh<cr>
 " nnoremap g<BS> :exec 'cd' system('realpath /ln/fast/hh')<cr>
 " nnoremap gn :cd ~/.config/nvim<cr>:goto plugged<cr>
-nnoremap gn :cd /ln/fast/hh<cr>
 nnoremap gw :cd /ln/wo<cr>
 nnoremap gj :cd /ln/ho/gitjob<cr>
 nnoremap gd :cd /ln/dwn<cr>:set sort=-mtime<cr>:16<cr>

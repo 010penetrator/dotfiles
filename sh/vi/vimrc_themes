@@ -23,7 +23,7 @@ else
         endif
     endif
     if ( g:phase == 'day' )
-        colo rusticated
+        colo snow | set bg=light
         " colo Tomorrow | LineColor rusticated
         " colo stellarized | set bg=light | LineColor aqua_plasm
     elseif ( g:phase == 'nox' )

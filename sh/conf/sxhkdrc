@@ -1,11 +1,22 @@
+# vim: ts=2 sw=2 commentstring=\#\ %s
+
+super + f ; { space, v, Up }
+  { \
+  addlayout.sh ; xinputupd.sh ; sxd.sh ; notify-send "$( LC_ALL=ru_RU.UTF-8 date; uptime -p )", \
+  xdotool mousemove_relative 0 1600, \
+  notify-send "$(transmission-remote 192.168.1.78:9090 -st)" \
+  }
+
+super + n ; { n, M, t, c, v, r, o, i, s, a }
+  { \
+  $TERMINAL, momkitty.sh, thunar & notify-send 'new Thunar', $TERMINAL -e vifm, vinew, listzathura.sh, $TERMINAL_BIGER -c /ln/co/kitty/kitty.conf -c /ln/co/kitty-themes/themes/Ciapre.conf -e rtorrent, $TERMINAL_BIGER -e tremc -c localhost:9090, scrotfeh, $TERMINAL_BIGER -e tremc -c localhost:9090
+  }
+
 super + x ; { m, s, h, n, o, a, g }
   ror.sh { '' notimem, speedcrunch, htop '$TERMINAL -e htop', nautilus, VirtualBox '', pavucontrol, listgames.sh }
 
 super + x ; { space, z, i, f, p, q, l, c, d, b, Up, Down }
   { xdotool mousemove_relative 0 1600, $TERMINAL -e ask_album.sh, listalbums.sh /ln/ho/.mus-history, listalbums.sh /ln/ho/.mus-favourites, listalbums.sh /ln/ho/.mus-playlist, bspc node -c, listdwn.sh, SHFL=1 listalbums.sh /ln/ho/.mus-library, deadbeef, listdeadbeef.sh, nowis day, nowis nox }
-
-super + n ; { n, M, t, c, v, r, o, i, s, a }
-  { $TERMINAL, momkitty.sh, thunar & notify-send 'new Thunar', $TERMINAL -e vifm, vinew, listzathura.sh, $TERMINAL_BIGER -c /ln/co/kitty/kitty.conf -c /ln/co/kitty-themes/themes/Ciapre.conf -e rtorrent, $TERMINAL_BIGER -e tremc -c localhost:9090, scrotfeh, $TERMINAL_BIGER -e tremc -c localhost:9090 }
 
 super + { q, Q, D, F, t, v, s, y, r, R, z, g, slash }
   ror.sh { \
@@ -32,12 +43,6 @@ super + { c, a, A, b, m }
 super + { T, V, C, B }
   raisekitty.sh { bash, VIM, VIFM, MPV }
 
-super + f ; v
-  xdotool mousemove_relative 0 1600
-super + x ; x
-  addlayout.sh ; xinputupd.sh ; sxd.sh ; notify-send "$( LC_ALL=ru_RU.UTF-8 date; uptime -p )"
-super + x ; BackSpace
-  notify-send "$(transmission-remote 192.168.1.78:9090 -st)"
 super + alt + space
   ror.sh 'deadbeef\|MPV \|mpv$' 'noti echo no player instance found'
 super + backslash
@@ -48,8 +53,8 @@ alt + { Prior, Next, BackSpace }
   dunstctl { history-pop, close, close-all }
 ctrl + 7
   xdotool getactivewindow windowminimize
-alt + x
-  dmouse
+# alt + x
+#   dmouse
 # alt + e
 #   osdctl -s "$(date +%H:%M) $(setxkbmap -query | grep layout | cut -d ":" -f 2 | tr -d ', ') .$(bspc query -D -d focused --names) , "
 
