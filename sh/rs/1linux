@@ -4,7 +4,7 @@
 ==Install
 BASE: base-devel inetutils earlyoom kbd plocate mlocate udevil cylon inxi
 ARCHIE: pacli pakku yay baph
-TUI: qalc networkmanager nmtui mc clex lfm ranger vifm nnn fff exa fd lftp fzf ripgrep silversearcher-ag ncdu tree p7zip htop btop ytop bashtop bpytop glances dmenu keratin screenfetch lolcat tmux bc tty-clock
+TUI: qalc networkmanager nmtui mc clex lfm ranger vifm z nnn fff exa fd lftp fzf ripgrep silversearcher-ag ncdu tree p7zip htop btop ytop bashtop bpytop glances dmenu keratin screenfetch lolcat tmux bc tty-clock
 X: xorg-server xorg-xinit xterm kitty tilda termit urxvt rofi xlunch xvkbd xclip redshift xscreensaver nitrogen dunst unclutter-xfixes xbanish gmrun scrot wmctrl xdotool compton picom wbar
 FIRMWARE: bluez-utils usbutils
 GTKtune: lxappearance oomox wpgtk pop-gtk-theme
@@ -12,7 +12,7 @@ BRO: luakit links w3m midori jumanji uzbl netsurf *epiphany palemoon
 TED: vim kakoune cudatext sublime-text geany mousepad scribes gedit xed tea-editor focuswriter QtCreator VScode codeblocks
 GUI: thunar nemo gvfs-mtp blueberry gitahead gitg gitfiend ulauncher fsearch file-roller xarchiver speedcrunch abiword keepassx2 Bitwarden hardinfo brasero *xfburn filelight baobab synapse *screengrab *wicd-gtk *ezame xfce4-appfinder whiskermemu gnome-character-map
 MEDIA: mpv vlc youtube-viewer mediainfo ffmpeg audacity kwave ocenaudio sox mkvtoolnix-gui spek shntool cuetools wavpack mac vorbis-tools *soundkonverter *flacon rubyripper *whipper puddletag easytag picard *kid3 *hrizopea *pitivi shotcut *vidiot *kdenlive
-IMG: exiftool nomacs gpicview qview ristretto imv vimiv photoqt phototonic gthumb eog viewnior imagemagick feh qimgv eom imv sxiv pqiv darktable digikam shotwell gcolor2 findimagedupes
+IMG: exiftool nomacs gpicview qview ristretto imv vimiv photoqt phototonic gthumb eog viewnior imagemagick feh qimgv eom imv sxiv pqiv darktable digikam shotwell gcolor3 findimagedupes
 DRAW: pinta kolourpaint mypaint mtpaint krita blender
 LISTEN: deadbeef qomp nulloy clementine exaile musique yarock qmmp audacious gmusicbrowser cantata tomahawk mocp *ncmpc cmus
 READ: zathura atril qpdfview mupdf djview fbreader koreader fbless evince okular *calibr

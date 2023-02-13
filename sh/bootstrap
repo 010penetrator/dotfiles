@@ -108,7 +108,7 @@ type -f xdg-mime &>/dev/null && {
     xdg-mime default FBReader.desktop application/x-mobipocket-ebook
 }
 #
-[[ -d /usr/share/X11.xorg.conf.d ]] && ! [[ -L /usr/share/X11/xorg.conf.d/99-libinput-custom.conf ]] && [[ -d /ln/sh ]] && sudo ln -sf /ln/sh/conf/99-libinput-custom.conf /usr/share/X11/xorg.conf.d/
+[[ -d /usr/share/X11/xorg.conf.d ]] && ! [[ -L /usr/share/X11/xorg.conf.d/99-libinput-custom.conf ]] && [[ -d /ln/sh ]] && sudo ln -sf /ln/sh/conf/99-libinput-custom.conf /usr/share/X11/xorg.conf.d/
 )
 
 echo -e '\n'--Gonna pull kitty themes
