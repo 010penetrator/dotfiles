@@ -7,6 +7,13 @@
 #define sqr(x)   ((x)*(x))
 #define sign(x)  (((x) > 0) - ((x) < 0))
 
+// elsewhere // extern bool my_debug;
+#ifdef MY_DEBUG
+bool my_debug = true;
+#else
+bool my_debug = false;
+#endif
+
 template <typename T>
 void echo(const T& arg = nullptr) {
     if (arg) {
