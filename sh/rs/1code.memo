@@ -23,6 +23,16 @@ void echo(const T& arg = nullptr) {
     }
 }
 
+void foo()
+{
+    static bool once = [](){
+        cout << "once" << endl;
+        return true;
+    } ();
+    cout << "foo" << endl;
+}
+// Code within lambda function is executed only once, when the static variable is initialized to the return value of lambda function. It should be thread-safe as long as your compiler support thread-safe static initialization.
+
 using Clock = std::chrono::high_resolution_clock;
 typedef std::chrono::milliseconds Msec;
 typedef std::chrono::microseconds Usec;
