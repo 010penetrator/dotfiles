@@ -146,6 +146,14 @@ require('bufferline').setup()
     }
 } ]]
 
+require("neo-tree").setup {
+  filesystem = {
+    hijack_netrw_behavior = "open_default",
+    -- "open_current",  
+    -- "disabled", 
+  }
+}
+
 require('syntax-tree-surfer')
 -- Syntax Tree Surfer
 local opts = { noremap = true, silent = false }
