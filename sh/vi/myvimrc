@@ -580,7 +580,7 @@ if v:version >= 801
   tnoremap <C-PageDown> <C-w>:tabnext<CR>
   tnoremap g<tab> <C-w>:exe "tabn ".g:lasttab<CR>
   tnoremap q<tab> <C-w>p
-  tmap <C-\> <C-w>w
+  tnoremap <C-\> <C-w>w
 endif
 if has("nvim")
   tnoremap oo <C-\><C-n>
@@ -591,6 +591,7 @@ if has("nvim")
   tnoremap g<tab> <C-\><C-n>:exe "tabn ".g:lasttab<CR>
   tnoremap q<tab> <C-\><C-n>:wincmd p<CR>
   tnoremap <A-Left> <C-\><C-N><C-w>h
+  tnoremap <C-\> <C-\><C-n><C-w>w
   tnoremap <A-Down> <C-\><C-N><C-w>j
   tnoremap <A-Up> <C-\><C-N><C-w>k
   tnoremap <A-Right> <C-\><C-N><C-w>l
