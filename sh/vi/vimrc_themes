@@ -53,6 +53,7 @@ endif
 
 "   List available colors..
 " let c = getcompletion('', 'color') | new | put =c | goto 1 | map <buffer> M j:exec 'colo' getline(line('.')) <cr>
+
 "   List available lighline themes
 " new | map <buffer> M j: LineColor <C-R><C-W><cr>| map <buffer> H k: LineColor <C-R><C-W><cr>| call ExPut('echo glob("$RTP/plugged/**/autoload/lightline/colorscheme/*.vim")') | %s/^\/.*\/// | %s/\.vim$// | goto 1 | del 1
 
