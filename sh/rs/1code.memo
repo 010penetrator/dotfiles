@@ -7,11 +7,12 @@
 #define sqr(x)   ((x)*(x))
 #define sign(x)  (((x) > 0) - ((x) < 0))
 
-// elsewhere // extern bool my_debug;
+// elsewhere // extern bool debug;
+bool allow_debug=1;
 #ifdef MY_DEBUG
-bool my_debug = true;
+bool debug = true * allow_debug;
 #else
-bool my_debug = false;
+bool debug = false;
 #endif
 
 template <typename T>
