@@ -46,6 +46,8 @@ H.bram_nmap('<C-PageDown>', ":BufferLineCycleNext<CR>", { silent = true })
 
 H.nmap(',,b', ":IndentBlanklineToggle<CR>")
 H.nmap('c<BS>', ":call ReloadStyle()<CR>")
+H.nmap(',vr', ":TSToggle rainbow<CR>")
 H.nmap(',gp', ":call FocusBufOrDo('bootstrap.lua','e $mylua/bootstrap.lua')<CR>")
+H.nmap(',gf', ":call FocusBufOrDo('remap.lua','e $mylua/remap.lua')<CR>")
 H.nmap(',vp', function() vim.api.nvim_exec([[:put +| normal dfmxI'A',==]], false) end)
 

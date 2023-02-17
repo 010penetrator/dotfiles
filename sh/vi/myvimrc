@@ -670,7 +670,7 @@ nnoremap ,v, :call EvalThis()<CR>
 " Evaluate a paragraph as Vimscript
 nnoremap ,v; :let lastpos=line('.') <bar> exec "normal yap" <bar> @\" <bar> exec lastpos<CR>:echo "Evaluated current paragraph."<CR>
 " Evaluate a paragraph as Lua
-nnoremap ,vu :let lastpos=line('.') <bar> exec "normal yap" <bar> exec 'lua ' . expand(@") <bar> exec lastpos<CR>:echo "Evaluated current paragraph as Lua."<CR>
+nnoremap ,vk :let lastpos=line('.') <bar> exec "normal yap" <bar> exec 'lua ' . expand(@") <bar> exec lastpos<CR>:echo "Evaluated current paragraph as Lua."<CR>
 
 if !has('nvim')
   " Open current location with vifm within vim
