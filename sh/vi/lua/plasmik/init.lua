@@ -209,13 +209,13 @@ require('telescope').load_extension('fzf')
 -- require('telescope.builtin').buffers(Tele_drop)
 
 require('nvim-treesitter.configs').setup {
-  -- ensure_installed = { 'c', 'cpp', 'lua', 'python', 'vim', 'bash', 'help' },
+  ensure_installed = { 'c', 'cpp', 'lua', 'python', 'vim', 'bash', 'help' },
   highlight = { enable = true },
   indent = { enable = true, disable = { 'python' } },
   rainbow = {
     enable = true,
     -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
-    extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+    extended_mode = false, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
     max_file_lines = nil, -- Do not enable for files with more than n lines, int
     -- colors = {}, -- table of hex strings
     -- termcolors = {} -- table of colour name strings
@@ -351,7 +351,7 @@ require'marks'.setup {
 require('toggleterm').setup {
   -- direction = 'vertical' | 'horizontal' | 'window' | 'float',
   direction = 'horizontal',
-  size = 25,
+  size = 24,
 }
 
 -- require('neoscroll').setup {
