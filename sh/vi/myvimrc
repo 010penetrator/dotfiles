@@ -503,10 +503,12 @@ nnoremap ,zt :Files $tt<CR>
 nnoremap ,zj :Files $jo<CR>
 if has("nvim")
   nnoremap qf :TeleFilesProj<CR>
+  nnoremap qF :Telescope find_files search_dirs=%:p:h<CR>
   nnoremap ,/ :Telescope find_files search_dirs=$sh,$tt,$loc<CR>
   nnoremap ,,/ :Telescope find_files theme=ivy search_dirs=$sh,$PWD
 else
   nnoremap qf :FilesProj<CR>
+  nnoremap qF :Files %:p:h<CR>
   nnoremap ,/ :Files $sh,$tt,$loc<CR>
   nnoremap ,/ :Files $sh<CR>
   nnoremap ,,/ :Files $sh
@@ -591,19 +593,19 @@ if has("nvim")
   tnoremap <C-PageDown> <C-\><C-n>:tabnext<CR>
   tnoremap g<tab> <C-\><C-n>:exe "tabn ".g:lasttab<CR>
   tnoremap q<tab> <C-\><C-n>:wincmd p<CR>
-  tnoremap <A-Left> <C-\><C-N><C-w>h
+  " tnoremap <A-Left> <C-\><C-N><C-w>h
   tnoremap <C-\> <C-\><C-n><C-w>w
-  tnoremap <A-Down> <C-\><C-N><C-w>j
-  tnoremap <A-Up> <C-\><C-N><C-w>k
-  tnoremap <A-Right> <C-\><C-N><C-w>l
-  inoremap <A-Left> <C-\><C-N><C-w>h
+  tnoremap <A-Down> <C-\><C-N><C-w>w
+  tnoremap <A-Up> <C-\><C-N><C-w>W
+  " tnoremap <A-Right> <C-\><C-N><C-w>l
+  " inoremap <A-Left> <C-\><C-N><C-w>h
   inoremap <A-Down> <C-\><C-N><C-w>j
   inoremap <A-Up> <C-\><C-N><C-w>k
-  inoremap <A-Right> <C-\><C-N><C-w>l
-  nnoremap <A-Left> <C-w>h
-  nnoremap <A-Down> <C-w>j
-  nnoremap <A-Up> <C-w>k
-  nnoremap <A-Right> <C-w>l
+  " inoremap <A-Right> <C-\><C-N><C-w>l
+  " nnoremap <A-Left> <C-w>h
+  nnoremap <A-Down> <C-w>w
+  nnoremap <A-Up> <C-w>W
+  " nnoremap <A-Right> <C-w>l
 endif
 
 " Scroll fraction of the screen
@@ -670,7 +672,7 @@ nnoremap ,v, :call EvalThis()<CR>
 " Evaluate a paragraph as Vimscript
 nnoremap ,v; :let lastpos=line('.') <bar> exec "normal yap" <bar> @\" <bar> exec lastpos<CR>:echo "Evaluated current paragraph."<CR>
 " Evaluate a paragraph as Lua
-nnoremap ,vk :let lastpos=line('.') <bar> exec "normal yap" <bar> exec 'lua ' . expand(@") <bar> exec lastpos<CR>:echo "Evaluated current paragraph as Lua."<CR>
+nnoremap ,va :let lastpos=line('.') <bar> exec "normal yap" <bar> exec 'lua ' . expand(@") <bar> exec lastpos<CR>:echo "Evaluated current paragraph as Lua."<CR>
 
 if !has('nvim')
   " Open current location with vifm within vim
