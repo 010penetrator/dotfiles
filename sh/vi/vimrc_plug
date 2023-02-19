@@ -243,6 +243,6 @@ endif
 if empty(execute('filter /fugitive.vim$/ scriptnames'))
     echo "Yet have to install plugins.."
 else
-    echo "Plugins seem to be installed already."
+    " echo "Plugins seem to be installed already."
 endif
 
