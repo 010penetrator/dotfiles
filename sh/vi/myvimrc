@@ -139,7 +139,7 @@ augroup myAucmds
   au CursorHold * normal! m'
   " au FocusGained,BufEnter,CursorHold * :silent! checktime
   au FocusGained,BufEnter,CursorHold * : checktime
-  " au FileChangedShell * echo "Warning: File changed on disk"
+  au FileChangedShell * echo "Message: File changed on disk"
 augroup END
 
 " autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 100)|\
@@ -560,7 +560,7 @@ nnoremap ,,q :call SaveColor() <bar> SSave! comon <bar> qa<CR>
 nnoremap ,,s :call SaveColor() <bar> SSave! comon<CR>
 " nnoremap ,,s :call SaveColor() <bar> mksession! $VICONFD/session/comon<CR>
 nnoremap ,vq :qa!<CR>
-nnoremap ,<BS> :Startify<CR>
+nnoremap ,,<tab> :Startify<CR>
 nnoremap ,zq :wa <bar> qa<CR>
 nnoremap ,,a :call AddRpcEar()<CR>
 " Open current file at vimserver session via my "vimrpc" shell script
@@ -697,7 +697,7 @@ nnoremap <A-b> :call GotoTerm(0)<CR>
 " Jump to filetree window
 nnoremap ,n :Neotree focus<CR>
 nnoremap ,N :NeoTreeClose<CR>
-nnoremap ,- :Neotree reveal_force_cwd<CR>
+nnoremap ,<BS> :Neotree reveal_force_cwd<CR>
 nnoremap - :Neotree reveal_force_cwd current<CR>
 
 " Exec current paragraph with shell
@@ -1737,5 +1737,4 @@ tnoremap <silent><A-;> <C-\><C-n>:ToggleTermToggleAll<CR>
 
 " set completeopt=menuone,noselect
 set completeopt=menu,noselect
-
 

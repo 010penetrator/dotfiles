@@ -34,6 +34,11 @@ void foo()
 }
 // Code within lambda function is executed only once, when the static variable is initialized to the return value of lambda function. It should be thread-safe as long as your compiler support thread-safe static initialization.
 
+typedef unsigned char uchar;
+
+using Lgrd = std::lock_guard<std::mutex>;
+Lgrd lock(some_mutex);
+
 using Clock = std::chrono::high_resolution_clock;
 typedef std::chrono::milliseconds Msec;
 typedef std::chrono::microseconds Usec;

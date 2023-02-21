@@ -390,6 +390,7 @@ function Tele_buff_ivy() require('telescope.builtin').buffers( tele_ivy ) end
 local tele_drop = require('telescope.themes').get_dropdown{ sort_mru=true, winblend=9, layout_config = { height=21 } }
 function Tele_buff_drop() require('telescope.builtin').buffers( tele_drop ) end
 H.nmap(',fb', Tele_buff_ivy, "Telescope [B]uffers ivy-themed")
+H.nmap(',r', Tele_buff_ivy, "Telescope [B]uffers ivy-themed")
 H.nmap(',<space>', Tele_buff_drop)
 -- H.snmap('<C-n>', require('bufjump').forward)
 H.nmap(',l', require('lsp_lines').toggle, { desc = "Toggle lsp_lines" })

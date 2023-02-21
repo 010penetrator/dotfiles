@@ -138,21 +138,21 @@ nnoremap ,f :! echo; echo %c: ; file -b %c ; [[ -d %c ]] && tree -ia %c | tail -
 nnoremap ,<space> :echo "Available space on " . system("df -h --output=source,avail . | tail -1")<cr>
 nnoremap ,F :! watch -n .4 ls -la --block-size=M %f
 nnoremap ,. :! echo -ne \\n  ls dir :\\n ; ls -la --color=auto . ; read -rsn1 <cr>
-nnoremap ,a :! clear -x; $LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT ; read -rsn1 <cr>
-nnoremap ,A :! clear -x; watch -n 1 $LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT<cr>
+nnoremap ,g :! clear -x; $LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT ; read -rsn1 <cr>
+nnoremap ,G :! clear -x; watch -n 1 $LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT<cr>
 nnoremap ,s :! clear -x; df -BMB ; read -rsn1 <cr>
 nnoremap qy :! echo -ne "\n-- Try to sync @ $(date '+%%Y-%%m-%%d %%H:%%M:%%S') ...... \n" ; (time sync) 2>&1 | tr '\t' ' ' | tr '\n' '\t' ; echo -ne "\n-- Complete    @ $(date '+%%Y-%%m-%%d %%H:%%M:%%S')\n" <CR>:echo "Sync complete!"<CR>
 nnoremap z<BS> :! echo -ne "\n-- Try to sync @ $(date '+%%Y-%%m-%%d %%H:%%M:%%S') ...... \n" ; (time sync) 2>&1 | tr '\t' ' ' | tr '\n' '\t' ; echo -ne "\n-- Complete    @ $(date '+%%Y-%%m-%%d %%H:%%M:%%S')\n" <CR>:echo "Sync complete!"<CR>
 
 " Send to vim server "
-nnoremap ,vs :! MODE="split"  vir "%c"  <cr>
-nnoremap ,vv :! MODE="vert"   vir "%c" &>/dev/null & <cr>
-nnoremap ,vc :! MODE="cur"    vir "%c" &>/dev/null & <cr>
-nnoremap ,vn :! MODE="newtab" vir "%c" &>/dev/null & <cr>
-nnoremap ,vb :! MODE="last"   vir "%c" &>/dev/null & <cr>
-nnoremap ,va :! MODE="auto"   vir "%c" &>/dev/null & <cr>
-nnoremap ,vq :! vir "%c"<cr>:q<cr>
-nnoremap ,vd :! vim -d %c %D/%c<cr>
+nnoremap ,as :! MODE="split"  vir "%c"  <cr>
+nnoremap ,av :! MODE="vert"   vir "%c" &>/dev/null & <cr>
+nnoremap ,ac :! MODE="cur"    vir "%c" &>/dev/null & <cr>
+nnoremap ,an :! MODE="newtab" vir "%c" &>/dev/null & <cr>
+nnoremap ,ab :! MODE="last"   vir "%c" &>/dev/null & <cr>
+nnoremap ,aa :! MODE="auto"   vir "%c" &>/dev/null & <cr>
+nnoremap ,aq :! vir "%c"<cr>:q<cr>
+nnoremap ,ad :! vim -d %c %D/%c<cr>
 " if (system('echo $EDITOR') == "vim")
 "     nnoremap an :! MODE="newtab" vimrpc "%c" &>/dev/null & <cr>
 " endif
