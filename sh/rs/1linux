@@ -341,9 +341,8 @@ sleep 3 && sudo dfu-programmer atmega32u4 erase && sudo dfu-programmer atmega32u
 
 ==QMK
 --install qmk:
-    cd $git && git clone https://github.com/qmk/qmk_firmware && cd qmk_firmware
-    python -m pip install --user qmk
-    ./util/qmk_install.sh
+    cd $git && git clone --depth=1 --recurse-submodules https://github.com/qmk/qmk_firmware
+    python -m pip install --user qmk; cd qmk_firmware; util/qmk_install.sh
     qmk compile -kb planck/rev6 -km default
 cd $git/qmk_firmware/ && make atreis:default && sudo bash flash.sh atreis_default.hex
 sudo make xd60/rev3:plasmik:dfu

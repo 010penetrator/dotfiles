@@ -40,10 +40,9 @@ echo --bak.hot
     tar -czf "$DEST_HOT/torrents.tar.gz" --ignore-failed-read \
         -C $HOME .config/transmission-daemon .rtorrent .rtorrent.rc
 
-# [[ -d /ln/co/joke ]] && conditional_line="-C /ln/co/ nvim/plugged"
 [[ -d /ln/co/nvim ]] && [[ $space == "ho" ]] &&
-    tar -cf "$DEST_HOT/plugged.tar.zst" -I "zstd -10 -T0" --exclude='.git' \
-        -C $git plugged
+    tar -cf "$DEST_HOT/nvplugins.tar.zst" -I "zstd -10 -T0" --exclude='.git' \
+        -C $git nvpl
 
 [[ -d /ln/wo ]] && [[ $space == "wo" ]] &&
     workrp=$(realpath /ln/wo) && workbn=$(basename $workrp) &&

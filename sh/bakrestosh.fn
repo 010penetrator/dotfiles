@@ -1,7 +1,7 @@
 #!/bin/bash
 # vim: ts=2 sw=2
 
-bak()
+bakport()
 {
   # tar -czf $loc/linkdir.tar.gz -C / ln
   startdir="$(pwd)"
