@@ -352,7 +352,7 @@ cd $git/qmk_firmware/ && cp $sh/conf/qmk_planckR6keymap.c $git/qmk_firmware/keyb
 cd $git/qmk_firmware/ && cp $sh/conf/qmk_planckR4keymap.c $git/qmk_firmware/keyboards/planck/keymaps/plasmik/keymap.c && make planck/rev4:plasmik:dfu
 
 ==Github
-cd $git && git clone https://github.com/neovim && sudo pacman -S base-devel cmake unzip ninja tree-sitter curl && make CMAKE_BUILD_TYPE=Release && sudo make install && sudo ln -sf  /usr/local/bin/nvim /usr/bin/nvim
+cd $git && git clone https://github.com/neovim/neovim; cd neovim && sudo pacman -S --needed base-devel cmake unzip ninja tree-sitter curl && make CMAKE_BUILD_TYPE=Release && sudo make install && sudo ln -sf  /usr/local/bin/nvim /usr/bin/nvim
 
 ==PKG
 apt-cache policy libgtk2.0-0 libgtk-3-0 # check pkg origin
