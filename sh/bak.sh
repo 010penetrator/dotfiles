@@ -28,7 +28,7 @@ cp "$latest" "/tmp/$boomname"
 cd -
 }
 
-echo --bak.stage1
+echo --bak.hot
 
 [[ -d $tt ]] && conditional_line="-C $tt/../ tt"
 [[ -n $boomname ]] && conditional_line="$conditional_line -C /tmp $boomname"
@@ -57,7 +57,7 @@ tar -cf "$DEST_HOT/conf.tar.zst" -I "zstd -10 -T0" --ignore-failed-read \
 
 [[ -d $bakcld ]] &&
     {
-        echo --bak.stage2
+        echo --bak.cold
         mkdir -p "$bakcld/${space}_$MON"
         cp -rf "$DEST_HOT/"*tar* "$bakcld/${space}_$MON"
     } ||

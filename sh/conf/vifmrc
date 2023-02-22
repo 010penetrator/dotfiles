@@ -136,7 +136,7 @@ nnoremap qf/ :! bash -lc "ARG=DMENUSAVE xdgsane %c"
 " Calc space "
 nnoremap ,f :! echo; echo %c: ; file -b %c ; [[ -d %c ]] && tree -ia %c | tail -1 ; du -sh %c | cut -f1 ; ls -dla %c ; df -h --output=source,fstype,avail,pcent %c ; read -rsn1 <cr>
 nnoremap ,<space> :echo "Available space on " . system("df -h --output=source,avail . | tail -1")<cr>
-nnoremap ,F :! watch -n .4 ls -la --block-size=M %f
+nnoremap ,F :! watch -n .4 du -s -BM %f<cr>
 nnoremap ,. :! echo -ne \\n  ls dir :\\n ; ls -la --color=auto . ; read -rsn1 <cr>
 nnoremap ,g :! clear -x; $LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT ; read -rsn1 <cr>
 nnoremap ,G :! clear -x; watch -n 1 $LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT<cr>
@@ -218,14 +218,14 @@ nnoremap gm :cd /ln/mus/
 nnoremap go :cd /ln/ho/compy<cr>
 nnoremap gx :trashes<cr>
 nnoremap gc :cd $HOME/.config<cr>
-nnoremap ge :cd $HOME/stek<cr>
 nnoremap g1 :cd $HOME/1<cr>
 nnoremap g2 :cd $HOME/2<cr>
 nnoremap g3 :cd $HOME/3<cr>
 nnoremap g4 :cd $HOME/4<cr>
 nnoremap gs :cd /ln/sh<cr>
-" nnoremap g<BS> :exec 'cd' system('realpath /ln/fast/hh')<cr>
-" nnoremap gn :cd ~/.config/nvim<cr>:goto plugged<cr>
+" nnoremap ge :cd $HOME/stek<cr>
+nnoremap g<BS> :exec 'cd' system('realpath /ln/fast/hh')<cr>
+nnoremap gH :cd /ln/hh<cr>
 nnoremap gw :cd /ln/wo<cr>
 nnoremap gj :cd /ln/ho/gitjob<cr>
 nnoremap gd :cd /ln/dwn<cr>:set sort=-mtime<cr>:16<cr>
@@ -235,7 +235,6 @@ nnoremap gy :cd /ln/mob<cr>
 nnoremap gS :exec 'cd' system("compgen -G /ln/mo/*AMV/bak")<cr>
 nnoremap gf 'f
 nnoremap gi :cd /ln/hh/imgdl1<cr>
-nnoremap gH :cd /ln/hh<cr>
 nnoremap gk :cd /ln/torrents/red/KKK<cr>:sort<cr>mh
 nnoremap gv :cd ~/.vim<cr>:goto plugged<cr>
 " nnoremap gN :cd ~/01/new/<cr>
