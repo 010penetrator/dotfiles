@@ -18,7 +18,7 @@ def get_cli_input():
         argv = sys.argv[1:]
         opts, args = getopt.getopt(argv, "s:m:")
     except getopt.GetoptError:
-        print('usage: nvim_rpc.py -s /tmp/NVRPCSERVER -m newtab /etc/file')
+        print('Usage: nvimrpc -s /tmp/NVRPCSERVER -m newtab /etc/file')
         # sys.exit(2)
     for o, a in opts:
         print('stage c1', o, a)
@@ -29,15 +29,8 @@ def get_cli_input():
     if args:
         file = args[0]
     else:
-        print('Target file not provided!')
-        file = '.'
-    if not os.path.exists((serv)):
-        print('RPC address', serv, 'is not present!\nWill launch nVim listening to that address.')
-        start_neovim()
-        sys.exit()
-        # os.system('sleep .4')
-    # else:
-    #     os.system("ror.sh ' - NVIM$' ''")
+        # print('Target file not provided!')
+        file = ''
 
 def start_neovim():
     global serv,mode
@@ -48,8 +41,21 @@ def start_neovim():
 # Okay, we will actually do stuff now
 
 get_cli_input()
-print('argv..', sys.argv, len(sys.argv) )
+
+if not os.path.exists((serv)):
+    print('RPC address', serv, 'is not present!\nWill launch nVim listening to that address.')
+    start_neovim()
+    sys.exit()
+    # os.system('sleep .4')
+# else:
+    # os.system("ror.sh ' - NVIM$' ''")
+
+
+if not file:
+    print("no target file and server is probably running, so we are done")
+    sys.exit()
 print('file is', file)
+# print('argv..', sys.argv, len(sys.argv) )
 
 from pynvim import attach
 print('attaching to ', serv)

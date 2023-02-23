@@ -1,5 +1,33 @@
 #!/bin/bash
-# Spawn new neoVim in a terminal, with RPC feature
+# Spawn new (neo)Vim in a terminal, with RPC feature
+
+RPC_OPTION=''
+VCMD=''
+if [[ $EDITOR == vim ]]; then
+    if [ -z "$VIMSERV" ]; then
+        echo "Servername not provided!"
+    else
+        RPC_OPTION="--servername $VIMSERV"
+    fi
+    # Do we even have client-server compiled into Vim?
+    if vim --version | grep "-clientserver" -q; then
+        echo "No client-server compiled into Vim.. Exiting!"
+        exit 1
+    fi
+    # How many my vim-servers?
+    i=$(vim --serverlist | grep ^VIMSERV$ | wc -l)
+    [ $i != 0 ] && VIMSERV="''" && \
+        echo Caution. Vim server already running. i will not make one more && sleep 1
+elif [[ $EDITOR == nvim ]]; then
+    if [ -z "$NVIMSERV" ]; then
+        echo "No RPC address provided!"
+    else
+        RPC_OPTION="--listen $NVIMSERV"
+    fi
+else
+    echo "EDITOR is not familiar.. Exiting!"
+    exit 1
+fi
 
 false &&
     {
@@ -10,32 +38,24 @@ false &&
     exit
 }
 
-RPC_OPTION=''
-if [ -z "$NVIMSERV" ]; then
-    echo "No RPC address provided!"
-else
-    RPC_OPTION="--listen $NVIMSERV"
-fi
-
 HASG=false
 pgrep -c Xorg &>/dev/null && HASG=true
 INTERACTIVE=false
 tty -s && INTERACTIVE=true
 # [ -t 0 ] && notify-send 101
 
-NVIM="nvim $RPC_OPTION"
-[[ $VIMINSTASESS == true ]] && NVIM="$NVIM -c SLoad!"
-# [[ $VIMINSTASESS == true ]] && echo insta session is on
+VCMD="$EDITOR $RPC_OPTION"
+[[ $VIMINSTASESS == true ]] && VCMD="$VCMD -c SLoad!"
 
 if [[ $HASG == true && $INTERACTIVE == false ]]; then
     case $TERMINAL in
         kitty*)
             # echo rpc option is $RPC_OPTION;
-            $TERMINAL --start-as maximized bash -c "source $HOME/.bashrc ; sleep .1 ; $NVIM" & ;;
+            $TERMINAL --start-as maximized bash -c "source $HOME/.bashrc ; sleep .1 ; $VCMD" & ;;
         *)
-            xterm -maximized -e "source $HOME/.bashrc ; sleep .1 ; $NVIM" & ;;
+            xterm -maximized -e "source $HOME/.bashrc ; sleep .1 ; $VCMD" & ;;
     esac
 else
-    $NVIM
+    $VCMD
 fi
 

@@ -2,7 +2,8 @@
 # Open files in existing Vim via RPC server feature
 
 if [ -z "$1" ] ; then
-  echo "Usage: [VIMSERV=name] [MODE=cur,last,newtab,newtabinsert,split,vert] vimz file.c"
+  echo 'Target file not provided!'
+  echo "Usage: [VIMSERV=name] [MODE=cur,last,newtab,newtabinsert,split,vert] vimrpc file"
   # exit 1
 fi
 
@@ -10,7 +11,6 @@ fi
 #   nvimrpc $*
 #   exit
 # fi
-echo "stag B"
 
 # Set default new buffer placement in Vim:
 [[ $MODE == '' ]] && MODE="last"
@@ -20,7 +20,7 @@ echo "stag B"
 
 if [ $(vim --serverlist | wc -l) == 0 ] ; then
   echo "No Vim servers found"
-  # Start great Vim-server
+  # Start Vim server
   vimnew &
   # Wait for it
   sleep .4

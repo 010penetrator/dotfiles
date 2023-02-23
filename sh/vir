@@ -4,18 +4,17 @@
 source $HOME/.bashrc
 
 echo editor is $EDITOR
-
-echo args are $*
+# echo args are $*
 
 if [ -z "$1" ] ; then
   echo "Usage: [VIMSERV=name] [MODE=cur,last,newtab,newtabinsert,vert,split] vir file.c"
   # exit 1
 fi
 
-if [[ $EDITOR =~ .*nvim ]] ; then
+if [[ $EDITOR == nvim ]]; then
     echo ed is nvim
     nvimrpc $*
-elif [[ $EDITOR =~ .*vim ]] ; then
+elif [[ $EDITOR == vim ]]; then
     echo ed is vim
     vimrpc $*
 fi

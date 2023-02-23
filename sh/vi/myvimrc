@@ -229,12 +229,15 @@ endif
 ""      NeoVim:       ""
 """"""""""""""""""""""""
 
+function! CrispBorders()
+  if !has("nvim")
+    return
+  endif
+  set laststatus=3
+  highlight WinSeparator guibg=none
+  highlight WinSeparator guifg=#5a5a5a
+endfunction
 if has("nvim")
-  function! CrispBorders()
-    set laststatus=3
-    highlight WinSeparator guibg=none
-    highlight WinSeparator guifg=#5a5a5a
-  endfunction
   set winwidth=32
   set winminwidth=32
   function! ReloadStyle()

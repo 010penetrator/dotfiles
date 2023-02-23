@@ -5,7 +5,7 @@
 !echo -ne "\033]0;VIFM\007"
 " wincmd o
 
-command! ResetColor  :execute 'colo '.$VIFM_COLO
+command! ResetColor  :exec 'colo '.$VIFM_COLO
 if ($VIFM_COLO == '')
     if (system('[ -f /tmp/now_is_day ] && echo 1') == "1" )
         let $VIFM_COLO='papercolor-light'
@@ -23,7 +23,8 @@ if ($VIFM_COLO == '')
     endif
     ResetColor
 endif
-nnoremap c<BS>  :exec 'colo' $VIFM_COLO<CR>
+" nnoremap c<BS> :exec 'colo' $VIFM_COLO<CR>
+nnoremap c<BS> :exec 'colo '.$VIFM_COLO<CR>
 
 command! CC :! mv /ln/dwn/cover.* .
 command! ogg :! cd %c && conv_any2ogg.sh . %D &>/dev/null ; notify-send "%c converted" &
