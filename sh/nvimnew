@@ -2,7 +2,6 @@
 # Spawn new (neo)Vim in a terminal, with RPC feature
 
 RPC_OPTION=''
-VCMD=''
 if [[ $EDITOR == vim ]]; then
     if [ -z "$VIMSERV" ]; then
         echo "Servername not provided!"
