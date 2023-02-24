@@ -58,6 +58,10 @@ elif type -f apt &>/dev/null; then
     alias ai='sudo apt install'
 fi
 
+if command -v most >/dev/null 2>&1; then
+    export PAGER=most
+fi
+
 source "$sh"/dmenurc
 
 amou() { SELECTOR="fzf -e" amount.sh; }

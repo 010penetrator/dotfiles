@@ -133,6 +133,7 @@ while read line ; do deadbeef --queue "$line" ; done # use stdin as arg
 while pgrep -x polybar >/dev/null; do sleep 1; done # wait until the processes have been shut down
 cat /proc/uptime | cut -d ' ' -f1 #get uptime in secs
 cat ~/.ssh/zz_rsa.pub | ssh user@192.168.1.78 "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"  # manually install your public ssh key to remote machine
+PAGER=most man ls 
 
 ==GRUB
 --GRUB update config:
