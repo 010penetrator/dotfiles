@@ -217,7 +217,7 @@ require("lazy").setup({
   -- 'szorfein/fromthehell.vim', --dark satur earth
   -- 'whatyouhide/vim-gotham', --neon/green
   -- 'yuttie/inkstained-vim', --very low con light
-  -- 'ayu-theme/ayu-vim',
+  'ayu-theme/ayu-vim',
   -- 'atelierbram/vim-colors_atelier-schemes', --mindfuck
   -- 'bcicen/vim-vice', --joke
   -- 'vim-scripts/swamplight', --day

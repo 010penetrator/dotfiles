@@ -4,8 +4,8 @@
 " vim: set foldmethod=marker
 " vim: ts=4 sw=4 ft=vim
 
-map <buffer> M j:call EvalThis()<cr>
-map <buffer> H k:call EvalThis()<cr>
+map <buffer> J j:call EvalThis()<CR>
+map <buffer> K k:call EvalThis()<CR>
 
 " bufdo unmap <buffer> M
 
@@ -50,12 +50,6 @@ else
         " something else
     endif
 endif
-
-"   List available colors..
-" let c = getcompletion('', 'color') | new | put =c | goto 1 | map <buffer> M j:exec 'colo' getline(line('.')) <cr>
-
-"   List available lighline themes
-" new | map <buffer> M j: LineColor <C-R><C-W><cr>| map <buffer> H k: LineColor <C-R><C-W><cr>| call ExPut('echo glob("$RTP/plugged/**/autoload/lightline/colorscheme/*.vim")') | %s/^\/.*\/// | %s/\.vim$// | goto 1 | del 1
 
 " " " {{{}}} " " "
 " colo snow | set bg=light | LineColor ayu_light
@@ -104,3 +98,8 @@ endif
 " hi! Search ctermbg=222
 " hi! Normal ctermbg=234
 
+"   List available lighline themes
+" new | map <buffer> M j: LineColor <C-R><C-W><CR>| map <buffer> H k: LineColor <C-R><C-W><CR>| call ExPut('echo glob("$RTP/plugged/**/autoload/lightline/colorscheme/*.vim")') | %s/^\/.*\/// | %s/\.vim$// | goto 1 | del 1
+
+"   List available colors..
+" let c = getcompletion('', 'color') | new | put =c | goto 1 | map <buffer> J j:exec 'colo' getline(line('.'))<CR>| map <buffer> K k:exec 'colo' getline(line('.'))<CR>

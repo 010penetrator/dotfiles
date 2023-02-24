@@ -1356,6 +1356,7 @@ function! LoadColor(...)
   elseif g:phase == 'day'
     if !exists("g:ColorDayName")
       echom "NO saved colors for this phase of day! Loading defaults.."
+      sleep 900m
       if exists("g:colors_name") | unlet g:colors_name | endif
       source $sh/vi/vimrc_themes
       return

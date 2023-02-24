@@ -6,25 +6,21 @@
 " wincmd o
 
 command! ResetColor  :exec 'colo '.$VIFM_COLO
-if ($VIFM_COLO == '')
-    if (system('[ -f /tmp/now_is_day ] && echo 1') == "1" )
-        let $VIFM_COLO='papercolor-light'
-        echo 'will set day theme'
-    elseif (system('[ -f /tmp/now_is_nox ] && echo 1') == "1" )
-        let $VIFM_COLO='crown_24bit'
-        echo 'will set nox theme'
-        " colo dracula
-        " colo iceberg
-    else
-        " colo reicheltd-light
-        let $VIFM_COLO='iceberg'
-        " colo dracula
-        " colorscheme Default
-    endif
-    ResetColor
-endif
-" nnoremap c<BS> :exec 'colo' $VIFM_COLO<CR>
-nnoremap c<BS> :exec 'colo '.$VIFM_COLO<CR>
+command! UpdateColor :
+    \| if ($VIFM_COLO == '')
+    \|     if (system('[ -f /tmp/now_is_day ] && echo 1') == "1" )
+    \|         let $VIFM_COLO='papercolor-light'
+    \|         echo 'will set day theme'
+    \|     elseif (system('[ -f /tmp/now_is_nox ] && echo 1') == "1" )
+    \|         let $VIFM_COLO='crown_24bit'
+    \|         echo 'will set nox theme'
+    \|     else
+    \|         let $VIFM_COLO='iceberg'
+    \|     endif
+    \|     ResetColor
+    \| endif
+nnoremap c<BS> :ResetColor<CR>
+UpdateColor
 
 command! CC :! mv /ln/dwn/cover.* .
 command! ogg :! cd %c && conv_any2ogg.sh . %D &>/dev/null ; notify-send "%c converted" &
@@ -56,6 +52,7 @@ command! chmodautoSEL :! find %f -type f -exec chmod 644 {} \;
 """"""""""""""""""""""""
 
 " fly vifm "
+nnoremap zh :history<CR>
 nnoremap ,x :exec '!echo -ne "\033]0;\007"' | quit <CR>
 nnoremap qx :exec '!echo -ne "\033]0;\007"' | quit <CR>
 nnoremap ,i :pushd . <CR>
@@ -749,7 +746,7 @@ command! fzfmushist : set noquickview
         \| endif
 
 nnoremap <C-j> :fzffind<cr>
-nnoremap zh :fzfmushist<cr>
+nnoremap <C-h> :fzfmushist<cr>
 
 source $loc/vifmrc.local
 source /ln/sh/conf/favicons.vifm
