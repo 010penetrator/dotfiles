@@ -18,12 +18,12 @@ windows:
       automatic-rename: true
     panes:
       - shell_command:
-        - htop
-  - window_name: bash
+  - window_name: muzlo
     options:
-      automatic-rename: true
+      automatic-rename: false
     panes:
       - shell_command:
+        - vifm
   - window_name: rtorrent
     options:
       automatic-rename: true

@@ -53,6 +53,7 @@ command! chmodautoSEL :! find %f -type f -exec chmod 644 {} \;
 
 " fly vifm "
 nnoremap zh :history<CR>
+nnoremap ,q :exec '!echo -ne "\033]0;\007"' | qa <CR>
 nnoremap ,x :exec '!echo -ne "\033]0;\007"' | quit <CR>
 nnoremap qx :exec '!echo -ne "\033]0;\007"' | quit <CR>
 nnoremap ,i :pushd . <CR>
