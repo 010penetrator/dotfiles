@@ -125,7 +125,9 @@ endif
 
 augroup Sessload
   autocmd!
-  autocmd SessionLoadPost * silent LoadColor
+  " async call function after few ms
+  autocmd SessionLoadPost * call timer_start( 5, {-> ReloadStyle()} )
+  " call timer_start(100, {-> execute("colo dayfox")})
 augroup END
 augroup SaveNotepad
   autocmd!
@@ -237,23 +239,31 @@ function! CrispBorders()
   highlight WinSeparator guibg=none
   highlight WinSeparator guifg=#5a5a5a
 endfunction
+
 if has("nvim")
   set winwidth=32
   set winminwidth=32
-  function! ReloadStyle()
+endif
+
+function! ReloadStyle()
+  if has("nvim")
     set laststatus=1
     highlight WinSeparator guibg=none
     highlight WinSeparator guifg=#5a5a5a
-    if exists("g:colors_name") && g:colors_name != 'habamax'
-      exec 'colo '.g:colors_name
-    else
-      call SetPhase()
-      call LoadColor()
-    endif
-    sleep 120m
-    lua H.reset('tint')
-  endfunction
-endif
+  endif
+  if exists("g:colors_name") && g:colors_name != 'habamax'
+    " load color again to avoid tabline rendering problem
+    echom "reload color ".g:colors_name
+    exec 'colo '.g:colors_name
+  else
+    " load saved color
+    call SetPhase()
+    echom "load color for ".g:phase
+    call LoadColor()
+  endif
+  " sleep 20m
+  lua H.reset('tint')
+endfunction
 " call CrispBorders()
 
 """"""""""""""""""""""""
@@ -1355,15 +1365,14 @@ function! LoadColor(...)
     source $sh/vi/vimrc_themes
   elseif g:phase == 'day'
     if !exists("g:ColorDayName")
-      echom "NO saved colors for this phase of day! Loading defaults.."
-      sleep 900m
+      echom "NO saved colors for this phase of day! Loading defaults..(day)"
       if exists("g:colors_name") | unlet g:colors_name | endif
       source $sh/vi/vimrc_themes
       return
     else
-      exec "colo " .           g:ColorDayName
+      exec "colo " .  g:ColorDayName
       if exists("g:loaded_lightline")
-        exec "LineColor " .      g:ColorDayLine
+        exec "LineColor " .  g:ColorDayLine
       endif
       exec "set background=" . g:ColorDayBg
     endif
@@ -1371,14 +1380,14 @@ function! LoadColor(...)
     echo "phase=" . g:phase . ", color=" . g:ColorDayName . ", linecolor=" . l:llcol
   elseif g:phase == 'nox'
     if !exists("g:ColorNoxName")
-      echom "NO saved colors for this phase of day! Loading defaults.."
+      echom "NO saved colors for this phase of day! Loading defaults..(nox)"
       if exists("g:colors_name") | unlet g:colors_name | endif
       source $sh/vi/vimrc_themes
       return
     else
-      exec "colo " .           g:ColorNoxName
+      exec "colo " .  g:ColorNoxName
       if exists("g:loaded_lightline")
-        exec "LineColor " .      g:ColorNoxLine
+        exec "LineColor " .  g:ColorNoxLine
       endif
       exec "set background=" . g:ColorNoxBg
     endif

@@ -125,7 +125,10 @@ require("lazy").setup({
   'ziontee113/syntax-tree-surfer',
 
   'levouh/tint.nvim',
+  'gennaro-tedesco/nvim-peekup',
 
+  'SmiteshP/nvim-navic',
+  'utilyre/barbecue.nvim',
 
   'LukasPietzschmann/telescope-tabs',
   'gorbit99/codewindow.nvim',
