@@ -38,7 +38,7 @@ alias cx='echo --Copy clipboard to X sel; xclip -o -selection clipboard| xclip -
 alias chmodre='find . -type f -exec chmod 644 {} \;'
 alias ncdu='ncdu --color off'
 # alias ncdu='ncdu --color off --graph-style hash'
-alias lm='df -BGB --output=source,fstype,avail,pcent,target -x tmpfs -x devtmpfs'
+alias lm='df -h --output=source,fstype,avail,pcent,target -x tmpfs -x devtmpfs'
 alias wlm='watch -n.4 df -BMB --output=source,avail,pcent,target'
 alias lb='$LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT,FSUSE% | grep "sd\|nvme" --color=none'
 alias wlb='watch -n.4 $LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT'

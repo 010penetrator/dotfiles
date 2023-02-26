@@ -37,6 +37,12 @@ require('nvim-autopairs').setup()
 require('nvim-autopairs').remove_rule("'")
 require('nvim-autopairs').remove_rule('"')
 
+require('bufjump').setup {
+  forward = "<A-i>",
+  backward = "<A-o>",
+  on_success = nil
+}
+
 local leap = H.prequire('leap')
 if leap then
   leap.add_default_mappings()
@@ -392,7 +398,6 @@ function Tele_buff_drop() require('telescope.builtin').buffers( tele_drop ) end
 H.nmap(',fb', Tele_buff_ivy, "Telescope [B]uffers ivy-themed")
 H.nmap(',r', Tele_buff_ivy, "Telescope [B]uffers ivy-themed")
 H.nmap(',<space>', Tele_buff_drop)
--- H.snmap('<C-n>', require('bufjump').forward)
 H.nmap(',l', require('lsp_lines').toggle, { desc = "Toggle lsp_lines" })
 -- nnoremap ,<space> :Telescope buffers sort_mru=1 theme=dropdown winblend=9<CR>
 H.nmap(',fh', require('telescope.builtin').help_tags, "Telescope [F]ind [H]elp_tags")

@@ -743,7 +743,7 @@ nnoremap ,zc :let &colorcolumn=80-&colorcolumn<CR>
 nnoremap ,zn :set number!<CR>
 " nnoremap z<space> :set filetype=text<CR>
 nnoremap ,vb :call SwitchBackground()<CR>:echo "background=" &background<CR>
-nnoremap ,vt :set termguicolors!<CR>:set termguicolors?<CR>
+nnoremap ,vc :set termguicolors!<CR>:set termguicolors?<CR>
 nnoremap a/ :set hlsearch!<CR>
 nnoremap ,vg :GitGutterToggle<CR>
 

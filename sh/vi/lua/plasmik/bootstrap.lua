@@ -27,16 +27,14 @@ end ]]
 
 require("lazy").setup({
 
-  -- Basic
+  -- VIM BASIC
   -- 'itchyny/lightline.vim', --cool
-  {'nvim-lualine/lualine.nvim', dependencies = 'kyazdani42/nvim-web-devicons'},
   'justinmk/vim-sneak', --good!
   'jlanzarotta/bufexplorer', --basic
   -- 'tpope/vim-sensible', --basic
   -- 'tpope/vim-commentary',
   -- 'tpope/vim-vinegar', --basic
   -- 'tpope/vim-surround', --good
-   'kylechui/nvim-surround',
   -- 'tpope/vim-endwise', --okay
   'tpope/vim-repeat', --handy
   'tpope/vim-eunuch', --handy
@@ -53,91 +51,86 @@ require("lazy").setup({
   -- 'chrisbra/Colorizer', --good
   -- 'junegunn/goyo.vim', --usable
   -- 'Pocco81/true-zen.nvim',
+  'MattesGroeger/vim-bookmarks', -- great
   'haya14busa/vim-edgemotion', --good
   { 'junegunn/fzf.vim', dependencies = { 'junegunn/fzf' } }, --fantastic
 
-  -- Try now
+  -- TRY LATER
   -- 'zefei/vim-colortuner', --fun
   -- 'Townk/vim-autoclose', --usable
-  'MattesGroeger/vim-bookmarks',
   'will133/vim-dirdiff',
   -- 'tpope/vim-sleuth',
-
-  -- 'tpope/vim-unimpaired',
-  'windwp/nvim-autopairs',
-  -- 'gaoDean/autolist.nvim', -- no effect
-  'dkarter/bullets.vim',
-
   -- 'RRethy/vim-illuminate', -- no effect
-
-  'nvim-neo-tree/neo-tree.nvim',
-  'simrat39/symbols-outline.nvim',
-
   -- 'ZeroKnight/vim-signjump', --buggy
   -- 'vim-scripts/QuickBuf',
   -- 'liuchengxu/vista.vim',
   -- 'derekwyatt/vim-fswitch',
-
+  -- 'tpope/vim-unimpaired',
+  'windwp/nvim-autopairs',
+  -- 'gaoDean/autolist.nvim', -- no effect
+  'dkarter/bullets.vim',
   -- 'honza/vim-snippets',
-  'L3MON4D3/LuaSnip',
-  'saadparwaiz1/cmp_luasnip',
 
+  -- NEOVIM ONLY
+  {'nvim-lualine/lualine.nvim', dependencies = 'kyazdani42/nvim-web-devicons'},
+  'kylechui/nvim-surround',
   'nvim-telescope/telescope.nvim',
   { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
   'nvim-lua/plenary.nvim',
-  'mfussenegger/nvim-lint',
-  'mfussenegger/nvim-dap',
+  'mfussenegger/nvim-lint', -- todo
+  'mfussenegger/nvim-dap', -- todo
   'rcarriga/nvim-dap-ui',
   'nvim-telescope/telescope-dap.nvim',
   { 'nvim-treesitter/nvim-treesitter', config = function() vim.cmd("silent TSUpdate") end, },
-  'mrjones2014/nvim-ts-rainbow',
+  'mrjones2014/nvim-ts-rainbow', -- buggy
   'neovim/nvim-lspconfig',
   'williamboman/mason.nvim',
   'williamboman/mason-lspconfig.nvim',
-  'VonHeikemen/lsp-zero.nvim',
+  'VonHeikemen/lsp-zero.nvim', -- todo
   -- 'glepnir/lspsaga.nvim',
   'hrsh7th/nvim-cmp',
   'hrsh7th/cmp-buffer',
+  -- 'amarakon/nvim-cmp-buffer-lines', -- todo
   'hrsh7th/cmp-path',
   'hrsh7th/cmp-cmdline',
   'hrsh7th/cmp-nvim-lsp',
-  'chentoast/marks.nvim', -- okay
-  'norcalli/nvim-colorizer.lua',
-  -- 'kwkarlwang/bufjump.nvim',
-  'MunifTanjim/nui.nvim',
+  'chentoast/marks.nvim', -- good
   'lambdalisue/suda.vim',
-  'numToStr/Comment.nvim',
-  'akinsho/toggleterm.nvim',
-  'lukas-reineke/indent-blankline.nvim',
-  'booperlv/nvim-gomove',
-  'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
-  'powerman/vim-plugin-ruscmd',
+  { 'nvim-neo-tree/neo-tree.nvim', dependencies = { 'nvim-lua/plenary.nvim', 'kyazdani42/nvim-web-devicons', 'MunifTanjim/nui.nvim' } }, -- cool
+  'numToStr/Comment.nvim', -- good
+  'akinsho/toggleterm.nvim', -- cool
   { 'akinsho/bufferline.nvim', version='v3.*', dependencies='kyazdani42/nvim-web-devicons' },
-  'sindrets/diffview.nvim',
-  -- 'kyazdani42/nvim-web-devicons',
-  -- 'echasnovski/mini.nvim',
-
-  'declancm/cinnamon.nvim',
-  -- 'karb94/neoscroll.nvim',
-  'mizlan/iswap.nvim',
-  'andrewferrier/debugprint.nvim',
-  -- 'https://github.com/ggandor/leap.nvim',
-  'ziontee113/syntax-tree-surfer',
-
-  'levouh/tint.nvim',
+  'https://git.sr.ht/~whynothugo/lsp_lines.nvim', -- cool
+  'lukas-reineke/indent-blankline.nvim', -- usable
+  'powerman/vim-plugin-ruscmd', -- works
+  'norcalli/nvim-colorizer.lua',
+  'levouh/tint.nvim', -- okay
+  'andrewferrier/debugprint.nvim', -- good
+  'declancm/cinnamon.nvim', -- usable
+  -- 'karb94/neoscroll.nvim', -- maybe
+  -- 'https://github.com/ggandor/leap.nvim', -- suxx
+  -- 'LukasPietzschmann/telescope-tabs', -- usable
+  'booperlv/nvim-gomove', -- works
+  'kwkarlwang/bufjump.nvim', -- good
+  'sindrets/diffview.nvim', -- great
+  'gorbit99/codewindow.nvim', -- todo
+  'nagy135/typebreak.nvim', -- fun
   'gennaro-tedesco/nvim-peekup',
 
-  'SmiteshP/nvim-navic',
-  'utilyre/barbecue.nvim',
+  'miversen33/import.nvim',
 
-  'LukasPietzschmann/telescope-tabs',
-  'gorbit99/codewindow.nvim',
+
+  -- TRY LATER
+  'ziontee113/syntax-tree-surfer',
+  'AckslD/nvim-neoclip.lua', -- no effect
+  'simrat39/symbols-outline.nvim',
+  'mizlan/iswap.nvim',
+  'L3MON4D3/LuaSnip',
+  'saadparwaiz1/cmp_luasnip',
   'haolian9/reveal.nvim',
-  'nagy135/typebreak.nvim',
-  'amarakon/nvim-cmp-buffer-lines',
-  -- 'rcarriga/nvim-notify',
-  -- 'folke/noice.nvim',
-  'AckslD/nvim-neoclip.lua',
+  'SmiteshP/nvim-navic',
+  'Dax89/ide.nvim', -- maybe
+
 
 ------------------------
 --      Themes:       --
