@@ -32,17 +32,17 @@ if [ -n "$1" ] ; then
   if
     # If window of that name is active, there are others of that name, current is not last in list
     [[ $(wmctrl -l -x | grep -a "$wname" | grep -a $activeid) ]] &&
-    [[ $(wmctrl -l -x | grep -a -v -e "^.\{9\}\s" | grep -a "$wname" | wc -l) > 1 ]] &&
+    [[ $(wmctrl -l -x | grep -a -v -e "^.{9}\s" | grep -a "$wname" | wc -l) > 1 ]] &&
     # [[ $(wmctrl -l -x | grep -a $wname | wc -l) != $(wmctrl -l -x | grep -a $wname | grep -a -n $activeid | cut -d ":" -f1) ]]
     [[ $(wmctrl -l -x | grep -a "$wname" | grep -a -A1 $activeid | wc -l) > 1 ]]
   then
     # Choose next window of same name
     echo "ror: choosing next"
-    target=$(wmctrl -l -x | grep -a -v -e "^\{9\}\s" | grep -a "$wname" | grep -a -A1 $activeid | tail -1 | cut -c -10)
+    target=$(wmctrl -l -x | grep -a -v -e "^{9}\s" | grep -a "$wname" | grep -a -A1 $activeid | tail -1 | cut -c -10)
   else
     # Just choose window which includes desired name
     echo "ror: choosing simple"
-    target=$(wmctrl -l -x | grep -a -v -e "^\{9\}\s" | grep -a -m 1 "$wname" | cut -c -10)
+    target=$(wmctrl -l -x | grep -a -v -e "^{9}\s" | grep -a -m 1 "$wname" | cut -c -10)
   fi
 fi
 
