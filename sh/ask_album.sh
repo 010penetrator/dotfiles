@@ -8,7 +8,7 @@ echo
 # If TARG not provided, use PWD
 [[ -n $TARG ]] || TARG=$(pwd)
 
-if ! [[ -d $TARG ]] ; then
+if ! [[ -d $TARG ]]; then
     echo "(non-existent)" "$TARG" @ $(realpath .)
     # TARGREAL="not found"
 else
@@ -23,21 +23,30 @@ fi
     LIST=$HOME/.mus-playlist
 HIST=$HOME/.mus-history
 
-if [[ "$TARG" =~ "torrents/red/" ]] ; then
+if [[ "$TARG" =~ "torrents/red/" ]]; then
     [[ . -nt /ln/torrents/red/KKK ]] && echo --it is a new torrent
     [[ . -ot /ln/torrents/red/KKK ]] && echo --it is an archive torrent
 fi
-if [[ $( grep -F -c "$TARGREAL" "$FAVS" ) -gt 0 ]] ; then
-    echo --it is in favourites list
+if [[ $( grep -F -c "$TARGREAL" "$FAVS" ) -gt 0 ]]; then
+    echo -- it is in favourites list
     INFAVS=1
 else
     INFAVS=0
 fi
-if [[ $( grep -F -c "$TARGREAL" "$LIST" ) -gt 0 ]] ; then
-    echo --it is in play list
-    INLIST=1
-else
-    INLIST=0
+if [[ -n $TARGREAL ]]; then
+    if [[ $( grep -F -c "$TARGREAL" "$LIST" ) -gt 0 ]]; then
+        echo -- it is in play list
+        INLIST=1
+    else
+        INLIST=0
+    fi
+elif [[ -z $TARGREAL ]]; then
+    if [[ $( grep -F -c "$TARG" "$LIST" ) -gt 0 ]]; then
+        echo -- it WAS in play list
+        INLIST=1
+    else
+        INLIST=0
+    fi
 fi
 echo
 
@@ -71,34 +80,34 @@ SELECTOR="fzf --exact --layout=reverse --keep-right --height 99%"
 clear
 
 source $sh/dmenurc
-if [[ $prompt == "q" ]] ; then
+if [[ $prompt == "q" ]]; then
     exit
-elif [[ $INLIST != 1 && $prompt == "a" ]] ; then
+elif [[ $INLIST != 1 && $prompt == "a" ]]; then
     echo "$TARGREAL" >> "$LIST"
     RUNAGAIN=1
-elif [[ $INLIST == 1 && $prompt == "d" ]] ; then
-    echo deleting "$TARG"
+elif [[ $INLIST == 1 && $prompt == "d" ]]; then
+    echo deleting $TARG from list
     grep -vF "$TARG" "$LIST" > /tmp/tmplist && mv /tmp/tmplist "$LIST"
     RUNAGAIN=1
-elif [[ $INFAVS == 0 && $prompt == "s" ]] ; then
+elif [[ $INFAVS == 0 && $prompt == "s" ]]; then
     echo "$TARGREAL" >> "$FAVS"
     RUNAGAIN=1
-elif [[ $prompt == "c" && $INVIFM != 1 ]] ; then
+elif [[ $prompt == "c" && $INVIFM != 1 ]]; then
     vifm "$TARGREAL" -c "wincmd o"
-elif [[ $prompt == "" ]] ; then
+elif [[ $prompt == "" ]]; then
     PAUSE=0 mpv-album "$TARGREAL"
     # ask_album.sh
-elif [[ -f $LIST ]] && [[ $prompt == "p" ]] ; then
+elif [[ -f $LIST ]] && [[ $prompt == "p" ]]; then
     SELECT=$( cat -n "$LIST" | sort -n | sort -uk2 | sort -nr | cut -f2- | $SELECTOR )
     ASK=1 PAUSE=1 mpv-album "$SELECT"
-elif [[ -f $LIST ]] && [[ $prompt == "f" ]] ; then
+elif [[ -f $LIST ]] && [[ $prompt == "f" ]]; then
     SELECT=$( cat -n "$FAVS" | sort -n | sort -uk2 | sort -nr | cut -f2- | $SELECTOR )
     ASK=1 PAUSE=1 mpv-album "$SELECT"
-elif [[ -f $LIBRARY ]] && [[ $prompt == "l" ]] ; then
+elif [[ -f $LIBRARY ]] && [[ $prompt == "l" ]]; then
     # notify-send "lib is $LIBRARY"
     SELECT=$( cat "$LIBRARY" | sort -R | $SELECTOR )
     ASK=1 PAUSE=1 mpv-album "$SELECT"
-elif [[ -f $HIST ]] && [[ $prompt == "i" ]] ; then
+elif [[ -f $HIST ]] && [[ $prompt == "i" ]]; then
     SELECT=$( cat -n "$HIST" | sort -n | sort -uk2 | sort -nr | cut -f2- | $SELECTOR )
     ASK=1 PAUSE=1 mpv-album "$SELECT"
 else

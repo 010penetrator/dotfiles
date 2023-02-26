@@ -45,7 +45,7 @@ H.bram_nmap('<C-PageUp>',   ":BufferLineCyclePrev<CR>", { silent = true })
 H.bram_nmap('<C-PageDown>', ":BufferLineCycleNext<CR>", { silent = true })
 
 H.nmap(',,b', ":IndentBlanklineToggle<CR>")
-H.nmap('c<BS>', ":call ReloadStyle()<CR>")
+H.nmap('c<BS>', ":call ReloadStyle(0)<CR>")
 H.nmap(',vr', ":TSToggle rainbow<CR>")
 H.nmap(',gp', ":call FocusBufOrDo('bootstrap.lua','e $mylua/bootstrap.lua')<CR>")
 H.nmap(',ga', ":call FocusBufOrDo('remap.lua','e $mylua/remap.lua')<CR>")

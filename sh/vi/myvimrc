@@ -126,7 +126,7 @@ endif
 augroup Sessload
   autocmd!
   " async call function after few ms
-  autocmd SessionLoadPost * call timer_start( 5, {-> ReloadStyle()} )
+  autocmd SessionLoadPost * call timer_start( 5, {-> ReloadStyle(1)} )
   " call timer_start(100, {-> execute("colo dayfox")})
 augroup END
 augroup SaveNotepad
@@ -245,13 +245,14 @@ if has("nvim")
   set winminwidth=32
 endif
 
-function! ReloadStyle()
+function! ReloadStyle(force)
   if has("nvim")
     set laststatus=1
     highlight WinSeparator guibg=none
     highlight WinSeparator guifg=#5a5a5a
   endif
-  if exists("g:colors_name") && g:colors_name != 'habamax'
+  " if color is already chosen and force!=true
+  if a:force!=1 && ( exists("g:colors_name") && g:colors_name != 'habamax' )
     " load color again to avoid tabline rendering problem
     echom "reload color ".g:colors_name
     exec 'colo '.g:colors_name
@@ -261,10 +262,8 @@ function! ReloadStyle()
     echom "load color for ".g:phase
     call LoadColor()
   endif
-  " sleep 20m
   lua H.reset('tint')
 endfunction
-" call CrispBorders()
 
 """"""""""""""""""""""""
 ""     Mappings:      ""

@@ -7,19 +7,19 @@
 
 command! ResetColor  :exec 'colo '.$VIFM_COLO
 command! UpdateColor :
-    \| if ($VIFM_COLO == '')
+    " \| if ($VIFM_COLO == '')
     \|     if (system('[ -f /tmp/now_is_day ] && echo 1') == "1" )
     \|         let $VIFM_COLO='papercolor-light'
-    \|         echo 'will set day theme'
+    \|         echo 'Will set day theme'
     \|     elseif (system('[ -f /tmp/now_is_nox ] && echo 1') == "1" )
     \|         let $VIFM_COLO='crown_24bit'
-    \|         echo 'will set nox theme'
+    \|         echo 'Will set nox theme'
     \|     else
     \|         let $VIFM_COLO='iceberg'
     \|     endif
     \|     ResetColor
-    \| endif
-nnoremap c<BS> :ResetColor<CR>
+    " \| endif
+nnoremap c<BS> :UpdateColor<CR>
 UpdateColor
 
 command! CC :! mv /ln/dwn/cover.* .
