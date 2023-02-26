@@ -117,7 +117,7 @@ require("lazy").setup({
   'nagy135/typebreak.nvim', -- fun
   'gennaro-tedesco/nvim-peekup',
 
-  'miversen33/import.nvim',
+  'trmckay/based.nvim',
 
 
   -- TRY LATER
@@ -130,6 +130,8 @@ require("lazy").setup({
   'haolian9/reveal.nvim',
   'SmiteshP/nvim-navic',
   'Dax89/ide.nvim', -- maybe
+  -- 'mrjones2014/legendary.nvim',
+  -- 'folke/which-key.nvim',
 
 
 ------------------------
