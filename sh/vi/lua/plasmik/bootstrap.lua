@@ -115,20 +115,22 @@ require("lazy").setup({
   'sindrets/diffview.nvim', -- great
   'gorbit99/codewindow.nvim', -- todo
   'nagy135/typebreak.nvim', -- fun
+  'simrat39/symbols-outline.nvim', -- okay
   'gennaro-tedesco/nvim-peekup',
+  -- 'trmckay/based.nvim', -- no effect
 
-  'trmckay/based.nvim',
 
+  { 'utilyre/barbecue.nvim', dependencies = { 'SmiteshP/nvim-navic' } },
+
+------------------{{{}}}
 
   -- TRY LATER
   'ziontee113/syntax-tree-surfer',
   'AckslD/nvim-neoclip.lua', -- no effect
-  'simrat39/symbols-outline.nvim',
   'mizlan/iswap.nvim',
   'L3MON4D3/LuaSnip',
   'saadparwaiz1/cmp_luasnip',
   'haolian9/reveal.nvim',
-  'SmiteshP/nvim-navic',
   'Dax89/ide.nvim', -- maybe
   -- 'mrjones2014/legendary.nvim',
   -- 'folke/which-key.nvim',

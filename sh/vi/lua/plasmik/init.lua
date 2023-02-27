@@ -33,6 +33,8 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 --  Configure Plugs   --
 ------------------{{{}}}
 
+require('symbols-outline').setup()
+
 require('nvim-autopairs').setup()
 require('nvim-autopairs').remove_rule("'")
 require('nvim-autopairs').remove_rule('"')
@@ -133,11 +135,55 @@ vim.keymap.set('n', 'gD', "<Cmd>lua Scroll('declaration')<CR>")
 
 require("nvim-surround").setup()
 
+local navic = require("nvim-navic")
+-- navic.setup();
+
+navic.setup {
+    icons = {
+        File          = " ",
+        Module        = " ",
+        Namespace     = " ",
+        Package       = " ",
+        Class         = " ",
+        Method        = " ",
+        Property      = " ",
+        Field         = " ",
+        Constructor   = " ",
+        Enum          = "練",
+        Interface     = "練",
+        Function      = " ",
+        Variable      = " ",
+        Constant      = " ",
+        String        = " ",
+        Number        = " ",
+        Boolean       = "◩ ",
+        Array         = " ",
+        Object        = " ",
+        Key           = " ",
+        Null          = "ﳠ ",
+        EnumMember    = " ",
+        Struct        = " ",
+        Event         = " ",
+        Operator      = " ",
+        TypeParameter = " ",
+    },
+    highlight = false,
+    separator = " > ",
+    depth_limit = 0,
+    depth_limit_indicator = "..",
+    safe_output = true
+}
+
 require('lualine').setup {
   options = {
     section_separators = '',
     component_separators = '',
     theme = 'nord',
+  },
+  sections = {
+    lualine_c = {
+      { navic.get_location, cond = navic.is_available },
+    }
   }
 }
 
@@ -219,7 +265,7 @@ require('nvim-treesitter.configs').setup {
   highlight = { enable = true },
   indent = { enable = true, disable = { 'python' } },
   rainbow = {
-    enable = true,
+    enable = false,
     -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
     extended_mode = false, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
     max_file_lines = nil, -- Do not enable for files with more than n lines, int
@@ -478,8 +524,13 @@ require("mason-lspconfig").setup {
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 local nc_capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
-require('lspconfig').bashls.setup{ on_attach = function() print("lsp client is bashls") end, }
-require('lspconfig').clangd.setup{ on_attach = function() print("lsp client is clangd") end, }
+require('lspconfig').bashls.setup { on_attach = function() print("lsp client is bashls") end, }
+require('lspconfig').clangd.setup {
+  on_attach = function(client, bufnr)
+    navic.attach(client, bufnr)
+    print("lsp client is clangd")
+  end,
+}
 --[[ require('lspconfig').sumneko_lua.setup {
   -- on_attach = function() print("lsp client is sumneko_lua") end,
   settings = {

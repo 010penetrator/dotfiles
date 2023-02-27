@@ -420,11 +420,10 @@ nnoremap ,i :diffthis \| wincmd w<CR>
 nnoremap ,o :diffoff  \| wincmd w<CR>
 nnoremap c<space> :echo expand ('%') '.@.' getcwd()<CR>
 nnoremap cC       :echo expand ('%') '.@.' getcwd()<CR>
-nnoremap ,c. :LCDhere<CR>
+nnoremap ,c. :exec "lcd! %:p:h" <bar> echo 'lcd2file @' getcwd()<CR>
+nnoremap ,c, :call GetProjDir() <bar> exec "lcd! " . b:proj_dir <bar> echo 'lcd2proj @' getcwd()<CR>
 nnoremap ,cg :call ClimbToDirWhere(".git/index",1) \| pwd<CR>
 nnoremap ,cm :call ClimbToDirWhere("Makefile",1) \| pwd<CR>
-" local cd to project path
-nnoremap <silent> ,c, :call GetProjDir() <bar> exec "lcd! " . b:proj_dir <bar> echo 'lcd! @' getcwd()<cr>
 nnoremap a<BS> :checktime<cr>
 nnoremap q<BS> :enew<CR>
 nnoremap z<BS> :e!<CR>
@@ -557,7 +556,7 @@ nnoremap ,gh :call FocusBufOrDo('sh_history','e $HOME/.bash_history')<CR>G
 nnoremap ,gl :call FocusBufOrDo('1linux','e $sh/rs/1linux')<CR>
 nnoremap ,gm :call FocusBufOrDo('memo','e $sh/rs/1code.memo')<CR>
 nnoremap q/  :call FocusWindowOrDo('silly.txt','1tabn \| wincmd b \| e $buf')<CR>
-nnoremap ,s  :call FocusBufOrDo('silly.txt','e $buf')<CR>
+nnoremap ,gs  :call FocusBufOrDo('silly.txt','e $buf')<CR>
 
 nnoremap ,,<space> :Goyo<CR>
 nnoremap ,vi :IndentBlanklineToggle<CR>
@@ -785,7 +784,7 @@ command! -nargs=1 Silent exec 'silent !' . <q-args> | exec 'redraw!'
 command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
           \ | wincmd p | diffthis
 
-xnoremap ,s :<C-U> echo GetVisualSelectionSum(visualmode())<Cr>
+xnoremap ,E :<C-U> echo GetVisualSelectionSum(visualmode())<Cr>
 function! GetVisualSelectionSum(mode)
   " call with visualmode() as the argument
   let [line_start, column_start] = getpos("'<")[1:2]

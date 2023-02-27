@@ -51,4 +51,5 @@ H.nmap(',gp', ":call FocusBufOrDo('bootstrap.lua','e $mylua/bootstrap.lua')<CR>"
 H.nmap(',ga', ":call FocusBufOrDo('remap.lua','e $mylua/remap.lua')<CR>")
 H.nmap(',vp', function() vim.api.nvim_exec([[:put +| normal dfmxI'A',==]], false) end)
 H.nmap(',vt', function() require'tint'.toggle() end )
+H.nmap(',s', ":SymbolsOutline<CR>")
 

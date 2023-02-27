@@ -73,7 +73,7 @@ nnoremap qt :tree!<CR>
 nnoremap g<Down> hjl
 nnoremap g<Up> hkl
 nnoremap cd :cd<space>
-nnoremap qe :
+nnoremap cc :
 nnoremap q; :<up>
 " nnoremap a; :<up><CR>
 nnoremap ,,v :source $MYVIFMRC <CR>
@@ -681,7 +681,7 @@ vnoremap w :view<cr>gv
 
 " Mappings for faster renaming
 nnoremap I cw<c-a>
-nnoremap cc cw<c-u>
+nnoremap cx cw<c-u>
 nnoremap A cw
 
 " Open console in current directory
