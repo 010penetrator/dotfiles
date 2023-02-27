@@ -557,7 +557,7 @@ nnoremap ,gh :call FocusBufOrDo('sh_history','e $HOME/.bash_history')<CR>G
 nnoremap ,gl :call FocusBufOrDo('1linux','e $sh/rs/1linux')<CR>
 nnoremap ,gm :call FocusBufOrDo('memo','e $sh/rs/1code.memo')<CR>
 nnoremap q/  :call FocusWindowOrDo('silly.txt','1tabn \| wincmd b \| e $buf')<CR>
-nnoremap ,gg :call FocusBufOrDo('silly.txt','e $buf')<CR>
+nnoremap ,s  :call FocusBufOrDo('silly.txt','e $buf')<CR>
 
 nnoremap ,,<space> :Goyo<CR>
 nnoremap ,vi :IndentBlanklineToggle<CR>
