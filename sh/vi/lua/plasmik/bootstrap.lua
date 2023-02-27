@@ -118,9 +118,8 @@ require("lazy").setup({
   'simrat39/symbols-outline.nvim', -- okay
   'gennaro-tedesco/nvim-peekup',
   -- 'trmckay/based.nvim', -- no effect
+  -- { 'utilyre/barbecue.nvim', dependencies = { 'SmiteshP/nvim-navic' } }, -- maybe
 
-
-  { 'utilyre/barbecue.nvim', dependencies = { 'SmiteshP/nvim-navic' } },
 
 ------------------{{{}}}
 

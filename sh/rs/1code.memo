@@ -1,5 +1,7 @@
 # C code pieces
 
+C++ always truncates, aka rounds down
+
 #define MAX(a,b) (((a) > (b)) ? (a) : (b))
 #define MIN(a,b) (((a) < (b)) ? (a) : (b))
 #define EPSI  0.000001 // одна миллионная

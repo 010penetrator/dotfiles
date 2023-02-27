@@ -135,56 +135,12 @@ vim.keymap.set('n', 'gD', "<Cmd>lua Scroll('declaration')<CR>")
 
 require("nvim-surround").setup()
 
-local navic = require("nvim-navic")
--- navic.setup();
-
-navic.setup {
-    icons = {
-        File          = " ",
-        Module        = " ",
-        Namespace     = " ",
-        Package       = " ",
-        Class         = " ",
-        Method        = " ",
-        Property      = " ",
-        Field         = " ",
-        Constructor   = " ",
-        Enum          = "練",
-        Interface     = "練",
-        Function      = " ",
-        Variable      = " ",
-        Constant      = " ",
-        String        = " ",
-        Number        = " ",
-        Boolean       = "◩ ",
-        Array         = " ",
-        Object        = " ",
-        Key           = " ",
-        Null          = "ﳠ ",
-        EnumMember    = " ",
-        Struct        = " ",
-        Event         = " ",
-        Operator      = " ",
-        TypeParameter = " ",
-    },
-    highlight = false,
-    separator = " > ",
-    depth_limit = 0,
-    depth_limit_indicator = "..",
-    safe_output = true
-}
-
 require('lualine').setup {
   options = {
     section_separators = '',
     component_separators = '',
     theme = 'nord',
   },
-  sections = {
-    lualine_c = {
-      { navic.get_location, cond = navic.is_available },
-    }
-  }
 }
 
 require('bufferline').setup()
@@ -527,7 +483,7 @@ local nc_capabilities = require('cmp_nvim_lsp').default_capabilities(capabilitie
 require('lspconfig').bashls.setup { on_attach = function() print("lsp client is bashls") end, }
 require('lspconfig').clangd.setup {
   on_attach = function(client, bufnr)
-    navic.attach(client, bufnr)
+    -- navic.attach(client, bufnr)
     print("lsp client is clangd")
   end,
 }
