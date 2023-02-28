@@ -705,11 +705,6 @@ nnoremap ,,c :NewVifmHere<CR>
 
 " Jump to terminal window
 nnoremap <A-b> :call GotoTerm(0)<CR>
-" Jump to filetree window
-nnoremap ,n :Neotree focus<CR>
-nnoremap ,N :NeoTreeClose<CR>
-nnoremap ,<BS> :Neotree reveal_force_cwd<CR>
-nnoremap - :Neotree reveal_force_cwd current<CR>
 
 " Exec current paragraph with shell
 nnoremap ,b; yap: exec "!" . @"<CR>

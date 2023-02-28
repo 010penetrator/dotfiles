@@ -116,7 +116,7 @@ require("lazy").setup({
   'gorbit99/codewindow.nvim', -- todo
   'nagy135/typebreak.nvim', -- fun
   'simrat39/symbols-outline.nvim', -- okay
-  'gennaro-tedesco/nvim-peekup',
+  'gennaro-tedesco/nvim-peekup', -- usage:""
   -- 'trmckay/based.nvim', -- no effect
   -- { 'utilyre/barbecue.nvim', dependencies = { 'SmiteshP/nvim-navic' } }, -- maybe
 
@@ -136,7 +136,7 @@ require("lazy").setup({
   'Yazeed1s/oh-lucy.nvim',
   'diegoulloao/nvim-file-location',
 
-------------------{{{}}}
+---{{{}}}---
 
   -- TRY LATER
   'ziontee113/syntax-tree-surfer',
@@ -144,7 +144,7 @@ require("lazy").setup({
   'mizlan/iswap.nvim',
   'L3MON4D3/LuaSnip',
   'saadparwaiz1/cmp_luasnip',
-  'haolian9/reveal.nvim',
+  'haolian9/reveal.nvim', -- no effect
   'Dax89/ide.nvim', -- maybe
   -- 'mrjones2014/legendary.nvim',
   -- 'folke/which-key.nvim',
