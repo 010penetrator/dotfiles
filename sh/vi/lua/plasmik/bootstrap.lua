@@ -121,6 +121,21 @@ require("lazy").setup({
   -- { 'utilyre/barbecue.nvim', dependencies = { 'SmiteshP/nvim-navic' } }, -- maybe
 
 
+  'rareitems/hl_match_area.nvim',
+  'nyngwang/murmur.lua',
+  'Eandrju/cellular-automaton.nvim',
+  'tamton-aquib/zone.nvim',
+  'Wansmer/treesj',
+-- https://roobert.github.io/2022/12/03/Extending-Neovim/
+  'nullchilly/fsread.nvim',
+  'folke/paint.nvim',
+  'folke/styler.nvim',
+  'LintaoAmons/scratch.nvim',
+  'petertriho/nvim-scrollbar',
+  'AbdelrahmanDwedar/awesome-nvim-colorschemes',
+  'Yazeed1s/oh-lucy.nvim',
+  'diegoulloao/nvim-file-location',
+
 ------------------{{{}}}
 
   -- TRY LATER
