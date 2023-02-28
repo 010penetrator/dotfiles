@@ -38,8 +38,8 @@ vim.keymap.set('n', ',p', "\"yp")
 vim.keymap.set('x', ',p', "\"_dP")
 
 -- Move selection
-vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
-vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
+-- vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
+-- vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 
 H.bram_nmap('<C-PageUp>',   ":BufferLineCyclePrev<CR>", { silent = true })
 H.bram_nmap('<C-PageDown>', ":BufferLineCycleNext<CR>", { silent = true })
@@ -56,4 +56,6 @@ H.nmap(',ga', ":call FocusBufOrDo('remap.lua','e $mylua/remap.lua')<CR>")
 H.nmap(',vp', function() vim.api.nvim_exec([[:put +| normal dfmxI'A',==]], false) end)
 H.nmap(',vt', function() require'tint'.toggle() end )
 H.nmap(',s', ":SymbolsOutline<CR>")
+H.nmap('q,', ":TSJJoin<CR>")
+H.nmap('q.', ":TSJSplit<CR>")
 

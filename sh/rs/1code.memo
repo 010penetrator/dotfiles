@@ -2,6 +2,13 @@
 
 C++ always truncates, aka rounds down
 
+do {...} while (..);
+while (..) {...};
+for (.;.;.) {...};
+count << "Hello";
+cint >> value;
+exit(0) - выход из цикла
+
 #define MAX(a,b) (((a) > (b)) ? (a) : (b))
 #define MIN(a,b) (((a) < (b)) ? (a) : (b))
 #define EPSI  0.000001 // одна миллионная

@@ -51,7 +51,7 @@ set runtimepath+=$vi
 if has("nvim")
     SSource $vi/myvimrc
     SSource $mylua/init.lua
-    silent call ReloadStyle(1)
+    silent call ReloadStyle(0)
     " SSource $vi/vimrc_themes
     " SSource $mylua/helpy.lua
     " SSource $mylua/remap.lua
@@ -63,7 +63,6 @@ else
 endif
 
 " TODO/Problems :
-"     filetype detection needs :e!
 "     tame completion
 "     tame tests like nvim-neotest
 "     tame debug like nvim-dap

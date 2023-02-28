@@ -6,13 +6,13 @@
 -- vim.api.nvim_command('echom 88')
 -- vim.api.nvim_command('echom 88')
 
-require('plasmik.set')
+require("plasmik.set")
 package.loaded['plasmik.helpy'] = nil
-require('plasmik.helpy')
+require("plasmik.helpy")
 
--- require('plasmik.remap')
+-- require("plasmik.remap")
 H.reload('plasmik.remap')
-require('plasmik.bootstrap')
+require("plasmik.bootstrap")
 
 -- disable netrw early in user/init.lua
 vim.g.loaded_netrw = 1
@@ -33,19 +33,31 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 --  Configure Plugs   --
 ------------------{{{}}}
 
-require('symbols-outline').setup()
 
-require('nvim-autopairs').setup()
-require('nvim-autopairs').remove_rule("'")
-require('nvim-autopairs').remove_rule('"')
+require("scrollbar").setup {
+  handlers = {
+    gitsigns = true, -- Requires gitsigns
+  },
+}
 
-require('bufjump').setup {
+require("treesj").setup {
+  use_default_keymaps = false,
+  max_join_length = 440,
+}
+
+require("symbols-outline").setup()
+
+require("nvim-autopairs").setup()
+require("nvim-autopairs").remove_rule("'")
+require("nvim-autopairs").remove_rule('"')
+
+require("bufjump").setup {
   forward = "<A-i>",
   backward = "<A-o>",
   on_success = nil
 }
 
-local leap = H.prequire('leap')
+local leap = H.prequire("leap")
 if leap then
   leap.add_default_mappings()
   -- leap.opts.case_sensitive = true
@@ -58,14 +70,14 @@ if leap then
   }
 end
 
-require('gitsigns').setup()
+require("gitsigns").setup()
 
-require('tint').setup()
+require("tint").setup()
 
-require('debugprint').setup()
+require("debugprint").setup()
 
 -- H.unload('cinnamon')
-require('cinnamon').setup( {
+require("cinnamon").setup( {
   -- KEYMAPS:
   default_keymaps = false,   -- Create default keymaps.
   extra_keymaps = false,    -- Create extra keymaps.
@@ -135,7 +147,7 @@ vim.keymap.set('n', 'gD', "<Cmd>lua Scroll('declaration')<CR>")
 
 require("nvim-surround").setup()
 
-require('lualine').setup {
+require("lualine").setup {
   options = {
     section_separators = '',
     component_separators = '',
@@ -143,8 +155,8 @@ require('lualine').setup {
   },
 }
 
-require('bufferline').setup()
---[[ require('bufferline').setup {
+require("bufferline").setup()
+--[[ require("bufferline").setup {
     options = {
         hover = {
             enabled = true,
@@ -162,7 +174,7 @@ require("neo-tree").setup {
   }
 }
 
-require('syntax-tree-surfer')
+require("syntax-tree-surfer")
 -- Syntax Tree Surfer
 local opts = { noremap = true, silent = false }
 -- Normal Mode Swapping:
@@ -196,10 +208,10 @@ vim.keymap.set("x", "L", '<cmd>STSSelectChildNode<cr>', opts)
 vim.keymap.set("x", "<A-j>", '<cmd>STSSwapNextVisual<cr>', opts)
 vim.keymap.set("x", "<A-k>", '<cmd>STSSwapPrevVisual<cr>', opts)
 
-require('Comment').setup()
--- require('yode-nvim').setup()
+require("Comment").setup()
+-- require("yode-nvim").setup()
 
-require('telescope').setup {
+require("telescope").setup {
   defaults = {
     prompt_prefix = "$ ",
     mappings = {
@@ -209,14 +221,14 @@ require('telescope').setup {
     }
   }
 }
-require('telescope').load_extension('fzf')
--- local theme = require('telescope.themes').get_ivy()
+require("telescope").load_extension('fzf')
+-- local theme = require("telescope.themes").get_ivy()
 -- theme['layout_config']['height'] = vim.opt.lines:get() - 8
 -- theme['sort_mru'] = true
--- require('telescope.builtin').buffers(theme)
--- require('telescope.builtin').buffers(Tele_drop)
+-- require("telescope.builtin").buffers(theme)
+-- require("telescope.builtin").buffers(Tele_drop)
 
-require('nvim-treesitter.configs').setup {
+require("nvim-treesitter.configs").setup {
   ensure_installed = { 'c', 'cpp', 'lua', 'python', 'vim', 'bash', 'help' },
   highlight = { enable = true },
   indent = { enable = true, disable = { 'python' } },
@@ -287,7 +299,7 @@ vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
 -- vim.opt.list = true
 -- vim.opt.listchars:append("eol:↴")
-require('indent_blankline').setup {
+require("indent_blankline").setup {
   filetype_exclude = {'lspinfo', 'checkhealth', 'help', 'man', '', 'startify'},
   enabled = false,
   show_end_of_line = false,
@@ -356,13 +368,13 @@ require'marks'.setup {
 -- n  m]          * <Cmd>lua require'marks'.next()<CR>
 -- n  f<Up>       * <Cmd>lua require'marks'.prev_bookmark()<CR>
 
-require('toggleterm').setup {
+require("toggleterm").setup {
   -- direction = 'vertical' | 'horizontal' | 'window' | 'float',
   direction = 'horizontal',
   size = 24,
 }
 
--- require('neoscroll').setup {
+-- require("neoscroll").setup {
 --   easing_function = "circular",
 --   mappings = {'<C-u>', '<C-d>', '<C-b>', '<C-f>', 'zt', 'zz', 'zb'}
 -- }
@@ -376,9 +388,9 @@ require('toggleterm').setup {
 -- t['zt']    = {'zt', {'100'}}
 -- t['zz']    = {'zz', {'100'}}
 -- t['zb']    = {'zb', {'100'}}
--- require('neoscroll.config').set_mappings(t)
+-- require("neoscroll.config").set_mappings(t)
 
-require('gomove').setup {
+require("gomove").setup {
   -- whether or not to map default key bindings, (true/false)
   map_defaults = true,
   -- whether or not to reindent lines moved vertically (true/false)
@@ -393,32 +405,32 @@ require('gomove').setup {
 --      Keymaps:      --
 ------------------{{{}}}
 
-local tele_ivy = require('telescope.themes').get_ivy{ sort_mru = true, layout_config = { height = vim.opt.lines:get() - 10 } }
-function Tele_buff_ivy() require('telescope.builtin').buffers( tele_ivy ) end
-local tele_drop = require('telescope.themes').get_dropdown{ sort_mru=true, winblend=9, layout_config = { height=21 } }
-function Tele_buff_drop() require('telescope.builtin').buffers( tele_drop ) end
+local tele_ivy = require("telescope.themes").get_ivy{ sort_mru = true, layout_config = { height = vim.opt.lines:get() - 10 } }
+function Tele_buff_ivy() require("telescope.builtin").buffers( tele_ivy ) end
+local tele_drop = require("telescope.themes").get_dropdown{ sort_mru=true, winblend=9, layout_config = { height=21 } }
+function Tele_buff_drop() require("telescope.builtin").buffers( tele_drop ) end
 H.nmap(',fb', Tele_buff_ivy, "Telescope [B]uffers ivy-themed")
 H.nmap(',r', Tele_buff_ivy, "Telescope [B]uffers ivy-themed")
 H.nmap(',<space>', Tele_buff_drop)
-H.nmap(',l', require('lsp_lines').toggle, { desc = "Toggle lsp_lines" })
+H.nmap(',l', require("lsp_lines").toggle, { desc = "Toggle lsp_lines" })
 -- nnoremap ,<space> :Telescope buffers sort_mru=1 theme=dropdown winblend=9<CR>
-H.nmap(',fh', require('telescope.builtin').help_tags, "Telescope [F]ind [H]elp_tags")
-H.nmap(',fz', require('telescope.builtin').diagnostics, "Telescope [F]ind Diagnostics")
-H.nmap(',fo', require('telescope.builtin').oldfiles, "Telescope [F]ind [O]ld files")
-H.nmap(',fr', require('telescope.builtin').lsp_references, "Telescope [F]ind [R]eferences")
+H.nmap(',fh', require("telescope.builtin").help_tags, "Telescope [F]ind [H]elp_tags")
+H.nmap(',fz', require("telescope.builtin").diagnostics, "Telescope [F]ind Diagnostics")
+H.nmap(',fo', require("telescope.builtin").oldfiles, "Telescope [F]ind [O]ld files")
+H.nmap(',fr', require("telescope.builtin").lsp_references, "Telescope [F]ind [R]eferences")
 H.nmap('qf', "<cmd> call GetProjDir() <bar> exec 'Telescope find_files cwd=' . expand(b:proj_dir)<CR>", "[F]ind my text [F]iles")
 H.nmap(',/',  ":Telescope find_files search_dirs=$sh,$tt,$loc<CR>")
 H.nmap(',,/', ":Telescope find_files theme=ivy search_dirs=$sh,$PWD")
 H.nmap(',fg', ":Telescope live_grep theme=ivy<CR>")
 H.nmap(',fd', ":Telescope live_grep theme=ivy search_dirs=%<CR>")
 H.nmap(',ff', ":Telescope find_files theme=ivy<CR>")
-H.nmap('qr',  ":Telescope lsp_references<CR>")
+H.nmap('qr',  ":Telescope lsp_references theme=ivy<CR>")
 H.nmap(',fs', ":Telescope lsp_document_symbols<CR>")
 H.nmap('qs',  ":Telescope lsp_dynamic_workspace_symbols<CR>")
-H.nmap(',vg', require('gitsigns').toggle_signs, "Show git highlight column")
+H.nmap(',vg', require("gitsigns").toggle_signs, "Show git highlight column")
 
 -- nnoremap ,tt :Telescope current_buffer_fuzzy_find sorting_strategy=ascending layout_config={"prompt_position":"top"}<CR>
--- nnoremap ,tt <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find({sorting_strategy="ascending", theme="ivy"})<CR>
+-- nnoremap ,tt <cmd>lua require("telescope.builtin").current_buffer_fuzzy_find({sorting_strategy="ascending", theme="ivy"})<CR>
 
 ------------------------
 --       LSP:         --
@@ -478,16 +490,16 @@ require("mason-lspconfig").setup {
 
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-local nc_capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+local nc_capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
-require('lspconfig').bashls.setup { on_attach = function() print("lsp client is bashls") end, }
-require('lspconfig').clangd.setup {
+require("lspconfig").bashls.setup { on_attach = function() print("lsp client is bashls") end, }
+require("lspconfig").clangd.setup {
   on_attach = function(client, bufnr)
     -- navic.attach(client, bufnr)
     print("lsp client is clangd")
   end,
 }
---[[ require('lspconfig').sumneko_lua.setup {
+--[[ require("lspconfig").sumneko_lua.setup {
   -- on_attach = function() print("lsp client is sumneko_lua") end,
   settings = {
     Lua = {
@@ -496,11 +508,11 @@ require('lspconfig').clangd.setup {
     }
   },
 } ]]
-require('lspconfig').pyright.setup { on_attach = function() print("lsp client is pyright") end, capabilities = nc_capabilities }
-require('lspconfig').cmake.setup { on_attach = function() print("lsp client is cmake") end, capabilities = nc_capabilities }
-require('lspconfig').vimls.setup { on_attach = function() print("lsp client is vimls") end, capabilities = nc_capabilities }
+require("lspconfig").pyright.setup { on_attach = function() print("lsp client is pyright") end, capabilities = nc_capabilities }
+require("lspconfig").cmake.setup { on_attach = function() print("lsp client is cmake") end, capabilities = nc_capabilities }
+require("lspconfig").vimls.setup { on_attach = function() print("lsp client is vimls") end, capabilities = nc_capabilities }
 
--- blc = require('lspconfig').bashls.cmd
+-- blc = require("lspconfig").bashls.cmd
 
 local lsp = require("lsp-zero")
 lsp.preset("recommended")
@@ -517,10 +529,10 @@ vim.opt.completeopt={"menu", "noselect"}
 -- vim.opt.completeopt={"menu", "menuone", "noselect"}
 
 -- Turn on lsp status information
--- require('fidget').setup()
+-- require("fidget").setup()
 
-local cmp = require('cmp')
-local luasnip = require('luasnip')
+local cmp = require("cmp")
+local luasnip = require("luasnip")
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_mappings = lsp.defaults.cmp_mappings({
   ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),

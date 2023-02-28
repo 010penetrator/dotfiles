@@ -279,7 +279,7 @@ let mapleader = ""
 map q <Nop>
 " map й q
 nnoremap Q q
-nnoremap ,j @@
+nnoremap ,e @@
 nnoremap ,m @
 
 " Free <a> key
@@ -575,12 +575,12 @@ nnoremap ,,<tab> :Startify<CR>
 nnoremap ,zq :wa <bar> qa<CR>
 nnoremap ,,a :call AddRpcEar()<CR>
 " Open current file at vimserver session via my "vimrpc" shell script
-nnoremap ,aa :silent exec '! vir "%:p"'<CR>
-nnoremap ,a. :exec '! vir "%:p"' \| q<CR>
-nnoremap ,ac :exec '! MODE=cur    vir "%:p"' \| q<CR>
-nnoremap ,an :exec '! MODE=newtab vir "%:p"' \| q<CR>
-nnoremap ,as :exec '! MODE=split  vir "%:p"' \| q<CR>
-nnoremap ,av :exec '! MODE=vert   vir "%:p"' \| q<CR>
+nnoremap qaa :silent exec '! vir "%:p"'<CR>
+nnoremap qaq :exec '! vir "%:p"' \| q<CR>
+nnoremap qac :exec '! MODE=cur    vir "%:p"' \| q<CR>
+nnoremap qan :exec '! MODE=newtab vir "%:p"' \| q<CR>
+nnoremap qas :exec '! MODE=split  vir "%:p"' \| q<CR>
+nnoremap qav :exec '! MODE=vert   vir "%:p"' \| q<CR>
 
 " Silly update git repo
 map ,,g :call LGsync()<CR>
