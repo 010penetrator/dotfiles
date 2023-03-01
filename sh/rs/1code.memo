@@ -43,6 +43,8 @@ void foo()
 }
 // Code within lambda function is executed only once, when the static variable is initialized to the return value of lambda function. It should be thread-safe as long as your compiler support thread-safe static initialization.
 
+std::atomic_bool work_on{true};
+
 typedef unsigned char uchar;
 
 using Lgrd = std::lock_guard<std::mutex>;
