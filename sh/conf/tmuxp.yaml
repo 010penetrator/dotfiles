@@ -23,10 +23,11 @@ windows:
       automatic-rename: false
     panes:
       - shell_command:
-        - vifm
+        - vifm /ln/fast/qq/ -c 'wincmd o'
   - window_name: rtorrent
     options:
       automatic-rename: true
     panes:
       - shell_command:
+        - rtorrent
 

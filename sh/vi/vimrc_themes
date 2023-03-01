@@ -30,7 +30,8 @@ if !exists("g:colors_name") || g:colors_name=='habamax'
             " colo Tomorrow | LineColor rusticated
             " colo stellarized | set bg=light | LineColor aqua_plasm
         elseif ( g:phase=='nox' )
-            colo nightfox | set bg=dark
+            colo oh-lucy-evening
+            " colo nightfox | set bg=dark
             " colo melange | set bg=dark
             " colo stellarized | set bg=dark | LineColor snow_dark
             " colo onehalfdark | LineColor one
