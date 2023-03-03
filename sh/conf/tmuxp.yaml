@@ -28,5 +28,5 @@ windows:
       automatic-rename: true
     panes:
       - shell_command:
-        - rtorrent
+        - rtorrent || exit
 
