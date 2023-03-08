@@ -556,7 +556,7 @@ nnoremap ,gh :call FocusBufOrDo('sh_history','e $HOME/.bash_history')<CR>G
 nnoremap ,gl :call FocusBufOrDo('1linux','e $sh/rs/1linux')<CR>
 nnoremap ,gm :call FocusBufOrDo('memo','e $sh/rs/1code.memo')<CR>
 nnoremap q/  :call FocusWindowOrDo('silly.txt','1tabn \| wincmd b \| e $buf')<CR>
-nnoremap ,gs  :call FocusBufOrDo('silly.txt','e $buf')<CR>
+nnoremap ,gs :call FocusBufOrDo('silly.txt','e $buf')<CR>
 
 nnoremap ,,<space> :Goyo<CR>
 nnoremap ,vi :IndentBlanklineToggle<CR>
@@ -765,7 +765,7 @@ nnoremap ,cf :set opfunc=FoldMotion<cr>g@
 
 " Save last insert as Macro at "l"
 command! -nargs=1 LastToMacro exec "let @" . <q-args> . " = \"i\" . @. . \"<Esc>\""
-nnoremap qL :LastToMacro l<CR>
+nnoremap ,L :LastToMacro l<CR>
 
 " Show current dir & current file stats
 nnoremap ,zl : silent exec '! echo -e "\n$(pwd):"; ls -la . ; echo \. ; ls -la %:p ; read -n 1 -s -r -p "//hit.anykey" ; echo -ne "\n" ' \| redraw!<CR>
@@ -885,7 +885,7 @@ menu tagi.git     :call UpdCtagsGit()<CR>
 """"""""""""""""""""""""
 
 " press ,mgg ;)
-let @g = ",ggGzk4k\<C-k>jzzao:call DoOnKey(\"103\",\"b #\")\n"
+let @g = ",gsGzk4k\<C-k>jzzao:call DoOnKey(\"103\",\"b #\")\n"
 let @s = "i \<Esc>ll."
 
 """"""""""""""""""""""""

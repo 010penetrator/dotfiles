@@ -1,8 +1,7 @@
 # vim: ts=2 sw=2 commentstring=\#\ %s
 
-super + f ; { space, v, Up }
+super + f ; { v, Up }
   { \
-  addlayout.sh ; xinputupd.sh ; sxd.sh ; notify-send "$( LC_ALL=ru_RU.UTF-8 date; uptime -p )", \
   xdotool mousemove_relative 0 1600, \
   notify-send "$(transmission-remote 192.168.1.78:9090 -st)" \
   }
@@ -16,7 +15,9 @@ super + x ; { m, s, h, n, o, a, g }
   ror.sh { '' notimem, speedcrunch, htop '$TERMINAL -e htop', nautilus, VirtualBox '', pavucontrol, listgames.sh }
 
 super + x ; { space, z, i, f, p, q, l, c, d, b, Up, Down }
-  { xdotool mousemove_relative 0 1600, $TERMINAL -e ask_album.sh, listalbums.sh /ln/ho/.mus-history, listalbums.sh /ln/ho/.mus-favourites, listalbums.sh /ln/ho/.mus-playlist, bspc node -c, listdwn.sh, SHFL=1 listalbums.sh /ln/ho/.mus-library, deadbeef, listdeadbeef.sh, nowis day, nowis nox }
+  { \
+    addlayout.sh ; xinputupd.sh ; sxd.sh ; notify-send "$( LC_ALL=ru_RU.UTF-8 date; uptime -p )", \
+    $TERMINAL -e ask_album.sh, listalbums.sh /ln/ho/.mus-history, listalbums.sh /ln/ho/.mus-favourites, listalbums.sh /ln/ho/.mus-playlist, bspc node -c, listdwn.sh, SHFL=1 listalbums.sh /ln/ho/.mus-library, deadbeef, listdeadbeef.sh, nowis day, nowis nox }
 
 super + { q, Q, D, F, t, v, s, y, r, R, z, g, slash }
   ror.sh { \
