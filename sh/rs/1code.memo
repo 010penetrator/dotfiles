@@ -27,8 +27,7 @@ bool debug = false;
 Part my_struct;
 my_struct = Part(); // reset
 
-C++11:
-my_struct = {}; // reset
+my_struct = {}; // reset (C++11)
 
 template <typename T>
 void echo(const T& arg = nullptr) {
