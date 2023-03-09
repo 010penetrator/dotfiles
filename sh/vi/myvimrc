@@ -129,7 +129,7 @@ augroup Sessload
   autocmd SessionLoadPost * call timer_start( 5, {-> ReloadStyle(1)} )
   " call timer_start(100, {-> execute("colo dayfox")})
 augroup END
-augroup SaveNotepad
+augroup SaveNotes
   autocmd!
   autocmd FocusLost silly.txt silent update
   autocmd BufLeave  silly.txt silent update
@@ -138,10 +138,10 @@ augroup END
 augroup myAucmds
   au!
   set updatetime=6000
-  au CursorHold * normal! m'
-  " au FocusGained,BufEnter,CursorHold * :silent! checktime
-  au FocusGained,BufEnter,CursorHold * : checktime
-  au FileChangedShell * echo "Message: File changed on disk"
+  autocmd CursorHold * normal! m'
+  " autocmd FocusGained,BufEnter,CursorHold * :silent! checktime
+  autocmd FocusGained,BufEnter,CursorHold * : checktime
+  autocmd FileChangedShell * echo "Message: File changed on disk"
 augroup END
 
 " autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 100)|\
@@ -184,7 +184,7 @@ endif
 if !exists("g:lasttab")
   let g:lasttab = 1
 endif
-au TabLeave * let g:lasttab = tabpagenr()
+autocmd TabLeave * let g:lasttab = tabpagenr()
 
 ""  Plugin specific setttings  ""
 
@@ -331,7 +331,7 @@ nnoremap dc "_d$
 nnoremap d. "_dd
 nnoremap d<space> :call DelSpace()<Esc>
 " add this line to the next line
-nnoremap q<cr> ddpkJ
+nnoremap qn ddpkJ
 " start fat new line
 nnoremap cm o<Esc>O
 " insert new line after current paragraph
@@ -1710,13 +1710,13 @@ augroup MatchExtraWhitespace
   " au BufWinEnter * if &modifiable==1 | match ExtraWhitespace /\s\+$/ | endif
 " au InsertLeave * if &modifiable==1 | match ExtraWhitespace /\s\+$/ | endif
     " au BufWinEnter * if &modifiable==0 | call clearmatches() | endif
-  au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+  autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
   if has("nvim")
-    au BufModifiedSet * if &modifiable==1 | match ExtraWhitespace /\s\+$/ | else | call clearmatches() | endif
+    autocmd BufModifiedSet * if &modifiable==1 | match ExtraWhitespace /\s\+$/ | else | call clearmatches() | endif
   else
-    au BufWinEnter,InsertLeave * match ExtraWhitespace /\s\+$/
+    autocmd BufWinEnter,InsertLeave * match ExtraWhitespace /\s\+$/
   endif
-  au BufWinLeave * call clearmatches()
+  autocmd BufWinLeave * call clearmatches()
 augroup END
 
 function! s:JbzCppMan()
@@ -1727,7 +1727,7 @@ function! s:JbzCppMan()
   execute 'Man ' . str
 endfunction
 command! JbzCppMan :call s:JbzCppMan()
-au FileType cpp nnoremap <buffer>K :JbzCppMan<CR>
+autocmd FileType cpp nnoremap <buffer>K :JbzCppMan<CR>
 
 if has("nvim")
   set wildoptions=pum
