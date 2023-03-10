@@ -51,7 +51,6 @@ set runtimepath+=$vi
 if has("nvim")
     SSource $vi/myvimrc
     SSource $mylua/init.lua
-    silent call ReloadStyle(0)
     " SSource $vi/vimrc_themes
     " SSource $mylua/helpy.lua
     " SSource $mylua/remap.lua
@@ -61,6 +60,7 @@ else
     " SSource $vi/vimrc_themes
     SSource $loc/vimrc.local
 endif
+silent call ReloadStyle(0)
 
 " TODO/Problems :
 "     tame completion

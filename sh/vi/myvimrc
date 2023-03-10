@@ -262,7 +262,9 @@ function! ReloadStyle(force)
     echom "load color for ".g:phase
     call LoadColor()
   endif
-  lua H.reset('tint')
+  if has("nvim") 
+    lua H.reset("tint") 
+  endif
 endfunction
 
 """"""""""""""""""""""""
