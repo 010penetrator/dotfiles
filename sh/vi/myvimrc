@@ -1354,55 +1354,61 @@ function! SaveColor(...)
     echom "Please provide 'day' or 'nox'"
   endif
 endfunction
+
 function! LoadColor(...)
   if ( a:0==0 )
-    let l:arg = ''
+    let l:switch = g:phase
   else
-    let l:arg = a:1
+    let l:switch = a:1
   endif
+  let l:wanted_color = 0
   " echo l:arg
   " return
   echo ' '
-  if l:arg=='dunno' || g:phase=='dunno'
-    echo "Will load colors."
+  if l:switch=='dunno'
+    echo "Will load very default colors."
     unlet g:colors_name
     source $sh/vi/vimrc_themes
-  elseif l:arg=='day' || g:phase=='day'
+  elseif l:switch=='day'
     if !exists("g:ColorDayName")
       echom "NO saved colors for this phase of day! Loading defaults..(day)"
       if exists("g:colors_name") | unlet g:colors_name | endif
       source $sh/vi/vimrc_themes
-      " return
     else
-      exec "colo " .  g:ColorDayName
+      " exec "colo " .  g:ColorDayName
+      let wanted_color = g:ColorDayName
       if exists("g:loaded_lightline")
         exec "LineColor " .  g:ColorDayLine
       endif
       exec "set background=" . g:ColorDayBg
     endif
     let l:llcol = exists("g:ColorDayLine") ? g:ColorDayLine : 'none'
-    echo "phase=" . g:phase . ", color=" . g:ColorDayName . ", linecolor=" . l:llcol
-    return
-  elseif l:arg=='nox' || g:phase=='nox'
+    " echo "phase=" . l:switch . ", color=" . g:ColorDayName . ", linecolor=" . l:llcol
+  elseif l:switch=='nox'
     if !exists("g:ColorNoxName")
       echom "NO saved colors for this phase of day! Loading defaults..(nox)"
       if exists("g:colors_name") | unlet g:colors_name | endif
       source $sh/vi/vimrc_themes
-      " return
     else
-      exec "colo " .  g:ColorNoxName
+      " exec "colo " .  g:ColorNoxName
+      let wanted_color = g:ColorDayName
       if exists("g:loaded_lightline")
         exec "LineColor " .  g:ColorNoxLine
       endif
       exec "set background=" . g:ColorNoxBg
     endif
     let l:llcol = exists("g:ColorNoxLine") ? g:ColorNoxLine : 'none'
-    echo "phase=" . g:phase . ", color=" . g:ColorNoxName . ", linecolor=" . l:llcol
-    " return
+    " echo "phase=" . l:switch . ", color=" . g:ColorNoxName . ", linecolor=" . l:llcol
   else
     echo "Unknown phase of day!"
   endif
-  " echo 1
+  sleep 1
+  if  wanted_color != 0
+    echo 'iiiii ' . l:wanted_color
+    exec "colo " .  l:wanted_color
+    echo "phase=" . l:switch . ", color=" . g:wanted_color . ", linecolor=" . l:llcol
+    sleep 1
+  endif
 endfunction
 command! -nargs=? SaveColor call SetPhase(<f-args>) <bar> call SaveColor(<f-args>)
 command! -nargs=? LoadColor call SetPhase(<f-args>) <bar> call LoadColor(<f-args>) <bar> call CrispBorders()
