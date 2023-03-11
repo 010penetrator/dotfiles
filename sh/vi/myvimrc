@@ -260,7 +260,7 @@ function! ReloadStyle(force)
     " load saved color
     call SetPhase()
     echom "load color for ".g:phase
-    call LoadColor()
+    silent call LoadColor()
   endif
   if has("nvim") 
     lua H.reset("tint") 
@@ -1355,16 +1355,24 @@ function! SaveColor(...)
   endif
 endfunction
 function! LoadColor(...)
-  if g:phase == 'dunno'
-    echo "Will load default colors."
+  if ( a:0==0 )
+    let l:arg = ''
+  else
+    let l:arg = a:1
+  endif
+  " echo l:arg
+  " return
+  echo ' '
+  if l:arg=='dunno' || g:phase=='dunno'
+    echo "Will load colors."
     unlet g:colors_name
     source $sh/vi/vimrc_themes
-  elseif g:phase == 'day'
+  elseif l:arg=='day' || g:phase=='day'
     if !exists("g:ColorDayName")
       echom "NO saved colors for this phase of day! Loading defaults..(day)"
       if exists("g:colors_name") | unlet g:colors_name | endif
       source $sh/vi/vimrc_themes
-      return
+      " return
     else
       exec "colo " .  g:ColorDayName
       if exists("g:loaded_lightline")
@@ -1374,12 +1382,13 @@ function! LoadColor(...)
     endif
     let l:llcol = exists("g:ColorDayLine") ? g:ColorDayLine : 'none'
     echo "phase=" . g:phase . ", color=" . g:ColorDayName . ", linecolor=" . l:llcol
-  elseif g:phase == 'nox'
+    return
+  elseif l:arg=='nox' || g:phase=='nox'
     if !exists("g:ColorNoxName")
       echom "NO saved colors for this phase of day! Loading defaults..(nox)"
       if exists("g:colors_name") | unlet g:colors_name | endif
       source $sh/vi/vimrc_themes
-      return
+      " return
     else
       exec "colo " .  g:ColorNoxName
       if exists("g:loaded_lightline")
@@ -1389,9 +1398,11 @@ function! LoadColor(...)
     endif
     let l:llcol = exists("g:ColorNoxLine") ? g:ColorNoxLine : 'none'
     echo "phase=" . g:phase . ", color=" . g:ColorNoxName . ", linecolor=" . l:llcol
+    " return
   else
     echo "Unknown phase of day!"
   endif
+  " echo 1
 endfunction
 command! -nargs=? SaveColor call SetPhase(<f-args>) <bar> call SaveColor(<f-args>)
 command! -nargs=? LoadColor call SetPhase(<f-args>) <bar> call LoadColor(<f-args>) <bar> call CrispBorders()
