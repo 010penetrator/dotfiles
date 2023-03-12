@@ -1361,10 +1361,12 @@ function! LoadColor(...)
   else
     let l:switch = a:1
   endif
-  let l:wanted_color = 0
-  " echo l:arg
+  let l:wanted_color = ''
   " return
-  echo ' '
+  " if wanted_color == 0
+  "   echo 'wc0q'
+  " endif
+  " echo ' '
   if l:switch=='dunno'
     echo "Will load very default colors."
     unlet g:colors_name
@@ -1402,12 +1404,10 @@ function! LoadColor(...)
   else
     echo "Unknown phase of day!"
   endif
-  sleep 1
-  if  wanted_color != 0
-    echo 'iiiii ' . l:wanted_color
-    exec "colo " .  l:wanted_color
-    echo "phase=" . l:switch . ", color=" . g:wanted_color . ", linecolor=" . l:llcol
-    sleep 1
+  if  wanted_color != ''
+    exec "colo " .  wanted_color
+    echo ' '
+    echo "phase=" . l:switch . ", color=" . wanted_color . ", linecolor=" . l:llcol
   endif
 endfunction
 command! -nargs=? SaveColor call SetPhase(<f-args>) <bar> call SaveColor(<f-args>)
