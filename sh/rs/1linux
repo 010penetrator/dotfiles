@@ -204,7 +204,7 @@ ps -u $(id -u) -o pid= | while read pid; do
 
 ==FS
 mkfs.vfat -F32 /dev/sdxN # create FAT32 fs
-sync -f .  ; time ( dd if=/dev/zero of=zeroes.file bs=100M count=30 ; sync -f . ) ; rm zeroes.file  # test drive write speed
+sync -f . ; time ( dd if=/dev/zero of=zeroes.file bs=100M count=30; sync -f . ); rm zeroes.file  # test drive write speed
 dd bs=4M if=~/image.img of=/dev/sdb && sync # restore partition from file
 dd if=/dev/zero of=/dev/sdx bs=4k && sync # wipe partition
 sudo dd if=/dev/zero of=zero.file # wipe free space # if you don't use sudo then all but 5% of the will be used (5% is reseved for the root login)
