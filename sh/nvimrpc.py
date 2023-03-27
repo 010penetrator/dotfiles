@@ -18,7 +18,7 @@ def get_cli_input():
         argv = sys.argv[1:]
         opts, args = getopt.getopt(argv, "s:m:")
     except getopt.GetoptError:
-        print('Usage: nvimrpc -s /tmp/NVRPCSERVER -m newtab /etc/file')
+        print('Usage: nvimrpc.py -s /tmp/NVRPCSERVER -m newtab /etc/file')
         # sys.exit(2)
     for o, a in opts:
         print('stage c1', o, a)

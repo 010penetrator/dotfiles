@@ -8,7 +8,7 @@ if [ -z "$1" ] ; then
 fi
 
 # if [ "$EDITOR" == "nvim" ] ; then
-#   nvimrpc $*
+#   nvimrpc.py $*
 #   exit
 # fi
 

@@ -1376,7 +1376,7 @@ function! LoadColor(...)
   " echo ' '
   if l:switch=='dunno'
     echo "Will load very default colors."
-    unlet g:colors_name
+    if exists("g:colors_name") | unlet g:colors_name | endif
     source $sh/vi/vimrc_themes
   elseif l:switch=='day'
     if !exists("g:ColorDayName")
