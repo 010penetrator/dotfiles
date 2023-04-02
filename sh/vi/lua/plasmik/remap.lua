@@ -58,4 +58,6 @@ H.nmap(',vt', function() require'tint'.toggle() end )
 H.nmap(',s', ":SymbolsOutline<CR>")
 H.nmap('q,', ":TSJJoin<CR>")
 H.nmap('q.', ":TSJSplit<CR>")
+H.nmap('d<', "<cmd>diffget //2<CR>")
+H.nmap('d>', "<cmd>diffget //3<CR>")
 
