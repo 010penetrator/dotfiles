@@ -130,7 +130,7 @@ require("lazy").setup({
   'nullchilly/fsread.nvim',
   'folke/paint.nvim',
   'folke/styler.nvim',
-  'LintaoAmons/scratch.nvim',
+  -- 'LintaoAmons/scratch.nvim',
   'AbdelrahmanDwedar/awesome-nvim-colorschemes',
   'Yazeed1s/oh-lucy.nvim',
   'diegoulloao/nvim-file-location',
