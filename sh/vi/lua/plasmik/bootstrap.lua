@@ -27,7 +27,7 @@ end ]]
 
 require("lazy").setup({
 
-  -- VIM BASIC
+  -- VIM BASIC --
   -- 'itchyny/lightline.vim', --cool
   'justinmk/vim-sneak', --good!
   'jlanzarotta/bufexplorer', --basic
@@ -55,7 +55,7 @@ require("lazy").setup({
   'haya14busa/vim-edgemotion', --good
   { 'junegunn/fzf.vim', dependencies = { 'junegunn/fzf' } }, --fantastic
 
-  -- TRY LATER
+  -- TRY LATER --
   -- 'zefei/vim-colortuner', --fun
   -- 'Townk/vim-autoclose', --usable
   'will133/vim-dirdiff',
@@ -71,7 +71,7 @@ require("lazy").setup({
   'dkarter/bullets.vim',
   -- 'honza/vim-snippets',
 
-  -- NEOVIM ONLY
+  -- NEOVIM ONLY --
   {'nvim-lualine/lualine.nvim', dependencies = 'kyazdani42/nvim-web-devicons'},
   'kylechui/nvim-surround',
   'nvim-telescope/telescope.nvim',
@@ -123,6 +123,7 @@ require("lazy").setup({
   'Wansmer/treesj',
   -- 'nyngwang/murmur.lua', -- no effect
 
+  -- TRIAL --
   'rareitems/hl_match_area.nvim',
   'Eandrju/cellular-automaton.nvim',
   'tamton-aquib/zone.nvim',
@@ -137,7 +138,7 @@ require("lazy").setup({
 
 ---{{{}}}---
 
-  -- TRY LATER
+  -- TRY LATER --
   'ziontee113/syntax-tree-surfer',
   'AckslD/nvim-neoclip.lua', -- no effect
   'mizlan/iswap.nvim',

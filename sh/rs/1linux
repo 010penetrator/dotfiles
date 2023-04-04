@@ -252,6 +252,7 @@ git log -p
 git fetch origin master:master # update master while staying on your branch
 git show <commithash>:main.cpp > another.cpp # restore file under new name
 git config --global core.autocrlf false
+git config --global core.autocrlf input
 git config core.filemode false
 git config credential.helper cache 8h # remember git passwd for 8 hours
 git config --local credential.helper store # store git passwd
@@ -305,7 +306,7 @@ hwclock --systohc # sync hardware clock to system time
 # torify stuff: edit /etc/tor/torrc,/etc/tor/torsocks.conf ; /etc/init.d/tor restart ==> use torsocks
 torify curl http://wtfismyip.com/text
 torsocks curl -s --head http://flibustahezeous3.onion/ # check tor
-??? curl --proxy socks5h://localhost:1234 ifconfig.me # check socks5 proxy
+curl --proxy socks5h://localhost:1234 ifconfig.me # check socks5 proxy
 curl --socks5 localhost:1234 ifconfig.me # check socks5 proxy
 systemctl restart privoxy ; http_proxy=127.0.0.1:8118 curl ifconfig.me --head # get tor as http proxy
 https_proxy="localhost:8118" wget -q --spider https://ya.ru && echo 1 # check proxy

@@ -21,8 +21,13 @@ choco install -y git 7zip fzf nodejs-lts luarocks curl wget ripgrep cmake make m
 choco {info,uninstall,list --localonly}
 
 :: Set up scoop
+Set-ExecutionPolicy ByPass -Scope Process -Force
+$env:SCOOP='C:\Applications\Scoop'
+$env:SCOOP_GLOBAL='C:\GlobalScoopApps'
+[Environment]::SetEnvironmentVariable('SCOOP_GLOBAL', $env:SCOOP_GLOBAL, 'Machine')
 irm get.scoop.sh -outfile 'install.ps1'
 .\install.ps1 -RunAsAdmin
+    iex "& {$(irm get.scoop.sh)} -RunAsAdmin"
 scoop bucket add extras
 scoop install curl wget git vim windows-terminal wsl-distrod
 maybe also  vcredist
@@ -35,6 +40,7 @@ scoop install windbg windbg32
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
 dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+    DISM /Online /Enable-Feature /All /FeatureName:Microsoft-Hyper-V
 get and run wsl_update_x64.msi
 wsl --update
 wsl --list --verbose
