@@ -86,8 +86,8 @@ elif [[ $INLIST != 1 && $prompt == "a" ]]; then
     echo "$TARGREAL" >> "$LIST"
     RUNAGAIN=1
 elif [[ $INLIST == 1 && $prompt == "d" ]]; then
-    echo deleting $TARG from list
-    grep -vF "$TARG" "$LIST" > /tmp/tmplist && mv /tmp/tmplist "$LIST"
+    echo deleting $TARGREAL from list
+    grep -vF "$TARGREAL" "$LIST" > /tmp/tmplist && mv /tmp/tmplist "$LIST"
     RUNAGAIN=1
 elif [[ $INFAVS == 0 && $prompt == "s" ]]; then
     echo "$TARGREAL" >> "$FAVS"

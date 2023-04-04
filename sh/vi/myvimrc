@@ -281,7 +281,7 @@ let mapleader = ""
 map q <Nop>
 " map й q
 nnoremap Q q
-nnoremap ,e @@
+nnoremap ,M @@
 nnoremap ,m @
 
 " Free <a> key
@@ -724,7 +724,7 @@ nnoremap ,,o ^y$:call system('xdg-open ' . "'" . @" . "'")<CR>
 " system open selected lines
 vnoremap ,,o :<C-U>call SystemOpenEveryLine()<CR>
 " open current line with firefox
-nnoremap ,M ^y$:call system('firefox ' . "'" . @" . "' &")<CR>
+nnoremap ,e ^y$:call system('firefox ' . "'" . @" . "' &")<CR>
 " google current line
 nnoremap ,go ^y$:call system('google.sh ' . "'" . @" . "'")<CR>
 " yandex current line
