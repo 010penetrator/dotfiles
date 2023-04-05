@@ -557,8 +557,8 @@ nnoremap ,gu :call FocusBufOrDo('ff','e $tt/u*/ff*')<CR>
 nnoremap ,gh :call FocusBufOrDo('sh_history','e $HOME/.bash_history')<CR>G
 nnoremap ,gl :call FocusBufOrDo('1linux','e $sh/rs/1linux')<CR>
 nnoremap ,gm :call FocusBufOrDo('memo','e $sh/rs/1code.memo')<CR>
-nnoremap q/  :call FocusWindowOrDo('silly.txt','1tabn \| wincmd b \| e $buf')<CR>
-nnoremap ,gs :call FocusBufOrDo('silly.txt','e $buf')<CR>
+nnoremap q/  :call FocusWindowOrDo('silly.txt','1tabn \| wincmd b \| e $tbuf')<CR>
+nnoremap ,gs :call FocusBufOrDo('silly.txt','e $tbuf')<CR>
 
 nnoremap ,,<space> :Goyo<CR>
 nnoremap ,vi :IndentBlanklineToggle<CR>
@@ -828,6 +828,7 @@ command! SuW w !sudo tee %
 command! SuE r !sudo cat %
 command! Fdel :silent exec '!rm %' | redraw! | bd
 command! KIR e ++enc=cp1251 | set fileencoding=utf-8 | set fileformat=unix
+command! KIRdos e ++enc=cp1251 | set fileencoding=utf-16 | set fileformat=dos
 " command! C1KIR e ++enc=cp1251 | set fileencoding=utf-8 | set fileformat=unix | wq
 command! F set fileencoding=utf-8 | set fileformat=unix
 
@@ -893,13 +894,14 @@ menu tagi.git     :call UpdCtagsGit()<CR>
 ""      Macros:       ""
 """"""""""""""""""""""""
 
-" press ,mgg ;)
+" press ,mgg to write yank reg to tbuf file
 let @g = ",gsGzk4k\<C-k>jzzao:call DoOnKey(\"103\",\"b #\")\n"
+" put spaces around current char
 let @s = "i \<Esc>ll."
 
 """"""""""""""""""""""""
-""""""""""""""""""{{{}}}
 ""     Functions:     ""
+""""""""""""""""""{{{}}}
 
 function! EditAtEdge(dir)
   " Go to edge of text/blank area and insert new line there
