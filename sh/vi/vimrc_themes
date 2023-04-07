@@ -24,6 +24,10 @@ if !exists("g:colors_name") || g:colors_name=='habamax'
         elseif ( g:phase=='nox' )
             colo OceanicNext
         endif
+        " if !exists("g:vimplug_available")
+        if ( !exists("g:colors_name") || g:colors_name == 'default' )
+            colo delek
+        endif
     else
         if ( g:phase=='day' )
             colo snow | set bg=light
