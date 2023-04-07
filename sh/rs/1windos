@@ -6,6 +6,7 @@ copy NUL EMptyFile.txt
 pnputil -i -a *.inf
 chcp 437
 mklink /J name address
+cmd /c mklink /J  %USERPROFILE%\Downloads c:\Downloads
 
 cmd:: dism /online /export-driver /destination:C:\Drivers
 posh::Export-WindowsDriver —Online —Destination C:\Drivers
