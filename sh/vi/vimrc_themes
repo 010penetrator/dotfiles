@@ -21,8 +21,8 @@ if !exists("g:colors_name") || g:colors_name=='habamax'
     if !has('nvim')
         if ( g:phase=='day' )
             colo paper
-        elseif ( g:phase=='nox' )
-            colo OceanicNext
+        elseif ( g:phase=='nox' || g:phase=='dunno' )
+            colo tempus_autumn
         endif
         " if !exists("g:vimplug_available")
         if ( !exists("g:colors_name") || g:colors_name == 'default' )
