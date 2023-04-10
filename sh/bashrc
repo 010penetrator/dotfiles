@@ -54,9 +54,11 @@ type -f ai &>/dev/null ||
 if  type -f pacman &>/dev/null; then
     alias as='pacman -Ss'
     alias ai='sudo pacman -S'
+    alias aa='sudo pacman -Syu'
 elif type -f apt &>/dev/null; then
     alias as='apt search'
     alias ai='sudo apt install'
+    alias aa='sudo apt update && sudo apt upgrade'
 fi
 
 if command -v most >/dev/null 2>&1; then
