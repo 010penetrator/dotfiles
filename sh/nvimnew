@@ -9,7 +9,7 @@ if [[ $EDITOR == vim ]]; then
         RPC_OPTION="--servername $VIMSERV"
     fi
     # Do we even have client-server compiled into Vim?
-    if vim --version | grep "-clientserver" -q; then
+    if ! vim --version | grep "+clientserver" -q; then
         echo "No client-server compiled into Vim.. Exiting!"
         exit 1
     fi
@@ -41,7 +41,9 @@ HASG=false
 pgrep -c Xorg &>/dev/null && HASG=true
 INTERACTIVE=false
 tty -s && INTERACTIVE=true
-# [ -t 0 ] && notify-send 101
+
+[ -t 0 ] && echo "shell is interactive(1)"
+tty -s   && echo "shell is interactive(2)"
 
 VCMD="$EDITOR $RPC_OPTION"
 [[ $VIMINSTASESS == true ]] && VCMD="$VCMD -c SLoad!"
