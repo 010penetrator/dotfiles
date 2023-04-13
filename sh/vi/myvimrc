@@ -551,7 +551,6 @@ nnoremap ,gB :call FocusBufOrDo('bashrc.local','e $loc/bashrc.local')<CR>
 nnoremap ,g2 :call FocusBufOrDo('bspwmrc','e $sh/bspwmrc')<CR>
 nnoremap ,gx :call FocusBufOrDo('sxhkd','e $sh/conf/sxhkdrc')<CR>
 nnoremap ,gk :call FocusBufOrDo('kitty.conf','e $sh/conf/kitty.conf')<CR>
-nnoremap ,gr :call FocusBufOrDo('rc.sh','e $sh/rc.sh')<CR>
 nnoremap ,gz :call FocusBufOrDo('zzzz','e $tt/zzzzzz')<CR>
 nnoremap ,gu :call FocusBufOrDo('ff','e $tt/u*/ff*')<CR>
 nnoremap ,gh :call FocusBufOrDo('sh_history','e $HOME/.bash_history')<CR>G
