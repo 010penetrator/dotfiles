@@ -1242,7 +1242,7 @@ function! MoveToPrevTab()
   if tabpagenr('$') == 1 && winnr('$') == 1
     return
   endif
-  "preparing new window
+  " preparing new window
   let tab_nr = tabpagenr('$')
   let cur_buf = bufnr('%')
   if tabpagenr() != 1
