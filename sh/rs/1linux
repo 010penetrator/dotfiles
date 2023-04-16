@@ -461,3 +461,4 @@ a="Motorhead - Loud Album"; mkdir -p "$a"; cd "$a"; shnsplit -f ../"$a".cue -t "
 mkdir resampled; for flac in *.flac; do sox -S "${flac}" -r 44100 -b 16 ./resampled/"${flac}"; done # resample audio
 rm -rf /mnt/blink/enc/* ; time ( cat /ln/ho/.mus-favourites | while read f  ; do echo "=== $f" ; ((i=i%6)); ((i++==0)) && wait ; conv_any2flac.sh "$f" /mnt/blink/enc/ & done ) # convert multithreaded
 
+
