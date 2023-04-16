@@ -1255,7 +1255,7 @@ function! MoveToPrevTab()
     close!
     exe "0tabnew"
   endif
-  "opening current buffer in new window
+  " opening current buffer in new window
   exe "b".cur_buf
 endfunc
 
