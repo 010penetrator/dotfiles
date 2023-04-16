@@ -50,7 +50,7 @@ alias dropcs='sync && echo 3 | sudo tee /proc/sys/vm/drop_caches'
 alias nuts='sudo qemu-system-x86_64 -m 1400 -enable-kvm -cpu host -smp 4 -boot menu=on'
 # alias qu='sync && echo 3 | sudo tee /proc/sys/vm/drop_caches; sudo qemu-system-x86_64 -m 1400  -enable-kvm -cpu host -smp 4 '
 
-type -f ai &>/dev/null ||
+type -f aa &>/dev/null ||
 if  type -f pacman &>/dev/null; then
     alias as='pacman -Ss'
     alias ai='sudo pacman -S'
