@@ -255,6 +255,7 @@ git config --global core.autocrlf false
 git config --global core.autocrlf input
 git config core.filemode false
 git config credential.helper cache 8h # remember git passwd for 8 hours
+git config --global credential.helper "cache --timeout=28800"
 git config --local credential.helper store # store git passwd
 git config --global diff.tool vimdiff # use vim as difftool
 git config --global difftool.prompt false
