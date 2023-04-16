@@ -1238,7 +1238,7 @@ function! RaiseNetRW()
 endfunction
 
 function! MoveToPrevTab()
-  "there is only one window
+  " there is only one window
   if tabpagenr('$') == 1 && winnr('$') == 1
     return
   endif
