@@ -51,6 +51,7 @@ wsl --set-default-version 2
 useradd -m -G wheel -s /bin/bash {username}
 sudo pacman-key --init; sudo pacman-key --populate; sudo pacman -Sy archlinux-keyring; sudo pacman -Su # initialize keyring
 sudo pacman -Syu --needed neovim ncdu vifm fzf git curl wget base-devel p7zip npm nodejs ruby luarocks python-pip
+sudo mount -t drvfs j: /mnt/extr 
 
 :crappy SSL ignore:
 cp CA.{crt,cer}} /etc/ca-certificates/trust-source/anchors; update-ca-trust; pacman -Sy --disable-download-timeout
