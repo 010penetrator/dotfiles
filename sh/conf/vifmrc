@@ -5,20 +5,19 @@
 !echo -ne "\033]0;VIFM\007"
 " wincmd o
 
-command! ResetColor  :exec 'colo '.$VIFM_COLO
+command! ResetColor  :exec "colo ".$VIFM_COLO
 command! UpdateColor :
-    " \| if ($VIFM_COLO == '')
     \|     if (system('[ -f /tmp/now_is_day ] && echo 1') == "1" )
     \|         let $VIFM_COLO='papercolor-light'
     \|         echo 'Will set day theme'
     \|     elseif (system('[ -f /tmp/now_is_nox ] && echo 1') == "1" )
-    \|         let $VIFM_COLO='crown_24bit'
+    \|         let $VIFM_COLO='gruvbox'
+    " \|         let $VIFM_COLO='crown_24bit'
     \|         echo 'Will set nox theme'
     \|     else
     \|         let $VIFM_COLO='iceberg'
     \|     endif
     \|     ResetColor
-    " \| endif
 nnoremap c<BS> :UpdateColor<CR>
 UpdateColor
 
@@ -29,7 +28,7 @@ command! mpiii :! ffmpeg -i %c -qscale:a 2 %D/%c.mp3 &>/dev/null &
 " command! respic :! echo $PWD && respic.sh 50%%%%
 command! respic :! echo $PWD ; respic.sh %a
 command! rescol :! convert %c -quality 95%%  -sampling-factor '2x2,1x1,1x1' %c.jpg
-command! md5 :! bash -c "md5sum %f; echo hit.any.key; read -rsn1"
+"""""""" command! md5 :! bash -c "md5sum %f; echo hit.any.key; read -rsn1"
 command! respng :! mkdir res ; for f in *.png; do d=${f%%%%.*} ; convert "$f" -quality 95%%%% -sampling-factor 4:4:4  jpg:res/"$d"".jpg" ; done # png to jpg
 map re :! for f in %f; do d=${f%%.*} ; convert "$f" -resize 50%% -sampling-factor 4:4:4 -quality 95%% jpg:"$d"".R.jpg" ; done
 command! resmusAll :! mkdir resampled orig ; for flac in *.flac; do sox -S "${flac}" -G -b 16 ./resampled/"${flac}" rate -v -L 44100 dither ; mv "${flac}" orig/ ; done

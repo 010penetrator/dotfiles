@@ -1,6 +1,8 @@
 #!/bin/bash
 # Make Desktop #num all-floating, but ignore sticky or fullscreen windows
 
+echo 111
+
 keep_floating () {
   FLOATING_DESKTOP_ID=$(bspc query -D -d "^$num")
   bspc subscribe node | while read -a msg ; do

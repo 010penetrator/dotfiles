@@ -25,7 +25,7 @@ super + { q, Q, D, F, t, v, s, y, r, R, z, g, slash }
   'xterm\|urxvt\|kitty', \
   ' - VIMSERV\|VIM$\|VIM @ \| - NVIM$\|nvim $\|QtCreator\| tmux\|tm$' 'vinew', \
   'chromium\|Firefox\|Remmina' 'firefox', \
-  'Thunar\|pcmanfm\| YouTube \|office.libreoffice\|Abiword\|sis.ko' 'notify-send not\ found', \
+  'Thunar\|Caja\|pcmanfm\| YouTube \|office.libreoffice\|Abiword\|sis.ko' 'notify-send not\ found', \
   'sioyek\|zathura' listzathura.sh, evince, FBReader, \
   'Telegram\|Pidgin\|Git\|TuxGuitar\|hydrogen\|VirtualBox' '', \
   '' listmenu.sh }
