@@ -62,6 +62,9 @@ elif [[ "$HOSTNAME" =~ "think" ]]; then
   # xrandr --output DisplayPort-0 --mode 2560x1440 --rate 100
   sleep 1
 
+elif [[ "$HOSTNAME" =~ ^debianPC ]]; then
+  xrdb -merge <(echo "Xft.dpi: 120") &
+
 elif [[ "$HOSTNAME" =~ ^debian10pc ]]; then
   xrandr --output DVI-D-0 --auto --left-of HDMI-0
   xrandr --output HDMI-2 --auto --right-of HDMI-1
