@@ -122,11 +122,11 @@ require("lazy").setup({
   'petertriho/nvim-scrollbar', -- okay
   'Wansmer/treesj',
   -- 'nyngwang/murmur.lua', -- no effect
+  'tamton-aquib/zone.nvim', -- fun
 
   -- TRIAL --
   'rareitems/hl_match_area.nvim',
   'Eandrju/cellular-automaton.nvim',
-  'tamton-aquib/zone.nvim',
 -- https://roobert.github.io/2022/12/03/Extending-Neovim/
   'nullchilly/fsread.nvim',
   'folke/paint.nvim',
