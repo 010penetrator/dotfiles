@@ -289,7 +289,7 @@ rfkill block all # no aether disturbance!
 wpa_passphrase SSID pass > wifipassfile ; wpa_supplicant -B -i $w -c passfile # connect WPA2
 wpa_supplicant -B -i $w -c <(wpa_passphrase SSID pass) # unsafe oneliner
 sudo dhcpcd $w
-sudo ip address add 172.1.1.21/24 brodcast + dev enp2s0
+sudo ip address add 172.1.1.21/24 broadcast + dev enp2s0
 /etc/network/interfaces:
 . auto eth0
 . iface eth0 inet static
