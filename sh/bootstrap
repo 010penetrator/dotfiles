@@ -84,6 +84,7 @@ cd
 [[ $NEED_NEW_BASHRC == true ]] && echo -e "git=\""$MYGITDIR"\""\\nexport sh=\"\$git/dotfiles/sh\"\\nsource \"\$sh/bashrc_main\" > .bashrc 
 # ln -sf .sh/bashrc_main .bashrc
 touch -a /ln/lo/cur/bashrc_loc
+touch -a /ln/lo/cur/vifmrc_loc
 # ln -sf .sh/Xresources .Xresources
 # ln -sf .sh/vi/vimrc_main .vimrc
 co=$(realpath /ln/co)

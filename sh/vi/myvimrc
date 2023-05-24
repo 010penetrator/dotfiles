@@ -1746,6 +1746,11 @@ augroup MatchExtraWhitespace
   autocmd BufWinLeave * call clearmatches()
 augroup END
 
+if has("nvim")
+  autocmd TermOpen * startinsert
+  autocmd BufEnter * if &buftype == 'terminal' | startinsert | endif
+endif
+
 function! s:JbzCppMan()
   let old_isk = &iskeyword
   setl iskeyword+=:
