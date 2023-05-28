@@ -73,7 +73,7 @@ end
 require("gitsigns").setup()
 
 require("tint").setup {
-  tint = -30,
+  tint = -24,
   saturation = 0.7
 }
 
@@ -82,12 +82,12 @@ require("debugprint").setup()
 -- H.unload('cinnamon')
 require("cinnamon").setup {
   -- KEYMAPS:
-  default_keymaps = false,   -- Create default keymaps.
+  default_keymaps = false,  -- Create default keymaps.
   extra_keymaps = false,    -- Create extra keymaps.
   extended_keymaps = false, -- Create extended keymaps.
   override_keymaps = false, -- The plugin keymaps will override any existing keymaps.
   -- OPTIONS:
-  always_scroll = true,    -- Scroll the cursor even when the window hasn't scrolled.
+  always_scroll = true,     -- Scroll the cursor even when the window hasn't scrolled.
   centered = true,          -- Keep cursor centered in window when using window scrolling.
   disabled = false,         -- Disables the plugin.
   default_delay = 5,        -- The default delay (in ms) between each line when scrolling.

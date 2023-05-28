@@ -785,9 +785,20 @@ command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
 
 xnoremap ,E :<C-U> echo GetVisualSelectionSum(visualmode())<Cr>
 function! GetVisualSelectionSum(mode)
-  " call with visualmode() as the argument
+  "" Call with visualmode() as the argument
   let [line_start, column_start] = getpos("'<")[1:2]
   let [line_end, column_end]     = getpos("'>")[1:2]
+  " Allign to order
+  if line_start > line_end
+    let z = line_start
+    let line_start = line_end
+    let line_end = z
+  endif
+  if column_start > column_end
+    let z = column_start
+    let column_start = column_end
+    let column_end = z
+  endif
   let lines = getline(line_start, line_end)
   if a:mode ==# 'v'
     " Must trim the end before the start, the beginning will shift left.
@@ -1752,6 +1763,8 @@ if has("nvim")
   autocmd TermOpen * startinsert
   autocmd BufEnter * if &buftype == 'terminal' | startinsert | endif
 endif
+
+command! AuSaveCur exec 'autocmd BufLeave ' . @% . ' silent update'
 
 function! s:JbzCppMan()
   let old_isk = &iskeyword
