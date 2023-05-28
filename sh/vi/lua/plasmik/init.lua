@@ -72,12 +72,15 @@ end
 
 require("gitsigns").setup()
 
-require("tint").setup()
+require("tint").setup {
+  tint = -30,
+  saturation = 0.7
+}
 
 require("debugprint").setup()
 
 -- H.unload('cinnamon')
-require("cinnamon").setup( {
+require("cinnamon").setup {
   -- KEYMAPS:
   default_keymaps = false,   -- Create default keymaps.
   extra_keymaps = false,    -- Create extra keymaps.
@@ -92,7 +95,7 @@ require("cinnamon").setup( {
   horizontal_scroll = true, -- Enable smooth horizontal scrolling when view shifts left or right.
   max_length = 70,          -- Maximum length (in ms) of a command. The line delay will be re-calculated. Setting to -1 will disable this option.
   scroll_limit = 150,       -- Max number of lines moved before scrolling is skipped. Setting to -1 will disable this option.
-})
+}
 
 -- nnoremap <silent> n :<C-u>execute "keepjumps norm! " . v:count1 . "nzz"<CR>
 
