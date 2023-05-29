@@ -73,7 +73,7 @@ end
 require("gitsigns").setup()
 
 require("tint").setup {
-  tint = -24,
+  tint = -18,
   saturation = 0.7
 }
 
