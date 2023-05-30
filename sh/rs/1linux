@@ -111,6 +111,7 @@ grep ^[^#] /etc/locale.gen # show uncommented locales
 true; false; echo $? # show last command exit status
 true && echo 1 || echo 0 # check true's exit status
 LC_ALL=C man # run command in C locale
+echo "ýêñïåäèòîðà" | iconv  -f utf8 -t cp1252 | iconv -f cp1251 -t utf8
 export LD_LIBRARY_PATH=/usr/lib32
 exec $SHELL -l # re-login
 su - user1 -c uname # run command as user1
