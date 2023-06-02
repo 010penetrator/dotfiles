@@ -281,7 +281,7 @@ let mapleader = ""
 map q <Nop>
 " map й q
 nnoremap Q q
-nnoremap ,M @@
+nnoremap qm @@
 nnoremap ,m @
 
 " Free <a> key
@@ -315,7 +315,7 @@ noremap C "_C
 
 " Editing
 nnoremap qo o<space><C-u><Esc>
-nnoremap qi O<space><C-u><Esc>
+nnoremap qi O<space><C-u><Esc>j
 nnoremap qu ~
 nnoremap cx s
 " swap two chars
@@ -338,8 +338,8 @@ nnoremap qn ddpkJ
 nnoremap cm o<Esc>O
 " insert new line after current paragraph
 nnoremap c<CR> }:if (line(".") == line("$")) \| exec "normal o" \| endif<CR>O
-nnoremap c<Down> :call EditAtEdge('down')<CR>O
-nnoremap c<Up>   :call EditAtEdge('Up')<CR>o
+nnoremap c<Down> :call EditAtEdge('down')<CR>
+nnoremap c<Up>   :call EditAtEdge('Up')<CR>
 
 " add horizontal line
 nnoremap q- 60A-<esc>0<esc>60ld$b
@@ -922,19 +922,32 @@ function! EditAtEdge(dir)
   let regex_nonempty = '^$'
   if getline(line('.')) =~ "^$"
     let target_regex = regex_blank
+    let m1 = 1
   else
     let target_regex = regex_nonempty
+    let m1 = 0
   endif
   if a:dir == 'up'
-    " echo 1
+    let m2 = 1
     call search(target_regex,'b')
-    normal o
   elseif a:dir == 'down'
-    " echo 2
+    let m2 = 0
     call search(target_regex)
-    normal O
   endif
-  " Please hit i/o/O to enter insert mode now
+  if m1 == 1
+    " Step back into blank area
+    if a:dir == 'up'
+      normal j
+    elseif a:dir == 'down'
+      normal k
+    endif
+  endif
+  let mor = xor(m1,m2)
+  if mor == 1
+    normal O
+  else
+    normal o
+  endif
 endfunc
 
 function! LGstamp(...)
