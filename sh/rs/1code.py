@@ -12,6 +12,19 @@
         encoding = result['encoding']
     slovar = open(slovarname, 'r', encoding=encoding)
     
+import sys,getopt
+opts, args = getopt.getopt(sys.argv[1:], 'f:d:s:', ['debug','full'])
+for opt, arg in opts:
+    if opt == "-f":
+        filenames.append(arg)
+    if opt == "-d":
+        dirnames.append(arg)
+    if opt == '-s':
+        slovarname = arg
+    if opt == "--debug":
+        DEBUG = True
+    if opt == "--full":
+        full = True
 
 
 

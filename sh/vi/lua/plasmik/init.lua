@@ -321,8 +321,7 @@ require("indent_blankline").setup {
 -- vim.g.indent_blankline_filetype_exclude = {'terminal', 'nofile', 'quickfix', 'prompt', 'help', 'startify'}
 
 require'marks'.setup {
-  -- whether to map keybinds or not. default true
-  default_mappings = true,
+  -- default_mappings = true,
   -- which builtin marks to show. default {}
   builtin_marks = { ".", "<", ">", "^" },
   -- whether movements cycle back to the beginning/end of buffer. default true
@@ -353,10 +352,10 @@ require'marks'.setup {
     toggle = "m.",
     delete_line = "m-",
     delete_bookmark = "m=",
-    next_bookmark = "s<Down>",
-    prev_bookmark = "s<Up>",
-    next = "a<Down>",
-    prev = "a<Up>",
+    next_bookmark = "T<Down>",
+    prev_bookmark = "T<Up>",
+    next = "t<Down>",
+    prev = "t<Up>",
     next_bookmark1 = "1<Down>",
     prev_bookmark1 = "1<Up>",
     next_bookmark2 = "2<Down>",

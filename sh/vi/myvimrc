@@ -389,8 +389,8 @@ noremap <C-p> 10k
 map <c-j> <Plug>(edgemotion-j)
 map <c-k> <Plug>(edgemotion-k)
 " go to text start/finish in file
-nnoremap ,<Up>   gg:call search('^.')<CR>k
-nnoremap ,<Down> G$:call search('^.','b')<CR>0j
+nnoremap a<Up>   gg:call search('^.')<CR>0kO<space><C-u>
+nnoremap a<Down> G$:call search('^.','b')<CR>0jo<space><C-u>
 " nnoremap gT  gg:call search('^.')<CR>k
 " nnoremap gB  G$:call search('^.','b')<CR>0j
 " search such //comments//
