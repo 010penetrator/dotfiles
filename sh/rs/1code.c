@@ -1,4 +1,3 @@
-# C code pieces
 
 C++ always truncates, aka rounds down
 
