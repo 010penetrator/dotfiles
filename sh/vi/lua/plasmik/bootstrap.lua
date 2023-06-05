@@ -28,40 +28,40 @@ end ]]
 require("lazy").setup({
 
   -- VIM BASIC --
-  -- 'itchyny/lightline.vim', --cool
-  'justinmk/vim-sneak', --good!
-  'jlanzarotta/bufexplorer', --basic
-  -- 'tpope/vim-sensible', --basic
+  -- 'itchyny/lightline.vim', -- cool
+  'justinmk/vim-sneak', -- good!
+  'jlanzarotta/bufexplorer', -- basic
+  -- 'tpope/vim-sensible', -- basic
   -- 'tpope/vim-commentary',
-  -- 'tpope/vim-vinegar', --basic
-  -- 'tpope/vim-surround', --good
-  -- 'tpope/vim-endwise', --okay
-  'tpope/vim-repeat', --handy
-  'tpope/vim-eunuch', --handy
-  -- 'tpope/vim-ragtag', --ok
-  'tpope/vim-fugitive', --handy
+  -- 'tpope/vim-vinegar', -- basic
+  -- 'tpope/vim-surround', -- good
+  -- 'tpope/vim-endwise', -- okay
+  'tpope/vim-repeat', -- handy
+  'tpope/vim-eunuch', -- handy
+  -- 'tpope/vim-ragtag', -- ok
+  'tpope/vim-fugitive', -- handy
   'mhinz/vim-startify',
-  -- 'sheerun/vim-polyglot', --okay HUGE
+  -- 'sheerun/vim-polyglot', -- okay HUGE
   -- 'airblade/vim-gitgutter',
   'lewis6991/gitsigns.nvim',
-  -- 'michaeljsmith/vim-indent-object', --cool
-  -- 'godlygeek/tabular', --okay
+  -- 'michaeljsmith/vim-indent-object', -- cool
+  -- 'godlygeek/tabular', -- okay
   'junegunn/vim-easy-align',
-  'jamessan/vim-gnupg', --good
-  -- 'chrisbra/Colorizer', --good
-  -- 'junegunn/goyo.vim', --usable
+  'jamessan/vim-gnupg', -- good
+  -- 'chrisbra/Colorizer', -- good
+  -- 'junegunn/goyo.vim', -- usable
   -- 'Pocco81/true-zen.nvim',
   'MattesGroeger/vim-bookmarks', -- great
-  'haya14busa/vim-edgemotion', --good
-  { 'junegunn/fzf.vim', dependencies = { 'junegunn/fzf' } }, --fantastic
+  'haya14busa/vim-edgemotion', -- great -- Use with <C-j>
+  { 'junegunn/fzf.vim', dependencies = { 'junegunn/fzf' } }, -- fantastic
 
   -- TRY LATER --
-  -- 'zefei/vim-colortuner', --fun
-  -- 'Townk/vim-autoclose', --usable
+  -- 'zefei/vim-colortuner', -- fun
+  -- 'Townk/vim-autoclose', -- usable
   'will133/vim-dirdiff',
   -- 'tpope/vim-sleuth',
   -- 'RRethy/vim-illuminate', -- no effect
-  -- 'ZeroKnight/vim-signjump', --buggy
+  -- 'ZeroKnight/vim-signjump', -- buggy
   -- 'vim-scripts/QuickBuf',
   -- 'liuchengxu/vista.vim',
   -- 'derekwyatt/vim-fswitch',
@@ -73,7 +73,7 @@ require("lazy").setup({
 
   -- NEOVIM ONLY --
   {'nvim-lualine/lualine.nvim', dependencies = 'kyazdani42/nvim-web-devicons'},
-  'kylechui/nvim-surround',
+  'kylechui/nvim-surround', -- okay -- TPope classic remake
   'nvim-telescope/telescope.nvim',
   { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
   'nvim-lua/plenary.nvim',
@@ -84,7 +84,7 @@ require("lazy").setup({
   { 'nvim-treesitter/nvim-treesitter', config = function() vim.cmd("silent TSUpdate") end, },
   'mrjones2014/nvim-ts-rainbow', -- buggy
   'neovim/nvim-lspconfig',
-  'williamboman/mason.nvim',
+  'williamboman/mason.nvim', -- good -- load TS servers
   'williamboman/mason-lspconfig.nvim',
   'VonHeikemen/lsp-zero.nvim', -- todo
   -- 'glepnir/lspsaga.nvim',
@@ -94,27 +94,25 @@ require("lazy").setup({
   'hrsh7th/cmp-path',
   'hrsh7th/cmp-cmdline',
   'hrsh7th/cmp-nvim-lsp',
-  'chentoast/marks.nvim', -- good
-  'lambdalisue/suda.vim',
+  'chentoast/marks.nvim', -- good -- better marks
+  'lambdalisue/suda.vim', -- perfect -- Sudo file operations
   { 'nvim-neo-tree/neo-tree.nvim', dependencies = { 'nvim-lua/plenary.nvim', 'kyazdani42/nvim-web-devicons', 'MunifTanjim/nui.nvim' } }, -- cool
-  'numToStr/Comment.nvim', -- good
+  'numToStr/Comment.nvim', -- good -- hit 'gcc' to comment
   'akinsho/toggleterm.nvim', -- cool
   { 'akinsho/bufferline.nvim', version='v3.*', dependencies='kyazdani42/nvim-web-devicons' },
   'https://git.sr.ht/~whynothugo/lsp_lines.nvim', -- cool
   'lukas-reineke/indent-blankline.nvim', -- usable
   'powerman/vim-plugin-ruscmd', -- works
   'norcalli/nvim-colorizer.lua',
-  'levouh/tint.nvim', -- okay
+  'levouh/tint.nvim', -- okay -- Fade inactive windows
   'andrewferrier/debugprint.nvim', -- good
-  'declancm/cinnamon.nvim', -- usable
+  'declancm/cinnamon.nvim', -- usable -- Smooth scroll
   -- 'karb94/neoscroll.nvim', -- maybe
   -- 'https://github.com/ggandor/leap.nvim', -- suxx
   -- 'LukasPietzschmann/telescope-tabs', -- usable
   'booperlv/nvim-gomove', -- works
   'kwkarlwang/bufjump.nvim', -- good
   'sindrets/diffview.nvim', -- great
-  'gorbit99/codewindow.nvim', -- todo
-  'nagy135/typebreak.nvim', -- fun
   'simrat39/symbols-outline.nvim', -- okay
   'gennaro-tedesco/nvim-peekup', -- usage:""
   -- 'trmckay/based.nvim', -- no effect
@@ -125,6 +123,7 @@ require("lazy").setup({
   'tamton-aquib/zone.nvim', -- fun
 
   -- TRIAL --
+  'gorbit99/codewindow.nvim', -- ... -- minimap
   'rareitems/hl_match_area.nvim',
   'Eandrju/cellular-automaton.nvim',
 -- https://roobert.github.io/2022/12/03/Extending-Neovim/
@@ -165,76 +164,76 @@ require("lazy").setup({
   'savq/melange-nvim',
   'Yazeed1s/minimal.nvim',
 
-  -- 'morhetz/gruvbox', --best
-  'sainnhe/gruvbox-material', --improved
-  '010penetrator/vim-colors-forplasma', --collection
-  'chriskempson/vim-tomorrow-theme', --Nice dark+light
-  'w0ng/vim-hybrid', --beautiful
-  'kristijanhusak/vim-hybrid-material', --nice Sane dark
-  'severij/vadelma', --white good-con
+  -- 'morhetz/gruvbox', -- best
+  'sainnhe/gruvbox-material', -- improved
+  '010penetrator/vim-colors-forplasma', -- collection
+  'chriskempson/vim-tomorrow-theme', -- Nice dark+light
+  'w0ng/vim-hybrid', -- beautiful
+  'kristijanhusak/vim-hybrid-material', -- nice Sane dark
+  'severij/vadelma', -- white good-con
   'https://gitlab.com/protesilaos/tempus-themes-vim.git',
-  'cocopon/iceberg.vim', --soft cold dark
-  'AlessandroYorba/Alduin', --brown lowcon
-  'jonathanfilip/vim-lucius', --day morning
-  'rose-pine/neovim', --fancy dark
-  'romainl/Apprentice', --nostrain
+  'cocopon/iceberg.vim', -- soft cold dark
+  'AlessandroYorba/Alduin', -- brown lowcon
+  'jonathanfilip/vim-lucius', -- day morning
+  'rose-pine/neovim', -- fancy dark
+  'romainl/Apprentice', -- nostrain
   { 'catppuccin/vim', name = 'catppuccin' },
   'JarrodCTaylor/spartan', -- 'spartan,immortals
   'pbrisbin/vim-colors-off',
-  'jakwings/vim-colors', --'moody,garden,messy
-  'bf4/vim-dark_eyes', --NIGHT
-  { 'sonph/onehalf', config = function(plugin) vim.opt.rtp:append(plugin.dir .. "/vim") end }, --Nice good tone HUGE
-  'beigebrucewayne/Turtles', --funky
-  'vim-scripts/C64.vim', --joke
-  'szorfein/fantasy.vim', --dull
-  'KimNorgaard/vim-frign', --borland_style
-  'KKPMW/sacredforest-vim', --lowcont
-  'logico-dev/typewriter', --good!
-  'wimstefan/vim-artesanal', --good lowcon gray
-  'beigebrucewayne/min_solo', --grey bg subtle__
-  'lithammer/vim-eighties', --trueeeee
-  'arzg/vim-substrata', --cold neon
-  'sainnhe/edge', --good soft
-  'sainnhe/everforest', --cream lowcon
-  'sainnhe/archived-colors', --atlantis,cryslominsa,desert_night,fairy_garden,grimoire,ice_age,lost_shrine,vanilla_cake
-  'flrnd/plastic.vim', --solid dark
-  'EdenEast/nightfox.nvim', --fashy dark
-  'colepeters/spacemacs-theme.vim', --cool
-  'relastle/bluewery.vim', --low-con
-  'stillwwater/vim-nebula', --cold dark
-  'franbach/miramare', --coffee dark
-  'mhartington/oceanic-next', --soft nice
-  -- 'nanotech/jellybeans.vim', --good4html
-  -- 'HenryNewcomer/vim-theme-underflow', --consbroken
-  -- 'jacoborus/tender.vim', --sane soft dark
-  -- 'AlessandroYorba/Sierra', --softgray
-  -- 'AlessandroYorba/Despacio', --softdarkgrey
-  -- 'dracula/vim', --funky
-  -- 'ajh17/Spacegray.vim', --darker fruity
-  -- 'jlund3/colorschemer', --semibroken 'lucid
-  -- 'srcery-colors/srcery-vim', --fresh-dark consbroken HUGE
-  -- 'dfrunza/vim', --borland,muratori,pencil,vc6
-  -- 'zefei/cake16', --cool medium
-  -- 'machakann/vim-colorscheme-tatami', --fun green
-  -- 'RussellBradley/vim-knicks' --great blue 404
-  -- 'aradunovic/perun.vim', --consbroken 404
-  -- 'the31k/vim-colors-tayra', --Nice gray 404
-  -- 'koirand/tokyo-metro.vim', --pretty dark
-  -- 'nightsense/rusticated', --morning
-  -- 'ajmwagar/vim-dues', --soft coffee 'deus
-  -- 'nightsense/snow', --soft)
-  -- 'nightsense/stellarized', --nice! light+dark
-  -- 'arzg/vim-mayanfog', --light bone
-  -- 'arzg/vim-plan9', --trueeeee
+  'jakwings/vim-colors', -- 'moody,garden,messy
+  'bf4/vim-dark_eyes', -- NIGHT
+  { 'sonph/onehalf', config = function(plugin) vim.opt.rtp:append(plugin.dir .. "/vim") end }, -- Nice good tone HUGE
+  'beigebrucewayne/Turtles', -- funky
+  'vim-scripts/C64.vim', -- joke
+  'szorfein/fantasy.vim', -- dull
+  'KimNorgaard/vim-frign', -- borland_style
+  'KKPMW/sacredforest-vim', -- lowcont
+  'logico-dev/typewriter', -- good!
+  'wimstefan/vim-artesanal', -- good lowcon gray
+  'beigebrucewayne/min_solo', -- grey bg subtle__
+  'lithammer/vim-eighties', -- trueeeee
+  'arzg/vim-substrata', -- cold neon
+  'sainnhe/edge', -- good soft
+  'sainnhe/everforest', -- cream lowcon
+  'sainnhe/archived-colors', -- atlantis,cryslominsa,desert_night,fairy_garden,grimoire,ice_age,lost_shrine,vanilla_cake
+  'flrnd/plastic.vim', -- solid dark
+  'EdenEast/nightfox.nvim', -- fashy dark
+  'colepeters/spacemacs-theme.vim', -- cool
+  'relastle/bluewery.vim', -- low-con
+  'stillwwater/vim-nebula', -- cold dark
+  'franbach/miramare', -- coffee dark
+  'mhartington/oceanic-next', -- soft nice
+  -- 'nanotech/jellybeans.vim', -- good4html
+  -- 'HenryNewcomer/vim-theme-underflow', -- consbroken
+  -- 'jacoborus/tender.vim', -- sane soft dark
+  -- 'AlessandroYorba/Sierra', -- softgray
+  -- 'AlessandroYorba/Despacio', -- softdarkgrey
+  -- 'dracula/vim', -- funky
+  -- 'ajh17/Spacegray.vim', -- darker fruity
+  -- 'jlund3/colorschemer', -- semibroken 'lucid
+  -- 'srcery-colors/srcery-vim', -- fresh-dark consbroken HUGE
+  -- 'dfrunza/vim', -- borland,muratori,pencil,vc6
+  -- 'zefei/cake16', -- cool medium
+  -- 'machakann/vim-colorscheme-tatami', -- fun green
+  -- 'RussellBradley/vim-knicks' -- great blue 404
+  -- 'aradunovic/perun.vim', -- consbroken 404
+  -- 'the31k/vim-colors-tayra', -- Nice gray 404
+  -- 'koirand/tokyo-metro.vim', -- pretty dark
+  -- 'nightsense/rusticated', -- morning
+  -- 'ajmwagar/vim-dues', -- soft coffee 'deus
+  -- 'nightsense/snow', -- soft)
+  -- 'nightsense/stellarized', -- nice! light+dark
+  -- 'arzg/vim-mayanfog', -- light bone
+  -- 'arzg/vim-plan9', -- trueeeee
   ---- Pretty but not useful ----
-  -- 'sainnhe/sonokai', --dark gui&nogui
-  -- 'szorfein/fromthehell.vim', --dark satur earth
-  -- 'whatyouhide/vim-gotham', --neon/green
-  -- 'yuttie/inkstained-vim', --very low con light
+  -- 'sainnhe/sonokai', -- dark gui&nogui
+  -- 'szorfein/fromthehell.vim', -- dark satur earth
+  -- 'whatyouhide/vim-gotham', -- neon/green
+  -- 'yuttie/inkstained-vim', -- very low con light
   'ayu-theme/ayu-vim',
-  -- 'atelierbram/vim-colors_atelier-schemes', --mindfuck
-  -- 'bcicen/vim-vice', --joke
-  -- 'vim-scripts/swamplight', --day
+  -- 'atelierbram/vim-colors_atelier-schemes', -- mindfuck
+  -- 'bcicen/vim-vice', -- joke
+  -- 'vim-scripts/swamplight', -- day
 },
 {
   root = vim.env.PLUGD,
