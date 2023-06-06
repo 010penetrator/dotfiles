@@ -384,8 +384,8 @@ if exists("g:loaded_sneak_plugin")
 endif
 noremap <A-n> 12<c-e>
 noremap <A-p> 12<c-y>
-noremap <C-n> 10j
-noremap <C-p> 10k
+noremap <C-n> 8j
+noremap <C-p> 8k
 map <c-j> <Plug>(edgemotion-j)
 map <c-k> <Plug>(edgemotion-k)
 " go to text start/finish in file
@@ -558,7 +558,7 @@ nnoremap ,gu :call FocusBufOrDo('ff','e $tt/u*/ff*')<CR>
 nnoremap ,gh :call FocusBufOrDo('sh_history','e $HOME/.bash_history')<CR>G
 nnoremap ,gl :call FocusBufOrDo('1linux','e $sh/rs/1linux')<CR>
 nnoremap ,gm :call FocusBufOrDo('memo','e $sh/rs/1code.memo')<CR>
-nnoremap q/  :call FocusWindowOrDo('silly.txt','1tabn \| wincmd b \| e $tbuf')<CR>
+" nnoremap q/  :call FocusWindowOrDo('silly.txt','1tabn \| wincmd b \| e $tbuf')<CR>
 nnoremap ,gs :call FocusBufOrDo('silly.txt','e $tbuf')<CR>
 nnoremap ,gw :call FocusBufOrDo('work.txt','$wbuf')<CR>
 
