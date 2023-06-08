@@ -277,6 +277,7 @@ git remote -v # display remote url/locations
 git show-branch -a # display graph ??
 git branch -a # display local and remote branches
 git clone <repo_url> --branch <tag_name> --single-branch # only clone history leading to tip of the tag
+git update-index --assume-unchanged dir/my_specific.h # hide local files from git index
 
 ==NET
 ip link
