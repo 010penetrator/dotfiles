@@ -1,4 +1,12 @@
 
+# Run the other script
+import subprocess
+subprocess.run(["python", "other.py"])
+
+# This will run the other.py script as a separate process
+with open("C:\scripts\other.py") as f:
+    exec(f.read())
+
 # read file ignore BOM
     bytes = min(32, os.path.getsize(slovarname))
     raw = open(slovarname, 'rb').read(bytes)
