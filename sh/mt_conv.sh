@@ -4,8 +4,8 @@
 [ -z $Nthr ] && Nthr=8
 [ -z $CODEC ] && CODEC=flac
 TMPF=/ln/ho/tmpfifo
-DEST=/ln/fast/enc
-DEST_2=/ln/fast/enc_$CODEC
+DEST=/ln/fast/_dont_care_/enc
+DEST_2=/ln/fast/_dont_care_/enc_$CODEC
 
 COMM="conv_any2$CODEC.sh"
 
