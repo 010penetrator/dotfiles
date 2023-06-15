@@ -4,7 +4,7 @@
     "wrap_mode" : 1,
     "font_size" : 13,
     "ui_theme" : "zeus",
-    "ui_theme_syntax" : "zeus"
+    "ui_theme_syntax" : "zeus",
     "def_encoding_utf8" : true,
     "ui_tab_recent_on_close" : true,
     "ui_tab_show_x" : 4,

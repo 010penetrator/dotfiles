@@ -1,4 +1,6 @@
 
+bytearray.fromhex("aa bb cc 01 02 03")
+
 # Run the other script
 import subprocess
 subprocess.run(["python", "other.py"])
