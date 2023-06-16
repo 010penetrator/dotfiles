@@ -748,5 +748,7 @@ nnoremap <C-j> :fzffind<cr>
 nnoremap <C-h> :fzfmushist<cr>
 
 source $loc/vifmrc_loc
-source /ln/sh/conf/favicons.vifm
+if (system('echo $TERMINAL') == "kitty")
+    source /ln/sh/conf/favicons.vifm
+endif
 
