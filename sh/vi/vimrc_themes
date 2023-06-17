@@ -12,6 +12,7 @@ let hostname = substitute(system('hostname'), '\n', '', '')
 if !exists("g:phase")
     call SetPhase()
     if &diff
+        " Colors for diff mode
         colo stellarized
         let g:phase = 'diffffff'
     endif
@@ -19,22 +20,28 @@ endif
 
 if !exists("g:colors_name") || g:colors_name=='habamax'
     if !has('nvim')
+        " Colors for Vim for day/night/default
         if ( g:phase=='day' )
-            colo paper
+            " colo paper
         elseif ( g:phase=='nox' || g:phase=='dunno' )
             colo tempus_autumn
         endif
         " if !exists("g:vimplug_available")
+        " Fallback Colors
         if ( !exists("g:colors_name") || g:colors_name == 'default' )
             colo delek
         endif
     else
+        " Colors for Neovim for day/night/default
         if ( g:phase=='day' )
-            colo snow | set bg=light
+            colo catppuccin-latte
+            " colo snow | set bg=light
             " colo Tomorrow | LineColor rusticated
             " colo stellarized | set bg=light | LineColor aqua_plasm
         elseif ( g:phase=='nox' )
-            colo oh-lucy-evening
+            " colo nordic
+            colo catppuccin-frappe
+            " colo oh-lucy-evening
             " colo nightfox | set bg=dark
             " colo melange | set bg=dark
             " colo stellarized | set bg=dark | LineColor snow_dark

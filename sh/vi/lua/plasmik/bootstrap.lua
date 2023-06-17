@@ -153,11 +153,13 @@ require("lazy").setup({
 --      Themes:       --
 ------------------{{{}}}
 
+  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
   'kvrohit/mellow.nvim',
   'sam4llis/nvim-tundra', -- needs lua require()
   'katawful/kat.nvim',
   'Tsuzat/NeoSolarized.nvim',
-
+  { 'AlexvZyl/nordic.nvim', lazy = false, priority = 1000, config = function() require 'nordic' .load() end }, -- beautiful
+  'rebelot/kanagawa.nvim',
   'lukas-reineke/onedark.nvim',
   { 'folke/tokyonight.nvim', branch = 'main' },
   'projekt0n/github-nvim-theme',
@@ -177,7 +179,6 @@ require("lazy").setup({
   'jonathanfilip/vim-lucius', -- day morning
   'rose-pine/neovim', -- fancy dark
   'romainl/Apprentice', -- nostrain
-  { 'catppuccin/vim', name = 'catppuccin' },
   'JarrodCTaylor/spartan', -- 'spartan,immortals
   'pbrisbin/vim-colors-off',
   'jakwings/vim-colors', -- 'moody,garden,messy
