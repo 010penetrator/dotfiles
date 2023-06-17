@@ -222,6 +222,11 @@ require("telescope").setup {
         ["<c-a>"] = function() print("tryitout") end,
       }
     }
+  },
+  pickers = {
+    colorscheme = {
+      enable_preview = true
+    }
   }
 }
 require("telescope").load_extension('fzf')

@@ -84,6 +84,7 @@ ByteArray ba1{"\x38\x39\x42\x01\xA8"};
 QByteArray ba2 = QByteArrayLiteral("\x38\x39\x42\x01\xA8");
 Stuff::ByteArray ba3{0x38,0x39,0x42,0x01,0xA8};
 const QByteArray requestData0 = QByteArray::fromHex("EE6FBB581BB000000000000000000000000000000000000000000000000005D7171B");
+if (Kdebug) { kdeb << koef_hex.toHex(); }
 
 ba1 is constructed from a C-style string literal using QByteArray::QByteArray(const char *data, int size = -1). ba2 is probably the most efficient, see QStringLiteral explained and Qt Weekly #13: QStringLiteral. For ba3 we use a small helper class that extends QByteArray:
 
