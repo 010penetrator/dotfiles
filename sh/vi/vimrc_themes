@@ -26,11 +26,6 @@ if !exists("g:colors_name") || g:colors_name=='habamax'
         elseif ( g:phase=='nox' || g:phase=='dunno' )
             colo tempus_autumn
         endif
-        " if !exists("g:vimplug_available")
-        " Fallback Colors
-        if ( !exists("g:colors_name") || g:colors_name == 'default' )
-            colo delek
-        endif
     else
         " Colors for Neovim for day/night/default
         if ( g:phase=='day' )
@@ -39,8 +34,8 @@ if !exists("g:colors_name") || g:colors_name=='habamax'
             " colo Tomorrow | LineColor rusticated
             " colo stellarized | set bg=light | LineColor aqua_plasm
         elseif ( g:phase=='nox' )
-            " colo nordic
-            colo catppuccin-frappe
+            colo nordic
+            " colo catppuccin-frappe
             " colo oh-lucy-evening
             " colo nightfox | set bg=dark
             " colo melange | set bg=dark
@@ -53,8 +48,8 @@ if !exists("g:colors_name") || g:colors_name=='habamax'
             " colo Tomorrow-Night-Eighties | LineColor snow_dark
             " elseif ( g:phase=='dunno' )
         else
-            " colo frign | LineColor aqua_plasm
-            colo Tomorrow-Night-Blue | LineColor bluewery
+            colo frign | LineColor aqua_plasm
+            " colo Tomorrow-Night-Blue | LineColor bluewery
             " colo Tomorrow | LineColor Tomorrow
             " colo Tomorrow-Night | LineColor bluewery
             " colo bluewery-light | LineColor selenized_light
@@ -68,6 +63,11 @@ if !exists("g:colors_name") || g:colors_name=='habamax'
     endif
 endif
 
+        " if !exists("g:vimplug_available")
+        " Fallback Colors
+        if ( !exists("g:colors_name") || g:colors_name == 'default' )
+            colo delek
+        endif
 " " " {{{}}} " " "
 " colo snow | set bg=light | LineColor ayu_light
 " colo vadelma | set bg=light | LineColor one
