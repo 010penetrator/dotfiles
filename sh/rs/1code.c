@@ -88,6 +88,8 @@ if (Kdebug) { kdeb << koef_hex.toHex(); }
 
 ba1 is constructed from a C-style string literal using QByteArray::QByteArray(const char *data, int size = -1). ba2 is probably the most efficient, see QStringLiteral explained and Qt Weekly #13: QStringLiteral. For ba3 we use a small helper class that extends QByteArray:
 
+QString::number(myNumber,16).rightJustified(5, '0');
+
 namespace Stuff
 {
     struct ByteArray: public QByteArray
