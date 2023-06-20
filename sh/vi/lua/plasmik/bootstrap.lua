@@ -134,6 +134,9 @@ require("lazy").setup({
   'AbdelrahmanDwedar/awesome-nvim-colorschemes',
   'Yazeed1s/oh-lucy.nvim',
   'diegoulloao/nvim-file-location',
+  'lewis6991/satellite.nvim',
+  { 'AckslD/nvim-trevJ.lua', config = 'require("trevj").setup()' },
+  'j-hui/fidget.nvim',
 
 ---{{{}}}---
 

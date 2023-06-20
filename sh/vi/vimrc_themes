@@ -22,7 +22,7 @@ if !exists("g:colors_name") || g:colors_name=='habamax'
     if !has('nvim')
         " Colors for Vim for day/night/default
         if ( g:phase=='day' )
-            " colo paper
+            colo paper
         elseif ( g:phase=='nox' || g:phase=='dunno' )
             colo tempus_autumn
         endif

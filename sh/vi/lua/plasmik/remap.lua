@@ -31,6 +31,8 @@ H.nmap('qa', vim.lsp.buf.code_action)
 H.nmap('qt', vim.diagnostic.open_float)
 H.nmap('qb', vim.diagnostic.setloclist)
 
+H.nmap(',"', function() require'nvim-peekup'.peekup_open('p') end )
+
 -- Yank and put incremental
 vim.keymap.set('n', ',y', "\"Yy")
 vim.keymap.set('v', ',y', "\"Yy")
