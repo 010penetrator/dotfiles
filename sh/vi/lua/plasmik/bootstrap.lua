@@ -137,17 +137,18 @@ require("lazy").setup({
   'lewis6991/satellite.nvim',
   { 'AckslD/nvim-trevJ.lua', config = 'require("trevj").setup()' },
   'j-hui/fidget.nvim',
+  'cbochs/portal.nvim',
+  'ziontee113/neo-minimap',
+  'princejoogie/dir-telescope.nvim',
 
----{{{}}}---
-
-  -- TRY LATER --
+  -- TRY LATER -- {{{}}}
   'ziontee113/syntax-tree-surfer',
   'AckslD/nvim-neoclip.lua', -- no effect
   'mizlan/iswap.nvim',
   'L3MON4D3/LuaSnip',
   'saadparwaiz1/cmp_luasnip',
-  'haolian9/reveal.nvim', -- no effect
-  'Dax89/ide.nvim', -- maybe
+  -- 'haolian9/reveal.nvim', -- no effect
+  -- 'Dax89/ide.nvim', -- maybe
   -- 'mrjones2014/legendary.nvim',
   -- 'folke/which-key.nvim',
 
