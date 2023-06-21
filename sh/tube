@@ -6,15 +6,18 @@ if [ -z $1 ] ; then
   exit
 fi
 
+UTIL=youtube-dl
+UTIL=yt-dlp
+
 cd /ln/hh/yt 2>/dev/null || cd /ln/dwn
 if ! [ -z $2 ]
 then
   url=$2
-  youtube-dl --no-mtime -f "bestvideo[height<=$1]+bestaudio" $url
+  $UTIL --no-mtime -f "bestvideo[height<=$1]+bestaudio" $url
 elif ! [ -z $1 ]
 then
   url=$1
-  youtube-dl --no-mtime -f "bestvideo[height<=1080]+bestaudio" $url
+  $UTIL --no-mtime -f "bestvideo[height<=1080]+bestaudio" $url
 fi
 
 echo .
