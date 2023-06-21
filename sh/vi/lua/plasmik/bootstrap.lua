@@ -161,7 +161,7 @@ require("lazy").setup({
   'sam4llis/nvim-tundra', -- needs lua require()
   'katawful/kat.nvim',
   'Tsuzat/NeoSolarized.nvim',
-  { 'AlexvZyl/nordic.nvim', lazy = false, priority = 1000, config = function() require 'nordic' .load() end }, -- beautiful
+  { 'AlexvZyl/nordic.nvim', lazy = false, priority = 1000 }, -- beautiful
   'rebelot/kanagawa.nvim',
   'lukas-reineke/onedark.nvim',
   { 'folke/tokyonight.nvim', branch = 'main' },

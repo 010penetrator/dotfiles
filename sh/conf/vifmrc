@@ -120,7 +120,7 @@ nnoremap qfq :! qview %c &>/dev/null &<cr>
 nnoremap qfe :! eom %c &>/dev/null &<cr>
 nnoremap qfp :! mpv --fs --keep-open=always *.{mp4,MP4,webm,mkv,mov,MOV} &>/dev/null & <cr>
 nnoremap qfG :! spek %c &>/dev/null &<cr>
-nnoremap qfg :! specgram.sh %c<cr>
+nnoremap qfg :! specgram.sh %c &<cr>
 nnoremap qfd :! deadbeef --queue %c &>/dev/null &<cr>
 nnoremap qfn :! ncdu --color off -x %c
 nnoremap qf<space> :! ncdu --color off -x %c<cr>
@@ -228,7 +228,7 @@ nnoremap gj :cd /ln/ho/gitjob<cr>
 nnoremap gd :cd /ln/dwn<cr>:set sort=-mtime<cr>:16<cr>
 nnoremap gb :cd $bakcld<cr>
 nnoremap gB :cd $bakhot<cr>
-nnoremap gy :cd /ln/mob<cr>
+nnoremap gy :cd /ln/fast<cr>
 nnoremap gS :exec 'cd' system("compgen -G /ln/mo/*AMV/bak")<cr>
 nnoremap gf 'f
 nnoremap gi :cd /ln/hh/imgdl1<cr>
