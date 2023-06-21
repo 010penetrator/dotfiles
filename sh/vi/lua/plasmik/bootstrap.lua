@@ -28,6 +28,7 @@ end ]]
 require("lazy").setup({
 
   -- VIM BASIC --
+  --------------------------------------
   -- 'itchyny/lightline.vim', -- cool
   'justinmk/vim-sneak', -- good!
   'jlanzarotta/bufexplorer', -- basic
@@ -43,14 +44,12 @@ require("lazy").setup({
   'mhinz/vim-startify',
   -- 'sheerun/vim-polyglot', -- okay HUGE
   -- 'airblade/vim-gitgutter',
-  'lewis6991/gitsigns.nvim',
   -- 'michaeljsmith/vim-indent-object', -- cool
   -- 'godlygeek/tabular', -- okay
   'junegunn/vim-easy-align',
   'jamessan/vim-gnupg', -- good
   -- 'chrisbra/Colorizer', -- good
   -- 'junegunn/goyo.vim', -- usable
-  -- 'Pocco81/true-zen.nvim',
   'MattesGroeger/vim-bookmarks', -- great
   'haya14busa/vim-edgemotion', -- great -- Use with <C-j>
   { 'junegunn/fzf.vim', dependencies = { 'junegunn/fzf' } }, -- fantastic
@@ -66,12 +65,11 @@ require("lazy").setup({
   -- 'liuchengxu/vista.vim',
   -- 'derekwyatt/vim-fswitch',
   -- 'tpope/vim-unimpaired',
-  'windwp/nvim-autopairs',
-  -- 'gaoDean/autolist.nvim', -- no effect
   'dkarter/bullets.vim',
   -- 'honza/vim-snippets',
 
-  -- NEOVIM ONLY --
+  -- NEOVIM ONLY -- {{{}}}
+  --------------------------------------
   {'nvim-lualine/lualine.nvim', dependencies = 'kyazdani42/nvim-web-devicons'},
   'kylechui/nvim-surround', -- okay -- TPope classic remake
   'nvim-telescope/telescope.nvim',
@@ -140,6 +138,10 @@ require("lazy").setup({
   'cbochs/portal.nvim',
   'ziontee113/neo-minimap',
   'princejoogie/dir-telescope.nvim',
+  -- 'Pocco81/true-zen.nvim',
+  'lewis6991/gitsigns.nvim',
+  'windwp/nvim-autopairs',
+  'm4xshen/autoclose.nvim',
 
   -- TRY LATER -- {{{}}}
   'ziontee113/syntax-tree-surfer',
@@ -151,7 +153,7 @@ require("lazy").setup({
   -- 'Dax89/ide.nvim', -- maybe
   -- 'mrjones2014/legendary.nvim',
   -- 'folke/which-key.nvim',
-
+  -- 'gaoDean/autolist.nvim', -- no effect
 
 ------------------------
 --      Themes:       --
