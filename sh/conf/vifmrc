@@ -221,20 +221,17 @@ nnoremap g3 :cd $HOME/3<cr>
 nnoremap g4 :cd $HOME/4<cr>
 nnoremap gs :cd /ln/sh<cr>
 " nnoremap ge :cd $HOME/stek<cr>
-nnoremap g<BS> :exec 'cd' system('realpath /ln/fast/hh')<cr>
-nnoremap gH :cd /ln/hh<cr>
 nnoremap gw :cd /ln/wo<cr>
 nnoremap gj :cd /ln/ho/gitjob<cr>
 nnoremap gd :cd /ln/dwn<cr>:set sort=-mtime<cr>:16<cr>
 nnoremap gb :cd $bakcld<cr>
 nnoremap gB :cd $bakhot<cr>
-nnoremap gy :cd /ln/fast<cr>
 nnoremap gS :exec 'cd' system("compgen -G /ln/mo/*AMV/bak")<cr>
-nnoremap gf 'f
+nnoremap gf :cd /ln/fast<cr>:goto hh<cr>
+" nnoremap gf 'f
 nnoremap gi :cd /ln/hh/imgdl1<cr>
 nnoremap gk :cd /ln/torrents/red/KKK<cr>:sort<cr>mh
 nnoremap gv :cd ~/.vim<cr>:goto plugged<cr>
-" nnoremap gN :cd ~/01/new/<cr>
 nnoremap gp :cd /mnt/fast/PRAGS/<cr>
 nnoremap gK :cd /ln/hh/keebs/<cr>
 nnoremap gR :cd /ln/mo/metal/RULEZ/READ/<cr>
