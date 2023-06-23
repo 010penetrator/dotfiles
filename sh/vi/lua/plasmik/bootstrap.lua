@@ -71,7 +71,7 @@ require("lazy").setup({
   -- NEOVIM ONLY -- {{{}}}
   --------------------------------------
   {'nvim-lualine/lualine.nvim', dependencies = 'kyazdani42/nvim-web-devicons'},
-  'kylechui/nvim-surround', -- okay -- TPope classic remake
+  'kylechui/nvim-surround', -- okay -- TPope classics remake
   'nvim-telescope/telescope.nvim',
   { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
   'nvim-lua/plenary.nvim',
@@ -134,16 +134,16 @@ require("lazy").setup({
   'diegoulloao/nvim-file-location',
   'lewis6991/satellite.nvim',
   { 'AckslD/nvim-trevJ.lua', config = 'require("trevj").setup()' },
-  'j-hui/fidget.nvim',
+  -- { 'j-hui/fidget.nvim', tag = 'legacy' }, -- silly warning
   'cbochs/portal.nvim',
   'ziontee113/neo-minimap',
   'princejoogie/dir-telescope.nvim',
-  -- 'Pocco81/true-zen.nvim',
+  -- 'pocco81/true-zen.nvim',
   'lewis6991/gitsigns.nvim',
   'windwp/nvim-autopairs',
   'm4xshen/autoclose.nvim',
 
-  -- TRY LATER -- {{{}}}
+  -- try later -- {{{}}}
   'ziontee113/syntax-tree-surfer',
   'AckslD/nvim-neoclip.lua', -- no effect
   'mizlan/iswap.nvim',

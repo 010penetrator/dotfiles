@@ -144,15 +144,15 @@ vim.keymap.set({ 'n', 'x' }, '<ScrollWheelDown>', "<Cmd>lua Scroll('<ScrollWheel
 vim.keymap.set('n', 'gd', "<Cmd>lua Scroll('definition')<CR>")
 vim.keymap.set('n', 'gD', "<Cmd>lua Scroll('declaration')<CR>")
 
--- require("nvim-surround").setup()
+require("nvim-surround").setup()
 
-require("fidget").setup()
+-- require("fidget").setup()
 
 -- require("nvim-autopairs").setup()
 -- require("nvim-autopairs").remove_rule("'")
 -- require("nvim-autopairs").remove_rule('"')
 
-require("autoslose").setup()
+require("autoclose").setup()
 
 require("lualine").setup {
   options = {
