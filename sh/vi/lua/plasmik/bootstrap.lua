@@ -106,7 +106,6 @@ require("lazy").setup({
   'andrewferrier/debugprint.nvim', -- good
   'declancm/cinnamon.nvim', -- usable -- Smooth scroll
   -- 'karb94/neoscroll.nvim', -- maybe
-  -- 'https://github.com/ggandor/leap.nvim', -- suxx
   -- 'LukasPietzschmann/telescope-tabs', -- usable
   'booperlv/nvim-gomove', -- works
   'kwkarlwang/bufjump.nvim', -- good
@@ -142,6 +141,7 @@ require("lazy").setup({
   'lewis6991/gitsigns.nvim',
   'windwp/nvim-autopairs',
   'm4xshen/autoclose.nvim',
+  'folke/flash.nvim',
 
   -- try later -- {{{}}}
   'ziontee113/syntax-tree-surfer',
@@ -149,6 +149,7 @@ require("lazy").setup({
   'mizlan/iswap.nvim',
   'L3MON4D3/LuaSnip',
   'saadparwaiz1/cmp_luasnip',
+  -- 'ggandor/leap.nvim', -- suxx
   -- 'haolian9/reveal.nvim', -- no effect
   -- 'Dax89/ide.nvim', -- maybe
   -- 'mrjones2014/legendary.nvim',

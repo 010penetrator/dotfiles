@@ -387,6 +387,10 @@ noremap <A-n> 12<c-e>
 noremap <A-p> 12<c-y>
 noremap <C-n> 8j
 noremap <C-p> 8k
+nmap q1 100G
+nmap q2 200G
+nmap q3 300G
+nmap q4 400G
 map <c-j> <Plug>(edgemotion-j)
 map <c-k> <Plug>(edgemotion-k)
 " go to text start/finish in file
