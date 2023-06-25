@@ -50,10 +50,14 @@ if [[ "$HOSTNAME" =~ killer[pc,PC] ]]; then
 elif [[ $HOSTNAME = "virtpc" ]]; then
   xrdb -merge <(echo "Xft.dpi: 104") &
 
+elif [[ "$HOSTNAME" =~ "servant" ]]; then
+  xrdb -merge <(echo "Xft.dpi: 120") &
+  xrandr --output DP-1 --mode 2560x1440
+  pgrep earlyoom | grep . || earlyoom -m 2 -n &> /dev/null &
+
 elif [[ "$HOSTNAME" =~ "machine" ]]; then
   xrdb -merge <(echo "Xft.dpi: 128") &
   xrandr --output DP-1 --mode 2560x1440 --rate 144
-  # sleep 1
   # pgrep transmission-da | grep . || trdwrap.sh &
   pgrep earlyoom | grep . || earlyoom -m 2 -n &> /dev/null &
 
