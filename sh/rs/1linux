@@ -385,6 +385,7 @@ pacman -U file.xz
 pacman -Sc
 pacman -Ss '^vim-'
 pacman -Sy archlinux-keyring
+#get mirrors at# https://archlinux.org/mirrorlist/all/https/
 sudo find /var/cache/ -mtime +7 -exec rm {} \; # tidy cache from week-old files
 sudo pacman-mirrors -g
 expac -s "%-30n %m" | sort -rhk 2 | less

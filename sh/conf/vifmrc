@@ -232,6 +232,7 @@ nnoremap gf :cd /ln/fast<cr>:goto hh<cr>
 nnoremap gi :cd /ln/hh/imgdl1<cr>
 nnoremap gk :cd /ln/torrents/red/KKK<cr>:sort<cr>mh
 nnoremap gv :cd ~/.vim<cr>:goto plugged<cr>
+nnoremap gn :cd ~/.config/nvim<cr>:goto bak<cr>
 nnoremap gp :cd /mnt/fast/PRAGS/<cr>
 nnoremap gK :cd /ln/hh/keebs/<cr>
 nnoremap gR :cd /ln/mo/metal/RULEZ/READ/<cr>
@@ -745,7 +746,7 @@ nnoremap <C-j> :fzffind<cr>
 nnoremap <C-h> :fzfmushist<cr>
 
 source $loc/vifmrc_loc
-if (system('echo $TERMINAL') == "kitty")
+if (system(' [[ ! $(tty | grep -q /dev/tty) ]] && [[ $(pgrep Xorg) ]] && [[ $(echo $TERMINAL) == "kitty" ]] && echo 1'))
     source /ln/sh/conf/favicons.vifm
 endif
 
