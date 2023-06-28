@@ -76,8 +76,10 @@ require("lazy").setup({
   'nvim-telescope/telescope.nvim',
   { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
   'nvim-lua/plenary.nvim',
-  'mfussenegger/nvim-lint', -- todo
-  'mfussenegger/nvim-dap', -- todo
+  'williamboman/mason.nvim', -- good -- load TS servers
+  'mfussenegger/nvim-dap',
+  'mfussenegger/nvim-lint',
+  'jay-babu/mason-nvim-dap.nvim',
   'rcarriga/nvim-dap-ui',
   'nvim-telescope/telescope-dap.nvim',
   { 'nvim-treesitter/nvim-treesitter', config = function() vim.cmd("silent TSUpdate") end, },
@@ -94,10 +96,8 @@ require("lazy").setup({
         }
     },
   },
-  'williamboman/mason.nvim', -- good -- load TS servers
   'williamboman/mason-lspconfig.nvim',
   'VonHeikemen/lsp-zero.nvim', -- todo
-  -- 'glepnir/lspsaga.nvim',
   'hrsh7th/nvim-cmp',
   'hrsh7th/cmp-buffer',
   -- 'amarakon/nvim-cmp-buffer-lines', -- todo
@@ -154,6 +154,20 @@ require("lazy").setup({
   'm4xshen/autoclose.nvim',
   'folke/flash.nvim',
   -- 'SmiteshP/nvim-navbuddy', -- look up!
+  { 'glepnir/lspsaga.nvim',
+    event = "LspAttach",
+    config = function() require("lspsaga").setup() end,
+    dependencies = { {"kyazdani42/nvim-web-devicons"}, {"nvim-treesitter/nvim-treesitter"} }
+  },
+  '2nthony/vitesse.nvim',
+  'tzachar/local-highlight.nvim',
+  {
+    'dvoytik/hi-my-words.nvim',
+    config = function()
+      require("hi-my-words")
+      vim.api.nvim_set_keymap("n", ",a", ":HiMyWordsToggle<CR>", { noremap = true })
+    end,
+  },
 
   -- try later -- {{{}}}
   'ziontee113/syntax-tree-surfer',
@@ -164,24 +178,41 @@ require("lazy").setup({
   -- 'ggandor/leap.nvim', -- suxx
   -- 'haolian9/reveal.nvim', -- no effect
   -- 'Dax89/ide.nvim', -- maybe
-  -- 'mrjones2014/legendary.nvim',
-  -- 'folke/which-key.nvim',
+  -- 'rktjmp/lush.nvim', -- for coloscheme create
   -- 'gaoDean/autolist.nvim', -- no effect
   -- 'marcuscaisey/olddirs.nvim', --promising
+  -- 'freddiehaddad/feline.nvim', --on watch
   'prochri/telescope-all-recent.nvim',
   -- 'CKolkey/ts-node-action',
   'smzm/hydrovim',
   'luukvbaal/statuscol.nvim', --ambitious
+  -- 'mrjones2014/legendary.nvim',
+  -- 'folke/which-key.nvim',
   -- 'Wansmer/sibling-swap.nvim',
   'RaafatTurki/hex.nvim',
   'JoosepAlviste/palenightfall.nvim',
   -- 'danielfalk/smart-open.nvim', --funky telescope mode
   'tsakirist/telescope-lazy.nvim',
+  -- 'altermo/ultimate-autopair.nvim',
+  -- 'bennypowers/splitjoin.nvim',
+
+--[[ {
+    "jay-babu/mason-null-ls.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = {
+      "williamboman/mason.nvim",
+      "jose-elias-alvarez/null-ls.nvim",
+    },
+    config = function()
+      require("your.null-ls.config") -- require your null-ls config here (example below)
+    end,
+} ]]
 
 ------------------------
 --      Themes:       --
 ------------------{{{}}}
 
+  'uloco/bluloco.nvim', -- have transprent
   'gbprod/nord.nvim',
   { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
   'kvrohit/mellow.nvim',

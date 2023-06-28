@@ -34,6 +34,14 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 ------------------{{{}}}
 
 
+-- require("local-highlight").setup {
+--     -- file_types = {'python', 'cpp'}, -- If this is given only attach to this
+--     -- OR attach to every filetype except:
+--     disable_file_types = {'tex'}
+--     hlgroup = 'Search',
+--     cw_hlgroup = nil,
+-- }
+
 require("scrollbar").setup {
   handlers = {
     gitsigns = true, -- Requires gitsigns
@@ -498,6 +506,8 @@ require("mason").setup {
   install_root_dir = masonpath,
 }
 
+require("mason-nvim-dap").setup()
+
 require("mason-lspconfig").setup {
   -- ensure_installed = { "sumneko_lua", "clangd" }
   ensure_installed = { "lua_ls", "bashls", "clangd", "pyright", "cmake", "vimls" }
@@ -635,8 +645,4 @@ cmp.setup.filetype('gitcommit', {
 --         { name = 'cmdline' }
 --         })
 -- })
-
-------------------------
-------------------------
-------------------{{{}}}
 

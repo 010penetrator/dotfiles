@@ -74,6 +74,7 @@ groupadd gods # create group
 username hostname=(ALL) NOPASSWD:/bin/lsblk # sudo command without password for user
 # sudo takes long time? ==> add $HOSTNAME to /etc/hosts
 %sudo	ALL=(ALL) ALL, NOPASSWD:/usr/bin/lsblk # combo!
+su - # may provide better PATH
 ncal -b3M
 printf "%x\n" \'"$somevar" # print char as hex
 reset # reset terminal
