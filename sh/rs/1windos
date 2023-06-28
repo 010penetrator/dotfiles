@@ -34,7 +34,7 @@ scoop install git; scoop bucket add extras
 scoop install curl wget git vim windows-terminal
 scoop bucket add nerd-fonts; scoop install terminus-nf CascadiaCode-nf FiraMono-nf JetBrainsMono-nf 
 :or: firacode-nf-mono
-:also:vcredist archwsl wsl-distrod
+:also:vcredist archwsl wsl-distrod win32yank
 scoop [ search,info,install,uninstall,list ]
 
 :: Set up wsl

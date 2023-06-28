@@ -71,6 +71,7 @@ require("lazy").setup({
   -- NEOVIM ONLY -- {{{}}}
   --------------------------------------
   {'nvim-lualine/lualine.nvim', dependencies = 'kyazdani42/nvim-web-devicons'},
+  { 'akinsho/bufferline.nvim', version='v3.*', dependencies='kyazdani42/nvim-web-devicons' },
   'kylechui/nvim-surround', -- okay -- TPope classics remake
   'nvim-telescope/telescope.nvim',
   { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
@@ -81,7 +82,18 @@ require("lazy").setup({
   'nvim-telescope/telescope-dap.nvim',
   { 'nvim-treesitter/nvim-treesitter', config = function() vim.cmd("silent TSUpdate") end, },
   'mrjones2014/nvim-ts-rainbow', -- buggy
-  'neovim/nvim-lspconfig',
+  { 'neovim/nvim-lspconfig',
+    dependencies = {
+        {
+            'SmiteshP/nvim-navbuddy',
+            dependencies = {
+                'SmiteshP/nvim-navic',
+                'MunifTanjim/nui.nvim'
+            },
+            opts = { lsp = { auto_attach = true } }
+        }
+    },
+  },
   'williamboman/mason.nvim', -- good -- load TS servers
   'williamboman/mason-lspconfig.nvim',
   'VonHeikemen/lsp-zero.nvim', -- todo
@@ -97,7 +109,6 @@ require("lazy").setup({
   { 'nvim-neo-tree/neo-tree.nvim', dependencies = { 'nvim-lua/plenary.nvim', 'kyazdani42/nvim-web-devicons', 'MunifTanjim/nui.nvim' } }, -- cool
   'numToStr/Comment.nvim', -- good -- hit 'gcc' to comment
   'akinsho/toggleterm.nvim', -- cool
-  { 'akinsho/bufferline.nvim', version='v3.*', dependencies='kyazdani42/nvim-web-devicons' },
   'https://git.sr.ht/~whynothugo/lsp_lines.nvim', -- cool
   'lukas-reineke/indent-blankline.nvim', -- usable
   'powerman/vim-plugin-ruscmd', -- works
@@ -142,6 +153,7 @@ require("lazy").setup({
   'windwp/nvim-autopairs',
   'm4xshen/autoclose.nvim',
   'folke/flash.nvim',
+  -- 'SmiteshP/nvim-navbuddy', -- look up!
 
   -- try later -- {{{}}}
   'ziontee113/syntax-tree-surfer',
@@ -155,11 +167,22 @@ require("lazy").setup({
   -- 'mrjones2014/legendary.nvim',
   -- 'folke/which-key.nvim',
   -- 'gaoDean/autolist.nvim', -- no effect
+  -- 'marcuscaisey/olddirs.nvim', --promising
+  'prochri/telescope-all-recent.nvim',
+  -- 'CKolkey/ts-node-action',
+  'smzm/hydrovim',
+  'luukvbaal/statuscol.nvim', --ambitious
+  -- 'Wansmer/sibling-swap.nvim',
+  'RaafatTurki/hex.nvim',
+  'JoosepAlviste/palenightfall.nvim',
+  -- 'danielfalk/smart-open.nvim', --funky telescope mode
+  'tsakirist/telescope-lazy.nvim',
 
 ------------------------
 --      Themes:       --
 ------------------{{{}}}
 
+  'gbprod/nord.nvim',
   { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
   'kvrohit/mellow.nvim',
   'sam4llis/nvim-tundra', -- needs lua require()
