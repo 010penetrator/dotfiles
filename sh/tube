@@ -22,6 +22,6 @@ fi
 
 echo .
 echo 'output is:'
-ls -lh "$PWD"/*"$(echo "$url" | cut -d = -f2)".*
+ls -lh "$PWD"/*"$(echo "$url" | cut -d = -f2)"*
 cd - &>/dev/null
 

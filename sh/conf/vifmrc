@@ -134,7 +134,7 @@ nnoremap qf/ :! bash -lc "ARG=DMENUSAVE xdgsane %c"
 " Calc space "
 nnoremap ,f :! echo; echo %c: ; file -b %c ; [[ -d %c ]] && tree -ia %c | tail -1 ; du -sh %c | cut -f1 ; ls -dla %c ; df -h --output=source,fstype,avail,pcent %c ; read -rsn1 <cr>
 nnoremap ,<space> :echo "Available space on " . system("df -h --output=source,avail . | tail -1")<cr>
-nnoremap ,F :! watch -n .4 du -s -BM %f<cr>
+nnoremap ,F :! watch -n .4 du -sL -BM %f<cr>
 nnoremap ,. :! echo -ne \\n  ls dir :\\n ; ls -la --color=auto . ; read -rsn1 <cr>
 nnoremap ,g :! clear -x; $LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT ; read -rsn1 <cr>
 nnoremap ,G :! clear -x; watch -n 1 $LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT<cr>
