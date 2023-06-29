@@ -10,9 +10,10 @@ require("plasmik.set")
 package.loaded['plasmik.helpy'] = nil
 require("plasmik.helpy")
 
--- require("plasmik.remap")
-H.reload('plasmik.remap')
 require("plasmik.bootstrap")
+
+-- require("plasmik.remap")
+-- H.reload('plasmik.remap')
 
 -- disable netrw early in user/init.lua
 vim.g.loaded_netrw = 1
@@ -509,7 +510,7 @@ require("mason").setup {
   install_root_dir = masonpath,
 }
 
-require("mason-nvim-dap").setup()
+H.msetup("mason-nvim-dap")
 
 require("mason-lspconfig").setup {
   -- ensure_installed = { "sumneko_lua", "clangd" }
@@ -520,7 +521,11 @@ require("mason-lspconfig").setup {
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 local nc_capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
-require("lspconfig").bashls.setup { on_attach = function() print("lsp client is bashls") end, }
+require("lspconfig").bashls.setup {
+  on_attach = function()
+    print("lsp client is bashls")
+  end,
+}
 require("lspconfig").clangd.setup {
   on_attach = function(client, bufnr)
     print("lsp client is clangd")

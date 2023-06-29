@@ -27,9 +27,21 @@ end
 
 function M.mrequire(m)
   local ok, err = pcall(require, m)
-  if not ok then return nil, err end
-  return err
+  if not ok then
+    return nil, err
+  else
+    return ok, err
+  end
 end
+
+function M.msetup(p)
+  local res = M.mrequire(p)
+  if res then
+    res.setup()
+  end
+end
+
+
 
 ---Author: cseickel
 ---The file system path separator for the current platform.

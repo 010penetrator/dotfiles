@@ -46,14 +46,19 @@ endif
 let $mylua = $sh . "/vi/lua/plasmik"
 
 set runtimepath+=$vi
+" set rtp
+" echom &runtimepath
+echom 2 len(&runtimepath)
 " set runtimepath+=$mylua
 
 if has("nvim")
     SSource $vi/myvimrc
+    echom 5 len(&runtimepath)
     SSource $mylua/init.lua
+    echom 6 len(&runtimepath)
     " SSource $vi/vimrc_themes
     " SSource $mylua/helpy.lua
-    " SSource $mylua/remap.lua
+    SSource $mylua/remap.lua
 else
     SSource $vi/vimrc_plug
     SSource $vi/myvimrc
@@ -70,4 +75,8 @@ silent call ReloadStyle(0)
 "     try emmet
 "     try snippets
 "     why <Esc>j == <A-j>
+"     runtimepath lost
+
+set runtimepath+=$vi
+echom 8 len(&runtimepath)
 

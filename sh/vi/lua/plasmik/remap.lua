@@ -6,10 +6,11 @@
 
 vim.api.nvim_command('\
 nnoremap <silent> gh <cmd>ClangdSwitchSourceHeader<CR>|\
-nnoremap <silent> z<Down> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>|\
-nnoremap <silent> z<Up> k<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>|\
-nnoremap <silent> ,S <cmd>lua vim.lsp.buf.signature_help()<CR>|\
 ')
+
+H.nmap('z<Down>', function() vim.lsp.diagnostic.goto_next() end)
+H.bram_nmap('z<Up>', "k<cmd>vim.lsp.diagnostic.goto_prev")
+H.nmap(',S', vim.lsp.buf.signature_help)
 
 vim.keymap.set('n','K', vim.lsp.buf.hover, {buffer=0})
 H.nmap('gv', function() vim.cmd('vsplit') vim.lsp.buf.definition() end)
@@ -58,12 +59,12 @@ H.nmap(',ge', ":call FocusBufOrDo('remap.lua','e $mylua/remap.lua')<CR>")
 -- H.nmap(',vp', function() vim.api.nvim_exec([[:put +| normal dfmxI'A',==]], false) end)
 H.nmap(',vp', function() vim.api.nvim_exec([[:put +| normal df:3xdf/^v$S'A,==]], false) end)
 -- H.nmap(',vt', function() require'tint'.toggle() end )
--- H.nmap(',vt', require'tint'.toggle)
+H.nmap(',vt', require'tint'.toggle)
 H.nmap(',s', ":SymbolsOutline<CR>")
--- H.nmap(',j', require'treesj'.toggle )
+H.nmap(',j', require'treesj'.toggle)
 -- vim.keymap.set('n', ',j', require('treesj').toggle)
-H.nmap('q,', ":TSJJoin<CR>")
-H.nmap('q.', ":TSJSplit<CR>")
+-- H.nmap('q,', ":TSJJoin<CR>")
+-- H.nmap('q.', ":TSJSplit<CR>")
 H.nmap('d<', "<cmd>diffget //2<CR>")
 H.nmap('d>', "<cmd>diffget //3<CR>")
 
