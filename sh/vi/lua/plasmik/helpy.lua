@@ -25,7 +25,7 @@ function M.reset (p)
   require(p).setup()
 end
 
-function M.prequire(m)
+function M.mrequire(m)
   local ok, err = pcall(require, m)
   if not ok then return nil, err end
   return err

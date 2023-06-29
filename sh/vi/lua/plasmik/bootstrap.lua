@@ -84,12 +84,13 @@ require("lazy").setup({
   'nvim-telescope/telescope-dap.nvim',
   { 'nvim-treesitter/nvim-treesitter', config = function() vim.cmd("silent TSUpdate") end, },
   'mrjones2014/nvim-ts-rainbow', -- buggy
+  -- 'https://gitlab.com/HiPhish/nvim-ts-rainbow2',
   { 'neovim/nvim-lspconfig',
     dependencies = {
         {
             'SmiteshP/nvim-navbuddy',
             dependencies = {
-                'SmiteshP/nvim-navic',
+                'SmiteshP/nvim-navic', -- config soon!
                 'MunifTanjim/nui.nvim'
             },
             opts = { lsp = { auto_attach = true } }
@@ -126,7 +127,9 @@ require("lazy").setup({
   -- 'trmckay/based.nvim', -- no effect
   -- { 'utilyre/barbecue.nvim', dependencies = { 'SmiteshP/nvim-navic' } }, -- maybe
   'petertriho/nvim-scrollbar', -- okay
-  'Wansmer/treesj',
+  'Wansmer/treesj', --splitjoin
+  -- 'bennypowers/splitjoin.nvim',
+  { 'echasnovski/mini.splitjoin', version = '*' },
   -- 'nyngwang/murmur.lua', -- no effect
   'tamton-aquib/zone.nvim', -- fun
 
@@ -136,6 +139,10 @@ require("lazy").setup({
   'Eandrju/cellular-automaton.nvim',
 -- https://roobert.github.io/2022/12/03/Extending-Neovim/
   'nullchilly/fsread.nvim',
+  {
+    'JellyApple102/easyread.nvim',
+    config = 'require("easyread").setup()',
+  },
   'folke/paint.nvim',
   'folke/styler.nvim',
   -- 'LintaoAmons/scratch.nvim',
@@ -168,6 +175,41 @@ require("lazy").setup({
       vim.api.nvim_set_keymap("n", ",a", ":HiMyWordsToggle<CR>", { noremap = true })
     end,
   },
+  { 'chrisgrieser/nvim-spider',
+    config = function()
+      vim.keymap.set({"n", "o", "x"}, "w", "<cmd>lua require('spider').motion('w')<CR>", { desc = "Spider-w" })
+      vim.keymap.set({"n", "o", "x"}, "e", "<cmd>lua require('spider').motion('e')<CR>", { desc = "Spider-e" })
+      vim.keymap.set({"n", "o", "x"}, "b", "<cmd>lua require('spider').motion('b')<CR>", { desc = "Spider-b" })
+      vim.keymap.set({"n", "o", "x"}, "ge", "<cmd>lua require('spider').motion('ge')<CR>", { desc = "Spider-ge" })
+    end,
+  },
+  { 'phaazon/hop.nvim',
+    branch = 'v2', -- optional but strongly recommended
+    config = function(hop)
+      require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+      -- local hop = require('hop')
+      local directions = require('hop.hint').HintDirection
+      vim.keymap.set('', 'f', function()
+        hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true })
+      end, {remap=true})
+      vim.keymap.set('', 'F', function()
+        hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true })
+      end, {remap=true})
+      vim.keymap.set('', 't', function()
+        hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })
+      end, {remap=true})
+      vim.keymap.set('', 'T', function()
+        hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })
+      end, {remap=true})
+    end,
+  },
+  { 'ecthelionvi/NeoColumn.nvim',
+    opts = {
+      NeoColumn = "100",
+      custom_NeoColumn = { bash = "120"},
+      excluded_ft = { "text", "markdown" },
+    }
+  },
 
   -- try later -- {{{}}}
   'ziontee113/syntax-tree-surfer',
@@ -194,7 +236,7 @@ require("lazy").setup({
   -- 'danielfalk/smart-open.nvim', --funky telescope mode
   'tsakirist/telescope-lazy.nvim',
   -- 'altermo/ultimate-autopair.nvim',
-  -- 'bennypowers/splitjoin.nvim',
+  -- 'chrisgrieser/nvim-various-textobjs', -- many
 
 --[[ {
     "jay-babu/mason-null-ls.nvim",

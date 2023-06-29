@@ -61,7 +61,10 @@ require("bufjump").setup {
   on_success = nil
 }
 
-local leap = H.prequire("leap")
+local navbuddy = H.mrequire("nvim-navbuddy")
+local navic = H.mrequire("nvim-navic")
+
+local leap = H.mrequire("leap")
 if leap then
   leap.add_default_mappings()
   -- leap.opts.case_sensitive = true
@@ -520,8 +523,10 @@ local nc_capabilities = require("cmp_nvim_lsp").default_capabilities(capabilitie
 require("lspconfig").bashls.setup { on_attach = function() print("lsp client is bashls") end, }
 require("lspconfig").clangd.setup {
   on_attach = function(client, bufnr)
-    -- navic.attach(client, bufnr)
     print("lsp client is clangd")
+    navic.attach(client, bufnr)
+    navbuddy.attach(client,bufnr)
+    print("navbuddy attached!")
   end,
 }
 --[[ require("lspconfig").sumneko_lua.setup {
