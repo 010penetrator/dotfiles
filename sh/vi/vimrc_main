@@ -46,16 +46,14 @@ endif
 let $mylua = $sh . "/vi/lua/plasmik"
 
 set runtimepath+=$vi
-" set rtp
+" set runtimepath
 " echom &runtimepath
-echom 2 len(&runtimepath)
+" echom 2 len(&runtimepath)
 " set runtimepath+=$mylua
 
 if has("nvim")
     SSource $vi/myvimrc
-    echom 5 len(&runtimepath)
     SSource $mylua/init.lua
-    echom 6 len(&runtimepath)
     " SSource $vi/vimrc_themes
     " SSource $mylua/helpy.lua
     SSource $mylua/remap.lua
@@ -67,6 +65,8 @@ else
 endif
 silent call ReloadStyle(0)
 
+set runtimepath+=$vi
+
 " TODO/Problems :
 "     tame completion
 "     tame tests like nvim-neotest
@@ -76,7 +76,4 @@ silent call ReloadStyle(0)
 "     try snippets
 "     why <Esc>j == <A-j>
 "     runtimepath lost
-
-set runtimepath+=$vi
-echom 8 len(&runtimepath)
 
