@@ -237,6 +237,8 @@ require("lazy").setup({
   'tsakirist/telescope-lazy.nvim',
   -- 'altermo/ultimate-autopair.nvim',
   -- 'chrisgrieser/nvim-various-textobjs', -- many
+  { 'AckslD/muren.nvim', config = true }, -- wow
+  -- 'axkirillov/hbac.nvim',
 
 --[[ {
     "jay-babu/mason-null-ls.nvim",
@@ -254,6 +256,7 @@ require("lazy").setup({
 --      Themes:       --
 ------------------{{{}}}
 
+  'felipeagc/fleet-theme-nvim',
   'uloco/bluloco.nvim', -- have transprent
   'gbprod/nord.nvim',
   { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
