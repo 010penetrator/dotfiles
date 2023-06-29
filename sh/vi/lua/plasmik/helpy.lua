@@ -37,7 +37,7 @@ end
 function M.msetup(p)
   local res = M.mrequire(p)
   if res then
-    res.setup()
+    require(p).setup()
   end
 end
 
