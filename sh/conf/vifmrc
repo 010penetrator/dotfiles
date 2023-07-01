@@ -118,7 +118,8 @@ nnoremap qff :!fehf . &>/dev/null &<cr>
 nnoremap qfm :! nomacs %c &>/dev/null &<cr>
 nnoremap qfq :! qview %c &>/dev/null &<cr>
 nnoremap qfe :! eom %c &>/dev/null &<cr>
-nnoremap qfp :! mpv --fs --keep-open=always *.{mp4,MP4,webm,mkv,mov,MOV} &>/dev/null & <cr>
+" nnoremap qfp :! mpv --fs --keep-open=always *.{mp4,MP4,webm,mkv,mov,MOV} &>/dev/null & <cr>
+nnoremap qfp :! %i  [[ $TERMINAL=="kitty "* ]] && TERMINAL="$TERMINAL -o initial_window_height=$(expr 450 + $HIDPI \* 200) -o initial_window_width=$(expr 650 + $HIDPI \* 200)"; $TERMINAL -e /bin/bash -c "mpv %c" &>/dev/null &<cr>
 nnoremap qfG :! spek %c &>/dev/null &<cr>
 nnoremap qfg :! specgram.sh %c &<cr>
 nnoremap qfd :! deadbeef --queue %c &>/dev/null &<cr>
