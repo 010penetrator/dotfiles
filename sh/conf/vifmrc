@@ -119,7 +119,7 @@ nnoremap qfm :! nomacs %c &>/dev/null &<cr>
 nnoremap qfq :! qview %c &>/dev/null &<cr>
 nnoremap qfe :! eom %c &>/dev/null &<cr>
 " nnoremap qfp :! mpv --fs --keep-open=always *.{mp4,MP4,webm,mkv,mov,MOV} &>/dev/null & <cr>
-nnoremap qfp :! %i  [[ $TERMINAL=="kitty "* ]] && TERMINAL="$TERMINAL -o initial_window_height=$(expr 450 + $HIDPI \* 200) -o initial_window_width=$(expr 650 + $HIDPI \* 200)"; $TERMINAL -e /bin/bash -c "mpv %c" &>/dev/null &<cr>
+nnoremap qfp :! %i  [[ $TERMINAL=="kitty "* ]] && TERMINAL="$TERMINAL -o initial_window_height=$(expr 450 + $HIDPI \* 200) -o initial_window_width=$(expr 650 + $HIDPI \* 200)"; $TERMINAL -e /bin/bash -c "echo -ne '\033]0;MPV @ $PWD\007'; mpv %c" &>/dev/null &<cr>
 nnoremap qfG :! spek %c &>/dev/null &<cr>
 nnoremap qfg :! specgram.sh %c &<cr>
 nnoremap qfd :! deadbeef --queue %c &>/dev/null &<cr>
@@ -156,10 +156,12 @@ nnoremap ,ad :! vim -d %c %D/%c<cr>
 "     nnoremap an :! MODE="newtab" vimrpc "%c" &>/dev/null & <cr>
 " endif
 
-" Play music with mpv "
+" Play this dir as an album with mpv
 nnoremap b :! PAUSE=0 INVIFM=1 ASK=1 mpv-album %c VIFM; echo -ne "\033]0;VIFM\007"<cr>
 " nnoremap b :! PAUSE=0 INVIFM=1 ASK=1 mpv-album %c VIFM
+" Play this dir as an album with mpv in new window
 nnoremap B :! %i cd %c; [[ $TERMINAL=="kitty "* ]] && TERMINAL="$TERMINAL -o initial_window_height=$(expr 450 + $HIDPI \* 200) -o initial_window_width=$(expr 650 + $HIDPI \* 200)"; $TERMINAL -e /bin/bash -c "ASK=1 mpv-album ." &>/dev/null &<cr>
+" Play this dir as an album in new kitty split
 nnoremap qb :! kitty @ new-window --new-tab /bin/bash -c "cd %d/ ; ASK=0 mpv-album %c VIFM ; vifm --select %c" <cr>
 
 " Do rsync "
