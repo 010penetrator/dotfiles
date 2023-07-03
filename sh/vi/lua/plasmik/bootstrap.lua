@@ -25,12 +25,13 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   vim.cmd "packadd packer.nvim"
 end ]]
 
-require("lazy").setup({
+require("lazy").setup(
+{
 
   -- VIM BASIC --
-  --------------------------------------
+  ------------------------{{{}}}
   -- 'itchyny/lightline.vim', -- cool
-  'justinmk/vim-sneak', -- good!
+  -- 'justinmk/vim-sneak', -- good!
   'jlanzarotta/bufexplorer', -- basic
   -- 'tpope/vim-sensible', -- basic
   -- 'tpope/vim-commentary',
@@ -54,12 +55,11 @@ require("lazy").setup({
   'haya14busa/vim-edgemotion', -- great -- Use with <C-j>
   { 'junegunn/fzf.vim', dependencies = { 'junegunn/fzf' } }, -- fantastic
 
-  -- TRY LATER --
+  -- TRIAL --
   -- 'zefei/vim-colortuner', -- fun
   -- 'Townk/vim-autoclose', -- usable
   'will133/vim-dirdiff',
   -- 'tpope/vim-sleuth',
-  -- 'RRethy/vim-illuminate', -- no effect
   -- 'ZeroKnight/vim-signjump', -- buggy
   -- 'vim-scripts/QuickBuf',
   -- 'liuchengxu/vista.vim',
@@ -68,8 +68,8 @@ require("lazy").setup({
   'dkarter/bullets.vim',
   -- 'honza/vim-snippets',
 
-  -- NEOVIM ONLY -- {{{}}}
-  --------------------------------------
+  -- NEOVIM ONLY --
+  ------------------------{{{}}}
   {'nvim-lualine/lualine.nvim', dependencies = 'kyazdani42/nvim-web-devicons'},
   { 'akinsho/bufferline.nvim', version='v3.*', dependencies='kyazdani42/nvim-web-devicons' },
   'kylechui/nvim-surround', -- okay -- TPope classics remake
@@ -83,8 +83,8 @@ require("lazy").setup({
   'rcarriga/nvim-dap-ui',
   'nvim-telescope/telescope-dap.nvim',
   { 'nvim-treesitter/nvim-treesitter', config = function() vim.cmd("silent TSUpdate") end, },
-  'mrjones2014/nvim-ts-rainbow', -- buggy
-  -- 'https://gitlab.com/HiPhish/nvim-ts-rainbow2',
+  -- 'mrjones2014/nvim-ts-rainbow', -- buggy
+  'https://gitlab.com/HiPhish/nvim-ts-rainbow2',
   { 'neovim/nvim-lspconfig',
     dependencies = {
         {
@@ -114,14 +114,21 @@ require("lazy").setup({
   'lukas-reineke/indent-blankline.nvim', -- usable
   'powerman/vim-plugin-ruscmd', -- works
   'norcalli/nvim-colorizer.lua',
-  'levouh/tint.nvim', -- okay -- Fade inactive windows
+
+  { 'levouh/tint.nvim', -- okay -- Fade inactive windows
+    opts = {
+      tint = -18,
+      saturation = 0.7
+    }
+  },
+
   'andrewferrier/debugprint.nvim', -- good
   'declancm/cinnamon.nvim', -- usable -- Smooth scroll
   -- 'karb94/neoscroll.nvim', -- maybe
   -- 'LukasPietzschmann/telescope-tabs', -- usable
   'booperlv/nvim-gomove', -- works
   'kwkarlwang/bufjump.nvim', -- good
-  'sindrets/diffview.nvim', -- great
+  'sindrets/diffview.nvim', -- great -- cycle through diff
   'simrat39/symbols-outline.nvim', -- okay
   'gennaro-tedesco/nvim-peekup', -- usage:""
   -- 'trmckay/based.nvim', -- no effect
@@ -133,7 +140,6 @@ require("lazy").setup({
   -- 'nyngwang/murmur.lua', -- no effect
   'tamton-aquib/zone.nvim', -- fun
 
-  -- TRIAL --
   'gorbit99/codewindow.nvim', -- ... -- minimap
   'rareitems/hl_match_area.nvim',
   'Eandrju/cellular-automaton.nvim',
@@ -159,7 +165,9 @@ require("lazy").setup({
   'lewis6991/gitsigns.nvim',
   'windwp/nvim-autopairs',
   'm4xshen/autoclose.nvim',
-  'folke/flash.nvim',
+  { 'folke/flash.nvim',
+    config = 'require("flash").setup()'
+  },
   -- 'SmiteshP/nvim-navbuddy', -- look up!
   { 'glepnir/lspsaga.nvim',
     event = "LspAttach",
@@ -183,7 +191,7 @@ require("lazy").setup({
       vim.keymap.set({"n", "o", "x"}, "ge", "<cmd>lua require('spider').motion('ge')<CR>", { desc = "Spider-ge" })
     end,
   },
-  { 'phaazon/hop.nvim',
+  --[[ { 'phaazon/hop.nvim',
     branch = 'v2', -- optional but strongly recommended
     config = function(hop)
       require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
@@ -202,25 +210,27 @@ require("lazy").setup({
         hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })
       end, {remap=true})
     end,
-  },
+  }, ]]
   { 'ecthelionvi/NeoColumn.nvim',
     opts = {
+      -- bg_color = "878787"
+      fg_color = "",
+      bg_color = "",
       NeoColumn = "100",
       custom_NeoColumn = { bash = "120"},
       excluded_ft = { "text", "markdown" },
     }
   },
+  'RRethy/vim-illuminate',
 
-  -- try later -- {{{}}}
   'ziontee113/syntax-tree-surfer',
   'AckslD/nvim-neoclip.lua', -- no effect
   'mizlan/iswap.nvim',
   'L3MON4D3/LuaSnip',
   'saadparwaiz1/cmp_luasnip',
-  -- 'ggandor/leap.nvim', -- suxx
   -- 'haolian9/reveal.nvim', -- no effect
   -- 'Dax89/ide.nvim', -- maybe
-  -- 'rktjmp/lush.nvim', -- for coloscheme create
+  -- 'rktjmp/lush.nvim', -- for coloscheme making
   -- 'gaoDean/autolist.nvim', -- no effect
   -- 'marcuscaisey/olddirs.nvim', --promising
   -- 'freddiehaddad/feline.nvim', --on watch
@@ -252,9 +262,9 @@ require("lazy").setup({
     end,
 } ]]
 
-------------------------
---      Themes:       --
-------------------{{{}}}
+--------------------------------
+--          Themes:           --
+--------------------------{{{}}}
 
   'felipeagc/fleet-theme-nvim',
   'uloco/bluloco.nvim', -- have transprent
@@ -341,9 +351,9 @@ require("lazy").setup({
   -- 'atelierbram/vim-colors_atelier-schemes', -- mindfuck
   -- 'bcicen/vim-vice', -- joke
   -- 'vim-scripts/swamplight', -- day
+
 },
-{
-  root = vim.env.PLUGD,
-}
+
+{ root = vim.env.PLUGD, }
 )
 

@@ -1,9 +1,9 @@
 " vim: ts=2 sw=2 ft=vim
 " vi: noswapfile
 
-""""""""""""""""""""""""
-""   Initializing:    ""
-""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""
+""        Initializing:       ""
+""""""""""""""""""""""""""""""""
 
 set nocompatible
 set termguicolors
@@ -33,9 +33,9 @@ set path=.,**
 " read !ls $PLUGD/lightline.vim/autoload/lightline/colorscheme
 " :%!xxd "re-open as hex
 
-""""""""""""""""""""""""
-""     Settings:      ""
-""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""
+""         Settings:          ""
+""""""""""""""""""""""""""""""""
 
 if exists("g:loaded_lightline")
   if !exists("g:lightline")
@@ -228,9 +228,9 @@ if has("cscope")
   nmap <C-@>D :scs find d <C-R>=expand("<cword>")<CR><CR>
 endif
 
-""""""""""""""""""""""""
-""      NeoVim:       ""
-""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""
+""          NeoVim:           ""
+""""""""""""""""""""""""""""""""
 
 function! CrispBorders()
   if !has("nvim")
@@ -268,9 +268,9 @@ function! ReloadStyle(force)
   endif
 endfunction
 
-""""""""""""""""""""""""
-""     Mappings:      ""
-""""""""""""""""""{{{}}}
+""""""""""""""""""""""""""""""""
+""         Mappings:          ""
+""""""""""""""""""""""""""{{{}}}
 
 set timeoutlen=500
 let g:AutoClosePumvisible = {"ENTER": '', "ESC": ''}
@@ -338,7 +338,7 @@ nnoremap qn ddpkJ
 " start fat new line
 nnoremap cm o<Esc>O
 " insert new line after current paragraph
-nnoremap c<CR> }:if (line(".") == line("$")) \| exec "normal o" \| endif<CR>O
+" nnoremap c<CR> }:if (line(".") == line("$")) \| exec "normal o" \| endif<CR>O
 nnoremap c<Down> :call EditAtEdge('down')<CR>
 nnoremap c<Up>   :call EditAtEdge('Up')<CR>
 
@@ -566,7 +566,7 @@ nnoremap ,gl :call FocusBufOrDo('1linux','e $sh/rs/1linux')<CR>
 nnoremap ,gm :call FocusBufOrDo('memo','e $sh/rs/1code.c')<CR>
 " nnoremap q/  :call FocusWindowOrDo('silly.txt','1tabn \| wincmd b \| e $tbuf')<CR>
 nnoremap ,gs :call FocusBufOrDo('silly.txt','e $tbuf')<CR>
-nnoremap ,gw :call FocusBufOrDo('work.txt','$wbuf')<CR>
+nnoremap ,gw :call FocusBufOrDo('work.txt','e $wbuf')<CR>
 
 nnoremap ,,<space> :Goyo<CR>
 nnoremap ,vi :IndentBlanklineToggle<CR>
@@ -780,9 +780,9 @@ nnoremap ,L :LastToMacro l<CR>
 " Show current dir & current file stats
 nnoremap ,zl : silent exec '! echo -e "\n$(pwd):"; ls -la . ; echo \. ; ls -la %:p ; read -n 1 -s -r -p "//hit.anykey" ; echo -ne "\n" ' \| redraw!<CR>
 
-""""""""""""""""""""""""
-""     Commands:      ""
-""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""
+""         Commands:          ""
+""""""""""""""""""""""""""""""""
 
 command! -nargs=1 Silent exec 'silent !' . <q-args> | exec 'redraw!'
   "Usage : Silent ls; read -rsn1 -p "//hit.anykey"; echo;
@@ -879,9 +879,9 @@ command! SwapContentPrevWin :call SwapContentPrevWin()
 command! -bang FilesProj call GetProjDir() <bar> call fzf#vim#files(expand(b:proj_dir), fzf#vim#with_preview({'options': ['--layout=reverse','--info=inline']}), <bang>0)
 command! -bang TeleFilesProj call GetProjDir() <bar> exec 'Telescope find_files cwd=' . expand(b:proj_dir)
 
-""""""""""""""""""""""""
-""     MS_stuff:      ""
-""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""
+""         MS_stuff:          ""
+""""""""""""""""""""""""""""""""
 
 if !empty($WINDIR)
 " If windows
@@ -896,9 +896,9 @@ if !empty($WINDIR)
   command! XYp :silent exec '!source /c/Users/user/.bashrc && exp "%:p:h" &' | redraw!
 endif
 
-""""""""""""""""""""""""
-""       Menus:       ""
-""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""
+""           Menus:           ""
+""""""""""""""""""""""""""""""""
 
 set wildmenu
 set wcm=<tab>
@@ -909,18 +909,18 @@ menu tagi.dirDeps :call UpdCtagsDirDeps()<CR>
 menu tagi.gitDeps :call UpdCtagsGitDeps()<CR>
 menu tagi.git     :call UpdCtagsGit()<CR>
 
-""""""""""""""""""""""""
-""      Macros:       ""
-""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""
+""          Macros:           ""
+""""""""""""""""""""""""""""""""
 
 " press ,mgg to write yank reg to tbuf file
 let @g = ",gsGzk4k\<C-k>jzzao:call DoOnKey(\"103\",\"b #\")\n"
 " put spaces around current char
 let @s = "i \<Esc>ll."
 
-""""""""""""""""""""""""
-""     Functions:     ""
-""""""""""""""""""{{{}}}
+""""""""""""""""""""""""""""""""
+""         Functions:         ""
+""""""""""""""""""""""""""{{{}}}
 
 function! EditAtEdge(dir)
   " Go to edge of text/blank area and insert new line there
@@ -948,11 +948,11 @@ function! EditAtEdge(dir)
       normal k
     endif
   endif
-  let mor = xor(m1,m2)
-  if mor == 1
-    normal O
-  else
+  " let mor = xor(m1,m2)
+  if m2 == 1
     normal o
+  else
+    normal O
   endif
 endfunc
 
@@ -1709,9 +1709,9 @@ function! s:format_buffer(b)
   return substitute(printf("[%s] %s\t%s\t%s", a:b, l:flag, l:name, l:extra), '^\s*\|\s*$', '', 'g')
 endfunction
 
-""""""""""""""""""""""""
-""       WTF...       ""
-""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""
+""           WTF...           ""
+""""""""""""""""""""""""""""""""
 
 " " Highlight lines via signs functionality
 " function! MySigns()

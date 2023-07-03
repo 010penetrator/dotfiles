@@ -1,0 +1,5 @@
+
+In Fortran, the exponential notation sometimes uses a 'd' instead of 'e'. For example, a number might be written as 1.234d-4 meaning the same thing as 1.234 * 10^-4 .
+The form of a double precision exponent is the letter D followed by an optionally signed integer constant. A double precision exponent denotes a power of ten. Note that the form and interpretation of a double precision exponent are identical to those of a real exponent, except that the letter D is used instead of the letter E.
+Nastran uses the letter D to denote double precision instead of the single precision (or float) data type. Thus, this is an artifact of Nastran syntax.
+

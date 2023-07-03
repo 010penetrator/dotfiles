@@ -30,9 +30,9 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
-------------------------
---  Configure Plugs   --
-------------------{{{}}}
+--------------------------------
+--      Configure Plugs       --
+--------------------------{{{}}}
 
 
 -- require("local-highlight").setup {
@@ -79,11 +79,6 @@ if leap then
 end
 
 require("gitsigns").setup()
-
-require("tint").setup {
-  tint = -18,
-  saturation = 0.7
-}
 
 require("debugprint").setup()
 
@@ -427,9 +422,9 @@ require("gomove").setup {
   move_past_end_col = false,
 }
 
-------------------------
---      Keymaps:      --
-------------------{{{}}}
+--------------------------------
+--          Keymaps:          --
+--------------------------{{{}}}
 
 local tele_ivy = require("telescope.themes").get_ivy{ sort_mru = true, layout_config = { height = vim.opt.lines:get() - 10 } }
 function Tele_buff_ivy() require("telescope.builtin").buffers( tele_ivy ) end
@@ -459,9 +454,9 @@ H.nmap(',vg', require("gitsigns").toggle_signs, "Show git highlight column")
 -- nnoremap ,tt :Telescope current_buffer_fuzzy_find sorting_strategy=ascending layout_config={"prompt_position":"top"}<CR>
 -- nnoremap ,tt <cmd>lua require("telescope.builtin").current_buffer_fuzzy_find({sorting_strategy="ascending", theme="ivy"})<CR>
 
-------------------------
---       LSP:         --
-------------------{{{}}}
+--------------------------------
+--           LSP:             --
+--------------------------{{{}}}
 
 -- vim.lsp.set_log_level("debug")
 
@@ -556,9 +551,9 @@ require("lsp_lines").setup()
 -- Disable virtual_text since it's redundant due to lsp_lines.
 vim.diagnostic.config({ virtual_text = false, })
 
-------------------------
---     Completion:    --
-------------------{{{}}}
+--------------------------------
+--         Completion:        --
+--------------------------{{{}}}
 
 vim.opt.completeopt={"menu", "noselect"}
 -- vim.opt.completeopt={"menu", "menuone", "noselect"}

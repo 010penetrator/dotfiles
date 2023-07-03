@@ -13,6 +13,10 @@ cmd /c mklink /J  %USERPROFILE%\Downloads c:\Downloads
 
 "C:\exe\Everything-1.3\Everything.exe" -s "$(CURRENT_WORD)"
 
+:: Repair Bootloader
+diskpart -> list volume, select volume, assign letter E
+bcdboot c:\windows /s e: /f all
+
 :windos icons at:
 %systemroot%\system32\imageres.dll
 %systemroot%\system32\shell32.dll
