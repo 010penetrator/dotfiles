@@ -19,8 +19,7 @@ require("plasmik.bootstrap")
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
--- [[ Highlight on yank ]]
--- See `:help vim.highlight.on_yank()`
+-- Highlight on yank -- see `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function()
@@ -42,20 +41,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 --     hlgroup = 'Search',
 --     cw_hlgroup = nil,
 -- }
-
--- require("scrollbar").setup {
---   handlers = {
---     gitsigns = true, -- Requires gitsigns
---   },
--- }
-
-require("symbols-outline").setup()
-
-require("bufjump").setup {
-  forward = "<A-i>",
-  backward = "<A-o>",
-  on_success = nil
-}
 
 local navbuddy = H.mrequire("nvim-navbuddy")
 local navic = H.mrequire("nvim-navic")
@@ -142,38 +127,9 @@ vim.keymap.set({ 'n', 'x' }, '<ScrollWheelDown>', "<Cmd>lua Scroll('<ScrollWheel
 vim.keymap.set('n', 'gd', "<Cmd>lua Scroll('definition')<CR>")
 vim.keymap.set('n', 'gD', "<Cmd>lua Scroll('declaration')<CR>")
 
--- require("fidget").setup()
-
 -- require("nvim-autopairs").setup()
 -- require("nvim-autopairs").remove_rule("'")
 -- require("nvim-autopairs").remove_rule('"')
-
-require("lualine").setup {
-  options = {
-    section_separators = '',
-    component_separators = '',
-    theme = 'nord',
-  },
-}
-
-require("bufferline").setup()
---[[ require("bufferline").setup {
-    options = {
-        hover = {
-            enabled = true,
-            delay = 200,
-            reveal = {'close'}
-        }
-    }
-} ]]
-
-require("neo-tree").setup {
-  filesystem = {
-    hijack_netrw_behavior = "open_default",
-    -- "open_current",
-    -- "disabled",
-  }
-}
 
 require("syntax-tree-surfer")
 -- Syntax Tree Surfer
@@ -181,22 +137,18 @@ local opts = { noremap = true, silent = false }
 -- Normal Mode Swapping:
 -- Swap The Master Node relative to the cursor with it's siblings, Dot Repeatable
 vim.keymap.set("n", "vU", function()
-  vim.opt.opfunc = "v:lua.STSSwapUpNormal_Dot"
-  return "g@l"
-end, { silent = true, expr = true })
+  vim.opt.opfunc = "v:lua.STSSwapUpNormal_Dot" return "g@l" end,
+  { silent = true, expr = true })
 vim.keymap.set("n", "vD", function()
-  vim.opt.opfunc = "v:lua.STSSwapDownNormal_Dot"
-  return "g@l"
-end, { silent = true, expr = true })
+  vim.opt.opfunc = "v:lua.STSSwapDownNormal_Dot" return "g@l" end,
+  { silent = true, expr = true })
 -- Swap Current Node at the Cursor with it's siblings, Dot Repeatable
 vim.keymap.set("n", "vd", function()
-  vim.opt.opfunc = "v:lua.STSSwapCurrentNodeNextNormal_Dot"
-  return "g@l"
-end, { silent = true, expr = true })
+  vim.opt.opfunc = "v:lua.STSSwapCurrentNodeNextNormal_Dot" return "g@l" end,
+  { silent = true, expr = true })
 vim.keymap.set("n", "vu", function()
-  vim.opt.opfunc = "v:lua.STSSwapCurrentNodePrevNormal_Dot"
-  return "g@l"
-end, { silent = true, expr = true })
+  vim.opt.opfunc = "v:lua.STSSwapCurrentNodePrevNormal_Dot" return "g@l" end,
+  { silent = true, expr = true })
 -- Visual Selection from Normal Mode
 vim.keymap.set("n", "vx", '<cmd>STSSelectMasterNode<cr>', opts)
 vim.keymap.set("n", "vn", '<cmd>STSSelectCurrentNode<cr>', opts)
@@ -208,9 +160,6 @@ vim.keymap.set("x", "L", '<cmd>STSSelectChildNode<cr>', opts)
 -- Swapping Nodes in Visual Mode
 vim.keymap.set("x", "<A-j>", '<cmd>STSSwapNextVisual<cr>', opts)
 vim.keymap.set("x", "<A-k>", '<cmd>STSSwapPrevVisual<cr>', opts)
-
-require("Comment").setup()
--- require("yode-nvim").setup()
 
 require("telescope").setup {
   defaults = {
@@ -373,15 +322,6 @@ require'marks'.setup {
 -- n  m]          * <Cmd>lua require'marks'.next()<CR>
 -- n  f<Up>       * <Cmd>lua require'marks'.prev_bookmark()<CR>
 
-require("toggleterm").setup {
-  -- direction = 'vertical' | 'horizontal' | 'window' | 'float',
-  direction = 'horizontal',
-  start_in_insert = true,
-  size = 24,
-  -- persist_size = false,
-  -- persist_mode = true,
-}
-
 -- require("neoscroll").setup {
 --   easing_function = "circular",
 --   mappings = {'<C-u>', '<C-d>', '<C-b>', '<C-f>', 'zt', 'zz', 'zb'}
@@ -397,17 +337,6 @@ require("toggleterm").setup {
 -- t['zz']    = {'zz', {'100'}}
 -- t['zb']    = {'zb', {'100'}}
 -- require("neoscroll.config").set_mappings(t)
-
-require("gomove").setup {
-  -- whether or not to map default key bindings, (true/false)
-  map_defaults = true,
-  -- whether or not to reindent lines moved vertically (true/false)
-  reindent = true,
-  -- whether or not to undojoin same direction moves (true/false)
-  undojoin = true,
-  -- whether to not to move past end column when moving blocks horizontally, (true/false)
-  move_past_end_col = false,
-}
 
 --------------------------------
 --          Keymaps:          --

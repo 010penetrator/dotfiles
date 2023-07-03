@@ -69,27 +69,7 @@ require("lazy").setup( {
 
   -- NEOVIM ONLY --
   ------------------------{{{}}}
-  {
-    'nvim-lualine/lualine.nvim',
-    dependencies = 'kyazdani42/nvim-web-devicons',
-     opts = {
-      options = {
-        section_separators = '',
-        component_separators = '',
-        theme = 'nord',
-      },
-    },
-    config = true,
-  },
-  {
-    'akinsho/bufferline.nvim',
-    version='v3.*',
-    dependencies='kyazdani42/nvim-web-devicons'
-  },
-  -- {
-  --   'kylechui/nvim-surround', -- okay -- TPope classics remake
-  --   config = true
-  -- },
+
   'nvim-telescope/telescope.nvim',
   {
     'nvim-telescope/telescope-fzf-native.nvim',
@@ -108,8 +88,6 @@ require("lazy").setup( {
       vim.cmd("silent TSUpdate")
     end,
   },
-  -- 'mrjones2014/nvim-ts-rainbow', -- buggy
-  'https://gitlab.com/HiPhish/nvim-ts-rainbow2',
   {
     'neovim/nvim-lspconfig',
     dependencies = {
@@ -131,8 +109,51 @@ require("lazy").setup( {
   'hrsh7th/cmp-path',
   'hrsh7th/cmp-cmdline',
   'hrsh7th/cmp-nvim-lsp',
+
+  -- 'mrjones2014/nvim-ts-rainbow', -- buggy
+  'https://gitlab.com/HiPhish/nvim-ts-rainbow2',
   'chentoast/marks.nvim', -- good -- better marks
   'lambdalisue/suda.vim', -- perfect -- Sudo file operations
+  'declancm/cinnamon.nvim', -- usable -- Smooth scroll
+  -- 'karb94/neoscroll.nvim', -- maybe
+
+  {
+    'nvim-lualine/lualine.nvim',
+    dependencies = 'kyazdani42/nvim-web-devicons',
+    opts = {
+      options = {
+        section_separators = '',
+        component_separators = '',
+        theme = 'nord',
+      },
+    },
+    config = true,
+  },
+
+  {
+    'akinsho/bufferline.nvim',
+    version='v3.*',
+    dependencies='kyazdani42/nvim-web-devicons',
+    opts = {
+      options = {
+        hover = {
+          enabled = true,
+          delay = 200,
+          reveal = {'close'}
+        }
+      }
+    }
+  },
+
+  -- 'windwp/nvim-autopairs',
+  -- {
+  --   'm4xshen/autoclose.nvim',
+  --   config = true
+  -- },
+  {
+    'kylechui/nvim-surround', -- okay -- TPope classics remake
+    config = true
+  },
 
   {
     'nvim-neo-tree/neo-tree.nvim', -- almost great
@@ -154,7 +175,19 @@ require("lazy").setup( {
     'numToStr/Comment.nvim', -- good -- hit 'gcc' to comment
     config = true
   },
-  'akinsho/toggleterm.nvim', -- cool
+
+  {
+    'akinsho/toggleterm.nvim', -- cool -- fast terminal
+    opts = {
+      -- direction = 'vertical' | 'horizontal' | 'window' | 'float',
+      direction = 'horizontal',
+      start_in_insert = true,
+      size = 24,
+      -- persist_size = false,
+      -- persist_mode = true,
+    },
+  },
+
   'https://git.sr.ht/~whynothugo/lsp_lines.nvim', -- cool
   'lukas-reineke/indent-blankline.nvim', -- usable
   'powerman/vim-plugin-ruscmd', -- works
@@ -171,11 +204,30 @@ require("lazy").setup( {
   { 'andrewferrier/debugprint.nvim', -- handy!
     config = true
   },
-  'declancm/cinnamon.nvim', -- usable -- Smooth scroll
-  -- 'karb94/neoscroll.nvim', -- maybe
   -- 'LukasPietzschmann/telescope-tabs', -- usable
-  'booperlv/nvim-gomove', -- works
-  'kwkarlwang/bufjump.nvim', -- good
+  {
+    'booperlv/nvim-gomove', -- usable -- move pieces
+    opts = {
+      -- whether or not to map default key bindings, (true/false)
+      map_defaults = true,
+      -- whether or not to reindent lines moved vertically (true/false)
+      reindent = true,
+      -- whether or not to undojoin same direction moves (true/false)
+      undojoin = true,
+      -- whether to not to move past end column when moving blocks horizontally, (true/false)
+      move_past_end_col = false,
+    },
+  },
+  {
+    'kwkarlwang/bufjump.nvim', -- good
+    config = true,
+    opts = {
+      forward = "<A-i>",
+      backward = "<A-o>",
+      on_success = nil
+    }
+  },
+
   'sindrets/diffview.nvim', -- great -- cycle through diff
   {
     'simrat39/symbols-outline.nvim', -- okay
@@ -196,11 +248,11 @@ require("lazy").setup( {
   -- 'bennypowers/splitjoin.nvim',
   -- { 'echasnovski/mini.splitjoin', version = '*' },
   -- 'nyngwang/murmur.lua', -- no effect
-  --[[ {
-    'AckslD/nvim-trevJ.lua', -- split arguments
-    -- config = 'require("trevj").setup()'
-    config = true
-  }, ]]
+  -- {
+  --   'AckslD/nvim-trevJ.lua', -- split arguments
+  --   -- config = 'require("trevj").setup()'
+  --   config = true
+  -- },
 
   'tamton-aquib/zone.nvim', -- fun
 
@@ -234,11 +286,6 @@ require("lazy").setup( {
     end,
   },
 
-  -- 'windwp/nvim-autopairs',
-  {
-    'm4xshen/autoclose.nvim',
-    config = true
-  },
   -- {
   --   'folke/flash.nvim',
   --   config = 'require("flash").setup()'
@@ -267,7 +314,9 @@ require("lazy").setup( {
       vim.keymap.set({"n", "o", "x"}, "ge", "<cmd>lua require('spider').motion('ge')<CR>", { desc = "Spider-ge" })
     end,
   },
-  --[[ { 'phaazon/hop.nvim',
+
+  {
+    'phaazon/hop.nvim',
     branch = 'v2', -- optional but strongly recommended
     config = function(hop)
       require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
@@ -286,7 +335,8 @@ require("lazy").setup( {
         hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })
       end, {remap=true})
     end,
-  }, ]]
+  },
+
   { 'ecthelionvi/NeoColumn.nvim',
     opts = {
       -- bg_color = "878787"
@@ -297,6 +347,7 @@ require("lazy").setup( {
       excluded_ft = { "text", "markdown" },
     }
   },
+
   'RRethy/vim-illuminate',
 
   'ziontee113/syntax-tree-surfer',
@@ -324,7 +375,7 @@ require("lazy").setup( {
   -- 'altermo/ultimate-autopair.nvim',
   -- 'chrisgrieser/nvim-various-textobjs', -- many
   { 'AckslD/muren.nvim', config = true }, -- wow
-  -- 'axkirillov/hbac.nvim',
+  -- 'axkirillov/hbac.nvim', ]]
 
 --[[ {
     "jay-babu/mason-null-ls.nvim",
