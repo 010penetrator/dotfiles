@@ -1,8 +1,8 @@
 -- vim: ts=2 sw=2
 
-------------------------
---      Keymaps:      --
-------------------{{{}}}
+--------------------------------
+--      Update Keymaps        --
+--------------------------{{{}}}
 
 vim.api.nvim_command('\
 nnoremap <silent> gh <cmd>ClangdSwitchSourceHeader<CR>|\
@@ -54,6 +54,7 @@ H.nmap('-', ":Neotree reveal_force_cwd current<CR>")
 H.nmap(',,b', ":IndentBlanklineToggle<CR>")
 H.nmap('c<BS>', ":call ReloadStyle(1)<CR>")
 H.nmap(',vr', ":TSToggle rainbow<CR>")
+H.nmap(',vs', ":ScrollbarToggle<CR>")
 H.nmap(',gr', ":call FocusBufOrDo('bootstrap.lua','e $mylua/bootstrap.lua')<CR>")
 H.nmap(',ge', ":call FocusBufOrDo('remap.lua','e $mylua/remap.lua')<CR>")
 -- H.nmap(',vp', function() vim.api.nvim_exec([[:put +| normal dfmxI'A',==]], false) end)

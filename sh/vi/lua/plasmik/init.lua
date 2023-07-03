@@ -43,16 +43,11 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 --     cw_hlgroup = nil,
 -- }
 
-require("scrollbar").setup {
-  handlers = {
-    gitsigns = true, -- Requires gitsigns
-  },
-}
-
-require("treesj").setup {
-  use_default_keymaps = false,
-  max_join_length = 440,
-}
+-- require("scrollbar").setup {
+--   handlers = {
+--     gitsigns = true, -- Requires gitsigns
+--   },
+-- }
 
 require("symbols-outline").setup()
 
@@ -77,10 +72,6 @@ if leap then
     repeat_search = '<enter>',
   }
 end
-
-require("gitsigns").setup()
-
-require("debugprint").setup()
 
 -- H.unload('cinnamon')
 require("cinnamon").setup {
@@ -151,15 +142,11 @@ vim.keymap.set({ 'n', 'x' }, '<ScrollWheelDown>', "<Cmd>lua Scroll('<ScrollWheel
 vim.keymap.set('n', 'gd', "<Cmd>lua Scroll('definition')<CR>")
 vim.keymap.set('n', 'gD', "<Cmd>lua Scroll('declaration')<CR>")
 
-require("nvim-surround").setup()
-
 -- require("fidget").setup()
 
 -- require("nvim-autopairs").setup()
 -- require("nvim-autopairs").remove_rule("'")
 -- require("nvim-autopairs").remove_rule('"')
-
-require("autoclose").setup()
 
 require("lualine").setup {
   options = {
@@ -183,8 +170,8 @@ require("bufferline").setup()
 require("neo-tree").setup {
   filesystem = {
     hijack_netrw_behavior = "open_default",
-    -- "open_current",  
-    -- "disabled", 
+    -- "open_current",
+    -- "disabled",
   }
 }
 

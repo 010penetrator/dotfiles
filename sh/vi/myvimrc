@@ -73,7 +73,7 @@ set guicursor=n-v-c:block,i-ci:block,r-cr-o:hor20
 " set iminsert=0
 " set imsearch=0
 " set nofoldenable    " disable folding
-set tabstop=2 softtabstop=2 expandtab shiftwidth=4 smarttab smartindent
+set tabstop=2 softtabstop=2 shiftwidth=4 expandtab smarttab smartindent
 set textwidth=0 wrapmargin=0
 set invlinebreak
 set sidescroll=24
@@ -263,8 +263,8 @@ function! ReloadStyle(force)
     echom "load color for ".g:phase
     silent call LoadColor()
   endif
-  if has("nvim") 
-    lua H.reset("tint") 
+  if has("nvim")
+    lua H.reset("tint")
   endif
 endfunction
 
@@ -576,7 +576,7 @@ nnoremap ,V :source $MYVIMRC<CR>
 nnoremap ,,v :source $MYVIMRC<CR>
 nnoremap ,v<space> :source %<CR>
 nnoremap c<BS> :call SetPhase() <bar> call LoadColor() <bar> call CrispBorders()<CR>
-nnoremap ,vs :source $VICONFD/session/comon <bar> silent call AddRpcEar()<CR>
+nnoremap ,,z :source $VICONFD/session/comon <bar> silent call AddRpcEar()<CR>
 nnoremap ,,q :call SaveColor() <bar> SSave! comon <bar> qa<CR>
 nnoremap ,,s :call SaveColor() <bar> SSave! comon<CR>
 " nnoremap ,,s :call SaveColor() <bar> mksession! $VICONFD/session/comon<CR>
@@ -685,7 +685,7 @@ nnoremap yq :@"<CR>
 " Add Plug entry
 nnoremap ,vp :put + <bar> exec "normal dfmxIPlug 'A'"<CR>==
 " Evaluate one line as Vimscript
-nnoremap ,vl yy:@"<CR>
+nnoremap ,v. yy:@"<CR>
 " Evaluate a paragraph as Vimscript and re-run last command
 nnoremap ,v<CR> yap:@"<CR>:<up><CR>
 " Evaluate one line or one paragraph as Vimscript
@@ -693,7 +693,7 @@ nnoremap ,v, :call EvalThis()<CR>
 " Evaluate a paragraph as Vimscript
 nnoremap ,v; :let lastpos=line('.') <bar> exec "normal yap" <bar> @\" <bar> exec lastpos<CR>:echo "Evaluated current paragraph."<CR>
 " Evaluate a paragraph as Lua
-nnoremap ,ve :let lastpos=line('.') <bar> exec "normal yap" <bar> exec 'lua ' . expand(@") <bar> exec lastpos<CR>:echo "Evaluated current paragraph as Lua."<CR>
+nnoremap ,vl :let lastpos=line('.') <bar> exec "normal yap" <bar> exec 'lua ' . expand(@") <bar> exec lastpos<CR>:echo "Evaluated current paragraph as Lua."<CR>
 
 if !has('nvim')
   " Open current location with vifm within vim

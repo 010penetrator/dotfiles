@@ -25,8 +25,7 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   vim.cmd "packadd packer.nvim"
 end ]]
 
-require("lazy").setup(
-{
+require("lazy").setup( {
 
   -- VIM BASIC --
   ------------------------{{{}}}
@@ -70,31 +69,50 @@ require("lazy").setup(
 
   -- NEOVIM ONLY --
   ------------------------{{{}}}
-  {'nvim-lualine/lualine.nvim', dependencies = 'kyazdani42/nvim-web-devicons'},
-  { 'akinsho/bufferline.nvim', version='v3.*', dependencies='kyazdani42/nvim-web-devicons' },
-  'kylechui/nvim-surround', -- okay -- TPope classics remake
+  {
+    'nvim-lualine/lualine.nvim',
+    dependencies = 'kyazdani42/nvim-web-devicons'
+  },
+  {
+    'akinsho/bufferline.nvim',
+    version='v3.*',
+    dependencies='kyazdani42/nvim-web-devicons'
+  },
+  -- {
+  --   'kylechui/nvim-surround', -- okay -- TPope classics remake
+  --   config = true
+  -- },
   'nvim-telescope/telescope.nvim',
-  { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+  {
+    'nvim-telescope/telescope-fzf-native.nvim',
+    build = 'make',
+  },
   'nvim-lua/plenary.nvim',
-  'williamboman/mason.nvim', -- good -- load TS servers
+  'williamboman/mason.nvim', -- base -- load TS servers
   'mfussenegger/nvim-dap',
   'mfussenegger/nvim-lint',
   'jay-babu/mason-nvim-dap.nvim',
   'rcarriga/nvim-dap-ui',
   'nvim-telescope/telescope-dap.nvim',
-  { 'nvim-treesitter/nvim-treesitter', config = function() vim.cmd("silent TSUpdate") end, },
+  {
+    'nvim-treesitter/nvim-treesitter',
+    config = function()
+      vim.cmd("silent TSUpdate")
+    end,
+  },
   -- 'mrjones2014/nvim-ts-rainbow', -- buggy
   'https://gitlab.com/HiPhish/nvim-ts-rainbow2',
-  { 'neovim/nvim-lspconfig',
+  {
+    'neovim/nvim-lspconfig',
     dependencies = {
-        {
-            'SmiteshP/nvim-navbuddy',
-            dependencies = {
-                'SmiteshP/nvim-navic', -- config soon!
-                'MunifTanjim/nui.nvim'
-            },
-            opts = { lsp = { auto_attach = true } }
-        }
+      {
+        'SmiteshP/nvim-navbuddy',
+        dependencies = {
+            'SmiteshP/nvim-navic', -- config soon!
+            'MunifTanjim/nui.nvim'
+        },
+        opts = { lsp = { auto_attach = true } }
+      }
     },
   },
   'williamboman/mason-lspconfig.nvim',
@@ -115,14 +133,17 @@ require("lazy").setup(
   'powerman/vim-plugin-ruscmd', -- works
   'norcalli/nvim-colorizer.lua',
 
-  { 'levouh/tint.nvim', -- okay -- Fade inactive windows
+  {
+    'levouh/tint.nvim', -- okay -- Fade inactive windows
     opts = {
       tint = -18,
       saturation = 0.7
     }
   },
 
-  'andrewferrier/debugprint.nvim', -- good
+  { 'andrewferrier/debugprint.nvim', -- handy!
+    config = true
+  },
   'declancm/cinnamon.nvim', -- usable -- Smooth scroll
   -- 'karb94/neoscroll.nvim', -- maybe
   -- 'LukasPietzschmann/telescope-tabs', -- usable
@@ -133,11 +154,24 @@ require("lazy").setup(
   'gennaro-tedesco/nvim-peekup', -- usage:""
   -- 'trmckay/based.nvim', -- no effect
   -- { 'utilyre/barbecue.nvim', dependencies = { 'SmiteshP/nvim-navic' } }, -- maybe
-  'petertriho/nvim-scrollbar', -- okay
-  'Wansmer/treesj', --splitjoin
+  {
+    'petertriho/nvim-scrollbar', -- okay
+    config = true
+  },
+
+  {
+    'Wansmer/treesj', -- split/join
+    config = { use_default_keymaps = false, max_join_length = 440 }
+  },
   -- 'bennypowers/splitjoin.nvim',
-  { 'echasnovski/mini.splitjoin', version = '*' },
+  -- { 'echasnovski/mini.splitjoin', version = '*' },
   -- 'nyngwang/murmur.lua', -- no effect
+  --[[ {
+    'AckslD/nvim-trevJ.lua', -- split arguments
+    -- config = 'require("trevj").setup()'
+    config = true
+  }, ]]
+
   'tamton-aquib/zone.nvim', -- fun
 
   'gorbit99/codewindow.nvim', -- ... -- minimap
@@ -156,18 +190,29 @@ require("lazy").setup(
   'Yazeed1s/oh-lucy.nvim',
   'diegoulloao/nvim-file-location',
   'lewis6991/satellite.nvim',
-  { 'AckslD/nvim-trevJ.lua', config = 'require("trevj").setup()' },
   -- { 'j-hui/fidget.nvim', tag = 'legacy' }, -- silly warning
   'cbochs/portal.nvim',
   'ziontee113/neo-minimap',
   'princejoogie/dir-telescope.nvim',
   -- 'pocco81/true-zen.nvim',
-  'lewis6991/gitsigns.nvim',
-  'windwp/nvim-autopairs',
-  'm4xshen/autoclose.nvim',
-  { 'folke/flash.nvim',
-    config = 'require("flash").setup()'
+
+  {
+    'lewis6991/gitsigns.nvim',
+    config = function()
+      require("gitsigns").setup()
+      require("scrollbar.handlers.gitsigns").setup() -- take it to scrollbar
+    end,
   },
+
+  'windwp/nvim-autopairs',
+  {
+    'm4xshen/autoclose.nvim',
+    config = true
+  },
+  -- {
+  --   'folke/flash.nvim',
+  --   config = 'require("flash").setup()'
+  -- },
   -- 'SmiteshP/nvim-navbuddy', -- look up!
   { 'glepnir/lspsaga.nvim',
     event = "LspAttach",
@@ -183,7 +228,8 @@ require("lazy").setup(
       vim.api.nvim_set_keymap("n", ",a", ":HiMyWordsToggle<CR>", { noremap = true })
     end,
   },
-  { 'chrisgrieser/nvim-spider',
+  {
+  'chrisgrieser/nvim-spider',
     config = function()
       vim.keymap.set({"n", "o", "x"}, "w", "<cmd>lua require('spider').motion('w')<CR>", { desc = "Spider-w" })
       vim.keymap.set({"n", "o", "x"}, "e", "<cmd>lua require('spider').motion('e')<CR>", { desc = "Spider-e" })
