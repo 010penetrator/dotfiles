@@ -38,6 +38,8 @@ function M.msetup(p)
   local res = M.mrequire(p)
   if res then
     require(p).setup()
+  else
+    print('cant load that plugin..')
   end
 end
 

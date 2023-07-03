@@ -16,7 +16,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
---[[ -- Install packer
+--[[ -- Install packer --
 local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 local is_bootstrap = false
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
@@ -103,12 +103,23 @@ require("lazy").setup( {
   },
   'williamboman/mason-lspconfig.nvim',
   'VonHeikemen/lsp-zero.nvim', -- todo
+  'amarakon/nvim-cmp-buffer-lines', -- todo
   'hrsh7th/nvim-cmp',
   'hrsh7th/cmp-buffer',
-  -- 'amarakon/nvim-cmp-buffer-lines', -- todo
   'hrsh7th/cmp-path',
   'hrsh7th/cmp-cmdline',
   'hrsh7th/cmp-nvim-lsp',
+  {
+    "jay-babu/mason-null-ls.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = {
+      "williamboman/mason.nvim",
+      "jose-elias-alvarez/null-ls.nvim",
+    },
+    -- config = function()
+    --   require("your.null-ls.config") -- require your null-ls config here (example below)
+    -- end,
+  },
 
   -- 'mrjones2014/nvim-ts-rainbow', -- buggy
   'https://gitlab.com/HiPhish/nvim-ts-rainbow2',
@@ -218,8 +229,9 @@ require("lazy").setup( {
       move_past_end_col = false,
     },
   },
+
   {
-    'kwkarlwang/bufjump.nvim', -- good
+    'kwkarlwang/bufjump.nvim', -- good -- jump in history a buffer at once
     config = true,
     opts = {
       forward = "<A-i>",
@@ -228,7 +240,7 @@ require("lazy").setup( {
     }
   },
 
-  'sindrets/diffview.nvim', -- great -- cycle through diff
+  'sindrets/diffview.nvim', -- great -- cycle through diffs
   {
     'simrat39/symbols-outline.nvim', -- okay
     config = true
@@ -259,8 +271,8 @@ require("lazy").setup( {
   'gorbit99/codewindow.nvim', -- ... -- minimap
   'rareitems/hl_match_area.nvim',
   'Eandrju/cellular-automaton.nvim',
--- https://roobert.github.io/2022/12/03/Extending-Neovim/
-  'nullchilly/fsread.nvim',
+
+  'nullchilly/fsread.nvim', -- funky -- read fast
   {
     'JellyApple102/easyread.nvim',
     config = 'require("easyread").setup()',
@@ -269,35 +281,37 @@ require("lazy").setup( {
   'folke/styler.nvim',
   -- 'LintaoAmons/scratch.nvim',
   'AbdelrahmanDwedar/awesome-nvim-colorschemes',
-  'Yazeed1s/oh-lucy.nvim',
   'diegoulloao/nvim-file-location',
   'lewis6991/satellite.nvim',
   -- { 'j-hui/fidget.nvim', tag = 'legacy' }, -- silly warning
-  'cbochs/portal.nvim',
+  'cbochs/portal.nvim', -- error
   'ziontee113/neo-minimap',
   'princejoogie/dir-telescope.nvim',
   -- 'pocco81/true-zen.nvim',
 
   {
-    'lewis6991/gitsigns.nvim',
+    'lewis6991/gitsigns.nvim', -- cool
     config = function()
       require("gitsigns").setup()
       require("scrollbar.handlers.gitsigns").setup() -- take it to scrollbar
     end,
   },
 
-  -- {
-  --   'folke/flash.nvim',
-  --   config = 'require("flash").setup()'
-  -- },
-  -- 'SmiteshP/nvim-navbuddy', -- look up!
-  { 'glepnir/lspsaga.nvim',
+  {
+    'folke/flash.nvim', -- cool -- nav line
+    config = 'require("flash").setup()'
+  },
+  'SmiteshP/nvim-navbuddy', -- look up!
+
+  {
+    'glepnir/lspsaga.nvim',
     event = "LspAttach",
     config = function() require("lspsaga").setup() end,
     dependencies = { {"kyazdani42/nvim-web-devicons"}, {"nvim-treesitter/nvim-treesitter"} }
   },
-  '2nthony/vitesse.nvim',
+
   'tzachar/local-highlight.nvim',
+  'RRethy/vim-illuminate',
   {
     'dvoytik/hi-my-words.nvim',
     config = function()
@@ -305,8 +319,9 @@ require("lazy").setup( {
       vim.api.nvim_set_keymap("n", ",a", ":HiMyWordsToggle<CR>", { noremap = true })
     end,
   },
+
   {
-  'chrisgrieser/nvim-spider',
+  'chrisgrieser/nvim-spider', -- works -- better word margins
     config = function()
       vim.keymap.set({"n", "o", "x"}, "w", "<cmd>lua require('spider').motion('w')<CR>", { desc = "Spider-w" })
       vim.keymap.set({"n", "o", "x"}, "e", "<cmd>lua require('spider').motion('e')<CR>", { desc = "Spider-e" })
@@ -337,7 +352,7 @@ require("lazy").setup( {
     end,
   },
 
-  { 'ecthelionvi/NeoColumn.nvim',
+  { 'ecthelionvi/NeoColumn.nvim', -- okay -- highlight long lines
     opts = {
       -- bg_color = "878787"
       fg_color = "",
@@ -347,8 +362,6 @@ require("lazy").setup( {
       excluded_ft = { "text", "markdown" },
     }
   },
-
-  'RRethy/vim-illuminate',
 
   'ziontee113/syntax-tree-surfer',
   'AckslD/nvim-neoclip.lua', -- no effect
@@ -377,25 +390,15 @@ require("lazy").setup( {
   { 'AckslD/muren.nvim', config = true }, -- wow
   -- 'axkirillov/hbac.nvim', ]]
 
---[[ {
-    "jay-babu/mason-null-ls.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    dependencies = {
-      "williamboman/mason.nvim",
-      "jose-elias-alvarez/null-ls.nvim",
-    },
-    config = function()
-      require("your.null-ls.config") -- require your null-ls config here (example below)
-    end,
-} ]]
-
 --------------------------------
 --          Themes:           --
 --------------------------{{{}}}
 
   'felipeagc/fleet-theme-nvim',
   'uloco/bluloco.nvim', -- have transprent
+  '2nthony/vitesse.nvim',
   'gbprod/nord.nvim',
+  'Yazeed1s/oh-lucy.nvim',
   { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
   'kvrohit/mellow.nvim',
   'sam4llis/nvim-tundra', -- needs lua require()
