@@ -71,7 +71,15 @@ require("lazy").setup( {
   ------------------------{{{}}}
   {
     'nvim-lualine/lualine.nvim',
-    dependencies = 'kyazdani42/nvim-web-devicons'
+    dependencies = 'kyazdani42/nvim-web-devicons',
+     opts = {
+      options = {
+        section_separators = '',
+        component_separators = '',
+        theme = 'nord',
+      },
+    },
+    config = true,
   },
   {
     'akinsho/bufferline.nvim',
@@ -125,8 +133,27 @@ require("lazy").setup( {
   'hrsh7th/cmp-nvim-lsp',
   'chentoast/marks.nvim', -- good -- better marks
   'lambdalisue/suda.vim', -- perfect -- Sudo file operations
-  { 'nvim-neo-tree/neo-tree.nvim', dependencies = { 'nvim-lua/plenary.nvim', 'kyazdani42/nvim-web-devicons', 'MunifTanjim/nui.nvim' } }, -- cool
-  'numToStr/Comment.nvim', -- good -- hit 'gcc' to comment
+
+  {
+    'nvim-neo-tree/neo-tree.nvim', -- almost great
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'kyazdani42/nvim-web-devicons',
+      'MunifTanjim/nui.nvim',
+    },
+    opts = {
+      filesystem = {
+        hijack_netrw_behavior = "open_default",
+        -- "open_current",
+        -- "disabled",
+      }
+    }
+  },
+
+  {
+    'numToStr/Comment.nvim', -- good -- hit 'gcc' to comment
+    config = true
+  },
   'akinsho/toggleterm.nvim', -- cool
   'https://git.sr.ht/~whynothugo/lsp_lines.nvim', -- cool
   'lukas-reineke/indent-blankline.nvim', -- usable
@@ -150,7 +177,10 @@ require("lazy").setup( {
   'booperlv/nvim-gomove', -- works
   'kwkarlwang/bufjump.nvim', -- good
   'sindrets/diffview.nvim', -- great -- cycle through diff
-  'simrat39/symbols-outline.nvim', -- okay
+  {
+    'simrat39/symbols-outline.nvim', -- okay
+    config = true
+  },
   'gennaro-tedesco/nvim-peekup', -- usage:""
   -- 'trmckay/based.nvim', -- no effect
   -- { 'utilyre/barbecue.nvim', dependencies = { 'SmiteshP/nvim-navic' } }, -- maybe
@@ -204,7 +234,7 @@ require("lazy").setup( {
     end,
   },
 
-  'windwp/nvim-autopairs',
+  -- 'windwp/nvim-autopairs',
   {
     'm4xshen/autoclose.nvim',
     config = true
