@@ -369,24 +369,23 @@ require("lazy").setup( {
     dependencies = { {"kyazdani42/nvim-web-devicons"}, {"nvim-treesitter/nvim-treesitter"} }
   },
 
-  {
-    'tzachar/local-highlight.nvim',
-    opts = {
-      -- file_types = {'python', 'cpp'}, -- If this is given only attach to this
-      -- OR attach to every filetype except:
-      -- disable_file_types = {'tex'},
-      hlgroup = 'Search',
-      cw_hlgroup = nil,
-    },
-  },
+  -- {
+  --   'tzachar/local-highlight.nvim',
+  --   opts = {
+  --     -- file_types = {'python', 'cpp'}, -- If this is given only attach to this
+  --     -- OR attach to every filetype except:
+  --     -- disable_file_types = {'tex'},
+  --     hlgroup = 'Search',
+  --     cw_hlgroup = nil,
+  --   },
+  -- },
+
   'RRethy/vim-illuminate',
-  {
+
+  --[[ {
     'dvoytik/hi-my-words.nvim',
-    config = function()
-      require("hi-my-words")
-      vim.api.nvim_set_keymap("n", ",a", ":HiMyWordsToggle<CR>", { noremap = true })
-    end,
-  },
+    config = true
+  }, ]]
 
   {
   'chrisgrieser/nvim-spider', -- works -- better word margins
@@ -401,9 +400,9 @@ require("lazy").setup( {
   {
     'phaazon/hop.nvim',
     branch = 'v2', -- optional but strongly recommended
-    config = function(hop)
-      require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
-      -- local hop = require('hop')
+    config = function()
+      local hop = require('hop')
+      hop.setup { keys = 'etovxqpdygfblzhckisuran' }
       local directions = require('hop.hint').HintDirection
       vim.keymap.set('', 'f', function()
         hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true })

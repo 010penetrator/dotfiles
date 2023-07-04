@@ -94,6 +94,13 @@ H.nmap('qr',  ":Telescope lsp_references theme=ivy<CR>")
 H.nmap(',fs', ":Telescope lsp_document_symbols<CR>")
 H.nmap('qs',  ":Telescope lsp_dynamic_workspace_symbols<CR>")
 H.nmap(',vg', require("gitsigns").toggle_signs, "Show git highlight column")
+H.nmap('q;', ":HiMyWordsToggle<CR>")
+H.nmap('q:', ":HiMyWordsClear<CR>")
+
+----------------------------------{{{}}}
+H.nmap('s', ":HopAnywhere<CR>")
+-- H.nmap(',vh', ":LocalHighlightToggle<CR>")
+H.nmap(',vh', ":IlluminateToggle<CR>")
 
 -- nnoremap ,tt :Telescope current_buffer_fuzzy_find sorting_strategy=ascending layout_config={"prompt_position":"top"}<CR>
 -- nnoremap ,tt <cmd>lua require("telescope.builtin").current_buffer_fuzzy_find({sorting_strategy="ascending", theme="ivy"})<CR>
