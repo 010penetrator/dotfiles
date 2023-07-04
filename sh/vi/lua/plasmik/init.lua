@@ -34,31 +34,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 --------------------------{{{}}}
 
 
--- require("local-highlight").setup {
---     -- file_types = {'python', 'cpp'}, -- If this is given only attach to this
---     -- OR attach to every filetype except:
---     disable_file_types = {'tex'}
---     hlgroup = 'Search',
---     cw_hlgroup = nil,
--- }
-
-local navbuddy = H.mrequire("nvim-navbuddy")
-local navic = H.mrequire("nvim-navic")
-
-local leap = H.mrequire("leap")
-if leap then
-  leap.add_default_mappings()
-  -- leap.opts.case_sensitive = true
-  leap.opts.special_keys = {
-    prev_target = { '<s-enter>', ',' },
-    next_target = {'<enter>', ';'},
-    -- prev_target = {'<tab>', ','},
-    next_phase_one_target = '<enter>',
-    repeat_search = '<enter>',
-  }
-end
-
--- H.unload('cinnamon')
 require("cinnamon").setup {
   -- KEYMAPS:
   default_keymaps = false,  -- Create default keymaps.
@@ -84,7 +59,6 @@ vim.keymap.set({ 'n', 'x' }, '<C-d>', "<Cmd>lua Scroll('<C-d>', 1, 1)<CR>")
 -- Page movements:
 vim.keymap.set({ 'n', 'x' }, '<C-b>', "<Cmd>lua Scroll('<C-b>', 1, 1)<CR>")
 vim.keymap.set({ 'n', 'x' }, '<C-f>', "<Cmd>lua Scroll('<C-f>', 1, 1)<CR>")
--- EXTRA_KEYMAPS:
 -- Start/end of file and line number movements:
 vim.keymap.set({ 'n', 'x' }, 'gg', "<Cmd>lua Scroll('gg')<CR>")
 vim.keymap.set({ 'n', 'x' }, 'G', "<Cmd>lua Scroll('G', 0, 1)<CR>")
@@ -116,20 +90,13 @@ vim.keymap.set('n', 'zs', "<Cmd>lua Scroll('zs')<CR>")
 vim.keymap.set('n', 'ze', "<Cmd>lua Scroll('ze')<CR>")
 vim.keymap.set('n', 'zh', "<Cmd>lua Scroll('zh', 0, 1)<CR>")
 vim.keymap.set('n', 'zl', "<Cmd>lua Scroll('zl', 0, 1)<CR>")
--- EXTENDED_KEYMAPS:
 -- Left/right movements:
 -- vim.keymap.set({ 'n', 'x' }, 'h', "<Cmd>lua Scroll('h', 0, 1)<CR>")
 -- vim.keymap.set({ 'n', 'x' }, 'l', "<Cmd>lua Scroll('l', 0, 1)<CR>")
--- SCROLL_WHEEL_KEYMAPS:
 vim.keymap.set({ 'n', 'x' }, '<ScrollWheelUp>', "<Cmd>lua Scroll('<ScrollWheelUp>')<CR>")
 vim.keymap.set({ 'n', 'x' }, '<ScrollWheelDown>', "<Cmd>lua Scroll('<ScrollWheelDown>')<CR>")
--- LSP_KEYMAPS:
 vim.keymap.set('n', 'gd', "<Cmd>lua Scroll('definition')<CR>")
 vim.keymap.set('n', 'gD', "<Cmd>lua Scroll('declaration')<CR>")
-
--- require("nvim-autopairs").setup()
--- require("nvim-autopairs").remove_rule("'")
--- require("nvim-autopairs").remove_rule('"')
 
 require("syntax-tree-surfer")
 -- Syntax Tree Surfer
@@ -176,6 +143,7 @@ require("telescope").setup {
     }
   }
 }
+
 require("telescope").load_extension('fzf')
 -- local theme = require("telescope.themes").get_ivy()
 -- theme['layout_config']['height'] = vim.opt.lines:get() - 8
@@ -272,7 +240,7 @@ require("indent_blankline").setup {
 -- let g:indent_blankline_buftype_exclude = ['terminal', 'nofile', 'quickfix', 'prompt', 'startify']
 -- vim.g.indent_blankline_filetype_exclude = {'terminal', 'nofile', 'quickfix', 'prompt', 'help', 'startify'}
 
-require'marks'.setup {
+require("marks").setup {
   -- default_mappings = true,
   -- which builtin marks to show. default {}
   builtin_marks = { ".", "<", ">", "^" },
@@ -437,14 +405,18 @@ require("lspconfig").bashls.setup {
     print("lsp client is bashls")
   end,
 }
+
 require("lspconfig").clangd.setup {
   on_attach = function(client, bufnr)
-    print("lsp client is clangd")
-    navic.attach(client, bufnr)
-    navbuddy.attach(client,bufnr)
+    print("lsp client is clang("nvim-navbuddy")d")
+    -- local navbuddy = H.mrequire("nvim-navbuddy")
+    -- local navic = H.mrequire("nvim-navic")
+    require("nvim-navbuddy").attach(client, bufnr)
+    require("nvim-navic").attach(client,bufnr)
     print("navbuddy attached!")
   end,
 }
+
 --[[ require("lspconfig").sumneko_lua.setup {
   -- on_attach = function() print("lsp client is sumneko_lua") end,
   settings = {
@@ -454,6 +426,7 @@ require("lspconfig").clangd.setup {
     }
   },
 } ]]
+
 require("lspconfig").pyright.setup { on_attach = function() print("lsp client is pyright") end, capabilities = nc_capabilities }
 require("lspconfig").cmake.setup { on_attach = function() print("lsp client is cmake") end, capabilities = nc_capabilities }
 require("lspconfig").vimls.setup { on_attach = function() print("lsp client is vimls") end, capabilities = nc_capabilities }

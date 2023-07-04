@@ -89,12 +89,20 @@ require("lazy").setup( {
     end,
   },
   {
+    'SmiteshP/nvim-navic', -- good -- nav string
+    config = true
+  },
+  {
+    'SmiteshP/nvim-navbuddy', -- cool -- code map (call :Navbuddy)
+    config = true
+  },
+  {
     'neovim/nvim-lspconfig',
     dependencies = {
       {
         'SmiteshP/nvim-navbuddy',
         dependencies = {
-            'SmiteshP/nvim-navic', -- config soon!
+            'SmiteshP/nvim-navic',
             'MunifTanjim/nui.nvim'
         },
         opts = { lsp = { auto_attach = true } }
@@ -156,11 +164,21 @@ require("lazy").setup( {
     }
   },
 
-  -- 'windwp/nvim-autopairs',
-  -- {
-  --   'm4xshen/autoclose.nvim',
-  --   config = true
-  -- },
+  --[[ {
+    'windwp/nvim-autopairs',
+    config = function()
+      local pl = require('nvim-autopairs')
+      pl.setup()
+      pl.remove_rule("'")
+      pl.remove_rule('"')
+    end,
+  }, ]]
+
+  {
+    'm4xshen/autoclose.nvim',
+    config = true
+  },
+
   {
     'kylechui/nvim-surround', -- okay -- TPope classics remake
     config = true
@@ -301,7 +319,6 @@ require("lazy").setup( {
     'folke/flash.nvim', -- cool -- nav line
     config = 'require("flash").setup()'
   },
-  'SmiteshP/nvim-navbuddy', -- look up!
 
   {
     'glepnir/lspsaga.nvim',
@@ -310,7 +327,16 @@ require("lazy").setup( {
     dependencies = { {"kyazdani42/nvim-web-devicons"}, {"nvim-treesitter/nvim-treesitter"} }
   },
 
-  'tzachar/local-highlight.nvim',
+  {
+    'tzachar/local-highlight.nvim',
+    opts = {
+      -- file_types = {'python', 'cpp'}, -- If this is given only attach to this
+      -- OR attach to every filetype except:
+      -- disable_file_types = {'tex'},
+      hlgroup = 'Search',
+      cw_hlgroup = nil,
+    },
+  },
   'RRethy/vim-illuminate',
   {
     'dvoytik/hi-my-words.nvim',
