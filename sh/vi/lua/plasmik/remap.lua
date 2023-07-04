@@ -5,7 +5,7 @@
 --------------------------{{{}}}
 
 vim.api.nvim_command('\
-nnoremap <silent> gh <cmd>ClangdSwitchSourceHeader<CR>|\
+  nnoremap <silent> gh <cmd>ClangdSwitchSourceHeader<CR>|\
 ')
 
 H.nmap('z<Down>', function() vim.lsp.diagnostic.goto_next() end)
@@ -68,4 +68,33 @@ H.nmap(',j', require'treesj'.toggle)
 -- H.nmap('q.', ":TSJSplit<CR>")
 H.nmap('d<', "<cmd>diffget //2<CR>")
 H.nmap('d>', "<cmd>diffget //3<CR>")
+
+local tele_ivy = require("telescope.themes").get_ivy{ sort_mru = true, layout_config = { height = vim.opt.lines:get() - 10 } }
+function Tele_buff_ivy() require("telescope.builtin").buffers( tele_ivy ) end
+local tele_drop = require("telescope.themes").get_dropdown{ sort_mru=true, winblend=9, layout_config = { height=21 } }
+function Tele_buff_drop() require("telescope.builtin").buffers( tele_drop ) end
+
+H.nmap(',fb', Tele_buff_ivy, "Telescope [B]uffers ivy-themed")
+H.nmap(',h', Tele_buff_ivy, "Telescope [B]uffers ivy-themed")
+H.nmap(',<space>', Tele_buff_drop)
+H.nmap(',l', require("lsp_lines").toggle, { desc = "Toggle lsp_lines" })
+-- nnoremap ,<space> :Telescope buffers sort_mru=1 theme=dropdown winblend=9<CR>
+H.nmap(',fh', require("telescope.builtin").help_tags, "Telescope [F]ind [H]elp_tags")
+H.nmap(',fz', require("telescope.builtin").diagnostics, "Telescope [F]ind Diagnostics")
+H.nmap(',fo', require("telescope.builtin").oldfiles, "Telescope [F]ind [O]ld files")
+H.nmap(',fr', require("telescope.builtin").lsp_references, "Telescope [F]ind [R]eferences")
+H.nmap('qf', "<cmd> call GetProjDir() <bar> exec 'Telescope find_files cwd=' . expand(b:proj_dir)<CR>", "[F]ind my text [F]iles")
+H.nmap(',/',  ":Telescope find_files search_dirs=$sh,$tt,$loc<CR>")
+H.nmap(',,/', ":Telescope find_files theme=ivy search_dirs=$sh,$PWD")
+H.nmap(',fg', ":Telescope live_grep theme=ivy<CR>")
+H.nmap(',fd', ":Telescope live_grep theme=ivy search_dirs=%<CR>")
+H.nmap(',fc', ":Telescope current_buffer_fuzzy_find theme=ivy<CR>")
+H.nmap(',ff', ":Telescope find_files theme=ivy<CR>")
+H.nmap('qr',  ":Telescope lsp_references theme=ivy<CR>")
+H.nmap(',fs', ":Telescope lsp_document_symbols<CR>")
+H.nmap('qs',  ":Telescope lsp_dynamic_workspace_symbols<CR>")
+H.nmap(',vg', require("gitsigns").toggle_signs, "Show git highlight column")
+
+-- nnoremap ,tt :Telescope current_buffer_fuzzy_find sorting_strategy=ascending layout_config={"prompt_position":"top"}<CR>
+-- nnoremap ,tt <cmd>lua require("telescope.builtin").current_buffer_fuzzy_find({sorting_strategy="ascending", theme="ivy"})<CR>
 
