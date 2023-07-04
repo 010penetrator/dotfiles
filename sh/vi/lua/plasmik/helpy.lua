@@ -112,12 +112,13 @@ end
 -- local k_opts = { silent=true, noremap=false }
 -- vim.api.nvim_set_keymap("n", "<C-p>", ":lua require('bufjump').backward()<cr>", k_opts)
 
--- local hotfun = {}
 M.teles_ff = function()
   local opt = require('telescope.themes').get_ivy({height=10,previewer=false,winblend=16})
   require('telescope.builtin').current_buffer_fuzzy_find(opt)
 end
 M.bram_nmap('<C-h>', ':lua require("plasmik.helpy").teles_ff()<cr>')
+
+-- local hotfun = {}
 -- :lua package.loaded.init = nil
 -- print("init.lua loaded once more")
 -- return hotfun

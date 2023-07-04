@@ -191,10 +191,10 @@ require("lazy").setup( {
     end,
   }, ]]
 
-  {
-    'm4xshen/autoclose.nvim',
+  --[[ {
+    'm4xshen/autoclose.nvim', -- problem
     config = true
-  },
+  }, ]]
 
   {
     'kylechui/nvim-surround', -- okay -- TPope classics remake
@@ -235,7 +235,26 @@ require("lazy").setup( {
   },
 
   'https://git.sr.ht/~whynothugo/lsp_lines.nvim', -- cool
-  'lukas-reineke/indent-blankline.nvim', -- usable
+  {
+    'lukas-reineke/indent-blankline.nvim', -- usable
+    opts = {
+      filetype_exclude = {'lspinfo', 'checkhealth', 'help', 'man', '', 'startify'},
+      enabled = false,
+      show_end_of_line = false,
+      show_current_context = true,
+      -- show_current_context_start = true,
+      show_trailing_blankline_indent = false,
+      char = '░',
+      char_blankline = "",
+      context_char_blankline = "⋅",
+      space_char_blankline = ' ',
+      context_char = '│',
+      -- ⋮ ⋅ ░ ∷
+      -- ┊
+    }
+    -- let g:indent_blankline_buftype_exclude = ['terminal', 'nofile', 'quickfix', 'prompt', 'startify']
+    -- let g:indent_blankline_filetype_exclude = {'terminal', 'nofile', 'quickfix', 'prompt', 'help', 'startify'}
+  },
   'powerman/vim-plugin-ruscmd', -- works
   'norcalli/nvim-colorizer.lua',
 

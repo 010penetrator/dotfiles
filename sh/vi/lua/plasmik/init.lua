@@ -24,56 +24,8 @@ H.reload("plasmik.remap")
 --      Configure Plugs       --
 --------------------------{{{}}}
 
--- nnoremap <silent> n :<C-u>execute "keepjumps norm! " . v:count1 . "nzz"<CR>
-
--- Half-window movements:
-vim.keymap.set({ 'n', 'x' }, '<C-u>', "<Cmd>lua Scroll('<C-u>', 1, 1)<CR>")
-vim.keymap.set({ 'n', 'x' }, '<C-d>', "<Cmd>lua Scroll('<C-d>', 1, 1)<CR>")
--- Page movements:
-vim.keymap.set({ 'n', 'x' }, '<C-b>', "<Cmd>lua Scroll('<C-b>', 1, 1)<CR>")
-vim.keymap.set({ 'n', 'x' }, '<C-f>', "<Cmd>lua Scroll('<C-f>', 1, 1)<CR>")
--- Start/end of file and line number movements:
-vim.keymap.set({ 'n', 'x' }, 'gg', "<Cmd>lua Scroll('gg')<CR>")
-vim.keymap.set({ 'n', 'x' }, 'G', "<Cmd>lua Scroll('G', 0, 1)<CR>")
--- Paragraph movements:
-vim.keymap.set({ 'n', 'x' }, '{', "<Cmd>lua Scroll('{')<CR>")
-vim.keymap.set({ 'n', 'x' }, '}', "<Cmd>lua Scroll('}')<CR>")
--- Previous/next search result:
-vim.keymap.set('n', 'n', "<Cmd>lua Scroll('n', 1)<CR>")
-vim.keymap.set('n', 'N', "<Cmd>lua Scroll('N', 1)<CR>")
-vim.keymap.set('n', '*', "<Cmd>lua Scroll('*', 1)<CR>")
-vim.keymap.set('n', '#', "<Cmd>lua Scroll('#', 1)<CR>")
--- vim.keymap.set('n', 'g*', "<Cmd>lua Scroll('g*', 1)<CR>")
--- vim.keymap.set('n', 'g#', "<Cmd>lua Scroll('g#', 1)<CR>")
--- Previous/next cursor location:
-vim.keymap.set('n', '<C-o>', "<Cmd>lua Scroll('<C-o>', 1)<CR>")
-vim.keymap.set('n', '<C-i>', "<Cmd>lua Scroll('1<C-i>', 1)<CR>")
--- Screen scrolling:
-vim.keymap.set('n', 'zz', "<Cmd>lua Scroll('zz', 0, 1)<CR>")
-vim.keymap.set('n', 'zt', "<Cmd>lua Scroll('zt', 0, 1)<CR>")
-vim.keymap.set('n', 'zb', "<Cmd>lua Scroll('zb', 0, 1)<CR>")
-vim.keymap.set('n', 'z.', "<Cmd>lua Scroll('z.', 0, 1)<CR>")
-vim.keymap.set('n', 'z<CR>', "<Cmd>lua Scroll('zt^', 0, 1)<CR>")
--- vim.keymap.set('n', '<C-y>', "<Cmd>lua Scroll('<C-y>', 0, 1)<CR>")
--- vim.keymap.set('n', '<C-e>', "<Cmd>lua Scroll('<C-e>', 0, 1)<CR>")
--- Horizontal screen scrolling:
-vim.keymap.set('n', 'zH', "<Cmd>lua Scroll('zH')<CR>")
-vim.keymap.set('n', 'zL', "<Cmd>lua Scroll('zL')<CR>")
-vim.keymap.set('n', 'zs', "<Cmd>lua Scroll('zs')<CR>")
-vim.keymap.set('n', 'ze', "<Cmd>lua Scroll('ze')<CR>")
-vim.keymap.set('n', 'zh', "<Cmd>lua Scroll('zh', 0, 1)<CR>")
-vim.keymap.set('n', 'zl', "<Cmd>lua Scroll('zl', 0, 1)<CR>")
--- Left/right movements:
--- vim.keymap.set({ 'n', 'x' }, 'h', "<Cmd>lua Scroll('h', 0, 1)<CR>")
--- vim.keymap.set({ 'n', 'x' }, 'l', "<Cmd>lua Scroll('l', 0, 1)<CR>")
-vim.keymap.set({ 'n', 'x' }, '<ScrollWheelUp>', "<Cmd>lua Scroll('<ScrollWheelUp>')<CR>")
-vim.keymap.set({ 'n', 'x' }, '<ScrollWheelDown>', "<Cmd>lua Scroll('<ScrollWheelDown>')<CR>")
-vim.keymap.set('n', 'gd', "<Cmd>lua Scroll('definition')<CR>")
-vim.keymap.set('n', 'gD', "<Cmd>lua Scroll('declaration')<CR>")
-
-require("syntax-tree-surfer")
 -- Syntax Tree Surfer
-local opts = { noremap = true, silent = false }
+local noresil = { noremap = true, silent = false }
 -- Normal Mode Swapping:
 -- Swap The Master Node relative to the cursor with it's siblings, Dot Repeatable
 vim.keymap.set("n", "vU", function()
@@ -90,16 +42,16 @@ vim.keymap.set("n", "vu", function()
   vim.opt.opfunc = "v:lua.STSSwapCurrentNodePrevNormal_Dot" return "g@l" end,
   { silent = true, expr = true })
 -- Visual Selection from Normal Mode
-vim.keymap.set("n", "vx", '<cmd>STSSelectMasterNode<cr>', opts)
-vim.keymap.set("n", "vn", '<cmd>STSSelectCurrentNode<cr>', opts)
+vim.keymap.set("n", "vx", '<cmd>STSSelectMasterNode<cr>', noresil)
+vim.keymap.set("n", "vn", '<cmd>STSSelectCurrentNode<cr>', noresil)
 -- Select Nodes in Visual Mode
-vim.keymap.set("x", "J", '<cmd>STSSelectNextSiblingNode<cr>', opts)
-vim.keymap.set("x", "K", '<cmd>STSSelectPrevSiblingNode<cr>', opts)
-vim.keymap.set("x", "H", '<cmd>STSSelectParentNode<cr>', opts)
-vim.keymap.set("x", "L", '<cmd>STSSelectChildNode<cr>', opts)
+vim.keymap.set("x", "J", '<cmd>STSSelectNextSiblingNode<cr>', noresil)
+vim.keymap.set("x", "K", '<cmd>STSSelectPrevSiblingNode<cr>', noresil)
+vim.keymap.set("x", "H", '<cmd>STSSelectParentNode<cr>', noresil)
+vim.keymap.set("x", "L", '<cmd>STSSelectChildNode<cr>', noresil)
 -- Swapping Nodes in Visual Mode
-vim.keymap.set("x", "<A-j>", '<cmd>STSSwapNextVisual<cr>', opts)
-vim.keymap.set("x", "<A-k>", '<cmd>STSSwapPrevVisual<cr>', opts)
+vim.keymap.set("x", "<A-j>", '<cmd>STSSwapNextVisual<cr>', noresil)
+vim.keymap.set("x", "<A-k>", '<cmd>STSSwapPrevVisual<cr>', noresil)
 
 require("telescope").setup {
   defaults = {
@@ -190,28 +142,9 @@ require("nvim-treesitter.configs").setup {
     },
   },
 }
+
 -- vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-
--- vim.opt.list = true
--- vim.opt.listchars:append("eol:↴")
-require("indent_blankline").setup {
-  filetype_exclude = {'lspinfo', 'checkhealth', 'help', 'man', '', 'startify'},
-  enabled = false,
-  show_end_of_line = false,
-  show_current_context = true,
-  -- show_current_context_start = true,
-  show_trailing_blankline_indent = false,
-  char = '░',
-  char_blankline = "",
-  context_char_blankline = "⋅",
-  space_char_blankline = ' ',
-  context_char = '│',
-  -- ⋮ ⋅ ░ ∷
-  -- ┊
-}
--- let g:indent_blankline_buftype_exclude = ['terminal', 'nofile', 'quickfix', 'prompt', 'startify']
--- vim.g.indent_blankline_filetype_exclude = {'terminal', 'nofile', 'quickfix', 'prompt', 'help', 'startify'}
 
 require("marks").setup {
   -- default_mappings = true,
@@ -259,9 +192,6 @@ require("marks").setup {
     prev_bookmark4 = "4<Up>",
   }
 }
-
--- n  m]          * <Cmd>lua require'marks'.next()<CR>
--- n  f<Up>       * <Cmd>lua require'marks'.prev_bookmark()<CR>
 
 -- require("neoscroll").setup {
 --   easing_function = "circular",

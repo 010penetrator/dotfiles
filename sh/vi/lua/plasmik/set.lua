@@ -2,6 +2,10 @@
 
 vim.opt.guicursor = ""
 
+-- -- Display EOL
+-- vim.opt.list = true
+-- vim.opt.listchars:append("eol:↴")
+
 -- Highlight on yank -- see `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
