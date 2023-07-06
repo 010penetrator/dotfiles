@@ -27,12 +27,15 @@ if !exists("g:colors_name") || g:colors_name=='habamax'
             colo tempus_autumn
         endif
     else
-        " Colors for Neovim for day/night/default
+
+        " Colors for Neovim for day/night/neutral
+
         if ( g:phase=='day' )
             colo catppuccin-latte
             " colo snow | set bg=light
             " colo Tomorrow | LineColor rusticated
             " colo stellarized | set bg=light | LineColor aqua_plasm
+
         elseif ( g:phase=='nox' )
             colo nordic
             " colo catppuccin-frappe
@@ -47,6 +50,7 @@ if !exists("g:colors_name") || g:colors_name=='habamax'
             " colo tokyonight | LineColor tokyonight
             " colo Tomorrow-Night-Eighties | LineColor snow_dark
             " elseif ( g:phase=='dunno' )
+
         else
             colo lost-shrine | LineColor nord
             " colo frign | LineColor aqua_plasm
