@@ -57,7 +57,7 @@ nnoremap ,x :exec '!echo -ne "\033]0;\007"' | quit <CR>
 nnoremap qx :exec '!echo -ne "\033]0;\007"' | quit <CR>
 nnoremap ,i :pushd . <CR>
 nnoremap ,m :set millerview!<CR>
-nnoremap ,M :set milleroptions=lsize:1,csize:5,rsize:5
+nnoremap ,M :set milleroptions=lsize:2,csize:5,rsize:5
 nnoremap dd :delete<CR>
 nnoremap o :sort<CR>
 nnoremap O :invert o<CR>
@@ -102,8 +102,8 @@ nnoremap yg :!google.sh %c &>/dev/null &<cr>
 
 nnoremap ,j :jobs<cr>
 nnoremap ,u :undolist<cr>
-" nnoremap - <C-b>
-" nnoremap = <C-f>
+nnoremap <C-n> 8j
+nnoremap <C-p> 8k
 
 " Open current file "
 nnoremap q. :! ./%c &<cr>
@@ -249,6 +249,7 @@ set confirm=permdelete
 set title
 set cpoptions=fs
 set vimhelp
+set milleroptions=lsize:2,csize:5,rsize:5
 
 " This is the actual command used to start vi.  The default is vim.
 " If you would like to use another vi clone such as Elvis or Vile

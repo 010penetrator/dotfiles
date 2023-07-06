@@ -429,13 +429,14 @@ require("lazy").setup( {
       excluded_ft = { "text", "markdown" },
     }
   },
-  { 'tzachar/highlight-undo.nvim',
+
+  --[[ { 'tzachar/highlight-undo.nvim',
       config = function()
         require('highlight-undo').setup {
             duration = 1400,
           }
       end
-  },
+  }, ]]
 
   'ziontee113/syntax-tree-surfer',
   'AckslD/nvim-neoclip.lua', -- no effect

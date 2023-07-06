@@ -5,6 +5,11 @@
 #define F_T(kc) LT(MO(2), kc)
 #define KC_PIPE LSFT(KC_BSLS)
 
+enum custom_keycodes {
+    GO_8_DN = SAFE_RANGE,
+    GO_8_UP,
+}
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 // 0: Base Layer
@@ -51,6 +56,12 @@ void matrix_scan_user(void) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case GO_8_DN:
+            if (record->event.pressed) {
+                SEND_STRNG( SS_TAP(X_DOWN) SS_TAP(X_DOWN) SS_TAP(X_DOWN) SS_TAP(X_DOWN) SS_TAP(X_DOWN)  );
+            }
+            return false;
     return true;
 }
 
