@@ -151,12 +151,12 @@ gsync() {
 # FZF #
 # [ -f /usr/share/doc/fzf/examples/key-bindings.bash ] && source /usr/share/doc/fzf/examples/key-bindings.bash
 # [ -f /usr/share/fzf/key-bindings.bash ] && source /usr/share/fzf/key-bindings.bash
-# [[ -f "$git/nvpl/fzf/shell/key-bindings.bash" ]] && type -f fzf &>/dev/null &&
-#     source "$git/nvpl/fzf/shell/key-bindings.bash"
+[[ -f "$git/nvpl/fzf/shell/key-bindings.bash" ]] && type -f fzf &>/dev/null &&
+    source "$git/nvpl/fzf/shell/key-bindings.bash"
 [[ -d $git/nvpl/fzf/bin ]] && [[ ! "$PATH" == */nvpl/fzf/bin* ]] &&
     export PATH="${PATH:+${PATH}:}$git/nvpl/fzf/bin"
-# [[ $- == *i* ]] && [[ -f $git/nvpl/fzf/shell/completion.bash ]] &&
-#     source "$git/nvpl/fzf/shell/completion.bash" 2> /dev/null
+[[ $- == *i* ]] && [[ -f $git/nvpl/fzf/shell/completion.bash ]] && type -f fzf &>/dev/null &&
+    source "$git/nvpl/fzf/shell/completion.bash" 2> /dev/null
 export FZF_DEFAULT_OPTS="--exact --layout=reverse --height 45%"
 export FZF_CTRL_R_OPTS="--no-sort --exact"
 # Restore default <C-r> search

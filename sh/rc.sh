@@ -67,7 +67,8 @@ elif [[ "$HOSTNAME" =~ "think" ]]; then
   sleep 1
 
 elif [[ "$HOSTNAME" =~ ^debianPC ]]; then
-  xrdb -merge <(echo "Xft.dpi: 120") &
+  xrdb -merge <(echo "Xft.dpi: 120")
+  xrandr --output DP-2 --auto --left-of DP-1
 
 elif [[ "$HOSTNAME" =~ ^debian10pc ]]; then
   xrandr --output DVI-D-0 --auto --left-of HDMI-0
