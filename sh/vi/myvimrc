@@ -1,5 +1,7 @@
-" vim: ts=2 sw=2 ft=vim
+" vim: ts=2 sts=2 sw=2 ft=vim
 " vi: noswapfile
+" Configure the Vim editor
+" and NeoVim as well..
 
 """"""""""""""""""""""""""""""""
 ""        Initializing:       ""

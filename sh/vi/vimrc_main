@@ -1,6 +1,6 @@
 " vim: ts=4 sw=4 ft=vim
 " Top config file for Vim/Neovim
-" you must set $VIMINIT in your shell like this:
+" you must set $VIMINIT in your shell first:
 " export VIMINIT="source $sh/vi/vimrc_main"
 
 " Vim install checklist
