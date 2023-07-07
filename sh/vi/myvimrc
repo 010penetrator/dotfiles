@@ -30,7 +30,7 @@ set path=.,**
 " g/.\{20,\}/ exec "normal gqgq" | noh " format longer lines
 " autocmd WinNew * set numberwidth=2 winheight=7
 " Check lightline themes here
-" read !ls $PLUGD/lightline.vim/autoload/lightline/colorscheme
+" read !ls $PLUGDIR/lightline.vim/autoload/lightline/colorscheme
 " :%!xxd "re-open as hex
 
 """"""""""""""""""""""""""""""""
@@ -58,7 +58,7 @@ let g:startify_lists = [
             \ { 'type': 'commands',  'header': ['   Commands']       },
             \ ]
             " \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
-let g:startify_session_dir = $VICONFD . "/session"
+let g:startify_session_dir = $VICONFDIR . "/session"
 
 set encoding=UTF-8
 set fileencodings=ucs-bom,utf-8,default,cp1251,latin1
@@ -101,18 +101,18 @@ set hidden
 " set fileformat=unix
 set title
 
-if !isdirectory($VICONFD) | call mkdir($VICONFD, '', 0770) | endif
+if !isdirectory($VICONFDIR) | call mkdir($VICONFDIR, '', 0770) | endif
 " Handle backups
-if !isdirectory($VICONFD . "/bak") | call mkdir($VICONFD . "/bak", '', 0700) | endif
-silent ! find $VICONFD/bak -type f -mtime +30 -delete
-set backupdir=$VICONFD/bak
-set undodir=$VICONFD/bak
+if !isdirectory($VICONFDIR . "/bak") | call mkdir($VICONFDIR . "/bak", '', 0700) | endif
+silent ! find $VICONFDIR/bak -type f -mtime +30 -delete
+set backupdir=$VICONFDIR/bak
+set undodir=$VICONFDIR/bak
 set undofile
-set directory=$VICONFD/bak
+set directory=$VICONFDIR/bak
 set swapfile
 set sessionoptions+=globals
 set history=2500
-set viminfofile=$VICONFD/viminfo
+set viminfofile=$VICONFDIR/viminfo
 
 set t_Co=256
 "  if $TERMINAL == 'xterm' | set term=xterm-256color | endif
@@ -576,10 +576,10 @@ nnoremap ,V :source $MYVIMRC<CR>
 nnoremap ,,v :source $MYVIMRC<CR>
 nnoremap ,v<space> :source %<CR>
 nnoremap c<BS> :call SetPhase() <bar> call LoadColor() <bar> call CrispBorders()<CR>
-nnoremap ,,z :source $VICONFD/session/comon <bar> silent call AddRpcEar()<CR>
+nnoremap ,,z :source $VICONFDIR/session/comon <bar> silent call AddRpcEar()<CR>
 nnoremap ,,q :call SaveColor() <bar> SSave! comon <bar> qa<CR>
 nnoremap ,,s :call SaveColor() <bar> SSave! comon<CR>
-" nnoremap ,,s :call SaveColor() <bar> mksession! $VICONFD/session/comon<CR>
+" nnoremap ,,s :call SaveColor() <bar> mksession! $VICONFDIR/session/comon<CR>
 nnoremap ,vq :qa!<CR>
 nnoremap ,,<tab> :Startify<CR>
 nnoremap ,zq :wa <bar> qa<CR>
@@ -855,7 +855,7 @@ function! RunSelBash()
   echo system(join(getline(a:firstline,a:lastline), "\n"))
 endfunction
 
-" command! SessWriteA call SaveColor() | call TerminalsFuneral() | mksession! $VICONFD/session.vim | SaveSigns! $VICONFD/signs.sav
+" command! SessWriteA call SaveColor() | call TerminalsFuneral() | mksession! $VICONFDIR/session.vim | SaveSigns! $VICONFDIR/signs.sav
 " command! SessWriteB exec 'SessWriteA' | call BufFocusedThenDo('signs.sav','wq')
 
 command! Bash exec 'silent ! bash' | redraw!
@@ -1738,8 +1738,8 @@ endfunction
 "   nnoremap <F8> :exe ":sign place 777 line=" . line(".") ." name=mywarning file=" . expand("%:p")<CR>
 "   nnoremap <F9> :exe ":sign place 666 line=" . line(".") ." name=mybookmark file=" . expand("%:p")<CR>
 "   nnoremap <F10> :sign unplace<CR>
-"   if filereadable("$VICONFD/signs.sav")
-"     source $VICONFD/signs.sav
+"   if filereadable("$VICONFDIR/signs.sav")
+"     source $VICONFDIR/signs.sav
 "   endif
 " endfunc
 " call MySigns()

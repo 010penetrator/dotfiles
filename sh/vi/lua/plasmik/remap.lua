@@ -94,7 +94,7 @@ H.nmap('qr',  ":Telescope lsp_references theme=ivy<CR>")
 H.nmap(',fs', ":Telescope lsp_document_symbols<CR>")
 H.nmap('qs',  ":Telescope lsp_dynamic_workspace_symbols<CR>")
 H.nmap(',vg', require("gitsigns").toggle_signs, "Show git highlight column")
-H.nmap('q;', ":HiMyWordsToggle<CR>")
+H.nmap('q.', ":HiMyWordsToggle<CR>")
 H.nmap('q:', ":HiMyWordsClear<CR>")
 
 ----------------------------------{{{}}}

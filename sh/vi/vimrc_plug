@@ -36,8 +36,8 @@ endfunction
 
 "if exists("g:loaded_plug")
 if exists("g:vimplug_available")
-    if !empty($PLUGD)
-call plug#begin($PLUGD)
+    if !empty($PLUGDIR)
+call plug#begin($PLUGDIR)
     else
 call plug#begin()
     endif

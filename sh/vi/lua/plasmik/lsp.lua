@@ -41,8 +41,8 @@ lsp_installer.on_server_ready(function(server)
 end) ]]
 
 local masonpath
-if vim.env.PLUGD then
-  masonpath = H.path_join( vim.env.PLUGD , "..", "nvim-mason" )
+if vim.env.PLUGDIR then
+  masonpath = H.path_join( vim.env.PLUGDIR , "..", "nvim-mason" )
   -- masonpath = H.path_join( vim.fn.stdpath"data", "nvim-mason" )
   masonpath = vim.fn.resolve(masonpath)
 end

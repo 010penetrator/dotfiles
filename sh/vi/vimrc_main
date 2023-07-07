@@ -1,11 +1,33 @@
 " vim: ts=4 sw=4 ft=vim
-" Kind of header config file for Vim/Neovim
+" Top config file for Vim/Neovim
+" you must set $VIMINIT in your shell like this:
+" export VIMINIT="source $sh/vi/vimrc_main"
+
+" Vim install checklist
 " 1. get plug.vim
 " 2. :PlugUpdate
-" 3. :checkhealth
-" 4. set up Mason
-" 5. check if LSP works well
 
+" NeoVim install checklist
+" 1. Lazy.nvim should erect itself
+" 2. :checkhealth
+" 3. set up Mason
+" 4. check if LSP works well
+
+" Set crucial env for this config
+let $VICONFDIR=split(&runtimepath, ',')[0]
+if !empty($sh)
+    let $MYVIMRC = $sh . "/vi/vimrc_main"
+endif
+if !empty($git)
+    let $PLUGDIR = $git . "/nvpl"
+else
+    if isdirectory($sh . "/../../nvpl")
+        let $PLUGDIR = resolve($sh . "/../../nvpl")
+    endif
+endif
+let $MYAUTOLOAD = expand('$VICONFDIR') . "/autoload"
+
+" Probe if we are in MSYS
 let g:bash_forced=0
 if ( !empty($MSYSTEM) && has("nvim") )
     echo "Will force Msys shell!"
@@ -13,37 +35,21 @@ if ( !empty($MSYSTEM) && has("nvim") )
     set shell=\msys64/usr/bin/bash
     set shellcmdflag=-c
     set sxq=
+    let g:my_autoload_nix = system('cygpath -u "$MYAUTOLOAD" | tr -d "\n"')
+    "let $PLUGDIR = system('cygpath -u "$PLUGDIR" | tr -d "\n"')
+    "let $VICONFDIR = system('cygpath "$VICONFDIR"')
 endif
 if $ComSpec =~ "cmd.exe$"
     " echo "We have cmd prompt.."
 endif
 
-" if empty($sh) | echom 11 expand('%') | endif
-let $VICONFD=split(&runtimepath, ',')[0]
-if !empty($sh)
-    let $MYVIMRC = $sh . "/vi/vimrc_main"
-endif
-if !empty($git)
-    let $PLUGD = $git . "/nvpl"
-else
-    if isdirectory($sh . "/../../nvpl")
-        let $PLUGD = resolve($sh . "/../../nvpl")
-    endif
-endif
-let $MYAUTOLOAD = expand('$VICONFD') . "/autoload"
-
-if !empty(g:bash_forced)
-    let g:my_autoload_nix = system('cygpath -u "$MYAUTOLOAD" | tr -d "\n"')
-    "let $PLUGD = system('cygpath -u "$PLUGD" | tr -d "\n"')
-    "let $VICONFD = system('cygpath "$VICONFD"')
-endif
-
+" load-if-available command
 command! -nargs=1 SSource if filereadable(expand('<args>')) | source <args> | endif
 
 if ( !isdirectory($vi) && isdirectory($sh."/vi") )
     let $vi = $sh .  "/vi"
+    let $mylua = $sh . "/vi/lua/plasmik"
 endif
-let $mylua = $sh . "/vi/lua/plasmik"
 
 set runtimepath+=$vi
 " set runtimepath

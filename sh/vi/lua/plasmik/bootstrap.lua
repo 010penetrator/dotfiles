@@ -3,7 +3,7 @@
 
 -- Install lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
--- local lazypath = vim.env.PLUGD .. "/lazy/lazy.nvim"
+-- local lazypath = vim.env.PLUGDIR .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
     "git",
@@ -559,6 +559,6 @@ require("lazy").setup( {
 
 },
 
-{ root = vim.env.PLUGD, }
+{ root = vim.env.PLUGDIR, }
 )
 

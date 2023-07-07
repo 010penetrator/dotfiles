@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Open files in existing nVim via RPC feature
+# Open files in existing NeoVim via RPC feature
 
 import os, sys
 
