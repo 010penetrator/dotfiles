@@ -295,14 +295,14 @@ imap jj <ESC>
 imap оо <ESC>
 
 " go to end-of-line
-map! <C-e> <C-o>A
+imap <C-e> <C-o>A
 
 imap <A-b> <C-o>b
 imap <A-f> <C-o>e
 imap <C-l> <Right>
 
 " add space right from cursor
-imap <C-b> <space><left>
+imap <C-s> <space><left>
 
 " double <esc> will switch off search highlighting
 " nnoremap <silent> <Esc><Esc> <Esc>:noh<CR><Esc>
@@ -316,7 +316,7 @@ noremap C "_C
 
 " Editing
 nnoremap qo o<space><C-u><Esc>
-nnoremap qi O<space><C-u><Esc>j
+nnoremap qi O<space><C-u><Esc>
 nnoremap qu ~
 nnoremap cx s
 " swap two chars
@@ -332,11 +332,11 @@ nnoremap dx 0"_D
 nnoremap dX ^"_D
 nnoremap dc "_d$
 nnoremap d. "_dd
-nnoremap d<space> :call DelSpace()<Esc>
+nnoremap d<space> :call DelSpace()<CR>
 " add this line to the next line
 nnoremap al ddpkJ
 " start fat new line
-nnoremap cm o<Esc>O
+nnoremap c. :call InsertSpacy()<CR>
 " insert new line after current paragraph
 " nnoremap c<CR> }:if (line(".") == line("$")) \| exec "normal o" \| endif<CR>O
 nnoremap c<Down> :call EditAtEdge('down')<CR>
@@ -672,8 +672,8 @@ nnoremap co "_ciw<c-r>*<esc>
 nnoremap cO "_ciw<c-r>+<esc>
 
 " Commanding Vim
-" nnoremap q; :<up>
-" vnoremap q; :<up>
+nnoremap q; :<up>
+vnoremap q; :<up>
 nnoremap cc :
 cnoremap <C-a> <Home>
 cnoremap <C-b> <C-Left>
@@ -1496,6 +1496,21 @@ function! LightlineReload(arg)
 endfunction
 command! -nargs=? LineColor call LightlineReload('<args>')
 
+" Add few lines and start Insert mode
+function! InsertSpacy()
+  " check if current line is empty
+  if getline('.') =~ '^\s*$'
+    put = ''
+    put! = ''
+    startinsert
+  else
+    put = ''
+    put! = ''
+    put = ''
+    startinsert
+  endif
+endfunction
+
 " Delete bunches of blank lines
 function! DelSpace()
   let cur = line('.')
@@ -1515,7 +1530,8 @@ function! DelSpace()
     " end-of-file case
     exec "normal! o"
   else
-    exec "normal! O"
+    " exec "normal! O"
+    put! = ''
   endif
 endfunction
 
