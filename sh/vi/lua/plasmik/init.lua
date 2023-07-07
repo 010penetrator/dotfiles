@@ -15,7 +15,7 @@ require("plasmik.bootstrap")
 vim.api.nvim_command('set runtimepath+=$vi') -- Repair rtp after plugging
 
 require("plasmik.lsp")
-require("plasmik.completion")
+require("plasmik.cmp")
 
 H.reload("plasmik.remap")
 
@@ -23,6 +23,11 @@ H.reload("plasmik.remap")
 --------------------------------
 --      Configure Plugs       --
 --------------------------{{{}}}
+
+local is_available = H.is_available
+if is_available "mason.nvim" then
+  -- do stuff
+end
 
 -- Syntax Tree Surfer
 local noresil = { noremap = true, silent = false }

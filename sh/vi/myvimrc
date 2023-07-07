@@ -1458,8 +1458,8 @@ command! -nargs=? LoadColor call SetPhase(<f-args>) <bar> call LoadColor(<f-args
 
 function! SwitchCE()
   if mapcheck("<C-e>") == ''
-    noremap <C-e> 4<C-e>
-    noremap <C-y> 4<C-y>
+    noremap <C-e> 6<C-e>
+    noremap <C-y> 6<C-y>
     echo "Now scrolling is faster."
   else
     unmap <C-e>

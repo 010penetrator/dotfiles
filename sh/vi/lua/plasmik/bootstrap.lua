@@ -76,11 +76,13 @@ require("lazy").setup( {
     build = 'make',
   },
   'nvim-lua/plenary.nvim',
+  'powerman/vim-plugin-ruscmd', -- works
   'williamboman/mason.nvim', -- base -- load TS servers
   'mfussenegger/nvim-dap',
   'mfussenegger/nvim-lint',
   'jay-babu/mason-nvim-dap.nvim',
   'rcarriga/nvim-dap-ui',
+
   'nvim-telescope/telescope-dap.nvim',
   {
     'nvim-treesitter/nvim-treesitter',
@@ -96,6 +98,7 @@ require("lazy").setup( {
     'SmiteshP/nvim-navbuddy', -- cool -- code map (call :Navbuddy)
     config = true
   },
+
   {
     'neovim/nvim-lspconfig',
     dependencies = {
@@ -129,6 +132,7 @@ require("lazy").setup( {
     -- end,
   },
 
+  'kevinhwang91/rnvimr',
   -- 'mrjones2014/nvim-ts-rainbow', -- buggy
   'https://gitlab.com/HiPhish/nvim-ts-rainbow2',
   'chentoast/marks.nvim', -- good -- better marks
@@ -234,7 +238,6 @@ require("lazy").setup( {
     },
   },
 
-  'https://git.sr.ht/~whynothugo/lsp_lines.nvim', -- cool
   {
     'lukas-reineke/indent-blankline.nvim', -- usable
     opts = {
@@ -255,8 +258,9 @@ require("lazy").setup( {
     -- let g:indent_blankline_buftype_exclude = ['terminal', 'nofile', 'quickfix', 'prompt', 'startify']
     -- let g:indent_blankline_filetype_exclude = {'terminal', 'nofile', 'quickfix', 'prompt', 'help', 'startify'}
   },
-  'powerman/vim-plugin-ruscmd', -- works
+
   'norcalli/nvim-colorizer.lua',
+  'https://git.sr.ht/~whynothugo/lsp_lines.nvim', -- cool -- multiline lsp hints
 
   {
     'levouh/tint.nvim', -- okay -- Fade inactive windows
@@ -296,7 +300,7 @@ require("lazy").setup( {
 
   'sindrets/diffview.nvim', -- great -- cycle through diffs
   {
-    'simrat39/symbols-outline.nvim', -- okay
+    'simrat39/symbols-outline.nvim', -- okay -- symbol tree
     config = true
   },
   'gennaro-tedesco/nvim-peekup', -- usage:""
@@ -308,7 +312,7 @@ require("lazy").setup( {
   },
 
   {
-    'Wansmer/treesj', -- split/join
+    'Wansmer/treesj', -- great -- split/join
     config = { use_default_keymaps = false, max_join_length = 440 }
   },
   -- 'bennypowers/splitjoin.nvim',
@@ -322,9 +326,10 @@ require("lazy").setup( {
 
   'tamton-aquib/zone.nvim', -- fun
 
-  'gorbit99/codewindow.nvim', -- ... -- minimap
-  'rareitems/hl_match_area.nvim',
-  'Eandrju/cellular-automaton.nvim',
+  {
+    'gorbit99/codewindow.nvim', -- ... -- minimap
+    config = true
+  },
 
   'nullchilly/fsread.nvim', -- funky -- read fast
   {
@@ -336,7 +341,7 @@ require("lazy").setup( {
   -- 'LintaoAmons/scratch.nvim',
   'AbdelrahmanDwedar/awesome-nvim-colorschemes',
   'diegoulloao/nvim-file-location',
-  'lewis6991/satellite.nvim',
+  -- 'lewis6991/satellite.nvim', --   add scrollbar
 
   --[[ {
     'j-hui/fidget.nvim',
@@ -344,7 +349,7 @@ require("lazy").setup( {
     config = true,
   }, ]]
 
-  'cbochs/portal.nvim', -- error
+  -- 'cbochs/portal.nvim', -- error
   'ziontee113/neo-minimap',
   'princejoogie/dir-telescope.nvim',
   -- 'pocco81/true-zen.nvim',
@@ -357,10 +362,10 @@ require("lazy").setup( {
     end,
   },
 
-  {
-    'folke/flash.nvim', -- cool -- nav line
+  --[[ {
+    'folke/flash.nvim', -- cool
     config = 'require("flash").setup()'
-  },
+  }, ]]
 
   {
     'glepnir/lspsaga.nvim',
@@ -380,14 +385,14 @@ require("lazy").setup( {
   --   },
   -- },
 
-  'RRethy/vim-illuminate',
-
-  --[[ {
-    'dvoytik/hi-my-words.nvim',
-    config = true
-  }, ]]
+  'RRethy/vim-illuminate', --   highlight current word
 
   {
+    'dvoytik/hi-my-words.nvim', -- highlight words you wish
+    config = true
+  },
+
+  --[[ {
   'chrisgrieser/nvim-spider', -- works -- better word margins
     config = function()
       vim.keymap.set({"n", "o", "x"}, "w", "<cmd>lua require('spider').motion('w')<CR>", { desc = "Spider-w" })
@@ -395,7 +400,7 @@ require("lazy").setup( {
       vim.keymap.set({"n", "o", "x"}, "b", "<cmd>lua require('spider').motion('b')<CR>", { desc = "Spider-b" })
       vim.keymap.set({"n", "o", "x"}, "ge", "<cmd>lua require('spider').motion('ge')<CR>", { desc = "Spider-ge" })
     end,
-  },
+  }, ]]
 
   {
     'phaazon/hop.nvim',
@@ -451,19 +456,20 @@ require("lazy").setup( {
   -- 'freddiehaddad/feline.nvim', --on watch
   'prochri/telescope-all-recent.nvim',
   -- 'CKolkey/ts-node-action',
-  'smzm/hydrovim',
+  'smzm/hydrovim', --    eval python
   'luukvbaal/statuscol.nvim', --ambitious
   -- 'mrjones2014/legendary.nvim',
   -- 'folke/which-key.nvim',
   -- 'Wansmer/sibling-swap.nvim',
   'RaafatTurki/hex.nvim',
-  'JoosepAlviste/palenightfall.nvim',
   -- 'danielfalk/smart-open.nvim', --funky telescope mode
   'tsakirist/telescope-lazy.nvim',
   -- 'altermo/ultimate-autopair.nvim',
   -- 'chrisgrieser/nvim-various-textobjs', -- many
-  { 'AckslD/muren.nvim', config = true }, -- wow
+  -- { 'AckslD/muren.nvim', config = true }, -- wow
   -- 'axkirillov/hbac.nvim', ]]
+  -- 'rareitems/hl_match_area.nvim',
+  -- 'Eandrju/cellular-automaton.nvim',
 
 --------------------------------
 --          Themes:           --
@@ -472,6 +478,7 @@ require("lazy").setup( {
   'felipeagc/fleet-theme-nvim',
   'uloco/bluloco.nvim', -- have transprent
   '2nthony/vitesse.nvim',
+  'JoosepAlviste/palenightfall.nvim',
   'gbprod/nord.nvim',
   'Yazeed1s/oh-lucy.nvim',
   { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
