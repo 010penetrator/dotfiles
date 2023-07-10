@@ -3,7 +3,6 @@
 -- print('hello from plasmik.helpy lua')
 
 local M = {}
-H = M
 
 function M.tprint (tbl)
   for k,v in pairs(tbl) do
@@ -90,7 +89,7 @@ M.tableMerge = function(t1,t2)
 end
 
 -- classic Vim keymap, it may take options like "silent"
-M.bram_nmap = function (a_key, a_map, a_opts )
+M.Bmap = function (a_key, a_map, a_opts )
   if type(a_opts or false) == "table" then
     M.tableMerge(a_opts or {}, {})
     -- M.tableMerge(a_opts or {}, {noremap=true})
@@ -109,6 +108,9 @@ end
 M.xnmap = function(keys, func, desc)
   vim.keymap.set({'n','x'}, keys, func, { desc = desc, noremap = true })
 end
+M.vmap = function(keys, func, desc)
+  vim.keymap.set({'v'}, keys, func, { desc = desc, noremap = true })
+end
 
 -- local k_opts = { silent=true, noremap=false }
 -- vim.api.nvim_set_keymap("n", "<C-p>", ":lua require('bufjump').backward()<cr>", k_opts)
@@ -117,7 +119,7 @@ M.teles_ff = function()
   local opt = require('telescope.themes').get_ivy({height=10,previewer=false,winblend=16})
   require('telescope.builtin').current_buffer_fuzzy_find(opt)
 end
-M.bram_nmap('<C-h>', ':lua require("plasmik.helpy").teles_ff()<cr>')
+M.Bmap('<C-h>', ':lua require("plasmik.helpy").teles_ff()<cr>')
 
 -- local hotfun = {}
 -- :lua package.loaded.init = nil

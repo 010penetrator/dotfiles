@@ -9,7 +9,7 @@ vim.api.nvim_command('\
 ')
 
 H.nmap('z<Down>', function() vim.lsp.diagnostic.goto_next() end)
-H.bram_nmap('z<Up>', "k<cmd>vim.lsp.diagnostic.goto_prev")
+H.Bmap('z<Up>', "k<cmd>vim.lsp.diagnostic.goto_prev")
 H.nmap(',S', vim.lsp.buf.signature_help)
 
 vim.keymap.set('n','K', vim.lsp.buf.hover, {buffer=0})
@@ -45,8 +45,8 @@ H.nmap(',"', function() require'nvim-peekup'.peekup_open('p') end )
 -- vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 -- vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 
-H.bram_nmap('<C-PageUp>',   ":BufferLineCyclePrev<CR>", { silent = true })
-H.bram_nmap('<C-PageDown>', ":BufferLineCycleNext<CR>", { silent = true })
+H.Bmap('<C-PageUp>',   ":BufferLineCyclePrev<CR>", { silent = true })
+H.Bmap('<C-PageDown>', ":BufferLineCycleNext<CR>", { silent = true })
 
 H.nmap(',n', ":NeoTreeRevealToggle<CR>")
 -- H.nmap(',N', ":NeoTreeClose<CR>")
@@ -57,7 +57,7 @@ H.nmap('c<BS>', ":call ReloadStyle(1)<CR>")
 H.nmap(',vr', ":TSToggle rainbow<CR>")
 H.nmap(',vs', ":ScrollbarToggle<CR>")
 H.nmap(',gr', ":call FocusBufOrDo('bootstrap.lua','e $mylua/bootstrap.lua')<CR>")
-H.nmap(',ge', ":call FocusBufOrDo('remap.lua','e $mylua/remap.lua')<CR>")
+H.nmap(',ge', ":call FocusBufOrDo('mappings.lua','e $mylua/mappings.lua')<CR>")
 -- H.nmap(',vp', function() vim.api.nvim_exec([[:put +| normal dfmxI'A',==]], false) end)
 H.nmap(',vp', function() vim.api.nvim_exec([[:put +| normal 3df/^v$S'A,==]], false) end)
 H.nmap(',vt', function() require'tint'.toggle() end )
@@ -153,4 +153,15 @@ if package.loaded['cinnamon'] then
   vim.keymap.set('n', 'gd', "<Cmd>lua Scroll('definition')<CR>")
   vim.keymap.set('n', 'gD', "<Cmd>lua Scroll('declaration')<CR>")
 end
+
+H.nmap('<A-j>', ':MoveLine(1)<CR>')
+H.nmap('<A-k>', ':MoveLine(-1)<CR>')
+H.nmap('<A-h>', ':MoveHChar(-1)<CR>')
+H.nmap('<A-l>', ':MoveHChar(1)<CR>')
+H.nmap('<leader>wf', ':MoveWord(1)<CR>')
+H.nmap('<leader>wb', ':MoveWord(-1)<CR>')
+H.vmap('<A-j>', ':MoveBlock(1)<CR>')
+H.vmap('<A-k>', ':MoveBlock(-1)<CR>')
+H.vmap('<A-h>', ':MoveHBlock(-1)<CR>')
+H.vmap('<A-l>', ':MoveHBlock(1)<CR>')
 

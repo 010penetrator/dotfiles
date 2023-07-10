@@ -78,6 +78,9 @@ set guicursor=n-v-c:block,i-ci:block,r-cr-o:hor20
 set tabstop=2 softtabstop=2 shiftwidth=4 expandtab smarttab smartindent
 set textwidth=0 wrapmargin=0
 set invlinebreak
+set breakindent
+set breakindentopt=shift:2
+set showbreak=↳
 set sidescroll=24
 " set list lcs=tab:\┆\۰
 	" ls tab sample

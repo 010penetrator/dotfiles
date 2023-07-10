@@ -1,8 +1,8 @@
 -- vim: ts=2 sw=2
 -- Install plugins manager and install plugins
 
--- Install lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+-- Install lazy.nvim
 -- local lazypath = vim.env.PLUGDIR .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -279,19 +279,10 @@ require("lazy").setup( {
     config = true
   },
   -- 'LukasPietzschmann/telescope-tabs', -- usable
-  {
-    'booperlv/nvim-gomove', -- usable -- move pieces
-    opts = {
-      -- whether or not to map default key bindings, (true/false)
-      map_defaults = true,
-      -- whether or not to reindent lines moved vertically (true/false)
-      reindent = true,
-      -- whether or not to undojoin same direction moves (true/false)
-      undojoin = true,
-      -- whether to not to move past end column when moving blocks horizontally, (true/false)
-      move_past_end_col = false,
-    },
-  },
+
+  -- 'booperlv/nvim-gomove', -- usable -- move text pieces
+  -- 'ziontee113/syntax-tree-surfer', --   move with TS
+  'fedepujol/move.nvim',
 
   {
     'kwkarlwang/bufjump.nvim', -- good -- jump in history a buffer at once
@@ -372,12 +363,12 @@ require("lazy").setup( {
     config = 'require("flash").setup()'
   }, ]]
 
-  {
+  --[[ {
     'glepnir/lspsaga.nvim',
     event = "LspAttach",
     config = function() require("lspsaga").setup() end,
     dependencies = { {"kyazdani42/nvim-web-devicons"}, {"nvim-treesitter/nvim-treesitter"} }
-  },
+  }, ]]
 
   -- {
   --   'tzachar/local-highlight.nvim',
@@ -414,18 +405,10 @@ require("lazy").setup( {
       local hop = require('hop')
       hop.setup { keys = 'etovxqpdygfblzhckisuran' }
       local directions = require('hop.hint').HintDirection
-      vim.keymap.set('', 'f', function()
-        hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true })
-      end, {remap=true})
-      vim.keymap.set('', 'F', function()
-        hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true })
-      end, {remap=true})
-      vim.keymap.set('', 't', function()
-        hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })
-      end, {remap=true})
-      vim.keymap.set('', 'T', function()
-        hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })
-      end, {remap=true})
+      vim.keymap.set('n', 'f', function() hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true }) end, {remap=true})
+      vim.keymap.set('n', 'F', function() hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true }) end, {remap=true})
+      vim.keymap.set('n', 't', function() hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true, hint_offset = -1 }) end, {remap=true})
+      vim.keymap.set('n', 'T', function() hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 }) end, {remap=true})
     end,
   },
 
@@ -448,7 +431,6 @@ require("lazy").setup( {
       end
   },
 
-  'ziontee113/syntax-tree-surfer',
   'AckslD/nvim-neoclip.lua', -- no effect
   'mizlan/iswap.nvim',
   'L3MON4D3/LuaSnip',
