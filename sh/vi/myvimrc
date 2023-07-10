@@ -375,13 +375,14 @@ nnoremap ]v `>
 " navigate quickfix list
 nnoremap q<Up>   :cprev<CR>
 nnoremap q<Down> :cnext<CR>
-nnoremap <C-Up> :cprev<CR>
-nnoremap <C-Down> :cnext<CR>
+" navigate location list
+nnoremap <C-Up>   :lprev<CR>
+nnoremap <C-Down> :lnext<CR>
+" nnoremap ]l :lnext<cr>
+" nnoremap [l :lprev<cr>
 " navigate in diff mode
 nnoremap <F2> [czz
 nnoremap <F3> ]czz
-nnoremap ]l :lnext<cr>
-nnoremap [l :lprev<cr>
 if exists("g:loaded_sneak_plugin")
   nmap s <Plug>Sneak_s
   nmap S <Plug>Sneak_S
@@ -956,6 +957,7 @@ function! EditAtEdge(dir)
   else
     normal O
   endif
+  startinsert
 endfunc
 
 function! LGstamp(...)

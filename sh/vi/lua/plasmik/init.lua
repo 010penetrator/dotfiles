@@ -154,7 +154,8 @@ vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 require("marks").setup {
   -- default_mappings = true,
   -- which builtin marks to show. default {}
-  builtin_marks = { ".", "<", ">", "^" },
+  -- builtin_marks = { ".", "<", ">", "^" },
+  builtin_marks = { ".", "^" },
   -- whether movements cycle back to the beginning/end of buffer. default true
   cyclic = true,
   -- whether the shada file is updated after modifying uppercase marks. default false
@@ -183,10 +184,10 @@ require("marks").setup {
     toggle = "m.",
     delete_line = "m-",
     delete_bookmark = "m=",
-    next_bookmark = "T<Down>",
-    prev_bookmark = "T<Up>",
     next = "t<Down>",
     prev = "t<Up>",
+    next_bookmark = ",<Down>",
+    prev_bookmark = ",<Up>",
     next_bookmark1 = "1<Down>",
     prev_bookmark1 = "1<Up>",
     next_bookmark2 = "2<Down>",

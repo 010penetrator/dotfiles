@@ -89,6 +89,7 @@ M.tableMerge = function(t1,t2)
   end
 end
 
+-- classic Vim keymap, it may take options like "silent"
 M.bram_nmap = function (a_key, a_map, a_opts )
   if type(a_opts or false) == "table" then
     M.tableMerge(a_opts or {}, {})

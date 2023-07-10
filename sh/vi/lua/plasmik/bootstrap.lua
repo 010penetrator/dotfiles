@@ -263,6 +263,11 @@ require("lazy").setup( {
   'https://git.sr.ht/~whynothugo/lsp_lines.nvim', -- cool -- multiline lsp hints
 
   {
+    'folke/trouble.nvim',
+    config = true
+  },
+
+  {
     'levouh/tint.nvim', -- okay -- Fade inactive windows
     opts = {
       tint = -18,
@@ -363,7 +368,7 @@ require("lazy").setup( {
   },
 
   --[[ {
-    'folke/flash.nvim', -- cool
+    'folke/flash.nvim', -- ...
     config = 'require("flash").setup()'
   }, ]]
 
@@ -435,13 +440,13 @@ require("lazy").setup( {
     }
   },
 
-  --[[ { 'tzachar/highlight-undo.nvim',
+  { 'tzachar/highlight-undo.nvim',
       config = function()
         require('highlight-undo').setup {
             duration = 1400,
           }
       end
-  }, ]]
+  },
 
   'ziontee113/syntax-tree-surfer',
   'AckslD/nvim-neoclip.lua', -- no effect
