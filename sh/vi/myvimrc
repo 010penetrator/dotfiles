@@ -392,8 +392,8 @@ if exists("g:loaded_sneak_plugin")
 endif
 noremap <A-n> 12<c-e>
 noremap <A-p> 12<c-y>
-noremap <C-n> 8j
-noremap <C-p> 8k
+noremap <C-n> 6j
+noremap <C-p> 6k
 nmap q1 100G
 nmap q2 200G
 nmap q3 300G
@@ -479,8 +479,8 @@ nnoremap ae     <C-w>4+
 nnoremap ad     <C-w>4-
 nnoremap ar     <C-w>_
 nnoremap ac     <C-w>80-
-nnoremap qw     <C-w>_<C-w>\|
-nnoremap qq     <C-w>=
+nnoremap a<space>   <C-w>_<C-w>\|
+nnoremap aq     <C-w>=
 nnoremap aj     <C-w>w<C-w>_
 nnoremap ak     <C-w>W<C-w>_
 " focus prev window
@@ -1599,11 +1599,11 @@ function! BDnJump()
   "" if ( ( expand('#') == '' ) || ( expand('#') =~ '!/bin/bash' ) ) "" if ( expand('%') =~ '!/bin/bash' ) && ( expand('%') == expand('#') ) """ Current and prev buffers are terminals
   if ( bufexists(bufnr('#')) ) " Previous buffer is unset
     let cbn = bufnr('%')
-    bnext " Jump to any other buffer
+    b # " jump to the previous buffer
     exec  'bd!' . cbn
   else
     let cbn = bufnr('%')
-    b # " Jump to the previous buffer
+    bnext " jump to any other buffer
     exec  'bd!' . cbn
   endif
 endfunction

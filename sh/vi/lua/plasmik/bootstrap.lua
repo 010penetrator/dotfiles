@@ -412,7 +412,8 @@ require("lazy").setup( {
     end,
   },
 
-  { 'ecthelionvi/NeoColumn.nvim', -- okay -- highlight long lines
+  {
+    'ecthelionvi/NeoColumn.nvim', -- okay -- highlight long lines
     opts = {
       -- bg_color = "878787"
       fg_color = "",
@@ -423,7 +424,8 @@ require("lazy").setup( {
     }
   },
 
-  { 'tzachar/highlight-undo.nvim',
+  {
+    'tzachar/highlight-undo.nvim',
       config = function()
         require('highlight-undo').setup {
             duration = 1400,
@@ -458,10 +460,20 @@ require("lazy").setup( {
   -- 'rareitems/hl_match_area.nvim',
   -- 'Eandrju/cellular-automaton.nvim',
 
+  {
+    'zaldih/themery.nvim',
+    opts = {
+      themes = { "C64", "NeoSolarized", "OceanicNext", "OceanicNextLight", "Tomorrow", "Tomorrow-Night", "Tomorrow-Night-Blue", "Tomorrow-Night-Bright", "Tomorrow-Night-Eighties", "alduin", "apprentice", "artesanal", "atlantis", "ayu", "ayu-dark", "ayu-light", "ayu-mirage", "blue", "bluewery", "bluewery-light", "bluewery-text-writing", "bluloco", "bluloco-dark", "bluloco-light", "carbonfox", "catppuccin", "catppuccin-frappe", "catppuccin-latte", "catppuccin-macchiato", "catppuccin-mocha", "cryslominsa", "dark_eyes", "darkblue", "darkplus", "dawnfox", "dayfox", "default", "delek", "desert", "desert-night", "dracula", "duskfox", "edge", "eighties", "elflord", "evening", "everforest", "fairy-garden", "fantasy", "fight-in-the-shade", "fleet", "fluoromachine", "frign", "garden", "github_dark", "github_dark_colorblind", "github_dark_default", "github_dark_dimmed", "github_dark_high_contrast", "github_dark_tritanopia", "github_dimmed", "github_light", "github_light_colorblind", "github_light_default", "github_light_high_contrast", "github_light_tritanopia", "grimoire", "gruvbox", "gruvbox-material", "habamax", "hybrid", "hybrid_material", "hybrid_reverse", "ice-age", "iceberg", "immortals", "industry", "kanagawa", "kanagawa-dragon", "kanagawa-lotus", "kanagawa-wave", "kat.nvim", "kat.nwim", "knicks-away", "koehler", "lost-shrine", "lucius", "lunaperche", "melange", "mellow", "messy", "minimal", "minimal-base16", "miramare", "moody", "morning", "murphy", "nebula", "nightfox", "nord", "nordfox", "nordic", "off", "oh-lucy", "oh-lucy-evening", "onedark", "onehalfdark", "onehalflight", "onenord", "pablo", "palenightfall", "paper", "peachpuff", "perun", "plastic", "quiet", "ron", "rose-pine", "rose-pine-dawn", "rose-pine-main", "rose-pine-moon", "rusticated", "sacredforest", "shine", "slate", "snow", "solarized", "solarized-flat", "solarized-high", "solarized-low", "spacemacs-theme", "spartan", "stellarized", "substrata", "subtle_dark", "subtle_light", "tayra", "tempus_autumn", "tempus_classic", "tempus_dawn", "tempus_day", "tempus_dusk", "tempus_fugit", "tempus_future", "tempus_night", "tempus_past", "tempus_rift", "tempus_spring", "tempus_summer", "tempus_tempest", "tempus_totus", "tempus_warp", "tempus_winter", "terafox", "thermopylae", "tokyonight", "tokyonight-day", "tokyonight-moon", "tokyonight-night", "tokyonight-storm", "torte", "tundra", "turtles", "typewriter", "typewriter-night", "vadelma", "vanilla-cake", "vitesse", "zellner" }
+    }
+  },
+
+
 --------------------------------
 --          Themes:           --
 --------------------------{{{}}}
 
+  'maxmx03/FluoroMachine.nvim', -- neeooooon
+  { "2nthony/vitesse.nvim", dependencies = { "tjdevries/colorbuddy.nvim" }, }, -- foresty
   'felipeagc/fleet-theme-nvim',
   'uloco/bluloco.nvim', -- have transprent
   '2nthony/vitesse.nvim',
