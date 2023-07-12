@@ -79,7 +79,6 @@ nnoremap ,,v :source $MYVIFMRC <CR>
 nnoremap ar ggvGcw
 nnoremap ae :winrun , cd %C <CR><Tab>
 nnoremap a= :winrun , cd %D <CR><Tab>
-nnoremap cv cW
 nnoremap t tj
 nnoremap T tk
 nnoremap at :tabnew<CR>
@@ -681,11 +680,13 @@ nnoremap w :view<cr>
 vnoremap w :view<cr>gv
 
 " Mappings for faster renaming
-nnoremap <F2> cw
+nnoremap <f2> cw
 nnoremap I cw<c-a>
 nnoremap cx cw<c-u>
 nnoremap A cw
 nnoremap Ф cw
+nnoremap cv cW
+nnoremap см cW
 
 " Open console in current directory
 nnoremap ,t :!$TERMINAL &<cr>
