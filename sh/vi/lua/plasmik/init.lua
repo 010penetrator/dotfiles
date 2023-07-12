@@ -15,7 +15,6 @@ require("plasmik.bootstrap")
 vim.api.nvim_command('set runtimepath+=$vi') -- Repair rtp after plugging
 
 require("plasmik.lsp")
-require("plasmik.cmp")
 
 H.reload("plasmik.mappings")
 
