@@ -1,7 +1,6 @@
 # vim: ts=4 sw=4 ft=text
 # some Bash oneliners AND pieces of general Linux wisdom
 
-
 ==Install
 BASE: base-devel inetutils earlyoom kbd plocate mlocate udevil cylon inxi
 ARCHIE: pacli pakku yay baph
