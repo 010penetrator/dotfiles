@@ -233,6 +233,7 @@ nnoremap gS :exec 'cd' system("compgen -G /ln/mo/*AMV/bak")<cr>
 nnoremap gf :cd /ln/fast<cr>:goto hh<cr>
 " nnoremap gf 'f
 nnoremap gi :cd /ln/hh/imgdl1<cr>
+nnoremap ge :cd /ln/hh/<cr>
 nnoremap gk :cd /ln/torrents/red/KKK<cr>:sort<cr>mh
 nnoremap gv :cd ~/.vim<cr>:goto plugged<cr>
 nnoremap gn :cd ~/.config/nvim<cr>:goto bak<cr>
