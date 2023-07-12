@@ -78,7 +78,26 @@ require("lspconfig").clangd.setup {
   end,
 }
 
-require("lspconfig").lua_ls.setup {
+require("lspconfig").pyright.setup { on_attach = function() print("lsp client is pyright") end, capabilities = nc_capabilities }
+require("lspconfig").cmake.setup { on_attach = function() print("lsp client is cmake") end, capabilities = nc_capabilities }
+require("lspconfig").vimls.setup { on_attach = function() print("lsp client is vimls") end, capabilities = nc_capabilities }
+
+-- blc = require("lspconfig").bashls.cmd
+
+require("lsp_lines").setup()
+-- Disable virtual_text since it's redundant due to lsp_lines.
+vim.diagnostic.config({ virtual_text = false, })
+
+local lsp = require("lsp-zero").preset({})
+lsp.on_attach( function(client,bufnr)
+  lsp.default_keymaps({buffer = bufnr})
+end)
+
+require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
+
+lsp.setup()
+
+--[[ require("lspconfig").lua_ls.setup {
   on_attach = function() print("lsp client is lua_ls") end,
   settings = {
     Lua = {
@@ -86,18 +105,5 @@ require("lspconfig").lua_ls.setup {
       workspace = { library = { os.getenv("VIMRUNTIME") } },
     }
   },
-}
-
-require("lspconfig").pyright.setup { on_attach = function() print("lsp client is pyright") end, capabilities = nc_capabilities }
-require("lspconfig").cmake.setup { on_attach = function() print("lsp client is cmake") end, capabilities = nc_capabilities }
-require("lspconfig").vimls.setup { on_attach = function() print("lsp client is vimls") end, capabilities = nc_capabilities }
-
--- blc = require("lspconfig").bashls.cmd
-
-local lsp = require("lsp-zero")
-lsp.preset("recommended")
-
-require("lsp_lines").setup()
--- Disable virtual_text since it's redundant due to lsp_lines.
-vim.diagnostic.config({ virtual_text = false, })
+} ]]
 
