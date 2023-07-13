@@ -52,8 +52,8 @@ if !exists("g:colors_name") || g:colors_name=='habamax'
             " elseif ( g:phase=='dunno' )
 
         else " neutral colors
-            colo lost-shrine | LineColor nord
-            " colo frign | LineColor aqua_plasm
+            " colo lost-shrine | LineColor nord
+            colo frign | LineColor aqua_plasm
             " colo Tomorrow-Night-Blue | LineColor bluewery
             " colo Tomorrow | LineColor Tomorrow
             " colo Tomorrow-Night | LineColor bluewery

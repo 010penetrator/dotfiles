@@ -27,7 +27,7 @@ H.nmap('gI', vim.lsp.buf.implementation)
 H.nmap('z<down>', vim.diagnostic.goto_next)
 H.nmap('z<up>', vim.diagnostic.goto_prev)
 H.nmap(',R', vim.lsp.buf.rename)
-H.nmap('qa', vim.lsp.buf.code_action)
+H.nmap(',a', vim.lsp.buf.code_action)
 H.nmap('m;', ":BookmarksListAll<CR>")
 
 H.nmap('qn', vim.diagnostic.open_float)

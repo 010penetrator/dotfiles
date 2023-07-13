@@ -4,7 +4,6 @@
 -- print('hello from plasmik')
 -- vim.opt.more = false
 -- vim.api.nvim_command('echom 88')
--- require("plasmik.remm")
 
 require("plasmik.set")
 
@@ -14,10 +13,11 @@ H = require("plasmik.helpy")
 require("plasmik.bootstrap")
 vim.api.nvim_command('set runtimepath+=$vi') -- Repair rtp after plugging
 
-require("plasmik.lsp")
+H.reload("plasmik.lsp")
 
 H.reload("plasmik.mappings")
 
+-- require("plasmik.remm")
 
 --------------------------------
 --      Configure Plugs       --

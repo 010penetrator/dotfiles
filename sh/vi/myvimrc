@@ -353,10 +353,10 @@ nnoremap a<Up>   gg:call search('^.')\|call EditAtEdge('up')<CR>
 nnoremap a<Down> G$:call search('^.','b')\|call EditAtEdge('down')<CR>
 
 " extend line with -----
-nnoremap qa- o<esc>64A-<esc>kJ0<esc>60ld$0<esc>40l
-nnoremap qa= o<esc>64A=<esc>kJ0<esc>60ld$0<esc>40l
+nnoremap q- o<esc>64A-<esc>kJ0<esc>60ld$0<esc>40l
+nnoremap q= o<esc>64A=<esc>kJ0<esc>60ld$0<esc>40l
 " add horiz line
-nnoremap q- o<esc>64A-<esc>0<esc>60ld$0<esc>40l
+nnoremap z- o<esc>64A-<esc>0<esc>60ld$0<esc>40l
 " insert one char
 nnoremap af :exec "normal i".nr2char(getchar())."\e"<CR>
 nnoremap ag :exec "normal! a".nr2char(getchar())."\e"<CR>
@@ -593,12 +593,12 @@ nnoremap ,,<tab> :Startify<CR>
 nnoremap ,zq :wa <bar> qa<CR>
 nnoremap ,,a :call AddRpcEar()<CR>
 " Open current file at vimserver session via my "vimrpc" shell script
-nnoremap qaa :silent exec '! vir "%:p"'<CR>
-nnoremap qaq :exec '! vir "%:p"' \| q<CR>
-nnoremap qac :exec '! MODE=cur    vir "%:p"' \| q<CR>
-nnoremap qan :exec '! MODE=newtab vir "%:p"' \| q<CR>
-nnoremap qas :exec '! MODE=split  vir "%:p"' \| q<CR>
-nnoremap qav :exec '! MODE=vert   vir "%:p"' \| q<CR>
+nnoremap qza :silent exec '! vir "%:p"'<CR>
+nnoremap qzz :exec '! vir "%:p"' \| q<CR>
+nnoremap qzc :exec '! MODE=cur    vir "%:p"' \| q<CR>
+nnoremap qzn :exec '! MODE=newtab vir "%:p"' \| q<CR>
+nnoremap qzs :exec '! MODE=split  vir "%:p"' \| q<CR>
+nnoremap qzv :exec '! MODE=vert   vir "%:p"' \| q<CR>
 
 " Silly update git repo
 map ,,g :call LGsync()<CR>

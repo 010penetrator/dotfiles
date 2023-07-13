@@ -61,41 +61,40 @@ require("mason-lspconfig").setup {
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 local nc_capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
-require("lspconfig").bashls.setup {
-  on_attach = function()
-    print("lsp client is bashls")
-  end,
-}
+-- local navic = require("nvim-navic")
+-- -- local navbuddy = H.mrequire("nvim-navbuddy")
+-- require("lspconfig").clangd.setup {
+--   on_attach = function(client, bufnr)
+--     print("lsp client is clangd")
+--     if client.server_capabilities.documentSymbolProvider then
+--       navic.attach(client,bufnr)
+--       print("navic attached!")
+--     end
+--     -- navbuddy.attach(client, bufnr)
+--   end
+-- }
 
-require("lspconfig").clangd.setup {
-  on_attach = function(client, bufnr)
-    print("lsp client is clangd")
-    -- local navbuddy = H.mrequire("nvim-navbuddy")
-    -- local navic = H.mrequire("nvim-navic")
-    require("nvim-navbuddy").attach(client, bufnr)
-    require("nvim-navic").attach(client,bufnr)
-    print("navbuddy attached!")
-  end,
-}
-
+--[[ require("lspconfig").bashls.setup { on_attach = function() print("lsp client is bashls") end, }
 require("lspconfig").pyright.setup { on_attach = function() print("lsp client is pyright") end, capabilities = nc_capabilities }
 require("lspconfig").cmake.setup { on_attach = function() print("lsp client is cmake") end, capabilities = nc_capabilities }
-require("lspconfig").vimls.setup { on_attach = function() print("lsp client is vimls") end, capabilities = nc_capabilities }
+require("lspconfig").vimls.setup { on_attach = function() print("lsp client is vimls") end, capabilities = nc_capabilities } ]]
 
 -- blc = require("lspconfig").bashls.cmd
 
-require("lsp_lines").setup()
--- Disable virtual_text since it's redundant due to lsp_lines.
-vim.diagnostic.config({ virtual_text = false, })
 
-local lsp = require("lsp-zero").preset({})
-lsp.on_attach( function(client,bufnr)
-  lsp.default_keymaps({buffer = bufnr})
+local lspz = require("lsp-zero").preset({})
+lspz.on_attach( function(client,bufnr)
+  lspz.default_keymaps({buffer = bufnr})
+  print("lsp-zero here")
+  -- require("nvim-navbuddy").attach(client, bufnr)
+  require("nvim-navic").attach(client,bufnr)
+  -- print("lsp client is clangd;  ", "navbuddy & navic attached!")
 end)
-
-require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
-
-lsp.setup()
+--
+-- (Optional) Configure lua language server for neovim
+require('lspconfig').lua_ls.setup(lspz.nvim_lua_ls())
+--
+lspz.setup()
 
 --[[ require("lspconfig").lua_ls.setup {
   on_attach = function() print("lsp client is lua_ls") end,
@@ -107,6 +106,10 @@ lsp.setup()
   },
 } ]]
 
+require("lsp_lines").setup()
+-- Disable virtual_text since it's redundant due to lsp_lines.
+vim.diagnostic.config({ virtual_text = false, })
+
 --------------------------------
 --         Completion:        --
 --------------------------{{{}}}
@@ -117,14 +120,14 @@ vim.opt.completeopt={"menu", "noselect"}
 local cmp = require("cmp")
 local luasnip = require("luasnip")
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
-local cmp_mappings = lsp.defaults.cmp_mappings({
+
+--[[ local cmp_mappings = lspz.defaults.cmp_mappings({
   ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
   ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
   ['<C-y>'] = cmp.mapping.confirm({ select = true }),
   ["<C-t>"] = cmp.mapping.complete(),
   ["<C-c>"] = cmp.mapping.abort(),
-
-})
+}) ]]
 
 cmp.setup {
   snippet = {
@@ -199,8 +202,7 @@ cmp.setup.filetype('gitcommit', {
 -- cmp.setup.cmdline(':', {
 --     sources = cmp.config.sources({
 --     { name = 'path' }
---     }, {
---         { name = 'cmdline' }
---         })
+--     },
+--     { { name = 'cmdline' } })
 -- })
 

@@ -89,23 +89,15 @@ require("lazy").setup( {
       vim.cmd("silent TSUpdate")
     end,
   },
-  {
-    'SmiteshP/nvim-navic', -- good -- nav string
-    config = true
-  },
-  {
-    'SmiteshP/nvim-navbuddy', -- cool -- code map (call :Navbuddy)
-    config = true
-  },
 
   {
     'neovim/nvim-lspconfig',
     dependencies = {
       {
-        'SmiteshP/nvim-navbuddy',
+        'SmiteshP/nvim-navbuddy', -- cool -- code map (call :Navbuddy)
         dependencies = {
-            'SmiteshP/nvim-navic',
-            'MunifTanjim/nui.nvim'
+          'SmiteshP/nvim-navic', -- good -- nav string
+          'MunifTanjim/nui.nvim'
         },
         opts = { lsp = { auto_attach = true } }
       }
@@ -160,13 +152,21 @@ require("lazy").setup( {
     'nvim-lualine/lualine.nvim',
     dependencies = 'kyazdani42/nvim-web-devicons',
     opts = {
+      sections = {
+        lualine_c = {
+          {
+            "navic",
+            color_correction = nil,
+            navic_opts = nil
+          }
+        }
+      },
       options = {
         section_separators = '',
         component_separators = '',
-        theme = 'nord',
+        theme = 'nordic',
       },
     },
-    config = true,
   },
 
   {
@@ -300,7 +300,7 @@ require("lazy").setup( {
   },
   'gennaro-tedesco/nvim-peekup', -- usage:""
   -- 'trmckay/based.nvim', -- no effect
-  -- { 'utilyre/barbecue.nvim', dependencies = { 'SmiteshP/nvim-navic' } }, -- maybe
+  { 'utilyre/barbecue.nvim', dependencies = { 'SmiteshP/nvim-navic' } }, -- maybe
   {
     'petertriho/nvim-scrollbar', -- okay
     config = true
@@ -349,11 +349,11 @@ require("lazy").setup( {
   'princejoogie/dir-telescope.nvim',
   -- 'pocco81/true-zen.nvim',
 
-  {
-    'NeogitOrg/neogit',
-    dependencies = 'nvim-lua/plenary.nvim',
-    config = true,
-  },
+  -- {
+  --   'NeogitOrg/neogit', -- fail
+  --   dependencies = 'nvim-lua/plenary.nvim',
+  --   config = true,
+  -- },
 
   -- 'airblade/vim-gitgutter',
   {

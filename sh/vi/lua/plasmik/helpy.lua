@@ -24,7 +24,7 @@ function M.reset (p)
   require(p).setup()
 end
 
-function M.mrequire(m)
+function M.reqAsk(m)
   local ok, err = pcall(require, m)
   if not ok then
     return nil, err
@@ -34,7 +34,7 @@ function M.mrequire(m)
 end
 
 function M.msetup(p)
-  local res = M.mrequire(p)
+  local res = M.reqAsk(p)
   if res then
     require(p).setup()
   else

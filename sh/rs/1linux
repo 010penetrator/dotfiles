@@ -420,6 +420,7 @@ noti transmission-remote 192.168.1.160:9090 -st #pistats
 xdg-mime default vim.desktop $(xdg-mime query filetype textfile.ext)
 exo-open ......../app.desktop # run app .desktop file
 ~/.local/share/applications/*.destop # .desktop location
+
 :irc:weechat:
 /filter add joinquit * irc_join,irc_part,irc_quit *
 /set irc.look.temporary_servers on
