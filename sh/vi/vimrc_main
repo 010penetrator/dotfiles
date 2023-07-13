@@ -74,12 +74,10 @@ silent call ReloadStyle(0)
 set runtimepath+=$vi
 
 " TODO/Problems :
-"     tame completion
-"     tame tests like nvim-neotest
-"     tame debug like nvim-dap
+"     why <Esc>j == <A-j>
+"     try nvim-neotest
+"     try nvim-dap
 "     try lspsaga
 "     try emmet
 "     try snippets
-"     why <Esc>j == <A-j>
-"     runtimepath lost
 

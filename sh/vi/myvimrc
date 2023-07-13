@@ -347,7 +347,10 @@ nnoremap c. :call InsertSpacy()<CR>
 " insert new line after current paragraph
 " nnoremap c<CR> }:if (line(".") == line("$")) \| exec "normal o" \| endif<CR>O
 nnoremap c<Down> :call EditAtEdge('down')<CR>
-nnoremap c<Up>   :call EditAtEdge('Up')<CR>
+nnoremap c<Up>   :call EditAtEdge('up')<CR>
+" edit at text start/finish of the buffer
+nnoremap a<Up>   gg:call search('^.')\|call EditAtEdge('up')<CR>
+nnoremap a<Down> G$:call search('^.','b')\|call EditAtEdge('down')<CR>
 
 " extend line with -----
 nnoremap qa- o<esc>64A-<esc>kJ0<esc>60ld$0<esc>40l
@@ -402,11 +405,6 @@ nmap q3 300G
 nmap q4 400G
 map <c-j> <Plug>(edgemotion-j)
 map <c-k> <Plug>(edgemotion-k)
-" go to text start/finish in file
-nnoremap a<Up>   gg:call search('^.')<CR>0kO<space><C-u>
-nnoremap a<Down> G$:call search('^.','b')<CR>0jo<space><C-u>
-" nnoremap gT  gg:call search('^.')<CR>k
-" nnoremap gB  G$:call search('^.','b')<CR>0j
 " search such //comments//
 nnoremap am /\s*\/\/.*\/\/$<CR>
 " jump to blank or one-char lines
@@ -481,7 +479,7 @@ nnoremap ae     <C-w>4+
 nnoremap ad     <C-w>4-
 nnoremap ar     <C-w>_
 nnoremap ac     <C-w>80-
-nnoremap aA     <C-w>_<C-w>\|
+nnoremap qa     <C-w>_<C-w>\|
 nnoremap aq     <C-w>=
 nnoremap aj     <C-w>w<C-w>_
 nnoremap ak     <C-w>W<C-w>_
@@ -530,8 +528,10 @@ nnoremap ,zl :Lines<CR>
 nnoremap ,zs :Files $sh<CR>
 nnoremap ,zt :Files $tt<CR>
 nnoremap ,zj :Files $jo<CR>
+command! -bang FilesProj call GetProjDir() <bar> call fzf#vim#files(expand(b:proj_dir), fzf#vim#with_preview({'options': ['--layout=reverse','--info=inline']}), <bang>0)
+command! -bang MyTelescopeFilesProj call GetProjDir() <bar> exec 'Telescope find_files cwd=' . expand(b:proj_dir)
 if has("nvim")
-  nnoremap qf :TeleFilesProj<CR>
+  nnoremap qf :MyTelescopeFilesProj<CR>
   nnoremap qF :Telescope find_files search_dirs=%:p:h<CR>
   nnoremap ,/ :Telescope find_files search_dirs=$sh,$tt,$loc<CR>
   nnoremap ,,/ :Telescope find_files theme=ivy search_dirs=$sh,$PWD
@@ -884,9 +884,6 @@ command! Dall %d _
 command! Call %d _ | put!
 command! SwapContentPrevWin :call SwapContentPrevWin()
 
-command! -bang FilesProj call GetProjDir() <bar> call fzf#vim#files(expand(b:proj_dir), fzf#vim#with_preview({'options': ['--layout=reverse','--info=inline']}), <bang>0)
-command! -bang TeleFilesProj call GetProjDir() <bar> exec 'Telescope find_files cwd=' . expand(b:proj_dir)
-
 """"""""""""""""""""""""""""""""
 ""         MS_stuff:          ""
 """"""""""""""""""""""""""""""""
@@ -943,10 +940,16 @@ function! EditAtEdge(dir)
   endif
   if a:dir == 'up'
     let m2 = 1
-    call search(target_regex,'b')
+    if !search(target_regex,'bW')
+      let m2 = !m2
+      normal {
+    endif
   elseif a:dir == 'down'
     let m2 = 0
-    call search(target_regex)
+    if !search(target_regex,'W')
+      let m2 = !m2
+      normal }
+    endif
   endif
   if m1 == 1
     " Step back into blank area
@@ -957,10 +960,11 @@ function! EditAtEdge(dir)
     endif
   endif
   " let mor = xor(m1,m2)
+  echom m2
   if m2 == 1
-    normal o
+    put = ''
   else
-    normal O
+    put! = ''
   endif
   startinsert
 endfunc

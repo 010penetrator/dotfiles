@@ -43,7 +43,6 @@ require("lazy").setup( {
   'tpope/vim-fugitive', -- handy
   'mhinz/vim-startify',
   -- 'sheerun/vim-polyglot', -- okay HUGE
-  -- 'airblade/vim-gitgutter',
   -- 'michaeljsmith/vim-indent-object', -- cool
   -- 'godlygeek/tabular', -- okay
   'junegunn/vim-easy-align',
@@ -350,6 +349,13 @@ require("lazy").setup( {
   'princejoogie/dir-telescope.nvim',
   -- 'pocco81/true-zen.nvim',
 
+  {
+    'NeogitOrg/neogit',
+    dependencies = 'nvim-lua/plenary.nvim',
+    config = true,
+  },
+
+  -- 'airblade/vim-gitgutter',
   {
     'lewis6991/gitsigns.nvim', -- cool
     config = function()
