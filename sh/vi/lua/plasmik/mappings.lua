@@ -11,6 +11,7 @@ vim.api.nvim_command('\
 H.nmap('z<Down>', function() vim.lsp.diagnostic.goto_next() end)
 H.Bmap('z<Up>', "k<cmd>vim.lsp.diagnostic.goto_prev")
 H.nmap(',S', vim.lsp.buf.signature_help)
+H.nmap('<C-h>', H.teles_ff)
 
 vim.keymap.set('n','K', vim.lsp.buf.hover, {buffer=0})
 H.nmap('gv', function() vim.cmd('vsplit') vim.lsp.buf.definition() end)
@@ -69,6 +70,7 @@ H.nmap(',j', require'treesj'.toggle)
 -- H.nmap('q.', ":TSJSplit<CR>")
 H.nmap('d<', "<cmd>diffget //2<CR>")
 H.nmap('d>', "<cmd>diffget //3<CR>")
+H.nmap(',vn', function()  if vim.o.winbar=='' then vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}" else vim.o.winbar='' end end )
 
 local tele_ivy = require("telescope.themes").get_ivy{ sort_mru = true, layout_config = { height = vim.opt.lines:get() - 10 } }
 function Tele_buff_ivy() require("telescope.builtin").buffers( tele_ivy ) end

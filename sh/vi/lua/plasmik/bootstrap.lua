@@ -111,7 +111,6 @@ require("lazy").setup( {
     },
     opts = { lsp = { auto_attach = true } }
   },
-
   {
     'SmiteshP/nvim-navic', -- good -- nav string
     opts = { lsp = { auto_attach = true } }
@@ -169,16 +168,19 @@ require("lazy").setup( {
       sections = {
         lualine_c = {
           {
-            "navic",
-            color_correction = nil,
-            navic_opts = nil
+            'filename',
+            -- color_correction = 'dynamic',
+            -- "navic",
+            -- color_correction = 'dynamic',
+            -- navic_opts = nil
           }
         }
       },
       options = {
-        section_separators = '',
+        -- section_separators = '',
         component_separators = '',
-        theme = 'nordic',
+        theme = 'nord',
+        -- theme = 'nordic',
       },
     },
   },
@@ -280,13 +282,13 @@ require("lazy").setup( {
     config = true
   },
 
-  {
+  --[[ {
     'levouh/tint.nvim', -- okay -- Fade inactive windows
     opts = {
       tint = -18,
       saturation = 0.7
     }
-  },
+  }, ]]
 
   { 'andrewferrier/debugprint.nvim', -- handy!
     config = true
@@ -452,6 +454,8 @@ require("lazy").setup( {
       end
   },
 
+  { 'prochri/telescope-all-recent.nvim', dependencies = {'kkharji/sqlite.lua'} },
+
   'AckslD/nvim-neoclip.lua', -- no effect
   'mizlan/iswap.nvim',
   'L3MON4D3/LuaSnip',
@@ -462,7 +466,6 @@ require("lazy").setup( {
   -- 'gaoDean/autolist.nvim', -- no effect
   -- 'marcuscaisey/olddirs.nvim', --promising
   -- 'freddiehaddad/feline.nvim', --on watch
-  'prochri/telescope-all-recent.nvim',
   -- 'CKolkey/ts-node-action',
   'smzm/hydrovim', --    eval python
   'luukvbaal/statuscol.nvim', --ambitious

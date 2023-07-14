@@ -42,6 +42,11 @@ function M.msetup(p)
   end
 end
 
+M.tableMerge = function(tSrc,tDest)
+  for k,v in pairs(tDest) do
+    tSrc[k] = v
+  end
+end
 
 
 ---Author: cseickel
@@ -82,12 +87,6 @@ M.path_join = function(...)
   return table.concat(all_parts, M.path_separator)
 end
 
-M.tableMerge = function(t1,t2)
-  for k,v in pairs(t2) do
-    t1[k] = v
-  end
-end
-
 -- classic Vim keymap, it may take options like "silent"
 M.Bmap = function (a_key, a_map, a_opts )
   if type(a_opts or false) == "table" then
@@ -116,10 +115,10 @@ end
 -- vim.api.nvim_set_keymap("n", "<C-p>", ":lua require('bufjump').backward()<cr>", k_opts)
 
 M.teles_ff = function()
+  -- local opt = require('telescope.themes').get_ivy({height=10,previewer=false,winblend=16})
   local opt = require('telescope.themes').get_ivy({height=10,previewer=false,winblend=16})
   require('telescope.builtin').current_buffer_fuzzy_find(opt)
 end
-M.Bmap('<C-h>', ':lua require("plasmik.helpy").teles_ff()<cr>')
 
 -- local hotfun = {}
 -- :lua package.loaded.init = nil

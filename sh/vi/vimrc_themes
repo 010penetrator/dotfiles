@@ -3,9 +3,9 @@
 """"""""""""""""""""""""
 " vim: set foldmethod=marker
 " vim: ts=4 sw=4 ft=vim
-"
-map <buffer> J j:call EvalThis()<CR>
-map <buffer> K k:call EvalThis()<CR>
+
+" map <buffer> J j:call EvalThis()<CR>
+" map <buffer> K k:call EvalThis()<CR>
 " bufdo unmap <buffer> M
 
 let hostname = substitute(system('hostname'), '\n', '', '')
@@ -31,7 +31,8 @@ if !exists("g:colors_name") || g:colors_name=='habamax'
         " Colors for Neovim for day/night/neutral
 
         if ( g:phase=='day' )
-            colo catppuccin-latte
+            colo frign
+            " colo catppuccin-latte
             " colo snow | set bg=light
             " colo Tomorrow | LineColor rusticated
             " colo stellarized | set bg=light | LineColor aqua_plasm

@@ -269,7 +269,7 @@ function! ReloadStyle(force)
     silent call LoadColor()
   endif
   if has("nvim")
-    lua H.reset("tint")
+    lua if H.is_available("tint") then H.reset("tint") end
   endif
 endfunction
 
@@ -480,7 +480,7 @@ nnoremap ad     <C-w>4-
 nnoremap ar     <C-w>_
 nnoremap ac     <C-w>80-
 nnoremap qa     <C-w>_<C-w>\|
-nnoremap aq     <C-w>=
+nnoremap ah     <C-w>=
 nnoremap aj     <C-w>w<C-w>_
 nnoremap ak     <C-w>W<C-w>_
 " focus prev window
