@@ -8,7 +8,7 @@ super + f ; { v, Up }
 
 super + n ; { n, b, M, m, c, v, r, o, s, a }
   { \
-  $TERMINAL, $TERMINAL_BIGER, momkitty.sh, thunar & notify-send 'new Thunar', $TERMINAL -e vifm, vinew, listzathura.sh, $TERMINAL_BIGER -c /ln/co/kitty/kitty.conf -c /ln/co/kitty-themes/themes/Ciapre.conf -e rtorrent, scrotfeh, $TERMINAL_BIGER -e tremc -c localhost:9090
+  $TERMINAL, $TERMINAL_BIGER, momkitty.sh, thunar & notify-send 'new Thunar', $TERMINAL -e vifm, $TERMINAL_BIGER -e vinew, listzathura.sh, $TERMINAL_BIGER -c /ln/co/kitty/kitty.conf -c /ln/co/kitty-themes/themes/Ciapre.conf -e rtorrent, scrotfeh, $TERMINAL_BIGER -e tremc -c localhost:9090
   }
 
 super + x ; { m, s, h, n, o, a, g }

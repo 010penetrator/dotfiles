@@ -90,10 +90,10 @@ lspz.on_attach( function(client,bufnr)
   require("nvim-navic").attach(client,bufnr)
   -- print("lsp client is clangd;  ", "navbuddy & navic attached!")
 end)
---
+
 -- (Optional) Configure lua language server for neovim
 require('lspconfig').lua_ls.setup(lspz.nvim_lua_ls())
---
+
 lspz.setup()
 
 --[[ require("lspconfig").lua_ls.setup {

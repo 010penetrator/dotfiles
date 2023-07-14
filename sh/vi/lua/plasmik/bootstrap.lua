@@ -300,7 +300,13 @@ require("lazy").setup( {
   },
   'gennaro-tedesco/nvim-peekup', -- usage:""
   -- 'trmckay/based.nvim', -- no effect
-  { 'utilyre/barbecue.nvim', dependencies = { 'SmiteshP/nvim-navic' } }, -- maybe
+  {
+    'utilyre/barbecue.nvim', -- maybe
+    name = "barbecue",
+    version = "*",
+    dependencies = { 'SmiteshP/nvim-navic' },
+    config = true
+  },
   {
     'petertriho/nvim-scrollbar', -- okay
     config = true
