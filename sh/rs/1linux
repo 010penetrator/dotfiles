@@ -193,7 +193,8 @@ xrdb -query | grep dpi # show DPI
 xrandr --dpi 108 # set DPI
 xdpyinfo | grep dots # show DPI
 sudo rm /etc/fonts/conf.d/70-no-bitmaps.conf; sudo fc-cache -f -v  # enable .pcf font on ubuntu
-mv 'SomeFont.otf' ~/.local/share/fonts/ ; fc-cache -vf ~/.local/share/fonts/ # install otf font # ttf as well
+mv 'SomeFont.otf' ~/.local/share/fonts/ ; fc-cache -vf ~/.local/share/fonts/ # add otf or ttf font
+fc-cache -vf ~/.local/share/fonts/ # reload user local fonts
 for C in {0..255}; do tput setab $C; echo -n "$C "; done # show colors
 xmodmap -pke; xmodmap -pm # keycodes
 xrandr --size 1366x768 --output DVI-1 --scale 1x1

@@ -1449,7 +1449,7 @@ function! LoadColor(...)
       source $sh/vi/vimrc_themes
     else
       " exec "colo " .  g:ColorNoxName
-      let wanted_color = g:ColorDayName
+      let wanted_color = g:ColorNoxName
       if exists("g:loaded_lightline")
         exec "LineColor " .  g:ColorNoxLine
       endif
