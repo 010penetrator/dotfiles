@@ -22,7 +22,7 @@ bcdboot c:\windows /s e: /f all
 %systemroot%\system32\shell32.dll
 
 :: Chocolatey
-:psh: -NoProfile -ExecutionPolicy unrestricted -Command "iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))" && SET PATH=%PATH%;%systemdrive%\chocolatey\bin
+:psh: -NoProfile -ExecutionPolicy unrestricted -Command "iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))" ; SET PATH=%PATH% ; %systemdrive%\chocolatey\bin
 :or: Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 choco install -y git 7zip fzf nodejs-lts luarocks curl wget ripgrep cmake make mingw ccleaner chocolateygui qbittorrent python3
 choco [ info,uninstall,list --localonly ]
