@@ -14,10 +14,12 @@ super + n ; { n, b, M, m, c, v, r, o, s, a }
 super + x ; { m, s, h, n, o, a, g }
   ror.sh { '' notimem, speedcrunch, htop '$TERMINAL -e htop', nautilus, VirtualBox '', pavucontrol, listgames.sh }
 
-super + x ; { space, z, i, f, p, q, l, c, d, b, Up, Down }
+super + x ; { space,  z,  i, f, p, q, l, c,  d, b, Up, Down }
   { \
     addlayout.sh ; xinputupd.sh ; sxd.sh ; notify-send "$( LC_ALL=ru_RU.UTF-8 date; uptime -p )", \
-    $TERMINAL -e ask_album.sh, listalbums.sh /ln/ho/.mus-history, listalbums.sh /ln/ho/.mus-favourites, listalbums.sh /ln/ho/.mus-playlist, bspc node -c, listdwn.sh, SHFL=1 listalbums.sh /ln/ho/.mus-library, deadbeef, listdeadbeef.sh, nowis day, nowis nox }
+    $TERMINAL -e ask_album.sh, \
+    listalbums.sh /ln/ho/.mus-history, listalbums.sh /ln/ho/.mus-favourites, listalbums.sh /ln/ho/.mus-playlist, \
+    bspc node -c, listdwn.sh, SHFL=1 listalbums.sh /ln/ho/.mus-library, deadbeef, listdeadbeef.sh, nowis day, nowis nox }
 
 super + { q, Q, D, F, t, v, s, y, r, R, z, g, slash }
   ror.sh { \
