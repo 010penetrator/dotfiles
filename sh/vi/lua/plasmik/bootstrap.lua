@@ -90,19 +90,33 @@ require("lazy").setup( {
     end,
   },
 
+  --[[ {
+    'utilyre/barbecue.nvim', -- maybe
+    name = "barbecue",
+    version = "*",
+    dependencies = { 'SmiteshP/nvim-navic' },
+    config = true
+  }, ]]
+
   {
     'neovim/nvim-lspconfig',
-    dependencies = {
-      {
-        'SmiteshP/nvim-navbuddy', -- cool -- code map (call :Navbuddy)
-        dependencies = {
-          'SmiteshP/nvim-navic', -- good -- nav string
-          'MunifTanjim/nui.nvim'
-        },
-        opts = { lsp = { auto_attach = true } }
-      }
-    },
+    dependencies = { { 'SmiteshP/nvim-navbuddy' } },
   },
+
+  {
+    'SmiteshP/nvim-navbuddy', -- cool -- code map (call :Navbuddy)
+    dependencies = {
+      'SmiteshP/nvim-navic',
+      'MunifTanjim/nui.nvim'
+    },
+    opts = { lsp = { auto_attach = true } }
+  },
+
+  {
+    'SmiteshP/nvim-navic', -- good -- nav string
+    opts = { lsp = { auto_attach = true } }
+  },
+
   'williamboman/mason-lspconfig.nvim',
   'VonHeikemen/lsp-zero.nvim', -- todo
   'amarakon/nvim-cmp-buffer-lines', -- todo
@@ -300,13 +314,6 @@ require("lazy").setup( {
   },
   'gennaro-tedesco/nvim-peekup', -- usage:""
   -- 'trmckay/based.nvim', -- no effect
-  {
-    'utilyre/barbecue.nvim', -- maybe
-    name = "barbecue",
-    version = "*",
-    dependencies = { 'SmiteshP/nvim-navic' },
-    config = true
-  },
   {
     'petertriho/nvim-scrollbar', -- okay
     config = true

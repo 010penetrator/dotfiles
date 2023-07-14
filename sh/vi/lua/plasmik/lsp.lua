@@ -87,7 +87,7 @@ lspz.on_attach( function(client,bufnr)
   lspz.default_keymaps({buffer = bufnr})
   print("lsp-zero here")
   -- require("nvim-navbuddy").attach(client, bufnr)
-  require("nvim-navic").attach(client,bufnr)
+  -- require("nvim-navic").attach(client,bufnr)
   -- print("lsp client is clangd;  ", "navbuddy & navic attached!")
 end)
 
