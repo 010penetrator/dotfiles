@@ -90,17 +90,20 @@ require("lazy").setup( {
     end,
   },
 
-  --[[ {
+  {
     'utilyre/barbecue.nvim', -- maybe
     name = "barbecue",
     version = "*",
     dependencies = { 'SmiteshP/nvim-navic' },
     config = true
-  }, ]]
+  },
 
   {
     'neovim/nvim-lspconfig',
-    dependencies = { { 'SmiteshP/nvim-navbuddy' } },
+    dependencies = { {
+      'SmiteshP/nvim-navbuddy',
+      'glepnir/lspsaga.nvim',
+    } },
   },
 
   {
@@ -136,7 +139,7 @@ require("lazy").setup( {
     -- end,
   },
 
-  'kevinhwang91/rnvimr',
+  'kevinhwang91/rnvimr', -- include ranger
   -- 'mrjones2014/nvim-ts-rainbow', -- buggy
   'https://gitlab.com/HiPhish/nvim-ts-rainbow2',
   'chentoast/marks.nvim', -- good -- better marks
@@ -353,16 +356,21 @@ require("lazy").setup( {
   'diegoulloao/nvim-file-location',
   -- 'lewis6991/satellite.nvim', --   add scrollbar
 
-  --[[ {
+  {
     'j-hui/fidget.nvim',
     tag = 'legacy',
     config = true,
-  }, ]]
+  },
 
   -- 'cbochs/portal.nvim', -- error
   'ziontee113/neo-minimap',
   'princejoogie/dir-telescope.nvim',
   -- 'pocco81/true-zen.nvim',
+
+  {
+    'rbong/vim-flog', -- provides git graph
+    dependencies = 'tpope/vim-fugitive',
+  },
 
   -- {
   --   'NeogitOrg/neogit', -- fail
@@ -384,12 +392,11 @@ require("lazy").setup( {
     config = 'require("flash").setup()'
   }, ]]
 
-  --[[ {
+  {
     'glepnir/lspsaga.nvim',
-    event = "LspAttach",
-    config = function() require("lspsaga").setup() end,
-    dependencies = { {"kyazdani42/nvim-web-devicons"}, {"nvim-treesitter/nvim-treesitter"} }
-  }, ]]
+    dependencies = { "kyazdani42/nvim-web-devicons", "nvim-treesitter/nvim-treesitter" },
+    config = true
+  },
 
   -- {
   --   'tzachar/local-highlight.nvim',
@@ -494,6 +501,8 @@ require("lazy").setup( {
 --          Themes:           --
 --------------------------{{{}}}
 
+  'xero/miasma.nvim',
+  'nvimdev/oceanic-material',
   'maxmx03/FluoroMachine.nvim', -- neeooooon
   { "2nthony/vitesse.nvim", dependencies = { "tjdevries/colorbuddy.nvim" }, }, -- foresty
   'felipeagc/fleet-theme-nvim',

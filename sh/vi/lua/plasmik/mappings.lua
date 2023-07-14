@@ -76,6 +76,7 @@ local tele_ivy = require("telescope.themes").get_ivy{ sort_mru = true, layout_co
 function Tele_buff_ivy() require("telescope.builtin").buffers( tele_ivy ) end
 local tele_drop = require("telescope.themes").get_dropdown{ sort_mru=true, winblend=9, layout_config = { height=21 } }
 function Tele_buff_drop() require("telescope.builtin").buffers( tele_drop ) end
+H.nmap(',r', ":RnvimrToggle<CR>")
 
 H.nmap(',fb', Tele_buff_ivy, "Telescope [B]uffers ivy-themed")
 H.nmap(',h', Tele_buff_ivy, "Telescope [B]uffers ivy-themed")

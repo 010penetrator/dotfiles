@@ -51,6 +51,7 @@ wsl --update
 wsl --list --verbose
 wsl --set-version <Distro> 2
 wsl --set-default-version 2
+wsl --shutdown
 :and:
 useradd -m -G wheel -s /bin/bash {username}
 sudo pacman-key --init; sudo pacman-key --populate; sudo pacman -Sy archlinux-keyring; sudo pacman -Su # initialize keyring

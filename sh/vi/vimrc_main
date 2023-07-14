@@ -74,10 +74,8 @@ silent call ReloadStyle(0)
 set runtimepath+=$vi
 
 " TODO/Problems :
-"     why <Esc>j == <A-j>
-"     try nvim-neotest
 "     try nvim-dap
-"     try lspsaga
+"     try nvim-neotest
 "     try emmet
 "     try snippets
 

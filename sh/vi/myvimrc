@@ -68,7 +68,7 @@ set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNO
 " set keymap=russian-jcukenwin
 set colorcolumn=
 set cursorline
-set updatetime=6000
+set updatetime=8000
 set noequalalways
 set winheight=7
 set guicursor=n-v-c:block,i-ci:block,r-cr-o:hor20
@@ -277,7 +277,8 @@ endfunction
 ""         Mappings:          ""
 """"""""""""""""""""""""""{{{}}}
 
-set timeoutlen=500
+set timeoutlen=300
+set ttimeoutlen=20 " do not let <esc>x act as <a-x>
 let g:AutoClosePumvisible = {"ENTER": '', "ESC": ''}
 let mapleader = ""
 " nnoremap q\
@@ -590,7 +591,7 @@ nnoremap ,,q :call SaveColor() <bar> SSave! comon <bar> qa<CR>
 nnoremap ,,s :call SaveColor() <bar> SSave! comon<CR>
 " nnoremap ,,s :call SaveColor() <bar> mksession! $VICONFDIR/session/comon<CR>
 nnoremap ,vq :qa!<CR>
-nnoremap ,,<tab> :Startify<CR>
+nnoremap ,<esc> :Startify<CR>
 nnoremap ,zq :wa <bar> qa<CR>
 nnoremap ,,a :call AddRpcEar()<CR>
 " Open current file at vimserver session via my "vimrpc" shell script
