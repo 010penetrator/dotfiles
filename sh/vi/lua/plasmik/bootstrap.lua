@@ -41,7 +41,7 @@ require("lazy").setup( {
   'tpope/vim-eunuch', -- handy
   -- 'tpope/vim-ragtag', -- ok
   'tpope/vim-fugitive', -- handy
-  'mhinz/vim-startify',
+  'mhinz/vim-startify', --great
   -- 'sheerun/vim-polyglot', -- okay HUGE
   -- 'michaeljsmith/vim-indent-object', -- cool
   -- 'godlygeek/tabular', -- okay
@@ -69,6 +69,33 @@ require("lazy").setup( {
   -- NEOVIM ONLY --
   ------------------------{{{}}}
 
+
+  --[[ {
+    'goolord/alpha-nvim',
+    event = "VimEnter",
+    dependencies = 'kyazdani42/nvim-web-devicons',
+    opts = function()
+      local dashboard = require('alpha.themes.dashboard')
+      require('alpha.term')
+      dashboard.section.terminal.command = "bash $vi/nvim-logo -o"
+      dashboard.section.terminal.width = 70
+      dashboard.section.terminal.height = 10
+      dashboard.section.terminal.opts.redraw = true
+      dashboard.section.terminal.opts.window_config.zindex = 1
+      dashboard.opts.layout = {
+        dashboard.section.terminal,
+        { type = "padding", val = 4 },
+        dashboard.section.buttons,
+        dashboard.section.footer,
+      }
+      return dashboard
+    end,
+    -- config = function() require'alpha'.setup(require'alpha.themes.startify'.config) end,
+    config = function(_, dashboard)
+      require('alpha').setup(dashboard.opts)
+    end,
+  }, ]]
+
   'nvim-telescope/telescope.nvim',
   {
     'nvim-telescope/telescope-fzf-native.nvim',
@@ -81,6 +108,7 @@ require("lazy").setup( {
   'mfussenegger/nvim-lint',
   'jay-babu/mason-nvim-dap.nvim',
   'rcarriga/nvim-dap-ui',
+  'niuiic/dap-utils.nvim',
 
   'nvim-telescope/telescope-dap.nvim',
   {
@@ -356,11 +384,11 @@ require("lazy").setup( {
   'diegoulloao/nvim-file-location',
   -- 'lewis6991/satellite.nvim', --   add scrollbar
 
-  {
+  --[[ {
     'j-hui/fidget.nvim',
     tag = 'legacy',
     config = true,
-  },
+  }, ]]
 
   -- 'cbochs/portal.nvim', -- error
   'ziontee113/neo-minimap',
@@ -501,6 +529,7 @@ require("lazy").setup( {
 --          Themes:           --
 --------------------------{{{}}}
 
+  'antonk52/lake.nvim',
   'xero/miasma.nvim',
   'nvimdev/oceanic-material',
   'maxmx03/FluoroMachine.nvim', -- neeooooon

@@ -28,6 +28,10 @@ local is_available = H.is_available
   -- do stuff
 -- end
 
+--[[ if is_available "mason.nvim" then
+  vim.g.startify_custom_header = 'startify#pad(split(system("bash $vi/nvim-logo -b"),"\n"))'
+end ]]
+
 if is_available "nvim-gomove" then
     require("gomove").setup = {
       map_defaults = true,
