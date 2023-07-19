@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Variables #
-[[ -z LANG ]] &&   export LANG=en_US.UTF-8
-[[ -z LC_ALL ]] && export LC_ALL=en_US.UTF-8
+[ -z "${LANG}" ] &&   export LANG=en_US.UTF-8
+[ -z "${LC_ALL}" ] && export LC_ALL=en_US.UTF-8
 export HISTFILESIZE=
 export HISTSIZE=9000
 # [[ $COLORTERM == truecolor ]] && TERM=xterm-256color
@@ -30,9 +30,10 @@ export TERMINAL=xterm
 command -v kitty &>/dev/null && export TERMINAL=kitty && export TERMINAL_BIGER="kitty -o initial_window_width=1330 -o initial_window_height=1055"
 # [[ "$TERMINAL" == "kitty" ]] && [[ $HIDPI == "1" ]] && export TERMINAL="kitty -o font_size=14.2 -o initial_window_width=1140 -o initial_window_height=900"
 [[ -z "$TERMINAL_BIGER" ]] && export TERMINAL_BIGER="$TERMINAL"
-#
+
 [[ $PATH == *"$sh"* ]] || export PATH=$PATH:"$sh"
 [[ $PATH == *"$HOME/.local/bin"* ]] || export PATH=$PATH:$HOME/.local/bin
 [[ -d $loc ]] && [[ $PATH == *"$loc"* ]] || export PATH=$PATH:$loc
 ( [[ -d $HOME/.local/share/gem/ruby/3.0.0/bin ]] && ! [[ $PATH == *"gem/ruby"* ]] ) && export PATH=$PATH:$HOME/.local/share/gem/ruby/3.0.0/bin
+[[ $PATH == *"scoop"* ]] && export PATH=$(echo "$PATH" | sed -e 's|:\/mnt\/c\/Users\/[^/]*\/scoop\/apps\/perl.*current\/perl\/bin:|:|')
 

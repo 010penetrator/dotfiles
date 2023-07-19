@@ -62,6 +62,10 @@ let g:startify_lists = [
             " \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
 let g:startify_session_dir = $VICONFDIR . "/session"
 
+if !isdirectory(g:startify_session_dir) 
+  call mkdir(g:startify_session_dir, '', 0770) 
+endif
+
 set encoding=UTF-8
 set fileencodings=ucs-bom,utf-8,default,cp1251,latin1
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
@@ -480,7 +484,8 @@ nnoremap ae     <C-w>4+
 nnoremap ad     <C-w>4-
 nnoremap ar     <C-w>_
 nnoremap ac     <C-w>80-
-nnoremap qa     <C-w>_<C-w>\|
+" grow big
+nnoremap ab     <C-w>_<C-w>\|
 nnoremap ah     <C-w>=
 nnoremap aj     <C-w>w<C-w>_
 nnoremap ak     <C-w>W<C-w>_

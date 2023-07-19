@@ -96,7 +96,7 @@ require("telescope").load_extension('fzf')
 -- require("telescope.builtin").buffers(Tele_drop)
 
 require("nvim-treesitter.configs").setup {
-  ensure_installed = { 'c', 'cpp', 'lua', 'python', 'vim', 'bash' },
+  ensure_installed = { 'c', 'cpp', 'lua', 'python', 'vim', 'bash', 'markdown' },
   highlight = { enable = true },
   indent = { enable = true, disable = { 'python' } },
   rainbow = {

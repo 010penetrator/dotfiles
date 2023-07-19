@@ -354,7 +354,10 @@ require("lazy").setup( {
 
   {
     'Wansmer/treesj', -- great -- split/join
-    config = { use_default_keymaps = false, max_join_length = 440 }
+    opts = {
+      use_default_keymaps = false,
+      max_join_length = 440,
+    }
   },
   -- 'bennypowers/splitjoin.nvim',
   -- { 'echasnovski/mini.splitjoin', version = '*' },
