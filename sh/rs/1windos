@@ -52,11 +52,19 @@ wsl --list --verbose
 wsl --set-version <Distro> 2
 wsl --set-default-version 2
 wsl --shutdown
-:and:
+wsl --set-default bubunta
+help, unregister, import, export
+::
 useradd -m -G wheel -s /bin/bash {username}
 sudo pacman-key --init; sudo pacman-key --populate; sudo pacman -Sy archlinux-keyring; sudo pacman -Su # initialize keyring
 sudo pacman -Syu --needed neovim ncdu vifm fzf git curl wget base-devel p7zip npm nodejs ruby luarocks python-pip
 sudo mount -t drvfs j: /mnt/extr 
+::
+/etc/wsl.conf:
+[network]
+generateResolvConf = false
+/etc/resolv.conf:
+nameserver 8.8.8.8
 
 :crappy SSL ignore:
 cp CA.{crt,cer}} /etc/ca-certificates/trust-source/anchors; update-ca-trust; pacman -Sy --disable-download-timeout
