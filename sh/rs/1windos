@@ -75,8 +75,7 @@ python -m pip --trusted-host pypi.org --trusted-host pypi.python.org --trusted-h
 scoop bucket add wangzq https://github.com/wangzq/scoop-bucket
 scoop install windbg windbg32
 
-------------------------------
-
+------------------------------------------------------------
 :: Most nice windos fonts
 Cascadia Code
 Consolas
