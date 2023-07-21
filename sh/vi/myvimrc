@@ -284,7 +284,7 @@ endfunction
 set timeoutlen=300
 set ttimeoutlen=20 " do not let <esc>x act as <a-x>
 let g:AutoClosePumvisible = {"ENTER": '', "ESC": ''}
-let mapleader = ""
+let mapleader = ","
 " nnoremap q\
 " nnoremap z' `
 
@@ -680,7 +680,7 @@ vnoremap <C-l> :g/^$/d<CR>:noh<CR>
 " yank inline
 nnoremap yc ^y$"+y$"*y$
 " yank current file full path/name
-nnoremap y<tab> :let @" = expand('%:p')
+nnoremap y. :let @" = expand('%:p')<CR>
 " replace current word with register contents
 nnoremap cp "_ciw<c-r>"<esc>
 nnoremap co "_ciw<c-r>*<esc>
@@ -1639,6 +1639,7 @@ function! AddSpaceSelection()
   let newbeg = getpos('.')
   " Restore selection
   exec "normal `>V`<"
+  normal <Esc>
 endfunction
 
 function! FoldMotion(type)

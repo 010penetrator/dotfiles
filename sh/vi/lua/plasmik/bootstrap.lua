@@ -120,9 +120,9 @@ require("lazy").setup( {
 
   {
     'utilyre/barbecue.nvim', -- maybe
+    dependencies = { 'SmiteshP/nvim-navic' },
     name = "barbecue",
     version = "*",
-    dependencies = { 'SmiteshP/nvim-navic' },
     config = true
   },
 
@@ -157,11 +157,11 @@ require("lazy").setup( {
   'hrsh7th/cmp-nvim-lsp',
   {
     "jay-babu/mason-null-ls.nvim",
-    event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       "williamboman/mason.nvim",
       "jose-elias-alvarez/null-ls.nvim",
     },
+    event = { "BufReadPre", "BufNewFile" },
     -- config = function()
     --   require("your.null-ls.config") -- require your null-ls config here (example below)
     -- end,
@@ -481,6 +481,22 @@ require("lazy").setup( {
       custom_NeoColumn = { bash = "120"},
       excluded_ft = { "text", "markdown" },
     }
+  },
+
+  {
+    'norlock/nvim-traveller',
+    dependencies = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope.nvim' },
+    opts = {
+      -- replace_netrw = true,
+      sync_cwd = true,
+    },
+    config = function(_, opts)
+      local traveller = require("nvim-traveller")
+      traveller.setup(opts)
+      vim.keymap.set('n', '_', traveller.open_navigation, {})
+      -- Really fast navigation through directories with traveller compatibility
+      vim.keymap.set('n', '<leader>d', traveller.open_telescope_search, silent_options)
+    end
   },
 
   {
