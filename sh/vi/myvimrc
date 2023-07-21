@@ -284,7 +284,7 @@ endfunction
 set timeoutlen=330
 set ttimeoutlen=20 " do not let <esc>x act as <a-x>
 let g:AutoClosePumvisible = {"ENTER": '', "ESC": ''}
-let mapleader = ","
+let mapleader = ""
 " nnoremap q\
 " nnoremap z' `
 

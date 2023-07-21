@@ -109,10 +109,10 @@ require("lazy").setup( {
 
   {
     'neovim/nvim-lspconfig',
-    dependencies = { {
+    dependencies = {
       'SmiteshP/nvim-navbuddy',
       'glepnir/lspsaga.nvim',
-    } },
+    },
   },
 
   {
@@ -359,13 +359,13 @@ require("lazy").setup( {
   'nullchilly/fsread.nvim', -- funky -- read fast
   {
     'JellyApple102/easyread.nvim',
-    config = 'require("easyread").setup()',
+    config = true,
   },
+
   'folke/paint.nvim',
-  'folke/styler.nvim',
+  'folke/styler.nvim', --   colo per filetype
   -- 'LintaoAmons/scratch.nvim',
   'AbdelrahmanDwedar/awesome-nvim-colorschemes',
-  'diegoulloao/nvim-file-location',
   -- 'lewis6991/satellite.nvim', --   add scrollbar
 
   --[[ {
@@ -375,7 +375,7 @@ require("lazy").setup( {
   }, ]]
 
   -- 'cbochs/portal.nvim', -- error
-  'ziontee113/neo-minimap',
+  'ziontee113/neo-minimap', -- cant configure -- cool tags map
   'princejoogie/dir-telescope.nvim',
   -- 'pocco81/true-zen.nvim',
 
@@ -404,11 +404,14 @@ require("lazy").setup( {
     config = 'require("flash").setup()'
   }, ]]
 
-  {
+  --[[ {
     'glepnir/lspsaga.nvim',
-    dependencies = { "kyazdani42/nvim-web-devicons", "nvim-treesitter/nvim-treesitter" },
+    dependencies = {
+      "kyazdani42/nvim-web-devicons",
+      "nvim-treesitter/nvim-treesitter",
+    },
     config = true
-  },
+  }, ]]
 
   -- {
   --   'tzachar/local-highlight.nvim',
@@ -520,11 +523,9 @@ require("lazy").setup( {
   {
     'zaldih/themery.nvim',
     opts = {
-      themes = { "C64", "NeoSolarized", "OceanicNext", "OceanicNextLight", "Tomorrow", "Tomorrow-Night", "Tomorrow-Night-Blue", "Tomorrow-Night-Bright", "Tomorrow-Night-Eighties", "alduin", "apprentice", "artesanal", "atlantis", "ayu", "ayu-dark", "ayu-light", "ayu-mirage", "blue", "bluewery", "bluewery-light", "bluewery-text-writing", "bluloco", "bluloco-dark", "bluloco-light", "carbonfox", "catppuccin", "catppuccin-frappe", "catppuccin-latte", "catppuccin-macchiato", "catppuccin-mocha", "cryslominsa", "dark_eyes", "darkblue", "darkplus", "dawnfox", "dayfox", "default", "delek", "desert", "desert-night", "dracula", "duskfox", "edge", "eighties", "elflord", "evening", "everforest", "fairy-garden", "fantasy", "fight-in-the-shade", "fleet", "fluoromachine", "frign", "garden", "github_dark", "github_dark_colorblind", "github_dark_default", "github_dark_dimmed", "github_dark_high_contrast", "github_dark_tritanopia", "github_dimmed", "github_light", "github_light_colorblind", "github_light_default", "github_light_high_contrast", "github_light_tritanopia", "grimoire", "gruvbox", "gruvbox-material", "habamax", "hybrid", "hybrid_material", "hybrid_reverse", "ice-age", "iceberg", "immortals", "industry", "kanagawa", "kanagawa-dragon", "kanagawa-lotus", "kanagawa-wave", "kat.nvim", "kat.nwim", "knicks-away", "koehler", "lost-shrine", "lucius", "lunaperche", "melange", "mellow", "messy", "minimal", "minimal-base16", "miramare", "moody", "morning", "murphy", "nebula", "nightfox", "nord", "nordfox", "nordic", "off", "oh-lucy", "oh-lucy-evening", "onedark", "onehalfdark", "onehalflight", "onenord", "pablo", "palenightfall", "paper", "peachpuff", "perun", "plastic", "quiet", "ron", "rose-pine", "rose-pine-dawn", "rose-pine-main", "rose-pine-moon", "rusticated", "sacredforest", "shine", "slate", "snow", "solarized", "solarized-flat", "solarized-high", "solarized-low", "spacemacs-theme", "spartan", "stellarized", "substrata", "subtle_dark", "subtle_light", "tayra", "tempus_autumn", "tempus_classic", "tempus_dawn", "tempus_day", "tempus_dusk", "tempus_fugit", "tempus_future", "tempus_night", "tempus_past", "tempus_rift", "tempus_spring", "tempus_summer", "tempus_tempest", "tempus_totus", "tempus_warp", "tempus_winter", "terafox", "thermopylae", "tokyonight", "tokyonight-day", "tokyonight-moon", "tokyonight-night", "tokyonight-storm", "torte", "tundra", "turtles", "typewriter", "typewriter-night", "vadelma", "vanilla-cake", "vitesse", "zellner" }
+      themes = { "C64", "NeoSolarized", "OceanicNext", "OceanicNextLight", "Tomorrow" }
     }
   },
-},
 
-{ root = vim.env.PLUGDIR, }
-)
+}, { root = vim.env.PLUGDIR, } )
 
