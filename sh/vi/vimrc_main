@@ -61,8 +61,6 @@ if has("nvim")
     SSource $vi/myvimrc
     SSource $mylua/init.lua
     " SSource $vi/vimrc_themes
-    " SSource $mylua/helpy.lua
-    " SSource $mylua/mappings.lua
 else
     SSource $vi/vimrc_plug
     SSource $vi/myvimrc

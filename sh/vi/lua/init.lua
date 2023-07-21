@@ -10,14 +10,14 @@ require("set")
 package.loaded['helpy'] = nil
 H = require("helpy")
 
-require("bootstrap")
+require("init_lazy")
 vim.api.nvim_command('set runtimepath+=$vi') -- Repair rtp after plugging
 
 H.reload("lsp")
 
 H.reload("mappings")
 
--- require("remm")
+-- require("scratchpad")
 
 --------------------------------
 --      Configure Plugs       --
