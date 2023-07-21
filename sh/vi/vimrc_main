@@ -48,7 +48,7 @@ command! -nargs=1 SSource if filereadable(expand('<args>')) | source <args> | en
 
 if ( !isdirectory($vi) && isdirectory($sh."/vi") )
     let $vi = $sh .  "/vi"
-    let $mylua = $sh . "/vi/lua/plasmik"
+    let $mylua = $sh . "/vi/lua"
 endif
 
 set runtimepath+=$vi

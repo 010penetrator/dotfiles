@@ -1,23 +1,23 @@
 -- vim: ts=2 sw=2
 -- FYI: Use checkhealth to troubleshoot Neovim
 
--- print('hello from plasmik')
+-- print('hello from init.lua')
 -- vim.opt.more = false
 -- vim.api.nvim_command('echom 88')
 
-require("plasmik.set")
+require("set")
 
-package.loaded['plasmik.helpy'] = nil
-H = require("plasmik.helpy")
+package.loaded['helpy'] = nil
+H = require("helpy")
 
-require("plasmik.bootstrap")
+require("bootstrap")
 vim.api.nvim_command('set runtimepath+=$vi') -- Repair rtp after plugging
 
-H.reload("plasmik.lsp")
+H.reload("lsp")
 
-H.reload("plasmik.mappings")
+H.reload("mappings")
 
--- require("plasmik.remm")
+-- require("remm")
 
 --------------------------------
 --      Configure Plugs       --

@@ -69,6 +69,7 @@ require("lazy").setup( {
   -- NEOVIM ONLY --
   ------------------------{{{}}}
 
+  require'plugins.better-escape',
 
   --[[ {
     'goolord/alpha-nvim',

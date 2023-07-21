@@ -1,6 +1,6 @@
 -- vim: ts=2 sw=2
 
--- print('hello from plasmik.helpy lua')
+-- print('hello from helpy lua')
 
 local M = {}
 
