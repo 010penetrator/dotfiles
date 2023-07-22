@@ -273,7 +273,15 @@ return {
   },
 
   'norcalli/nvim-colorizer.lua',
-  'https://git.sr.ht/~whynothugo/lsp_lines.nvim', -- cool -- multiline lsp hints
+
+  {
+    'https://git.sr.ht/~whynothugo/lsp_lines.nvim', -- cool -- multiline lsp hints
+    config = function()
+      require'lsp_lines'.toggle()
+      require'lsp_lines'.toggle()
+    end,
+    -- keys = ",l",
+  },
 
   {
     'folke/trouble.nvim',
