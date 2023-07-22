@@ -445,6 +445,8 @@ nnoremap ,cm :call ClimbToDirWhere("Makefile",1) \| pwd<CR>
 nnoremap a<BS> :checktime<cr>
 nnoremap q<BS> :enew<CR>
 nnoremap z<BS> :e!<CR>
+" :e at current file path
+nnoremap g/ :e %:p:h<tab>
 " open prev window in current window
 nnoremap qp :exec "buffer " . winbufnr(winnr("#"))<CR>
 " split open filename under cursor
@@ -566,7 +568,7 @@ if exists("g:vimplug_available")
   nnoremap ,gr :call FocusBufOrDo('vimrc_plug','e $sh/vi/vimrc_plug')<CR>
 endif
 nnoremap ,gt :call FocusBufOrDo('vimrc_themes','e $sh/vi/vimrc_themes')<CR>
-nnoremap ,gc :call FocusBufOrDo('init.lua','e $mylua/init.lua')<CR>
+nnoremap ,gc :call FocusBufOrDo('$mylua/init.lua','e $mylua/init.lua')<CR>
 nnoremap ,ga :call FocusBufOrDo('lsp.lua','e $mylua/lsp.lua')<CR>
 nnoremap ,g, :call FocusBufOrDo('vimrc_main','e $sh/vi/vimrc_main')<CR>
 nnoremap ,gb :call FocusBufOrDo('bashrc','e $sh/bashrc')<CR>
@@ -709,6 +711,8 @@ nnoremap ,v, :call EvalThis()<CR>
 nnoremap ,v; :let lastpos=line('.') <bar> exec "normal yap" <bar> @\" <bar> exec lastpos<CR>:echo "Evaluated current paragraph."<CR>
 " Evaluate a paragraph as Lua
 nnoremap ,vl :let lastpos=line('.') <bar> exec "normal yap" <bar> exec 'lua ' . expand(@") <bar> exec lastpos<CR>:echo "Evaluated current paragraph as Lua."<CR>
+" Evaluate current line as Lua
+nnoremap ,vL yy:exec 'lua ' . expand(@")<CR>
 
 if !has('nvim')
   " Open current location with vifm within vim
