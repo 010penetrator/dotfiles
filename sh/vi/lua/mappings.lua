@@ -74,11 +74,10 @@ H.nmap('d>', "<cmd>diffget //3<CR>")
 H.nmap(',vn', function()  if vim.o.winbar=='' then vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}" else vim.o.winbar='' end end )
 
 local tele_ivy = require("telescope.themes").get_ivy{ sort_mru = true, layout_config = { height = vim.opt.lines:get() - 10 } }
+local tele_ivy_cwd = require("telescope.themes").get_ivy{ sort_mru = true, layout_config = { height = vim.opt.lines:get() - 10 }, cwd = require'telescope.utils'.buffer_dir() }
 function Tele_buff_ivy() require("telescope.builtin").buffers( tele_ivy ) end
 local tele_drop = require("telescope.themes").get_dropdown{ sort_mru=true, winblend=9, layout_config = { height=21 } }
 function Tele_buff_drop() require("telescope.builtin").buffers( tele_drop ) end
-H.nmap(',r', ":RnvimrToggle<CR>")
-
 H.nmap(',fb', Tele_buff_ivy, "Telescope [B]uffers ivy-themed")
 H.nmap(',h', Tele_buff_ivy, "Telescope [B]uffers ivy-themed")
 H.nmap(',<space>', Tele_buff_drop)
@@ -93,14 +92,17 @@ H.nmap(',/',  ":Telescope find_files search_dirs=$sh,$tt,$loc<CR>")
 H.nmap(',,/', ":Telescope find_files theme=ivy search_dirs=$sh,$PWD")
 H.nmap(',fg', ":Telescope live_grep theme=ivy<CR>")
 H.nmap(',fd', ":Telescope live_grep theme=ivy search_dirs=%<CR>")
+H.nmap(',fd', function() require'telescope.builtin'.live_grep( tele_ivy_cwd ) end)
 H.nmap(',fc', ":Telescope current_buffer_fuzzy_find theme=ivy<CR>")
 H.nmap(',ff', ":Telescope find_files theme=ivy<CR>")
 H.nmap('qr',  ":Telescope lsp_references theme=ivy<CR>")
 H.nmap(',fs', ":Telescope lsp_document_symbols<CR>")
 H.nmap('qs',  ":Telescope lsp_dynamic_workspace_symbols<CR>")
+
 H.nmap(',vg', require("gitsigns").toggle_signs, "Show git highlight column")
 H.nmap('qt', ":HiMyWordsToggle<CR>")
 H.nmap('qT', ":HiMyWordsClear<CR>")
+H.nmap(',r', ":RnvimrToggle<CR>")
 
 ----------------------------------{{{}}}
 H.nmap('s', ":HopAnywhere<CR>")
