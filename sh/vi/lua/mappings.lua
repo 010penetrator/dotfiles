@@ -55,7 +55,6 @@ H.nmap(',<BS>', ":Neotree reveal_force_cwd<CR>")
 H.nmap('-', ":Neotree reveal_force_cwd current<CR>")
 H.nmap(',,b', ":IndentBlanklineToggle<CR>")
 H.nmap('c<BS>', ":call ReloadStyle(1)<CR>")
-H.nmap(',vr', ":TSToggle rainbow<CR>")
 H.nmap(',vs', ":ScrollbarToggle<CR>")
 H.nmap(',gr', ":call FocusBufOrDo('mylazy/init.lua','e $mylua/mylazy/init.lua')<CR>")
 H.nmap(',gm', ":call FocusBufOrDo('mappings.lua','e $mylua/mappings.lua')<CR>")
@@ -163,15 +162,4 @@ if package.loaded['cinnamon'] then
   vim.keymap.set('n', 'gd', "<Cmd>lua Scroll('definition')<CR>")
   vim.keymap.set('n', 'gD', "<Cmd>lua Scroll('declaration')<CR>")
 end
-
-H.nmap('<A-j>', ':MoveLine(1)<CR>')
-H.nmap('<A-k>', ':MoveLine(-1)<CR>')
-H.nmap('<A-h>', ':MoveHChar(-1)<CR>')
-H.nmap('<A-l>', ':MoveHChar(1)<CR>')
-H.nmap('<leader>wf', ':MoveWord(1)<CR>')
-H.nmap('<leader>wb', ':MoveWord(-1)<CR>')
-H.vmap('<A-j>', ':MoveBlock(1)<CR>')
-H.vmap('<A-k>', ':MoveBlock(-1)<CR>')
-H.vmap('<A-h>', ':MoveHBlock(-1)<CR>')
-H.vmap('<A-l>', ':MoveHBlock(1)<CR>')
 

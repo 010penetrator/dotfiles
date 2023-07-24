@@ -39,37 +39,6 @@ if is_available "nvim-gomove" then
     }
 end
 
-if is_available "syntax-tree-surfer" then
-  -- Syntax Tree Surfer
-  local noresil = { noremap = true, silent = false }
-  -- Normal Mode Swapping:
-  -- Swap The Master Node relative to the cursor with it's siblings, Dot Repeatable
-  vim.keymap.set("n", "vU", function()
-    vim.opt.opfunc = "v:lua.STSSwapUpNormal_Dot" return "g@l" end,
-    { silent = true, expr = true })
-  vim.keymap.set("n", "vD", function()
-    vim.opt.opfunc = "v:lua.STSSwapDownNormal_Dot" return "g@l" end,
-    { silent = true, expr = true })
-  -- Swap Current Node at the Cursor with it's siblings, Dot Repeatable
-  vim.keymap.set("n", "vd", function()
-    vim.opt.opfunc = "v:lua.STSSwapCurrentNodeNextNormal_Dot" return "g@l" end,
-    { silent = true, expr = true })
-  vim.keymap.set("n", "vu", function()
-    vim.opt.opfunc = "v:lua.STSSwapCurrentNodePrevNormal_Dot" return "g@l" end,
-    { silent = true, expr = true })
-  -- Visual Selection from Normal Mode
-  vim.keymap.set("n", "vx", '<cmd>STSSelectMasterNode<cr>', noresil)
-  vim.keymap.set("n", "vn", '<cmd>STSSelectCurrentNode<cr>', noresil)
-  -- Select Nodes in Visual Mode
-  vim.keymap.set("x", "J", '<cmd>STSSelectNextSiblingNode<cr>', noresil)
-  vim.keymap.set("x", "K", '<cmd>STSSelectPrevSiblingNode<cr>', noresil)
-  vim.keymap.set("x", "H", '<cmd>STSSelectParentNode<cr>', noresil)
-  vim.keymap.set("x", "L", '<cmd>STSSelectChildNode<cr>', noresil)
-  -- Swapping Nodes in Visual Mode
-  vim.keymap.set("x", "<A-j>", '<cmd>STSSwapNextVisual<cr>', noresil)
-  vim.keymap.set("x", "<A-k>", '<cmd>STSSwapPrevVisual<cr>', noresil)
-end
-
 require("telescope").setup {
   defaults = {
     prompt_prefix = "$ ",

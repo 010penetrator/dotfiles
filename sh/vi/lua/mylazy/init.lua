@@ -2,10 +2,9 @@
 
 return {
 
-  -- require'plugins.better-escape',
-  -- require'plugins_lazy.themes',
-  -- require'plugins_lazy',
-  -- { import = "plugins_lazy" },
+  -- require'mylazy.better-escape',
+  -- require'mylazy',
+  -- { import = "mylazy" },
 
   ---- VIM BASIC -------------------------------------------
   { 'junegunn/fzf.vim', dependencies = { 'junegunn/fzf' } }, -- fantastic
@@ -28,7 +27,6 @@ return {
   -- 'junegunn/vim-easy-align', -- usable
   -- 'vim-scripts/QuickBuf',
   -- 'derekwyatt/vim-fswitch',
-  'liuchengxu/vista.vim',
 
   ---- NEOVIM ONLY -----{{{}}}------------------------------
 
@@ -101,8 +99,6 @@ return {
   },
 
   'kevinhwang91/rnvimr', --- include ranger
-  -- 'mrjones2014/nvim-ts-rainbow', -- buggy
-  'https://gitlab.com/HiPhish/nvim-ts-rainbow2',
   'chentoast/marks.nvim', -- good --- better marks
   'lambdalisue/suda.vim', -- perfect --- Sudo file operations
 
@@ -238,11 +234,27 @@ return {
     -- let g:indent_blankline_filetype_exclude = {'terminal', 'nofile', 'quickfix', 'prompt', 'help', 'startify'}
   },
 
+  ---------------------------------------------{{{}}}-------
+  -- 'mrjones2014/nvim-ts-rainbow', -- buggy
+  --[[ {
+    'https://gitlab.com/HiPhish/nvim-ts-rainbow2',
+    config = {
+      H.nmap(',vr', ":TSToggle rainbow<CR>")
+    }
+  }, ]]
+  {
+    'https://gitlab.com/HiPhish/rainbow-delimiters.nvim',
+    config = function()
+      require 'rainbow-delimiters.setup'
+    end
+  },
+
   'norcalli/nvim-colorizer.lua',
 
   {
     'https://git.sr.ht/~whynothugo/lsp_lines.nvim', -- cool --- multiline lsp hints
     config = function()
+      -- turn it off on start
       require'lsp_lines'.toggle()
       require'lsp_lines'.toggle()
     end,
@@ -254,22 +266,70 @@ return {
     config = true
   },
 
-  --[[ {
-    'levouh/tint.nvim', -- okay --- fade inactive windows
-    opts = {
-      tint = -18,
-      saturation = 0.7
-    }
-  }, ]]
-
-  { 'andrewferrier/debugprint.nvim', -- handy!
+  {
+    'andrewferrier/debugprint.nvim', -- handy! --- auto insert logging lines
     config = true
   },
+
   'LukasPietzschmann/telescope-tabs', -- usable
 
-  -- 'booperlv/nvim-gomove', -- usable --- move text pieces
-  -- 'ziontee113/syntax-tree-surfer', --   move with TS
-  'fedepujol/move.nvim',
+  {
+    'ziontee113/syntax-tree-surfer', --- move with TS
+    config = function()
+      require("syntax-tree-surfer").setup()
+      local noresil = { noremap = true, silent = false }
+      -- Normal Mode Swapping:
+      -- Swap The Master Node relative to the cursor with it's siblings, Dot Repeatable
+      vim.keymap.set("n", "vU", function()
+        vim.opt.opfunc = "v:lua.STSSwapUpNormal_Dot" return "g@l" end,
+        { silent = true, expr = true })
+      vim.keymap.set("n", "vD", function()
+        vim.opt.opfunc = "v:lua.STSSwapDownNormal_Dot" return "g@l" end,
+        { silent = true, expr = true })
+      -- Swap Current Node at the Cursor with it's siblings, Dot Repeatable
+      vim.keymap.set("n", "vd", function()
+        vim.opt.opfunc = "v:lua.STSSwapCurrentNodeNextNormal_Dot" return "g@l" end,
+        { silent = true, expr = true })
+      vim.keymap.set("n", "vu", function()
+        vim.opt.opfunc = "v:lua.STSSwapCurrentNodePrevNormal_Dot" return "g@l" end,
+        { silent = true, expr = true })
+      -- Visual Selection from Normal Mode
+      vim.keymap.set("n", "vx", '<cmd>STSSelectMasterNode<cr>', noresil)
+      vim.keymap.set("n", "vn", '<cmd>STSSelectCurrentNode<cr>', noresil)
+      -- Select Nodes in Visual Mode
+      vim.keymap.set("x", "J", '<cmd>STSSelectNextSiblingNode<cr>', noresil)
+      vim.keymap.set("x", "K", '<cmd>STSSelectPrevSiblingNode<cr>', noresil)
+      vim.keymap.set("x", "H", '<cmd>STSSelectParentNode<cr>', noresil)
+      vim.keymap.set("x", "L", '<cmd>STSSelectChildNode<cr>', noresil)
+      -- Swapping Nodes in Visual Mode
+      vim.keymap.set("x", "<A-j>", '<cmd>STSSwapNextVisual<cr>', noresil)
+      vim.keymap.set("x", "<A-k>", '<cmd>STSSwapPrevVisual<cr>', noresil)
+    end
+  },
+
+  {
+    'booperlv/nvim-gomove', --- move with auto-indent
+    opts = {
+      map_defaults = true,
+      reindent = true,
+    }
+  },
+
+  --[[ {
+    'fedepujol/move.nvim', --- move with auto-indent
+    config = function()
+      H.nmap('<A-j>', ':MoveLine(1)<CR>')
+      H.nmap('<A-k>', ':MoveLine(-1)<CR>')
+      H.nmap('<A-h>', ':MoveHChar(-1)<CR>')
+      H.nmap('<A-l>', ':MoveHChar(1)<CR>')
+      H.nmap('<leader>wf', ':MoveWord(1)<CR>')
+      H.nmap('<leader>wb', ':MoveWord(-1)<CR>')
+      H.vmap('<A-j>', ':MoveBlock(1)<CR>')
+      H.vmap('<A-k>', ':MoveBlock(-1)<CR>')
+      H.vmap('<A-h>', ':MoveHBlock(-1)<CR>')
+      H.vmap('<A-l>', ':MoveHBlock(1)<CR>')
+    end
+  }, ]]
 
   {
     'kwkarlwang/bufjump.nvim', -- good --- jump in history a buffer at once
@@ -304,6 +364,14 @@ return {
   --[[ 'bennypowers/splitjoin.nvim',
   { 'echasnovski/mini.splitjoin', version = '*' },
   'nyngwang/murmur.lua', -- no effect ]]
+
+  --[[ {
+    'levouh/tint.nvim', -- okay --- fade inactive windows
+    opts = {
+      tint = -18,
+      saturation = 0.7
+    }
+  }, ]]
 
   {
     'echasnovski/mini.files',
@@ -347,7 +415,7 @@ return {
   }, ]]
 
   -- 'cbochs/portal.nvim', -- error
-  'ziontee113/neo-minimap', -- problem --- cool tags map
+  'ziontee113/neo-minimap', -- nice --- cool tags map
   'princejoogie/dir-telescope.nvim',
   -- 'pocco81/true-zen.nvim',
 

@@ -597,7 +597,7 @@ nnoremap ,,v :source $MYVIMRC<CR>
 nnoremap ,v<space> :source %<CR>
 nnoremap c<BS> :call SetPhase() <bar> call LoadColor() <bar> call CrispBorders()<CR>
 nnoremap ,,z :source $VICONFDIR/session/comon <bar> silent call AddRpcEar()<CR>
-nnoremap ,,q :call SaveColor() <bar> SSave! comon <bar> wa <bar> qa<CR>
+nnoremap ,,q :call SaveColor() <bar> SSave! comon <bar> wqa<CR>
 nnoremap ,,s :call SaveColor() <bar> SSave! comon<CR>
 " nnoremap ,,s :call SaveColor() <bar> mksession! $VICONFDIR/session/comon<CR>
 nnoremap ,vq :qa!<CR>
