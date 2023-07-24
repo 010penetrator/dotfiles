@@ -556,7 +556,7 @@ return {
   'smzm/hydrovim', --- eval python
   'luukvbaal/statuscol.nvim', -- ambitious
   -- 'mrjones2014/legendary.nvim',
-  -- 'folke/which-key.nvim',
+  'folke/which-key.nvim',
   -- 'Wansmer/sibling-swap.nvim',
   'RaafatTurki/hex.nvim',
   -- 'danielfalk/smart-open.nvim', --- funky telescope mode
