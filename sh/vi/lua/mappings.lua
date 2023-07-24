@@ -58,9 +58,9 @@ H.nmap('c<BS>', ":call ReloadStyle(1)<CR>")
 H.nmap(',vr', ":TSToggle rainbow<CR>")
 H.nmap(',vs', ":ScrollbarToggle<CR>")
 H.nmap(',gr', ":call FocusBufOrDo('mylazy/init.lua','e $mylua/mylazy/init.lua')<CR>")
-H.nmap(',ge', ":call FocusBufOrDo('mappings.lua','e $mylua/mappings.lua')<CR>")
+H.nmap(',gm', ":call FocusBufOrDo('mappings.lua','e $mylua/mappings.lua')<CR>")
 -- H.nmap(',vp', function() vim.api.nvim_exec([[:put +| normal dfmxI'A',==]], false) end)
-H.nmap(',vp', function() vim.api.nvim_exec([[:put +| normal 3df/^v$S'A,==]], false) end)
+H.nmap(',vp', function() vim.api.nvim_exec([[:put +| normal 3df/^v$S}ysi}'A,==]], false) end)
 H.nmap(',vt', function() require'tint'.toggle() end )
 -- H.nmap(',vt', require'tint'.toggle)
 H.nmap(',s', ":SymbolsOutline<CR>")
@@ -82,7 +82,6 @@ function Tele_buff_ivy() require("telescope.builtin").buffers( tele_ivy ) end
 local tele_drop = require("telescope.themes").get_dropdown{ sort_mru=true, winblend=9, layout_config = { height=21 } }
 function Tele_buff_drop() require("telescope.builtin").buffers( tele_drop ) end
 H.nmap(',fb', Tele_buff_ivy, "Telescope [B]uffers ivy-themed")
-H.nmap(',h', Tele_buff_ivy, "Telescope [B]uffers ivy-themed")
 H.nmap(',<space>', Tele_buff_drop)
 H.nmap(',l', require("lsp_lines").toggle, { desc = "Toggle lsp_lines" })
 -- nnoremap ,<space> :Telescope buffers sort_mru=1 theme=dropdown winblend=9<CR>

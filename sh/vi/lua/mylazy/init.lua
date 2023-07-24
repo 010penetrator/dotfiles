@@ -2,6 +2,11 @@
 
 return {
 
+  -- require'plugins.better-escape',
+  -- require'plugins_lazy.themes',
+  -- require'plugins_lazy',
+  -- { import = "plugins_lazy" },
+
   ---- VIM BASIC -------------------------------------------
   -- 'justinmk/vim-sneak', -- good!
   { 'junegunn/fzf.vim', dependencies = { 'junegunn/fzf' } }, -- fantastic
@@ -31,11 +36,6 @@ return {
   'dkarter/bullets.vim',
 
   ---- NEOVIM ONLY -----{{{}}}------------------------------
-
-  -- require'plugins.better-escape',
-  -- require'plugins_lazy.themes',
-  -- require'plugins_lazy',
-  -- { import = "plugins_lazy" },
 
   --[[ {
     'goolord/alpha-nvim',
@@ -162,12 +162,13 @@ return {
   {
     'nvim-lualine/lualine.nvim',
     dependencies = 'kyazdani42/nvim-web-devicons',
+    priority = 40,
     opts = {
       sections = {
         lualine_c = {
           {
             'filename',
-            -- color_correction = 'dynamic',
+            color_correction = 'dynamic',
             -- "navic",
             -- color_correction = 'dynamic',
             -- navic_opts = nil
@@ -334,14 +335,26 @@ return {
       max_join_length = 440,
     }
   },
-  -- 'bennypowers/splitjoin.nvim',
-  -- { 'echasnovski/mini.splitjoin', version = '*' },
-  -- 'nyngwang/murmur.lua', -- no effect
-  -- {
-  --   'AckslD/nvim-trevJ.lua', -- split arguments
-  --   -- config = 'require("trevj").setup()'
-  --   config = true
-  -- },
+
+  --[[ 'bennypowers/splitjoin.nvim',
+  { 'echasnovski/mini.splitjoin', version = '*' },
+  'nyngwang/murmur.lua', -- no effect ]]
+
+  {
+    'echasnovski/mini.files',
+    version = false,
+    -- config = true,
+    config = function()
+      require("mini.files").setup()
+      H.nmap(",h", MiniFiles.open)
+    end
+  },
+
+  --[[ {
+    'AckslD/nvim-trevJ.lua', -- split arguments
+    -- config = 'require("trevj").setup()'
+    config = true
+  }, ]]
 
   'tamton-aquib/zone.nvim', -- fun
 
