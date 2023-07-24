@@ -33,7 +33,7 @@ function M.reqAsk(m)
   end
 end
 
-function M.msetup(p)
+function M.rsetup(p)
   local res = M.reqAsk(p)
   if res then
     require(p).setup()

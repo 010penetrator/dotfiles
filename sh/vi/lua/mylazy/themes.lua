@@ -1,3 +1,5 @@
+-- vim: ts=2 sw=2
+
 --------------------------------
 --          Themes:           --
 --------------------------{{{}}}
@@ -25,6 +27,7 @@ return {
   'lukas-reineke/onedark.nvim',
   { 'folke/tokyonight.nvim', branch = 'main' },
   'projekt0n/github-nvim-theme',
+  'AstroNvim/astrotheme',
   'savq/melange-nvim',
   'Yazeed1s/minimal.nvim',
 

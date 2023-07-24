@@ -51,7 +51,7 @@ require("mason").setup {
   install_root_dir = masonpath,
 }
 
-H.msetup("mason-nvim-dap")
+H.rsetup("mason-nvim-dap")
 
 require("mason-lspconfig").setup {
   ensure_installed = { "lua_ls", "bashls", "clangd", "pyright", "cmake", "vimls" }

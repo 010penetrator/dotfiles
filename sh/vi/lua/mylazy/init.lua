@@ -8,69 +8,38 @@ return {
   -- { import = "plugins_lazy" },
 
   ---- VIM BASIC -------------------------------------------
-  -- 'justinmk/vim-sneak', -- good!
   { 'junegunn/fzf.vim', dependencies = { 'junegunn/fzf' } }, -- fantastic
+  'mhinz/vim-startify', -- great
+  -- 'justinmk/vim-sneak', -- good!
   -- 'tpope/vim-sensible', -- basic
-  -- 'tpope/vim-commentary',
-  -- 'tpope/vim-surround', -- good
   -- 'tpope/vim-endwise', -- okay
+  -- 'tpope/vim-sleuth',
   'tpope/vim-repeat', -- handy
   'tpope/vim-eunuch', -- handy
   'tpope/vim-fugitive', -- handy
-  'mhinz/vim-startify', --great
-  'jlanzarotta/bufexplorer', -- basic
+  'jlanzarotta/bufexplorer', -- based
+  'MattesGroeger/vim-bookmarks', -- great
+  'haya14busa/vim-edgemotion', -- great --- Use with <C-j>
+  'will133/vim-dirdiff', -- handy
+  -- 'jamessan/vim-gnupg', -- good --- vim-only
+  -- 'chrisbra/Colorizer', -- good
   -- 'michaeljsmith/vim-indent-object', -- cool
   -- 'godlygeek/tabular', -- okay
-  'junegunn/vim-easy-align',
-  'jamessan/vim-gnupg', -- good
-  -- 'chrisbra/Colorizer', -- good
-  'MattesGroeger/vim-bookmarks', -- great
-  'haya14busa/vim-edgemotion', -- great -- Use with <C-j>
-  'will133/vim-dirdiff',
-  -- 'tpope/vim-sleuth',
-  -- 'ZeroKnight/vim-signjump', -- buggy
+  -- 'junegunn/vim-easy-align', -- usable
   -- 'vim-scripts/QuickBuf',
-  -- 'liuchengxu/vista.vim',
   -- 'derekwyatt/vim-fswitch',
-  -- 'tpope/vim-unimpaired',
-  'dkarter/bullets.vim',
+  'liuchengxu/vista.vim',
 
   ---- NEOVIM ONLY -----{{{}}}------------------------------
-
-  --[[ {
-    'goolord/alpha-nvim',
-    event = "VimEnter",
-    dependencies = 'kyazdani42/nvim-web-devicons',
-    opts = function()
-      local dashboard = require('alpha.themes.dashboard')
-      require('alpha.term')
-      dashboard.section.terminal.command = "bash $vi/nvim-logo -o"
-      dashboard.section.terminal.width = 70
-      dashboard.section.terminal.height = 10
-      dashboard.section.terminal.opts.redraw = true
-      dashboard.section.terminal.opts.window_config.zindex = 1
-      dashboard.opts.layout = {
-        dashboard.section.terminal,
-        { type = "padding", val = 4 },
-        dashboard.section.buttons,
-        dashboard.section.footer,
-      }
-      return dashboard
-    end,
-    -- config = function() require'alpha'.setup(require'alpha.themes.startify'.config) end,
-    config = function(_, dashboard)
-      require('alpha').setup(dashboard.opts)
-    end,
-  }, ]]
 
   'nvim-telescope/telescope.nvim',
   {
     'nvim-telescope/telescope-fzf-native.nvim',
     build = 'make',
   },
-  'nvim-lua/plenary.nvim',
+  'nvim-lua/plenary.nvim', --- library
   'powerman/vim-plugin-ruscmd', -- works
-  'williamboman/mason.nvim', -- base -- load TS servers
+  'williamboman/mason.nvim', -- base --- load TS servers
   'mfussenegger/nvim-dap',
   'mfussenegger/nvim-lint',
   'jay-babu/mason-nvim-dap.nvim',
@@ -97,12 +66,12 @@ return {
     'neovim/nvim-lspconfig',
     dependencies = {
       'SmiteshP/nvim-navbuddy',
-      'glepnir/lspsaga.nvim',
+      'nvimdev/lspsaga.nvim',
     },
   },
 
   {
-    'SmiteshP/nvim-navbuddy', -- cool -- code map (call :Navbuddy)
+    'SmiteshP/nvim-navbuddy', -- cool --- code map (call :Navbuddy)
     dependencies = {
       'SmiteshP/nvim-navic',
       'MunifTanjim/nui.nvim'
@@ -110,13 +79,13 @@ return {
     opts = { lsp = { auto_attach = true } }
   },
   {
-    'SmiteshP/nvim-navic', -- good -- nav string
+    'SmiteshP/nvim-navic', -- good --- Nav string
     opts = { lsp = { auto_attach = true } }
   },
 
   'williamboman/mason-lspconfig.nvim',
-  'VonHeikemen/lsp-zero.nvim', -- todo
-  'amarakon/nvim-cmp-buffer-lines', -- todo
+  'VonHeikemen/lsp-zero.nvim', -- dive
+  'amarakon/nvim-cmp-buffer-lines', -- dive
   'hrsh7th/nvim-cmp',
   'hrsh7th/cmp-buffer',
   'hrsh7th/cmp-path',
@@ -129,19 +98,16 @@ return {
       "jose-elias-alvarez/null-ls.nvim",
     },
     event = { "BufReadPre", "BufNewFile" },
-    -- config = function()
-    --   require("your.null-ls.config") -- require your null-ls config here (example below)
-    -- end,
   },
 
-  'kevinhwang91/rnvimr', -- include ranger
+  'kevinhwang91/rnvimr', --- include ranger
   -- 'mrjones2014/nvim-ts-rainbow', -- buggy
   'https://gitlab.com/HiPhish/nvim-ts-rainbow2',
-  'chentoast/marks.nvim', -- good -- better marks
-  'lambdalisue/suda.vim', -- perfect -- Sudo file operations
+  'chentoast/marks.nvim', -- good --- better marks
+  'lambdalisue/suda.vim', -- perfect --- Sudo file operations
 
   {
-    'declancm/cinnamon.nvim', -- works -- Hacky Smooth scroll
+    'declancm/cinnamon.nvim', -- works --- Hacky Smooth scroll
     opts = {
       default_keymaps = false,  -- Create default keymaps.
       extra_keymaps = false,    -- Create extra keymaps.
@@ -157,7 +123,6 @@ return {
       scroll_limit = 150,       -- Max number of lines moved before scrolling is skipped. Setting to -1 will disable this option.
     }
   },
-  -- 'karb94/neoscroll.nvim', -- maybe
 
   {
     'nvim-lualine/lualine.nvim',
@@ -215,7 +180,7 @@ return {
   }, ]]
 
   {
-    'kylechui/nvim-surround', -- okay -- TPope classics remake
+    'kylechui/nvim-surround', -- okay --- classics remake
     config = true
   },
 
@@ -236,12 +201,12 @@ return {
   },
 
   {
-    'numToStr/Comment.nvim', -- good -- hit 'gcc' to comment
+    'numToStr/Comment.nvim', -- good --- hit 'gcc' to comment
     config = true
   },
 
   {
-    'akinsho/toggleterm.nvim', -- cool -- fast terminal
+    'akinsho/toggleterm.nvim', -- great --- fast terminal
     opts = {
       -- direction = 'vertical' | 'horizontal' | 'window' | 'float',
       direction = 'horizontal',
@@ -276,7 +241,7 @@ return {
   'norcalli/nvim-colorizer.lua',
 
   {
-    'https://git.sr.ht/~whynothugo/lsp_lines.nvim', -- cool -- multiline lsp hints
+    'https://git.sr.ht/~whynothugo/lsp_lines.nvim', -- cool --- multiline lsp hints
     config = function()
       require'lsp_lines'.toggle()
       require'lsp_lines'.toggle()
@@ -290,7 +255,7 @@ return {
   },
 
   --[[ {
-    'levouh/tint.nvim', -- okay -- Fade inactive windows
+    'levouh/tint.nvim', -- okay --- fade inactive windows
     opts = {
       tint = -18,
       saturation = 0.7
@@ -300,14 +265,14 @@ return {
   { 'andrewferrier/debugprint.nvim', -- handy!
     config = true
   },
-  -- 'LukasPietzschmann/telescope-tabs', -- usable
+  'LukasPietzschmann/telescope-tabs', -- usable
 
-  -- 'booperlv/nvim-gomove', -- usable -- move text pieces
+  -- 'booperlv/nvim-gomove', -- usable --- move text pieces
   -- 'ziontee113/syntax-tree-surfer', --   move with TS
   'fedepujol/move.nvim',
 
   {
-    'kwkarlwang/bufjump.nvim', -- good -- jump in history a buffer at once
+    'kwkarlwang/bufjump.nvim', -- good --- jump in history a buffer at once
     config = true,
     opts = {
       forward = "<A-i>",
@@ -316,9 +281,9 @@ return {
     }
   },
 
-  'sindrets/diffview.nvim', -- great -- cycle through diffs
+  'sindrets/diffview.nvim', -- great --- cycle through diffs
   {
-    'simrat39/symbols-outline.nvim', -- okay -- symbol tree
+    'simrat39/symbols-outline.nvim', -- okay --- symbol tree
     config = true
   },
   'gennaro-tedesco/nvim-peekup', -- usage:""
@@ -329,7 +294,7 @@ return {
   },
 
   {
-    'Wansmer/treesj', -- great -- split/join
+    'Wansmer/treesj', -- great --- split/join
     opts = {
       use_default_keymaps = false,
       max_join_length = 440,
@@ -359,21 +324,21 @@ return {
   'tamton-aquib/zone.nvim', -- fun
 
   {
-    'gorbit99/codewindow.nvim', -- ... -- minimap
+    'gorbit99/codewindow.nvim', -- dive --- minimap
     config = true
   },
 
-  'nullchilly/fsread.nvim', -- funky -- read fast
+  'nullchilly/fsread.nvim', -- funky --- read fast
   {
     'JellyApple102/easyread.nvim',
     config = true,
   },
 
   'folke/paint.nvim',
-  'folke/styler.nvim', --   colo per filetype
+  'folke/styler.nvim', --- colo per filetype
   -- 'LintaoAmons/scratch.nvim',
   'AbdelrahmanDwedar/awesome-nvim-colorschemes',
-  -- 'lewis6991/satellite.nvim', --   add scrollbar
+  -- 'lewis6991/satellite.nvim', --- add scrollbar
 
   --[[ {
     'j-hui/fidget.nvim',
@@ -382,17 +347,17 @@ return {
   }, ]]
 
   -- 'cbochs/portal.nvim', -- error
-  'ziontee113/neo-minimap', -- cant configure -- cool tags map
+  'ziontee113/neo-minimap', -- problem --- cool tags map
   'princejoogie/dir-telescope.nvim',
   -- 'pocco81/true-zen.nvim',
 
   {
-    'rbong/vim-flog', -- provides git graph
+    'rbong/vim-flog', --- provides git graph
     dependencies = 'tpope/vim-fugitive',
   },
 
   -- {
-  --   'NeogitOrg/neogit', -- fail
+  --   'NeogitOrg/neogit', -- problem
   --   dependencies = 'nvim-lua/plenary.nvim',
   --   config = true,
   -- },
@@ -407,12 +372,12 @@ return {
   },
 
   --[[ {
-    'folke/flash.nvim', -- ...
+    'folke/flash.nvim', -- problem
     config = 'require("flash").setup()'
   }, ]]
 
   --[[ {
-    'glepnir/lspsaga.nvim',
+    'nvimdev/lspsaga.nvim',
     dependencies = {
       "kyazdani42/nvim-web-devicons",
       "nvim-treesitter/nvim-treesitter",
@@ -431,15 +396,15 @@ return {
   --   },
   -- },
 
-  'RRethy/vim-illuminate', --   highlight current word
+  'RRethy/vim-illuminate', --- highlight current word
 
   {
-    'dvoytik/hi-my-words.nvim', -- highlight words you wish
+    'dvoytik/hi-my-words.nvim', --- highlight words you wish
     config = true
   },
 
   --[[ {
-  'chrisgrieser/nvim-spider', -- works -- better word margins
+  'chrisgrieser/nvim-spider', -- works --- better word margins
     config = function()
       vim.keymap.set({"n", "o", "x"}, "w", "<cmd>lua require('spider').motion('w')<CR>", { desc = "Spider-w" })
       vim.keymap.set({"n", "o", "x"}, "e", "<cmd>lua require('spider').motion('e')<CR>", { desc = "Spider-e" })
@@ -463,7 +428,7 @@ return {
   },
 
   {
-    'ecthelionvi/NeoColumn.nvim', -- okay -- highlight long lines
+    'ecthelionvi/NeoColumn.nvim', -- okay --- highlight long lines
     opts = {
       -- bg_color = "878787"
       fg_color = "",
@@ -501,24 +466,32 @@ return {
 
   { 'prochri/telescope-all-recent.nvim', dependencies = {'kkharji/sqlite.lua'} },
 
-  'AckslD/nvim-neoclip.lua', -- no effect
+  {
+    'gaoDean/autolist.nvim', --- Bullets
+    ft = { "markdown", "text", "" },
+    config = true,
+  },
+
+  {
+    'AckslD/nvim-neoclip.lua',
+    dependencies = {'nvim-telescope/telescope.nvim'},
+    config = true,
+  },
+
+
   'mizlan/iswap.nvim',
-  'L3MON4D3/LuaSnip',
-  'saadparwaiz1/cmp_luasnip',
-  -- 'haolian9/reveal.nvim', -- no effect
   -- 'Dax89/ide.nvim', -- maybe
-  -- 'rktjmp/lush.nvim', -- for coloscheme making
-  -- 'gaoDean/autolist.nvim', -- no effect
-  -- 'marcuscaisey/olddirs.nvim', --promising
-  -- 'freddiehaddad/feline.nvim', --on watch
+  -- 'rktjmp/lush.nvim', --- for coloscheme making
+  -- 'marcuscaisey/olddirs.nvim', -- promising
+  -- 'freddiehaddad/feline.nvim', -- on watch
   -- 'CKolkey/ts-node-action',
-  'smzm/hydrovim', --    eval python
-  'luukvbaal/statuscol.nvim', --ambitious
+  'smzm/hydrovim', --- eval python
+  'luukvbaal/statuscol.nvim', -- ambitious
   -- 'mrjones2014/legendary.nvim',
   -- 'folke/which-key.nvim',
   -- 'Wansmer/sibling-swap.nvim',
   'RaafatTurki/hex.nvim',
-  -- 'danielfalk/smart-open.nvim', --funky telescope mode
+  -- 'danielfalk/smart-open.nvim', --- funky telescope mode
   'tsakirist/telescope-lazy.nvim',
   -- 'altermo/ultimate-autopair.nvim',
   -- 'chrisgrieser/nvim-various-textobjs', -- many
@@ -526,6 +499,8 @@ return {
   -- 'axkirillov/hbac.nvim', ]]
   -- 'rareitems/hl_match_area.nvim',
   -- 'Eandrju/cellular-automaton.nvim',
+  'L3MON4D3/LuaSnip',
+  'saadparwaiz1/cmp_luasnip',
 
   {
     'zaldih/themery.nvim',
@@ -535,3 +510,32 @@ return {
   },
 
 }
+
+  --[[ {
+    'goolord/alpha-nvim',
+    event = "VimEnter",
+    dependencies = 'kyazdani42/nvim-web-devicons',
+    opts = function()
+      local dashboard = require('alpha.themes.dashboard')
+      require('alpha.term')
+      dashboard.section.terminal.command = "bash $vi/nvim-logo -o"
+      dashboard.section.terminal.width = 70
+      dashboard.section.terminal.height = 10
+      dashboard.section.terminal.opts.redraw = true
+      dashboard.section.terminal.opts.window_config.zindex = 1
+      dashboard.opts.layout = {
+        dashboard.section.terminal,
+        { type = "padding", val = 4 },
+        dashboard.section.buttons,
+        dashboard.section.footer,
+      }
+      return dashboard
+    end,
+    -- config = function() require'alpha'.setup(require'alpha.themes.startify'.config) end,
+    config = function(_, dashboard)
+      require('alpha').setup(dashboard.opts)
+    end,
+  }, ]]
+
+
+
