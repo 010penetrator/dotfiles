@@ -234,20 +234,7 @@ return {
     -- let g:indent_blankline_filetype_exclude = {'terminal', 'nofile', 'quickfix', 'prompt', 'help', 'startify'}
   },
 
-  ---------------------------------------------{{{}}}-------
-  -- 'mrjones2014/nvim-ts-rainbow', -- buggy
-  --[[ {
-    'https://gitlab.com/HiPhish/nvim-ts-rainbow2',
-    config = {
-      H.nmap(',vr', ":TSToggle rainbow<CR>")
-    }
-  }, ]]
-  {
-    'https://gitlab.com/HiPhish/rainbow-delimiters.nvim',
-    config = function()
-      require 'rainbow-delimiters.setup'
-    end
-  },
+  'folke/which-key.nvim',
 
   'norcalli/nvim-colorizer.lua',
 
@@ -308,28 +295,12 @@ return {
   },
 
   {
-    'booperlv/nvim-gomove', --- move with auto-indent
+    'booperlv/nvim-gomove', --- move keep indent
     opts = {
       map_defaults = true,
       reindent = true,
     }
   },
-
-  --[[ {
-    'fedepujol/move.nvim', --- move with auto-indent
-    config = function()
-      H.nmap('<A-j>', ':MoveLine(1)<CR>')
-      H.nmap('<A-k>', ':MoveLine(-1)<CR>')
-      H.nmap('<A-h>', ':MoveHChar(-1)<CR>')
-      H.nmap('<A-l>', ':MoveHChar(1)<CR>')
-      H.nmap('<leader>wf', ':MoveWord(1)<CR>')
-      H.nmap('<leader>wb', ':MoveWord(-1)<CR>')
-      H.vmap('<A-j>', ':MoveBlock(1)<CR>')
-      H.vmap('<A-k>', ':MoveBlock(-1)<CR>')
-      H.vmap('<A-h>', ':MoveHBlock(-1)<CR>')
-      H.vmap('<A-l>', ':MoveHBlock(1)<CR>')
-    end
-  }, ]]
 
   {
     'kwkarlwang/bufjump.nvim', -- good --- jump in history a buffer at once
@@ -342,15 +313,41 @@ return {
   },
 
   'sindrets/diffview.nvim', -- great --- cycle through diffs
+
   {
-    'simrat39/symbols-outline.nvim', -- okay --- symbol tree
+    'phaazon/hop.nvim',
+    branch = 'v2', -- optional but strongly recommended
+    config = function()
+      local hop = require('hop')
+      hop.setup { keys = 'etovxqpdygfblzhckisuran' }
+      local directions = require('hop.hint').HintDirection
+      vim.keymap.set('n', 'f', function() hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true }) end, {remap=true})
+      vim.keymap.set('n', 'F', function() hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true }) end, {remap=true})
+      vim.keymap.set('n', 't', function() hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true, hint_offset = -1 }) end, {remap=true})
+      vim.keymap.set('n', 'T', function() hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 }) end, {remap=true})
+    end,
+  },
+
+  {
+    'simrat39/symbols-outline.nvim', -- okay --- symbols tree based on lsp 
     config = true
   },
-  'gennaro-tedesco/nvim-peekup', -- usage:""
-  -- 'trmckay/based.nvim', -- no effect
+
+  'gennaro-tedesco/nvim-peekup', -- so-so --- clipboard history,  usage:""
+
+  {
+    'trmckay/based.nvim', --- decode hex and octal to decimal
+    config = function()
+      H.nmap(",cb", require'based'.convert)
+    end
+  },
+
   {
     'petertriho/nvim-scrollbar', -- okay
-    config = true
+    config = function()
+      require("scrollbar").setup()
+      H.nmap(',vs', ":ScrollbarToggle<CR>")
+    end
   },
 
   {
@@ -361,17 +358,37 @@ return {
     }
   },
 
-  --[[ 'bennypowers/splitjoin.nvim',
-  { 'echasnovski/mini.splitjoin', version = '*' },
-  'nyngwang/murmur.lua', -- no effect ]]
-
-  --[[ {
+  {
     'levouh/tint.nvim', -- okay --- fade inactive windows
     opts = {
       tint = -18,
       saturation = 0.7
+    },
+    config = function(_, opts)
+      local tint = require("tint")
+      tint.setup(opts)
+      tint.disable()
+    end
+  },
+
+  ---------------------------------------------{{{}}}-------
+  -- 'mrjones2014/nvim-ts-rainbow', -- buggy
+  --[[ {
+    'https://gitlab.com/HiPhish/nvim-ts-rainbow2', -- okay
+    config = {
+      H.nmap(',vr', ":TSToggle rainbow<CR>")
     }
   }, ]]
+  --[[ {
+    'https://gitlab.com/HiPhish/rainbow-delimiters.nvim', -- problem
+    config = function()
+      require 'rainbow-delimiters.setup'
+    end
+  }, ]]
+
+  -- 'nyngwang/murmur.lua', -- no effect
+
+  -- { 'echasnovski/mini.splitjoin', version = '*' },
 
   {
     'echasnovski/mini.files',
@@ -382,12 +399,6 @@ return {
       H.nmap(",h", MiniFiles.open)
     end
   },
-
-  --[[ {
-    'AckslD/nvim-trevJ.lua', -- split arguments
-    -- config = 'require("trevj").setup()'
-    config = true
-  }, ]]
 
   'tamton-aquib/zone.nvim', -- fun
 
@@ -404,11 +415,10 @@ return {
 
   'folke/paint.nvim',
   'folke/styler.nvim', --- colo per filetype
-  -- 'LintaoAmons/scratch.nvim',
+  'LintaoAmons/scratch.nvim',
   'AbdelrahmanDwedar/awesome-nvim-colorschemes',
-  -- 'lewis6991/satellite.nvim', --- add scrollbar
 
-  --[[ {
+--[[ {
     'j-hui/fidget.nvim',
     tag = 'legacy',
     config = true,
@@ -482,20 +492,6 @@ return {
   }, ]]
 
   {
-    'phaazon/hop.nvim',
-    branch = 'v2', -- optional but strongly recommended
-    config = function()
-      local hop = require('hop')
-      hop.setup { keys = 'etovxqpdygfblzhckisuran' }
-      local directions = require('hop.hint').HintDirection
-      vim.keymap.set('n', 'f', function() hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true }) end, {remap=true})
-      vim.keymap.set('n', 'F', function() hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true }) end, {remap=true})
-      vim.keymap.set('n', 't', function() hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true, hint_offset = -1 }) end, {remap=true})
-      vim.keymap.set('n', 'T', function() hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 }) end, {remap=true})
-    end,
-  },
-
-  {
     'ecthelionvi/NeoColumn.nvim', -- okay --- highlight long lines
     opts = {
       -- bg_color = "878787"
@@ -546,8 +542,8 @@ return {
     config = true,
   },
 
-
   'mizlan/iswap.nvim',
+  -- 'lewis6991/satellite.nvim', --- add scrollbar
   -- 'Dax89/ide.nvim', -- maybe
   -- 'rktjmp/lush.nvim', --- for coloscheme making
   -- 'marcuscaisey/olddirs.nvim', -- promising
@@ -556,7 +552,6 @@ return {
   'smzm/hydrovim', --- eval python
   'luukvbaal/statuscol.nvim', -- ambitious
   -- 'mrjones2014/legendary.nvim',
-  'folke/which-key.nvim',
   -- 'Wansmer/sibling-swap.nvim',
   'RaafatTurki/hex.nvim',
   -- 'danielfalk/smart-open.nvim', --- funky telescope mode
@@ -567,6 +562,7 @@ return {
   -- 'axkirillov/hbac.nvim', ]]
   -- 'rareitems/hl_match_area.nvim',
   -- 'Eandrju/cellular-automaton.nvim',
+
   'L3MON4D3/LuaSnip',
   'saadparwaiz1/cmp_luasnip',
 

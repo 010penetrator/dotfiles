@@ -374,8 +374,8 @@ vnoremap <Up>   gk
 inoremap <Down> <C-o>gj
 inoremap <Up>   <C-o>gk
 nmap <C-c> <C-y>
-noremap <C-e> 4<C-e>
-noremap <C-y> 4<C-y>
+noremap <C-e> 6<C-e>
+noremap <C-y> 6<C-y>
 nnoremap ,ze :call SwitchCE()<CR>
 " jump last edit edges
 nnoremap [e `[
@@ -400,10 +400,10 @@ if exists("g:loaded_sneak_plugin")
   nmap s <Plug>Sneak_s
   nmap S <Plug>Sneak_S
 endif
-noremap <A-n> 12<c-e>
-noremap <A-p> 12<c-y>
-noremap <C-n> 6j
-noremap <C-p> 6k
+noremap <A-n> 16<c-e>
+noremap <A-p> 16<c-y>
+noremap <C-n> 8j
+noremap <C-p> 8k
 nmap q1 100G
 nmap q2 200G
 nmap q3 300G
