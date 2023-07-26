@@ -5,8 +5,23 @@
 local M = {}
 
 function M.tprint (tbl)
+  if not tbl then print(tbl) return "" end
   for k,v in pairs(tbl) do
     print(k,v)
+  end
+end
+
+function M.tprintrec (tbl, indent)
+  if not tbl then print(tbl) return "" end
+  if not indent then indent = 0 end
+  for k,v in pairs(tbl) do
+    local formatting = string.rep("  ", indent) .. k .. ": "
+    if type(v) == "table" then
+      print(formatting)
+      M.tprintrec(v, indent+1)
+    else
+      print(formatting .. v)
+    end
   end
 end
 
@@ -146,6 +161,7 @@ end
 ---@return boolean available # Whether the plugin is available.
 function M.is_available(plugin)
   local lazy_config_avail, lazy_config = pcall(require, "lazy.core.config")
+  -- M.tprint(lazy_config.plugins)
   return lazy_config_avail and lazy_config.plugins[plugin] ~= nil
 end
 

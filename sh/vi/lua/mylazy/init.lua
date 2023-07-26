@@ -160,15 +160,16 @@ return {
     }
   },
 
-  --[[ {
+  {
     'windwp/nvim-autopairs',
+    enabled = false,
     config = function()
       local pl = require('nvim-autopairs')
       pl.setup()
       pl.remove_rule("'")
       pl.remove_rule('"')
     end,
-  }, ]]
+  },
 
   --[[ {
     'm4xshen/autoclose.nvim', -- problem
@@ -371,23 +372,6 @@ return {
     end
   },
 
-  ---------------------------------------------{{{}}}-------
-  -- 'mrjones2014/nvim-ts-rainbow', -- buggy
-  --[[ {
-    'https://gitlab.com/HiPhish/nvim-ts-rainbow2', -- okay
-    config = {
-      H.nmap(',vr', ":TSToggle rainbow<CR>")
-    }
-  }, ]]
-  --[[ {
-    'https://gitlab.com/HiPhish/rainbow-delimiters.nvim', -- problem
-    config = function()
-      require 'rainbow-delimiters.setup'
-    end
-  }, ]]
-
-  -- 'nyngwang/murmur.lua', -- no effect
-
   -- { 'echasnovski/mini.splitjoin', version = '*' },
 
   {
@@ -400,7 +384,9 @@ return {
     end
   },
 
-  'tamton-aquib/zone.nvim', -- fun
+  'tamton-aquib/zone.nvim', -- fun --- joke screensaver
+
+  ---------------------------------------------{{{}}}-------
 
   {
     'gorbit99/codewindow.nvim', -- dive --- minimap
@@ -418,11 +404,12 @@ return {
   'LintaoAmons/scratch.nvim',
   'AbdelrahmanDwedar/awesome-nvim-colorschemes',
 
---[[ {
+  {
     'j-hui/fidget.nvim',
+    enabled = false,
     tag = 'legacy',
     config = true,
-  }, ]]
+  },
 
   -- 'cbochs/portal.nvim', -- error
   'ziontee113/neo-minimap', -- nice --- cool tags map
@@ -434,13 +421,13 @@ return {
     dependencies = 'tpope/vim-fugitive',
   },
 
-  -- {
-  --   'NeogitOrg/neogit', -- problem
-  --   dependencies = 'nvim-lua/plenary.nvim',
-  --   config = true,
-  -- },
+  {
+    'NeogitOrg/neogit', -- problem
+    enabled = false,
+    dependencies = 'nvim-lua/plenary.nvim',
+    config = true,
+  },
 
-  -- 'airblade/vim-gitgutter',
   {
     'lewis6991/gitsigns.nvim', -- cool
     config = function()
@@ -449,30 +436,33 @@ return {
     end,
   },
 
-  --[[ {
+  {
     'folke/flash.nvim', -- problem
+    enabled = false,
     config = 'require("flash").setup()'
-  }, ]]
+  },
 
-  --[[ {
-    'nvimdev/lspsaga.nvim',
+  {
+    'nvimdev/lspsaga.nvim', -- good
+    enabled = false,
     dependencies = {
       "kyazdani42/nvim-web-devicons",
       "nvim-treesitter/nvim-treesitter",
     },
     config = true
-  }, ]]
+  },
 
-  -- {
-  --   'tzachar/local-highlight.nvim',
-  --   opts = {
-  --     -- file_types = {'python', 'cpp'}, -- If this is given only attach to this
-  --     -- OR attach to every filetype except:
-  --     -- disable_file_types = {'tex'},
-  --     hlgroup = 'Search',
-  --     cw_hlgroup = nil,
-  --   },
-  -- },
+  {
+    'tzachar/local-highlight.nvim',
+    enabled = false,
+    opts = {
+      -- file_types = {'python', 'cpp'}, -- If this is given only attach to this
+      -- OR attach to every filetype except:
+      -- disable_file_types = {'tex'},
+      hlgroup = 'Search',
+      cw_hlgroup = nil,
+    },
+  },
 
   'RRethy/vim-illuminate', --- highlight current word
 
@@ -481,7 +471,7 @@ return {
     config = true
   },
 
-  --[[ {
+  {
   'chrisgrieser/nvim-spider', -- works --- better word margins
     config = function()
       vim.keymap.set({"n", "o", "x"}, "w", "<cmd>lua require('spider').motion('w')<CR>", { desc = "Spider-w" })
@@ -489,7 +479,7 @@ return {
       vim.keymap.set({"n", "o", "x"}, "b", "<cmd>lua require('spider').motion('b')<CR>", { desc = "Spider-b" })
       vim.keymap.set({"n", "o", "x"}, "ge", "<cmd>lua require('spider').motion('ge')<CR>", { desc = "Spider-ge" })
     end,
-  }, ]]
+  },
 
   {
     'ecthelionvi/NeoColumn.nvim', -- okay --- highlight long lines
@@ -537,7 +527,7 @@ return {
   },
 
   {
-    'AckslD/nvim-neoclip.lua',
+    'AckslD/nvim-neoclip.lua', -- no effect
     dependencies = {'nvim-telescope/telescope.nvim'},
     config = true,
   },
@@ -546,37 +536,45 @@ return {
   -- 'lewis6991/satellite.nvim', --- add scrollbar
   -- 'Dax89/ide.nvim', -- maybe
   -- 'rktjmp/lush.nvim', --- for coloscheme making
-  -- 'marcuscaisey/olddirs.nvim', -- promising
+  'marcuscaisey/olddirs.nvim', -- promising
   -- 'freddiehaddad/feline.nvim', -- on watch
   -- 'CKolkey/ts-node-action',
   'smzm/hydrovim', --- eval python
   'luukvbaal/statuscol.nvim', -- ambitious
-  -- 'mrjones2014/legendary.nvim',
+  'mrjones2014/legendary.nvim',
   -- 'Wansmer/sibling-swap.nvim',
   'RaafatTurki/hex.nvim',
   -- 'danielfalk/smart-open.nvim', --- funky telescope mode
   'tsakirist/telescope-lazy.nvim',
   -- 'altermo/ultimate-autopair.nvim',
-  -- 'chrisgrieser/nvim-various-textobjs', -- many
+  -- 'chrisgrieser/nvim-various-textobjs',
   -- { 'AckslD/muren.nvim', config = true }, -- wow
   -- 'axkirillov/hbac.nvim', ]]
   -- 'rareitems/hl_match_area.nvim',
-  -- 'Eandrju/cellular-automaton.nvim',
+  'Eandrju/cellular-automaton.nvim',
 
   'L3MON4D3/LuaSnip',
   'saadparwaiz1/cmp_luasnip',
 
-  {
-    'zaldih/themery.nvim',
-    opts = {
-      themes = { "C64", "NeoSolarized", "OceanicNext", "OceanicNextLight", "Tomorrow" }
-    }
-  },
-
-}
-
+  -- 'mrjones2014/nvim-ts-rainbow', -- buggy
   --[[ {
+    'https://gitlab.com/HiPhish/nvim-ts-rainbow2', -- okay
+    config = {
+      H.nmap(',vr', ":TSToggle rainbow<CR>")
+    }
+  }, ]]
+  --[[ {
+    'https://gitlab.com/HiPhish/rainbow-delimiters.nvim', -- problem
+    config = function()
+      require 'rainbow-delimiters.setup'
+    end
+  }, ]]
+
+  -- 'nyngwang/murmur.lua', -- no effect
+
+  {
     'goolord/alpha-nvim',
+    enabled = false,
     event = "VimEnter",
     dependencies = 'kyazdani42/nvim-web-devicons',
     opts = function()
@@ -599,7 +597,35 @@ return {
     config = function(_, dashboard)
       require('alpha').setup(dashboard.opts)
     end,
-  }, ]]
+  },
+
+  {
+    'zaldih/themery.nvim',
+    priority = 90,
+    config = true,
+    opts = {
+      themes = vim.api.nvim_eval("getcompletion('','color')") ,
+    },
+    config = function(_,opts)
+      function ThemeryWrapper()
+        if H.is_available "themery.nvim" then
+          if not H.Themes then
+            H.Themes = vim.api.nvim_eval("getcompletion('','color')")
+            print("Themes list updated")
+            require("themery").setup({ themes =  H.Themes  })
+          else
+            print("Themes is")
+          end
+          -- H.tprint(H.Themes)
+          vim.cmd("Themery")
+        else
+          print'no avail'
+        end
+      end
+      H.nmap(',T', ThemeryWrapper)
+    end
+  }
 
 
+}
 

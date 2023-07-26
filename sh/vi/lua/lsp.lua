@@ -96,15 +96,16 @@ end)
 
 lspz.setup()
 
---[[ require("lspconfig").lua_ls.setup {
-  on_attach = function() print("lsp client is lua_ls") end,
+--------------------------------------------{{{}}}----------
+require("lspconfig").lua_ls.setup {
+  -- on_attach = function() print("lsp client is lua_ls") end,
   settings = {
     Lua = {
       diagnostics = { globals = { "vim" } },
       workspace = { library = { os.getenv("VIMRUNTIME") } },
     }
   },
-} ]]
+}
 
 require("lsp_lines").setup()
 -- Disable virtual_text since it's redundant due to lsp_lines.

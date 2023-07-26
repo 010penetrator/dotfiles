@@ -4,6 +4,7 @@
 -- print('hello from init.lua')
 -- vim.opt.more = false
 -- vim.api.nvim_command('echom 88')
+-- vim.cmd('echo 42' .. ' 101')
 
 require("set")
 
@@ -20,23 +21,28 @@ H.reload("lsp")
 
 H.reload("mappings")
 
--- require("scratchpad")
+local lazy_config_avail, lazy_config = pcall(require, "lazy.core.config")
+PL = lazy_config.plugins
 
 --------------------------------
 --      Configure Plugs       --
 --------------------------{{{}}}
 
---[[ if is_available "mason.nvim" then
-  vim.g.startify_custom_header = 'startify#pad(split(system("bash $vi/nvim-logo -b"),"\n"))'
+--[[ if H.is_available "themery" then
+  Themes = vim.api.nvim_eval("getcompletion('','color')")
+  H.tprint(Themes)
+  require("themery").setup({ themes =  Themes  })
 end ]]
 
+-- vim.g.startify_custom_header = 'startify#pad(split(system("bash $vi/nvim-logo -b"),"\n"))'
+
 if is_available "nvim-gomove" then
-    require("gomove").setup = {
-      map_defaults = true,
-      reindent = true,
-      undojoin = true,
-      move_past_end_col = false,
-    }
+  require("gomove").setup = {
+    map_defaults = true,
+    reindent = true,
+    undojoin = true,
+    move_past_end_col = false,
+  }
 end
 
 require("telescope").setup {
