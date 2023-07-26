@@ -42,7 +42,7 @@ end) ]]
 
 local masonpath
 if vim.env.PLUGDIR then
-  masonpath = H.path_join( vim.env.PLUGDIR , "..", "nvim-mason" )
+  masonpath = H.path_join( vim.env.PLUGDIR , "..", "nvmsn" )
   -- masonpath = H.path_join( vim.fn.stdpath"data", "nvim-mason" )
   masonpath = vim.fn.resolve(masonpath)
 end
