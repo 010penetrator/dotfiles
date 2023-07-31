@@ -459,8 +459,8 @@ nnoremap a-s :wincmd s \| e %:p:h<CR>
 nnoremap a-v :wincmd v \| e %:p:h<CR>
 nnoremap a_ :wincmd s \| e %:p:h<CR>
 nnoremap a- :wincmd v \| e %:p:h<CR>
-nnoremap as  :new<CR>
-nnoremap av  :vnew<CR>
+nnoremap ans  :new<CR>
+nnoremap anv  :vnew<CR>
 " nnoremap as  :new      \| lcd #:p:h \| echo expand ('%') '.@.' getcwd()<CR>
 " nnoremap av  :vnew     \| lcd #:p:h \| echo expand ('%') '.@.' getcwd()<CR>
 " nnoremap a-  : split <bar> exec "normal -"<CR>
@@ -468,7 +468,6 @@ nnoremap av  :vnew<CR>
 nnoremap qs :split #<CR>
 nnoremap qv :vsplit #<CR>
 nnoremap <C-W>S :vsplit<CR>
-nnoremap an :tabe %:p:h<CR>
 " nnoremap ,. <C-^>
 nnoremap <silent> ,. :if bufexists(bufnr('#')) <bar> b # <bar> echo expand('%') <bar> else <bar> echo 'No prev buffer.' <bar> endif<CR>
 nnoremap ,by :call BufYank()<CR>

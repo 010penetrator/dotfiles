@@ -386,6 +386,50 @@ return {
 
   'tamton-aquib/zone.nvim', -- fun --- joke screensaver
 
+  {
+    'https://gitlab.com/HiPhish/nvim-ts-rainbow2', -- okay
+    config = function()
+      H.nmap(',vr', ":TSToggle rainbow<CR>")
+    end
+  },
+  {
+    'https://gitlab.com/HiPhish/rainbow-delimiters.nvim', -- problem
+    enabled = false,
+    config = function()
+      require 'rainbow-delimiters.setup'
+    end
+  },
+
+  {
+    'gaoDean/autolist.nvim', --- Bullets
+    ft = { "markdown", "text", "" },
+    config = true,
+  },
+
+  {
+    'zaldih/themery.nvim',
+    priority = 90,
+    config = function()
+      function ThemeryWrapper()
+        if H.is_available "themery.nvim" then
+          if not H.Themes then
+            H.Themes = vim.api.nvim_eval("getcompletion('','color')")
+            print("Themes list updated")
+            require("themery").setup({ themes =  H.Themes  })
+          else
+            print("Themes is")
+          end
+          -- H.tprint(H.Themes)
+          vim.cmd("Themery")
+        else
+          print'no avail'
+        end
+      end
+      H.nmap(',,t', ThemeryWrapper)
+    end
+  },
+
+
   ---------------------------------------------{{{}}}-------
 
   {
@@ -411,10 +455,10 @@ return {
     config = true,
   },
 
-  -- 'cbochs/portal.nvim', -- error
+  'cbochs/portal.nvim', -- problem
   'ziontee113/neo-minimap', -- nice --- cool tags map
   'princejoogie/dir-telescope.nvim',
-  -- 'pocco81/true-zen.nvim',
+  'pocco81/true-zen.nvim',
 
   {
     'rbong/vim-flog', --- provides git graph
@@ -465,7 +509,6 @@ return {
   },
 
   'RRethy/vim-illuminate', --- highlight current word
-
   {
     'dvoytik/hi-my-words.nvim', --- highlight words you wish
     config = true
@@ -522,56 +565,10 @@ return {
   { 'prochri/telescope-all-recent.nvim', dependencies = {'kkharji/sqlite.lua'} },
 
   {
-    'gaoDean/autolist.nvim', --- Bullets
-    ft = { "markdown", "text", "" },
-    config = true,
-  },
-
-  {
-    'AckslD/nvim-neoclip.lua', -- no effect
+    'AckslD/nvim-neoclip.lua', -- problem
     dependencies = {'nvim-telescope/telescope.nvim'},
     config = true,
   },
-
-  'mizlan/iswap.nvim',
-  -- 'lewis6991/satellite.nvim', --- add scrollbar
-  -- 'Dax89/ide.nvim', -- maybe
-  -- 'rktjmp/lush.nvim', --- for coloscheme making
-  'marcuscaisey/olddirs.nvim', -- promising
-  -- 'freddiehaddad/feline.nvim', -- on watch
-  -- 'CKolkey/ts-node-action',
-  'smzm/hydrovim', --- eval python
-  'luukvbaal/statuscol.nvim', -- ambitious
-  'mrjones2014/legendary.nvim',
-  -- 'Wansmer/sibling-swap.nvim',
-  'RaafatTurki/hex.nvim',
-  -- 'danielfalk/smart-open.nvim', --- funky telescope mode
-  'tsakirist/telescope-lazy.nvim',
-  -- 'altermo/ultimate-autopair.nvim',
-  -- 'chrisgrieser/nvim-various-textobjs',
-  -- { 'AckslD/muren.nvim', config = true }, -- wow
-  -- 'axkirillov/hbac.nvim', ]]
-  -- 'rareitems/hl_match_area.nvim',
-  'Eandrju/cellular-automaton.nvim',
-
-  'L3MON4D3/LuaSnip',
-  'saadparwaiz1/cmp_luasnip',
-
-  -- 'mrjones2014/nvim-ts-rainbow', -- buggy
-  --[[ {
-    'https://gitlab.com/HiPhish/nvim-ts-rainbow2', -- okay
-    config = {
-      H.nmap(',vr', ":TSToggle rainbow<CR>")
-    }
-  }, ]]
-  --[[ {
-    'https://gitlab.com/HiPhish/rainbow-delimiters.nvim', -- problem
-    config = function()
-      require 'rainbow-delimiters.setup'
-    end
-  }, ]]
-
-  -- 'nyngwang/murmur.lua', -- no effect
 
   {
     'goolord/alpha-nvim',
@@ -600,33 +597,30 @@ return {
     end,
   },
 
-  {
-    'zaldih/themery.nvim',
-    priority = 90,
-    config = true,
-    opts = {
-      themes = vim.api.nvim_eval("getcompletion('','color')") ,
-    },
-    config = function(_,opts)
-      function ThemeryWrapper()
-        if H.is_available "themery.nvim" then
-          if not H.Themes then
-            H.Themes = vim.api.nvim_eval("getcompletion('','color')")
-            print("Themes list updated")
-            require("themery").setup({ themes =  H.Themes  })
-          else
-            print("Themes is")
-          end
-          -- H.tprint(H.Themes)
-          vim.cmd("Themery")
-        else
-          print'no avail'
-        end
-      end
-      H.nmap(',T', ThemeryWrapper)
-    end
-  }
+  'mizlan/iswap.nvim',
+  -- 'lewis6991/satellite.nvim', --- add scrollbar
+  -- 'Dax89/ide.nvim', -- maybe
+  -- 'rktjmp/lush.nvim', --- for coloscheme making
+  'marcuscaisey/olddirs.nvim', -- promising
+  -- 'freddiehaddad/feline.nvim', -- on watch
+  'CKolkey/ts-node-action',
+  'Wansmer/sibling-swap.nvim',
+  'smzm/hydrovim', --- eval python
+  'luukvbaal/statuscol.nvim', -- ambitious
+  'mrjones2014/legendary.nvim',
+  'RaafatTurki/hex.nvim',
+  'danielfalk/smart-open.nvim', --- funky telescope mode
+  'tsakirist/telescope-lazy.nvim',
+  -- 'chrisgrieser/nvim-various-textobjs',
+  -- { 'AckslD/muren.nvim', config = true }, -- wow
+  -- 'axkirillov/hbac.nvim', ]]
+  -- 'rareitems/hl_match_area.nvim',
+  'Eandrju/cellular-automaton.nvim',
+  -- 'altermo/ultimate-autopair.nvim',
+  -- 'nyngwang/murmur.lua', -- problem
+  'L3MON4D3/LuaSnip',
+  'saadparwaiz1/cmp_luasnip',
+
 
 
 }
-
