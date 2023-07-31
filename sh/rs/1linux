@@ -29,10 +29,6 @@ DEB-only: xinput psmisc
 --Debian pkgs
 dmenu rofi wmctrl xdotool vim-gtk kitty pavucontrol htop btop vifm fdisk gparted nnn thunar bash-completion mlocate sxhkd fonts-hack ncdu xclip zathura zathura-djvu gitg mpv remmina xinput feh rsync inxi lshw mediainfo ripgrep silversearcher-ag libnotify-bin imagemagick efibootmgr unrar sox git make cmake curl zstd zip gparted strace speedcrunch exuberant-ctags udevil qalc fzf qemu-system fd-find python3-neovim nitrogen lxappearance dunst virtualbox fonts-firacode redshift python-is-python3 fonts-terminus fonts-liberation earlyoom unzip evince testdisk hardinfo audacity sox shntool cuetools wavpack vorbis-tools nomacs telegram-desktop tmux rfkill testdisk abiword ncal linux-cpupower picom scrot
 qmake6 cpulimit qtcreator qtcreator-doc qtcreator-data build-essential qtbase5-examples qtbase5-dev gcc-9 g++-9
-ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen # for building neovim
-    ninja-build python3-venv # for neovim at Debian
-mercurial julia luarocks tree-sitter-cli composer go php cargo jre-openjdk npm 
-
 
 ==RICE
 Chrome: uBlock Vimium CVim Surfingkeys MidnightLizard SingleFile Stylus Rescroller Browsec Bookmarkie TidyBookmarks NeaterBookmarks RecentBookmarks EmptyNewTabPage CopyTabInfo CopyUrl.rus
@@ -375,6 +371,9 @@ capture-pane, save-buffer
 ==Vim
 cd $git && git clone https://github.com/neovim/neovim; cd neovim && sudo pacman -S --needed base-devel cmake unzip ninja tree-sitter curl && make CMAKE_BUILD_TYPE=Release && sudo make install && sudo ln -sf  /usr/local/bin/nvim /usr/bin/nvim
 vi -c ":set nobomb" -c ":wq" text.xml # remove BOM non-interactively
+ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen # for building Neovim
+ninja-build python3-venv # for building Neovim  at Debian
+mercurial julia luarocks tree-sitter-cli composer go php cargo jre-openjdk npm # Neovim env
 
 ==PKG
 apt-cache policy libgtk2.0-0 libgtk-3-0 # check pkg origin

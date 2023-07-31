@@ -89,7 +89,7 @@ H.nmap(',fo', require("telescope.builtin").oldfiles, "Telescope [F]ind [O]ld fil
 H.nmap(',fr', require("telescope.builtin").lsp_references, "Telescope [F]ind [R]eferences")
 H.nmap('qf', "<cmd> call GetProjDir() <bar> exec 'Telescope find_files cwd=' . expand(b:proj_dir)<CR>", "[F]ind my text [F]iles")
 -- H.nmap(',/',  ":Telescope find_files search_dirs=$sh,$tt,$loc<CR>")
-H.nmap(',/', function() telebin.find_files({ search_dirs={ os.getenv("sh"), os.getenv("tt") } }) end )
+H.nmap(',/', function() telebin.find_files({ search_dirs={ os.getenv("loc"), os.getenv("sh"), os.getenv("tt") } }) end )
 -- H.nmap(',,/', ":Telescope find_files theme=ivy search_dirs=$sh,$PWD")
 H.nmap(',,/', function() telebin.find_files({ search_dirs={ os.getenv("sh"), os.getenv("tt"), vim.fn.getcwd() } }) end )
 H.nmap(',fg', ":Telescope live_grep theme=ivy<CR>")
