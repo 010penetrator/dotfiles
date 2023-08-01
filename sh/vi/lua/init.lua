@@ -140,16 +140,10 @@ require("nvim-treesitter.configs").setup {
 }
 
 require("marks").setup {
-  -- default_mappings = true,
-  -- which builtin marks to show. default {}
-  builtin_marks = { "^" },
-  -- whether movements cycle back to the beginning/end of buffer. default true
+  default_mappings = false,
+  builtin_marks = { "^" }, -- which builtin marks to show
   cyclic = true,
-  -- whether the shada file is updated after modifying uppercase marks. default false
-  force_write_shada = false,
-  -- how often (in ms) to redraw signs/recompute mark positions.
-  -- higher values will have better performance but may cause visual lag,
-  -- while lower values may cause performance penalties. default 150.
+  force_write_shada = true, -- whether the shada file is updated after modifying uppercase marks
   refresh_interval = 250,
   -- sign priorities for each type of mark - builtin marks, uppercase marks, lowercase
   -- marks, and bookmarks.
@@ -157,7 +151,6 @@ require("marks").setup {
   -- the priority applies to all marks.
   -- default 10.
   sign_priority = { lower=12, upper=18, builtin=8, bookmark=25 },
-  -- disables mark tracking for specific filetypes. default {}
   excluded_filetypes = {},
   -- marks.nvim allows you to configure up to 10 bookmark groups, each with its own
   -- sign/virttext. Bookmarks can be used to group together positions and quickly move
@@ -188,20 +181,4 @@ require("marks").setup {
 
 -- vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-
--- require("neoscroll").setup {
---   easing_function = "circular",
---   mappings = {'<C-u>', '<C-d>', '<C-b>', '<C-f>', 'zt', 'zz', 'zb'}
--- }
--- local t = {}
--- t['<C-u>'] = {'scroll', {'-vim.wo.scroll', 'true', '400', [['cubic']]}}
--- t['<C-d>'] = {'scroll', { 'vim.wo.scroll', 'true', '400', [['cubic']]}}
--- t['<C-b>'] = {'scroll', {'-vim.api.nvim_win_get_height(0)', 'true', '600', [['circular']]}}
--- t['<C-f>'] = {'scroll', { 'vim.api.nvim_win_get_height(0)', 'true', '600', [['circular']]}}
--- -- t['<C-y>'] = {'scroll', { -4, 'false', '250', "quadratic"}}
--- -- t['<C-e>'] = {'scroll', {  4, 'false', '250', "quadratic"}}
--- t['zt']    = {'zt', {'100'}}
--- t['zz']    = {'zz', {'100'}}
--- t['zb']    = {'zb', {'100'}}
--- require("neoscroll.config").set_mappings(t)
 
