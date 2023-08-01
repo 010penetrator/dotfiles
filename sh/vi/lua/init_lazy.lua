@@ -18,6 +18,9 @@ vim.opt.rtp:prepend(lazypath)
 -- Install and configure plugins
 require("lazy").setup(
   "mylazy",
-  { root = vim.env.PLUGDIR }
+  {
+    root = vim.env.PLUGDIR,
+    change_detection = { enabled = false }
+  }
 )
 

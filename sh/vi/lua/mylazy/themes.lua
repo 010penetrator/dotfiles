@@ -7,6 +7,7 @@
 return {
 
   'AbdelrahmanDwedar/awesome-nvim-colorschemes',
+
   {
     "catppuccin/nvim",
     name = "catppuccin",

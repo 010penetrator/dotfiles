@@ -402,8 +402,23 @@ return {
 
   {
     'gaoDean/autolist.nvim', --- Bullets
+    priority = 80,
     ft = { "markdown", "text", "" },
-    config = true,
+    opts = {
+      cycle = { "-", "*", "+", "1.", "1)", "a)", "I." }
+    },
+    config = function(_,opts)
+      require'autolist'.setup(opts)
+      vim.keymap.set("i", "<tab>", "<cmd>AutolistTab<cr>")
+      vim.keymap.set("i", "<s-tab>", "<cmd>AutolistShiftTab<cr>")
+      -- vim.keymap.set("i", "<c-t>", "<c-t><cmd>AutolistRecalculate<cr>") -- an example of using <c-t> to indent
+      vim.keymap.set("i", "<CR>", "<CR><cmd>AutolistNewBullet<cr>")
+      vim.keymap.set("n", "o", "o<cmd>AutolistNewBullet<cr>")
+      vim.keymap.set("n", "O", "O<cmd>AutolistNewBulletBefore<cr>")
+      -- vim.keymap.set("n", "<CR>", "<cmd>AutolistToggleCheckbox<cr><CR>")
+      -- vim.keymap.set("n", "<C-r>", "<cmd>AutolistRecalculate<cr>")
+      vim.keymap.set("n", "c,", require("autolist").cycle_next_dr, { expr = true })
+    end,
   },
 
   {
@@ -444,6 +459,14 @@ return {
   'nullchilly/fsread.nvim', -- funky --- read fast
 
   ---------------------------------------------{{{}}}-------
+
+  --[[ {
+    'abecodes/tabout.nvim',
+    enabled = false,
+    config = true,
+  }, ]]
+
+  {'jvgrootveld/telescope-zoxide'},
 
   'folke/paint.nvim',
   'folke/styler.nvim', --- colo per filetype
@@ -510,7 +533,10 @@ return {
     },
   },
 
-  'RRethy/vim-illuminate', --- highlight current word
+  { 'echasnovski/mini.cursorword' },
+
+  -- 'RRethy/vim-illuminate', --- highlight current word
+
   {
     'dvoytik/hi-my-words.nvim', --- highlight words you wish
     config = true
@@ -558,10 +584,10 @@ return {
   {
     'tzachar/highlight-undo.nvim',
       config = function()
-        require('highlight-undo').setup {
-            duration = 1400,
-          }
-      end
+      require('highlight-undo').setup {
+        duration = 1400,
+      }
+    end
   },
 
   { 'prochri/telescope-all-recent.nvim', dependencies = {'kkharji/sqlite.lua'} },
