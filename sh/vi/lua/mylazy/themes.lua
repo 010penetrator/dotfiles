@@ -6,26 +6,39 @@
 
 return {
 
+  'AbdelrahmanDwedar/awesome-nvim-colorschemes',
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,
+    opts = {
+      flavour="macchiato",
+      transparent_background=true,
+    }
+  },
+
+  { "2nthony/vitesse.nvim", dependencies = { "tjdevries/colorbuddy.nvim" }, }, -- foresty
+  { 'AlexvZyl/nordic.nvim', lazy = false, priority = 1000 }, -- beautiful
+  { 'folke/tokyonight.nvim', branch = 'main' },
+  { 'sonph/onehalf', config = function(plugin) vim.opt.rtp:append(plugin.dir .. "/vim") end }, -- Nice good tone HUGE
+
+  'haystackandroid/carbonized',
   'antonk52/lake.nvim',
   'xero/miasma.nvim',
   'nvimdev/oceanic-material',
   'maxmx03/FluoroMachine.nvim', -- neeooooon
-  { "2nthony/vitesse.nvim", dependencies = { "tjdevries/colorbuddy.nvim" }, }, -- foresty
   'felipeagc/fleet-theme-nvim',
   'uloco/bluloco.nvim', -- have transprent
   '2nthony/vitesse.nvim',
   'JoosepAlviste/palenightfall.nvim',
   'gbprod/nord.nvim',
   'Yazeed1s/oh-lucy.nvim',
-  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
   'kvrohit/mellow.nvim',
   'sam4llis/nvim-tundra', -- needs lua require()
   'katawful/kat.nvim',
   'Tsuzat/NeoSolarized.nvim',
-  { 'AlexvZyl/nordic.nvim', lazy = false, priority = 1000 }, -- beautiful
   'rebelot/kanagawa.nvim',
   'lukas-reineke/onedark.nvim',
-  { 'folke/tokyonight.nvim', branch = 'main' },
   'projekt0n/github-nvim-theme',
   'AstroNvim/astrotheme',
   'savq/melange-nvim',
@@ -48,7 +61,6 @@ return {
   'pbrisbin/vim-colors-off',
   'jakwings/vim-colors', -- 'moody,garden,messy
   'bf4/vim-dark_eyes', -- NIGHT
-  { 'sonph/onehalf', config = function(plugin) vim.opt.rtp:append(plugin.dir .. "/vim") end }, -- Nice good tone HUGE
   'beigebrucewayne/Turtles', -- funky
   'vim-scripts/C64.vim', -- joke
   'szorfein/fantasy.vim', -- dull

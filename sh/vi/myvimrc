@@ -363,8 +363,8 @@ nnoremap q= o<esc>64A=<esc>kJ0<esc>60ld$0<esc>40l
 " add horiz line
 nnoremap z- o<esc>64A-<esc>0<esc>60ld$0<esc>40l
 " insert one char
-nnoremap af :exec "normal i".nr2char(getchar())."\e"<CR>
-nnoremap ag :exec "normal! a".nr2char(getchar())."\e"<CR>
+nnoremap as :exec "normal i".nr2char(getchar())."\e"<CR>
+nnoremap af :exec "normal! a".nr2char(getchar())."\e"<CR>
 
 " Move around
 nnoremap <Down> gj
@@ -448,7 +448,7 @@ nnoremap z<BS> :e!<CR>
 " :e at current file path
 nnoremap g/ :e %:p:h<tab>
 " open prev window in current window
-nnoremap qp :exec "buffer " . winbufnr(winnr("#"))<CR>
+" nnoremap qp :exec "buffer " . winbufnr(winnr("#"))<CR>
 " split open filename under cursor
 nnoremap g.v :vsp <c-r><c-f><CR>
 nnoremap g.s :sp <c-r><c-f><CR>
@@ -671,7 +671,7 @@ nnoremap <silent> N :<C-u>execute "keepjumps norm! " . v:count1 . "Nzz"<CR>
 " Handle copy registers
 nnoremap ay "+yiW
 " copy Vim copy register to system copy buffers
-nnoremap qy :let @+ = @" <bar> :let @* = @"<CR>
+nnoremap qc :let @+ = @" <bar> :let @* = @"<CR>
 nnoremap ai :put  *<CR>
 nnoremap aI :put! *<CR>
 nnoremap ao :put  +<CR>

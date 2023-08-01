@@ -24,6 +24,10 @@ H.reload("mappings")
 local lazy_config_avail, lazy_config = pcall(require, "lazy.core.config")
 PL = lazy_config.plugins
 
+-- vim.cmd([[
+--   vimscript here
+-- ]])
+
 --------------------------------
 --      Configure Plugs       --
 --------------------------{{{}}}

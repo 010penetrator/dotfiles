@@ -82,8 +82,8 @@ return {
   },
 
   'williamboman/mason-lspconfig.nvim',
-  'VonHeikemen/lsp-zero.nvim', -- dive
-  'amarakon/nvim-cmp-buffer-lines', -- dive
+  'VonHeikemen/lsp-zero.nvim', -- dig
+  'amarakon/nvim-cmp-buffer-lines', -- dig
   'hrsh7th/nvim-cmp',
   'hrsh7th/cmp-buffer',
   'hrsh7th/cmp-path',
@@ -429,24 +429,26 @@ return {
     end
   },
 
-
-  ---------------------------------------------{{{}}}-------
-
   {
-    'gorbit99/codewindow.nvim', -- dive --- minimap
-    config = true
+    'gorbit99/codewindow.nvim', -- good --- fat minimap
+    opts = {
+      minimap_width = 16,
+      width_multiplier = 5,
+    },
+    config = function(_,opts)
+      require'codewindow'.setup(opts)
+      H.nmap(',vm', require'codewindow'.toggle_minimap)
+    end
   },
 
   'nullchilly/fsread.nvim', -- funky --- read fast
-  {
-    'JellyApple102/easyread.nvim',
-    config = true,
-  },
+
+  ---------------------------------------------{{{}}}-------
 
   'folke/paint.nvim',
   'folke/styler.nvim', --- colo per filetype
+
   'LintaoAmons/scratch.nvim',
-  'AbdelrahmanDwedar/awesome-nvim-colorschemes',
 
   {
     'j-hui/fidget.nvim',
