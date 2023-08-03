@@ -348,7 +348,7 @@ nnoremap d<space> :call DelSpace()<CR>
 " add this line to the next line
 nnoremap al ddpkJ
 " start fat new line
-nnoremap c. :call InsertSpacy()<CR>
+nnoremap cv :call InsertSpacy()<CR>
 " insert new line after current paragraph
 " nnoremap c<CR> }:if (line(".") == line("$")) \| exec "normal o" \| endif<CR>O
 nnoremap c<Down> :call EditAtEdge('down')<CR>
@@ -417,7 +417,7 @@ nnoremap <silent> gn :call search('^\(.\\|\(\s\)*\)$','W')<CR>
 nnoremap <silent> gp :call search('^\(.\\|\(\s\)*\)$','bW')<CR>
 onoremap <silent> gn :call search('^\(.\\|\(\s\)*\)$','W')<CR>
 onoremap <silent> gp :call search('^\(.\\|\(\s\)*\)$','bW')<CR>
-nnoremap gj <C-o>
+" nnoremap gj <C-o>
 
 " For vim-signature
 " nmap ]s ]-
@@ -766,7 +766,7 @@ nnoremap z; :set wrap!<CR>
 nnoremap ,zz :let &scrolloff=28-&scrolloff<CR>
 nnoremap ,zc :let &colorcolumn=80-&colorcolumn<CR>
 nnoremap ,zn :set number!<CR>
-nnoremap c<space> :set filetype=text<CR>
+nnoremap ,ct :set filetype=text<CR>
 nnoremap ,vb :call SwitchBackground()<CR>:echo "background=" &background<CR>
 nnoremap ,vc :set termguicolors!<CR>:set termguicolors?<CR>
 nnoremap a/ :set hlsearch!<CR>

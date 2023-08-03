@@ -460,6 +460,18 @@ return {
 
   ---------------------------------------------{{{}}}-------
 
+
+  {
+    'michaelb/sniprun',
+    build = 'sh ./install.sh',
+    opts = {
+      display = {
+        "Classic",
+        "VirtualText",
+      }
+    }
+  },
+
   --[[ {
     'abecodes/tabout.nvim',
     enabled = false,
