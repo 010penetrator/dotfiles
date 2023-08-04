@@ -54,10 +54,13 @@ return {
 
   {
     'utilyre/barbecue.nvim', -- maybe
+    -- enabled = false,
     dependencies = { 'SmiteshP/nvim-navic' },
     name = "barbecue",
     version = "*",
-    config = true
+    opts = {
+      exclude_filetypes = { "netrw", "toggleterm", "" },
+    },
   },
 
   {
@@ -458,7 +461,7 @@ return {
 
   'nullchilly/fsread.nvim', -- funky --- read fast
 
-  ---------------------------------------------{{{}}}-------
+  --------tryout-------------------------------{{{}}}-------
 
 
   {
@@ -467,6 +470,7 @@ return {
     opts = {
       display = {
         "Classic",
+        -- "Terminal",
         "VirtualText",
       }
     }

@@ -11,16 +11,21 @@ function M.tprint (tbl)
   end
 end
 
-function M.tprintrec (tbl, indent)
-  if not tbl then print(tbl) return "" end
-  if not indent then indent = 0 end
-  for k,v in pairs(tbl) do
-    local formatting = string.rep("  ", indent) .. k .. ": "
+function M.uprint (input, indent)
+  if not input then print(input) return "" end
+  -- if not 
+  if not indent then indent = 1 end
+  for k,v in pairs(input) do
+    -- local formatting = string.rep("  ", indent) .. k .. ": "
+    local formatting = string.rep("  ", indent)
     if type(v) == "table" then
-      print(formatting)
-      M.tprintrec(v, indent+1)
+      print(formatting .. k .. ": ")
+      M.uprint(v, indent+1)
+    elseif type(v) == "function" then
+      print(formatting .. type(v) .. " " .. k )
     else
-      print(formatting .. v)
+      print(3)
+      print(formatting .. type(v) .. v)
     end
   end
 end
@@ -124,6 +129,9 @@ M.xnmap = function(keys, func, desc)
 end
 M.vmap = function(keys, func, desc)
   vim.keymap.set({'v'}, keys, func, { desc = desc, noremap = true })
+end
+M.nvmap = function(keys, func, desc)
+  vim.keymap.set({'n','v'}, keys, func, { desc = desc, noremap = true })
 end
 
 -- local k_opts = { silent=true, noremap=false }

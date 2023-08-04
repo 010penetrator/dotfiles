@@ -108,6 +108,8 @@ H.nmap('qt', ":HiMyWordsToggle<CR>")
 H.nmap('qT', ":HiMyWordsClear<CR>")
 H.nmap(',r', ":RnvimrToggle<CR>")
 
+H.nvmap('qe', ":SnipRun<CR>", "Evaluate code")
+
 ----------------------------------{{{}}}
 H.nmap('s', ":HopAnywhere<CR>")
 -- H.nmap(',vh', ":LocalHighlightToggle<CR>")
