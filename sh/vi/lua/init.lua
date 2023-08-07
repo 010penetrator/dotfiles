@@ -49,29 +49,6 @@ if is_available "nvim-gomove" then
   }
 end
 
-require("telescope").setup {
-  defaults = {
-    prompt_prefix = "$ ",
-    mappings = {
-      i = {
-        ["<c-a>"] = function() print("tryitout") end,
-      }
-    }
-  },
-  pickers = {
-    colorscheme = {
-      enable_preview = true
-    }
-  }
-}
-
-require("telescope").load_extension('fzf')
--- local theme = require("telescope.themes").get_ivy()
--- theme['layout_config']['height'] = vim.opt.lines:get() - 8
--- theme['sort_mru'] = true
--- require("telescope.builtin").buffers(theme)
--- require("telescope.builtin").buffers(Tele_drop)
-
 require("nvim-treesitter.configs").setup {
   ensure_installed = { 'c', 'cpp', 'lua', 'python', 'vim', 'bash', 'markdown' },
   highlight = { enable = true },

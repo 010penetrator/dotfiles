@@ -402,8 +402,8 @@ if exists("g:loaded_sneak_plugin")
 endif
 noremap <A-n> 16<c-e>
 noremap <A-p> 16<c-y>
-noremap <C-n> 8j
-noremap <C-p> 8k
+noremap <C-n> 7j
+noremap <C-p> 7k
 nmap q1 100G
 nmap q2 200G
 nmap q3 300G

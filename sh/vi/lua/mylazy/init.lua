@@ -30,11 +30,30 @@ return {
 
   ---- NEOVIM ONLY -----{{{}}}------------------------------
 
-  'nvim-telescope/telescope.nvim',
+  {
+    'nvim-telescope/telescope.nvim', branch = '0.1.x',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+  },
   {
     'nvim-telescope/telescope-fzf-native.nvim',
     build = 'make',
+    opts = {
+      defaults = {
+        prompt_prefix = "$ ",
+        mappings = {
+          i = {
+            ["<c-a>"] = function() print("tryitout") end,
+          }
+        }
+      },
+      pickers = {
+        colorscheme = {
+          enable_preview = true
+        }
+      }
+    }
   },
+
   'nvim-lua/plenary.nvim', --- library
   'powerman/vim-plugin-ruscmd', -- works
   'williamboman/mason.nvim', -- base --- load TS servers
@@ -465,7 +484,7 @@ return {
 
 
   {
-    'michaelb/sniprun',
+    'michaelb/sniprun', -- maybe --- REPL
     build = 'sh ./install.sh',
     opts = {
       display = {
