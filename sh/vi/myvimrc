@@ -292,7 +292,7 @@ let mapleader = ""
 map q <Nop>
 " map й q
 nnoremap Q q
-nnoremap qm @@
+nnoremap cm @@
 nnoremap ,m @
 
 " Free <a> key
@@ -465,8 +465,8 @@ nnoremap anv  :vnew<CR>
 " nnoremap av  :vnew     \| lcd #:p:h \| echo expand ('%') '.@.' getcwd()<CR>
 " nnoremap a-  : split <bar> exec "normal -"<CR>
 " nnoremap a_  :vsplit <bar> exec "normal -"<CR>
-nnoremap qs :split #<CR>
-nnoremap qv :vsplit #<CR>
+nnoremap qS :split #<CR>
+nnoremap qV :vsplit #<CR>
 nnoremap <C-W>S :vsplit<CR>
 " nnoremap ,. <C-^>
 nnoremap <silent> ,. :if bufexists(bufnr('#')) <bar> b # <bar> echo expand('%') <bar> else <bar> echo 'No prev buffer.' <bar> endif<CR>
@@ -671,7 +671,7 @@ nnoremap <silent> N :<C-u>execute "keepjumps norm! " . v:count1 . "Nzz"<CR>
 " Handle copy registers
 nnoremap ay "+yiW
 " copy Vim copy register to system copy buffers
-nnoremap qc :let @+ = @" <bar> :let @* = @"<CR>
+nnoremap qg :let @+ = @" <bar> :let @* = @"<CR>
 nnoremap ai :put  *<CR>
 nnoremap aI :put! *<CR>
 nnoremap ao :put  +<CR>

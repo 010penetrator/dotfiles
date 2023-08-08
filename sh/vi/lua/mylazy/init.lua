@@ -33,10 +33,6 @@ return {
   {
     'nvim-telescope/telescope.nvim', branch = '0.1.x',
     dependencies = { 'nvim-lua/plenary.nvim' },
-  },
-  {
-    'nvim-telescope/telescope-fzf-native.nvim',
-    build = 'make',
     opts = {
       defaults = {
         prompt_prefix = "$ ",
@@ -50,8 +46,24 @@ return {
         colorscheme = {
           enable_preview = true
         }
+      },
+      extensions = {
+        fzf = {
+          fuzzy = false,                   -- false will only do exact matching
+          override_generic_sorter = true,  -- override the generic sorter
+          override_file_sorter = true,     -- override the file sorter
+          case_mode = "smart_case",        -- "smart_case" or "ignore_case" or "respect_case"
+        }
       }
-    }
+    },
+    config = function(_,opts)
+      require'telescope'.setup(opts)
+      require'telescope'.load_extension('fzf')
+    end
+  },
+  {
+    'nvim-telescope/telescope-fzf-native.nvim',
+    build = 'make',
   },
 
   'nvim-lua/plenary.nvim', --- library
@@ -125,7 +137,7 @@ return {
   'lambdalisue/suda.vim', -- perfect --- Sudo file operations
 
   {
-    'declancm/cinnamon.nvim', -- works --- Hacky Smooth scroll
+    'declancm/cinnamon.nvim', -- works --- Hacky Smooth Scroll
     opts = {
       default_keymaps = false,  -- Create default keymaps.
       extra_keymaps = false,    -- Create extra keymaps.
@@ -429,7 +441,7 @@ return {
     opts = {
       cycle = { "-", "*", "+", "1.", "1)", "a)", "I." }
     },
-    config = function(_,opts)
+    config = function(_, opts)
       require'autolist'.setup(opts)
       vim.keymap.set("i", "<tab>", "<cmd>AutolistTab<cr>")
       vim.keymap.set("i", "<s-tab>", "<cmd>AutolistShiftTab<cr>")
@@ -472,7 +484,7 @@ return {
       minimap_width = 16,
       width_multiplier = 5,
     },
-    config = function(_,opts)
+    config = function(_, opts)
       require'codewindow'.setup(opts)
       H.nmap(',vm', require'codewindow'.toggle_minimap)
     end
