@@ -50,6 +50,7 @@ void foo()
 std::atomic_bool work_on{true};
 
 typedef unsigned char uchar;
+quint32 === unsigned 32bit integer
 
 using Lgrd = std::lock_guard<std::mutex>;
 Lgrd lock(some_mutex);
