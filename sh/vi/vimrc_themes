@@ -1,4 +1,4 @@
-" vim: set foldmethod=marker
+ vim: set foldmethod=marker
 " vim: ts=4 sw=4 ft=vim
 
 """"""""""""""""""""""""""""""""
@@ -32,15 +32,15 @@ if !exists("g:colors_name") || g:colors_name=='habamax'
         " Colors for Neovim for day/night/neutral
 
         if    ( g:phase=='day' )
-            colo frign
+            " colo frign
+            colo snow | set bg=light
             " colo catppuccin-latte
-            " colo snow | set bg=light
-            " colo Tomorrow | LineColor rusticated
-            " colo stellarized | set bg=light | LineColor aqua_plasm
+            " colo Tomorrow
+            " colo stellarized | set bg=light
 
         elseif    ( g:phase=='nox' )
-            colo nordic
-            " colo catppuccin-frappe
+            " colo nordic
+            colo catppuccin-macchiato
             " colo oh-lucy-evening
             " colo nightfox | set bg=dark
             " colo melange | set bg=dark
