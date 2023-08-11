@@ -203,18 +203,13 @@ return {
   'kevinhwang91/rnvimr', --- include ranger
 
   {
-    'chentoast/marks.nvim', -- good --- better marks
+    'chentoast/marks.nvim', -- great --- better marks and more
     opts = {
       default_mappings = false,
       builtin_marks = { "^" }, -- which builtin marks to show
       cyclic = true,
       force_write_shada = true, -- whether the shada file is updated after modifying uppercase marks
       refresh_interval = 250,
-      -- sign priorities for each type of mark - builtin marks, uppercase marks, lowercase
-      -- marks, and bookmarks.
-      -- can be either a table with all/none of the keys, or a single number, in which case
-      -- the priority applies to all marks.
-      -- default 10.
       sign_priority = { lower=12, upper=18, builtin=8, bookmark=25 },
       excluded_filetypes = {},
       -- marks.nvim allows you to configure up to 10 bookmark groups, each with its own
@@ -231,6 +226,11 @@ return {
         delete_bookmark = "m=",
         next = "t<Down>",
         prev = "t<Up>",
+        set_bookmark0 = "m0",
+        set_bookmark1 = "m1",
+        set_bookmark2 = "m2",
+        set_bookmark3 = "m3",
+        set_bookmark4 = "m4",
         next_bookmark = ",<Down>",
         prev_bookmark = ",<Up>",
         next_bookmark1 = "1<Down>",
