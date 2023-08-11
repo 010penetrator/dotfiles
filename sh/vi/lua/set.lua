@@ -17,6 +17,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 -- disable netrw early in user/init.lua
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+-- vim.g.loaded_netrw = 1
+-- vim.g.loaded_netrwPlugin = 1
 

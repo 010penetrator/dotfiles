@@ -36,8 +36,11 @@ for opt, arg in opts:
     if opt == "--full":
         full = True
 
-
-
+def round_up(arg):
+    if arg > round(arg):
+        return round(arg) + 1
+    else:
+        return round(arg)
 
 
 

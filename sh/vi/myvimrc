@@ -292,7 +292,7 @@ let mapleader = ""
 map q <Nop>
 " map й q
 nnoremap Q q
-nnoremap cm @@
+nnoremap m, @@
 nnoremap ,m @
 
 " Free <a> key
@@ -336,7 +336,7 @@ nnoremap z<space> i<space><Esc>
 " add space to word
 nnoremap q<space> i <Esc>lwi <Esc>
 " add space inside brackets
-nnoremap a<space> ysib<space>
+  nnoremap a<space> ysib<space>
 vnoremap <space> :<C-U>call AddSpaceSelection()<CR>
 " allows to undo accidental CTRL-U in insert mode
 inoremap <C-U> <C-G>u<C-U>
