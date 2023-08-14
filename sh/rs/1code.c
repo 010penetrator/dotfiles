@@ -23,6 +23,9 @@ bool debug = true * allow_debug;
 bool debug = false;
 #endif
 
+enum class Indic { idle, ok, alert };
+Indic com_status = Indic::idle;
+
 Part my_struct;
 my_struct = Part(); // reset
 
