@@ -23,6 +23,9 @@ bool debug = true * allow_debug;
 bool debug = false;
 #endif
 
+assert(a == b && "A is not equal to B");
+assert(("A must be equal to B", a==b));
+
 enum class Indic { idle, ok, alert };
 Indic com_status = Indic::idle;
 
@@ -96,6 +99,21 @@ Stuff::ByteArray ba3{0x38,0x39,0x42,0x01,0xA8};
 const QByteArray requestData0 = QByteArray::fromHex("EE6FBB581BB000000000000000000000000000000000000000000000000005D7171B");
 std::cout << koef_hex.toHex().toStdString();
 
+void reversBytesBy(uint8_t* data, int N) {
+    if (N <= 0) {return;}
+    int steps = std::ceil((float)def_MAX_MICBUS_IN_ETH_SIZE / N);
+    // reverse every 'N' amount of bytes
+    for (int i = 0; i < steps; i++) {
+        for (int ii = 0; ii < N / 2; ii++) {
+            int i1 = i * N + ii;
+            int i2 = i * N + N - 1 - ii;
+            uint8_t zeroval = 0;
+            if (i1 < def_MAX_MICBUS_IN_ETH_SIZE) {
+                std::swap(data[i1], i2 < def_MAX_MICBUS_IN_ETH_SIZE ? data[i2] : zeroval);
+            }
+        }
+    }
+}
 
 void reverseBytearray(QByteArray& ba, int dist) {
 	if (ba.size() == 0 || dist<2 )
