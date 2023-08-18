@@ -150,7 +150,7 @@ quint32 byteArrayToUint32(const QByteArray& ba)
 {
 	auto count = ba.size();
 	if (count == 0 || count > 4) {
-		return 0;
+		return 0; // BAD!
 	}
 	quint32 number = 0U;
 	for (int i = 0; i < count; ++i) {
