@@ -8,7 +8,7 @@ return {
 
   ---- VIM BASIC -------------------------------------------
   { 'junegunn/fzf.vim', dependencies = { 'junegunn/fzf' } }, -- fantastic
-  'mhinz/vim-startify', -- great
+  -- 'mhinz/vim-startify', -- great
   -- 'justinmk/vim-sneak', -- good!
   -- 'tpope/vim-sensible', -- basic
   -- 'tpope/vim-endwise', -- okay
@@ -760,10 +760,10 @@ return {
 
   {
     'goolord/alpha-nvim',
-    enabled = false,
+    enabled = true,
     event = "VimEnter",
     dependencies = 'kyazdani42/nvim-web-devicons',
-    opts = function()
+    --[[ opts = function()
       local dashboard = require('alpha.themes.dashboard')
       require('alpha.term')
       dashboard.section.terminal.command = "bash $vi/nvim-logo -o"
@@ -778,11 +778,15 @@ return {
         dashboard.section.footer,
       }
       return dashboard
-    end,
+    end, ]]
     -- config = function() require'alpha'.setup(require'alpha.themes.startify'.config) end,
-    config = function(_, dashboard)
-      require('alpha').setup(dashboard.opts)
-    end,
+    -- config = function(_, dashboard)
+      -- require('alpha').setup(dashboard.opts)
+    -- end,
+    -- try----https://github.com/MiaadTeam/lesvim/blob/main/lua/lazy/settings/alpha.lua
+    config = function ()
+      require'alpha'.setup(require'alpha.themes.dashboard'.config)
+    end
   },
 
   'mizlan/iswap.nvim',
