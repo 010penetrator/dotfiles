@@ -535,14 +535,16 @@ return {
 
   {
     'https://gitlab.com/HiPhish/nvim-ts-rainbow2', -- okay
+    enable = false,
     config = function()
       H.nmap(',vr', ":TSToggle rainbow<CR>")
     end
   },
   {
     'https://gitlab.com/HiPhish/rainbow-delimiters.nvim', -- problem
-    enabled = false,
+    enabled = true,
     config = function()
+      vim.g.rainbow_delimiters = {whitelist = {'cpp','bash','lua'}}
       require 'rainbow-delimiters.setup'
     end
   },
@@ -607,6 +609,14 @@ return {
 
   --------tryout-------------------------------{{{}}}-------
 
+  {
+    'junegunn/vim-easy-align',
+    config = function()
+      -- H.nmap('ga', '<Plug>(EasyAlign)')
+      vim.keymap.set('n', 'ga',  '<Plug>(EasyAlign)')
+      vim.keymap.set('x', 'ga',  '<Plug>(EasyAlign)')
+    end
+  },
 
   {
     'michaelb/sniprun', -- maybe --- REPL

@@ -46,6 +46,9 @@ gnome-shell-extension-dash-to-panel
 gsettings set org.gnome.mutter overlay-key '' # free Win key in Gnome 3
 gsettings set org.gnome.desktop.sound event-sounds false # mute that Gnome prick
 gsettings set org.gnome.settings-daemon.plugins.orientation active false # disable gyro screen
+gsettings set org.gnome.desktop.interface cursor-theme ***
+gsettings set org.gnome.desktop.interface icon-theme ***
+gsettings set org.gnome.desktop.interface gtk-theme ***
 Gnome dconf-editor : org/gnome/desktop/media-handling : uncheck automount and automount-open
 openbox: Syscrash AmbianceGraphite Natura carbonico Arc
 Cinnamon: Moka dark-glass2
