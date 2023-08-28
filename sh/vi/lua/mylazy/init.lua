@@ -95,11 +95,11 @@ return {
         },
         incremental_selection = {
           enable = true,
-          keymaps = {
-            init_selection = '<c-space>',
-            node_incremental = '<c-space>',
+          keymaps = { -- todo
+            -- init_selection =    '<c-space>',
+            -- node_incremental =  '<c-space>',
             scope_incremental = '<c-s>',
-            node_decremental = '<c-backspace>',
+            node_decremental =  '<c-backspace>',
           },
         },
         textobjects = {
@@ -267,7 +267,7 @@ return {
 
   {
     'nvim-lualine/lualine.nvim',
-    dependencies = 'kyazdani42/nvim-web-devicons',
+    dependencies = { 'kyazdani42/nvim-web-devicons', 'gennaro-tedesco/nvim-possession' },
     priority = 40,
     opts = {
       sections = {
@@ -278,7 +278,13 @@ return {
             -- "navic",
             -- color_correction = 'dynamic',
             -- navic_opts = nil
-          }
+          },
+          {
+            -- require'nvim-possession'.status,
+            cond = function()
+              return require("nvim-possession").status() ~= nil
+            end,
+          },
         }
       },
       options = {
@@ -353,6 +359,7 @@ return {
       -- direction = 'vertical' | 'horizontal' | 'window' | 'float',
       direction = 'horizontal',
       start_in_insert = true,
+      autochdir = true,
       size = 24,
       -- persist_size = false,
       -- persist_mode = true,
@@ -477,7 +484,7 @@ return {
   },
 
   {
-    'simrat39/symbols-outline.nvim', -- okay --- symbols tree based on lsp 
+    'simrat39/symbols-outline.nvim', -- okay --- symbols tree based on lsp
     config = true
   },
 
@@ -541,8 +548,8 @@ return {
     end
   },
   {
-    'https://gitlab.com/HiPhish/rainbow-delimiters.nvim', -- problem
-    enabled = false,
+    'https://gitlab.com/HiPhish/rainbow-delimiters.nvim', -- newest
+    enabled = true,
     config = function()
       vim.g.rainbow_delimiters = {whitelist = {'cpp','bash','lua'}}
       require 'rainbow-delimiters.setup'
@@ -844,6 +851,34 @@ return {
     config = function ()
       require'alpha'.setup(require'alpha.themes.dashboard'.config)
     end
+  },
+
+  {
+    "gennaro-tedesco/nvim-possession", -- works
+    dependencies = { "ibhagwan/fzf-lua" },
+    config = true,
+    opts = {
+      sessions = {
+        sessions_path = H.condMkdir(os.getenv("VICONFDIR"),"session/")
+      },
+      save_hook = function() vim.cmd('call SaveColor()') end,
+      fzf_winopts = { width=.5 }
+    },
+    init = function()
+      local possession = require("nvim-possession")
+      vim.keymap.set("n", ",sl", function()
+        possession.list()
+      end)
+      vim.keymap.set("n", ",sn", function()
+        possession.new()
+      end)
+      vim.keymap.set("n", ",su", function()
+        possession.update()
+      end)
+      vim.keymap.set("n", ",sd", function()
+        possession.delete()
+      end)
+    end,
   },
 
   'mizlan/iswap.nvim',

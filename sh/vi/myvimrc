@@ -307,6 +307,9 @@ imap оо <ESC>
 " go to end-of-line
 imap <C-e> <C-o>A
 
+" Insert line above --> hit Alt-Shift-O
+" imap <A-i> <Up><End><CR>
+
 imap <A-b> <C-o>b
 imap <A-f> <C-o>e
 imap <C-l> <Right>
@@ -363,7 +366,7 @@ nnoremap q= o<esc>64A=<esc>kJ0<esc>60ld$0<esc>40l
 " add horiz line
 nnoremap z- o<esc>64A-<esc>0<esc>60ld$0<esc>40l
 " insert one char
-nnoremap as :exec "normal i".nr2char(getchar())."\e"<CR>
+nnoremap az :exec "normal i".nr2char(getchar())."\e"<CR>
 nnoremap af :exec "normal! a".nr2char(getchar())."\e"<CR>
 
 " Move around
@@ -459,8 +462,8 @@ nnoremap a-s :wincmd s \| e %:p:h<CR>
 nnoremap a-v :wincmd v \| e %:p:h<CR>
 nnoremap a_ :wincmd s \| e %:p:h<CR>
 nnoremap a- :wincmd v \| e %:p:h<CR>
-nnoremap ans  :new<CR>
-nnoremap anv  :vnew<CR>
+nnoremap as  :new<CR>
+nnoremap av  :vnew<CR>
 " nnoremap as  :new      \| lcd #:p:h \| echo expand ('%') '.@.' getcwd()<CR>
 " nnoremap av  :vnew     \| lcd #:p:h \| echo expand ('%') '.@.' getcwd()<CR>
 " nnoremap a-  : split <bar> exec "normal -"<CR>
@@ -596,9 +599,10 @@ nnoremap ,,v :source $MYVIMRC<CR>
 nnoremap ,v<space> :source %<CR>
 nnoremap c<BS> :call SetPhase() <bar> call LoadColor() <bar> call CrispBorders()<CR>
 nnoremap ,,z :source $VICONFDIR/session/comon <bar> silent call AddRpcEar()<CR>
-nnoremap ,,q :call SaveColor() <bar> SSave! comon <bar> wqa<CR>
-nnoremap ,,s :call SaveColor() <bar> SSave! comon<CR>
-" nnoremap ,,s :call SaveColor() <bar> mksession! $VICONFDIR/session/comon<CR>
+" nnoremap ,,q :call SaveColor() <bar> SSave! comon <bar> wqa<CR>
+" nnoremap ,,s :call SaveColor() <bar> SSave! comon<CR>
+nnoremap ,,q :call SaveColor() <bar> mksession! $VICONFDIR/session/comon<bar> wqa<CR>
+nnoremap ,,s :call SaveColor() <bar> mksession! $VICONFDIR/session/comon<CR>
 nnoremap ,vq :qa!<CR>
 nnoremap ,<esc> :Startify<CR>
 nnoremap ,zq :wa <bar> qa<CR>

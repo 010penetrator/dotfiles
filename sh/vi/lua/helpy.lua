@@ -2,8 +2,33 @@
 
 -- print('hello from helpy lua')
 
+
 local M = {}
 
+function M.condMkdir(base,dir)
+  local targ = base .. M.path_separator .. dir
+  -- print('targ is ' , targ)
+  if
+    vim.fn.getftype(targ) == "dir"
+    -- vim.fn.getftype(os.getenv("VICONFDIR") .. "/sessions_path") == "dir"
+    -- vim.fn.getftype(os.getenv('VICONFDIR')) == "dir"
+  then
+    -- print'__1'
+    return targ
+  else
+    -- print'__0'
+    local res =  vim.fn.mkdir(targ)
+    if res then
+      return targ
+    else
+      -- Bad result
+      return "/"
+    end
+  end
+end
+-- print( H.condMkdir(os.getenv("VICONFDIR"),"sessions_path2"))
+
+-- Print table
 function M.tprint (tbl)
   if not tbl then print(tbl) return "" end
   for k,v in pairs(tbl) do
@@ -11,9 +36,36 @@ function M.tprint (tbl)
   end
 end
 
+-- Print almost any object
 function M.uprint (input, indent)
   if not input then print(input) return "" end
-  -- if not 
+  if not indent then indent = 1 end
+  --
+  local formatting = string.rep("  ", indent)
+  if type(input) == "table" then
+    for k,val in pairs(input) do
+      -- local formatting = string.rep("  ", indent) .. k .. ": "
+      formatting = string.rep("  ", indent)
+      if type(val) == "table" then
+        print(formatting .. k .. ": ")
+        M.uprint(val, indent+1)
+      elseif type(val) == "function" then
+        print(formatting .. "func " .. k )
+      -- else
+      --   print(formatting .. type(input) .. k )
+      end
+    end
+  elseif type(input) == "function" then
+    print(formatting .. "func "  )
+  else
+    print(formatting .. type(input) .. "  OTHER  " .. input)
+  end
+end
+
+--[[ function M.uprint (input, indent)
+--older
+  if not input then print(input) return "" end
+  -- if not
   if not indent then indent = 1 end
   for k,v in pairs(input) do
     -- local formatting = string.rep("  ", indent) .. k .. ": "
@@ -28,7 +80,9 @@ function M.uprint (input, indent)
       print(formatting .. type(v) .. v)
     end
   end
-end
+end ]]
+
+
 
 function M.unload (p)
   package.loaded[p] = nil
