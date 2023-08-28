@@ -7,6 +7,7 @@ pnputil -i -a *.inf
 chcp 437
 mklink /J name address
 cmd /c mklink /J  %USERPROFILE%\Downloads c:\Downloads
+cmd /c mklink /j C:\TCPU72\exe \exe
 
 :cmd: dism /online /export-driver /destination:C:\Drivers
 :psh: Export-WindowsDriver —Online —Destination C:\Drivers
