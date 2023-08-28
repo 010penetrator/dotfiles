@@ -153,7 +153,7 @@ return {
 
   {
     'utilyre/barbecue.nvim', -- maybe
-    -- enabled = false,
+    enabled = true,
     dependencies = { 'SmiteshP/nvim-navic' },
     name = "barbecue",
     version = "*",
@@ -542,7 +542,7 @@ return {
   },
   {
     'https://gitlab.com/HiPhish/rainbow-delimiters.nvim', -- problem
-    enabled = true,
+    enabled = false,
     config = function()
       vim.g.rainbow_delimiters = {whitelist = {'cpp','bash','lua'}}
       require 'rainbow-delimiters.setup'
@@ -737,6 +737,7 @@ return {
 
   {
     'norlock/nvim-traveller',
+    enabled = false,
     dependencies = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope.nvim' },
     opts = {
       -- replace_netrw = true,
@@ -769,8 +770,54 @@ return {
   },
 
   {
+    'nvimdev/dashboard-nvim',
+    event = 'VimEnter',
+    config =  true,
+    dependencies = 'kyazdani42/nvim-web-devicons',
+    opts = {
+      theme = 'hyper',
+      config = {
+        week_header = { enable = false },
+        header = {'iiii'},
+        shortcut = {
+          { desc = '󰊳 Update', group = '@property', action = 'Lazy update', key = 'u' },
+          {
+            icon = ' ',
+            icon_hl = '@variable',
+            desc = 'Files',
+            group = 'Label',
+            action = 'Telescope find_files',
+            key = 'f',
+          },
+          {
+            desc = ' Apps',
+            group = 'DiagnosticHint',
+            action = 'Telescope app',
+            key = 'a',
+          },
+          {
+            desc = '󰔠 Recent',
+ -- 󰅏 󰅐 
+            -- group = 
+            action = 'Telescope oldfiles',
+            key = 'o',
+          },
+          {
+            desc = ' dotfiles',
+            group = 'Number',
+            action = 'Telescope dotfiles',
+            key = 'd',
+          },
+        },
+        footer = {'',' Do one thing, do it well'},
+      },
+    }
+
+  },
+
+  {
     'goolord/alpha-nvim',
-    enabled = true,
+    enabled = false,
     event = "VimEnter",
     dependencies = 'kyazdani42/nvim-web-devicons',
     --[[ opts = function()
