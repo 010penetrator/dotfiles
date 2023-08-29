@@ -369,7 +369,7 @@ nnoremap q= o<esc>64A=<esc>kJ0<esc>60ld$0<esc>40l
 " add horiz line
 nnoremap z- o<esc>64A-<esc>0<esc>60ld$0<esc>40l
 " insert one char
-nnoremap a. :exec "normal  i".nr2char(getchar())."\e"<CR>
+nnoremap an :exec "normal  i".nr2char(getchar())."\e"<CR>
 nnoremap af :exec "normal! a".nr2char(getchar())."\e"<CR>
 
 " Move around
@@ -444,8 +444,9 @@ nnoremap ,bd :BDnJump<CR>
 nnoremap ,i :diffthis \| wincmd w<CR>
 nnoremap ,o :diffoff  \| wincmd w<CR>
 nnoremap ,' :echo expand ('%') '.@.' getcwd()<CR>
-nnoremap ,c. :exec "lcd! %:p:h" <bar> echo 'lcd2file @' getcwd()<CR>
-nnoremap ,c, :call GetProjDir() <bar> exec "lcd! " . b:proj_dir <bar> echo 'lcd2proj @' getcwd()<CR>
+" nnoremap ,c. :exec "lcd! %:p:h" <bar> echo 'lcd2file @' getcwd()<CR>
+nnoremap ,cf :exec "lcd! %:p:h"<CR>:echo 'lcd2file @' getcwd()<CR>
+nnoremap ,cp :call GetProjDir() <bar> exec "lcd! " . b:proj_dir <bar> echo 'lcd2proj @' getcwd()<CR>
 nnoremap ,cg :call ClimbToDirWhere(".git/index",1) \| pwd<CR>
 nnoremap ,cm :call ClimbToDirWhere("Makefile",1) \| pwd<CR>
 nnoremap a<BS> :checktime<cr>
@@ -602,11 +603,11 @@ nnoremap ,V :source $MYVIMRC<CR>
 nnoremap ,,v :source $MYVIMRC<CR>
 nnoremap ,v<space> :source %<CR>
 nnoremap c<BS> :call SetPhase() <bar> call LoadColor() <bar> call CrispBorders()<CR>
-nnoremap ,,z :source $VICONFDIR/session/comon <bar> silent call AddRpcEar()<CR>
+nnoremap ,,z :source $VICONFDIR/session/df <bar> silent call AddRpcEar()<CR>
 " nnoremap ,,q :call SaveColor() <bar> SSave! comon <bar> wqa<CR>
 " nnoremap ,,s :call SaveColor() <bar> SSave! comon<CR>
-nnoremap ,,q :call SaveColor() <bar> mksession! $VICONFDIR/session/comon<bar> wqa<CR>
-nnoremap ,,s :call SaveColor() <bar> mksession! $VICONFDIR/session/comon<CR>
+" nnoremap ,,q :call SaveColor() <bar> mksession! $VICONFDIR/session/comon<bar> wqa<CR>
+" nnoremap ,,s :call SaveColor() <bar> mksession! $VICONFDIR/session/comon<CR>
 nnoremap ,vq :qa!<CR>
 " nnoremap ,<esc> :Startify<CR>
 nnoremap ,zq :wa <bar> qa<CR>
@@ -799,8 +800,8 @@ nnoremap ,zb :call BuildProjectUni("my_Makefile","make -f my_Makefile bear")<CR>
 nnoremap ,z/ :copen<CR>/error<CR>
 
 " Folding
-vnoremap ,cf :<C-U>call FoldSelection()<CR>
-nnoremap ,cf :set opfunc=FoldMotion<cr>g@
+vnoremap a; :<C-U>call FoldSelection()<CR>
+nnoremap a; :set opfunc=FoldMotion<cr>g@
 
 " Save last insert as Macro at "l"
 command! -nargs=1 LastToMacro exec "let @" . <q-args> . " = \"i\" . @. . \"<Esc>\""
