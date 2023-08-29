@@ -5,6 +5,23 @@
 
 local M = {}
 
+function M.dummy()
+  return '000'
+end
+
+function M.logo()
+  -- os.execute('echo 111')
+  -- local output = vim.fn.system { 'echo', 'hi' }
+  local output = vim.fn.system { 'bash', '/ln/sh/vi/nvim-logo', '-b' }
+  return output
+end
+
+function M.auxfun1()
+  return require("nvim-possession").status()
+end
+
+M.vidir = os.getenv('sh') .. '/vi/'
+
 function M.condMkdir(base,dir)
   local targ = base .. M.path_separator .. dir
   -- print('targ is ' , targ)

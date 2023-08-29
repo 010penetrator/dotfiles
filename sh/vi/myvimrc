@@ -133,12 +133,15 @@ if &t_Co > 2 || has("gui_running")
   let c_comment_strings=1
 endif
 
-augroup Sessload
-  autocmd!
-  " async call function after few ms
-  autocmd SessionLoadPost * call timer_start( 5, {-> ReloadStyle(1)} )
-  " call timer_start(100, {-> execute("colo dayfox")})
-augroup END
+if !has("nvim")
+  augroup Sessload
+    autocmd!
+    " async call function after few ms
+    autocmd SessionLoadPost * call timer_start( 5, {-> ReloadStyle(1)} )
+    " call timer_start(100, {-> execute("colo dayfox")})
+  augroup END
+endif
+
 augroup SaveNotes
   autocmd!
   autocmd FocusLost silly.txt silent update
@@ -308,7 +311,7 @@ imap оо <ESC>
 imap <C-e> <C-o>A
 
 " Insert line above --> hit Alt-Shift-O
-" imap <A-i> <Up><End><CR>
+imap <A-i> <Up><End><CR>
 
 imap <A-b> <C-o>b
 imap <A-f> <C-o>e
@@ -366,7 +369,7 @@ nnoremap q= o<esc>64A=<esc>kJ0<esc>60ld$0<esc>40l
 " add horiz line
 nnoremap z- o<esc>64A-<esc>0<esc>60ld$0<esc>40l
 " insert one char
-nnoremap az :exec "normal i".nr2char(getchar())."\e"<CR>
+nnoremap a. :exec "normal  i".nr2char(getchar())."\e"<CR>
 nnoremap af :exec "normal! a".nr2char(getchar())."\e"<CR>
 
 " Move around
@@ -446,6 +449,7 @@ nnoremap ,c, :call GetProjDir() <bar> exec "lcd! " . b:proj_dir <bar> echo 'lcd2
 nnoremap ,cg :call ClimbToDirWhere(".git/index",1) \| pwd<CR>
 nnoremap ,cm :call ClimbToDirWhere("Makefile",1) \| pwd<CR>
 nnoremap a<BS> :checktime<cr>
+" Edit blank buffer
 nnoremap q<BS> :enew<CR>
 nnoremap z<BS> :e!<CR>
 " :e at current file path
@@ -482,8 +486,8 @@ nnoremap qj     <C-w>j
 nnoremap qk     <C-w>k
 nnoremap ql     <C-w>l
 nnoremap <C-\>  <C-w>w
-nnoremap a,     <C-w>6<
-nnoremap a.     <C-w>6>
+nnoremap a]     <C-w>6<
+nnoremap a[     <C-w>6>
 nnoremap ae     <C-w>4+
 nnoremap ad     <C-w>4-
 " grow tall
@@ -604,7 +608,7 @@ nnoremap ,,z :source $VICONFDIR/session/comon <bar> silent call AddRpcEar()<CR>
 nnoremap ,,q :call SaveColor() <bar> mksession! $VICONFDIR/session/comon<bar> wqa<CR>
 nnoremap ,,s :call SaveColor() <bar> mksession! $VICONFDIR/session/comon<CR>
 nnoremap ,vq :qa!<CR>
-nnoremap ,<esc> :Startify<CR>
+" nnoremap ,<esc> :Startify<CR>
 nnoremap ,zq :wa <bar> qa<CR>
 nnoremap ,,a :call AddRpcEar()<CR>
 " Open current file at vimserver session via my "vimrpc" shell script
@@ -678,11 +682,11 @@ nnoremap ay "+yiW
 nnoremap qg :let @+ = @" <bar> :let @* = @"<CR>
 nnoremap ai :put  *<CR>
 nnoremap aI :put! *<CR>
-nnoremap ao :put  +<CR>
-nnoremap aO :put! +<CR>
+nnoremap ap :put  +<CR>
+nnoremap aP :put! +<CR>
 " put select system buffer as single paragraph
-nnoremap ap o<Esc>:put! *<CR>`[v`]:g/^$/d<CR>:noh<CR>
-nnoremap aP o<Esc>:put! +<CR>`[v`]:g/^$/d<CR>:noh<CR>
+nnoremap ao o<Esc>:put! *<CR>`[v`]:g/^$/d<CR>:noh<CR>
+nnoremap aO o<Esc>:put! +<CR>`[v`]:g/^$/d<CR>:noh<CR>
 " shrink selection into single paragraph
 vnoremap <C-l> :g/^$/d<CR>:noh<CR>
 " yank inline

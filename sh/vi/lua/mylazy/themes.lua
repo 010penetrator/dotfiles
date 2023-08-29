@@ -23,6 +23,7 @@ return {
   { 'folke/tokyonight.nvim', branch = 'main' },
   { 'sonph/onehalf', config = function(plugin) vim.opt.rtp:append(plugin.dir .. "/vim") end }, -- Nice good tone HUGE
 
+  'glepnir/porcelain.nvim',
   'haystackandroid/carbonized',
   'antonk52/lake.nvim',
   'xero/miasma.nvim',

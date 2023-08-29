@@ -107,6 +107,7 @@ H.nmap(',vg', require("gitsigns").toggle_signs, "Show git highlight column")
 H.nmap('qt', ":HiMyWordsToggle<CR>")
 H.nmap('qT', ":HiMyWordsClear<CR>")
 H.nmap(',r', ":RnvimrToggle<CR>")
+H.nmap(',<Esc>', ":Dashboard<CR>")
 
 H.nvmap('qe', ":SnipRun<CR>", "Evaluate code")
 

@@ -274,13 +274,15 @@ return {
         lualine_c = {
           {
             'filename',
+            path = false,
             color_correction = 'dynamic',
             -- "navic",
             -- color_correction = 'dynamic',
             -- navic_opts = nil
           },
           {
-            -- require'nvim-possession'.status,
+            H.auxfun1,
+            -- function() require'nvim-possession'.status() end,
             cond = function()
               return require("nvim-possession").status() ~= nil
             end,
@@ -533,7 +535,11 @@ return {
     version = false,
     -- config = true,
     config = function()
-      require("mini.files").setup()
+      require("mini.files").setup {
+        options = {
+          use_as_default_explorer = false,
+        },
+      }
       H.nmap(",h", MiniFiles.open)
     end
   },
@@ -549,7 +555,7 @@ return {
   },
   {
     'https://gitlab.com/HiPhish/rainbow-delimiters.nvim', -- newest
-    enabled = true,
+    enabled = false,
     config = function()
       vim.g.rainbow_delimiters = {whitelist = {'cpp','bash','lua'}}
       require 'rainbow-delimiters.setup'
@@ -783,10 +789,32 @@ return {
     dependencies = 'kyazdani42/nvim-web-devicons',
     opts = {
       theme = 'hyper',
+      -- preview = { file_path = H.vidir .. 'logo/neovim2.cat', file_height = 11, file_width = 75, command = 'cat | lolcat -F .08' },
       config = {
-        week_header = { enable = false },
-        header = {'iiii'},
+        -- week_header = { enable = false },
+        -- header = {'iiii'},
+        header = {
+
+ -- ' ███╗   ██╗ ███████╗ ██████╗  ██╗   ██╗ ██╗ ███╗   ███╗',
+ -- ' ████╗  ██║ ██╔════╝██╔═══██╗ ██║   ██║ ██║ ████╗ ████║',
+ -- ' ██╔██╗ ██║ █████╗  ██║   ██║ ██║   ██║ ██║ ██╔████╔██║',
+ -- ' ██║╚██╗██║ ██╔══╝  ██║   ██║ ╚██╗ ██╔╝ ██║ ██║╚██╔╝██║',
+ -- ' ██║ ╚████║ ███████╗╚██████╔╝  ╚████╔╝  ██║ ██║ ╚═╝ ██║',
+ -- ' ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝',
+
+'                                                                         ',
+'          ███████████          █████      ██                       ',
+'         ███████████            █████                               ',
+'         ███████████████████████████ ███   ███████       ',
+'        ████████████████████████████ █████ ██████████████     ',
+'       ██████████████   █████████████ █████ █████ ████ █████     ',
+'    ██████████████████████████████████ █████ █████ ████ █████    ',
+'   ██████  ███ █████████████████ ████ █████ █████ ████ ██████   ',
+'   ',
+        },
+
         shortcut = {
+          -- 󰅏 󰅐 
           { desc = '󰊳 Update', group = '@property', action = 'Lazy update', key = 'u' },
           {
             icon = ' ',
@@ -796,16 +824,9 @@ return {
             action = 'Telescope find_files',
             key = 'f',
           },
+          -- { desc = ' Apps', group = 'DiagnosticHint', action = 'Telescope app', key = 'a' },
           {
-            desc = ' Apps',
-            group = 'DiagnosticHint',
-            action = 'Telescope app',
-            key = 'a',
-          },
-          {
-            desc = '󰔠 Recent',
- -- 󰅏 󰅐 
-            -- group = 
+            desc = ' Recent',
             action = 'Telescope oldfiles',
             key = 'o',
           },
@@ -815,7 +836,26 @@ return {
             action = 'Telescope dotfiles',
             key = 'd',
           },
+          {
+            desc = 'Exit',
+            action = 'vim.cmd([[q!]])',
+            key = 'q',
+          },
+          {
+            desc = 'New',
+            action = 'vim.cmd.enew()',
+            key = 'e',
+          },
         },
+        packages = { enable = true },
+        project = {
+          enable = true,
+          limit = 4,
+          -- icon = ' ',
+          -- label = '',
+          action = 'Telescope find_files cwd=',
+        },
+        mru = { limit = 6, icon = ' ', label = '', },
         footer = {'',' Do one thing, do it well'},
       },
     }
@@ -859,9 +899,11 @@ return {
     config = true,
     opts = {
       sessions = {
-        sessions_path = H.condMkdir(os.getenv("VICONFDIR"),"session/")
+        sessions_path = H.condMkdir(os.getenv("VICONFDIR"),"session/"),
+        sessions_icon = '󰅏 '
       },
       save_hook = function() vim.cmd('call SaveColor()') end,
+      post_hook = function() vim.cmd('call LoadColor()') end,
       fzf_winopts = { width=.5 }
     },
     init = function()
