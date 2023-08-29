@@ -914,7 +914,7 @@ return {
       vim.keymap.set("n", ",sn", function()
         possession.new()
       end)
-      vim.keymap.set("n", ",su", function()
+      vim.keymap.set("n", ",,s", function()
         possession.update()
       end)
       vim.keymap.set("n", ",sd", function()
