@@ -190,9 +190,6 @@ if (debug) { static int errcnt; if ( errcnt++ % 9 == 0 ) printf("stag#somestep :
 
 std::function<void(void)> cb = &foo; // more simple callback
 
-QObject::connect(timer, SIGNAL(timeout()), this, SLOT(upd_lcd_self()));
-QObject::connect(ui->pb_work, &QPushButton::pressed, std::bind(&QTimer::stop, timer));
-
 atimer->add(std::chrono::milliseconds(1600), foo, true);
 atimer->add(std::chrono::milliseconds(2000), [](){foo();}, true);
 atimer->add(std::chrono::milliseconds(700), [this](){this->thing_connect();}, true);
