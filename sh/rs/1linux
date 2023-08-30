@@ -280,6 +280,13 @@ git show-branch -a # display graph ??
 git branch -a # display local and remote branches
 git clone <repo_url> --branch <tag_name> --single-branch # only clone history leading to tip of the tag
 git update-index --assume-unchanged dir/my_specific.h # hide local files from git index
+    Server:
+    git daemon --base-path=/path/to/repo --export-all
+    Client:
+    git remote add LocalServerName git://<serveraddress>/
+    OR
+    git clone git://<serveraddress>/
+
 
 ==NET
 ip link
