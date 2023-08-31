@@ -444,8 +444,10 @@ return {
       vim.keymap.set("x", "H", '<cmd>STSSelectParentNode<cr>', noresil)
       vim.keymap.set("x", "L", '<cmd>STSSelectChildNode<cr>', noresil)
       -- Swapping Nodes in Visual Mode
-      vim.keymap.set("x", "<A-j>", '<cmd>STSSwapNextVisual<cr>', noresil)
-      vim.keymap.set("x", "<A-k>", '<cmd>STSSwapPrevVisual<cr>', noresil)
+      vim.keymap.set("x", "<C-Right>", '<cmd>STSSwapNextVisual<cr>', noresil)
+      vim.keymap.set("x", "<C-Left>", '<cmd>STSSwapPrevVisual<cr>', noresil)
+      vim.keymap.set("x", "<S-Right>", '<cmd>STSSwapNextVisual<cr>', noresil)
+      vim.keymap.set("x", "<S-Left>", '<cmd>STSSwapPrevVisual<cr>', noresil)
     end
   },
 
