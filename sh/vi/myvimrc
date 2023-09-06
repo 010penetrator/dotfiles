@@ -363,13 +363,13 @@ nnoremap c<Up>   :call EditAtEdge('up')<CR>
 nnoremap a<Up>   gg:call search('^.')\|call EditAtEdge('up')<CR>
 nnoremap a<Down> G$:call search('^.','b')\|call EditAtEdge('down')<CR>
 
-" extend line with -----
+" extend line with horiz line -----
 nnoremap q- o<esc>64A-<esc>kJ0<esc>60ld$0<esc>40l
 nnoremap q= o<esc>64A=<esc>kJ0<esc>60ld$0<esc>40l
 " add horiz line
 nnoremap z- o<esc>64A-<esc>0<esc>60ld$0<esc>40l
 " insert one char
-nnoremap an :exec "normal  i".nr2char(getchar())."\e"<CR>
+nnoremap ar :exec "normal  i".nr2char(getchar())."\e"<CR>
 nnoremap af :exec "normal! a".nr2char(getchar())."\e"<CR>
 
 " Move around
@@ -492,9 +492,9 @@ nnoremap a[     <C-w>6>
 nnoremap ae     <C-w>4+
 nnoremap ad     <C-w>4-
 " grow tall
-nnoremap ar     <C-w>_
+nnoremap aE     <C-w>_
 " grow short
-nnoremap ac     <C-w>80-
+nnoremap aD     <C-w>80-
 " grow big
 nnoremap ab     <C-w>_<C-w>\|
 " grow equal

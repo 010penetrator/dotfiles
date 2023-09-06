@@ -1,6 +1,11 @@
 
 C++ always truncates, aka rounds down
 
+The size of a struct is known at compile time, so it’s value can be trivially copied.
+The size of an array is not known, ever, since an array is treated as a pointer.
+
+------------------------------------------------------------
+
 do {...} while (..);
 while (..) {...};
 for (.;.;.) {...};
