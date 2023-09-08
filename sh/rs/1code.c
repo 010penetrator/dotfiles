@@ -35,6 +35,22 @@ bool debug = false;
 assert(a == b && "A is not equal to B");
 assert(("A must be equal to B", a==b));
 
+std::string ZeroPadNumber(unsigned long int num, unsigned int N)
+{
+  std::stringstream ss;
+  // the number is converted to string with the help of stringstream
+  ss << num;
+  std::string ret;
+  std::string pad;
+  ss >> ret;
+  // Append zero chars
+  int str_length = ret.length();
+  for (int i = 0; i < int(N - str_length); i++)
+    pad += "0";
+  return pad + ret;
+}
+
+
 enum class Indic { idle, ok, alert };
 Indic com_status = Indic::idle;
 
@@ -84,6 +100,8 @@ using durMs = std::chrono::duration<long, std::milli>;
 using durUs = std::chrono::duration<long, std::micro>;
 ( std::chrono::duration_cast<Usec>( times[i]-ask_beg ) ).count()
 auto ducastUs = [](auto x){return std::chrono::duration_cast<std::chrono::microseconds>(x);};
+auto zero_tp = std::chrono::steady_clock::time_point (std::chrono::milliseconds(0))
+
 
 for (auto & element : vec)
 {

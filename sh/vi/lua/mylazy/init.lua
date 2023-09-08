@@ -540,9 +540,14 @@ return {
       require("mini.files").setup {
         options = {
           use_as_default_explorer = false,
+          mappings = {
+            go_in = 'L',
+            go_in_plus = 'l',
+          }
         },
       }
-      H.nmap(",h", MiniFiles.open)
+      H.nmap(",h", function() MiniFiles.open(vim.api.nvim_buf_get_name(0),false) end) -- open at current file
+      -- H.nmap(",h", MiniFiles.open)
     end
   },
 
