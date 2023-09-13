@@ -20,8 +20,16 @@ then
   $UTIL --no-mtime -f "bestvideo[height<=1080]+bestaudio" $url
 fi
 
+outnamewild="$PWD"/*"$(echo "$url" | cut -d = -f2)"*
+outname=$(ls $outnamewild)
+
 echo .
 echo 'output is:'
-ls -lh "$PWD"/*"$(echo "$url" | cut -d = -f2)"*
+echo \"$outname\"
+# ls -lh $outnamewild
+
+echo .
+mediainfo "$outname" | grep 'pixels\|bits\|Video\|Audio\|Format  \|rate'
+
 cd - &>/dev/null
 
