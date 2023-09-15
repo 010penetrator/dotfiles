@@ -46,7 +46,7 @@ end
 -- print( H.condMkdir(os.getenv("VICONFDIR"),"sessions_path2"))
 
 -- Print table
-function M.tprint (tbl)
+function M.Tprint (tbl)
   if not tbl then print(tbl) return "" end
   for k,v in pairs(tbl) do
     print(k,v)
@@ -54,28 +54,21 @@ function M.tprint (tbl)
 end
 
 -- Print almost any object
-function M.uprint (input, indent)
+function M.Uprint (input, indent)
   if not input then print(input) return "" end
-  if not indent then indent = 1 end
+  if not indent then indent = 0 end
+  local format = string.rep("  ", indent)
   --
-  local formatting = string.rep("  ", indent)
   if type(input) == "table" then
-    for k,val in pairs(input) do
-      -- local formatting = string.rep("  ", indent) .. k .. ": "
-      formatting = string.rep("  ", indent)
-      if type(val) == "table" then
-        print(formatting .. k .. ": ")
-        M.uprint(val, indent+1)
-      elseif type(val) == "function" then
-        print(formatting .. "func " .. k )
-      -- else
-      --   print(formatting .. type(input) .. k )
-      end
+    write(format .. tostring(input) .. '\n')
+    -- print(formatting .. input )
+    for _,val in pairs(input) do
+      M.Uprint(val,indent+1)
     end
   elseif type(input) == "function" then
-    print(formatting .. "func "  )
+    write(format .. "func: " .. input .. '\n')
   else
-    print(formatting .. type(input) .. "  OTHER  " .. input)
+    write(format .. type(input) .. ":  " .. input .. '\n')
   end
 end
 
