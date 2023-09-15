@@ -538,12 +538,12 @@ return {
     -- config = true,
     config = function()
       require("mini.files").setup {
+        mappings = {
+          go_in = 'L',
+          go_in_plus = 'l',
+        },
         options = {
           use_as_default_explorer = false,
-          mappings = {
-            go_in = 'L',
-            go_in_plus = 'l',
-          }
         },
       }
       H.nmap(",h", function() MiniFiles.open(vim.api.nvim_buf_get_name(0),false) end) -- open at current file
