@@ -62,8 +62,8 @@ let g:startify_lists = [
             " \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
 let g:startify_session_dir = $VICONFDIR . "/session"
 
-if !isdirectory(g:startify_session_dir) 
-  call mkdir(g:startify_session_dir, '', 0770) 
+if !isdirectory(g:startify_session_dir)
+  call mkdir(g:startify_session_dir, '', 0770)
 endif
 
 set encoding=UTF-8
@@ -79,7 +79,7 @@ set guicursor=n-v-c:block,i-ci:block,r-cr-o:hor20
 " set iminsert=0
 " set imsearch=0
 " set nofoldenable    " disable folding
-set tabstop=2 softtabstop=2 shiftwidth=4 expandtab smarttab smartindent
+set tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab smartindent
 set textwidth=0 wrapmargin=0
 set invlinebreak
 set breakindent
@@ -487,8 +487,8 @@ nnoremap qj     <C-w>j
 nnoremap qk     <C-w>k
 nnoremap ql     <C-w>l
 nnoremap <C-\>  <C-w>w
-nnoremap a]     <C-w>6<
-nnoremap a[     <C-w>6>
+nnoremap a[     <C-w>6<
+nnoremap a]     <C-w>6>
 nnoremap ae     <C-w>4+
 nnoremap ad     <C-w>4-
 " grow tall
