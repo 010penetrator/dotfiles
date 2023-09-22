@@ -876,6 +876,7 @@ command! -range Sum :echo eval(substitute(join(getline(<line1>,<line2>),'+'),','
 command! SuW w !sudo tee %
 command! SuE r !sudo cat %
 command! Fdel :silent exec '!rm %' | redraw! | bd
+command! DelAllText :silent exec '%d_'
 command! KIR e ++enc=cp1251 | set fileencoding=utf-8 | set fileformat=unix
 command! KIRdos e ++enc=cp1251 | set fileencoding=utf-16 | set fileformat=dos
 " command! C1KIR e ++enc=cp1251 | set fileencoding=utf-8 | set fileformat=unix | wq

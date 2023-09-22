@@ -1,5 +1,6 @@
 $PSVersionTable
 PS c:\> cmd /c single-command-to-cmd
+Get-Content (Get-PSReadlineOption).HistorySavePath > historyLog
 
 cd %userprofile%
 copy NUL EMptyFile.txt
