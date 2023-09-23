@@ -681,6 +681,7 @@ nnoremap <silent> N :<C-u>execute "keepjumps norm! " . v:count1 . "Nzz"<CR>
 nnoremap ay "+yiW
 " copy Vim copy register to system copy buffers
 nnoremap qg :let @+ = @" <bar> :let @* = @"<CR>
+nnoremap qy :let @+ = @" <bar> :let @* = @"<CR>
 nnoremap ai :put  *<CR>
 nnoremap aI :put! *<CR>
 nnoremap ap :put  +<CR>
