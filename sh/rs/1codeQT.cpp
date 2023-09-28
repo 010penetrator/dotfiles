@@ -12,3 +12,21 @@ QFrame* CommandExecuterGui::composeHorizLine(int h = 2) {
     return result;
 }
 
+bool test = true;
+QString s = QVariant(test).toString(); // "true"
+
+QSettings settings("setting_commandExecuter.ini", QSettings::IniFormat);
+QStringList keys = settings.allKeys();
+for (int i = 0; i < keys.size(); i++) {
+    auto k = keys.at(i).toUtf8();
+    QString ks(k);
+    std::cout << i << " " << k.toStdString() << " " << settings.value(k).toString().toStdString() << std::endl;
+    //if (ks == "devId") { m_devId = settings.value(k).toString().toInt(); }
+}
+//if (settings.contains("devId")) { m_devId = settings.value("devId").toString().toInt(); }
+m_LuaExec = settings.value("Exec/Lua").toString();
+m_devId = settings.value("devId").toString().toInt();
+
+
+
+

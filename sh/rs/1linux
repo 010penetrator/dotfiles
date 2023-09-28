@@ -287,6 +287,8 @@ git update-index --assume-unchanged dir/my_specific.h # hide local files from gi
     git remote add LocalServerName git://<serveraddress>/
     OR
     git clone git://<serveraddress>/
+git update-index --no-assume-unchanged file.c; git add --force file.c # force add assumed ignored file
+
 
 
 ==NET
