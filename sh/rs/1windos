@@ -40,7 +40,7 @@ Set-ExecutionPolicy ByPass -Scope Process -Force
 iex "& {$(irm get.scoop.sh)} -RunAsAdmin"
 scoop install git; scoop bucket add extras
 scoop install curl wget git vim windows-terminal
-scoop bucket add nerd-fonts; scoop install terminus-nf CascadiaCode-nf FiraMono-nf JetBrainsMono-nf 
+scoop bucket add nerd-fonts; scoop install terminus-nf CascadiaCode-nf FiraMono-nf JetBrainsMono-nf
 ::
 vcredist archwsl wsl-distrod win32yank
 scoop [ search,info,install,uninstall,list ]
@@ -62,7 +62,12 @@ help, unregister, import, export
 useradd -m -G wheel -s /bin/bash {username}
 sudo pacman-key --init; sudo pacman-key --populate; sudo pacman -Sy archlinux-keyring; sudo pacman -Su # initialize keyring
 sudo pacman -Syu --needed neovim ncdu vifm fzf git curl wget base-devel p7zip npm nodejs ruby luarocks python-pip
-sudo mount -t drvfs j: /mnt/extr 
+sudo mount -t drvfs j: /mnt/extr
+
+:get a list of all the disks and mount one in wsl:
+GET-CimInstance -query "SELECT * from Win32_DiskDrive"
+wsl --mount \\.\PHYSICALDRIVE1
+
 ::
 /etc/wsl.conf:
 [network]

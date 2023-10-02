@@ -27,6 +27,19 @@ for (int i = 0; i < keys.size(); i++) {
 m_LuaExec = settings.value("Exec/Lua").toString();
 m_devId = settings.value("devId").toString().toInt();
 
-
+   
+if (!QFileInfo::exists(scce->m_pythScriptDef))
+{
+    scce->m_fileSet = false;
+    QString userInputString;
+    if (!scce->m_fileSet) {
+        userInputString = QFileDialog::getOpenFileName(nullptr,
+            tr("Open script to execute"), ".", tr("*.py"));
+    }
+    if (!userInputString.isEmpty()) {
+        scce->m_pythScriptDef = userInputString;
+        scce->m_fileSet = true;
+    }
+}
 
 
