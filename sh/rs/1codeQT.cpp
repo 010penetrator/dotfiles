@@ -42,4 +42,24 @@ if (!QFileInfo::exists(scce->m_pythScriptDef))
     }
 }
 
+std::tuple<QString, QString> TNDiag::LuaCall(QString scriptfilename, QString args) {
+    const QString LuaExecPath("../third_part/Lua/lua54.exe");
 
+    QProcess cmd;
+    QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+    QProcessEnvironment envUpdate;
+    envUpdate.insert("PATH", env.value("PATH"));
+    cmd.setProcessEnvironment(envUpdate);
+
+    args = args.simplified(); //remove excessive whitespaces
+    QStringList arglist = args.split(' ');
+    arglist = QStringList(scriptfilename) + arglist;
+    //QString diag_cwd = QDir::currentPath();
+
+    cmd.start(LuaExecPath, arglist);
+    cmd.waitForFinished();
+    QString stdout_ = cmd.readAll();
+    QString stderr_ = cmd.readAllStandardError();
+
+    return std::make_tuple(stdout_, stderr_);
+}

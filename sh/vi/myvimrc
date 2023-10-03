@@ -34,6 +34,8 @@ set path=.,**
 " Check lightline themes here
 " read !ls $PLUGDIR/lightline.vim/autoload/lightline/colorscheme
 " :%!xxd "re-open as hex
+" Watch log with Vim "" For Neovim use :terminal
+" call job_start("tail -f /ln/ho/iLog", {'out_io':'buffer','out_name':'dummy'})
 
 """"""""""""""""""""""""""""""""
 ""         Settings:          ""
@@ -443,7 +445,8 @@ nnoremap ,d :bd!<CR>
 nnoremap ,bd :BDnJump<CR>
 nnoremap ,i :diffthis \| wincmd w<CR>
 nnoremap ,o :diffoff  \| wincmd w<CR>
-nnoremap ,' :echo expand ('%') '.@.' getcwd()<CR>
+nnoremap ,, :echo expand ('%') '.@.' getcwd()<CR>
+nnoremap ,\ :echo expand ('%') '.@.' getcwd()<CR>
 " nnoremap ,c. :exec "lcd! %:p:h" <bar> echo 'lcd2file @' getcwd()<CR>
 nnoremap ,cf :exec "lcd! %:p:h"<CR>:echo 'lcd2file @' getcwd()<CR>
 nnoremap ,cp :call GetProjDir() <bar> exec "lcd! " . b:proj_dir <bar> echo 'lcd2proj @' getcwd()<CR>
@@ -1765,7 +1768,7 @@ endfunction
 
 """"""""""""""""""""""""""""""""
 ""           WTF...           ""
-""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""{{{}}}
 
 " " Highlight lines via signs functionality
 " function! MySigns()
@@ -1858,11 +1861,7 @@ if has("nvim")
   autocmd TermOpen * setlocal scrollback=-1
 endif
 
-" Watch log with Vim " For Neovim use :terminal
-" call job_start("tail -f /ln/ho/iLog", {'out_io':'buffer','out_name':'dummy'})
 
-nnoremap <silent><A-;> <Cmd>exe v:count1 . "ToggleTerm"<CR>
-tnoremap <silent><A-;> <C-\><C-n>:ToggleTermToggleAll<CR>
 
 " set completeopt=menuone,noselect
 set completeopt=menu,noselect

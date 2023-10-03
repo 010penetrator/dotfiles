@@ -172,3 +172,8 @@ if package.loaded['cinnamon'] then
   vim.keymap.set('n', 'gD', "<Cmd>lua Scroll('declaration')<CR>")
 end
 
+-- nnoremap <silent><A-;> <Cmd>exe v:count1 . "ToggleTerm"<CR>
+-- nnoremap <silent><A-;> <Cmd>exe "ToggleTerm"<CR>
+-- tnoremap <silent><A-;> <C-\><C-n>:ToggleTermToggleAll<CR>
+-- vim.keymap.set('n', keys, func, { desc = desc, noremap = true })
+
