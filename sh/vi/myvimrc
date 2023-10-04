@@ -410,6 +410,8 @@ if exists("g:loaded_sneak_plugin")
 endif
 noremap <A-n> 16<c-e>
 noremap <A-p> 16<c-y>
+noremap <A-e> 16<c-e>
+noremap <A-c> 16<c-y>
 noremap <C-n> 7j
 noremap <C-p> 7k
 nmap q1 100G
@@ -500,6 +502,7 @@ nnoremap aE     <C-w>_
 nnoremap aD     <C-w>80-
 " grow big
 nnoremap ab     <C-w>_<C-w>\|
+nnoremap ac     <C-w>p<C-w>_<C-w>\|
 " grow equal
 nnoremap ah     <C-w>=
 nnoremap aj     <C-w>w<C-w>_

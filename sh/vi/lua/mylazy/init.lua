@@ -359,7 +359,7 @@ return {
     'akinsho/toggleterm.nvim', -- great --- fast terminal
     opts = {
       -- direction = 'vertical' | 'horizontal' | 'window' | 'float',
-      direction = 'horizontal',
+      direction = 'float',
       start_in_insert = true,
       autochdir = true,
       size = 24,
