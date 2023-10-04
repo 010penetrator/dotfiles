@@ -2,7 +2,10 @@
 QObject::connect(timer, SIGNAL(timeout()), this, SLOT(upd_lcd_self()));
 QObject::connect(ui->pb_work, &QPushButton::pressed, std::bind(&QTimer::stop, timer));
 
-
+QTimer::singleShot(50, this, [&]() {
+    //do stuff
+    });
+        
 QFrame* CommandExecuterGui::composeHorizLine(int h = 2) {
     auto result = new QFrame();
     result->setFrameShape(QFrame::HLine);
