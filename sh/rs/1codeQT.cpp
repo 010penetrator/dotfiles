@@ -5,6 +5,8 @@ QObject::connect(ui->pb_work, &QPushButton::pressed, std::bind(&QTimer::stop, ti
 QTimer::singleShot(50, this, [&]() {
     //do stuff
     });
+
+QTimer::singleShot(50, this, [&]() { fun(); });
         
 QFrame* CommandExecuterGui::composeHorizLine(int h = 2) {
     auto result = new QFrame();
