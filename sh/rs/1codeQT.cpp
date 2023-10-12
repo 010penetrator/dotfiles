@@ -68,3 +68,17 @@ std::tuple<QString, QString> TNDiag::LuaCall(QString scriptfilename, QString arg
 
     return std::make_tuple(stdout_, stderr_);
 }
+
+QTextStream data(&m_File);
+data << text + '\n';
+
+void TNDiag::slot_sayFail() {
+    // Сообщать о фэйле не чаще раз в 3 сек
+    static auto tpPrev = std::chrono::steady_clock::time_point(std::chrono::milliseconds(0));
+    auto tpNow = std::chrono::steady_clock::now();
+    long int dur_ms = std::chrono::duration_cast<std::chrono::milliseconds>(tpNow - tpPrev).count();
+    tpPrev = tpNow;
+    if (dur_ms > 3000) {
+        QMessageBox::information(NULL, QString("Ошибка"), QString("Нет ответа от прибора"));
+    }
+}

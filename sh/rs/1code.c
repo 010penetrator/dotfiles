@@ -92,6 +92,9 @@ uint32_t EndianConverse(uint32_t arg)
 using Lgrd = std::lock_guard<std::mutex>;
 Lgrd lock(some_mutex);
 
+std::lock_guard<std::mutex> lock(m_plan_busy);
+std::lock_guard lock(m_plan_busy);
+
 using Clock = std::chrono::high_resolution_clock;
 typedef std::chrono::milliseconds Msec;
 typedef std::chrono::microseconds Usec;
@@ -100,15 +103,15 @@ using durMs = std::chrono::duration<long, std::milli>;
 using durUs = std::chrono::duration<long, std::micro>;
 ( std::chrono::duration_cast<Usec>( times[i]-ask_beg ) ).count()
 auto ducastUs = [](auto x){return std::chrono::duration_cast<std::chrono::microseconds>(x);};
-auto zero_tp = std::chrono::steady_clock::time_point (std::chrono::milliseconds(0))
-
+auto zero_tp = std::chrono::steady_clock::time_point (std::chrono::milliseconds(0)
+)
 
 for (auto & element : vec)
 {
     cout << element << " ";
 }
 
-for(iter; iter < vec.end(); iter++)
+for (iter; iter < vec.end(); iter++)
 {
     cout << *iter << " ";
 }
@@ -242,8 +245,6 @@ printf("time taken some_function is %f seconds\n", time_taken);
 nanosleep((const struct timespec[]){{0, 99000000L}}, NULL); // sleep 99 ms
 usleep(99000); // sleep 99 ms, reqs unistd.h
 void sleep_ms(int n) { std::this_thread::sleep_for(std::chrono::milliseconds(n)); } // reqs <chrono>
-
-std::lock_guard<std::mutex> lock(m_plan_busy);
 
 const struct timespec read_freq_ts;
 read_freq_ts.tv_sec = (long) 0;
