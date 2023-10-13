@@ -75,6 +75,12 @@ generateResolvConf = false
 /etc/resolv.conf:
 nameserver 8.8.8.8
 
+:remove default apps:
+get-appxpackage  | out-gridview -passthru | remove-appxpackage
+
+:open autostart dir:
+shell:common startup
+
 :crappy SSL ignore:
 cp CA.{crt,cer}} /etc/ca-certificates/trust-source/anchors; update-ca-trust; pacman -Sy --disable-download-timeout
 python -m pip --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org    install -U  --upgrade pip

@@ -476,6 +476,7 @@ return {
 
   {
     'trmckay/based.nvim', --- decode hex and octal to decimal
+    enabled = false,
     config = function()
       H.nmap(",cb", require'based'.convert)
     end
