@@ -1021,6 +1021,7 @@ command! -nargs=? LGstamp call LGstamp(<f-args>)
 
 function! LGsync()
   exec "lcd! " . GetProjDir()
+  echo "Merging " . getcwd()
   if system('ls -d .git/ >/dev/null || echo 1')
     echom "Can't find .git location!"
     return -1
