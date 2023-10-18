@@ -256,3 +256,17 @@ int *tmp = param; int val = *tmp;
 ...
 int some_value = *((int *) some_param
 
+
+How do you initialize a “std::shared_ptr” in C++?
+-------------
+Kurt Guntheroth:
+    using namespace std; 
+    shared_ptr<Foo>p1;           // default init to nullptr 
+    shared_ptr<Foo>p2 = nullptr; // init to nullptr 
+    shared_ptr<Foo>p3(new FOO);  // init to dynamic storage 
+    shared_ptr<Foo>p4 = p3;      // share with another shared_ptr 
+    auto p5 = make_shared<Foo>();// preferred 
+
+Line 6 is preferred because it allocates both the Foo instance and the shared_ptr’s reference count in the same block, which is faster.
+shared_ptr uses expensive thread-safe increment and decrement to maintain its reference counts.
+Before move semantics in C++11, shared_ptr was the only way to put non-copyable objects in a standard library container. This made shared_ptr relatively common, and some coding standards said every pointer should be a shared_ptr. With move semantics, non-copyable objects can be in containers, and unique_ptr can be used practically all the time. The only time shared_ptr is needed nowadays is in the rare event that the lifetimes of two pointers overlap unpredictably.
