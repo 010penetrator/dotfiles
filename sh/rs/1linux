@@ -290,6 +290,8 @@ git update-index --assume-unchanged dir/my_specific.h # hide local files from gi
 git update-index --no-assume-unchanged file.c; git add --force file.c # force add assumed ignored file
 # merge featureB back to master #
 git checkout featureB; git fetch; git rebase origin/master; git checkout master; git pull origin master; git merge featureB; git push origin master
+git restore --source=master '*.vcxproj'
+
 
 
 
