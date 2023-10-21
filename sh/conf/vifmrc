@@ -77,8 +77,8 @@ nnoremap q; :<up>
 " nnoremap a; :<up><CR>
 nnoremap ,,v :source $MYVIFMRC <CR>
 nnoremap ar ggvGcw
-nnoremap ae :winrun , cd %C <CR><Tab>
-nnoremap a= :winrun , cd %D <CR><Tab>
+nnoremap ae :winrun , cd %C<CR><Tab>
+nnoremap a= :winrun , cd %D<CR><Tab>
 nnoremap t tj
 nnoremap T tk
 nnoremap at :tabnew<CR>
