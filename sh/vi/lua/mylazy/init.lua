@@ -622,6 +622,7 @@ return {
   {
     'michaelb/sniprun', -- maybe --- REPL
     build = 'sh ./install.sh',
+    enable = "false",
     opts = {
       display = {
         "Classic",

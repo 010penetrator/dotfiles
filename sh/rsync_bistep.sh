@@ -8,7 +8,7 @@ fi
 SRC="$1"
 DEST="$2"
 
-RSYNC_OPTS="-rtl --progress --delete --stats --size-only"
+RSYNC_OPTS="-rtl --progress --delete --stats --size-only --exclude _dont_care_ "
 
 echo -ne "\n\n========== dry-run\n"
 rsync -n $RSYNC_OPTS "$SRC/" "$DEST"
