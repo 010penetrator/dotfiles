@@ -441,12 +441,12 @@ nnoremap <C-s> :w<CR>
 nnoremap ,,w :wa<CR>
 nnoremap ax :q<CR>
 nnoremap ,x :q<CR>
-nnoremap ,<del> :tabclose<CR>
+nnoremap ,dt :tabclose<CR>
 nnoremap ,q :qa<CR>
-nnoremap ,d :bd!<CR>
+nnoremap ,dd :bd!<CR>
 nnoremap ,bd :BDnJump<CR>
-nnoremap ,i :diffthis \| wincmd w<CR>
-nnoremap ,o :diffoff  \| wincmd w<CR>
+nnoremap ,di :diffthis \| wincmd w<CR>
+nnoremap ,do :diffoff  \| wincmd w<CR>
 nnoremap ,, :echo expand ('%') '.@.' getcwd()<CR>
 nnoremap ,\ :echo expand ('%') '.@.' getcwd()<CR>
 " nnoremap ,c. :exec "lcd! %:p:h" <bar> echo 'lcd2file @' getcwd()<CR>

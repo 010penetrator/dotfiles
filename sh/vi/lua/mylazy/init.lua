@@ -256,7 +256,7 @@ return {
       override_keymaps = false, -- The plugin keymaps will override any existing keymaps.
       always_scroll = true,     -- Scroll the cursor even when the window hasn't scrolled.
       centered = true,          -- Keep cursor centered in window when using window scrolling.
-      disabled = false,         -- Disables the plugin.
+      disabled = true ,         -- Disables the plugin.
       default_delay = 5,        -- The default delay (in ms) between each line when scrolling.
       hide_cursor = false,      -- Hide the cursor while scrolling. Requires enabling termguicolors!
       horizontal_scroll = true, -- Enable smooth horizontal scrolling when view shifts left or right.
