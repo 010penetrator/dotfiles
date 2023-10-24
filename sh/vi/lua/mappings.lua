@@ -14,12 +14,10 @@ H.nmap(',S', vim.lsp.buf.signature_help)
 H.nmap('<C-h>', H.teles_ff)
 
 vim.keymap.set('n','K', vim.lsp.buf.hover, {buffer=0})
-H.nmap('gv', function() vim.cmd('vsplit') vim.lsp.buf.definition() end)
 -- H.nmap('gv', function() vim.api.nvim_open_win(true,true,{}) vim.lsp.buf.definition() end)
+H.nmap('gv', function() vim.cmd('vsplit') vim.lsp.buf.definition() end)
 -- vim.keymap.set('n', "gl", "<cmd>let bn=bufnr('%') <bar> let pos=getpos('.') <bar> wincmd p <bar> exec 'b' . bn <bar> call setpos('.',pos) <bar> lua vim.lsp.buf.definition()<CR>" )
 H.nmap('gl', function() H.mirror_buf_to_prev_window() vim.lsp.buf.definition() end)
--- H.nmap('gd', vim.lsp.buf.definition)
--- H.nmap('gD', vim.lsp.buf.declaration)
 H.nmap('gs', vim.lsp.buf.document_symbol)
 H.nmap('gr', vim.lsp.buf.references)
 H.nmap('gw', vim.lsp.buf.workspace_symbol)
@@ -42,11 +40,11 @@ H.nmap('qb', vim.diagnostic.setloclist)
 H.nmap(',"', function() require'nvim-peekup'.peekup_open('p') end )
 
 -- Yank and put incremental
-vim.keymap.set('n', 'q0', '<cmd>let @l=""<CR>')
-vim.keymap.set('n', 'qy', '\"Lyy')
-vim.keymap.set('v', 'qy', '\"Ly')
-vim.keymap.set('n', 'qd', '\"Ldd')
-vim.keymap.set('v', 'qd', '\"Ld')
+vim.keymap.set('n', 'q;', '<cmd>let @l=""|echo " L reg now empty" <CR>')
+vim.keymap.set('n', 'qy', '\"Lyy<cmd>echo "added to L reg"<CR>')
+vim.keymap.set('v', 'qy', '\"Ly<cmd>echo "added to L reg"<CR>')
+vim.keymap.set('n', 'qd', '\"Ldd<cmd>echo "cut to L reg"<CR>')
+vim.keymap.set('v', 'qd', '\"Ld<cmd>echo "cut to L reg"<CR>')
 vim.keymap.set('n', 'qp', '\"lp')
 vim.keymap.set('x', 'qp', '\"lp')
 
@@ -124,7 +122,7 @@ H.nmap(',vh', ":IlluminateToggle<CR>")
 -- nnoremap ,tt :Telescope current_buffer_fuzzy_find sorting_strategy=ascending layout_config={"prompt_position":"top"}<CR>
 -- nnoremap ,tt <cmd>lua require("telescope.builtin").current_buffer_fuzzy_find({sorting_strategy="ascending", theme="ivy"})<CR>
 
--- Cinnamon Keymaps --
+--[[ -- Cinnamon Keymaps --
 if package.loaded['cinnamon'] then
   -- Half-window movements:
   vim.keymap.set({ 'n', 'x' }, '<C-u>', "<Cmd>lua Scroll('<C-u>', 1, 1)<CR>")
@@ -170,7 +168,9 @@ if package.loaded['cinnamon'] then
   vim.keymap.set({ 'n', 'x' }, '<ScrollWheelDown>', "<Cmd>lua Scroll('<ScrollWheelDown>')<CR>")
   vim.keymap.set('n', 'gd', "<Cmd>lua Scroll('definition')<CR>")
   vim.keymap.set('n', 'gD', "<Cmd>lua Scroll('declaration')<CR>")
-end
+end ]]
+H.nmap('gd', vim.lsp.buf.definition)
+H.nmap('gD', vim.lsp.buf.declaration)
 
 -- vim.keymap.set('n', 'A-;', "<Cmd>exe Toggleterm<CR>")
 -- nnoremap <silent><A-;> <Cmd>exe v:count1 . "ToggleTerm"<CR>

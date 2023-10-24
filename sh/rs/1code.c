@@ -102,7 +102,8 @@ typedef std::chrono::seconds Sec;
 using durMs = std::chrono::duration<long, std::milli>;
 using durUs = std::chrono::duration<long, std::micro>;
 ( std::chrono::duration_cast<Usec>( times[i]-ask_beg ) ).count()
-auto ducastUs = [](auto x){return std::chrono::duration_cast<std::chrono::microseconds>(x);};
+auto durCastMcs = [](auto x){return std::chrono::duration_cast<std::chrono::microseconds>(x);};
+auto durCastMS = [](auto x){return std::chrono::duration_cast<std::chrono::milliseconds>(x);};
 auto zero_tp = std::chrono::steady_clock::time_point (std::chrono::milliseconds(0)
 )
 
