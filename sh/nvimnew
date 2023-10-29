@@ -46,7 +46,7 @@ tty -s && INTERACTIVE=true
 tty -s   && echo "shell is interactive(2)"
 
 VCMD="$EDITOR $RPC_OPTION"
-[[ $VIMINSTASESS == true ]] && VCMD="$VCMD -c SLoad!"
+#[[ $VIMINSTASESS == true ]] && VCMD="$VCMD -c SLoad!"
 
 if [[ $HASG == true && $INTERACTIVE == false ]]; then
     case $TERMINAL in
