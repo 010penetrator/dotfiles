@@ -197,6 +197,7 @@ M.Bmap = function (a_key, a_map, a_opts )
 end
 
 M.nmap = function(keys, func, desc)
+  desc = desc or " "
   vim.keymap.set('n', keys, func, { desc = desc, noremap = true })
 end
 M.snmap = function(keys, func, desc)

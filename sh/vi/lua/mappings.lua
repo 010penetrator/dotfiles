@@ -86,7 +86,7 @@ local tele_drop = require("telescope.themes").get_dropdown{ sort_mru=true, winbl
 function Tele_buff_drop() require("telescope.builtin").buffers( tele_drop ) end
 H.nmap(',fb', Tele_buff_ivy, "Telescope [B]uffers ivy-themed")
 H.nmap(',<space>', Tele_buff_drop)
-H.nmap(',l', require("lsp_lines").toggle, { desc = "Toggle lsp_lines" })
+H.nmap(',l', require("lsp_lines").toggle, "Toggle lsp_lines")
 -- nnoremap ,<space> :Telescope buffers sort_mru=1 theme=dropdown winblend=9<CR>
 H.nmap(',fh', require("telescope.builtin").help_tags, "Telescope [F]ind [H]elp_tags")
 H.nmap(',fz', require("telescope.builtin").diagnostics, "Telescope [F]ind Diagnostics")

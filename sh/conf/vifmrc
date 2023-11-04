@@ -37,9 +37,8 @@ command! resmusBit :! mkdir resampled orig ; for flac in *.flac; do sox -S "${fl
 command! qemu :! sudo bash -c "sync; echo 3 > /proc/sys/vm/drop_caches; qemu-system-x86_64 -m 2000 -enable-kvm -cpu host -smp 4  -cdrom %c & disown"
 command! qemuweak :! sudo bash -c "sync; echo 3 > /proc/sys/vm/drop_caches; qemu-system-x86_64 -m 1000  -cdrom %c & disown"
 " command! qemu :! sudo bash -c "sync; echo 3 > /proc/sys/vm/drop_caches; qemu-system-x86_64 -m 2000 -enable-kvm -cpu host -smp 4 -bios $OVMF -drive file=%c & disown"
-" command! tok :!touch %c "--date=@$(expr $(stat -c %%%%Y KKK) - 100)" ; touch KKK "--date=@$(expr $(stat -c %%%%Y KKK))"
-command! tok :! touch %c "--date=$(date -R -r KKK) - 10 minute" ; touch KKK "--date=$(date -R -r KKK) + 3 minute"
-command! tik :!touch --date="$(date -R -r %c) + 10 minute" KKK
+command! tok :! touch %f "--date=$(date -R -r KKK) - 10 minute" ; touch KKK "--date=$(date -R -r KKK) + 3 minute"
+command! tik :!touch KKK --date="$(date -R -r %c) + 300 minute"
 command! amou : let $NEW_MP = term('a=$(SELECTOR="fzf -e --height 14" amount.sh 2>/dev/tty | grep "Mounted "); a=${a#*at}; echo $a')
             \| exec system('[[ -d $NEW_MP ]] && echo cd || echo echo') fnameescape($NEW_MP)
 
