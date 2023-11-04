@@ -1,16 +1,5 @@
 # vim: ts=2 sw=2 commentstring=\#\ %s
 
-super + f ; { v, Up }
-  { \
-  xdotool mousemove_relative 0 1600, \
-  notify-send "$(transmission-remote 192.168.1.78:9090 -st)" \
-  }
-
-super + n ; { n, b, M, m, c, v, r, o, s, a }
-  { \
-  $TERMINAL, $TERMINAL_BIGER, momkitty.sh, thunar & notify-send 'new Thunar', $TERMINAL -e vifm, $TERMINAL_BIGER -e vinew, listzathura.sh, $TERMINAL_BIGER -c /ln/co/kitty/kitty.conf -c /ln/co/kitty-themes/themes/Ciapre.conf -e rtorrent, scrotfeh, $TERMINAL_BIGER -e tremc -c localhost:9090
-  }
-
 super + x ; { m, s, h, n, o, a, g }
   ror.sh { '' notimem, speedcrunch, htop '$TERMINAL -e htop', nautilus, VirtualBox '', pavucontrol, listgames.sh }
 
@@ -21,10 +10,15 @@ super + x ; { space,  z,  i, f, p, q, l, c,  d, b, Up, Down }
     listalbums.sh /ln/ho/.mus-history, listalbums.sh /ln/ho/.mus-favourites, listalbums.sh /ln/ho/.mus-playlist, \
     bspc node -c, listdwn.sh, SHFL=1 listalbums.sh /ln/ho/.mus-library, deadbeef, listdeadbeef.sh, nowis day, nowis nox }
 
+super + n ; { n, b, M, m, c, v, r, o, s, a }
+  { \
+  $TERMINAL, $TERMINAL_BIGER, momkitty.sh, thunar & notify-send 'new Thunar', $TERMINAL -e vifm, $TERMINAL_BIGER -e vinew, listzathura.sh, $TERMINAL_BIGER -c /ln/co/kitty/kitty.conf -c /ln/co/kitty-themes/themes/Ciapre.conf -e rtorrent, scrotfeh, $TERMINAL_BIGER -e tremc -c localhost:9090
+  }
+
 super + { q, Q, D, F, t, v, s, y, r, R, z, g, slash }
   ror.sh { \
   '' scroff, '' 'sus 1', windowswitcher.sh, '' 'rofi -show window', \
-  'xterm\|urxvt\|kitty', \
+  'kitty' xterm, \
   ' - VIMSERV\|VIM$\|VIM @ \| - NVIM$\|nvim $\|QtCreator\| tmux\|tm$' 'vinew', \
   'chromium\|Firefox\|Remmina' 'firefox', \
   'Thunar\|Caja\|pcmanfm\| YouTube \|office.libreoffice\|Abiword\|sis.ko' 'notify-send not\ found', \
@@ -45,6 +39,12 @@ super + { c, a, A, b, m }
 
 super + { T, V, C, B }
   raisekitty.sh { bash, VIM, VIFM, MPV }
+
+super + f ; { v, Up }
+  { \
+  xdotool mousemove_relative 0 1600, \
+  notify-send "$(transmission-remote 192.168.1.78:9090 -st)" \
+  }
 
 super + alt + space
   ror.sh 'deadbeef\|MPV \|mpv$' 'noti echo no player instance found'
