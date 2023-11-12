@@ -18,8 +18,8 @@ super + n ; { n, b, M, m, c, v, r, o, s, a }
 super + { q, Q, D, F, t, v, s, y, r, R, z, g, slash }
   ror.sh { \
   '' scroff, '' 'sus 1', windowswitcher.sh, '' 'rofi -show window', \
-  'kitty' xterm, \
-  ' - VIMSERV\|VIM$\|VIM @ \| - NVIM$\|nvim $\|QtCreator\| tmux\|tm$' 'vinew', \
+  'xterm\|urxvt\|kitty', \
+  ' - VIMSERV\|VIM$\|VIM @ \| - NVIM$\|nvim $\|QtCreator\| tmux\|tm$' '$TERMINAL_BIGER -e vinew', \
   'chromium\|Firefox\|Remmina' 'firefox', \
   'Thunar\|Caja\|pcmanfm\| YouTube \|office.libreoffice\|Abiword\|sis.ko' 'notify-send not\ found', \
   'sioyek\|zathura' listzathura.sh, evince, FBReader, \

@@ -10,12 +10,13 @@
 # Example: ror.sh ' - VIM$\| - NVIM$\|Qtreator' '$TERMINAL nvim'
 # Hint: Try 'wmctrl -l -x' to discover classnames and windownames
 
-# echo "ror.sh $*"
 window_list=$(wmctrl -l -x)
-window_list_nocurr=$(echo "$window_list" | grep -v -F "ror.sh $*")
+# window_list_nocaller=$(echo "$window_list" | grep -v -F "ror.sh $*")
+window_list_nocaller=$(echo "$window_list" | grep -v -F "ror.sh $1")
 # DEBUG=1
-# echo -e "$window_list_nocurr \n\n $window_list \n ror.sh $*" > /tmp/ror__debug
-[[ $DEBUG == '1' ]] && echo '.' && echo "$window_list_nocurr" && echo '.'
+# echo -e "$window_list_nocaller \n\nror.sh $*" > /tmp/ror__debug
+
+[[ $DEBUG == '1' ]] && echo '.' && echo "$window_list_nocaller" && echo '.' && echo "ror.sh $*" && echo '.'
 activeid=$(xprop -root _NET_ACTIVE_WINDOW | cut -d "#" -f2 | cut -c 4-) &&
 # drop '0x0'
 activeid=$(echo $activeid | cut -d ',' -f1)
@@ -42,25 +43,27 @@ if [ -n "$1" ] ; then
     [[ $(echo "$window_list" | grep -a "$wname" | grep -a -A1 $activeid | wc -l) > 1 ]]
   then
     # Choose next window of same name
-    echo "ror: choosing next $wname window"
+    echo "ror: want next $wname window"
     target=$(echo "$window_list" | grep -a -v -e "^{9}\s" | grep -a "$wname" | grep -a -A1 $activeid | tail -1 | cut -c -10)
   else
     # Just choose window which includes desired name
-    echo "ror: choosing any $wname window"
-    target=$(echo "$window_list_nocurr" | grep -a -v -e "^{9}\s" | grep -a -m 1 "$wname" | cut -c -10)
+    echo "ror: want any $wname window"
+    target=$(echo "$window_list_nocaller" | grep -a -v -e "^{9}\s" | grep -a -m 1 "$wname" | cut -c -10)
   fi
 fi
 
 [[ $DEBUG == '1' ]] && echo Final target window id is $target
 if [ -z "$target" ] ; then
+  # Run
   if [ -n "$2" ] ; then
-    # Exec
     [[ $DEBUG == '1' ]] && echo Will run $2
     eval "source $HOME/.bashrc; $2 & disown" &> /dev/null
   else
     [[ $DEBUG == '1' ]] && echo Will run $wname
     $wname &> /dev/null &
   fi
-else wmctrl -i -a $target 1>/dev/null
+else
+  # Raise
+  wmctrl -i -a $target 1>/dev/null
 fi
 
