@@ -42,6 +42,7 @@ scoop install git; scoop bucket add extras
 scoop install less curl wget git vim win32yank
 scoop bucket add nerd-fonts; scoop install terminus-nf CascadiaCode-nf FiraMono-nf JetBrainsMono-nf
 scoop install vcredist archwsl wsl-distrod windows-terminal
+scoop bucket add nonportable; scoop install notepads-np
 ::
 scoop [ search,info,install,uninstall,list ]
 
