@@ -19,6 +19,9 @@ cmd /c mklink /j C:\TCPU72\exe \exe
 diskpart -> list volume, select volume, assign letter E
 bcdboot c:\windows /s e: /f all
 
+:: allow .jpg association
+Get-AppxPackage Microsoft.Windows.Photos -AllUsers | Reset-AppxPackage
+
 :windos icons at:
 %systemroot%\system32\imageres.dll
 %systemroot%\system32\shell32.dll
