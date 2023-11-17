@@ -35,13 +35,16 @@ bool debug = false;
 assert(a == b && "A is not equal to B");
 assert(("A must be equal to B", a==b));
 
+log_msg =  QString("MyClass Ctor  @ th_id ") + QString("0x%1").arg((long int)QThread::currentThreadId(), 20, 16, QChar('0')) ;
+
+
 std::string ZeroPadNumber(unsigned long int num, unsigned int N)
 {
   std::stringstream ss;
+  std::string pad;
+  std::string ret;
   // the number is converted to string with the help of stringstream
   ss << num;
-  std::string ret;
-  std::string pad;
   ss >> ret;
   // Append zero chars
   int str_length = ret.length();
