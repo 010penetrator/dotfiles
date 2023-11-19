@@ -2,3 +2,11 @@
 Wireshark:
 udp.port != 13332 && ip.dest != 255.255.255.255
 
+Chrome:
+uBlock Vimium CVim Surfingkeys MidnightLizard SingleFile Stylus Rescroller Browsec Bookmarkie TidyBookmarks NeaterBookmarks RecentBookmarks EmptyNewTabPage CopyTabInfo CopyUrl.rus
+Firefox:
+Vimium TabStash DarkReader Sidebery Raindrop.io VerticalTabsReloaded NoPlaylistAutoplayForYouTube HLSdownloader HumbleNewTabPage ScrollAnywhere TabSuspender tablist_slymax hide-scrollbars *DefaultZoom FixedZoom Tabliss SimpleCloseTabButton
+FF themes:
+ColorfulAbstractNeon Catppuccin-Muave
+--see hint on how to copy FF profile at about:support
+
