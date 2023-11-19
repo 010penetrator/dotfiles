@@ -1,0 +1,4 @@
+
+Wireshark:
+udp.port != 13332 && ip.dest != 255.255.255.255
+
