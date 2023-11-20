@@ -36,6 +36,7 @@ set path=.,**
 " :%!xxd "re-open as hex
 " Watch log with Vim "" For Neovim use :terminal
 " call job_start("tail -f /ln/ho/iLog", {'out_io':'buffer','out_name':'dummy'})
+" G difftool -y HEAD~1 -- %
 
 """"""""""""""""""""""""""""""""
 ""         Settings:          ""
