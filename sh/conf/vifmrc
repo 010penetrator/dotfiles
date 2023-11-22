@@ -138,7 +138,7 @@ nnoremap ,. :! echo -ne \\n  ls dir :\\n ; ls -la --color=auto . ; read -rsn1 <c
 nnoremap ,g :! clear -x; $LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT ; read -rsn1 <cr>
 nnoremap ,G :! clear -x; watch -n 1 $LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT<cr>
 nnoremap ,s :! clear -x; df -BMB ; read -rsn1 <cr>
-nnoremap qy :! echo -ne "\n-- Try to sync @ $(date '+%%Y-%%m-%%d %%H:%%M:%%S') ...... \n" ; (time sync) 2>&1 | tr '\t' ' ' | tr '\n' '\t' ; echo -ne "\n-- Complete    @ $(date '+%%Y-%%m-%%d %%H:%%M:%%S')\n" <CR>:echo "Sync complete!"<CR>
+nnoremap qg :! echo -ne "\n-- Try to sync @ $(date '+%%Y-%%m-%%d %%H:%%M:%%S') ...... \n" ; (time sync) 2>&1 | tr '\t' ' ' | tr '\n' '\t' ; echo -ne "\n-- Complete    @ $(date '+%%Y-%%m-%%d %%H:%%M:%%S')\n" <CR>:echo "Sync complete!"<CR>
 nnoremap z<BS> :! echo -ne "\n-- Try to sync @ $(date '+%%Y-%%m-%%d %%H:%%M:%%S') ...... \n" ; (time sync) 2>&1 | tr '\t' ' ' | tr '\n' '\t' ; echo -ne "\n-- Complete    @ $(date '+%%Y-%%m-%%d %%H:%%M:%%S')\n" <CR>:echo "Sync complete!"<CR>
 
 " Send to vim server "
