@@ -56,8 +56,8 @@ elif [[ "$HOSTNAME" =~ "servant" ]]; then
   pgrep earlyoom | grep . || earlyoom -m 2 -n &> /dev/null &
 
 elif [[ "$HOSTNAME" =~ "machine" ]]; then
-  # xrandr --dpi 128
   xrandr --output HDMI-2 --mode 2560x1440
+  xrandr --dpi 128
   xrdb -merge <(echo "Xft.dpi: 128") &
   # xrandr --output DP-1 --mode 2560x1440 --rate 144
   # pgrep transmission-da | grep . || trdwrap.sh &
