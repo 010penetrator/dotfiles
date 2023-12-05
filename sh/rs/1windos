@@ -44,8 +44,9 @@ iex "& {$(irm get.scoop.sh)} -RunAsAdmin"
 scoop install git; scoop bucket add extras
 scoop install less curl wget git vim win32yank
 scoop bucket add nerd-fonts; scoop install terminus-nf CascadiaCode-nf FiraMono-nf JetBrainsMono-nf
-scoop install vcredist archwsl wsl-distrod windows-terminal
 scoop bucket add nonportable; scoop install notepads-np
+scoop install vcredist archwsl wsl-distrod windows-terminal
+.. get rootfs.tar.xz @ https://jenkins.linuxcontainers.org/job/image-archlinux/
 ::
 scoop [ search,info,install,uninstall,list ]
 

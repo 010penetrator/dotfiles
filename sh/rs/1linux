@@ -158,6 +158,11 @@ grub-mkconfig -o /boot/grub/grub.cfg ; grub-install /dev/sdX
 grub2> set root=(hd0,2) ; linux /boot/vmlinuz-linux root=/dev/sdX2 ; initrd /boot/initrd.img ; boot
 --grub rescue to normal mode
 ls; set root=(hd0,msdos1); set prefix=/boot/grub; insmod ext2; insmod normal; normal
+-- btrfs save last entry:
+sudo grub-install --recheck --no-rs-codes --modules="btrfs zstd part_gpt part_msdos"
+sudo update-grub
+GRUB_SAVEDEFAULT=true
+GRUB_DEFAULT=saved
 .
 qemu-system-x86_64 -hda /dev/sdc # check bootloader
 grub2> echo $grub_platform # check efi/bios in grub manual

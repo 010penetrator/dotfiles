@@ -25,6 +25,7 @@ cd
 
 mkdir -p $MYGITDIR
 
+sudo pacman -S --needed base-devel
 if type -f pacman &>/dev/null; then
     if ! type -f pakku &>/dev/null ; then
         cd $MYGITDIR
@@ -114,7 +115,7 @@ type -f xdg-mime &>/dev/null && {
 
 echo -e '\n'--Gonna pull kitty themes
 if [[ -d ~/.config/kitty-themes ]] ; then
-    echo
+    #echo
     git -C ~/.config/kitty-themes/ pull
 else
     git clone --depth 1 https://github.com/dexpota/kitty-themes.git ~/.config/kitty-themes
