@@ -7,7 +7,18 @@ QTimer::singleShot(50, this, [&]() {
     });
 
 QTimer::singleShot(50, this, [&]() { fun(); });
-        
+
+
+m_ipEdit = new QLineEdit(this);
+QString IpRange = "(?:[0-1]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])";
+QRegularExpression IpRegex("^" + IpRange
+    + "(\\." + IpRange + ")"
+    + "(\\." + IpRange + ")"
+    + "(\\." + IpRange + ")$");
+QRegularExpressionValidator* ipValidator = new QRegularExpressionValidator(IpRegex, this);
+m_ipEdit->setValidator(ipValidator);
+
+
 QFrame* CommandExecuterGui::composeHorizLine(int h = 2) {
     auto result = new QFrame();
     result->setFrameShape(QFrame::HLine);
