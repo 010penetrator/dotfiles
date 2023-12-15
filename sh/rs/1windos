@@ -62,8 +62,9 @@ wsl --set-version <Distro> 2
 wsl --set-default-version 2
 wsl --shutdown
 wsl --set-default bubunta
-help, unregister, import, export
-::
+wsl  help, unregister, import, export
+wsl --user root --distribution BolgenOS passwd
+:: in wsl 
 useradd -m -G wheel -s /bin/bash {username}
 sudo pacman-key --init; sudo pacman-key --populate; sudo pacman -Sy archlinux-keyring; sudo pacman -Su # initialize keyring
 sudo pacman -Syu --needed neovim ncdu vifm fzf git curl wget base-devel p7zip npm nodejs ruby luarocks python-pip
