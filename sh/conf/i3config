@@ -248,7 +248,7 @@ bindsym $mod+Return exec xterm
 # [ $(amixer -D pulse sget Master | tail -1 | cut -d [ -f2 | cut -d % -f1) -gt 91 ] && amixer -D pulse set Master 8%+ && notify-send 'Volume MAX' -t 500 || amixer -D pulse set Master 8%+
 
 # Autostart
-exec bash rc.sh
+exec bash xrc.sh
 #exec xterm
 
 workspace_layout tabbed
