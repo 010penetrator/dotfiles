@@ -42,5 +42,6 @@ def round_up(arg):
     else:
         return round(arg)
 
-
+s = "stuff\nmore\nverbose\ncmon"
+s = '\n'.join( s.split('\n')[i] for i in [0,2,3] )
 
