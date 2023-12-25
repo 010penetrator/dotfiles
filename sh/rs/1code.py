@@ -45,3 +45,6 @@ def round_up(arg):
 s = "stuff\nmore\nverbose\ncmon"
 s = '\n'.join( s.split('\n')[i] for i in [0,2,3] )
 
+
+netmask = get_ipv4_netmask_from_nic(if_name, ip_candi) or DEFAULT_NETMASK
+cidr = ipaddress.IPv4Network('0.0.0.0/' + netmask).prefixlen

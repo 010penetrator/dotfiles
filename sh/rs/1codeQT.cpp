@@ -17,7 +17,9 @@ QRegularExpression IpRegex("^" + IpRange
     + "(\\." + IpRange + ")$");
 QRegularExpressionValidator* ipValidator = new QRegularExpressionValidator(IpRegex, this);
 m_ipEdit->setValidator(ipValidator);
-
+//
+auto portValidator = new QIntValidator(1, 65535, this);
+m_portEdit->setValidator(portValidator);
 
 QFrame* CommandExecuterGui::composeHorizLine(int h = 2) {
     auto result = new QFrame();
