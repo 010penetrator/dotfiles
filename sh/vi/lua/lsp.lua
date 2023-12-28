@@ -119,7 +119,8 @@ vim.opt.completeopt={"menu", "noselect"}
 -- vim.opt.completeopt={"menu", "menuone", "noselect"}
 
 local cmp = require("cmp")
-local luasnip = require("luasnip")
+---------local luasnip = require("luasnip")
+
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
 --[[ local cmp_mappings = lspz.defaults.cmp_mappings({
