@@ -622,7 +622,7 @@ return {
   {
     'michaelb/sniprun', -- maybe --- REPL
     build = 'sh ./install.sh',
-    enable = "false",
+    enabled = "false",
     opts = {
       display = {
         "Classic",
@@ -933,9 +933,9 @@ return {
   'Eandrju/cellular-automaton.nvim',
   -- 'altermo/ultimate-autopair.nvim',
   -- 'nyngwang/murmur.lua', -- problem
+  'L3MON4D3/LuaSnip',
+  'saadparwaiz1/cmp_luasnip',
 
-  -- 'L3MON4D3/LuaSnip',
-  -- 'saadparwaiz1/cmp_luasnip',
 
 
 }
