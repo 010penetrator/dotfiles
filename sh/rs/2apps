@@ -1,6 +1,10 @@
 
 Wireshark:
 udp.port != 13332 && ip.dest != 255.255.255.255
+udp && !ipv6 && !( ip.dst==239.255.255.250 or ip.dst==224.0.0.251)
+udp && !ipv6 && !( ip.dst==239.255.255.250 or ip.dst==224.0.0.251) && (udp.port!=137)
+udp && !ipv6 && !( ip.dst==239.255.255.250 or ip.dst==224.0.0.251) && (udp.port>1024)
+
 
 Chrome:
 uBlock Vimium CVim Surfingkeys MidnightLizard SingleFile Stylus Rescroller Browsec Bookmarkie TidyBookmarks NeaterBookmarks RecentBookmarks EmptyNewTabPage CopyTabInfo CopyUrl.rus
