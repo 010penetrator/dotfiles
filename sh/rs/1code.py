@@ -21,7 +21,7 @@ with open("C:\scripts\other.py") as f:
         result = charset.detect(raw)
         encoding = result['encoding']
     slovar = open(slovarname, 'r', encoding=encoding)
-    
+
 import sys,getopt
 opts, args = getopt.getopt(sys.argv[1:], 'f:d:s:', ['debug','full'])
 for opt, arg in opts:
@@ -84,3 +84,13 @@ def hexlify_bytestring(bytestring, delim=""):
         retval += ('0123456789ABCDEF'[int(intval % 16)])
         retval += delim
     return retval
+
+def get_full_class_name(obj):
+    module = obj.__class__.__module__
+    if module is None or module == str.__class__.__module__:
+        return obj.__class__.__name__
+    return module + '.' + obj.__class__.__name__
+try:
+    do_risky_stuff()
+except ValueError as exception:
+    print("exception name is", get_full_class_name(exception))
