@@ -61,7 +61,7 @@ return {
   'romainl/Apprentice', -- nostrain
   'JarrodCTaylor/spartan', -- 'spartan,immortals
   'pbrisbin/vim-colors-off',
-  'jakwings/vim-colors', -- 'moody,garden,messy
+  -- 'jakwings/vim-colors', -- 'moody,garden,messy
   'bf4/vim-dark_eyes', -- NIGHT
   'beigebrucewayne/Turtles', -- funky
   'vim-scripts/C64.vim', -- joke
