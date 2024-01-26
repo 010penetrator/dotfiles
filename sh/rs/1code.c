@@ -149,6 +149,10 @@ void reversBytesBy(uint8_t* data, int N) {
     }
 }
 
+uint16_t swapBytes(uint16_t in_) {
+    return ((in_ & 0xff00) >> 8) | ((in_ & 0x00ff) << 8);
+}
+
 void reverseBytearray(QByteArray& ba, int dist) {
 	if (ba.size() == 0 || dist<2 )
 		return;
