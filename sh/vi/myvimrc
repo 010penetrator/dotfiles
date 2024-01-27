@@ -299,7 +299,8 @@ map q <Nop>
 " map й q
 nnoremap Q q
 nnoremap m, @@
-nnoremap ,m @
+nnoremap qm @
+" nnoremap ,m @
 
 " Free <a> key
 nnoremap a <Nop>
