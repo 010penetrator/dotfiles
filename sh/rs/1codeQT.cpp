@@ -1,6 +1,8 @@
 
 QObject::connect(timer, SIGNAL(timeout()), this, SLOT(upd_lcd_self()));
 QObject::connect(ui->pb_work, &QPushButton::pressed, std::bind(&QTimer::stop, timer));
+QObject::connect(pw, &SoWorker::ulov, [&](bool ulov) {
+        printf(ulov) });
 
 QTimer::singleShot(50, this, [&]() {
     //do stuff
@@ -8,6 +10,7 @@ QTimer::singleShot(50, this, [&]() {
 
 QTimer::singleShot(50, this, [&]() { fun(); });
 
+QString qq = QString::fromUtf8(u8"фыва");
 
 m_ipEdit = new QLineEdit(this);
 QString IpRange = "(?:[0-1]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])";
