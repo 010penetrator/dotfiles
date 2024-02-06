@@ -297,6 +297,11 @@ git update-index --no-assume-unchanged file.c; git add --force file.c # force ad
 # merge featureB back to master #
 git checkout featureB; git fetch; git rebase origin/master; git checkout master; git pull origin master; git merge featureB; git push origin master
 git restore --source=master '*.vcxproj'
+# to use ssh-url #
+[remote "origin"]
+  url = git@github.com:ACCOUNT/PROJECT.git
+  fetch = +refs/heads/*:refs/remotes/origin/*
+
 
 
 
