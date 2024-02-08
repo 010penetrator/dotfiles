@@ -94,3 +94,20 @@ try:
     do_risky_stuff()
 except ValueError as exception:
     print("exception name is", get_full_class_name(exception))
+
+print(f"{'Всего некорректных файлов:':<{tab2}}{str(ugly_cnt):^8}")
+file.write(delim + "M" + delim + str(i).ljust(4))
+file.write(delim + "sft" + delim + f"{some.val:d}".ljust(5))
+
+def print_to_string(*args, **kwargs):
+    output = io.StringIO()
+    print(*args, file=output, **kwargs)
+    str = output.getvalue()
+    output.close()
+    return str
+def xprint(*args, **kwargs):
+    global BUFFER
+    BUFFER += print_to_string(" ".join(map(str,args)), **kwargs)
+    print(" ".join(map(str,args)), **kwargs)
+
+
