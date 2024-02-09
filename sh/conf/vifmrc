@@ -142,13 +142,13 @@ nnoremap qg :! echo -ne "\n-- Try to sync @ $(date '+%%Y-%%m-%%d %%H:%%M:%%S') .
 nnoremap z<BS> :! echo -ne "\n-- Try to sync @ $(date '+%%Y-%%m-%%d %%H:%%M:%%S') ...... \n" ; (time sync) 2>&1 | tr '\t' ' ' | tr '\n' '\t' ; echo -ne "\n-- Complete    @ $(date '+%%Y-%%m-%%d %%H:%%M:%%S')\n" <CR>:echo "Sync complete!"<CR>
 
 " Send to vim server "
-nnoremap ,as :! MODE="split"  vir "%c"  <cr>
-nnoremap ,av :! MODE="vert"   vir "%c" &>/dev/null & <cr>
-nnoremap ,ac :! MODE="cur"    vir "%c" &>/dev/null & <cr>
-nnoremap ,an :! MODE="newtab" vir "%c" &>/dev/null & <cr>
-nnoremap ,ab :! MODE="last"   vir "%c" &>/dev/null & <cr>
-nnoremap ,aa :! MODE="auto"   vir "%c" &>/dev/null & <cr>
-nnoremap ,aq :! vir "%c"<cr>:q<cr>
+nnoremap ,as :! MODE="split"  virpc "%c"  <cr>
+nnoremap ,av :! MODE="vert"   virpc "%c" &>/dev/null & <cr>
+nnoremap ,ac :! MODE="cur"    virpc "%c" &>/dev/null & <cr>
+nnoremap ,an :! MODE="newtab" virpc "%c" &>/dev/null & <cr>
+nnoremap ,ab :! MODE="last"   virpc "%c" &>/dev/null & <cr>
+nnoremap ,aa :! MODE="auto"   virpc "%c" &>/dev/null & <cr>
+nnoremap ,aq :! virpc "%c"<cr>:q<cr>
 nnoremap ,ad :! vim -d %c %D/%c<cr>
 " if (system('echo $EDITOR') == "vim")
 "     nnoremap an :! MODE="newtab" vimrpc "%c" &>/dev/null & <cr>

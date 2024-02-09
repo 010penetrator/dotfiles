@@ -2,83 +2,102 @@
 # Open files in existing NeoVim via RPC feature
 
 import os, sys
+from pynvim import attach
+import getopt
+DEBUG = True
 
-# Env setup is lower merit, cli setup is higher
-serv = (os.getenv('NVIMSERV'))
-if (os.getenv('MODE')):
-    mode = (os.getenv('MODE'))
-else: # introduce default option here
-    mode = 'newtabinsert'
-file = ''
+def prepare_commands(mode):
+    pre_command = None
+    cli_prefix = ""
+    if mode == "cur":
+        cli_prefix = "e"
+    elif mode == "last":
+        pre_command = "wincmd p"
+        cli_prefix = "e"
+    elif mode == "newtab":
+        cli_prefix = "tabe"
+    elif mode == "newtabinsert":
+        cli_prefix = "-tabe"
+    elif mode == "vert":
+        cli_prefix = "vsplit"
+    elif mode == "split":
+        cli_prefix = "vsplit"
+    else:
+        cli_prefix = "e"
+    return pre_command, cli_prefix
 
 def get_cli_input():
-    import getopt
     global serv,mode,file
+    # print("102", sys.argv)
     try:
-        argv = sys.argv[1:]
-        opts, args = getopt.getopt(argv, "s:m:")
+        opts, plain_args = getopt.getopt(sys.argv[1:], "s:m:")
+        # print(103, opts)
+        # print(104, args)
+        for key, val in opts:
+            if key == "-s":
+                serv = val
+            if key == "-m":
+                mode = val
+            else:
+                print('extra key/val is', key, val)
+        if plain_args:
+            # Argument not prefixed with key goes here
+            file = plain_args[0]
     except getopt.GetoptError:
-        print('Usage: nvimrpc.py -s /tmp/NVRPCSERVER -m newtab /etc/file')
+        print("Usage: nvimrpc.py -s /tmp/NVRPCSERVER -m newtab /etc/file")
         # sys.exit(2)
-    for o, a in opts:
-        print('stage c1', o, a)
-        if o == '-s':
-            serv = a
-        if o == '-m':
-            mode = a
-    if args:
-        file = args[0]
+
+
+if __name__ == '__main__':
+
+    # Defaults
+    serv = (os.getenv("NVIMSERV")) or ""
+    mode = "newtabinsert"
+    file = ""
+    server_is_present = False
+
+    # Env is low priority
+    if (os.getenv("MODE")):
+        mode = (os.getenv("MODE"))
+
+    # CLI is high priority
+    get_cli_input()
+
+    # Inputs are all obtained by now
+    if DEBUG:
+        print("file is", file)
+        print("mode is", mode)
+        print("serv is", serv)
+
+    if not os.path.exists((serv)):
+        print("RPC address " + serv + " is not present!")
+        print("Will launch Neovim @ ", serv)
+        # sys.exit()
+        # os.system("sleep .4")
     else:
-        # print('Target file not provided!')
-        file = ''
+        server_is_present = True
+        # os.system("ror.sh ' - NVIM$' ''")
 
-def start_neovim():
-    global serv,mode
-    mode = ''
-    print('serv is ', serv)
-    os.system('NVIMSERV=' + serv + ' nvimnew')
+    if not file and server_is_present:
+        print("Gonna create empty buffer in existing Neovim instance ")
+        sys.exit()
 
-# Okay, we will actually do stuff now
+    file = os.path.join( os.getcwd(), file )
 
-get_cli_input()
+    pre_command, cli_prefix = prepare_commands(mode)
 
-if not os.path.exists((serv)):
-    print('RPC address', serv, 'is not present!\nWill launch nVim listening to that address.')
-    start_neovim()
-    sys.exit()
-    # os.system('sleep .4')
-# else:
-    # os.system("ror.sh ' - NVIM$' ''")
+    open_command = (cli_prefix + " " + file) if file else ""
 
+    # print(201, open_command)
+    # quit()
 
-if not file:
-    print("no target file and server is probably running, so we are done")
-    sys.exit()
-print('file is', file)
-# print('argv..', sys.argv, len(sys.argv) )
-
-from pynvim import attach
-print('attaching to ', serv)
-nvim = attach('socket', path=serv)
-
-file = os.path.join( os.getcwd(), file )
-print('final address', file)
-print('mode', mode)
-
-# Select/create window for editing the file
-if mode == 'cur':
-    nvim.command('e ' + file)
-elif mode == 'last':
-    nvim.command('wincmd p')
-    nvim.command('e ' + file)
-elif mode == 'newtab':
-    nvim.command('tabe ' + file)
-elif mode == 'newtabinsert':
-    nvim.command('-tabe ' + file)
-elif mode == 'vert':
-    nvim.command('vsplit ' + file)
-elif mode == 'split':
-    nvim.command('split ' + file)
-else:
-    nvim.command('e ' + file)
+    # Finally call Neovim
+    if server_is_present:
+        print("attaching to ", serv)
+        nvim = attach("socket", path=serv)
+        if pre_command:
+            nvim.command(pre_command)
+        nvim.command(open_command)
+    else:
+        os.system("NVIMSERV=" + serv + " nvimnew")
 

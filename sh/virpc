@@ -1,21 +1,21 @@
 #!/bin/bash
-# Remote call vim or nvim
+# RPC-call vim or nvim
 
 source $HOME/.bashrc
 
-echo editor is $EDITOR
+# echo EDITOR is $EDITOR
 # echo args are $*
 
 if [ -z "$1" ] ; then
-  echo "Usage: [VIMSERV=name] [MODE=cur,last,newtab,newtabinsert,vert,split] vir file.c"
+  echo "Usage: [VIMSERV=name] [MODE=cur,last,newtab,newtabinsert,vert,split] virpc file.c"
   # exit 1
 fi
 
 if [[ $EDITOR == nvim ]]; then
-    echo ed is nvim
+    echo EDITOR is nvim
     nvimrpc.py $*
 elif [[ $EDITOR == vim ]]; then
-    echo ed is vim
+    echo EDITOR is vim
     vimrpc $*
 fi
 

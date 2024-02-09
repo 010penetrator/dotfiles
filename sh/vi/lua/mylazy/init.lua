@@ -1,5 +1,7 @@
 -- vim: ts=2 sw=2
 
+-- MOST PLUGINS ARE INVOKED AND CONFIGURED ACCORDING TO THIS FILE --
+
 return {
 
   -- require'mylazy.better-escape',

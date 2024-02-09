@@ -21,7 +21,7 @@ fi
 if [ $(vim --serverlist | wc -l) == 0 ] ; then
   echo "No Vim servers found"
   # Start Vim server
-  nvimnew &
+  EDITOR=vim vinew &
   # Wait for it
   sleep .4
 elif [ -n "$VIMSERV" ] && [[ $(vim --serverlist | grep -c "$VIMSERV") == 0 ]] ; then

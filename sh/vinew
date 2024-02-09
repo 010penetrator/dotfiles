@@ -1,17 +1,94 @@
 #!/bin/bash
-# Spawn new Vim or neoVim in new terminal instance with RPC feature
+# Launch (neo)Vim in a (new) terminal instance, with RPC feature
+# vim: sw=4
 
-source $HOME/.bashrc
+if [ -z "$DEBUG" ]; then
+    DEBUG=false
+else
+    echo "Will provide Debug info to stdout"
+    DEBUG=true
+fi
 
-echo editor is $EDITOR
+if [ -z "$USE_CURRENT_TERM" ]; then
+    USE_CURRENT_TERM=false
+fi
 
-# echo args are $*
+RPC_OPTION=''
+if [[ $EDITOR == vim ]]; then
+    if [ -z "$VIMSERV" ]; then
+        echo "Servername not provided!"
+    else
+        RPC_OPTION="--servername $VIMSERV"
+    fi
+    # Do we even have client-server compiled into Vim?
+    if ! vim --version | grep "+clientserver" -q; then
+        echo "No client-server compiled into Vim.. Exiting!"
+        exit 1
+    fi
+    # How many my vim-servers?
+    i=$(vim --serverlist | grep ^VIMSERV$ | wc -l)
+    [ $i != 0 ] && VIMSERV="''" && \
+        echo Caution. Vim server already running. i will not make one more && sleep 1
+elif [[ $EDITOR == nvim ]]; then
+    if [ -z "$NVIMSERV" ]; then
+        echo "No RPC address provided!"
+    else
+        RPC_OPTION="--listen $NVIMSERV"
+    fi
+else
+    echo "EDITOR is not familiar.. Exiting!"
+    exit 1
+fi
 
-if [[ $EDITOR =~ .*nvim ]] ; then
-    echo ed is nvim
-    nvimnew $*
-elif [[ $EDITOR =~ .*vim ]] ; then
-    echo ed is vim
-    vimnew $*
+false &&
+    {
+    NVIM="nvim"
+    echo this is experiment
+    # $NVIM
+    nvim
+    exit
+}
+
+HASG=false
+pgrep -c Xorg &>/dev/null && HASG=true
+
+INTERACTIVE=false
+tty -s && INTERACTIVE=true
+
+if [[ $DEBUG == true ]]; then
+    [ -t 0 ] && echo "shell is interactive"
+    tty -s   && echo "shell is interactive"
+fi
+
+VCMD="$EDITOR $RPC_OPTION"
+#[[ $VIMINSTASESS == true ]] && VCMD="$VCMD -c SLoad!"
+
+if [[ $USE_CURRENT_TERM == false && $HASG == true && $INTERACTIVE == true ]]; then
+    gonna_spawn=true
+else
+    gonna_spawn=false
+fi
+
+if [[ $DEBUG == true ]]; then
+    echo USE_CURRENT_TERM is $USE_CURRENT_TERM
+    echo HASG is $HASG
+    echo INTERACTIVE is $INTERACTIVE
+    echo gonna_spawn is $gonna_spawn
+fi
+
+[[ $gonna_spawn == false ]] && msg1="current" || msg1=$TERMINAL
+echo "Gonna start $EDITOR in $msg1 terminal"
+exit
+
+if [[ $gonna_spawn == true ]]; then
+    case $TERMINAL in
+        kitty*)
+            # echo rpc option is $RPC_OPTION;
+            $TERMINAL --start-as maximized bash -c "source $HOME/.bashrc ; sleep .1 ; $VCMD" & ;;
+        *)
+            xterm -maximized -e "source $HOME/.bashrc ; sleep .1 ; $VCMD" & ;;
+    esac
+else
+    $VCMD
 fi
 

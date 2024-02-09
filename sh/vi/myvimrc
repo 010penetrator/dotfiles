@@ -392,6 +392,7 @@ nnoremap [e `[
 nnoremap ]e `]
 " select last changed/yanked text
 nnoremap [] `[v`]
+nnoremap ,<CR> `[v`]
 " jump last selection edges
 nnoremap [v `<
 nnoremap ]v `>
@@ -622,12 +623,12 @@ nnoremap ,vq :qa!<CR>
 nnoremap ,zq :wa <bar> qa<CR>
 nnoremap ,,a :call AddRpcEar()<CR>
 " Open current file at vimserver session via my "vimrpc" shell script
-nnoremap qza :silent exec '! vir "%:p"'<CR>
-nnoremap qzz :exec '! vir "%:p"' \| q<CR>
-nnoremap qzc :exec '! MODE=cur    vir "%:p"' \| q<CR>
-nnoremap qzn :exec '! MODE=newtab vir "%:p"' \| q<CR>
-nnoremap qzs :exec '! MODE=split  vir "%:p"' \| q<CR>
-nnoremap qzv :exec '! MODE=vert   vir "%:p"' \| q<CR>
+nnoremap qza :silent exec '! virpc "%:p"'<CR>
+nnoremap qzz :exec '! virpc "%:p"' \| q<CR>
+nnoremap qzc :exec '! MODE=cur    virpc "%:p"' \| q<CR>
+nnoremap qzn :exec '! MODE=newtab virpc "%:p"' \| q<CR>
+nnoremap qzs :exec '! MODE=split  virpc "%:p"' \| q<CR>
+nnoremap qzv :exec '! MODE=vert   virpc "%:p"' \| q<CR>
 
 " Silly update git repo
 map ,,g :call LGsync()<CR>
