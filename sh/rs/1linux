@@ -35,7 +35,7 @@ Chrome: uBlock Vimium CVim Surfingkeys MidnightLizard SingleFile Stylus Rescroll
 Firefox: Vimium TabStash DarkReader Sidebery Raindrop.io VerticalTabsReloaded NoPlaylistAutoplayForYouTube HLSdownloader HumbleNewTabPage ScrollAnywhere TabSuspender tablist_slymax hide-scrollbars *DefaultZoom FixedZoom Tabliss SimpleCloseTabButton
 --see hint on how to copy FF profile at about:support
 Fonts: Cantarell Liberation DejaVu Noto Arimo Tinos Caslon EB-Garamond Euclid-Circular-A
-Fonts Mono: xos4Terminus LiberationMono Noto Input Fira FiraCode Hack DejaVuSansMono SourceCodePro Tamzen OhSnap industry
+Fonts Mono: xos4Terminus LiberationMono SFMono Noto Input Fira FiraCode Hack DejaVuSansMono SourceCodePro Tamzen OhSnap industry
 gtk: lounge pop mediterraneandarkest adapta mint-y flattastic libra-dark mona-3.0 carbonico arc-dark vertex menda-dark adwaita-maia green-submarine high-contrast-inverse
 Xcursor.theme: Menda-Cursor Simple-and-Soft pinux moblin breeze pTux
 Icons: Moka Breeze ultraflat maia ardis papirus
