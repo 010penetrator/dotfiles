@@ -2,7 +2,7 @@
 # Open files in existing Vim via RPC server feature
 
 if [ -z "$1" ] ; then
-  echo 'Target file not provided!'
+  echo "Target file not provided!"
   echo "Usage: [VIMSERV=name] [MODE=cur,last,newtab,newtabinsert,split,vert] vimrpc file"
   # exit 1
 fi
@@ -16,7 +16,7 @@ fi
 [[ $MODE == '' ]] && MODE="last"
 
 [ -z $VIMSERV ] && echo "Servername not provided!" || \
-  echo "VIMZ: Given servername is $VIMSERV"
+  echo "Given servername is $VIMSERV"
 
 if [ $(vim --serverlist | wc -l) == 0 ] ; then
   echo "No Vim servers found"
@@ -32,7 +32,7 @@ elif [ -n "$VIMSERV" ] && [[ $(vim --serverlist | grep -c "$VIMSERV") == 0 ]] ; 
 fi
 
 if ! [[ -z "$1" ]] ; then
-  echo "stag C"
+  echo "Gonna rpc-call Vim"
   # get full name
   path=$(realpath -s "$1")
   # escape spaces

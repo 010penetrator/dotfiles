@@ -9,6 +9,17 @@ else
     DEBUG=true
 fi
 
+TEXTFILE=''
+if ! [ -z "$1" ]; then
+    echo 1 is $1
+    TEXTFILE=$(realpath -s "$1")
+fi
+echo TEXTFILE is $TEXTFILE
+
+if [ -z "$USE_CURRENT_TERM" ]; then
+    USE_CURRENT_TERM=false
+fi
+
 if [ -z "$USE_CURRENT_TERM" ]; then
     USE_CURRENT_TERM=false
 fi
@@ -36,7 +47,7 @@ elif [[ $EDITOR == nvim ]]; then
         RPC_OPTION="--listen $NVIMSERV"
     fi
 else
-    echo "EDITOR is not familiar.. Exiting!"
+    echo "EDITOR is unfamiliar.. Exiting!"
     exit 1
 fi
 
@@ -60,7 +71,7 @@ if [[ $DEBUG == true ]]; then
     tty -s   && echo "shell is interactive"
 fi
 
-VCMD="$EDITOR $RPC_OPTION"
+VCMD="$EDITOR $RPC_OPTION $TEXTFILE"
 #[[ $VIMINSTASESS == true ]] && VCMD="$VCMD -c SLoad!"
 
 if [[ $USE_CURRENT_TERM == false && $HASG == true && $INTERACTIVE == true ]]; then
@@ -78,7 +89,6 @@ fi
 
 [[ $gonna_spawn == false ]] && msg1="current" || msg1=$TERMINAL
 echo "Gonna start $EDITOR in $msg1 terminal"
-exit
 
 if [[ $gonna_spawn == true ]]; then
     case $TERMINAL in

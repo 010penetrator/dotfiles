@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Open files in existing NeoVim via RPC feature
+# Open files in NeoVim. Use RPC feature if possible
 
 import os, sys
 from pynvim import attach
@@ -65,9 +65,9 @@ if __name__ == '__main__':
 
     # Inputs are all obtained by now
     if DEBUG:
-        print("file is", file)
-        print("mode is", mode)
-        print("serv is", serv)
+        print("_file is", file)
+        print("_mode is", mode)
+        print("_serv is", serv)
 
     if not os.path.exists((serv)):
         print("RPC address " + serv + " is not present!")
@@ -82,7 +82,8 @@ if __name__ == '__main__':
         print("Gonna create empty buffer in existing Neovim instance ")
         sys.exit()
 
-    file = os.path.join( os.getcwd(), file )
+    if file:
+        file = os.path.join( os.getcwd(), file )
 
     pre_command, cli_prefix = prepare_commands(mode)
 
@@ -99,5 +100,6 @@ if __name__ == '__main__':
             nvim.command(pre_command)
         nvim.command(open_command)
     else:
-        os.system("NVIMSERV=" + serv + " nvimnew")
+        # print ("finally file is ", file)
+        os.system("NVIMSERV=" + serv + " vinew " + file)
 

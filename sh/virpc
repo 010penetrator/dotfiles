@@ -1,5 +1,5 @@
 #!/bin/bash
-# RPC-call vim or nvim
+# RPC-call Vim or Neovim
 
 source $HOME/.bashrc
 
