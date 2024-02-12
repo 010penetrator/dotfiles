@@ -466,6 +466,8 @@ nnoremap z<BS> :e!<CR>
 nnoremap g/ :e %:p:h<tab>
 " open prev window in current window
 " nnoremap qp :exec "buffer " . winbufnr(winnr("#"))<CR>
+" open prev buffer in new tab
+nnoremap a, :exec "tabe " . expand("#")<CR>
 " split open filename under cursor
 nnoremap g.v :vsp <c-r><c-f><CR>
 nnoremap g.s :sp <c-r><c-f><CR>

@@ -22,7 +22,7 @@ return {
   'MattesGroeger/vim-bookmarks', -- great
   'haya14busa/vim-edgemotion', -- great --- Use with <C-j>
   'will133/vim-dirdiff', -- handy
-  -- 'jamessan/vim-gnupg', -- good --- vim-only
+  'jamessan/vim-gnupg', -- good --- vim-only
   -- 'chrisbra/Colorizer', -- good
   -- 'michaeljsmith/vim-indent-object', -- cool
   -- 'godlygeek/tabular', -- okay
