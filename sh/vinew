@@ -18,10 +18,9 @@ echo TEXTFILE is $TEXTFILE
 
 if [ -z "$USE_CURRENT_TERM" ]; then
     USE_CURRENT_TERM=false
-fi
-
-if [ -z "$USE_CURRENT_TERM" ]; then
-    USE_CURRENT_TERM=false
+    if [[ $DEBUG == true ]]; then
+        echo "Will use current terminal"
+    fi
 fi
 
 RPC_OPTION=''
@@ -90,13 +89,14 @@ fi
 [[ $gonna_spawn == false ]] && msg1="current" || msg1=$TERMINAL
 echo "Gonna start $EDITOR in $msg1 terminal"
 
+# notify-send "st3"
 if [[ $gonna_spawn == true ]]; then
     case $TERMINAL in
         kitty*)
             # echo rpc option is $RPC_OPTION;
-            $TERMINAL --start-as maximized bash -c "source $HOME/.bashrc ; sleep .1 ; $VCMD" & ;;
+            $TERMINAL --start-as maximized bash -c "source $HOME/.bashrc; sleep .1; $VCMD" & ;;
         *)
-            xterm -maximized -e "source $HOME/.bashrc ; sleep .1 ; $VCMD" & ;;
+            xterm -maximized -e "source $HOME/.bashrc; sleep .1; $VCMD" & ;;
     esac
 else
     $VCMD
