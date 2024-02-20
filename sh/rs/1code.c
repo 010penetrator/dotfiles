@@ -35,6 +35,9 @@ bool debug = false;
 assert(a == b && "A is not equal to B");
 assert(("A must be equal to B", a==b));
 
+
+std::atomic_bool liveon{ true };
+
 log_msg =  QString("MyClass Ctor  @ th_id ") + QString("0x%1").arg((long int)QThread::currentThreadId(), 20, 16, QChar('0')) ;
 
 
