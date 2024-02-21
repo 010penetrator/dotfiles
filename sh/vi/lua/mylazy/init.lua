@@ -613,6 +613,17 @@ return {
   --------tryout-------------------------------{{{}}}-------
 
   {
+    'NStefan002/speedtyper.nvim',
+    cmd = "Speedtyper",
+    opts = {},
+  },
+
+  {
+    'stevearc/dressing.nvim',
+    opts = {},
+  },
+
+  {
     'junegunn/vim-easy-align',
     config = function()
       -- H.nmap('ga', '<Plug>(EasyAlign)')
