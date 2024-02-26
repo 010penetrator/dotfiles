@@ -39,4 +39,6 @@ command -v kitty &>/dev/null && export TERMINAL=kitty && export TERMINAL_BIGER="
 [[ -d $loc ]] && [[ $PATH == *"$loc"* ]] || export PATH=$PATH:$loc
 ( [[ -d $HOME/.local/share/gem/ruby/3.0.0/bin ]] && ! [[ $PATH == *"gem/ruby"* ]] ) && export PATH=$PATH:$HOME/.local/share/gem/ruby/3.0.0/bin
 [[ $PATH == *"scoop"* ]] && export PATH=$(echo "$PATH" | sed -e 's|:\/mnt\/c\/Users\/[^/]*\/scoop\/apps\/perl.*current\/perl\/bin:|:|')
+( [[ -d $HOME/.cargo/bin ]] && type -f rust &>/dev/null && ! [[ $PATH == *"/.cargo/bin"* ]] ) || export PATH=$PATH:"$HOME/.cargo/bin"
+
 
