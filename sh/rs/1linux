@@ -246,7 +246,8 @@ zip -r -1 arc.zip Dir Dir2 #create zip
 
 ==GIT {{{}}}
 git config --list --show-origin
-git switch -c newbranch # checkout new branch
+git switch -c newbranch # create new branch
+git checkout -b newbranch # same
 git config --global --edit
 git commit --amend --reset-author --no-edit
 git config --global user.email "user@mail"
