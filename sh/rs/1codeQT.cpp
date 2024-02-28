@@ -12,6 +12,9 @@ QTimer::singleShot(50, this, [&]() { fun(); });
 
 QString qq = QString::fromUtf8(u8"фыва");
 
+uint64_t thid = (uint64_t)QThread::currentThreadId();
+QString thstr(" @ th_" + QString::number(thid));
+
 m_ipEdit = new QLineEdit(this);
 QString IpRange = "(?:[0-1]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])";
 QRegularExpression IpRegex("^" + IpRange
