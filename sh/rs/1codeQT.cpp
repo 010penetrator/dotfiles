@@ -15,6 +15,8 @@ QString qq = QString::fromUtf8(u8"фыва");
 uint64_t thid = (uint64_t)QThread::currentThreadId();
 QString thstr(" @ th_" + QString::number(thid));
 
+log_msg =  QString("MyClass Ctor  @ th_id ") + QString("0x%1").arg((long int)QThread::currentThreadId(), 20, 16, QChar('0'));
+
 m_ipEdit = new QLineEdit(this);
 QString IpRange = "(?:[0-1]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])";
 QRegularExpression IpRegex("^" + IpRange

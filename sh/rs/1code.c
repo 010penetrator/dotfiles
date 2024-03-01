@@ -38,11 +38,11 @@ assert(("A must be equal to B", a==b));
 
 std::atomic_bool liveon{ true };
 
-log_msg =  QString("MyClass Ctor  @ th_id ") + QString("0x%1").arg((long int)QThread::currentThreadId(), 20, 16, QChar('0')) ;
+
+std::cout << "foo @ th_" << std::this_thread::get_id() << std::endl;
 
 
-std::string ZeroPadNumber(unsigned long int num, unsigned int N)
-{
+std::string ZeroPadNumber(unsigned long int num, unsigned int N) {
   std::stringstream ss;
   std::string pad;
   std::string ret;
