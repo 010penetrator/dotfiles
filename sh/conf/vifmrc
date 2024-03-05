@@ -749,6 +749,12 @@ command! fzfmushist : set noquickview
         \|     exec 'goto' fnameescape($FZF_PICK)
         \| endif
 
+command! fzftmplist : set noquickview
+      \| let $FZF_PICK = term('cat /tmp/filelist | fzf --height 10 2>/dev/tty')
+        \| if $FZF_PICK != ''
+        \|     exec 'goto' fnameescape($FZF_PICK)
+        \| endif
+
 nnoremap <C-j> :fzffind<cr>
 nnoremap <C-h> :fzfmushist<cr>
 

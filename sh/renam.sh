@@ -1,17 +1,24 @@
 #!/bin/bash
 # Rename files to conform NTFS charset
+# Also rename crazy chars like "$"
 
 if [[ -z $1 ]]; then
-    echo Give target directory
+    echo Usage: [WETRUN=1] renam.sh target/dir
     exit
 fi
 
-find "$1" -depth | while read FILE; do
-        SUBS=$( echo "$FILE" | tr ':|' '_' | tr -d '\"' | tr '\*' '_' | tr '{}?' '()_' )
-        if [[ "$FILE" != "$SUBS" ]]; then
-            echo old "$FILE"
-            echo new "$SUBS"
-            [[ WETRUN -eq 1 ]] && mv "$FILE" "$SUBS"
+# Just non-NTFS set would be like this...
+# find "$1" \( -name "*[:|\"\*{}?]*" \) |
+
+# Avoid more crazy chars
+find "$1" \( -name "*[\`:|\$\"\*{}?]*" \) |
+    while read NUTSNAME;
+    do
+        NEWNAME=$( echo "$NUTSNAME" | tr "\`" "'" | tr ':|@\$' '_' | tr -d '\"' | tr '\*' '_' | tr '{}?' '()_' )
+        if [[ "$NUTSNAME" != "$NEWNAME" ]]; then
+            echo old "$NUTSNAME"
+            echo new "$NEWNAME"
+            [[ WETRUN -eq 1 ]] && mv -i "$NUTSNAME" "$NEWNAME"
         fi
     done
 
