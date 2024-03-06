@@ -145,7 +145,7 @@ PAGER=most man ls
 grub-mkconfig -o /boot/grub/grub.cfg
 --GRUB install for BIOS:
 grub-install /dev/sdX
---GRUB install for EFI:
+--GRUB install for EFI--:
 grub-install --target=x86_64-efi --efi-directory=EfiSystemPart --boot-directory=/boot --bootloader-id=NewName
 --GRUB install for EFI to removable media:
 grub-install --target=x86_64-efi --efi-directory=/media/GLIM --boot-directory=/media/GLIM/boot --removable
@@ -161,6 +161,7 @@ ls; set root=(hd0,msdos1); set prefix=/boot/grub; insmod ext2; insmod normal; no
 -- btrfs save last entry:
 sudo grub-install --recheck --no-rs-codes --modules="btrfs zstd part_gpt part_msdos"
 sudo update-grub
+--/etc/default/grub
 GRUB_SAVEDEFAULT=true
 GRUB_DEFAULT=saved
 .

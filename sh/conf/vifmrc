@@ -53,7 +53,7 @@ command! chmodautoSEL :! find %f -type f -exec chmod 644 {} \;
 nnoremap zh :history<CR>
 nnoremap ,q :exec '!echo -ne "\033]0;\007"' | qa <CR>
 nnoremap ,x :exec '!echo -ne "\033]0;\007"' | quit <CR>
-nnoremap qx :exec '!echo -ne "\033]0;\007"' | quit <CR>
+nnoremap ax :exec '!echo -ne "\033]0;\007"' | quit <CR>
 nnoremap ,i :pushd . <CR>
 nnoremap ,m :set millerview!<CR>
 nnoremap ,M :set milleroptions=lsize:2,csize:5,rsize:5
