@@ -84,6 +84,7 @@ rl() { rp=$(realpath "$*");
     { [[ -f $rp ]] && cd $(dirname "$rp"); } ||
         echo "No such file or dir path!"; }
 fl() { cat "$sh"/rs/1linux | fzf; }
+# fco() { compgen -c | fzf; }
 x() { xdg-open "$*" &> /dev/null & disown; }
 get_space_used() { df -BMB "$1" --output=used | tail -1 | grep -o '[0-9]*'; }
 hddsum() { d1=$(get_space_used /ln/mo/blink); d2=$(get_space_used /ln/mo/metal); echo Σ= "$(( d1 + d2 ))" Mb; }
@@ -166,13 +167,15 @@ export FZF_CTRL_R_OPTS="--no-sort --exact"
     # bind -X "\C-r: reverse-search-history"
 function fzfpacadd { pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S; }
 function fzfpacrem { pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns; }
+
+# FZF across lines of some file
 __fzf_1linux__() {
+  input_file="$sh"/rs/1linux
   local output
   output=$(
-    cat "$sh"/rs/1linux | fzf
+    cat "$input_file" | fzf
     ) || return
   READLINE_LINE=${output}
-  # READLINE_LINE="more"
   if [[ -z "$READLINE_POINT" ]]; then
     echo "$READLINE_LINE"
   else
@@ -180,6 +183,22 @@ __fzf_1linux__() {
   fi
 }
 bind -m emacs-standard -x '"\e\C-f": __fzf_1linux__'
+
+# FZF across all available bash commands
+__fzf_commands__() {
+  local output
+  output=$(
+    compgen -c | fzf
+    ) || return
+  READLINE_LINE=${output}
+  if [[ -z "$READLINE_POINT" ]]; then
+    echo "$READLINE_LINE"
+  else
+    READLINE_POINT=0x7fffffff
+  fi
+}
+bind -m emacs-standard -x '"\e\C-j": __fzf_commands__'
+
 fzflocate() {
   local output
   output=$(

@@ -134,9 +134,9 @@ nnoremap qf/ :! bash -lc "ARG=DMENUSAVE xdgsane %c"
 nnoremap ,f :! echo; echo %c: ; file -b %c ; [[ -d %c ]] && tree -ia %c | tail -1 ; du -sh %c | cut -f1 ; ls -dla %c ; df -h --output=source,fstype,avail,pcent %c ; read -rsn1 <cr>
 nnoremap ,<space> :echo "Available space on " . system("df -h --output=source,avail . | tail -1")<cr>
 nnoremap ,F :! watch -n .4 du -sL -BM %f<cr>
-nnoremap ,. :! echo -ne \\n  ls dir :\\n ; ls -la --color=auto . ; read -rsn1 <cr>
-nnoremap ,g :! clear -x; $LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT ; read -rsn1 <cr>
-nnoremap ,G :! clear -x; watch -n 1 $LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT<cr>
+nnoremap ,l :! echo -ne \\n  ls dir :\\n ; ls -la --color=auto . ; read -rsn1 <cr>
+nnoremap ,b :! clear -x; $LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT ; read -rsn1 <cr>
+nnoremap ,B :! clear -x; watch -n 1 $LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT<cr>
 nnoremap ,s :! clear -x; df -BMB ; read -rsn1 <cr>
 nnoremap qg :! echo -ne "\n-- Try to sync @ $(date '+%%Y-%%m-%%d %%H:%%M:%%S') ...... \n" ; (time sync) 2>&1 | tr '\t' ' ' | tr '\n' '\t' ; echo -ne "\n-- Complete    @ $(date '+%%Y-%%m-%%d %%H:%%M:%%S')\n" <CR>:echo "Sync complete!"<CR>
 nnoremap z<BS> :! echo -ne "\n-- Try to sync @ $(date '+%%Y-%%m-%%d %%H:%%M:%%S') ...... \n" ; (time sync) 2>&1 | tr '\t' ' ' | tr '\n' '\t' ; echo -ne "\n-- Complete    @ $(date '+%%Y-%%m-%%d %%H:%%M:%%S')\n" <CR>:echo "Sync complete!"<CR>

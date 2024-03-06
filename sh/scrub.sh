@@ -1,11 +1,32 @@
 #!/bin/bash
-# Log sha1 hashsum for every files in current location
+# Log sha1 hashsum for every file in current location
 
-echo Writing to $curpat
-curpat=$(echo $PWD | tr -d "/"  )
+curpat=$(echo $PWD | tr -d "/ "  )
 export output=/tmp/scrub_"$curpat"
-rm $output
 
-find * -type f -exec bash -c 'sum=$(sha1sum "{}" |cut -f1 -d " " ); echo -e "file:{}\nsha1:$sum" >>/tmp/"$output" ' \;
-cat "$output"
+echo Output_ $output
+[[ -f "$output" ]] &&
+    rm "$output"
+
+find .  -depth  -type f -not -path '*/\.git/*'  -print 1>"$output"
+
+# find .  -depth  -type f -not -path '*/\.git/*' -exec bash -c '
+#     fname="{}";
+#     sum=$(sha1sum "$fname" |cut -f1 -d " " );
+#     echo -e "$fname:$sum" >>"$output"
+#     ' \;
+# sha1sum "{}" >> "$output"
+
+sort -o "$output" "$output"
+du -h "$output"
+
+echo "Gonna calc sha1 sums.."
+cat "$output" | while read fname
+do
+    sum=$(sha1sum "$fname"| cut -f1 -d " ")
+    echo -e "$fname:$sum" >>"$output"_sums
+done
+
+mv "$output"_s "$output"
+du -h "$output"
 

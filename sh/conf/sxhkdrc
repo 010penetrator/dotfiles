@@ -23,7 +23,7 @@ super + { q, Q, D, F, t, v, s, y, r, R, z, g, slash }
   'chromium\|Firefox\|Remmina' 'firefox', \
   'Thunar\|Caja\|pcmanfm\| YouTube \|office.libreoffice\|Abiword\|sis.ko' 'notify-send not\ found', \
   'sioyek\|zathura' listzathura.sh, evince, FBReader, \
-  'Telegram\|Pidgin\|Git\|TuxGuitar\|hydrogen\|VirtualBox' '', \
+  'Telegram\|Pidgin\|Git\|Audacity\|TuxGuitar\|hydrogen\|VirtualBox' '', \
   '' listmenu.sh }
 
 super + { Return, e, d, X, semicolon }

@@ -4,7 +4,7 @@
 import os, sys
 from pynvim import attach
 import getopt
-DEBUG = True
+DEBUG = False
 
 def prepare_commands(mode):
     pre_command = None
@@ -45,7 +45,7 @@ def get_cli_input():
             file = plain_args[0]
     except getopt.GetoptError:
         print("Usage: nvimrpc.py -s /tmp/NVRPCSERVER -m newtab /etc/file")
-        # sys.exit(2)
+        sys.exit(3)
 
 
 if __name__ == '__main__':

@@ -23,7 +23,7 @@ with open("C:\scripts\other.py") as f:
     slovar = open(slovarname, 'r', encoding=encoding)
 
 import sys,getopt
-opts, args = getopt.getopt(sys.argv[1:], 'f:d:s:', ['debug','full'])
+opts, plain_args = getopt.getopt(sys.argv[1:], 'f:d:s:', ['debug','full'])
 for opt, arg in opts:
     if opt == "-f":
         filenames.append(arg)
