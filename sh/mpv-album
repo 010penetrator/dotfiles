@@ -1,6 +1,6 @@
 #!/bin/bash
 # This is how I listen to music albums with mpv
-# Usage: mpv /path/dir DESIRED-TERMINAL-TITLE
+# Usage: mpv-album /path/dir DESIRED-TERMINAL-TITLE
 
 HIST="$HOME/.mus-history"
 # Ignore '..' target
@@ -26,8 +26,9 @@ fi
 echo
 
 # Conditionally update history list
+VERY_RECENT_THR=6
 if ! [[ -f $HIST ]] ; then touch "$HIST" ; fi
-recent=$( tail $HIST -n100 | cat -n | sort -nr | sort -uk2 | sort -nr | head -n14 | cut -f2- )
+recent=$( tail $HIST -n100 | cat -n | sort -nr | sort -uk2 | sort -nr | head -n $VERY_RECENT_THR | cut -f2- )
 fresh=$( echo "$recent" | grep -xF "$TARGREAL" >/dev/null; echo $? )
 case $fresh in
     0)

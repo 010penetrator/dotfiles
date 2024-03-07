@@ -1,14 +1,14 @@
 #!/bin/bash
 # Log sha1 hashsum for every file in current location
 
-curpat=$(echo $PWD | tr -d "/ "  )
-export output=/tmp/scrub_"$curpat"
+dst=$(echo "$PWD$1" | tr -d "/ "  )
+export output=/tmp/scrub_"$dst"
 
 echo Output_ $output
 [[ -f "$output" ]] &&
     rm "$output"
 
-find .  -depth  -type f -not -path '*/\.git/*'  -print 1>"$output"
+find -L  "$1"  -depth  -type f -not -path '*/\.git/*'  -print 1>"$output"
 
 # find .  -depth  -type f -not -path '*/\.git/*' -exec bash -c '
 #     fname="{}";
@@ -27,6 +27,6 @@ do
     echo -e "$fname:$sum" >>"$output"_sums
 done
 
-mv "$output"_s "$output"
+mv "$output"_sums "$output"
 du -h "$output"
 

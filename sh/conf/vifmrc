@@ -164,6 +164,7 @@ nnoremap qb :! kitty @ new-window --new-tab /bin/bash -c "cd %d/ ; ASK=0 mpv-alb
 
 " Do rsync "
 nnoremap rs :! rsync_bistep.sh  %d %D; read -n 1
+nnoremap rS :! rsync_matchy.sh  %d %D; read -n 1
 " nnoremap rS :! echo -ne "\n========== dry-run\n" ; rsync -rtKn --progress --delete --stats --size-only %d/ %D ; read -n 1 -s -r -p "Press F or ENTER or SPACE to sync; ESC to cancel" key ; echo -ne "\n========== real\n" ; [[ "$key" == 'f' || "$key" == '' ]] && ( rsync -rtK  --progress --delete --stats --size-only %d/ %D ; read -n 1 -s -r -p "========== DONE!" ; echo ) || echo
 " nnoremap rS :! echo -ne "\n" ; rsync -rt  --progress --delete --stats --size-only %d/ %D ; read -n 1 -s -r -p "========== DONE!" ; echo
 

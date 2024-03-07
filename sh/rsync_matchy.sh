@@ -1,23 +1,26 @@
 #!/bin/bash
-# Handy wrapper for rsync mirroring
+# Rsync mirror-copy directories which exist in both $dirsrc and $dirout
 
-#dirin="/ln/mo/QU64/port"
-#dirout="/ln/mo/CW-V88-QUAD/port"
+if [[ -z $1 ]]; then
+    echo Usage: rsync_match.sh path/sourcedir path/targetdir
+    exit
+fi
 
-dirin=$1
+dirsrc=$1
 dirout=$2
 RSYNC_OPTS="-rt --progress --delete --size-only"
 
 echo -e "\n=============================================\nStarting sync script"
-read -rs -n1 -p $'\nhit Anykey to dry-run, "S" or Esc to skip it\n' prompt
+read -rs -n1 -p $'\nhit Anykey to dry-run, hit "s" to skip it\n' prompt
 # [[ $prompt == "y" || $prompt == "Y" || $prompt == "yes" || $prompt == "Yes" ]] &&
 
-if ! [[ $prompt == "s" || $prompt == "S" || $prompt == $'\e' ]] ; then
+# if ! [[ $prompt == "s" || $prompt == "S" || $prompt == $'\e' ]] ; then
+if ! [[ $prompt == "s" || $prompt == "S" ]] ; then
   echo -e "\n========== dry-run"
   for dir in "$dirout"/*/ ; do
     dir=${dir%*/}
     dir=${dir##*/}
-    final_in="$dirin/$dir"
+    final_in="$dirsrc/$dir"
     final_out="$dirout/$dir"
     if [ -d "$final_in"/ ] ; then
       echo "  >>" "$final_in" ">>" "$final_out" ;  # sleep 3;
@@ -34,9 +37,9 @@ if [[ $prompt == "" || $prompt == " " ]] ; then
   for dir in "$dirout"/*/ ; do
     dir=${dir%*/}
     dir=${dir##*/}
-    final_in="$dirin/$dir"
+    final_in="$dirsrc/$dir"
     final_out="$dirout/$dir"
-    #echo "$dirin"/"$dir"/ ; read noth
+    #echo "$dirsrc"/"$dir"/ ; read noth
     if [ -d "$final_in"/ ] ; then
       echo "  >>" "$final_in" ">>" "$final_out" ;  # sleep 3;
       rsync -rt $RSYNC_OPTS "$final_in"/ "$final_out"

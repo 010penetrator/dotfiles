@@ -96,7 +96,7 @@ if __name__ == '__main__':
     # print(paraA)
 
     for i in range(1000000):
-        if (i%1000==0):
+        if (i%10000==0):
             if eofA:
                 print("inc ", i, "eof left")
             elif eofB:
