@@ -2,72 +2,131 @@
 # Backup using tar
 
 mkdir -p "$bakhot"
-! [[ -d $bakhot ]] && echo Error! Hot backup dir not available! && exit
+! [[ -d $bakhot ]] && echo Error! Hot backup dir not available! && exit 1
+# mkdir -p "$bakhot"/daily
 
 DAY=$(date +%Y-%m-%d)
 WEEK=$(date +%Y_w%W)
 MON=$(date +%Y-%m)
-DEST_HOT="$bakhot/$WEEK"
+DEST_WEKLY="$bakhot/weekly/$WEEK"
+DEST_DAYLY="$bakhot/daily/$DAY"
+DO_WEK=true
+DO_DAY=true
 
-if [[ -d $DEST_HOT ]] ; then
-    if [[ $DONTOVERWRITE == 1 ]] ; then
-        echo -e "-- Backup not wanted!"
-        exit
+if [[ -d $DEST_WEKLY ]]; then
+    if [[ $DONTOVERWRITE -ge 1 ]]; then
+        echo -e "-- will not do Weekly backup.."
+        DO_WEK=false
     else
-        rm -rf "$DEST_HOT"
+        rm -rf "$DEST_WEKLY"
     fi
 fi
-mkdir "$DEST_HOT"
 
-[[ -d $bakhot/ffbookmarks ]] &&
-{
-cd "$bakhot/ffbookmarks"
-latest=$(ls . -t | head -1 )
-boomname="$(echo $latest | cut  -f -2 -d '_').jsonlz4"
-cp "$latest" "/tmp/$boomname"
-cd -
+if [[ -d $DEST_DAYLY ]]; then
+    if [[ $DONTOVERWRITE -ge 2 ]] ; then
+        echo -e "-- will not do Daily backup.."
+        DO_DAY=false
+    else
+        rm -rf "$DEST_DAYLY"
+    fi
+fi
+
+if [[ $DONTOVERWRITE -ge 2 ]] ; then
+    exit 0
+fi
+
+mkdir -p "$DEST_WEKLY"
+mkdir -p "$DEST_DAYLY"
+
+[[ -d $bakhot/ffbookmarks ]] && {
+    cd "$bakhot/ffbookmarks"
+    latest=$(ls . -t | head -1 )
+    boomname="$(echo $latest | cut  -f -2 -d '_').jsonlz4"
+    cp "$latest" "/tmp/$boomname"
+    cd - 1>/dev/null
 }
 
 echo --bak.hot
 
 [[ -d $tt ]] && conditional_line="-C $tt/../ tt"
 [[ -n $boomname ]] && conditional_line="$conditional_line -C /tmp $boomname"
-    tar -chzf "$DEST_HOT/words.tar.gz" --ignore-failed-read \
+    tar -chzf "$DEST_DAYLY/words.tar.gz" --ignore-failed-read \
         -C /ln/ --exclude=lo/cur sh lo \
         $conditional_line
 
 [[ -d /ln/torrents ]] &&
-    tar -czf "$DEST_HOT/torrents.tar.gz" --ignore-failed-read \
+    tar -czf "$DEST_DAYLY/torrents.tar.gz" --ignore-failed-read \
         -C $HOME .config/transmission-daemon .rtorrent .rtorrent.rc
 
 [[ -d /ln/co/nvim ]] && [[ $space == "ho" ]] &&
-    tar -cf "$DEST_HOT/nvplugins.tar.zst" -I "zstd -10 -T0" --exclude='.git' \
+    tar -cf "$DEST_DAYLY/nvplugins.tar.zst" -I "zstd -10 -T0" --exclude='.git' \
         -C $git nvpl
 
 [[ -d /ln/wo ]] && [[ $space == "wo" ]] &&
     workrp=$(realpath /ln/wo) && workbn=$(basename $workrp) &&
-    tar -cf "$DEST_HOT/work.tar.zst" -I "zstd -10 -T0" -C $workrp/.. $workbn
+    tar -cf "$DEST_DAYLY/work.tar.zst" -I "zstd -10 -T0" -C $workrp/.. $workbn
 
-tar -cf "$DEST_HOT/conf.tar.zst" -I "zstd -10 -T0" --ignore-failed-read \
+tar -cf "$DEST_DAYLY/conf.tar.zst" -I "zstd -10 -T0" --ignore-failed-read \
     -C / etc/fstab etc/udevil/udevil.conf \
     -C $HOME .ssh .bash_history $(ls .git*tials 2>/dev/null) .cache/dmenu-recent .vim \
     -C /ln/co kitty kitty-themes deadbeef \
     $conditional_line
 
-[[ -d $bakcld ]] &&
-    {
+if [[ $DO_WEK == true ]]; then
+    if [[ -d $DEST_WEKLY ]]; then
+        cp -rf "$DEST_DAYLY/"*tar* "$DEST_WEKLY"
+    else
+        echo Warning! Weekly backup failed!
+    fi
+    if [[ -d $bakcld ]]; then
         echo --bak.cold
         mkdir -p "$bakcld/${space}_$MON"
-        cp -rf "$DEST_HOT/"*tar* "$bakcld/${space}_$MON"
-    } ||
-        { echo Warning! Cold backup dir failed! ;}
+        cp -rf "$DEST_WEKLY/"*tar* "$bakcld/${space}_$MON"
+    else
+        echo Warning! Cold backup failed!
+    fi
+fi
 
-bakusbdir=$(compgen -G /ln/mo/*AMV/bak)
-[[ -d $bakusbdir ]] &&
+if [[ $DO_DAY == true ]]; then
+    # Remove backups, leave only 10 most fresh
     {
-        devlabel=$(echo $bakusbdir | tr / \\n | grep AMV)
-        echo --Gonna write to $devlabel as well..
-        mkdir -p "$bakusbdir/${space}_$MON"
-        cp -rf "$DEST_HOT/"*tar* "$bakusbdir/${space}_$MON"
+        cd $bakhot/daily/ && {
+            list=$(ls -dt */ | tail -n +11)
+            [[ -n $list ]] && rm -r $list  
+        }
     }
+fi
+if [[ $DO_WEK == true ]]; then
+    {
+        cd $bakhot/weekly/ && {
+            list=$(ls -dt */ | tail -n +16)
+            [[ -n $list ]] && rm -r $list  
+        }
+    }
+fi
+
+devlabel=$( $LSBLK -l -o LABEL | grep "AMV" | sort | head -1 )
+[[ $devlabel != '' ]] && bakdev=$( $LSBLK -l -o NAME,LABEL | grep $devlabel | head -1 | cut -f1 -d ' ' )
+
+if [[ $bakdev != '' ]]; then
+    echo --bak.port
+    if [[ $( mount | grep $devlabel | grep $bakdev -c ) == 0 ]]; then
+        echo ---mounting $devlabel ..
+        udevil mount /dev/$bakdev /ln/mo/$devlabel &&
+            need_umount=true
+    fi
+    bakusbdir=$(compgen -G /ln/mo/*AMV/bak)
+    if [[ -d $bakusbdir ]]; then
+        devlabel=$(echo $bakusbdir | tr / \\n | grep AMV)
+        echo --bak.port
+        mkdir -p "$bakusbdir/${space}_$MON"
+        cp -rf "$DEST_WEKLY/"*tar* "$bakusbdir/${space}_$MON"
+    else
+        echo Warning! Port backup failed!
+    fi
+    sync /ln/mo/$devlabel
+    [[ $need_umount == true ]] && echo ---unmounting $devlabel .. && udevil umount /ln/mo/$devlabel
+    # echo Done!
+fi
+
 

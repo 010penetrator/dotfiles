@@ -50,8 +50,7 @@ else
     exit 1
 fi
 
-false &&
-    {
+false && {
     NVIM="nvim"
     echo this is experiment
     # $NVIM

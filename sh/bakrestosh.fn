@@ -58,7 +58,7 @@ bakport()
           touch $tx
       fi
   fi
-  echo -- Starting sync --
+  # echo -- Starting sync --
   sync /ln/mo/$devlabel
   [[ $need_umount == true ]] && echo ==unmounting $devlabel .. && udevil umount /ln/mo/$devlabel
   echo Done!
