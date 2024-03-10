@@ -91,7 +91,7 @@ if [[ $DO_DAY == true ]]; then
     # Remove backups, leave only 10 most fresh
     {
         cd $bakhot/daily/ && {
-            list=$(ls -dt */ | tail -n +11)
+            list=$(ls -dt * | tail -n +11)
             [[ -n $list ]] && rm -r $list  
         }
     }
@@ -99,7 +99,7 @@ fi
 if [[ $DO_WEK == true ]]; then
     {
         cd $bakhot/weekly/ && {
-            list=$(ls -dt */ | tail -n +16)
+            list=$(ls -dt * | tail -n +16)
             [[ -n $list ]] && rm -r $list  
         }
     }

@@ -1,8 +1,8 @@
 #!/bin/bash
 # Log sha1 hashsum for every file in current location
 
-dst=$(echo "$PWD$1" | tr -d "/ "  )
-export output=/tmp/scrub_"$dst"
+dstmangl=$(echo "$PWD/$1" | tr -d "./ "  )
+export output=/tmp/scrub_"$dstmangl"
 
 echo Output_ $output
 [[ -f "$output" ]] &&

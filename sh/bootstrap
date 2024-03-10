@@ -58,10 +58,9 @@ ln -sfn /ln/ho/.config co
 ln -sfn /ln/mo/blink bl
 ln -sfn /ln/mo/fast fast
 ln -sfn /ln/fast/hh hh
-ln -sfn /ln/bl/torrents torrents
+ln -sfn /ln/fast/torrents torrents
 # ln -sfn /ln/mo/metal/MUSIC mus
-ln -sfn /ln/mo/fast/PRAGS pr
-ln -sfn /ln/mo/metal/____ __
+ln -sfn /ln/mo/metal/PRAGS pr
 # ln -sfn /ln/mo/blink/dwn dwn
 # ln -sfn /ln/ho/Downloads dwn
 # ln -sfn /ln/dwn /ln/ho/Downloads

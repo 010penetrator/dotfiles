@@ -11,7 +11,7 @@ dirout=$2
 RSYNC_OPTS="-rt --progress --delete --size-only"
 
 echo -e "\n=============================================\nStarting sync script"
-read -rs -n1 -p $'\nhit Anykey to dry-run, hit "s" to skip it\n' prompt
+read -rs -n1 -p $'\nhit Anykey to dry-run first, hit "s" to skip it\n' prompt
 # [[ $prompt == "y" || $prompt == "Y" || $prompt == "yes" || $prompt == "Yes" ]] &&
 
 # if ! [[ $prompt == "s" || $prompt == "S" || $prompt == $'\e' ]] ; then
@@ -47,7 +47,7 @@ if [[ $prompt == "" || $prompt == " " ]] ; then
   done
   echo -e "========== rsync done"
 else
-  echo "got $prompt, will exit."
+  echo "got \'$prompt\', will exit."
 fi
 
 sleep 1
