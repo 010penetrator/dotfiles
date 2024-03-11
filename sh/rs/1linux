@@ -256,6 +256,7 @@ git config --global user.name USER
 git stash show -p # see last stash (add stash@{N} for older stash)
 git diff stash@{N} master # compare any stash against master (may add --name-only, or add -- filename)
 git difftool master origin/master -y
+git difftool HEAD~1 HEAD -y # diff head against previous
 git difftool stash^! # diff last stash against its commit
 git difftool stash HEAD # diff last stash against current commit
 git diff mybranch master -- way/somefile.c # diff against other branch
