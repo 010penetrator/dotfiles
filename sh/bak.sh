@@ -67,8 +67,8 @@ echo --bak.hot
     tar -cf "$DEST_DAYLY/work.tar.zst" -I "zstd -10 -T0" -C $workrp/.. $workbn
 
 tar -cf "$DEST_DAYLY/conf.tar.zst" -I "zstd -10 -T0" --ignore-failed-read \
-    -C / etc/fstab etc/udevil/udevil.conf \
-    -C $HOME .ssh .bash_history $(ls .git*tials 2>/dev/null) .cache/dmenu-recent .vim \
+    -C / $(cd / && ls -d etc/fstab etc/udevil/udevil.conf 2>/dev/null) \
+    -C $HOME .bash_history $(cd $HOME && ls -d .ssh .git*tials .cache/dmenu-recent .vim 2>/dev/null) \
     -C /ln/co kitty kitty-themes deadbeef \
     $conditional_line
 
@@ -92,7 +92,7 @@ if [[ $DO_DAY == true ]]; then
     {
         cd $bakhot/daily/ && {
             list=$(ls -dt * | tail -n +11)
-            [[ -n $list ]] && rm -r $list  
+            [[ -n $list ]] && rm -r $list
         }
     }
 fi
@@ -100,7 +100,7 @@ if [[ $DO_WEK == true ]]; then
     {
         cd $bakhot/weekly/ && {
             list=$(ls -dt * | tail -n +16)
-            [[ -n $list ]] && rm -r $list  
+            [[ -n $list ]] && rm -r $list
         }
     }
 fi
