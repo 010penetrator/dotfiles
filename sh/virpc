@@ -12,10 +12,10 @@ if [ -z "$1" ] ; then
 fi
 
 if [[ $EDITOR == nvim ]]; then
-    echo EDITOR is nvim
+    # echo EDITOR is nvim
     nvimrpc.py $*
 elif [[ $EDITOR == vim ]]; then
-    echo EDITOR is vim
+    # echo EDITOR is vim
     vimrpc $*
 fi
 

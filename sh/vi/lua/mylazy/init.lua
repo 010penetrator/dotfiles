@@ -900,6 +900,7 @@ return {
     dependencies = { "ibhagwan/fzf-lua" },
     config = true,
     opts = {
+      autosave = false,
       sessions = {
         sessions_path = H.condMkdir(os.getenv("VICONFDIR"),"session/"),
         sessions_icon = '󰅏 '

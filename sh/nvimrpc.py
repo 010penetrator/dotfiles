@@ -22,6 +22,8 @@ def prepare_commands(mode):
         cli_prefix = "vsplit"
     elif mode == "split":
         cli_prefix = "vsplit"
+    elif mode == "vdiff":
+        cli_prefix = "TabeVdiff"
     else:
         cli_prefix = "e"
     return pre_command, cli_prefix
@@ -43,6 +45,10 @@ def get_cli_input():
         if plain_args:
             # Argument not prefixed with key goes here
             file = plain_args[0]
+            file = os.path.join( os.getcwd(), file )
+        if plain_args and len(plain_args)==2:
+            file =  os.path.join( os.getcwd(), plain_args[0] ) + " " + \
+                    os.path.join( os.getcwd(), plain_args[1] )
     except getopt.GetoptError:
         print("Usage: nvimrpc.py -s /tmp/NVRPCSERVER -m newtab /etc/file")
         sys.exit(3)
@@ -82,15 +88,13 @@ if __name__ == '__main__':
         print("Gonna create empty buffer in existing Neovim instance ")
         sys.exit()
 
-    if file:
-        file = os.path.join( os.getcwd(), file )
 
     pre_command, cli_prefix = prepare_commands(mode)
 
     open_command = (cli_prefix + " " + file) if file else ""
 
-    # print(201, open_command)
-    # quit()
+    if DEBUG:
+        print ("finally, prefix="+cli_prefix, "file="+file)
 
     # Finally call Neovim
     if server_is_present:
@@ -100,6 +104,6 @@ if __name__ == '__main__':
             nvim.command(pre_command)
         nvim.command(open_command)
     else:
-        # print ("finally file is ", file)
-        os.system("NVIMSERV=" + serv + " vinew " + file)
+        if mode != "vdiff":
+            os.system("NVIMSERV=" + serv + " vinew " + file)
 

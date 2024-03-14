@@ -445,6 +445,7 @@ nnoremap ,,w :wa<CR>
 nnoremap ax :q<CR>
 nnoremap ,x :q<CR>
 nnoremap ,dt :tabclose<CR>
+nnoremap ,e :tabclose<CR>
 nnoremap ,q :qa<CR>
 nnoremap ,dd :bd!<CR>
 nnoremap ,bd :BDnJump<CR>
@@ -510,7 +511,7 @@ nnoremap aD     <C-w>80-
 nnoremap ab     <C-w>_<C-w>\|
 nnoremap ac     <C-w>p<C-w>_<C-w>\|
 " grow equal
-nnoremap ah     <C-w>=
+nnoremap ag     <C-w>=
 nnoremap aj     <C-w>w<C-w>_
 nnoremap ak     <C-w>W<C-w>_
 " focus prev window
@@ -775,7 +776,7 @@ nnoremap ,,o ^y$:call system('xdg-open ' . "'" . @" . "'")<CR>
 " system open selected lines
 vnoremap ,,o :<C-U>call SystemOpenEveryLine()<CR>
 " open current line with firefox
-nnoremap ,e ^y$:call system('firefox ' . "'" . @" . "' &")<CR>
+nnoremap ,gf ^y$:call system('firefox ' . "'" . @" . "' &")<CR>
 " google current line
 nnoremap ,go ^y$:call system('google.sh ' . "'" . @" . "'")<CR>
 " yandex current line
@@ -1504,6 +1505,34 @@ function! LoadColor(...)
 endfunction
 command! -nargs=? SaveColor call SetPhase(<f-args>) <bar> call SaveColor(<f-args>)
 command! -nargs=? LoadColor call SetPhase(<f-args>) <bar> call LoadColor(<f-args>) <bar> call CrispBorders()
+
+function! TabeVdiff(...)
+  " function! TabeVdiff(file1,file2)
+  let l:flow="okay"
+  " echo "a0 is " . a:0
+  " echo "a1 is " . a:1
+  if a:0 < 2
+    echom "Not enough args provided! (only " . a:0 . ")"
+    return
+  endif
+  let l:file1 = a:1
+  let l:file2 = a:2
+  if !filereadable(l:file1)
+    let l:flow = 'fail'
+    echom "Can't find file " . l:file1
+  endif
+  if !filereadable(l:file2)
+    let l:flow = "fail"
+    echom "Can't find file " . l:file2
+  endif
+  if l:flow=="fail"
+    return
+  endif
+  " Open two files in diff mode in new tab in vertical split
+  exec "tabe ++ff=unix " . l:file1
+  exec "vert diffsplit  " . l:file2
+endfunc
+command! -nargs=+ TabeVdiff call TabeVdiff(<f-args>)
 
 function! SwitchCE()
   if mapcheck("<C-e>") == ''
