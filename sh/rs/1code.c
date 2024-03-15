@@ -130,7 +130,7 @@ for (unsigned char* p = &buf[0]; *p; ++p)
 fflush(stdin);
 <<std::flush;
 
-ByteArray ba1{"\x38\x39\x42\x01\xA8"};
+ByteArray ba1 {"\x38\x39\x42\x01\xA8"};
 QByteArray ba2 = QByteArrayLiteral("\x38\x39\x42\x01\xA8");
 Stuff::ByteArray ba3{0x38,0x39,0x42,0x01,0xA8};
 const QByteArray requestData0 = QByteArray::fromHex("EE6FBB581BB000000000000000000000000000000000000000000000000005D7171B");
