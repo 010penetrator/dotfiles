@@ -224,6 +224,17 @@ namespace Stuff
 //            printf("%02x ", buf[i]);
         }
 
+struct ComRecipe {
+    ComRecipe(CassTask task, quint32 sft, quint32 len, QString path, quint16 repeats, quint16 timeout)
+        : task(task), path(path), sft(sft), len(len), repeats(repeats), timeout(timeout)
+    { };
+    CassTask task;
+    QString path;
+    quint32 sft;
+    quint32 len;
+    quint16 repeats;
+    quint16 timeout;
+};
 
 mas = new int[n]{0}; // new array & init to zeroes
 

@@ -512,6 +512,7 @@ nnoremap ab     <C-w>_<C-w>\|
 nnoremap ac     <C-w>p<C-w>_<C-w>\|
 " grow equal
 nnoremap ag     <C-w>=
+nnoremap qq     <C-w>=
 nnoremap aj     <C-w>w<C-w>_
 nnoremap ak     <C-w>W<C-w>_
 " focus prev window
