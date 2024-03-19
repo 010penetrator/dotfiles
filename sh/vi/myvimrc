@@ -298,7 +298,7 @@ let mapleader = ""
 map q <Nop>
 " map й q
 nnoremap Q q
-nnoremap m, @@
+nnoremap zm @@
 nnoremap qm @
 " nnoremap ,m @
 

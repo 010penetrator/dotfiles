@@ -1,6 +1,12 @@
 
 bytearray.fromhex("aa bb cc 01 02 03")
 
+
+
+str = f'{(0x400*i):x}'.zfill(8)
+str = '{:x}'.format(taskId*10240 + 0x400*i).zfill(8)
+
+
 # Run the other script
 import subprocess
 subprocess.run(["python", "other.py"])
