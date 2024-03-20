@@ -12,6 +12,7 @@ QTimer::singleShot(50, this, [&]() { fun(); });
 
 QString qq = QString::fromUtf8(u8"фыва");
 
+
 uint64_t thid = (uint64_t)QThread::currentThreadId();
 QString thstr(" @ th_" + QString::number(thid));
 
@@ -67,6 +68,74 @@ if (!QFileInfo::exists(scce->m_pythScriptDef))
         scce->m_fileSet = true;
     }
 }
+
+
+ByteArray ba1 {"\x38\x39\x42\x01\xA8"};
+QByteArray ba2 = QByteArrayLiteral("\x38\x39\x42\x01\xA8");
+Stuff::ByteArray ba3{0x38,0x39,0x42,0x01,0xA8};
+const QByteArray requestData0 = QByteArray::fromHex("EE6FBB581BB000000000000000000000000000000000000000000000000005D7171B");
+std::cout << koef_hex.toHex().toStdString();
+
+
+void reverseBytearray(QByteArray& ba, int dist) {
+    if (ba.size() == 0 || dist<2 )
+        return;
+    // Добить нулями до размера 'dist'
+    int tail = ba.size() % dist;
+    if (tail > 0) {
+        //QByteArray addendum = QByteArray(dist - tail, 0x00);
+        ba.append(dist-tail,0x00);
+    }
+    // Развернуть каждый кусок размером в 'dist' байтов
+    int parts = ba.size() / dist;
+    for (int i = 0; i < parts; i++) {
+        std::reverse(ba.begin() + dist * i, ba.begin() + dist * (i + 1));
+    }
+}
+
+void reverse8bits(unsigned char& b) {
+    b = (b & 0xF0) >> 4 | (b & 0x0F) << 4;
+    b = (b & 0xCC) >> 2 | (b & 0x33) << 2;
+    b = (b & 0xAA) >> 1 | (b & 0x55) << 1;
+}
+void reverse8bits(QByteArray& ba) {
+    // reverse bits inside every byte
+    int size = ba.size();
+    for (int i = 0; i < size; i++) {
+        char& element = ba[i];
+        unsigned char& element_uc = reinterpret_cast<unsigned char&>(element);
+        reverse8bits(element_uc);
+    }
+}
+
+quint32 byteArrayToUint32(const QByteArray& ba)
+{
+    auto count = ba.size();
+    if (count == 0 || count > 4) {
+        return 0; // BAD!
+    }
+    quint32 number = 0U;
+    for (int i = 0; i < count; ++i) {
+        auto b = static_cast<quint8>(ba[count - 1 - i]);
+        number += static_cast<quint32>(b << (8 * i));
+    }
+    return number;
+}
+
+ba1 is constructed from a C-style string literal using QByteArray::QByteArray(const char *data, int size = -1). ba2 is probably the most efficient, see QStringLiteral explained and Qt Weekly #13: QStringLiteral. For ba3 we use a small helper class that extends QByteArray:
+
+QString::number(myNumber,16).rightJustified(5, '0');
+
+namespace Stuff
+{
+    struct ByteArray: public QByteArray
+    {
+        ByteArray(std::initializer_list<unsigned char> lst)
+            : QByteArray(reinterpret_cast<char const *>(lst.begin()), lst.size())
+        {}
+    };
+}
+
 
 std::tuple<QString, QString> TNDiag::LuaCall(QString scriptfilename, QString args) {
     const QString LuaExecPath("../third_part/Lua/lua54.exe");
