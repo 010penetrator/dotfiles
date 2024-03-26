@@ -3,11 +3,36 @@
 
 [ -z "$1" ] && set -- "50%"
 
+cnt=$(find . -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' | wc -l)
+if [ $cnt -eq 0 ]; then
+    echo "!! No pic files in $PWD"
+    exit 1
+fi
+
 mkdir -p respic
-for f in *.png ; do
-    convert "$f" -resize "$1" -sampling-factor 4:2:0  -quality 95%  jpg:respic/"$f".jpg;
+
+if [ $1 == "100%" ]; then
+    res_opt=""
+else
+    res_opt="-resize $1"
+fi
+# echo resopt $res_opt
+
+{
+shopt -s nullglob # Sets nullglob
+shopt -s nocaseglob # Sets nocaseglob
+
+for fi in *.{png,jpg,jpeg}; do
+    case "$fi" in
+        *".png"  ) fo=${fi%.png}.jpg;;
+        *".jpg"  ) fo="$fi";;
+        *".jpeg" ) fo=${fi%.jpeg}.jpg;;
+    esac
+    convert "$fi" $res_opt -sampling-factor 4:2:0  -quality 95%  jpg:respic/"$fo";
 done
-for f in *.jpg ; do
-    convert "$f" -resize "$1" -sampling-factor 4:2:0  -quality 95%  jpg:respic/"$f";
-done
+}
+
+# for f in *.jpg; do
+#     convert "$f" -resize "$1" -sampling-factor 4:2:0  -quality 95%  jpg:respic/"$f";
+# done
 
