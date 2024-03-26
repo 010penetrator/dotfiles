@@ -200,11 +200,12 @@ __fzf_commands__() {
 bind -m emacs-standard -x '"\e\C-j": __fzf_commands__'
 
 fzflocate() {
-  local output
-  output=$(
-    locate -i $* | fzf
+    # echo "$*"
+    local output
+    output=$(
+    locate -i "$*" | fzf
     ) || return
-  echo "$output"
+    echo "$output"
 }
 
 # set variable identifying the chroot you work in (used in the prompt below)
