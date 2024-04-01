@@ -15,6 +15,8 @@ PS1=$'\[$(tput bold)\]\[$(tput setaf 34)\]\u@\h\[$(tput setaf 78)\] \W \[$(tput 
 }
 
 # Aliases #
+alias sc="systemctl "
+alias ssc="sudo systemctl "
 alias bb='tty | grep -q /dev/tty && ( terminusfont; [[ -f /usr/bin/tap ]] && sudo /usr/bin/tap & startx $sh/xinitrc bspwm ) || echo This is not tty!'
 alias tf='terminusfont'
 alias v='VIMINIT="source /ln/sh/vi/vimrc_main" nvim'
