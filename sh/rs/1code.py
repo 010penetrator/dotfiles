@@ -1,3 +1,7 @@
+python -m ensurepip
+print(sys.version_info)
+
+
 
 bytearray.fromhex("aa bb cc 01 02 03")
 
@@ -5,6 +9,7 @@ bytearray.fromhex("aa bb cc 01 02 03")
 
 str = f'{(0x400*i):x}'.zfill(8)
 str = '{:x}'.format(taskId*10240 + 0x400*i).zfill(8)
+str = "{:<14.10f} ".format(float(meas))
 
 
 # Run the other script
@@ -56,9 +61,9 @@ netmask = get_ipv4_netmask_from_nic(if_name, ip_candi) or DEFAULT_NETMASK
 cidr = ipaddress.IPv4Network('0.0.0.0/' + netmask).prefixlen
 
 
-def printBA(ba,cr=16):
+def printBA(ba, cr=16):
     # print()
-    for i in range(0,len(ba),cr):
+    for i in range(0, len(ba), cr):
         line = ba[i:i+cr]
         strHex = line.hex()
         strHexPret = ""
