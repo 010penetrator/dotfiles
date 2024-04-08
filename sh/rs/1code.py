@@ -6,6 +6,7 @@ print(sys.version_info)
 bytearray.fromhex("aa bb cc 01 02 03")
 
 
+id_str = "".join(c if c.isprintable() else "_" for c in id_str )
 
 str = f'{(0x400*i):x}'.zfill(8)
 str = '{:x}'.format(taskId*10240 + 0x400*i).zfill(8)
