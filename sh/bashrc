@@ -65,9 +65,9 @@ elif type -f apt &>/dev/null; then
     alias aa='sudo apt update && sudo apt upgrade'
 fi
 
-if command -v most >/dev/null 2>&1; then
-    export PAGER=most
-fi
+# if command -v most >/dev/null 2>&1; then
+#     export PAGER=most
+# fi
 
 source "$sh"/dmenurc
 
