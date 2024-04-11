@@ -9,7 +9,7 @@ return {
     'lukas-reineke/indent-blankline.nvim', -- usable
     main = "ibl",
     opts = {
-        enabled = true,
+        enabled = false,
         exclude = { filetypes = {'dashboard'}},
         -- indent = { highlight = highlightL, char = "░" },
         -- whitespace = { highlight = highlightL, remove_blankline_trail = false },
