@@ -10,7 +10,7 @@ echo
 
 if ! [[ -d $TARG ]]; then
     echo "(non-existent)" "$TARG" @ $(realpath .)
-    # TARGREAL="not found"
+    TARGREAL=
 else
     echo "$TARG" @ $(realpath .)
     TARGREAL=$(realpath "$TARG")
@@ -36,16 +36,16 @@ fi
 if [[ -n $TARGREAL ]]; then
     if [[ $( grep -F -c "$TARGREAL" "$LIST" ) -gt 0 ]]; then
         echo -- it is in play list
-        INLIST=1
+        INPLIST=1
     else
-        INLIST=0
+        INPLIST=0
     fi
 elif [[ -z $TARGREAL ]]; then
     if [[ $( grep -F -c "$TARG" "$LIST" ) -gt 0 ]]; then
         echo -- it WAS in play list
-        INLIST=1
+        INPLIST=1
     else
-        INLIST=0
+        INPLIST=0
     fi
 fi
 echo
@@ -55,10 +55,11 @@ echo
     echo "q - quit"
 [[ $INVIFM != 1 ]] && \
     echo "c - inspect directory with Vifm"
-[[ $INLIST == 1 ]] && \
-    echo "d - Delete from playlist" || \
+[[ $INPLIST == 1 ]] && \
+    echo "d - Delete from playlist"
+[[ $INPLIST == 0 && ! -z $TARGREAL ]] && \
     echo "a - Add to Playlist"
-[[ $INFAVS == 0 ]] && \
+[[ $INFAVS == 0 && ! -z $TARGREAL ]] && \
     echo "s - Save to Favourites"
 [[ -f $LIST && $INVIFM != 1 ]] && \
     echo "p - play an album from Playlist"
@@ -82,10 +83,10 @@ clear
 source $sh/dmenurc
 if [[ $prompt == "q" ]]; then
     exit
-elif [[ $INLIST != 1 && $prompt == "a" ]]; then
+elif [[ $INPLIST != 1 && $prompt == "a" ]]; then
     echo "$TARGREAL" >> "$LIST"
     RUNAGAIN=1
-elif [[ $INLIST == 1 && $prompt == "d" ]]; then
+elif [[ $INPLIST == 1 && $prompt == "d" ]]; then
     echo deleting $TARGREAL from list
     grep -vF "$TARGREAL" "$LIST" > /tmp/tmplist && mv /tmp/tmplist "$LIST"
     RUNAGAIN=1
