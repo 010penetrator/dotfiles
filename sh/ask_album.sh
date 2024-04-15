@@ -27,22 +27,33 @@ if [[ "$TARG" =~ "torrents/red/" ]]; then
     [[ . -nt /ln/torrents/red/KKK ]] && echo --it is a new torrent
     [[ . -ot /ln/torrents/red/KKK ]] && echo --it is an archive torrent
 fi
-if [[ $( grep -F -c "$TARGREAL" "$FAVS" ) -gt 0 ]]; then
-    echo -- it is in favourites list
-    INFAVS=1
+
+if [[ ! -z $TARGREAL ]]; then
+    if [[ $( grep -F -c "$TARGREAL" "$FAVS" ) -gt 0 ]]; then
+        echo -- it is in favourites list
+        INFAVS=1
+    else
+        INFAVS=0
+    fi
 else
-    INFAVS=0
+    if [[ $( grep -F -c "$TARG" "$FAVS" ) -gt 0 ]]; then
+        echo -- it FORMALLY is in favourites list
+        INFAVS=1
+    else
+        INFAVS=0
+    fi
 fi
-if [[ -n $TARGREAL ]]; then
+
+if [[ ! -z $TARGREAL ]]; then
     if [[ $( grep -F -c "$TARGREAL" "$LIST" ) -gt 0 ]]; then
         echo -- it is in play list
         INPLIST=1
     else
         INPLIST=0
     fi
-elif [[ -z $TARGREAL ]]; then
+else
     if [[ $( grep -F -c "$TARG" "$LIST" ) -gt 0 ]]; then
-        echo -- it WAS in play list
+        echo -- it FORMALLY is in play list
         INPLIST=1
     else
         INPLIST=0
@@ -61,6 +72,8 @@ echo
     echo "a - Add to Playlist"
 [[ $INFAVS == 0 && ! -z $TARGREAL ]] && \
     echo "s - Save to Favourites"
+[[ $INFAVS == 1 ]] && \
+    echo "S - Delete from Favourites"
 [[ -f $LIST && $INVIFM != 1 ]] && \
     echo "p - play an album from Playlist"
 [[ $INVIFM != 1 ]] && \
@@ -89,6 +102,12 @@ elif [[ $INPLIST != 1 && $prompt == "a" ]]; then
 elif [[ $INPLIST == 1 && $prompt == "d" ]]; then
     echo deleting $TARGREAL from list
     grep -vF "$TARGREAL" "$LIST" > /tmp/tmplist && mv /tmp/tmplist "$LIST"
+    sleep 1
+    RUNAGAIN=1
+elif [[ $INFAVS == 1 && $prompt == "S" ]]; then
+    echo deleting $TARG from favs
+    grep -vF "$TARG" "$FAVS" > /tmp/tmplist && mv /tmp/tmplist "$FAVS"
+    sleep 1
     RUNAGAIN=1
 elif [[ $INFAVS == 0 && $prompt == "s" ]]; then
     echo "$TARGREAL" >> "$FAVS"

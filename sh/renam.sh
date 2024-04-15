@@ -14,7 +14,7 @@ fi
 find "$1" \( -name "*[\`:|\$\"\*?]*" -or -name "*\n\n\n*" \) |
     while read NUTSNAME;
     do
-        NEWNAME=$( echo "$NUTSNAME" | tr "\`" "'" | tr ':|@\$\n' '_' | tr -d '\"' | tr '\*' '_' | tr '{}?' '()_' )
+        NEWNAME=$( echo "$NUTSNAME" | tr "\`" "'" | tr ':|@\$' '_' | tr -d '\"' | tr '\*' '_' | tr '{}?' '()_' )
         echo old "$NUTSNAME"
         echo new "$NEWNAME"
         [[ WETRUN -eq 1 ]] && mv -i "$NUTSNAME" "$NEWNAME"
