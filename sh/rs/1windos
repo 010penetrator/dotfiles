@@ -71,10 +71,10 @@ sudo pacman -Syu --needed neovim ncdu vifm fzf git curl wget base-devel p7zip np
 sudo mount -t drvfs j: /mnt/extr
 
 :route WSL2 to LAN
-netsh interface portproxy add v4tov4 `
->> listenport=1234 `
+netsh interfac eportproxy add v4tov4 `
+>> listenport=80 `
 >> listenaddress=0.0.0.0 `
->> connectport=1243 connectaddress=192.168.50.99
+>> connectport=80 connectaddress=192.168.50.50
 netsh interface portproxy show all
 
 :get a list of all the disks and mount one in wsl:
