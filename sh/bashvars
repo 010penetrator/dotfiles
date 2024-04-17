@@ -21,7 +21,7 @@ export "GPG_TTY=$(tty)"
 export PAGER=less
 export BROWSER=firefox
 export tt=$HOME/tt
-export git=$HOME/compy
+export git=$HOME/g
 [[ ! -d $git ]] && [[ -d $sh ]] && [[ -d $(realpath "$sh/../../dotfiles") ]] && export git=$(realpath "$sh/../..") && echo "$"git is a guess!
 [ -d /ln/lo/cur ] && export loc=/ln/lo/cur || export loc=$HOME/.lo/cur
 export bakhot=$HOME/bak
