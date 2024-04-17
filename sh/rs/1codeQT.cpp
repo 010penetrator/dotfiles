@@ -172,3 +172,41 @@ void TNDiag::slot_sayFail() {
         QMessageBox::information(NULL, QString("Ошибка"), QString("Нет ответа от прибора"));
     }
 }
+
+
+int result;
+QEventLoop waitLoop;
+const auto signalReceived = [&result, &waitLoop](bool b)->void {
+    result = b;
+    if (waitLoop.isRunning()) {
+        waitLoop.quit();
+    }
+    };
+const auto ethFailed = [&result, &waitLoop]()->void {
+    result = 10;
+    if (waitLoop.isRunning()) {
+        waitLoop.quit();
+    }
+    };
+const auto lambda1 = [&result, &waitLoop]() {
+    result = 20;
+    //emit m_parent->signal_fizRTsw(false);
+    if (waitLoop.isRunning()) {
+        waitLoop.quit();
+    }
+};
+QTimer* sstimer;
+sstimer = new QTimer();
+sstimer->setSingleShot(true);
+auto con1 = connect(m_parent, &TNDiag::signal_fizRTsw, signalReceived);
+auto con2 = connect(m_parent, &TNDiag::signal_inits_Failed, initsFailed);
+auto con3 = connect(sstimer, &QTimer::timeout, lambda1);
+sstimer->start(timeout);
+emit m_parent->signal_readSwitches();
+waitLoop.exec();  // Blocking wait in new event loop..
+QObject::disconnect(con1);
+QObject::disconnect(con2);
+QObject::disconnect(con3);
+delete sstimer;
+
+

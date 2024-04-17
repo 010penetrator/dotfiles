@@ -1,7 +1,7 @@
 python -m ensurepip
 print(sys.version_info)
 
-
+## int, float, bool, str, tuple, and complex are the most common types of immutable objects; list, set, and dict are the most common types of mutable objects.
 
 bytearray.fromhex("aa bb cc 01 02 03")
 

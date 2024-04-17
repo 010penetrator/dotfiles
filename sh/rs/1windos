@@ -26,6 +26,8 @@ Get-AppxPackage Microsoft.Windows.Photos -AllUsers | Reset-AppxPackage
 %systemroot%\system32\imageres.dll
 %systemroot%\system32\shell32.dll
 
+Get-Command ping
+
 :: Chocolatey
 :psh:
   -NoProfile -ExecutionPolicy unrestricted -Command "iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))" ; SET PATH=%PATH% ; %systemdrive%\chocolatey\bin
@@ -87,6 +89,13 @@ wsl --mount \\.\PHYSICALDRIVE1
 generateResolvConf = false
 /etc/resolv.conf:
 nameserver 8.8.8.8
+
+:Python:
+python --version
+scoop install python
+Get-Command python
+poetry env use "c:\path\python.exe"
+poetry install --no-root
 
 :remove default apps:
 get-appxpackage  | out-gridview -passthru | remove-appxpackage
