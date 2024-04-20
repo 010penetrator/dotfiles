@@ -8,14 +8,14 @@ if ! [[ -d $sh ]]; then
     if [[ -f $HOME/.sh/bashrc ]]; then
         export sh="$HOME/.sh"
     else
-        SELFD=$(dirname $(realpath "$BASH_SOURCE"))
-        echo rp is $SELFD
-        if [[ -d $SELFD/vi && -f $SELFD/all ]]; then
-            export sh="$SELFD"
+        SELFDIR=$(dirname $(realpath "$BASH_SOURCE"))
+        echo rp is $SELFDIR
+        if [[ -d $SELFDIR/vi && -f $SELFDIR/all ]]; then
+            export sh="$SELFDIR"
         fi
     fi
 fi
-# echo sh is $sh
+echo \$sh is $sh
 
 # [ -f $HOME/.bashrc_ORIG ] && source $HOME/.bashrc_ORIG
 [[ -f $sh/bashvars ]] &&      source "$sh/bashvars"

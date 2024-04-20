@@ -1,8 +1,8 @@
 #!/bin/bash
 # Turn current system into handy environment for me!
 
-[[ -z $MYGITDIR ]] && export MYGITDIR=$HOME/compy
-# echo gitdir $MYGITDIR
+[[ -z $MYGITDIR ]] && export MYGITDIR=$HOME/gd
+echo gitdir $MYGITDIR
 
 suc=false
 var='v'
