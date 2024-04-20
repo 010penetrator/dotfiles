@@ -34,6 +34,12 @@
     "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
     "initialCols": 104,
     "initialRows": 39,
+    "newTabMenu": 
+    [
+        {
+            "type": "remainingProfiles"
+        }
+    ],
     "newTabPosition": "afterCurrentTab",
     "profiles": 
     {
@@ -42,14 +48,14 @@
             "adjustIndistinguishableColors": "indexed",
             "bellStyle": "window",
             "colorScheme": "One Half Dark",
-            "cursorShape": "emptyBox",
+            "cursorShape": "filledBox",
             "experimental.retroTerminalEffect": false,
             "font": 
             {
                 "face": "CaskaydiaCove Nerd Font",
                 "size": 12.0
             },
-            "opacity": 93,
+            "opacity": 94,
             "padding": "0",
             "scrollbarState": "hidden",
             "useAcrylic": false,
@@ -80,12 +86,6 @@
                 "hidden": true,
                 "name": "Visual Studio Debug Console",
                 "source": "VSDebugConsole"
-            },
-            {
-                "guid": "{ece9aa19-68f6-5c2f-8d4a-720d0fe69c4a}",
-                "hidden": false,
-                "name": "arch",
-                "source": "Windows.Terminal.Wsl"
             }
         ]
     },
@@ -274,6 +274,29 @@
             "selectionBackground": "#FFFFFF",
             "white": "#D3D7CF",
             "yellow": "#C4A000"
+        },
+        {
+            "background": "#300A24",
+            "black": "#171421",
+            "blue": "#0037DA",
+            "brightBlack": "#767676",
+            "brightBlue": "#08458F",
+            "brightCyan": "#2C9FB3",
+            "brightGreen": "#26A269",
+            "brightPurple": "#A347BA",
+            "brightRed": "#C01C28",
+            "brightWhite": "#F2F2F2",
+            "brightYellow": "#A2734C",
+            "cursorColor": "#FFFFFF",
+            "cyan": "#3A96DD",
+            "foreground": "#FFFFFF",
+            "green": "#26A269",
+            "name": "Ubuntu-ColorScheme",
+            "purple": "#881798",
+            "red": "#C21A23",
+            "selectionBackground": "#FFFFFF",
+            "white": "#CCCCCC",
+            "yellow": "#A2734C"
         },
         {
             "background": "#000000",
