@@ -538,7 +538,7 @@ return {
 
   {
     'https://gitlab.com/HiPhish/nvim-ts-rainbow2', -- okay
-    enable = false,
+    enabled = false,
     config = function()
       H.nmap(',vr', ":TSToggle rainbow<CR>")
     end
