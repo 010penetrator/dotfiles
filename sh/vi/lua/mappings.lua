@@ -8,11 +8,11 @@ vim.api.nvim_command('\
   nnoremap <silent> gh <cmd>ClangdSwitchSourceHeader<CR>|\
 ')
 
+H.nmap('<C-h>', H.teles_ff)
+
 H.nmap('z<Down>', function() vim.lsp.diagnostic.goto_next() end)
 H.Bmap('z<Up>', "k<cmd>vim.lsp.diagnostic.goto_prev")
 H.nmap(',S', vim.lsp.buf.signature_help)
-H.nmap('<C-h>', H.teles_ff)
-
 vim.keymap.set('n','K', vim.lsp.buf.hover, {buffer=0})
 -- H.nmap('gv', function() vim.api.nvim_open_win(true,true,{}) vim.lsp.buf.definition() end)
 H.nmap('gv', function() vim.cmd('vsplit') vim.lsp.buf.definition() end)
@@ -27,6 +27,9 @@ H.nmap('z<down>', vim.diagnostic.goto_next)
 H.nmap('z<up>', vim.diagnostic.goto_prev)
 H.nmap(',R', vim.lsp.buf.rename)
 H.nmap(',a', vim.lsp.buf.code_action)
+H.nmap('gd', vim.lsp.buf.definition)
+H.nmap('gD', vim.lsp.buf.declaration)
+
 H.nmap('m;', ":BookmarksListAll<CR>")
 -- H.nmap(',,q', function() b=require'nvim-possession'.update() print(1,b) if b then vim.cmd[[wqa]] end end )
 -- H.nmap(',,q', function() require'nvim-possession'.update()   end )
@@ -76,6 +79,8 @@ H.nmap('d<', "<cmd>diffget //2<CR>")
 H.nmap('d>', "<cmd>diffget //3<CR>")
 H.nmap(',vn', function()  if vim.o.winbar=='' then vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}" else vim.o.winbar='' end end )
 
+  -------- Finding -----------------------------{{{}}}------
+
 local tele_ivy = require'telescope.themes'.get_ivy{ sort_mru = true, layout_config = { height = vim.opt.lines:get() - 10 } }
 local tele_ivy_cwd = function()
   return require'telescope.themes'.get_ivy{ sort_mru = true, layout_config = { height = vim.opt.lines:get() - 10 }, cwd = require'telescope.utils'.buffer_dir() }
@@ -114,7 +119,6 @@ H.nmap(',<Esc>', ":Dashboard<CR>")
 
 H.nvmap('qe', ":SnipRun<CR>", "Evaluate code")
 
-----------------------------------{{{}}}
 H.nmap('s', ":HopAnywhere<CR>")
 -- H.nmap(',vh', ":LocalHighlightToggle<CR>")
 H.nmap(',vh', ":IlluminateToggle<CR>")
@@ -169,8 +173,6 @@ if package.loaded['cinnamon'] then
   vim.keymap.set('n', 'gd', "<Cmd>lua Scroll('definition')<CR>")
   vim.keymap.set('n', 'gD', "<Cmd>lua Scroll('declaration')<CR>")
 end ]]
-H.nmap('gd', vim.lsp.buf.definition)
-H.nmap('gD', vim.lsp.buf.declaration)
 
 -- vim.keymap.set('n', 'A-;', "<Cmd>exe Toggleterm<CR>")
 -- nnoremap <silent><A-;> <Cmd>exe v:count1 . "ToggleTerm"<CR>

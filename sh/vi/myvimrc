@@ -368,10 +368,13 @@ nnoremap a<Up>   gg:call search('^.')\|call EditAtEdge('up')<CR>
 nnoremap a<Down> G$:call search('^.','b')\|call EditAtEdge('down')<CR>
 
 " extend line with horiz line -----
-nnoremap q- o<esc>64A-<esc>kJ0<esc>60ld$0<esc>40l
-nnoremap q= o<esc>64A=<esc>kJ0<esc>60ld$0<esc>40l
+nnoremap q- o<Esc>64A-<Esc>kJ0<Esc>60ld$0<Esc>40l
+nnoremap q= o<Esc>64A=<Esc>kJ0<Esc>60ld$0<Esc>40l
 " add horiz line
-nnoremap z- o<esc>64A-<esc>0<esc>60ld$0<esc>40l
+nnoremap z- o<Esc>64A-<Esc>0<Esc>60ld$0<Esc>40l
+" add nice separator line
+nnoremap qc o<Esc>88A-<Esc>$11hR{{{}}}<Esc>$59h"_d0R<space><space><C-o>8l
+
 " insert one char
 nnoremap ar :exec "normal  i".nr2char(getchar())."\e"<CR>
 nnoremap af :exec "normal! a".nr2char(getchar())."\e"<CR>
@@ -447,6 +450,7 @@ nnoremap ,x :q<CR>
 nnoremap ,dt :tabclose<CR>
 nnoremap ,e :tabclose<CR>
 nnoremap ,q :qa<CR>
+nnoremap aq :qa<CR>
 nnoremap ,dd :bd!<CR>
 nnoremap ,bd :BDnJump<CR>
 nnoremap ,di :diffthis \| wincmd w<CR>
@@ -617,7 +621,7 @@ nnoremap ,V :source $MYVIMRC<CR>
 nnoremap ,,v :source $MYVIMRC<CR>
 nnoremap ,v<space> :source %<CR>
 nnoremap c<BS> :call SetPhase() <bar> call LoadColor() <bar> call CrispBorders()<CR>
-nnoremap ,,z :source $VICONFDIR/session/df <bar> silent call AddRpcEar()<CR>
+" nnoremap ,,z :source $VICONFDIR/session/hop <bar> silent call AddRpcEar()<CR>
 " nnoremap ,,q :call SaveColor() <bar> SSave! comon <bar> wqa<CR>
 " nnoremap ,,s :call SaveColor() <bar> SSave! comon<CR>
 " nnoremap ,,q :call SaveColor() <bar> mksession! $VICONFDIR/session/comon<bar> wqa<CR>
@@ -708,14 +712,15 @@ vnoremap <C-l> :g/^$/d<CR>:noh<CR>
 " yank inline
 nnoremap yc ^y$"+y$"*y$
 " yank current file full path/name
-nnoremap y. :let @" = expand('%:p')<CR>
+nnoremap yf :let @" = expand('%:p')<CR>
+nnoremap yd :let @" = expand('%:p:h')<CR>
 " replace current word with register contents
 nnoremap cp "_ciw<c-r>"<esc>
 nnoremap co "_ciw<c-r>*<esc>
 nnoremap cO "_ciw<c-r>+<esc>
 
 " Commanding Vim
-nnoremap cz :<up>
+nnoremap cr :<up>
 " vnoremap q; :<up>
 nnoremap cc :
 cnoremap <C-a> <Home>
@@ -805,13 +810,13 @@ nnoremap ,vg :GitGutterToggle<CR>
 
 " Make and run project
 nnoremap ,zo :make<bar> copen<CR>
-nnoremap ,zd :call BuildProjectUni("my_Makefile","make -f my_Makefile distclean")
-nnoremap ,zx :call BuildProjectUni("my_Makefile","make -f my_Makefile clean")<CR>
-nnoremap ,zm :call BuildProjectUni("my_Makefile","make -f my_Makefile")<CR>
-nnoremap ,zr :call BuildProjectUni("Makefile","make -f my_Makefile run")<CR>
-nnoremap ,zb :call BuildProjectUni("my_Makefile","make -f my_Makefile bear")<CR>
+nnoremap ,zd :call BuildProjectUni("myMakefile","make -f myMakefile distclean")
+nnoremap ,zx :call BuildProjectUni("myMakefile","make -f myMakefile clean")<CR>
+nnoremap ,zm :call BuildProjectUni("myMakefile","make -f myMakefile")<CR>
+nnoremap ,zr :call BuildProjectUni("Makefile","make -f myMakefile run")<CR>
+nnoremap ,zb :call BuildProjectUni("myMakefile","make -f myMakefile bear")<CR>
 " nnoremap ,XX :call BuildProjectUni("Makefile","make tags") <bar> cwindow<CR>
-" nnoremap ,zm :lcd %:p:h <bar> call BuildProjectUni("Makefile","make -f my_Makefile") <bar> redraw! <bar> copen<CR>
+" nnoremap ,zm :lcd %:p:h <bar> call BuildProjectUni("Makefile","make -f myMakefile") <bar> redraw! <bar> copen<CR>
 nnoremap ,z/ :copen<CR>/error<CR>
 
 " Folding
@@ -1462,12 +1467,12 @@ function! LoadColor(...)
   " endif
   " echo ' '
   if l:switch=='dunno'
-    echo "Will load very default colors."
+    echom "Will load very default colors." | redraw
     if exists("g:colors_name") | unlet g:colors_name | endif
     source $sh/vi/vimrc_themes
   elseif l:switch=='day'
     if !exists("g:ColorDayName")
-      echom "NO saved colors for this phase of day! Loading defaults..(day)"
+      echom "NO saved colors for this phase of day! Loading defaults..(day)" | redraw
       if exists("g:colors_name") | unlet g:colors_name | endif
       source $sh/vi/vimrc_themes
     else
@@ -1482,7 +1487,7 @@ function! LoadColor(...)
     " echo "phase=" . l:switch . ", color=" . g:ColorDayName . ", linecolor=" . l:llcol
   elseif l:switch=='nox'
     if !exists("g:ColorNoxName")
-      echom "NO saved colors for this phase of day! Loading defaults..(nox)"
+      echom "NO saved colors for this phase of day! Loading defaults..(nox)" | redraw
       if exists("g:colors_name") | unlet g:colors_name | endif
       source $sh/vi/vimrc_themes
     else
@@ -1496,12 +1501,11 @@ function! LoadColor(...)
     let l:llcol = exists("g:ColorNoxLine") ? g:ColorNoxLine : 'none'
     " echo "phase=" . l:switch . ", color=" . g:ColorNoxName . ", linecolor=" . l:llcol
   else
-    echo "Unknown phase of day!"
+    echom "Unknown phase of day!"
   endif
   if  wanted_color != ''
     exec "colo " .  wanted_color
-    echo ' '
-    echo "phase=" . l:switch . ", color=" . wanted_color . ", linecolor=" . l:llcol
+    echom "phase=" . l:switch . ", color=" . wanted_color . ", linecolor=" . l:llcol
   endif
 endfunction
 command! -nargs=? SaveColor call SetPhase(<f-args>) <bar> call SaveColor(<f-args>)

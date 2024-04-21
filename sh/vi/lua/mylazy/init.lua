@@ -30,7 +30,7 @@ return {
   -- 'vim-scripts/QuickBuf',
   -- 'derekwyatt/vim-fswitch',
 
-  ---- NEOVIM ONLY -----{{{}}}------------------------------
+  ------- NEOVIM ONLY --------------------------{{{}}}------
 
   {
     'nvim-telescope/telescope.nvim', branch = '0.1.x',
@@ -70,7 +70,10 @@ return {
 
   'nvim-lua/plenary.nvim', --- library
   'powerman/vim-plugin-ruscmd', -- works
-  'williamboman/mason.nvim', -- base --- load TS servers
+
+  'williamboman/mason.nvim', -- base --- load lang tools
+  'williamboman/mason-lspconfig.nvim',
+
   'mfussenegger/nvim-dap',
   'mfussenegger/nvim-lint',
   'jay-babu/mason-nvim-dap.nvim',
@@ -154,22 +157,27 @@ return {
   },
 
   {
-    'utilyre/barbecue.nvim', -- maybe
-    enabled = true,
-    dependencies = { 'SmiteshP/nvim-navic' },
-    name = "barbecue",
-    version = "*",
-    opts = {
-      exclude_filetypes = { "netrw", "toggleterm", "" },
-    },
-  },
-
-  {
     'neovim/nvim-lspconfig',
     dependencies = {
       'SmiteshP/nvim-navbuddy',
       'nvimdev/lspsaga.nvim',
     },
+  },
+
+  {'VonHeikemen/lsp-zero.nvim', branch = 'v3.x'}, -- dig
+  'hrsh7th/cmp-nvim-lsp',
+  'hrsh7th/nvim-cmp',
+  'amarakon/nvim-cmp-buffer-lines', -- dig
+  'hrsh7th/cmp-buffer',
+  'hrsh7th/cmp-path',
+  'hrsh7th/cmp-cmdline',
+  {
+    "jay-babu/mason-null-ls.nvim",
+    dependencies = {
+      "williamboman/mason.nvim",
+      "jose-elias-alvarez/null-ls.nvim",
+    },
+    event = { "BufReadPre", "BufNewFile" },
   },
 
   {
@@ -184,25 +192,18 @@ return {
     'SmiteshP/nvim-navic', -- good --- Nav string
     opts = { lsp = { auto_attach = true } }
   },
-
-  'williamboman/mason-lspconfig.nvim',
-  'VonHeikemen/lsp-zero.nvim', -- dig
-  'amarakon/nvim-cmp-buffer-lines', -- dig
-  'hrsh7th/nvim-cmp',
-  'hrsh7th/cmp-buffer',
-  'hrsh7th/cmp-path',
-  'hrsh7th/cmp-cmdline',
-  'hrsh7th/cmp-nvim-lsp',
   {
-    "jay-babu/mason-null-ls.nvim",
-    dependencies = {
-      "williamboman/mason.nvim",
-      "jose-elias-alvarez/null-ls.nvim",
+    'utilyre/barbecue.nvim', -- maybe
+    enabled = true,
+    dependencies = { 'SmiteshP/nvim-navic' },
+    name = "barbecue",
+    version = "*",
+    opts = {
+      exclude_filetypes = { "netrw", "toggleterm", "" },
     },
-    event = { "BufReadPre", "BufNewFile" },
   },
 
-  'kevinhwang91/rnvimr', --- include ranger
+  'kevinhwang91/rnvimr', --- use ranger
 
   {
     'chentoast/marks.nvim', -- great --- better marks and more
@@ -381,9 +382,13 @@ return {
       -- turn it off on start
       require'lsp_lines'.toggle()
       require'lsp_lines'.toggle()
+      require'lsp_lines'.setup()
+      -- Disable virtual_text since it's redundant due to lsp_lines.
+      vim.diagnostic.config({virtual_text = false})
     end,
     -- keys = ",l",
   },
+
 
   {
     'folke/trouble.nvim',
@@ -610,7 +615,7 @@ return {
 
   'nullchilly/fsread.nvim', -- funky --- read fast
 
-  --------tryout-------------------------------{{{}}}-------
+  ------ Tryout --------------------------------{{{}}}------
 
   {
     'NStefan002/speedtyper.nvim',
@@ -857,7 +862,12 @@ return {
           -- label = '',
           action = 'Telescope find_files cwd=',
         },
-        mru = { limit = 6, icon = ' ', label = '', },
+        mru = {
+          enable = true,
+          limit = 12,
+          icon = ' ',
+          -- label = '',
+        },
         footer = {'',' Do one thing, do it well'},
       },
     }
@@ -911,16 +921,16 @@ return {
     },
     init = function()
       local possession = require("nvim-possession")
-      vim.keymap.set("n", ",sl", function()
+      vim.keymap.set("n", ",i", function()
         possession.list()
       end)
-      vim.keymap.set("n", ",sn", function()
+      vim.keymap.set("n", ",O", function()
         possession.new()
       end)
-      vim.keymap.set("n", ",,s", function()
+      vim.keymap.set("n", ",o", function()
         possession.update()
       end)
-      vim.keymap.set("n", ",sd", function()
+      vim.keymap.set("n", ",k", function()
         possession.delete()
       end)
     end,
@@ -948,7 +958,7 @@ return {
   -- 'altermo/ultimate-autopair.nvim',
   -- 'nyngwang/murmur.lua', -- problem
 
-  -- 'L3MON4D3/LuaSnip',
+  -- 'L3MON4D3/LuaSnip', -- problems
   -- 'saadparwaiz1/cmp_luasnip',
 
 

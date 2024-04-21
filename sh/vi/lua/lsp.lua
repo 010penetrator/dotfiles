@@ -40,6 +40,23 @@ lsp_installer.on_server_ready(function(server)
     server:setup(opts)
 end) ]]
 
+  -------- Lsp-zero with Mason -----------------{{{}}}------
+
+local lsp_zero = require("lsp-zero").preset({})
+lsp_zero.on_attach(function(client, bufnr)
+  lsp_zero.default_keymaps {
+    buffer = bufnr,
+    preserve_mappings = false,
+  }
+  -- print("lsp-zero added")
+  -- require("nvim-navbuddy").attach(client, bufnr)
+  -- require("nvim-navic").attach(client, bufnr)
+  -- print("navbuddy & navic attached!")
+end)
+
+-- require('lspconfig').lua_ls.setup(lsp_zero.nvim_lua_ls())
+-- lsp_zero.setup()
+
 local masonpath
 if vim.env.PLUGDIR then
   masonpath = H.path_join( vim.env.PLUGDIR , "..", "nvmsn" )
@@ -51,69 +68,54 @@ require("mason").setup {
   install_root_dir = masonpath,
 }
 
-H.rsetup("mason-nvim-dap")
+require('mason-lspconfig').setup({
+  -- PATH = "prepend", -- "skip" seems to cause the spawning error
+  ensure_installed = { "lua_ls", "bashls", "clangd", "pyright", "cmake", "vimls" },
+  -- this first function is the "default handler"
+  -- it applies to every language server without a "custom handler"
+  handlers = {
+    function(server_name)
+      require('lspconfig')[server_name].setup {
+        on_attach = function() print(server_name, "attached as default") end,
+      }
+    end,
 
-require("mason-lspconfig").setup {
-  ensure_installed = { "lua_ls", "bashls", "clangd", "pyright", "cmake", "vimls" }
-}
+    -- bashls = function()
+    --   require('lspconfig').bashls.setup {
+    --     on_attach = function() print("lsp client is bashls") end,
+    --   }
+    -- end,
+
+    -- pyright = function()
+    --   require('lspconfig').pyright.setup {
+    --     on_attach = function() print("lsp client is pyright") end,
+    --     -- capabilities = nc_capabilities,
+    --   }
+    -- end,
+
+    lua_ls = function()
+      require("lspconfig").lua_ls.setup {
+-- require('lspconfig').lua_ls.setup(lsp_zero.nvim_lua_ls())
+        on_attach = function() print("lsp client is lua_ls") end,
+        settings = {
+          Lua = {
+            diagnostics = { globals = { "vim" } },
+            workspace = { library = { os.getenv("VIMRUNTIME") } },
+          }
+        },
+      }
+    end,
+
+  },
+})
+
+H.rsetup("mason-nvim-dap")
 
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 local nc_capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
--- local navic = require("nvim-navic")
--- -- local navbuddy = H.mrequire("nvim-navbuddy")
--- require("lspconfig").clangd.setup {
---   on_attach = function(client, bufnr)
---     print("lsp client is clangd")
---     if client.server_capabilities.documentSymbolProvider then
---       navic.attach(client,bufnr)
---       print("navic attached!")
---     end
---     -- navbuddy.attach(client, bufnr)
---   end
--- }
-
---[[ require("lspconfig").bashls.setup { on_attach = function() print("lsp client is bashls") end, }
-require("lspconfig").pyright.setup { on_attach = function() print("lsp client is pyright") end, capabilities = nc_capabilities }
-require("lspconfig").cmake.setup { on_attach = function() print("lsp client is cmake") end, capabilities = nc_capabilities }
-require("lspconfig").vimls.setup { on_attach = function() print("lsp client is vimls") end, capabilities = nc_capabilities } ]]
-
--- blc = require("lspconfig").bashls.cmd
-
-
-local lspz = require("lsp-zero").preset({})
-lspz.on_attach( function(client,bufnr)
-  lspz.default_keymaps({buffer = bufnr})
-  print("lsp-zero here")
-  -- require("nvim-navbuddy").attach(client, bufnr)
-  -- require("nvim-navic").attach(client,bufnr)
-  -- print("lsp client is clangd;  ", "navbuddy & navic attached!")
-end)
-
--- (Optional) Configure lua language server for neovim
--- require('lspconfig').lua_ls.setup(lspz.nvim_lua_ls())
-
-lspz.setup()
-
---------------------------------------------{{{}}}----------
-require("lspconfig").lua_ls.setup {
-  -- on_attach = function() print("lsp client is lua_ls") end,
-  settings = {
-    Lua = {
-      diagnostics = { globals = { "vim" } },
-      workspace = { library = { os.getenv("VIMRUNTIME") } },
-    }
-  },
-}
-
-require("lsp_lines").setup()
--- Disable virtual_text since it's redundant due to lsp_lines.
-vim.diagnostic.config({ virtual_text = false, })
-
---------------------------------
---         Completion:        --
---------------------------{{{}}}
+  -------- Completion --------------------------{{{}}}------
 
 vim.opt.completeopt={"menu", "noselect"}
 -- vim.opt.completeopt={"menu", "menuone", "noselect"}
@@ -123,7 +125,7 @@ local cmp = require("cmp")
 
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
---[[ local cmp_mappings = lspz.defaults.cmp_mappings({
+--[[ local cmp_mappings = lsp_zero.defaults.cmp_mappings({
   ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
   ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
   ['<C-y>'] = cmp.mapping.confirm({ select = true }),

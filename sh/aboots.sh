@@ -27,7 +27,7 @@ mkdir -p $MYGITDIR
 
 sudo pacman -S --needed vifm fzf lsb-release wget ranger fd
 
-sudo pacman -S --needed fzf cmake unzip ninja tree-sitter curl npm ripgrep neovim
+sudo pacman -S --needed fzf cmake unzip ninja tree-sitter curl luarocks npm python-pip ripgrep neovim
 
 sudo pacman -S --needed base-devel
 if type -f pacman &>/dev/null; then

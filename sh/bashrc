@@ -86,7 +86,7 @@ rl() { rp=$(realpath "$*");
     { [[ -d $rp ]] && cd "$rp"; } ||
     { [[ -f $rp ]] && cd $(dirname "$rp"); } ||
         echo "No such file or dir path!"; }
-fl() { cat "$sh"/rs/1linux | fzf; }
+flin() { cat "$sh"/rs/1linux | fzf; }
 # fco() { compgen -c | fzf; }
 x() { xdg-open "$*" &> /dev/null & disown; }
 get_space_used() { df -BMB "$1" --output=used | tail -1 | grep -o '[0-9]*'; }
