@@ -1140,16 +1140,16 @@ function! BuildProjectUni(Makefile,Makecommand)
   let curr_directory = expand('%:p:h')
   " change directory
   exec "lcd! " . curr_directory
-  let proj_dir = ClimbToDirWhere(a:Makefile,1)
-  " " !!! ignore cmake-generated Makefile
+  let proj_dir = ClimbToDirWhere(a:Makefile, 1)
+  " " !!! ignore dirs with this marker file to avoid cmake-generated Makefile
   while filereadable("vim_make_ignore")
     cd ../
-    let proj_dir = ClimbToDirWhere(a:Makefile,1)
+    let proj_dir = ClimbToDirWhere(a:Makefile, 1)
   endwhile
   if ( proj_dir != "-1" )
     if has("nvim")
-      echo system("echo -e \"\\n\\n\"--" . a:Makecommand . " @ " . proj_dir . ":")
-      echo system("echo ------------------------------------------------")
+      " echo system("echo -e \"\\n\\n\"--" . a:Makecommand . " @ " . proj_dir . ":")
+      " echo system("echo ------------------------------------------------")
       make
     else
       silent exec "!echo -e \"\\n\\n\"--" . a:Makecommand . " @ " . proj_dir . ":"

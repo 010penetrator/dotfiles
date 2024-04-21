@@ -111,17 +111,17 @@ require('mason-lspconfig').setup({
 
 H.rsetup("mason-nvim-dap")
 
--- nvim-cmp supports additional completion capabilities, so broadcast that to servers
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-local nc_capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
-
   -------- Completion --------------------------{{{}}}------
+
+-- nvim-cmp supports additional completion capabilities, so broadcast that to servers
+-- local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- local nc_capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 vim.opt.completeopt={"menu", "noselect"}
 -- vim.opt.completeopt={"menu", "menuone", "noselect"}
 
 local cmp = require("cmp")
----------local luasnip = require("luasnip")
+-- local luasnip = require("luasnip")
 
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
@@ -134,11 +134,11 @@ local cmp_select = { behavior = cmp.SelectBehavior.Select }
 }) ]]
 
 cmp.setup {
-  snippet = {
-    expand = function(args)
-      luasnip.lsp_expand(args.body)
-    end,
-  },
+  -- snippet = {
+  --   expand = function(args)
+  --     luasnip.lsp_expand(args.body)
+  --   end,
+  -- },
   --[[ mapping = {
     ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
     ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
@@ -161,8 +161,8 @@ cmp.setup {
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
+      -- elseif luasnip.expand_or_jumpable() then
+      --   luasnip.expand_or_jump()
       else
         fallback()
       end
@@ -170,8 +170,8 @@ cmp.setup {
     ['<S-Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
+      -- elseif luasnip.jumpable(-1) then
+      --   luasnip.jump(-1)
       else
         fallback()
       end
@@ -179,7 +179,7 @@ cmp.setup {
   },
   sources = {
     { name = 'nvim_lsp' },
-    { name = 'luasnip' }, -- For luasnip users.
+    -- { name = 'luasnip' }, -- For luasnip users.
     -- { name = 'vsnip' }, -- For vsnip users.
     -- { name = 'ultisnips' }, -- For ultisnips users.
     -- { name = 'snippy' }, -- For snippy users.

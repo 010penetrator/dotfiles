@@ -58,7 +58,7 @@ vim.keymap.set('x', 'qp', '\"lp')
 H.Bmap('<C-PageUp>',   ":BufferLineCyclePrev<CR>", { silent = true })
 H.Bmap('<C-PageDown>', ":BufferLineCycleNext<CR>", { silent = true })
 
-H.nmap(',n', ":NeoTreeRevealToggle<CR>")
+H.nmap(',n', ":Neotree reveal toggle<CR>")
 -- H.nmap(',N', ":NeoTreeClose<CR>")
 H.nmap(',<BS>', ":Neotree reveal_force_cwd<CR>")
 H.nmap('-', ":Neotree reveal_force_cwd current<CR>")
