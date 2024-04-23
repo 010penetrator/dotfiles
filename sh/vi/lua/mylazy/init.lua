@@ -467,10 +467,10 @@ return {
       local hop = require('hop')
       hop.setup { keys = 'etovxqpdygfblzhckisuran' }
       local directions = require('hop.hint').HintDirection
-      vim.keymap.set('n', 'f', function() hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true }) end, {remap=true})
-      vim.keymap.set('n', 'F', function() hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true }) end, {remap=true})
-      vim.keymap.set('n', 't', function() hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true, hint_offset = -1 }) end, {remap=true})
-      vim.keymap.set('n', 'T', function() hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 }) end, {remap=true})
+      -- vim.keymap.set('n', 'f', function() hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true }) end, {remap=true})
+      -- vim.keymap.set('n', 'F', function() hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true }) end, {remap=true})
+      -- vim.keymap.set('n', 't', function() hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true, hint_offset = -1 }) end, {remap=true})
+      -- vim.keymap.set('n', 'T', function() hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 }) end, {remap=true})
     end,
   },
 
@@ -840,7 +840,7 @@ return {
           {
             desc = ' dotfiles',
             group = 'Number',
-            action = 'Telescope dotfiles',
+            action = 'require"telescope.builtin".find_files({ search_dirs={ os.getenv("loc"), os.getenv("sh"), os.getenv("tt") } }) ',
             key = 'd',
           },
           {

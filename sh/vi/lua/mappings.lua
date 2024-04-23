@@ -85,7 +85,6 @@ local tele_ivy = require'telescope.themes'.get_ivy{ sort_mru = true, layout_conf
 local tele_ivy_cwd = function()
   return require'telescope.themes'.get_ivy{ sort_mru = true, layout_config = { height = vim.opt.lines:get() - 10 }, cwd = require'telescope.utils'.buffer_dir() }
 end
-local telebin = require'telescope.builtin'
 function Tele_buff_ivy() require("telescope.builtin").buffers( tele_ivy ) end
 local tele_drop = require("telescope.themes").get_dropdown{ sort_mru=true, winblend=9, layout_config = { height=21 } }
 function Tele_buff_drop() require("telescope.builtin").buffers( tele_drop ) end
@@ -99,9 +98,9 @@ H.nmap(',fo', require("telescope.builtin").oldfiles, "Telescope [F]ind [O]ld fil
 H.nmap(',fr', require("telescope.builtin").lsp_references, "Telescope [F]ind [R]eferences")
 H.nmap('qf', "<cmd> call GetProjDir() <bar> exec 'Telescope find_files cwd=' . expand(b:proj_dir)<CR>", "[F]ind my text [F]iles")
 -- H.nmap(',/',  ":Telescope find_files search_dirs=$sh,$tt,$loc<CR>")
-H.nmap(',/', function() telebin.find_files({ search_dirs={ os.getenv("loc"), os.getenv("sh"), os.getenv("tt") } }) end )
+H.nmap(',/', function() require'telescope.builtin'.find_files({ search_dirs={ os.getenv("loc"), os.getenv("sh"), os.getenv("tt") } }) end )
 -- H.nmap(',,/', ":Telescope find_files theme=ivy search_dirs=$sh,$PWD")
-H.nmap(',,/', function() telebin.find_files({ search_dirs={ os.getenv("sh"), os.getenv("tt"), vim.fn.getcwd() } }) end )
+-- H.nmap(',,/', function() require'telescope.builtin'.find_files({ search_dirs={ os.getenv("sh"), os.getenv("tt"), vim.fn.getcwd() } }) end )
 H.nmap(',fg', ":Telescope live_grep theme=ivy<CR>")
 H.nmap(',fd', ":Telescope live_grep theme=ivy search_dirs=%<CR>")
 H.nmap(',fd', function() require'telescope.builtin'.live_grep( tele_ivy_cwd() ) end)
