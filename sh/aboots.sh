@@ -59,6 +59,7 @@ mkdir -p /ln/ho/.lo/cur
 ln -sfn /ln/ho/.lo lo
 [ -d mo ] || ln -sn  /mnt mo
 ln -sfn /ln/ho/.config co
+ln -sfn $git gd
 ln -sfn /ln/mo/blink bl
 ln -sfn /ln/mo/fast fast
 ln -sfn /ln/fast/hh hh
