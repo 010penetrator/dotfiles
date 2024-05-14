@@ -308,8 +308,6 @@ git restore --source=master '*.vcxproj'
 
 
 
-
-
 ==NET
 ip link
 w=$(ip link | grep wlp | cut -f 2 -d : | cut -b 2-) # get wireless adapter name
