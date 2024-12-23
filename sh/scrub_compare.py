@@ -57,11 +57,11 @@ def summary():
     print("Only Right", len(listOnlyB))
     print("Different", len(listDifer))
     # global fileA, fileB
-    outfile = open("outfile___", 'w', encoding="utf-8")
+    outfile = open("compare_summary_", 'w', encoding="utf-8")
     # for name in listOnlyA:
-    #     outfile.write("eL:"+name+"\n")
+    #     outfile.write("onlyL:"+name+"\n")
     # for name in listOnlyB:
-    #     outfile.write("eR:"+name+"\n")
+    #     outfile.write("onlyR:"+name+"\n")
     for ent in listDifer:
         outfile.write("difer:"+ent+"\n")
     for ent in listUniq:
@@ -83,17 +83,17 @@ if __name__ == '__main__':
     fdA = open(fileA, 'r', encoding="utf-8")
     fdB = open(fileB, 'r', encoding="utf-8")
     
-    heapA = []
-    heapB = []
+    # heapA = []
+    # heapB = []
     eofA = eofB = False
     stayA = stayB = False
     # for lineA in fdA:
 
-    paraA = get_entry(fdA)
-    paraB = get_entry(fdB)
-    if not paraA or not paraB:
+    pairA = get_entry(fdA)
+    pairB = get_entry(fdB)
+    if not pairA or not pairB:
         errpanic("cant begin")
-    # print(paraA)
+    # print(pairA)
 
     for i in range(1000000):
         if (i%10000==0):
@@ -102,40 +102,40 @@ if __name__ == '__main__':
             elif eofB:
                 print("inc ", i, "eof right")
             else:
-                print("inc ",i, paraA[0], "vs", paraB[0])
+                print("inc ",i, pairA[0], "vs", pairB[0])
             print ("stayA", stayA, "stayB", stayB)
-        if not paraA and not paraB:
+        if not pairA and not pairB:
             print("Complete  at inc ",i)
             summary()
-        elif not paraA:
+        elif not pairA:
             eofA = True
-            listOnlyB.append(paraB)
-        elif not paraB:
+            listOnlyB.append(pairB)
+        elif not pairB:
             eofB = True
-            listOnlyA.append(paraA)
-        if paraA and paraB:
-            if paraA[0] == paraB[0]:
-                if paraA[1] == paraB[1]:
-                    # listEqual.append(paraA[0])
-                    # print(paraA[0], "okay")
+            listOnlyA.append(pairA)
+        if pairA and pairB:
+            if pairA[0] == pairB[0]:
+                if pairA[1] == pairB[1]:
+                    # listEqual.append(pairA[0])
+                    # print(pairA[0], "okay")
                     okayCnt +=1
                     stayA = False
                     stayB = False
                 else:
-                    listDifer.append(paraA[0])
+                    listDifer.append(pairA[0])
             else:
-                if paraA[0] > paraB[0]:
-                    listOnlyB.append(paraB[0])
-                    listUniq.append("eR:"+paraB[0])
-                    # paraB = get_entry(fdB)
+                if pairA[0] > pairB[0]:
+                    listOnlyB.append(pairB[0])
+                    listUniq.append("onlyR:"+pairB[0])
+                    # pairB = get_entry(fdB)
                     stayA = True
                     stayB = False
-                elif paraA[0] < paraB[0]:
-                    listOnlyA.append(paraA[0])
-                    listUniq.append("eL:"+paraA[0])
+                elif pairA[0] < pairB[0]:
+                    listOnlyA.append(pairA[0])
+                    listUniq.append("onlyL:"+pairA[0])
                     stayB = True
                     stayA = False
-                    # paraA = get_entry(fdA)
+                    # pairA = get_entry(fdA)
         # else:
         #     errpanic("on inc"+str(i))
         if eofA:
@@ -143,12 +143,14 @@ if __name__ == '__main__':
         if eofB:
             stayA = False
         if not eofA and not stayA:
-            paraA = get_entry(fdA)
+            pairA = get_entry(fdA)
         if not eofB and not stayB:
-            paraB = get_entry(fdB)
+            pairB = get_entry(fdB)
 
-        # heapA.append(paraA)
+        # heapA.append(pairA)
         # heapB.append(heapB)
 
+    fdA.close()
+    fdB.close()
 
 

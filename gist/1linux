@@ -1,0 +1,551 @@
+# vim: ts=4 sw=4 ft=text
+# some Bash oneliners AND pieces of general Linux wise
+
+== Install
+BASE: base-devel inetutils earlyoom kbd plocate mlocate udevil cylon inxi
+ARCHIE: pacli pakku yay baph
+TUI: qalc networkmanager nmtui sshfs mc clex lfm ranger vifm z nnn fff exa eza fd lftp fzf ripgrep silversearcher-ag ncdu tree p7zip hyperfine htop btop ytop bashtop bpytop glances dmenu keratin screenfetch lolcat bat tmux bc tty-clock
+X: xorg-server xorg-xinit xterm kitty tilda termit urxvt rofi xlunch xvkbd xclip redshift xscreensaver nitrogen dunst unclutter-xfixes xbanish gmrun scrot flameshot wmctrl xdotool compton picom wbar
+FIRMWARE: bluez-utils usbutils
+GTKtune: lxappearance oomox wpgtk pop-gtk-theme
+BRO: luakit links w3m midori jumanji uzbl netsurf *epiphany palemoon
+TED: vim kakoune cudatext sublime-text geany mousepad scribes gedit xed tea-editor focuswriter QtCreator VSCode codeblocks SciReto
+GUI: thunar nemo gvfs-mtp blueberry ulauncher fsearch file-roller xarchiver speedcrunch abiword keepassx2 Bitwarden hardinfo brasero *xfburn filelight baobab synapse *screengrab *wicd-gtk *ezame xfce4-appfinder whiskermemu gnome-character-map
+DEVEL: bear compiledb gittyup gitahead tig gitg gitfiend gitkraken
+MEDIA: mpv vlc youtube-viewer mediainfo ffmpeg audacity kwave ocenaudio sox mkvtoolnix-gui spek shntool cuetools wavpack mac vorbis-tools *soundkonverter *flacon rubyripper *whipper puddletag easytag picard *kid3 *hrizopea *pitivi shotcut *vidiot *kdenlive
+IMG: exiftool nomacs gpicview qview ristretto imv vimiv photoqt phototonic gthumb eog viewnior imagemagick feh qimgv eom imv sxiv pqiv darktable digikam shotwell gcolor3 findimagedupes
+DRAW: pinta kolourpaint mypaint mtpaint krita blender
+LISTEN: deadbeef qomp nulloy clementine exaile musique yarock qmmp audacious gmusicbrowser cantata tomahawk mocp *ncmpc cmus
+READ: zathura atril qpdfview mupdf djview fbreader koreader fbless evince okular *calibr
+HDD: gparted cfdisk testdisk f3probe photorec extundelete smartcontrol wipefreespace mondorescue grub-customizer woeusb windows2usb hdparam
+DL: transmission tremc youtube-dl rtorrent-ps *aria2 *rutorrent jdownloader2
+LEARN: klavaro gtypist solfege brainworkshop stellarium
+GAMES: ctris urw powermanga pybik caph phlipple knetwalk cgoban liquidwar cultivation neverball typespeed speedpad minuet
+STUDIO: avlinux kxstudio ardour lmms calf guitarix rakarrack hydrogen zynaddsubfx amsynth qsynth
+STUDIO-BASE: jack2 qjackctl vmpk alsa-utils gtklick gtick fluidsynth soundfont-fluid *timidity pulseeffects pulseaudio-alsa
+CHAT: weechat irssi *jitsi pidgin hexchat ring retroshare sylpheed
+SCIENT: gnuplot kst2 scipy scilab mathmod
+DEB-only: xinput psmisc
+DIAGRAM: draw.io Mermaid kroki.io Excalidraw miro dia staruml PlantUML
+
+--Debian pkgs
+dmenu rofi wmctrl xdotool kitty pavucontrol htop btop vifm fdisk gparted nnn thunar bash-completion sxhkd fonts-hack ncdu xclip zathura zathura-djvu gitg mpv remmina xinput feh rsync inxi lshw mediainfo ripgrep silversearcher-ag libnotify-bin imagemagick efibootmgr unrar sox sox-fmt-all git make cmake curl zstd zip gparted strace speedcrunch exuberant-ctags udevil qalc fzf qemu-system fd-find python3-neovim nitrogen lxappearance dunst virtualbox fonts-firacode redshift python-is-python3 fonts-terminus fonts-liberation earlyoom unzip evince testdisk hardinfo audacity sox shntool cuetools wavpack vorbis-tools nomacs tmux rfkill testdisk abiword ncal linux-cpupower picom scrot vim-gtk mlocate clang-format
+qmake6 cpulimit qtcreator qtcreator-doc qtcreator-data build-essential qtbase5-examples qtbase5-dev gcc-9 g++-9
+
+== RICE
+MultiBrowser:
+Vimium uBlock Raindrop.io DarkReader SingleFile BrowsecVPN CensorTracker
+Firefox:
+TabStash Sidebery VerticalTabsReloaded TabSessionManager NoPlaylistAutoplayForYouTube HLSdownloader CuteSaveButton HumbleNewTabPage ScrollAnywhere TabSuspender tablist_slymax hide-scrollbars *DefaultZoom FixedZoom Tabliss SimpleCloseTabButton PanoramaTabGroups RunetCensorshipBypass
+FF themes: Catppuccin-Muave by clue
+Chrome:
+CVim Surfingkeys MidnightLizard Stylus Rescroller Bookmarkie TidyBookmarks NeaterBookmarks RecentBookmarks EmptyNewTabPage CopyTabInfo CopyUrl.rus
+УскоритьЮтубБесплатно
+
+
+== Arch
+bluetoothctl
+
+--see hint on how to copy FF profile at about:support
+Fonts: Cantarell Liberation DejaVu Noto Arimo Tinos Caslon EB-Garamond Euclid-Circular-A
+Fonts Mono: xos4Terminus LiberationMono SFMono Noto Input Fira FiraCode Hack DejaVuSansMono SourceCodePro Tamzen OhSnap industry
+gtk: lounge pop mediterraneandarkest adapta mint-y flattastic libra-dark mona-3.0 carbonico arc-dark vertex menda-dark adwaita-maia green-submarine high-contrast-inverse
+Xcursor.theme: Menda-Cursor Simple-and-Soft pinux moblin breeze pTux
+Icons: Moka Breeze ultraflat maia ardis papirus
+Gnome3: Arc-menu,
+gnome-shell-extension-top-icons-plus
+gnome-shell-extension-dashtodock
+gnome-shell-extension-dash-to-panel
+gsettings set org.gnome.mutter overlay-key '' # free Win key in Gnome 3
+gsettings set org.gnome.desktop.sound event-sounds false # mute that Gnome prick
+gsettings set org.gnome.settings-daemon.plugins.orientation active false # disable gyro screen
+gsettings set org.gnome.desktop.interface cursor-theme ***
+gsettings set org.gnome.desktop.interface icon-theme ***
+gsettings set org.gnome.desktop.interface gtk-theme ***
+Gnome dconf-editor : org/gnome/desktop/media-handling : uncheck automount and automount-open
+openbox: Syscrash AmbianceGraphite Natura carbonico Arc
+Cinnamon: Moka dark-glass2
+https://github.com/bhilburn/powerlevel9k
+https://github.com/powerline/fonts/tree/master/LiberationMono
+
+== CONF
+/etc/default/grub
+/boot/grub/grub.cfg
+/etc/systemd/system.conf
+/etc/udevil/udevil.conf
+Put userfonts @ ~/.local/share/fonts/
+Put themes/ and styles/ @ ~/.config/QtProject/qtcreator/
+systemctl enable NetworkManager dhcpcd # enable systemd services
+
+== UNIX
+/etc/passwd
+/etc/group
+showconsolefont ; ls /usr/share/kbd/consolefonts/ ; setfont ter-218b # set tty font
+usermod -a -G vboxusers user1 # add user to group
+groupadd gods # create group
+%gods	ALL=(ALL) NOPASSWD:ALL # gods will not be asked sudo password
+username hostname=(ALL) NOPASSWD:/bin/lsblk # sudo command without password for user
+# sudo takes long time? ==> add $HOSTNAME to /etc/hosts
+%sudo	ALL=(ALL) ALL, NOPASSWD:/usr/bin/lsblk # combo!
+su - # may provide better PATH
+groupadd docker; usermod -aG docker ${USER}; newgrp docker
+ncal -b3M
+printf "%x\n" \'"$somevar" # print char as hex
+reset # reset terminal
+compgen -ac | sort -u # list available commands
+read -n 1 -p "Press any key to continue" # wait for a hit
+read -s -r -p "Enter some value" val; echo "value is $val"
+  # -r Disable backslashes to escape characters.
+  # -s Does not echo the user's input.
+xterm -fa xft:Monospace:size=12:style=Regular:antialias=true
+xterm -geometry 96x36+300+250 -e "vim -S $HOME/.vim/session.vim" &> /dev/null & disown
+urxvt -fn "Hack:size=12:style=Regular:antialias=true"
+diff -y <(xxd foo1.bin) <(xxd foo2.bin) # diff binary files
+vimdiff <(xxd foo1.bin) <(xxd foo2.bin)
+find . -exec touch -r {} /ln/mo/messed/{} \; # copy times
+dmesg -L=always | less -r # dmesg-to-less with colors
+dmesg -wH # dmesg realtime human-readable
+find . -type d -empty -delete # recursively remove empty dirs
+find . -type f -exec chmod 644 {} \; # chmod current dir recursively
+chown -R 1000:100 /media/some-place/ # change ownership to user:users
+sudo chmod -R +w /media/naughty-flash/ # for stuck external (Caution!)
+find /media/  -type f -size +10G -name '\.abc*-*' # find big files
+find . -maxdepth 2 -type d -name "*Getac*"
+find . -type f \( -name  "*mp3" -or -name "*.flac" -or -name "*.ogg" -or -name "*.wv" -or -name "*.ape" \) -printf '%h\n' | sort -u | wc -l # count music folders
+find . \( -name "Makefile" -or -name "CMakeCache.txt" -or -name "CMakeFiles" -or -name "cmake_install.cmake" \) -exec rm -rf {} \; # clean cmake
+rm -rf CMakeFiles/ CMakeCache.txt CMakeUserPresets.json .cache
+ls -lath ~/Downloads/ | head -6 # show recent downloads
+fc -ln -1 # show last command
+fc -ln -1 | cut -c 3- | xclip # yank last command
+convert -size 200x -background transparent -fill black -font Liberation-Mono  label:the\ text result.png # make text pic
+cat > foo.txt ; Hello world! ; press CTRL+D to save file
+mount -o remount,size=1G,noatime /tmp # setup fixed /tmp
+mount -t iso9660 -o loop path/to/image.iso /mnt/iso # mount iso
+grep -r -l <old> * | xargs sed -i 's/<old>/<new>/g'  # change : " ' | in filenames
+watch -n 1 -d sensors # display sensors output once a sec
+echo "" > ~/.local/share/recently-used.xbel # clean recent history
+history --help # useful
+if [[ -z `pgrep transmission-d` ]] ; then transmission-daemon ; fi # start daemon if it is off
+grep ^[^#] /etc/locale.gen # show uncommented locales
+true; false; echo $? # show last command exit status
+true && echo 1 || echo 0 # check true's exit status
+LC_ALL=C man # run command in C locale
+echo "ýêñïåäèòîðà" | iconv  -f utf8 -t cp1252 | iconv -f cp1251 -t utf8
+export LD_LIBRARY_PATH=/usr/lib32
+exec $SHELL -l # re-login
+su - user1 -c uname # run command as user1
+sudo -H -u user2 echo $HOME # check his home dir
+who -r # show run-level
+systemctl list-unit-files
+systemctl list-units --type target # list targets
+systemctl get-default # check default target
+BINDIR=$(dirname "$(readlink -fn "$0")") # where are binaries?
+ps aux | grep mydaemon # is mydaemon running?
+gpg --no-default-keyring --keyring /usr/share/keyrings/debian-role-keys.gpg --verify MD5SUMS.sign.txt MD5SUMS.txt
+cat passlist | while read line ; do gpg -q --batch --passphrase "$line" -d wtf.gpg ; done # dictionary brute force gpg
+free -m # any free ram?
+smem -tw # ram info
+stress --cpu 4 # stress test 4 CPU cores
+yes > /dev/null & # fully load one CPU core
+youtube-dl -f "bestvideo[height<=720]+bestaudio" https://... # fetch youtube
+mpv --ytdl-format='bestvideo[height<=480]+bestaudio' https://... # fetch youtube
+ffmpeg -r 30 -f image2 -i /media/Blink/rr/rma.1%05d.png -vf format=yuv420p,lutyuv="y=negval:u=128:v=128" -vcodec libx264 -crf 20 -pix_fmt yuv420p -preset veryslow /media/fast/pol-r60-s_360.mkv # movie from png
+ffmpeg  -i Videos/MVI_4460.AVI  -vcodec libx264 -crf 21 -pix_fmt yuv420p -profile:v main preset medium output.mp4 # video for phone
+chromium --restore-last-session &> /dev/null & disown # browsing makes you silly
+vlc -vvv cdda://dev/sr0 # listen CD
+while read line ; do deadbeef --queue "$line" ; done # use stdin as arg
+while pgrep -x polybar >/dev/null; do sleep 1; done # wait until the processes have been shut down
+cat /proc/uptime | cut -d ' ' -f1 #get uptime in secs
+cat ~/.ssh/zz_rsa.pub | ssh user@192.168.1.78 "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"  # manually install your public ssh key to remote machine
+sshfs  myphone@192.168.X.X:/storage/emulated/0/  /mnt/  -p 2222
+PAGER=most  or man or ls
+
+== GRUB {{{}}}
+--GRUB update config:
+grub-mkconfig -o /boot/grub/grub.cfg
+--GRUB install for BIOS:
+grub-install /dev/sdX
+--GRUB install for EFI--:
+grub-install --target=x86_64-efi --efi-directory=EfiSystemPart --boot-directory=/boot --bootloader-id=NewName
+--GRUB install for EFI to removable media:
+grub-install --target=x86_64-efi --efi-directory=/media/GLIM --boot-directory=/media/GLIM/boot --removable
+--restore Grub2:
+mount -t ext4 /dev/sdXN /mnt
+mount -t proc /proc /mnt/proc ; mount --bind /dev /mnt/dev ; mount --bind /sys /mnt/sys
+    mount --bind /sys/firmware/efi/efivars /mnt/sys/firmware/efi/efivars
+chroot /mnt #OR# arch-chroot /mnt
+grub-mkconfig -o /boot/grub/grub.cfg ; grub-install /dev/sdX
+--manual grub boot:
+grub2> set root=(hd0,2) ; linux /boot/vmlinuz-linux root=/dev/sdX2 ; initrd /boot/initrd.img ; boot
+--grub rescue to normal mode
+ls; set root=(hd0,msdos1); set prefix=/boot/grub; insmod ext2; insmod normal; normal
+-- btrfs save last entry:
+sudo grub-install --recheck --no-rs-codes --modules="btrfs zstd part_gpt part_msdos"
+sudo update-grub
+--/etc/default/grub
+GRUB_SAVEDEFAULT=true
+GRUB_DEFAULT=saved
+.
+qemu-system-x86_64 -hda /dev/sdc # check bootloader
+grub2> echo $grub_platform # check efi/bios in grub manual
+ls /sys/firmware/efi # check efi mode
+bootlace.com /dev/sdb
+# going nuts with qemu #
+sync && echo 3 | sudo tee /proc/sys/vm/drop_caches ; sudo qemu-system-x86_64 -m 1024  -enable-kvm -hda /dev/sdc
+sudo qemu-system-x86_64 -m 1024 -enable-kvm -boot d -cdrom new_distro.iso
+sync && echo 3 | sudo tee /proc/sys/vm/drop_caches ; sudo qemu-system-x86_64 -m 1400  -enable-kvm -cpu host -smp 4
+sync && echo 3 | sudo tee /proc/sys/vm/drop_caches ; sudo qemu-system-x86_64 -m 1400  -enable-kvm -cpu host -smp 4  -bios $OVMF -boot menu=on  -drive file=/dev/sdb,format=raw
+.
+--grub.cfg option general look:
+menuentry "Local Linux installation" {
+  search --no-floppy --fs-uuid --set ...-..-..-..-...
+  probe --set rootuuid --fs-uuid $root
+  linux /boot/... root=/dev/disk/by-uuid/${rootuuid}
+  initrd /boot/...
+  boot
+}
+
+== X
+setxkbmap -layout 'us,ru' -option 'grp:alt_shift_toggle,grp_led:scroll' # подключить смену языка
+xset s 1800 1800 ; xset -dpms # screen-off timer
+echo -ne "\e]0;xterm\a" # set terminal title
+echo -e "\033]0;newtitle\007" # set terminal title
+wmctrl -r :SELECT: -T 'another title' # now click a window to set its title
+sleep 1 ; xdotool getwindowfocus getwindowname ; xdotool getactivewindow getwindowname
+xinput list-props N # get input device props
+xinput set-prop "pointer:RAPOO RAPOO 2.4G Wireless Device" "Device Accel Constant Deceleration" 3
+xinput --set-prop <device id> 'libinput Accel Profile Enabled' 0, 1
+xinput set-prop 18 "libinput Accel Speed" -.5
+xrdb -merge <(echo "Xft.dpi: 100") # set dpi
+xrdb -query | grep dpi # show DPI
+xrandr --dpi 108 # set DPI
+xdpyinfo | grep dots # show DPI
+sudo rm /etc/fonts/conf.d/70-no-bitmaps.conf; sudo fc-cache -f -v  # enable .pcf font on ubuntu
+mv 'SomeFont.otf' ~/.local/share/fonts/ ; fc-cache -vf ~/.local/share/fonts/ # add otf or ttf font
+fc-cache -vf ~/.local/share/fonts/ # reload user local fonts
+for C in {0..255}; do tput setab $C; echo -n "$C "; done # show colors
+xmodmap -pke; xmodmap -pm # keycodes
+xrandr --size 1366x768 --output DVI-1 --scale 1x1
+xrandr --output DVI-I-1 --mode 1920x1200 --panning 1920x1200
+xwininfo # get window info
+lxqt-config-appearance # set GTK theme, etc.
+ffmpeg -f x11grab -s 1024x768 -r 30 -i $DISPLAY+448,194 -c:v libx264 -pix_fmt yuv420p -preset fast -crf 18  test.mp4 # record screen area
+echo 444 > /sys/class/backlight/intel_backlight/brightness # control screen lamp
+xrandr --output eDP1 --brightness 1.0 # software dim screen brightness
+ps -u $(id -u) -o pid= | while read pid; do
+        cat /proc/$pid/environ 2>/dev/null | tr '\0' '\n' | grep '^DISPLAY=:'
+    done | grep -o ':[0-9]*' | sort -u # return current display id
+
+== FS
+mkfs.vfat -F32 /dev/sdxN # create FAT32 fs
+sync -f . ; time ( dd if=/dev/zero of=zeroes.file bs=100M count=30; sync -f . ); rm zeroes.file  # test drive write speed
+dd bs=4M if=~/image.img of=/dev/sdb && sync # restore partition from file
+dd if=/dev/zero of=/dev/sdx bs=4k && sync # wipe partition
+sudo dd if=/dev/zero of=zero.file # wipe free space # if you don't use sudo then all but 5% of the will be used (5% is reseved for the root login)
+cat /dev/zero > zero.file ; sync ; rm zero.file # wipe free space
+e2label /dev/sdXN mint95 # set ext2+ fs label
+dosfslabel # set ntfs label
+UUID=x-x /path ext4 defaults,rw,nofail,nosuid,nodev,relatime,data=ordered 0 0 #fstab stub
+systemctl daemon-reload # reload fstab
+sudo udevadm control --reload-rules && sudo udevadm trigger # reload udev rules
+fuser -uvm /somedir # show processes accessing a particular directory
+lsof /mnt/disk # list open files
+sudo f3probe --destructive --time-ops /dev/sdX # test fake usb disk
+rsync -rt --progress --delete /media/src/abba/ /media/dest/abba # mirror copy
+rsync -e ssh -av --progress --no-perms --no-times --delete --size-only /path/dir/ user@192.168.1.180:/path/dir/ # mirror copy over ssh
+rsync -e ssh -rln -vK --progress --delete --checksum --stats --no-perms --no-times /ln/dir/ servak@192.162.1.99
+rsync -e 'ssh -i .ssh/key0 -p 2222' -av --progress --no-perms --no-times --delete --size-only myphone@192.168.1.88:/storage/emulated/0/Download/prags-andro/ /ln/pr/prags-andro/ # sync with andro-phone
+rsync -e ssh -av --progress --no-perms --no-times --delete --size-only pi@192.168.1.78:/ln/red/Form*1995* /ln/torrents/red/ # reverse transfer
+rsync -e ssh -Lav --progress --exclude=".*/" --no-perms --no-times --delete --size-only pi@192.168.1.78:/ln/red/ /ln/torrents/red/ # reverse transfer
+7z a dir.7z Dir -p -mhe=on #create encrypted 7z
+7z a -mx=3 -xr!.git -xr!tags out.7z Projekt # create quick 7z
+tar -I 'zstd -v -11 -T0' -cf somedir.tar.zst --exclude='.git' --exclude='tags' somedir # create tar.zst
+sudo tar -I 'zstd -v -10 -T0' -cf $bakcld/sm/root._.tar.zst --one-file-system --exclude='/home/*/Downloads' --exclude '.cache' --exclude='*vifm/Trash/*' / # backup root filesystem
+tar -I 'zstd -v -10 -T0' -cf $bakcld/sm/home._.tar.zst -C /home --exclude='Downloads' --exclude='bak' --exclude='.cache' --exclude='*vifm/Trash/*' . # backup home dir
+sudo sh -c "zstd -v -10 -T0 <$(findmnt / -o SOURCE -n) >$bakcld/sm/rootpart._.zst" # backup root partition
+sudo sh -c "zstd -v -10 -T0 </dev/nvmeXX >/path/bak/part.zst" # backup some partition
+zstdcat root.zst >/dev/nvme0n1p6 # restore zst archived image
+zip -r -1 arc.zip Dir Dir2 #create zip
+
+== GIT {{{}}}
+git log --tags --pretty="%h %d %s"
+git tag -n --list
+git config --list --show-origin
+git switch -c newbranch # create new branch
+git checkout -b newbranch # same
+git config --global --edit
+git config --global user.email "user@mail"
+git config --global user.name USER
+git commit --amend --reset-author --no-edit
+git commit --amend --no-edit --date=now
+git rm --cached dumpfile; git commit --amend # delete some file from commit
+git stash show -p # see last stash (add stash@{N} for older stash)
+git diff stash@{N} master # compare any stash against master (may add --name-only, or add -- filename)
+git difftool master origin/master -y
+git difftool HEAD~1 HEAD -y # diff head against previous
+git difftool stash^! # diff last stash against its commit
+git difftool stash HEAD # diff last stash against current commit
+git diff mybranch master -- way/somefile.c # diff against other branch
+git diff --cached # show the changes that have been staged (i.e. changes in the cache/index)
+git log --stat
+git log -p
+git submodule update --init --recursive  --remote
+# Remove submodule ant its blobs:
+    git rm <path-to-submodule>
+    git commit
+    rm -rf .git/modules/<path-to-submodule>, and
+    git config --remove-section submodule.<path-to-submodule>.
+    #
+    git submodule deinit <submodule>
+    git rm <submodule>
+git fetch origin master:master # update master while staying on your branch
+git show <commithash>:main.cpp > another.cpp # restore file under new name
+git show branch:dir/file.ex # cat file from another branch
+git checkout featureBr -- src/somedir/
+git config --global core.autocrlf input # change eol only when checkout
+git config core.filemode false
+git config credential.helper cache 8h # remember git passwd for 8 hours
+git config --global credential.helper "cache --timeout=28800"
+git config --local credential.helper store # store git passwd
+git config --global diff.tool vimdiff # use vim as difftool
+git config --global difftool.prompt false
+[alias] showtool = "!showci () { rev=${1:-HEAD}; git difftool $rev~1 $rev; }; showci $1"
+git log --follow somefile
+git checkout INDEX~1 somefile # restore somefile just before INDEX commit
+git reset --hard origin/master ; git pull origin master # discard all local changes/commits and pull from upstream
+git clean -fd -n # remove all untracked files
+git rm --cached somefilename.ext # remove file from git
+git --follow file.c # show file history tracking renames
+git status -vv file.c # diff against last commit
+git remote update; git show-branch *master # check if remote master has been updated
+git init --bare /path/portable/proj; cd /path/current/proj; git remote add newname1 /path/portable/proj; git push newname1 master # create local remote repo, maybe on portable media
+git remote -v # display remote url/locations
+git push origin -d branch-name # delete remote branch
+git show-branch -a # display graph ??
+git branch -a # display local and remote branches
+git clone <repo_url> --branch <tag_name> --single-branch # only clone history leading to tip of the tag
+git update-index --assume-unchanged dir/my_specific.h # hide local files from git index
+    Server:
+    git daemon --base-path=/path/to/repo --export-all
+    Client:
+    git remote add LocalServerName git://<serveraddress>/
+    OR
+    git clone git://<serveraddress>/
+git update-index --no-assume-unchanged file.c; git add --force file.c # force add assumed ignored file
+git checkout feature; git merge main # merge main branch into feature
+git merge feature main # merge main branch into feature
+git branch --sort=-committerdate -vv -a
+git checkout Feature; git fetch origin; git rebase origin/master; git checkout master; git pull origin master; git merge Feature; git push origin master  # rebase Feature on master and merge into master
+git restore --source=master '*.vcxproj'
+# to use ssh-url #
+[remote "origin"]
+  url = git@github.com:ACCOUNT/PROJECT.git
+  fetch = +refs/heads/*:refs/remotes/origin/*
+# have colored less listings:
+git config color.status always && (git status | less -r)
+git clone git@gitlab.sitename.org:some_name/proj_name.git
+
+
+# Clang: generate config
+clang-format --style Chromium --dump-config > .clang-format
+
+== NET
+ip link
+w=$(ip link | grep wlp | cut -f 2 -d : | cut -b 2-) # get wireless adapter name
+ip addr show
+ifconfig
+iw dev $w link
+iw dev $w scan # wi-fi
+ip link set dev $w up
+ethtool $w # get info and stuff
+rfkill block all # no aether disturbance!
+wpa_passphrase SSID pass > wifipassfile ; wpa_supplicant -B -i $w -c passfile # connect WPA2
+wpa_supplicant -B -i $w -c <(wpa_passphrase SSID pass) # unsafe oneliner
+sudo dhcpcd $w
+sudo ip address add 172.1.1.21/24 broadcast + dev enp2s0
+/etc/network/interfaces:
+  auto eth0
+  iface eth0 inet static
+    address 172.16.1.3
+    netmask 255.255.255.0
+curl https://wtfismyip.com/text # check ip
+curl ifconfig.me
+curl -s --head http://opennet.ru # check network and date
+wget http://ya.ru --spider # check network
+proxychains sudo wget -O - http://ya.ru
+/etc/proxychains.conf
+    [ProxyList]
+    socks5 82.165.198.169 11818
+sudo nmap -sP 192.168.1-3.0/24
+nmap -p 80 example.com # "ping" by port
+iptables -t nat -A OUTPUT -p tcp -m tcp --dport 80 -d 195.82.146.120/30 -j DNAT --to-destination 163.172.167.207:3128 ##route rutracker torrenting
+nmblookup -S WORKGROUP # find samba places
+date +%T -s "11:14:00" # set date
+date -s "$(curl -s --head http://opennet.ru | grep ^Date: | sed 's/Date: //g')" # set date from a website
+find . -exec  touch -c --date="-1 day -2 hour" {} \; # change file dates into past
+hwclock --systohc # sync hardware clock to system time
+# torify stuff: edit /etc/tor/torrc,/etc/tor/torsocks.conf ; /etc/init.d/tor restart ==> use torsocks
+torify curl http://wtfismyip.com/text
+torsocks curl -s --head http://flibustahezeous3.onion/ # check tor
+curl --proxy socks5h://localhost:1234 ifconfig.me # check socks5 proxy
+curl --socks5 localhost:1234 ifconfig.me # check socks5 proxy
+systemctl restart privoxy ; http_proxy=127.0.0.1:8118 curl ifconfig.me --head # get tor as http proxy
+https_proxy="localhost:8118" wget -q --spider https://ya.ru && echo 1 # check proxy
+
+== HW
+xset r rate 220 30 # set keyboard repeat rate
+sudo modprobe pcspkr ; echo -e '\a' ; rmmod pcspkr ; xset -b # STOP BELL BEEP!
+sudo sh -c "sync && echo 3 > /proc/sys/vm/drop_caches" # drop caches
+echo 3 | sudo tee /proc/sys/vm/drop_caches # using tee for sudo echo
+echo "- - -" > /sys/class/scsi_host/hostX/scan # rescan sata port
+cd /sys/bus/scsi/devices; cat "8:0:0:0/model"; echo 1 > "8:0:0:0/rescan" # rescan sata device
+echo 1 > /sys/block/sda/device/delete # forget hdd
+lsusb -D /dev/bus/usb/003/012
+lsusb -v -s 4:12
+sudo lshw -html > hw.html
+sudo parted /dev/sda unit s print; parted /dev/sda align-check # check alignment
+smartctl --smart=on /dev/sdb; smartctl -a /dev/sdb # get smart
+hdparm -i /dev/hda       # получение характеристик IDE устройства
+hdparm -S 30 /dev/sda    # отключение (остановка) жёсткого диска через 150сек после последнего обращения
+hdparm -Tt /dev/sda      # получение скорости ЧТЕНИЯ с жесткого диска
+sudo smartctl -c /dev/sda         # длительность тестов
+sudo smartctl -t short /dev/sda   # short тест
+sudo smartctl -H /dev/sda         # результаты short теста
+tune2fs -m1 /dev/sdXN # set ext reserved blocks to 1%
+tune2fs -U $(uuidgen) /dev/sdX # change partition's UUID
+# if dd command is used to monitor performance of a drive especially for a usb disk, conv=fsync should be set in order to flush the memory each time during the write operation.
+hwinfo --gfxcard
+inxi -v7 # system info
+
+== MCU
+avrdude -c avrisp -p atmega32u4 -U flash:w:planck_rev4_plasmik.hex:i
+sleep 3 && sudo dfu-programmer atmega32u4 erase && sudo dfu-programmer atmega32u4 flash /ln/mo/GLIM/planck_rev4_plasmik.hex
+
+== QMK
+--install qmk:
+cd $git && git clone --depth=1 --recurse-submodules https://github.com/qmk/qmk_firmware
+python -m pip install --user qmk; cd qmk_firmware; util/qmk_install.sh
+qmk compile -kb planck/rev6 -km default
+--
+cd $git/qmk_firmware/ && make atreis:default && sudo bash flash.sh atreis_default.hex
+sudo make xd60/rev3:plasmik:dfu
+make planck/rev6:plasmik:dfu-util
+cd $git/qmk_firmware/ && cp $dotfiles/qmk/qmk_planckR6keymap.c $git/qmk_firmware/keyboards/planck/keymaps/plasmik/keymap.c && make planck/rev6_drop:plasmik:dfu-util
+cd $git/qmk_firmware/ && cp $dotfiles/qmk/qmk_planckR4keymap.c $git/qmk_firmware/keyboards/planck/keymaps/plasmik/keymap.c && make planck/rev4:plasmik:dfu
+
+== TMux
+tmux new -s defs # start tmux with named session
+tmux -L SERVERNAME attach # start tmux and try to attach to the server
+server -> session -> window -> pane
+tmux list-clients
+tmux choose-window
+tmux copy-mode
+tmux switch-client -t SESSNAME
+capture-pane, save-buffer
+
+== Vim
+cd $git && git clone https://github.com/neovim/neovim; cd neovim && git pull && sudo pacman -S --needed base-devel cmake unzip ninja tree-sitter curl && make CMAKE_BUILD_TYPE=Release && sudo make install && sudo ln -sf  /usr/local/bin/nvim /usr/bin/nvim
+vi -c ":set nobomb" -c ":wq" text.xml # remove BOM non-interactively
+ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen # for building Neovim
+ninja-build python3-venv # for building Neovim  at Debian
+mercurial julia luarocks tree-sitter-cli composer go php cargo jre-openjdk npm # Neovim env
+
+== PKG
+apt-cache policy libgtk2.0-0 libgtk-3-0 # check pkg origin
+sudo apt-get --purge autoremove packagename # remove pkg completely
+gnome-shell --version
+dpkg --configure -a
+dpkg-reconfigure xserver-org
+./configure ; make ; make install
+LD_PRELOAD=/usr/lib/i386-linux-gnu/libstdc++.so.6 DISPLAY=:0 steam
+pacman -U file.xz
+pacman -Sc
+pacman -Ss '^vim-'
+pacman -Sy archlinux-keyring
+#get mirrors at# https://archlinux.org/mirrorlist/all/https/
+sudo find /var/cache/ -mtime +7 -exec rm {} \; # tidy cache from week-old files
+sudo pacman-mirrors -g
+expac -s "%-30n %m" | sort -rhk 2 | less
+pacman -Rsn $(pacman -Qdtq) # remove all orphans
+comm -23 <(pacman -Qqt | sort) <(echo "" | tr ' ' '\n' | cat <(pacman -Sqg "base base-devel") - | sort -u) #show all packages that nothing else depends on
+.
+git clone https://aur.archlinux.org/pakku.git
+makepkg -si
+sudo pacman -U https://archive.archlinux.org/packages/n/nim/nim-1.0.6-1-x86_64.pkg.tar.zst
+-- If you do not want to compile yay yourself you can use the builds generated by GitHub Actions:
+pacman -S --needed git base-devel ; cd ; git clone https://aur.archlinux.org/yay-bin.git ; cd yay-bin ; makepkg -si
+
+== ALSO
+vboxmanage extpack install /Corporalass_VM_VirtualBox_Extension_Pack-6.1.34.vbox-extpack
+VBoxManage internalcommands sethduuid NewVirtualDisk.vdi
+cp -a /source/. /target # add source/ contents to target/
+cp -aT  /source /target # add source/ contents to target/
+for f in * ; do d=${f%.*} ; 7z x -o./"$d" "$f" ; done # unpack all files with 7z
+for f in *.ext ; do g=$f ; mv -v -- "$g" "${g:20}" ; done # shorten file names
+mkdir res ; for f in *; do convert "$f" -resize 50% -sampling-factor 4:2:0  -quality 95%  res/"$f" ; done # recompress pictures
+mkdir res ; for f in *.png; do d=${f%.*} ; convert "$f" -quality 95%  jpg:res/"$d"".jpg" ; done # png to jpg
+cp $sh/transmission-cli.desktop $HOME/.local/share/applications/ # add your .desktop files here
+find /usr/share/applications/ $HOME/.local/share/applications/ -type f -name "*.desktop" # list .desktop files
+xdg-mime default transmission-cli.desktop x-scheme-handler/magnet # set default magnet URL handler
+kitty -T transmission-remote_tranloc_ -e tremc -c localhost:9090
+kitty -T transmission-remote_tranpi_ -e tremc -c 192.168.1.160:9090
+kitty +kitten themes ; kitty @ set-colors -a "$HOME"/.config/kitty/current-theme.conf # kitty switch theme more modern way
+kitty @ set-colors -a "$HOME"/.config/kitty/current-theme.conf "$sh"/conf/kitty_extra.conf # kitty reload theme
+noti transmission-remote localhost:9090 -st #locstats
+noti transmission-remote 192.168.1.160:9090 -st #pistats
+xdg-mime default vim.desktop $(xdg-mime query filetype textfile.ext)
+exo-open ......../app.desktop # run app .desktop file
+~/.local/share/applications/*.destop # .desktop location
+
+:irc:weechat:
+/filter add joinquit * irc_join,irc_part,irc_quit *
+/set irc.look.temporary_servers on
+/set weechat.look.prefix_align none
+/bar toggle nicklist
+/set weechat.bar.nicklist.size 13
+/set irc.server.freenode.command "/msg nickserv identify xxxxxxx"
+/set buflist.look.enabled 1
+/set weechat.bar.buflist.size_max 14
+/server add BNC my.bouncer.net/6667 -username=username/network -password=password
+/connect ip.ip.ip.ip/port
+steam steam://rungameid/999 # run steam game
+lpstat -p -d # show cups queue
+lpr -P HP_LaserJet_1020 /usr/share/cups/data/testprint
+sleep 300; notify-send "Сгорит нафик" "беги на кухню" -i important # set notification
+echo firstt $(($(date +%s%N)/1000000)) && sleep 1 && echo second $(($(date +%s%N)/1000000)) >> /tmp/p1.log | cat ; echo ' - cat' ; tail -1 rc1.log ; echo ' - log' # some pipe example
+du -a . | awk '{print $2}' | fzf | xargs -r $EDITOR # search and edit multiple files
+# jdownloader outputs blank screen under bspwm? ==> $ wmname LG3D; java -jar path/JDownloader.jar
+
+== SSL
+npm config set strict-ssl false # ignore SSL certif
+pip.conf // [global] / trusted-host = pypi.python.org pypi.org files.pythonhosted.org
+git config --global http.sslVerify false # ignore SSL certif (VERY SILLY!)
+
+== SOUND
+amixer -c 0 # list ALSA controls for card 0
+amixer -c USB controls
+aplay -l # list devices
+cat /proc/asound/modules # list cards
+/etc/modprobe.d/modprobe.conf,alsa.conf # blacklist and order sound cards
+cat /dev/urandom | aplay -f S32_LE -c 2 # listen to random
+speaker-test -c 2
+sox -b 32 -n test.wav rate 44100 channels 4 synth 1 sine 440 # record some synth
+aplay -D hw:2,0 test.wav # alsaplay
+for i in 0 1 2 ; do pactl set-sink-volume `echo $i` 100% ; done
+pactl list sinks # pulseaudio cli control
+[ $(amixer -D pulse sget Master | tail -1 | cut -d [ -f2 | cut -d % -f1) -gt 91 ] && amixer -D pulse set Master 8%+ && notify-send 'Volume MAX' -t 500 || amixer -D pulse set Master 8%+
+[ $(amixer sget Master | tail -1 | cut -d [ -f2 | cut -d % -f1) -gt 91 ] && amixer set Master 8%+ && notify-send 'Volume MAX' -t 500 || amixer set Master 8%+
+fluidsynth --server -a jack --connect-jack-outputs /usr/share/soundfonts/FluidR3_GM2-2.sf2
+fluidsynth --server -a alsa -o audio.alsa.device=plughw:2 /usr/share/soundfonts/FluidR3_GM2-2.sf2
+play -b 16 -n output.wav rate 44100 synth 3 sine 300-2180 fade 0 0:3 0:0.1 # sox play sound
+play -n synth 7 brownnoise sine 300-3300
+play -n synth 7 brownnoise sine 300-3300 remix 2 1 # swap channels
+aplaymidi -p 129:0 sample.mid
+sox song.mp3 -n remix 2 spectrogram -o- -p2 | feh -B black - & # generate spectrogram with sox, view with feh
+drn=${PWD##*/} ; for f in *.flac; do oggenc -b 320 -o "$drn/$f.ogg" "$f"; done #or "%a - %d - %l/$f.ogg" # flac to ogg
+for f in *.m4a; do ffmpeg -i "$f" -map_metadata -1 -acodec flac "${f%.m4a}.flac"; done
+for i in *.ape; do ffmpeg -i "$i" -compression_level 12 "${i%.ape}.flac"; done
+a="Motorhead - Loud Album"; mkdir -p "$a"; cd "$a"; shnsplit -f ../"$a".cue -t "%n %t" -o "flac ext=ogg oggenc -q 9 -o %f -" "../$a".flac; cuetag.sh "../$a".cue *.ogg; cd .. # or "flac flac" # cue to tracks
+mkdir resampled; for flac in *.flac; do sox -S "${flac}" -r 44100 -b 16 ./resampled/"${flac}"; done # resample audio
+rm -rf /mnt/blink/enc/* ; time ( cat /ln/ho/.mus-favourites | while read f  ; do echo "=== $f" ; ((i=i%6)); ((i++==0)) && wait ; conv_any2flac.sh "$f" /mnt/blink/enc/ & done ) # convert multithreaded
+

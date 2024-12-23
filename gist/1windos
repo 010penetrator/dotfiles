@@ -1,0 +1,148 @@
+$PSVersionTable
+PS c:\> cmd /c single-command-to-cmd
+Get-Content (Get-PSReadlineOption).HistorySavePath > historyLog
+
+cd %userprofile%
+copy NUL EMptyFile.txt
+pnputil -i -a *.inf
+chcp 437
+mklink /J name address
+cmd /c mklink /J  %USERPROFILE%\Downloads c:\Downloads
+cmd /c mklink /j C:\TCPU72\exe \exe
+
+:cmd: dism /online /export-driver /destination:C:\Drivers
+:psh: Export-WindowsDriver —Online —Destination C:\Drivers
+
+"C:\exe\Everything-1.3\Everything.exe" -s "$(CURRENT_WORD)"
+
+:: Repair Bootloader
+diskpart -> list volume, select volume, assign letter E
+bcdboot c:\windows /s e: /f all
+
+:: allow .jpg association
+Get-AppxPackage Microsoft.Windows.Photos -AllUsers | Reset-AppxPackage
+
+:windos icons at:
+%systemroot%\system32\imageres.dll
+%systemroot%\system32\shell32.dll
+
+Get-Command ping
+
+:: Chocolatey
+:psh:
+  -NoProfile -ExecutionPolicy unrestricted -Command "iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))" ; SET PATH=%PATH% ; %systemdrive%\chocolatey\bin
+  :or:
+  Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+choco install -y git 7zip fzf nodejs-lts luarocks curl wget ripgrep cmake make mingw ccleaner chocolateygui qbittorrent python3
+choco [ info,uninstall,list --localonly ]
+
+:: Set up scoop
+    $env:SCOOP='C:\Applications\Scoop'
+    $env:SCOOP_GLOBAL='C:\GlobalScoopApps'
+    [Environment]::SetEnvironmentVariable('SCOOP_GLOBAL', $env:SCOOP_GLOBAL, 'Machine')
+    irm get.scoop.sh -outfile 'install.ps1' ; .\install.ps1 -RunAsAdmin
+Set-ExecutionPolicy ByPass -Scope Process -Force
+iex "& {$(irm get.scoop.sh)} -RunAsAdmin"
+scoop install git; scoop bucket add extras
+scoop install less curl wget git vim win32yank
+scoop bucket add nerd-fonts; scoop install terminus-nf CascadiaCode-nf FiraMono-nf JetBrainsMono-nf
+scoop bucket add nonportable; scoop install notepads-np
+scoop install vcredist archwsl wsl-distrod windows-terminal
+.. get rootfs.tar.xz @ https://jenkins.linuxcontainers.org/job/image-archlinux/
+::
+scoop [ search,info,install,uninstall,list ]
+
+:: Set up wsl
+dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+    Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+    DISM /Online /Enable-Feature /All /FeatureName:Microsoft-Hyper-V
+    get and run 'wsl_update_x64.msi' from https://learn.microsoft.com/en-us/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package
+wsl --update
+scoop install archwsl
+wsl --list --verbose
+wsl --set-version <Distro> 2
+wsl --set-default-version 2
+wsl --shutdown
+wsl --set-default bubunta
+wsl  help, unregister, import, export
+wsl --user root --distribution BolgenOS passwd
+:: in wsl 
+useradd -m -G wheel -s /bin/bash {username}
+sudo pacman-key --init; sudo pacman-key --populate; sudo pacman -Sy archlinux-keyring; sudo pacman -Su # initialize keyring
+sudo pacman -Syu --needed neovim ncdu vifm fzf git curl wget base-devel p7zip npm nodejs ruby luarocks python-pip
+sudo mount -t drvfs j: /mnt/extr
+
+:route WSL2 to LAN
+netsh interfac eportproxy add v4tov4 `
+>> listenport=80 `
+>> listenaddress=0.0.0.0 `
+>> connectport=80 connectaddress=192.168.50.50
+netsh interface portproxy show all
+
+:get a list of all the disks and mount one in wsl:
+GET-CimInstance -query "SELECT * from Win32_DiskDrive"
+wsl --mount \\.\PHYSICALDRIVE1
+
+::
+/etc/wsl.conf:
+[network]
+generateResolvConf = false
+/etc/resolv.conf:
+nameserver 8.8.8.8
+
+:Python:
+python --version
+scoop install python
+Get-Command python
+poetry env use "c:\path\python.exe"
+poetry install --no-root
+
+:remove default apps:
+get-appxpackage  | out-gridview -passthru | remove-appxpackage
+
+:open autostart dir:
+shell:common startup
+
+:crappy SSL ignore:
+cp CA.{crt,cer}} /etc/ca-certificates/trust-source/anchors; update-ca-trust; pacman -Sy --disable-download-timeout
+python -m pip --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org    install -U  --upgrade pip
+
+:get cdb.exe x32/x64 for QtCreator:
+scoop bucket add wangzq https://github.com/wangzq/scoop-bucket
+scoop install windbg windbg32
+
+------------------------------------------------------------
+:: Most nice windos fonts
+Cascadia Code
+Consolas
+Corbel
+AnonymousPro
+Candara
+Arialunicode
+Batang
+DejaVu Mono
+Tahoma
+Verdana
+Courier New
+Georgia
+Courant-num
+Inconsolata
+Liberation
+LineDraw
+Lucida
+Meirio
+Mistral
+Open Sans
+Sans Serif
+SegoeUI
+
+:: Hit <Alt+N> to type these chars
+0171«
+0132„
+0147“
+0150–
+0151—
+01451
+01467
+

@@ -1,0 +1,116 @@
+#!/bin/bash
+# vim: ts=2 sw=2
+
+# Mirror files to portable media and back to host
+
+mirror2port()
+{
+  # tar -czf $loc/linkdir.tar.gz -C / ln
+  startdir="$(pwd)"
+  name1="/tmp/bak.tar.gz"
+  need_umount=false
+  tar -chzf "$name1" -C /ln/ --exclude=lo/cur sh lo
+  #
+  magic="AMV"
+  devlabel=$( $LSBLK -l -o LABEL | grep $magic | sort | head -1 )
+  [[ $devlabel != '' ]] && bakdev=$( $LSBLK -l -o NAME,LABEL | grep $devlabel | head -1 | cut -f1 -d ' ' )
+  #
+  [[ $bakdev == '' ]] && echo $magic is nowhere around && return 1
+  if [[ $( mount | grep $devlabel | grep $bakdev -c ) == 0 ]] ; then
+    echo ==mounting $devlabel ..
+    udevil mount /dev/$bakdev /ln/mo/$devlabel && [[ $1 != '--keep' ]] &&
+      need_umount=true
+  fi
+  if [[ $( mount | grep $devlabel | grep $bakdev -c ) != 1 ]] ; then
+    echo --Flash drive unavailable!
+    return 1
+  fi
+  bakdir=$( compgen -G /ln/mo/*$magic/bak )
+  ! [[ -d $bakdir ]] && echo "Panic! bakdir is unavailable"
+  name2=$bakdir"/auto/${space}_bak_$(date +%Y-%m-%d).tar.gz"
+  mkdir -p $bakdir/auto
+  cp "$name1" "$name2"
+  echo "-- latest tars are:"
+  ls -lrth $bakdir/auto/*bak_*tar* | cut -f6- -d ' ' | tail -n 4
+  if [[ $space == "wo" ]] ; then
+    if [[ $FAST != 1 ]] ; then
+      echo "-- Creating gitjob.tar.zst --"
+      # tar -I 'zstd -10 -T0' -X $sh/zip_exclu -cf $bakdir/gitjob.tar.zst -C /ln/ho/ gitjob
+      cd $wd1 && make -s -f my_Makefile clean
+      cd $wd2 && make -s clean
+      # tar -I 'zstd -10 -T0' -cf $bakdir/gitjob.tar.zst -C /ln/ho gitjob
+
+      tar -I 'zstd -10 -T0' -cf $bakdir/$(basename $wd1).tar.zst -C $(dirname $wd1) $(basename $wd1)
+      tar -I 'zstd -10 -T0' -cf $bakdir/$(basename $wd2).tar.zst -C $(dirname $wd2) $(basename $wd2)
+
+    fi
+    tx=/ln/ho/fz/99.txt
+    mkdir -p /ln/mo/$devlabel/fz
+    [[ -s $tx ]] &&
+      cat $tx >> /ln/mo/$devlabel/fz/99.txt && > $tx
+      TXSZ=$( cat $tx | wc -c )
+      if [ $TXSZ != 0 ] ; then
+        echo --Unable to write to backup place!
+        return 1
+      else
+        rm $tx
+        [[ $(ls -A /ln/ho/fz/) ]] &&
+          ( shopt -s dotglob; touch --date=now /ln/ho/fz/*;
+          mv -i /ln/ho/fz/* /ln/mo/$devlabel/fz/ )
+          touch $tx
+      fi
+  fi
+  # echo -- Starting sync --
+  sync /ln/mo/$devlabel
+  [[ $need_umount == true ]] && echo ==unmounting $devlabel .. && udevil umount /ln/mo/$devlabel
+  echo Done!
+  cd "$startdir"
+}
+
+mirror2host()
+{
+  magic="AMV"
+  devlabel=$($LSBLK -l -o LABEL | grep $magic | sort | head -1)
+  [[ $devlabel == '' ]] && echo $magic is nowhere around && return 1
+  bakdev=$($LSBLK -l -o NAME,LABEL | grep $devlabel | head -1 | cut -f1 -d ' ')
+  need_umount=false
+  if [[ $( mount | grep $devlabel | grep $bakdev -c ) == 0 ]] ; then
+    echo ==mounting $devlabel ..
+    udevil mount /dev/$bakdev /ln/mo/$devlabel && [[ $1 != '--keep' ]] &&
+      need_umount=true
+  fi
+  if [[ $( mount | grep $devlabel | grep $bakdev -c ) != 1 ]] ; then
+    echo --Flash drive unavailable!
+    return 1
+  else
+    bakdir=$( compgen -G /ln/mo/*$magic/bak )
+    arc=$( ls -1t $bakdir/auto/*bak*tar.gz | head -n1 )
+    echo -n 'arc is '
+    ls -lh "$arc" | cut -f9- -d ' '
+    # Now extract and remove files not present in archive
+    (
+    cd "$( readlink /ln/sh )" &&
+      touch stmp ; sleep .1
+      tar -xf "$arc" sh --strip-components=1 &&
+        find . -depth ! -path '.' ! -path './stmp' ! -cnewer stmp -print |
+        while read f ; do
+          rm -rfv "$f"
+        done
+      rm stmp
+    cd "$( readlink /ln/lo )" &&
+      touch stmp ; sleep .1
+      tar -xf "$arc" lo --strip-components=1 &&
+        find . -depth ! -path '.' ! -path './stmp' ! -type l ! -cnewer stmp -print |
+        while read f ; do
+          rm -rfv "$f"
+        done
+      rm stmp
+    )
+    # tar -xf "$arc" -C "$(readlink /ln/sh)" sh --strip-components=1
+    # tar -xf "$arc" -C "$(readlink /ln/lo)" lo --strip-components=1
+    [[ $space == "ho" ]] && [[ -d $HOME/1 ]] && [[ -d $bakdir/../fz ]] && mkdir -p $HOME/1/new && mv --backup=numbered $bakdir/../fz/* $HOME/1/new/
+  fi
+  [[ $need_umount == true ]] && echo ==unmounting $devlabel .. && udevil umount /ln/mo/*$devlabel
+  echo --Done!
+}
+

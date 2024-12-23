@@ -1,7 +1,11 @@
 #!/bin/bash
 
 # xterm &
-[[ $1 == 'only' ]] || xrc.sh &
+
+if ! [[ $1 == 'only' ]]; then
+    # By default, run more DE stuff via other script
+    xrc.sh &
+fi
 
 bspc monitor -d 1 2 3 4 5
 # bspc monitor HDMI-1 -d 1 2 3
@@ -17,7 +21,7 @@ bspc config focused_border_color  "#53944A"
 bspc config presel_feedback_color "#C57E87"
 bspc config presel_feedback       false
 
-bspc config split_ratio          0.56
+bspc config split_ratio          0.57
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 bspc config single_monocle       true
@@ -30,6 +34,7 @@ bspc rule -a Gimp desktop='^8' state=floating follow=on
 bspc rule -a org.remmina.Remmina desktop='^3'
 bspc rule -a feh state=floating
 bspc rule -a feh:*:DUMMY state=tiled
+bspc rule -a PyCalibr state=floating
 bspc rule -a Lxappearance state=floating
 bspc rule -a SpeedCrunch state=floating
 bspc rule -a Gpick state=floating
@@ -71,11 +76,12 @@ else
     [[ -z ${FLOATING_DESKTOPS+x} ]] && FLOATING_DESKTOPS=4
 fi
 
-(
-killall bspc bspc_rules & sleep .4
+# (
+# killall bspc bspc_rules & sleep .4
+killall bspc bspc_rules
 export FLOATING_DESKTOPS
-/ln/sh/bspc_rules
-) &
+$sh/bspc_rules
+# ) &
 
 notify-send 'Bspwmrc complete'
 

@@ -1,0 +1,85 @@
+" vim: ts=4 sw=4 ft=vim
+" This is root config file for Vim/Neovim
+" You should set $VIMINIT in your shell first:
+" export VIMINIT="source $dotfiles/vi/vimrc_main"
+
+" Vim install checklist
+" 1. get plug.vim
+" 2. :PlugUpdate
+
+" NeoVim install checklist
+" 1. Lazy.nvim should erect itself
+" 2. :checkhealth
+" 3. set up Mason
+" 4. check if LSP works well
+
+
+" basic conf dir, usually "~/.config/nvim" or "~/.vim"
+
+" let $VICONFDIR = split(&runtimepath, ',')[0]
+" if !isdirectory($VICONFDIR) | call mkdir($VICONFDIR, '', 0770) | endif
+
+let g:rtp0 = split(&runtimepath, ',')[0]
+
+let $SESSDIR = g:rtp0 . "/session"
+if !isdirectory($SESSDIR) | call mkdir($SESSDIR, '', 0770) | endif
+
+if !empty($vi)
+    let $MYVIMRC = $vi . "/vimrc_main"
+endif
+
+" Set path to download plugins to
+if !empty($git)
+    if has("nvim")
+        let $PLUGDIR = $git . "/nvpl"
+    else
+        let $PLUGDIR = $git . "/vpl"
+    endif
+else
+    let $PLUGDIR = resolve($HOME . "/n_vim_pl")
+endif
+
+" Probe if we are in MSYS
+let g:bash_forced=0
+if ( !empty($MSYSTEM) && has("nvim") )
+    echo "Will force Msys shell!"
+    let g:bash_forced=1
+    set shell=\msys64/usr/bin/bash
+    set shellcmdflag=-c
+    set sxq=
+    "let $PLUGDIR = system('cygpath -u "$PLUGDIR" | tr -d "\n"')
+    "let $VICONFDIR = system('cygpath "$VICONFDIR"')
+endif
+if $ComSpec =~ "cmd.exe$"
+    " echo "We have cmd prompt.."
+endif
+
+" load-if-available command
+command! -nargs=1 SSource if filereadable(expand('<args>')) | source <args> | endif
+
+set runtimepath+=$vi
+" echom &runtimepath
+" echom len(&runtimepath)
+
+if has("nvim")
+    "echo "We has nvim."
+    SSource $vi/vs/myvimrc
+    SSource $vi/lua/init.lua
+else
+    SSource $vi/vs/vimrc_plug
+    SSource $vi/vs/myvimrc
+    " SSource $vi/vimrc_themes
+    SSource $loc/vimrc.local
+    SSource /tmp/.hot.vimrc
+endif
+silent call ReloadStyle(0)
+
+set runtimepath+=$vi
+
+""   TODO&ISSUES   ""
+"     try nvim-dap
+"     try nvim-neotest
+"     try emmet
+"     try snippets
+
+

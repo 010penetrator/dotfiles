@@ -1,20 +1,44 @@
 #!/bin/bash
-# Ask what to do in current directory
+# Ask what to do/play next in target directory
 
 clear
 echo What would you like to do next?
 echo
 
+QUIT_KEY='q'
+FM_KEY='c'
+GOLIB_KEY='m'
+GOPLIST_KEY='l'
+GOHIST_KEY='i'
+GOFAV_KEY='f'
+PLADD_KEY='a'
+PLDEL_KEY='x'
+FAVADD_KEY='s'
+FAVDEL_KEY='d'
+HISTDEL_KEY='h'
+
+# Prefer $1 for TARG
+if [[ -n $1 ]]; then
+    TARG="$1"
+fi
+
+# We want directory, not file
+[[ -e $TARG ]] && [[ -f $TARG ]] && TARG=$(dirname "$TARG")
+
 # If TARG not provided, use PWD
-[[ -n $TARG ]] || TARG=$(pwd)
+[[ -z $TARG ]] && TARG=$(pwd)
+
+[[ -z $ONCE ]] && ONCE=0
 
 if ! [[ -d $TARG ]]; then
     echo "(non-existent)" "$TARG" @ $(realpath .)
     TARGREAL=
 else
-    echo "$TARG" @ $(realpath .)
+    echo "$TARG"
+    echo @ $(realpath .)
     TARGREAL=$(realpath "$TARG")
-    echo "(exact)" "$TARGREAL"
+    echo "really" "$TARGREAL"
+    echo ----------------------
 fi
 
 [[ -z $LIBRARY ]] && LIBRARY=$HOME/.mus-library
@@ -24,36 +48,40 @@ fi
 HIST=$HOME/.mus-history
 
 if [[ "$TARG" =~ "torrents/red/" ]]; then
-    [[ . -nt /ln/torrents/red/KKK ]] && echo --it is a new torrent
-    [[ . -ot /ln/torrents/red/KKK ]] && echo --it is an archive torrent
+    [[ . -nt /ln/torrents/red/KKK ]] && echo -- it is a new torrent
+    [[ . -ot /ln/torrents/red/KKK ]] && echo -- it is an archive torrent
 fi
 
 if [[ ! -z $TARGREAL ]]; then
     if [[ $( grep -F -c "$TARGREAL" "$FAVS" ) -gt 0 ]]; then
-        echo -- it is in favourites list
+        echo -- it is in Favourites
         INFAVS=1
     else
         INFAVS=0
     fi
 else
     if [[ $( grep -F -c "$TARG" "$FAVS" ) -gt 0 ]]; then
-        echo -- it FORMALLY is in favourites list
+        echo -- it FORMALLY is in Favourites
         INFAVS=1
     else
         INFAVS=0
+    fi
+    if [[ $( grep -F -c "$TARG" "$HIST" ) -gt 0 ]]; then
+        echo -- it is in History
+        SHALLOW_HIST=1
     fi
 fi
 
 if [[ ! -z $TARGREAL ]]; then
     if [[ $( grep -F -c "$TARGREAL" "$LIST" ) -gt 0 ]]; then
-        echo -- it is in play list
+        echo -- it is in Playlist
         INPLIST=1
     else
         INPLIST=0
     fi
 else
     if [[ $( grep -F -c "$TARG" "$LIST" ) -gt 0 ]]; then
-        echo -- it FORMALLY is in play list
+        echo -- it FORMALLY is in Playlist
         INPLIST=1
     else
         INPLIST=0
@@ -62,26 +90,28 @@ fi
 echo
 
 [[ $INVIFM == 1 ]] && \
-    echo "q" - back to vifm || \
-    echo "q - quit"
+    echo "$QUIT_KEY" - back to vifm || \
+    echo "$QUIT_KEY - quit"
 [[ $INVIFM != 1 ]] && \
-    echo "c - inspect directory with Vifm"
+    echo "$FM_KEY - inspect directory with Vifm"
 [[ $INPLIST == 1 ]] && \
-    echo "d - Delete from playlist"
+    echo "$PLDEL_KEY - Delete from Playlist"
 [[ $INPLIST == 0 && ! -z $TARGREAL ]] && \
-    echo "a - Add to Playlist"
+    echo "$PLADD_KEY - Add to Playlist"
 [[ $INFAVS == 0 && ! -z $TARGREAL ]] && \
-    echo "s - Save to Favourites"
+    echo "$FAVADD_KEY - Save to Favourites"
 [[ $INFAVS == 1 ]] && \
-    echo "S - Delete from Favourites"
+    echo "$FAVDEL_KEY - Delete from Favourites"
+[[ $SHALLOW_HIST == 1 ]] && \
+    echo "$HISTDEL_KEY - Delete from History"
 [[ -f $LIST && $INVIFM != 1 ]] && \
-    echo "p - play an album from Playlist"
+    echo "$GOPLIST_KEY - play an album from Playlist"
 [[ $INVIFM != 1 ]] && \
-echo "f - play an album from Favourites"
+echo "$GOFAV_KEY - play an album from Favourites"
 [[ $INVIFM != 1 ]] && \
-echo "i - play an album from History"
+echo "$GOHIST_KEY - play an album from History"
 [[ $INVIFM != 1 ]] && \
-echo "l - play an album from Library"
+echo "$GOLIB_KEY - play an album from Library"
 echo "<Space> or <CR> - PLAY again"
 echo
 
@@ -93,51 +123,85 @@ SELECTOR=dmenuy
 SELECTOR="fzf --exact --layout=reverse --keep-right --height 99%"
 clear
 
+function launch { nohup $1 >/dev/null 2>/dev/null & disown; }
+
+function jump_fzf {
+    SELECT=$( cat -n $1 | sort -n | sort -uk2 | sort -nr | cut -f2- | $SELECTOR )
+    if [[ -n $SELECT ]]; then
+        ASK=1 PAUSE=1 mpv-album.sh "$SELECT"
+    else
+        echo "Please, select something!"; sleep 1
+        ask_album.sh
+    fi
+}
+
 source $sh/dmenurc
-if [[ $prompt == "q" ]]; then
+if [[ $prompt == "$QUIT_KEY" ]]; then
     exit
-elif [[ $INPLIST != 1 && $prompt == "a" ]]; then
+elif [[ $SHALLOW_HIST == 1 && $prompt == "$HISTDEL_KEY" ]]; then
+    echo deleting  $TARG  from History
+    grep -vF "$TARG" "$HIST" > /tmp/tmplist && mv /tmp/tmplist "$HIST"
+    sleep 1
+    RUNAGAIN=1
+elif [[ $INPLIST != 1 && $prompt == "$PLADD_KEY" ]]; then
     echo "$TARGREAL" >> "$LIST"
+    echo $TARGREAL  saved to Playlist.
+    sleep .4
     RUNAGAIN=1
-elif [[ $INPLIST == 1 && $prompt == "d" ]]; then
-    echo deleting $TARGREAL from list
-    grep -vF "$TARGREAL" "$LIST" > /tmp/tmplist && mv /tmp/tmplist "$LIST"
+elif [[ $INPLIST == 1 && $prompt == "$PLDEL_KEY" ]]; then
+    # if [[ $( grep -F -c "$TARG" "$FAVS" ) -gt 0 ]]; then
+    echo deleting  $TARG  from Playlist
+    grep -vF "$TARG" "$LIST" > /tmp/tmplist && mv /tmp/tmplist "$LIST"
+    if [[ $TARG != $TARGREAL ]]; then
+        echo deleting  $TARGREAL  from Playlist
+        grep -vF "$TARGREAL" "$LIST" > /tmp/tmplist && mv /tmp/tmplist "$LIST"
+    fi
     sleep 1
     RUNAGAIN=1
-elif [[ $INFAVS == 1 && $prompt == "S" ]]; then
-    echo deleting $TARG from favs
+elif [[ $INFAVS == 1 && $prompt == "$FAVDEL_KEY" ]]; then
+    echo deleting  $TARG  from Favourites
     grep -vF "$TARG" "$FAVS" > /tmp/tmplist && mv /tmp/tmplist "$FAVS"
+    if [[ $TARG != $TARGREAL ]]; then
+        echo deleting  $TARGREAL  from Playlist
+        grep -vF "$TARGREAL" "$FAVS" > /tmp/tmplist && mv /tmp/tmplist "$FAVS"
+    fi
     sleep 1
     RUNAGAIN=1
-elif [[ $INFAVS == 0 && $prompt == "s" ]]; then
+elif [[ $INFAVS == 0 && $prompt == "$FAVADD_KEY" ]]; then
     echo "$TARGREAL" >> "$FAVS"
+    echo $TARGREAL  saved to Favourites.
+    sleep .4
     RUNAGAIN=1
-elif [[ $prompt == "c" && $INVIFM != 1 ]]; then
+elif [[ $prompt == "$FM_KEY" && $INVIFM != 1 ]]; then
     vifm "$TARGREAL" -c "wincmd o"
 elif [[ $prompt == "" ]]; then
-    PAUSE=0 mpv-album "$TARGREAL"
+    PAUSE=0 mpv-album.sh "$TARGREAL"
     # ask_album.sh
-elif [[ -f $LIST ]] && [[ $prompt == "p" ]]; then
-    SELECT=$( cat -n "$LIST" | sort -n | sort -uk2 | sort -nr | cut -f2- | $SELECTOR )
-    ASK=1 PAUSE=1 mpv-album "$SELECT"
-elif [[ -f $LIST ]] && [[ $prompt == "f" ]]; then
-    SELECT=$( cat -n "$FAVS" | sort -n | sort -uk2 | sort -nr | cut -f2- | $SELECTOR )
-    ASK=1 PAUSE=1 mpv-album "$SELECT"
-elif [[ -f $LIBRARY ]] && [[ $prompt == "l" ]]; then
-    # notify-send "lib is $LIBRARY"
-    SELECT=$( cat "$LIBRARY" | sort -R | $SELECTOR )
-    ASK=1 PAUSE=1 mpv-album "$SELECT"
-elif [[ -f $HIST ]] && [[ $prompt == "i" ]]; then
-    SELECT=$( cat -n "$HIST" | sort -n | sort -uk2 | sort -nr | cut -f2- | $SELECTOR )
-    ASK=1 PAUSE=1 mpv-album "$SELECT"
+elif [[ -f $LIST ]] && [[ $prompt == "$GOPLIST_KEY" ]]; then
+    jump_fzf $LIST
+elif [[ -f $FAVS ]] && [[ $prompt == "$GOFAV_KEY" ]]; then
+    jump_fzf $FAVS
+elif [[ -f $LIBRARY ]] && [[ $prompt == "$GOLIB_KEY" ]]; then
+    # SELECT=$( cat "$LIBRARY" | sort -R | $SELECTOR )
+    jump_fzf $LIBRARY
+elif [[ -f $HIST ]] && [[ $prompt == "$GOHIST_KEY" ]]; then
+    jump_fzf $HIST
 else
     clear
     echo pwd is $(pwd)
     echo
     echo Will exit in a second..
-    sleep 0.8
+    sleep 0.4
     exit
 fi
 
-[[ $RUNAGAIN == 1 ]] && ask_album.sh
+if [[ $RUNAGAIN == 1 && $ONCE != 1 ]]; then
+    ask_album.sh
+else
+    echo "Exiting!"
+    exit
+fi
+
+echo "Exiting!"
+exit
 

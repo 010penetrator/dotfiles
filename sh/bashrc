@@ -1,7 +1,6 @@
 #!/bin/bash
 
-[[ -z $MSYSTEM_PREFIX ]] &&
-{
+# Set terminal prompt #
 #PS1='[\u@\h \W]\$ '
 #PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w \$\[\033[00m\]'
 #PS1="\[$(tput bold)\]\[$(tput setaf 7)\]┌[\d][\t][\u@\h][\W]\n└\$ \[$(tput sgr0)\]"
@@ -11,52 +10,68 @@
 #PS1=$'\[$(tput bold)\]\[$(tput setaf 113)\]\u\[$(tput setaf 2)\] \W \$ \[$(tput sgr0)\]'
 #PS1='\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[33m\]\w\[\e[0m\]\n\$'
 #PS1="\[\e]0;\h: \a\]$PS1"
-PS1=$'\[$(tput bold)\]\[$(tput setaf 34)\]\u@\h\[$(tput setaf 78)\] \W \[$(tput setaf 34)\]\$ \[$(tput sgr0)\]'
-}
+# PS1=$'\[$(tput bold)\]\[$(tput setaf 34)\]\u@\h\[$(tput setaf 78)\] \W \[$(tput setaf 34)\]\$ \[$(tput sgr0)\]'
+
+source $sh/git-prompt.sh
+PS1=$'\[$(tput bold)\]\[$(tput setaf 41)\]┌- ☿\[$(tput setaf 74)\] \u@\h \[$(tput setaf 41)\]--┼-- \[$(tput setaf 3)\]\w \[$(tput setaf 202)\]$(__git_ps1 "#%s ")\[$(tput setaf 41)\]--┼-- \[$(tput setaf 183)\A \[$(tput setaf 41)---┐\n└- $ \[$(tput sgr0)\]'
+
+
+
+# Are we outside msys?
+# if [[ -z $MSYSTEM_PREFIX ]]; then unset $PS1; fi
 
 # Aliases #
 alias sc="systemctl "
 alias ssc="sudo systemctl "
 alias bb='tty | grep -q /dev/tty && ( terminusfont; [[ -f /usr/bin/tap ]] && sudo /usr/bin/tap & startx $sh/xinitrc bspwm ) || echo This is not tty!'
 alias tf='terminusfont'
-alias v='VIMINIT="source /ln/sh/vi/vimrc_main" nvim'
+alias v='VIMINIT="source $vi/vimrc_main" nvim'
+alias vv='VIMINIT="source $vi/vimrc_main" vim'
 alias vr='virpc'
 alias fm='vifm'
-#alias tm='cd; tmux new -s defs'
-alias tm='cd; tmux -Lrandom attach || tmuxp load $sh/conf/tmuxp.yaml -Lrandom -f $sh/conf/tmux.conf'
+alias tm='cd; tmux -Lrandom attach || tmuxp load $dotfiles/conf/tmuxp.yaml -Lrandom -f $dotfiles/conf/tmux.conf'
 alias va='MODE=last nvimrpc.py'
 alias ll='ls -la'
-alias lin='less $sh/rs/1linux'
+alias lin='less $dotfiles/gist/1linux'
 alias gs='git status'
-alias gb='git branch -a'
-alias gl='git log -3 '
-alias ggs='( [[ -f $HOME/.env ]] && . "$HOME"/.env; gsync $sh )'
+alias gbb='git branch --sort=-committerdate -vv -a'
+alias gb=" git for-each-ref --sort=-committerdate refs/heads/ --format='%(HEAD) %(align:20)%(color:yellow)%(refname:short)%(color:reset)%(end) %(color:red)%(objectname:short)%(color:reset) %(align:40)%(contents:subject)%(end)  %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))' "
+alias gds='git diff --stat'
+# alias gl='git log --oneline --stat -5'
+alias gl='clear; git log --stat -5 --pretty=format:"%C(yellow)%h %C(blue)%>(12)%ad %C(green)%<(12)%an %C(red)%d %C(reset)%s" --date=relative'
+alias gg='git log --graph --pretty=format:"%C(yellow)%h %C(blue)%>(12)%ad %C(green)%<(12)%an %C(red)%d %C(reset)%s" --date=relative'
+alias gls='git -c color.ui=always log --stat | less -R'
+alias ggs='( [[ -f $HOME/.env ]] && . "$HOME"/.env; gsync $dotfiles )'
 alias ggc='( [[ -f $HOME/.env ]] && . "$HOME"/.env; gsync $git/code_misc )'
 alias ggi='( [[ -f $HOME/.env ]] && . "$HOME"/.env; gsync $git/silly )'
 alias gg.='git add .; git commit -m ---; [[ $(git status | grep "our branch is ahead") ]] && git push'
 alias yp='fc -ln -1 | cut -c 3- | tr -d "\n" | xclip; echo yanked prev command'
+alias hsync='history -a; history -r'
 alias ram='sudo python "$sh"/mem.py'
 alias sb='source "$HOME"/.bashrc'
 alias xc='echo --Copy X sel to clipboard; xclip -o| xclip -i -selection clipboard'
 alias cx='echo --Copy clipboard to X sel; xclip -o -selection clipboard| xclip -i'
-# alias kt='kitty +kitten themes; kitty @ set-colors -a "$HOME"/.config/kitty/current-theme.conf'
-# alias kr='kitty @ set-colors -a "$HOME"/.config/kitty/current-theme.conf "$sh"/conf/kitty_extra.conf'
+alias cm="./clean.sh && ./build.sh"
+alias kt='kitty +kitten themes; kitty @ set-colors -a "$HOME"/.config/kitty/current-theme.conf'
+alias kr='kitty @ set-colors -a "$HOME"/.config/kitty/current-theme.conf "$sh"/conf/kitty_extra.conf'
 alias chmodre='find . -type f -exec chmod 644 {} \;'
 alias ncdu='ncdu --color off'
 # alias ncdu='ncdu --color off --graph-style hash'
-alias lm='df -h --output=source,fstype,avail,pcent,target -x tmpfs -x devtmpfs'
+alias lm='df -h --output=source,fstype,avail,pcent,target -x tmpfs -x devtmpfs | grep -v squashfs'
 alias wlm='watch -n 1 df -BMB --output=source,avail,pcent,target'
-alias lb='$LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT,FSUSE% | grep "sd\|nvme" --color=none'
+alias lb='$LSBLK -o NAME,FSTYPE,LABEL,FSAVAIL,SIZE,FSUSE%,MOUNTPOINT | grep "sd\|nvme\|MOUNTPOINT" --color=none'
 alias wlb='watch -n .4 $LSBLK -o NAME,FSTYPE,LABEL,SIZE,MOUNTPOINT'
 alias leto='date +%Y-%m-%d'
+alias datestamp='date +%Y-%m%d-%H%M%S'
 alias p='ps aux | grep -v grep | grep'
 alias mm='make -f my_Makefile'
+alias m="./onemake.sh"
 alias dropcs='sync && echo 3 | sudo tee /proc/sys/vm/drop_caches'
 alias nuts='sudo qemu-system-x86_64 -m 1400 -enable-kvm -cpu host -smp 4 -boot menu=on'
 # alias qu='sync && echo 3 | sudo tee /proc/sys/vm/drop_caches; sudo qemu-system-x86_64 -m 1400  -enable-kvm -cpu host -smp 4 '
 
 type -f aa &>/dev/null ||
-if  type -f pacman &>/dev/null; then
+if type -f pacman &>/dev/null; then
     alias as='pacman -Ss'
     alias ai='sudo pacman -S'
     alias aa='sudo pacman -Syu'
@@ -80,17 +95,23 @@ title() { echo -ne "\033]0;$*\007"; }
 # Functions #
 zz() { du -csh $*; arcname=$(echo "$*" | tr / _); tar -I 'zstd -10 -T0' -cf "$arcname".tar.zst --exclude='.git' --exclude='tags' $*; du -sh "$arcname".tar.zst; }
 z7() { du -csh $*; arcname=$(echo "$*" | tr / _); 7z a -mx=3 "$arcname".7z "$*"; echo; du -sh "$arcname".7z; }
-# local IFS="_";
 c() { a=wd${1}; cd ${!a}; }
-rl() { rp=$(realpath "$*");
+cl() { arg="$*"; rp=$(realpath ${!arg});
+    # echo arg is "$*" ; echo rp is _ $rp _
+    # echo "will cd to \$$*"
     { [[ -d $rp ]] && cd "$rp"; } ||
     { [[ -f $rp ]] && cd $(dirname "$rp"); } ||
         echo "No such file or dir path!"; }
-flin() { cat "$sh"/rs/1linux | fzf; }
+flin() { cat "$dotfiles/gist/1linux" | fzf; }
 # fco() { compgen -c | fzf; }
-x() { xdg-open "$*" &> /dev/null & disown; }
+xo() { xdg-open "$*" &> /dev/null & disown; }
 get_space_used() { df -BMB "$1" --output=used | tail -1 | grep -o '[0-9]*'; }
-hddsum() { d1=$(get_space_used /ln/mo/blink); d2=$(get_space_used /ln/mo/metal); echo Σ= "$(( d1 + d2 ))" Mb; }
+hddsum() {
+    d1=$(get_space_used /ln/mo/blink)
+    d2=$(get_space_used /ln/mo/metal)
+    d2=$(get_space_used /ln/mo/fast)
+    echo Σ= "$(( d1 + d2 + d3 ))" Mb
+}
 fkill() { ps -ef | sed 1d | fzf -e -m | awk '{print $2}' | xargs kill -${1:-9}; }
 vol() { pactl set-sink-volume 0 "$1"%; }
 glog() { git for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'; }
@@ -128,12 +149,12 @@ xdgsane() {
             source "$sh"/dmenurc
             app=$(grep $type /usr/share/applications/mimeinfo.cache | cut -d '=' -f2- | tr ';' '\n' | tr -s '\n' | dmenuy -p "Choose default app for $type")
             [[ $ARG =~ SAVE ]] && ! [[ -z $app ]] && xdg-mime default $app $type
-            [[ $ARG =~ RUN ]] && ! [[ -z $app ]] && xdg-open "$1"
+            [[ $ARG =~ RUN ]] && ! [[ -z $app ]] && xdg-open "$1" &
         fi
     fi
 }
 
-# This does mirror my dotfiles to remote git, thanks I am the only developer in the project =))
+# Mirror files with remote git repo
 gsync() {
 (
     targ_dir=$(realpath "$1")
@@ -141,7 +162,7 @@ gsync() {
         cd $targ_dir; pwd
     else
         echo $targ_dir " is not a directory"
-        exit
+        exit 1
     fi
     git add .
     git commit -a -m another | grep '[^[:blank:]]' --color=none
@@ -173,7 +194,7 @@ function fzfpacrem { pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs
 
 # FZF across lines of some file
 __fzf_1linux__() {
-  input_file="$sh"/rs/1linux
+  input_file="$dotfiles/gist/1linux"
   local output
   output=$(
     cat "$input_file" | fzf
@@ -329,7 +350,43 @@ fi
 if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
 # END_KITTY_SHELL_INTEGRATION
 
-# Integrate z
-# source $git/z.sh
-[[ -r /usr/share/z/z.sh ]] && source /usr/share/z/z.sh
+if type -f zoxide &>/dev/null; then
+    # Integrate zoxide
+    eval "$(zoxide init bash)"
+else
+    # Integrate z.sh by rupa
+    if [[ -r /usr/share/z/z.sh ]]; then
+        source /usr/share/z/z.sh
+    elif [[ -r $git/z/z.sh ]]; then
+        source $git/z/z.sh
+    fi
+fi
 
+n()
+{
+    # Block nesting of nnn in subshells
+    [ "${NNNLVL:-0}" -eq 0 ] || {
+        echo "nnn is already running"
+        return
+    }
+    # The behaviour is set to cd on quit (nnn checks if NNN_TMPFILE is set)
+    # If NNN_TMPFILE is set to a custom path, it must be exported for nnn to
+    # see. To cd on quit only on ^G, remove the "export" and make sure not to
+    # use a custom path, i.e. set NNN_TMPFILE *exactly* as follows:
+    #      NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+    export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
+    # stty start undef
+    # stty stop undef
+    # stty lwrap undef
+    # stty lnext undef
+    # The command builtin allows one to alias nnn to n, if desired, without
+    # making an infinitely recursive alias
+    command nnn "$@"
+    [ ! -f "$NNN_TMPFILE" ] || {
+        . "$NNN_TMPFILE"
+        rm -f -- "$NNN_TMPFILE" > /dev/null
+    }
+}
+
+# vim: ts=4 sts=4 sw=4
